@@ -1,0 +1,8 @@
+package com.dollop.exam101.Basics.UtilityTools.DatePicker.factory;
+
+public interface TimeFactoryListener {
+
+    void onHourChanged(int hour);
+
+    void onMinuteChanged(int minute);
+}

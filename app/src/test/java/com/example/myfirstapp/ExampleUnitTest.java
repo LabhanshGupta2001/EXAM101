@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.dollop.exam101;
 
 import org.junit.Test;
 

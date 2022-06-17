@@ -1,3 +1,59 @@
 <resources>
-    <string name="app_name">My First App</string>
-</resources>
+
+    <string name="app_name">Exam101</string>
+
+
+        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+
+        <!--Basic-->
+    <string name="empty_error">This field can\'t be empty.!</string>
+    <string name="invalid_email">Invalid Email Id</string>
+    <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
+    <string name="valid_number">Enter Valid Mobile Number.</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="exit_msg">Are you sure you want to exit?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="password_not_match">Password Mismatch</string>
+    <string name="alert">Alert!!</string>
+    <string name="aadhaar_valid">Please enter valid Aadhaar number!!</string>
+    <string name="pan_card_valid">Please enter valid PAN number!!</string>
+    <string name="ifsc_valid">Please enter valid IFSC!!</string>
+    <string name="enable_permission">Enable permission Manually</string>
+    <string name="permit_manually">Permit Manually</string>
+    <string name="amount_valid">Please enter valid amount</string>
+    <string name="share_the_ride_and_save_the_enviroment">Share the ride and save the enviroment</string>
+    <string name="continue_with_phone_number">Continue with Phone Number</string>
+    <string name="continue_with_social_networks">Continue with Social Networks</string>
+    <string name="connect_via_social_media">Connect via Social Media</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="select_country">Select Country</string>
+    <string name="search_for_country">Search for Country</string>
+    <string name="what_s_your_phone_number">What\'s your phone number?</string>
+    <string name="enter_your_phone_number">Enter Your Phone Number</string>
+    <string name="enter_the_one_time_password">Enter the One Time Password</string>
+    <string name="please_enter_the_4_digit_verification">Please enter the 4 digit verification</string>
+    <string name="code_sent_to">code sent to</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="register_your_details">Register your details</string>
+    <string name="enter_your_full_name">Enter Your Full Name</string>
+    <string name="enter_your_mail_id">Enter Your Mail id</string>
+    <string name="field_empty">Field can\'t be empty!</string>
+    <string name="home">Home</string>
+    <string name="yourRides">Your Rides</string>
+    <string name="publish">Publish</string>
+    <string name="inbox">Inbox</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    </resources>
+

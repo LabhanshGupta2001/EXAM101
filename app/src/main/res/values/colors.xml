@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+
+    <color name="primaryColor">#01170C</color>
+    <color name="black">#121614</color>
+    <color name="background">#ffffff</color>
+    <color name="arrow_color">#121614</color>
+    <color name="black_to_subtext">#121614</color>
+    <color name="sub_text">#6f7c8e</color>
+    <color name="text_color">#141719</color>
+    <color name="otp_box">#f9f9f9</color>
+
+    <color name="secondaryColor">#FFF</color>
+    <color name="grey">#669298A3</color>
+    <color name="theme">#00A651</color>
+    <color name="light_theme">#1400A651</color>
+    <color name="status_bar">#DAF1E6</color>
+    <color name="hint_color">#996C757D</color>
+    <color name="edit_back">#F5FFFD</color>
+    <color name="transparent">#00000000</color>
+    <color name="light_blue">#0D1877F2</color>
+    <color name="white">#FFF</color>
+    <color name="red">#EB4335</color>
+
+
+    <color name="lightGrey">#c1cbd6</color>
+
+    <color name="lineColor">#F5F5F5</color>
+    <color name="HorizontallineColor">#E8EEF6</color>
+    <color name="rhino">#40D5DEEB</color>
+    <color name="yellow">#FFBF55</color>
+    <color name="lightBlack">#232625</color>
+    <color name="primaryShadow">#12131715</color>
+    <color name="green">#0AA388</color>
+    <color name="skyBlue">#F4F9FF</color>
+    <color name="cardShadow">#0A131715</color>
+    <color name="lightYellow">#12FFCC26</color>
+    <color name="shadowBlack">#0D131715</color>
+    <color name="cyan">#D6FFF8</color>
+    <color name="pearl">#ECEEED</color>
+    <color name="Lavender">#E3EFED</color>
+    <color name="Maroon">#087965</color>
+
+    //Date Picker colors
+
+    <color name="color_grey">#999999</color>
+    <color name="color_grey1">#bbbbbb</color>
+    <color name="color_grey2">#dfdfdf</color>
+
 </resources>
