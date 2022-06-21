@@ -1,10 +1,11 @@
-package com.dollop.exam101;
+package com.dollop.exam101.Basics.activity;
 
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dollop.exam101.R;
 
 
 public class MainActivity extends AppCompatActivity {
