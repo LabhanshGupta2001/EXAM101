@@ -13,7 +13,7 @@
         <item name="colorOnSecondary">@color/secondaryColor</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -35,34 +35,29 @@
         <item name="android:backgroundTint">@color/secondaryColor</item>
     </style>
 
-    <style name="SuperThemeHeadingTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="SuperThemeHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
         <item name="android:textSize">26sp</item>
-        <item name="android:fontFamily">@font/inter_semibold</item>
     </style>
 
-    <style name="SuperTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="SuperTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">26sp</item>
-        <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
-    <style name="SuperWhiteHeadingTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="SuperWhiteHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">26sp</item>
-        <item name="android:fontFamily">@font/inter_semibold</item>
     </style>
 
     <style name="PrimaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:fontFamily">@font/inter_semibold</item>
     </style>
 
     <style name="PrimaryWhiteHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:fontFamily">@font/inter_semibold</item>
     </style>
 
     <style name="SecondaryTextStyle" parent="Widget.AppCompat.TextView">
@@ -180,52 +175,80 @@
         <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
-    <style name="QuinaryTextTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="QuinaryTextTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
-    <style name="QuinaryTextStyle" parent = "Widget.AppCompat.TextView">
+
+    <style name="QuinaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
-    <style name="QuinarySubTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="QuinarySubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
-    <style name="QuinaryThemeTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="QuinaryThemeTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
 
-    </style><style name="QuinaryWhiteTextStyle" parent = "Widget.AppCompat.TextView">
-    <item name="android:textColor">@color/white</item>
-    <item name="android:textSize">12sp</item>
-    <item name="android:fontFamily">@font/inter_medium</item>
-</style>
+    </style>
 
-    <style name="QuinaryHeadingTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="QuinaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="QuinaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/inter_semibold</item>
     </style>
 
+    <style name="HomeHeadingTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:fontFamily">@font/gothic_bold</item>
+    </style>
 
+    <style name="QuinaryBlackTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="PrimaryGreenHeadingTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/theme</item>
+        <item name="android:textSize">@dimen/_18sdp</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+    </style>
+
+    <style name="QuinaryLightTextStyle2" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+    </style>
+
+    <style name="QuinaryBlackTextStyle2" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_8sdp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
 
 
     ////////////////////////////////////////
 
 
-
-
-
-
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="fontFamily">@font/inter_medium</item>
     </style>
 
     <style name="StrokeCardStyle" parent="Widget.MaterialComponents.CardView">
@@ -233,7 +256,6 @@
         <item name="strokeColor">@color/primaryColor</item>
         <item name="strokeWidth">1dp</item>
     </style>
-
 
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
@@ -247,7 +269,7 @@
         <item name="android:layout_height">@dimen/_32sdp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="tabIndicator">@null</item>
-       
+
         <item name="tabTextAppearance">@style/tab_text</item>
         <item name="rippleColor">@color/transparent</item>
         <item name="tabTextColor">@color/primaryColor</item>
@@ -255,11 +277,9 @@
 
     <style name="EditTextProfile" parent="Widget.AppCompat.EditText">
         <item name="android:layout_marginTop">@dimen/_4sdp</item>
-      
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/inter_semibold</item>
     </style>
-
 
 
     <style name="Theme.examoneOone.NoActionBar">
@@ -270,6 +290,9 @@
     <style name="Theme.examoneOone.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.examoneOone.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    //navigation theme
+
 
 
 </resources>

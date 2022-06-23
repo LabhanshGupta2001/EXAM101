@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-        <!--Basic-->
+    <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
@@ -53,7 +53,28 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_best_course">Find The Best Courses &amp; Upgrade Your Skills.</string>
+    <string name="photography">Photography</string>
+    <string name="data_analytics">Data &amp; Analytics</string>
+    <string name="graphic_design">Graphic Design</string>
+    <string name="digital_marketing">Digital Marketing</string>
+    <string name="top_ten_packages">Top 10 Packages</string>
+    <string name="view_all">View all</string>
+    <string name="rate_now">Rate Now</string>
+    <string name="package_duration">Package Duration:</string>
+    <string name="invoice">Invoice</string>
+    <string name="digital_design_thinking">Digital Design Thinking</string>
+    <string name="transaction_id">Transaction ID -</string>
+    <string name="order_id">Order ID -</string>
+    <string name="details">Details</string>
+    <string name="graphic_design_text">Graphic Design, Adobe software, indesign, figma, industory, imeulator, photoshop,alkdjfkjsdkfjksdjkfljklsdjf</string>
+    <string name="fourdotfour">4.4</string>
+    <string name="onedottwokrating">(1.2k Ratings)</string>
+    <string name="current_affairs">Current Affairs</string>
+    <string name="news">News</string>
+    <string name="results">Results</string>
 
-
-    </resources>
+</resources>
 
