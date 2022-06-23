@@ -6,7 +6,7 @@
     android:background="@color/lineColor"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Basics.activity.OrderHistoryActivity">
+    tools:context=".main.activity.OrderHistoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

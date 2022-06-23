@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/ic_rectangle"
     android:orientation="vertical"
-    tools:context=".activity.OtpVerificationActivity">
+    tools:context=".main.activity.OtpVerificationActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

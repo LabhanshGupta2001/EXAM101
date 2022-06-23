@@ -12,7 +12,8 @@
         <item name="colorSecondaryVariant">@color/theme</item>
         <item name="colorOnSecondary">@color/secondaryColor</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
-        <item name="android:autofilledHighlight" tools:targetApi="o">@android:color/transparent</item>
+        <item name="android:autofilledHighlight" tools:targetApi="o">@android:color/transparent
+        </item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:windowTranslucentStatus">false</item>
 
@@ -127,7 +128,6 @@
     </style>
 
 
-
     <style name="QuaternaryLightSubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">14sp</item>
@@ -136,12 +136,10 @@
 
 
     <style name="QuaternarySpinnerLightTextStyle" parent="Widget.AppCompat.TextView">
-    <item name="android:textColor">@color/primaryColor</item>
-    <item name="android:textSize">14sp</item>
-    <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
     </style>
-
-
 
 
     <style name="QuaternarySubTextStyle" parent="Widget.AppCompat.TextView">
@@ -168,7 +166,6 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">14sp</item>
     </style>
-
 
 
     <style name="QuaternaryThemeHeadingTextStyle">
@@ -213,7 +210,7 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="QuinaryHeadingTextStyle" parent = "Widget.AppCompat.TextView">
+    <style name="QuinaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">12sp</item>
     </style>
@@ -235,23 +232,11 @@
     </style>
 
 
-
-
     <style name="SenaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">10sp</item>
     </style>
 
-
-    <style name="PrimaryGreenHeadingTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="QuinaryBlackTextStyle" parent="Widget.AppCompat.TextView">
-    <item name="android:textColor">@color/full_black</item>
-    <item name="android:textSize">12sp</item>
-    </style>
 
     <style name="HomeHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/black</item>
@@ -331,6 +316,23 @@
 
     //navigation theme
 
+    <style name="QuinaryBlackTextStyle2" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_8sdp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="SuperFullBlackTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/full_black</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="QuinaryThemeNewsTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/theme</item>
+        <item name="android:textSize">@dimen/_8sdp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+
+    </style>
 
     <string-array name="Number">
         <item>+91</item>
