@@ -3,12 +3,16 @@
 
     <color name="primaryColor">#01170C</color>
     <color name="black">#121614</color>
+
     <color name="background">#ffffff</color>
     <color name="arrow_color">#121614</color>
     <color name="black_to_subtext">#121614</color>
     <color name="sub_text">#6f7c8e</color>
     <color name="text_color">#141719</color>
     <color name="otp_box">#f9f9f9</color>
+
+    <color name="off_white">#F7F7F7</color>
+    <color name="LavenderBlush">#FBFFFC</color>
 
     <color name="secondaryColor">#FFF</color>
     <color name="grey">#669298A3</color>
@@ -23,9 +27,18 @@
     <color name="red">#EB4335</color>
 
 
+
+
+    <color name="stroke_color">#E9FDF3</color>
+    <color name="full_black">#000000</color>
+
+
+
+
+
     <color name="lightGrey">#c1cbd6</color>
 
-    <color name="lineColor">#F5F5F5</color>
+    <color name="lineColor">#F4F8FD</color>
     <color name="HorizontallineColor">#E8EEF6</color>
     <color name="rhino">#40D5DEEB</color>
     <color name="yellow">#FFBF55</color>
@@ -47,4 +60,8 @@
     <color name="color_grey1">#bbbbbb</color>
     <color name="color_grey2">#dfdfdf</color>
 
+
+
+    <color name="red_logout">#FE5B52</color>
+    <color name="light_gray">#EBF8F1</color>
 </resources>
