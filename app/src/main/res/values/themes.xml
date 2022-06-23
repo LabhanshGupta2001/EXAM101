@@ -135,12 +135,7 @@
     </style>
 
 
-    <style name="QuaternarySpinnerLightTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@font/inter_medium</item>
 
-    </style>
     <style name="QuaternaryLightSubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">14sp</item>
@@ -181,10 +176,7 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="QuaternaryRedLightTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/red_logout</item>
-        <item name="android:textSize">14sp</item>
-    </style>
+
 
     <style name="QuaternaryThemeHeadingTextStyle">
         <item name="android:textColor">@color/theme</item>
@@ -249,6 +241,25 @@
     <style name="SenaryYellowTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/yellow</item>
         <item name="android:textSize">10sp</item>
+    </style>
+
+
+
+
+    <style name="SenaryTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+
+    <style name="PrimaryGreenHeadingTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/theme</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="QuinaryBlackTextStyle" parent="Widget.AppCompat.TextView">
+    <item name="android:textColor">@color/full_black</item>
+    <item name="android:textSize">12sp</item>
     </style>
 
 

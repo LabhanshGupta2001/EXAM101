@@ -1,3 +1,4 @@
+/*
 package com.dollop.exam101.Basics.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,12 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     Activity activity = ProfileActivity.this;
-    ActivityProfileBinding binding;
+    ActivityP binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,4 +36,4 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
            startActivity(intent);
         }
     }
-}
+}*/

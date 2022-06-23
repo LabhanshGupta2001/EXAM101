@@ -3,7 +3,7 @@
 
     <color name="primaryColor">#01170C</color>
     <color name="black">#121614</color>
-    <color name="full_black">#000000</color>
+
     <color name="background">#ffffff</color>
     <color name="arrow_color">#121614</color>
     <color name="black_to_subtext">#121614</color>
@@ -25,12 +25,10 @@
     <color name="light_blue">#0D1877F2</color>
     <color name="white">#FFF</color>
     <color name="red">#EB4335</color>
-    <color name="red_logout">#FE5B52</color>
-    <color name="stroke_color">#E9FDF3</color>
 
 
-    <color name="red_logout">#FE5B52</color>
-    <color name="light_gray">#EBF8F1</color>
+
+
     <color name="stroke_color">#E9FDF3</color>
     <color name="full_black">#000000</color>
 
@@ -61,7 +59,7 @@
     <color name="color_grey">#999999</color>
     <color name="color_grey1">#bbbbbb</color>
     <color name="color_grey2">#dfdfdf</color>
-    <color name="light_gray">#EBF8F1</color>
+
 
 
     <color name="red_logout">#FE5B52</color>
