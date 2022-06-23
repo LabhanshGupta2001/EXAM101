@@ -18,13 +18,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.ContryItem;
+import com.dollop.exam101.model.CountryItemModel;
 import com.dollop.exam101.R;
-import com.dollop.exam101.adapter.EditProfileContryAdapter;
+import com.dollop.exam101.adapter.EditProfileCountryAdapter;
 import com.dollop.exam101.adapter.EditProfileAdapter;
 import com.dollop.exam101.databinding.ActivityEditProfileBinding;
 
@@ -36,30 +35,36 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     Activity activity = EditProfileActivity.this;
     ActivityEditProfileBinding binding;
     ImageView imageView;
-    EditProfileContryAdapter contryAdapter;
+    EditProfileCountryAdapter contryAdapter;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
-    private ArrayList<ContryItem> contryItemArrayList;
+    private ArrayList<CountryItemModel> contryItemArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initialise();
+        init();
         initList();
         spinner();
+    }
+
+    private void init() {
         imageView = binding.ivProfile;
+        binding.mcvProfileSelector.setOnClickListener(this);
+        binding.llSave.setOnClickListener(this);
+        binding.llspinner.setOnClickListener(this);
         String[] countryNames = {"India", "China", "Australia", "Portugle", "America", "New Zealand"};
         int flags[] = {R.drawable.ic_india, R.drawable.ic_china, R.drawable.ic_flag_of_australia, R.drawable.ic_portugal, R.drawable.ic_portugal, R.drawable.ic_new_zealand};
         binding.Spinner.setOnItemSelectedListener(this);
         EditProfileAdapter editProfileAdapter = new EditProfileAdapter(getApplicationContext(), flags, countryNames);
         binding.Spinner.setAdapter(editProfileAdapter);
-        contryAdapter = new EditProfileContryAdapter(activity, contryItemArrayList);
+        contryAdapter = new EditProfileCountryAdapter(activity, contryItemArrayList);
         binding.SpinnerCountry.setAdapter(contryAdapter);
         binding.SpinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ContryItem contryItem = (ContryItem) adapterView.getItemAtPosition(i);
+                CountryItemModel contryItem = (CountryItemModel) adapterView.getItemAtPosition(i);
                 String ClickContryCode = contryItem.getCode();
                 Utils.E(ClickContryCode);
                 Log.e("ClickContryCode",ClickContryCode);
@@ -73,12 +78,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
-    private void initialise() {
-        binding.mcvProfileSelector.setOnClickListener(this);
-        binding.llSave.setOnClickListener(this);
-        binding.llspinner.setOnClickListener(this);
-    }
-
     @Override
     public void onClick(View view) {
         if (view == binding.mcvProfileSelector) {
@@ -89,7 +88,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             Utils.I(activity, MockTestListActivity.class, null);
         }else if(view==binding.llspinner){
             binding.SpinnerCountry.performClick();
-
 
         }
 
@@ -219,10 +217,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
     private void initList() {
         contryItemArrayList = new ArrayList<>();
-        contryItemArrayList.add(new ContryItem("+91", R.drawable.ic_india));
-        contryItemArrayList.add(new ContryItem("+1", R.drawable.ic_china));
-        contryItemArrayList.add(new ContryItem("+44", R.drawable.ic_new_zealand));
-        contryItemArrayList.add(new ContryItem("+49", R.drawable.ic_portugal));
+        contryItemArrayList.add(new CountryItemModel("+91", R.drawable.ic_india));
+        contryItemArrayList.add(new CountryItemModel("+1", R.drawable.ic_china));
+        contryItemArrayList.add(new CountryItemModel("+44", R.drawable.ic_new_zealand));
+        contryItemArrayList.add(new CountryItemModel("+49", R.drawable.ic_portugal));
     }
 }
 

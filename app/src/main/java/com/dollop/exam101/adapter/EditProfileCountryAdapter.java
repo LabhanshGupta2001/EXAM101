@@ -11,14 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.dollop.exam101.ContryItem;
+import com.dollop.exam101.model.CountryItemModel;
 import com.dollop.exam101.R;
 
 import java.util.ArrayList;
 
-public class EditProfileContryAdapter extends ArrayAdapter {
+public class EditProfileCountryAdapter extends ArrayAdapter {
 
-    public EditProfileContryAdapter(Context context , ArrayList<ContryItem>contrylist)
+    public EditProfileCountryAdapter(Context context , ArrayList<CountryItemModel>contrylist)
     {
         super(context,0,contrylist);
     }
@@ -38,12 +38,12 @@ public class EditProfileContryAdapter extends ArrayAdapter {
     {
         if(convertView == null)
         {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.contry_spiner,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.country_spinner,parent,false);
 
         }
         ImageView imageViewFlag = convertView.findViewById(R.id.iv_flag_india_id);
         TextView id =convertView.findViewById(R.id.tv_contry_code_id);
-        ContryItem contryItem = (ContryItem) getItem(posision);
+        CountryItemModel contryItem = (CountryItemModel) getItem(posision);
         if(contryItem != null) {
             imageViewFlag.setImageResource(contryItem.getImage());
             id.setText(contryItem.getCode());
