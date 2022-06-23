@@ -8,7 +8,7 @@
     android:background="@color/lineColor"
     android:orientation="vertical"
     android:weightSum="2"
-    tools:context=".activity.signup_activity">
+    tools:context=".activity.SignUpActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,15 +23,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-               >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_back"
-                    android:layout_marginBottom="@dimen/_minus12sdp"/>
+                    android:layout_marginBottom="@dimen/_minus12sdp"
+                    android:src="@drawable/ic_back" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -87,9 +86,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/theme_stroke_background"
                     android:orientation="vertical"
                     android:padding="@dimen/_11sdp">
@@ -101,7 +100,7 @@
                         android:layout_marginStart="@dimen/_6sdp"
                         android:background="@color/white"
                         android:fontFamily="@font/inter_regular"
-                        android:hint="@string/youremail_gmail_com"
+                        android:hint="@string/enter_user_name"
                         android:singleLine="true" />
                 </LinearLayout>
 
@@ -109,8 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/grey_stroke_background"
                     android:orientation="vertical"
                     android:padding="@dimen/_11sdp">
@@ -123,7 +121,7 @@
                         android:layout_marginTop="@dimen/_3sdp"
                         android:background="@color/white"
                         android:fontFamily="@font/inter_regular"
-                        android:hint="*********"
+                        android:hint="Email@gmail.com"
                         android:singleLine="true" />
 
                 </LinearLayout>
@@ -132,59 +130,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/grey_stroke_background"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_11sdp">
+                    android:padding="@dimen/_8sdp"
+                   >
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="19dp"
-                        android:layout_height="19dp"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="@dimen/_50sdp">
+                        <Spinner
+                            android:id="@+id/Spinner_Id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner"
+                            android:backgroundTint="@color/white"
+                            tools:listitem="@layout/contry_spiner" />
 
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_india" />
-                    </com.google.android.material.card.MaterialCardView>
+                        <View
+                            android:layout_width="@dimen/_1sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_toRightOf="@+id/Spinner_Id"
+                            android:background="@color/HorizontallineColor" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_6sdp"
-                        android:text="+91"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_minus14sdp"
-                        android:backgroundTint="@color/black" />
-
-                    <View
-                        android:layout_width="@dimen/_1sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_minus12sdp"
-                        android:background="@color/background" />
 
                     <EditText
+                        android:layout_weight=".7"
                         style="@style/TernarySubTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_6sdp"
-                        android:layout_gravity="center_horizontal"
                         android:background="@color/white"
+                        android:layout_marginStart="@dimen/_4sdp"
                         android:fontFamily="@font/inter_regular"
-                        android:hint="Mobile No.."
+                        android:hint="@string/enter_mobile_no"
                         android:singleLine="true" />
 
                 </LinearLayout>
@@ -192,9 +168,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/grey_stroke_background"
                     android:orientation="vertical"
                     android:padding="@dimen/_11sdp">
@@ -206,7 +182,7 @@
                         android:layout_marginStart="@dimen/_6sdp"
                         android:background="@color/white"
                         android:fontFamily="@font/inter_regular"
-                        android:hint="Password"
+                        android:hint="@string/enter_password"
                         android:singleLine="true" />
 
                 </LinearLayout>
@@ -214,11 +190,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/grey_stroke_background"
                     android:orientation="vertical"
-                    android:layout_gravity="center_vertical"
                     android:padding="@dimen/_11sdp">
 
                     <EditText
@@ -229,7 +205,7 @@
 
                         android:background="@color/white"
                         android:fontFamily="@font/inter_regular"
-                        android:hint="@string/confirm_password"
+                        android:hint="@string/conform_password"
                         android:singleLine="true" />
 
                 </LinearLayout>
@@ -288,13 +264,13 @@
 
 
                 <TextView
+                    android:id="@+id/SignUP_Id"
                     style="@style/QuaternaryThemeHeadingTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="@dimen/_4sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:id="@+id/SignUP_Id"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:fontFamily="@font/inter_semibold"
                     android:text="Sign Up" />
 

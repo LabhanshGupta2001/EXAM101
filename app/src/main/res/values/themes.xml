@@ -138,6 +138,16 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+
+    <style name="QuaternarySpinnerLightTextStyle" parent="Widget.AppCompat.TextView">
+    <item name="android:textColor">@color/primaryColor</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+
+
+
     <style name="QuaternarySubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">14sp</item>
@@ -240,6 +250,8 @@
         <item name="android:textColor">@color/full_black</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+
 
 
 

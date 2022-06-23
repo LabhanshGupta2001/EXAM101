@@ -82,6 +82,12 @@
     <string name="reset">Reset</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="up">Up</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="new_password">New password</string>
+    <string name="conform_password">Conform password</string>
+    <string name="enter_mobile_no">Enter mobile No..</string>
+    <string name="enter_user_name">Enter user name</string>
 
 
 </resources>
