@@ -9,7 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".activity.signup_activity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.reset_password_activity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.otp_verification_activity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/nonactive_dot" />
+
+        <activity
+            android:name=".activity.Onboard_screen_activity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.forget_password_activity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.Login_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.Splash_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,6 +41,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-        <!--Basic-->
+    <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
@@ -53,7 +53,36 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="youremail_gmail_com">youremail@gmail.com</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="title_activity_forget_password">forget_password_activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="sign">Sign</string>
+    <string name="in">In</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="enter_your_email_address_and_n_recover_password">Enter your email address and \n recover password</string>
+    <string name="password">Password</string>
+    <string name="forget">Forget</string>
+    <string name="verification">Verification</string>
+    <string name="otp">OTP</string>
+    <string name="inbox_or_spam_folder_for_otp">inbox or spam folder for OTP</string>
+    <string name="kindly_check_your">Kindly check your</string>
+    <string name="xyz_gmail_com">xyz@gmail.com</string>
+    <string name="verify_otp">Verify Otp</string>
+    <string name="reset">Reset</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="up">Up</string>
 
 
-    </resources>
+</resources>
 
