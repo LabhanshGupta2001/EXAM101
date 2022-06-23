@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-        <!--Basic-->
+    <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
@@ -53,7 +53,27 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="yogendra_tiwari">Yogendra Tiwari</string>
+    <string name="yogendratiwari54_gmail_com">yogendratiwari54@gmail.com</string>
+    <string name="manage_account">Manage Account</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="order_history">Order History</string>
+    <string name="course_list">Course List</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="affiliation">Affiliation</string>
+    <string name="request_for_affiliation_code">Request for Affiliation Code</string>
+    <string name="refer_your_code_to_make_money">Refer your code to make money.</string>
+    <string name="more">More</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="notifications">Notifications</string>
+    <string name="rate_now">Rate Now</string>
+    <string name="digital_design_thinking">Digital Design Thinking</string>
+    <string name="transaction_id">Transaction ID -</string>
+    <string name="order_id">Order ID -</string>
+    <string name="package_duration">Package Duration:</string>
+    <string name="invoice">Invoice</string>
 
 
-    </resources>
+</resources>
 
