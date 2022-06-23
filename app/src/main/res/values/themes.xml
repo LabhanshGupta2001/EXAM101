@@ -12,6 +12,7 @@
         <item name="colorSecondaryVariant">@color/theme</item>
         <item name="colorOnSecondary">@color/secondaryColor</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="android:autofilledHighlight" tools:targetApi="o">@android:color/transparent</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
 
         <!-- Status bar color. -->
@@ -39,11 +40,6 @@
         <item name="android:textSize">26sp</item>
     </style>
 
-    <style name="SuperFullBlackTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/full_black</item>
-        <item name="android:textSize">26sp</item>
-    </style>
-
     <style name="SuperTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">26sp</item>
@@ -64,11 +60,6 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="PrimaryGreenHeadingTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
     <style name="SecondaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">18sp</item>
@@ -77,6 +68,7 @@
     <style name="SecondaryHeadingTextStyle">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">18sp</item>
+
     </style>
 
     <style name="TernaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
@@ -91,6 +83,12 @@
 
     <style name="TernaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="TernaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -109,19 +107,9 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="TernarySubTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
     <style name="TernaryLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TernaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
-    <item name="android:textColor">@color/white</item>
-    <item name="android:textSize">16sp</item>
     </style>
 
     <style name="QuaternaryLightTextStyle" parent="Widget.AppCompat.TextView">
@@ -129,6 +117,13 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+
+    <style name="QuaternarySpinnerLightTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+
+    </style>
     <style name="QuaternaryLightSubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">14sp</item>
@@ -144,11 +139,6 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="QuaternaryRedLightTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/red_logout</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
     <style name="QuaternarySecondaryTextStyle">
         <item name="android:textColor">@color/secondaryColor</item>
         <item name="android:textSize">14sp</item>
@@ -161,6 +151,11 @@
 
     <style name="QuaternaryWhiteTextStyle">
         <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="QuaternaryRedLightTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/red_logout</item>
         <item name="android:textSize">14sp</item>
     </style>
 
@@ -189,11 +184,6 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="QuinaryBlackTextStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/full_black</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
     <style name="QuinarySubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
         <item name="android:textSize">12sp</item>
@@ -202,6 +192,7 @@
     <style name="QuinaryThemeTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
         <item name="android:textSize">12sp</item>
+
     </style>
 
     <style name="QuinaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
@@ -215,6 +206,25 @@
     </style>
 
 
+    <style name="SenaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="SenarySubTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/sub_text</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="SenaryYellowTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="SenaryTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">10sp</item>
+    </style>
     ////////////////////////////////////////
 
 
@@ -264,4 +274,34 @@
     <style name="Theme.examoneOone.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+    <string-array name="Number">
+        <item>+91</item>
+        <item>+289</item>
+        <item>+412</item>
+        <item>+603</item>
+        <item>+544</item>
+        <item>+276</item>
+        <item>+603</item>
+    </string-array>
+    <string-array name="Country">
+        <item>India</item>
+        <item>Pakistan</item>
+        <item>South Africa</item>
+        <item>America</item>
+        <item>Brazil</item>
+    </string-array>
+    <string-array name="City">
+        <item>Indore</item>
+        <item>Dewas</item>
+        <item>Bhopal</item>
+        <item>Satna</item>
+        <item>Khargone</item>
+    </string-array>
+    <string-array name="States">
+        <item>Madhya Pradesh</item>
+        <item>Rajasthan</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Odissa</item>
+    </string-array>
 </resources>

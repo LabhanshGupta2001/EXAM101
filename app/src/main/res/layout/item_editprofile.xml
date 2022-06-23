@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_2sdp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_19sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_india" /><!--Make sure image is present in Drawable folder-->
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        android:background="@color/HorizontallineColor" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:textColor="@color/black" />
+
+</LinearLayout>

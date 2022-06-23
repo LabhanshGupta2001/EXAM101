@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-    <!--Basic-->
+        <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
@@ -54,10 +54,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="logout">Logout</string>
-    <string name="yogendra_tiwari">Yogendra Tiwari</string>
-    <string name="yogendratiwari54_gmail_com">yogendratiwari54@gmail.com</string>
-    <string name="manage_account">Manage Account</string>
-    <string name="edit_profile">Edit Profile</string>
+     <string name="manage_account">Manage Account</string>
     <string name="order_history">Order History</string>
     <string name="course_list">Course List</string>
     <string name="my_wishlist">My Wishlist</string>
@@ -73,7 +70,16 @@
     <string name="order_id">Order ID -</string>
     <string name="package_duration">Package Duration:</string>
     <string name="invoice">Invoice</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save">Save</string>
+      <string name="my_exam">My Exam</string>
+    <string name="learn_responsive_web_design_nessentials">Learn Responsive Web Design\nEssentials</string>
+    <string name="last_activity_on_6_jan_2022">Last activity on 6 Jan, 2022</string>
+    <string name="purchase_date_1_jan_2022">Purchase Date: 1 Jan, 2022</string>
+    <string name="creative_art_design">Creative Art Design</string>
+    <string name="expiry_date_8_may_2022">Expiry Date: 8 May, 2022</string>
+    <string name="attempt_40">Attempt : 40</string>
 
 
-</resources>
+    </resources>
 
