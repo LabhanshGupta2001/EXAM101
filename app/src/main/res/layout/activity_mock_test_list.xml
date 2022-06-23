@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/lineColor"
     android:orientation="vertical"
-    tools:context=".activity.MockTestListActivity">
+    tools:context=".main.activity.MockTestListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

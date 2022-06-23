@@ -7,7 +7,7 @@
     android:background="@color/LavenderBlush"
     android:orientation="vertical"
     android:layout_weight="1"
-    tools:context=".activity.WelcomeActivity">
+    tools:context=".main.activity.WelcomeActivity">
 
 <LinearLayout
     android:layout_width="match_parent"

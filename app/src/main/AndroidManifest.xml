@@ -14,27 +14,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone">
         <activity
-            android:name=".activity.SignUpActivity"
+            android:name=".main.activity.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ResetPasswordActivity"
+            android:name=".main.activity.DashboardScreenActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.OtpVerificationActivity"
+            android:name=".main.activity.ResetPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".main.activity.OtpVerificationActivity"
             android:exported="true" />
 
 
         <activity
-            android:name=".activity.WelcomeActivity"
+            android:name=".main.activity.WelcomeActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ForgotPasswordActivity"
+            android:name=".main.activity.ForgotPasswordActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".main.activity.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".main.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
