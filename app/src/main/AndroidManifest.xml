@@ -13,9 +13,6 @@
             android:name=".Basics.activity.OrderHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".Basics.activity.MainActivity"
-            android:exported="true"></activity>
-        <activity
             android:name=".Basics.activity.ProfileActivity"
             android:exported="true">
             <intent-filter>

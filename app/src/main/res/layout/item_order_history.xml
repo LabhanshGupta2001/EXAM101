@@ -87,7 +87,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_transection_money" />
+                            android:src="@drawable/ic_transaction_money" />
 
                         <TextView
                             style="@style/QuinaryLightSubTextStyle"
