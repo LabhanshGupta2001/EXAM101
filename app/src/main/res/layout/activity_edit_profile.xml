@@ -43,9 +43,8 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="@dimen/_14sdp">
 
                 <com.google.android.material.card.MaterialCardView
@@ -53,46 +52,35 @@
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_1sdp"
                     app:cardCornerRadius="@dimen/_40sdp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:scaleType="fitXY"
+                        android:src="@drawable/userprofile" />
 
-                        <ImageView
-                            android:id="@+id/ivProfile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/userprofile" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/mcvProfileSelector"
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
-                            app:cardCornerRadius="@dimen/_10sdp">
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/_4sdp"
-                                    android:layout_marginTop="@dimen/_4sdp"
-                                    android:layout_marginEnd="@dimen/_4sdp"
-                                    android:layout_marginBottom="@dimen/_4sdp"
-                                    android:src="@drawable/ic_camera" />
-                            </RelativeLayout>
-                        </androidx.cardview.widget.CardView>
-                    </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvProfileSelector"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_toRightOf="@id/mcvProfile"
+                    android:layout_below="@id/mcvProfile"
+                    android:layout_marginTop="@dimen/_minus22sdp"
+                    android:layout_marginStart="@dimen/_minus24sdp"
+                    app:cardCornerRadius="@dimen/_10sdp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_4sdp"
+                        android:src="@drawable/ic_camera" />
+                </com.google.android.material.card.MaterialCardView>
             </RelativeLayout>
 
             <LinearLayout

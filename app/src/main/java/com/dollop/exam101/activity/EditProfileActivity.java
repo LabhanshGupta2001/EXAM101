@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.model.CountryItemModel;
+import com.dollop.exam101.model.CountryItem;
 import com.dollop.exam101.R;
 import com.dollop.exam101.adapter.EditProfileCountryAdapter;
 import com.dollop.exam101.adapter.EditProfileAdapter;
@@ -37,7 +37,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     ImageView imageView;
     EditProfileCountryAdapter contryAdapter;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
-    private ArrayList<CountryItemModel> contryItemArrayList;
+    private ArrayList<CountryItem> contryItemArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +45,17 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-        initList();
-        spinner();
+
     }
 
     private void init() {
-        imageView = binding.ivProfile;
         binding.mcvProfileSelector.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
         binding.llspinner.setOnClickListener(this);
+
+        initList();
+        spinner();
+        imageView = binding.ivProfile;
         String[] countryNames = {"India", "China", "Australia", "Portugle", "America", "New Zealand"};
         int flags[] = {R.drawable.ic_india, R.drawable.ic_china, R.drawable.ic_flag_of_australia, R.drawable.ic_portugal, R.drawable.ic_portugal, R.drawable.ic_new_zealand};
         binding.Spinner.setOnItemSelectedListener(this);
@@ -64,7 +66,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         binding.SpinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                CountryItemModel contryItem = (CountryItemModel) adapterView.getItemAtPosition(i);
+                CountryItem contryItem = (CountryItem) adapterView.getItemAtPosition(i);
                 String ClickContryCode = contryItem.getCode();
                 Utils.E(ClickContryCode);
                 Log.e("ClickContryCode",ClickContryCode);
@@ -217,10 +219,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
     private void initList() {
         contryItemArrayList = new ArrayList<>();
-        contryItemArrayList.add(new CountryItemModel("+91", R.drawable.ic_india));
-        contryItemArrayList.add(new CountryItemModel("+1", R.drawable.ic_china));
-        contryItemArrayList.add(new CountryItemModel("+44", R.drawable.ic_new_zealand));
-        contryItemArrayList.add(new CountryItemModel("+49", R.drawable.ic_portugal));
+        contryItemArrayList.add(new CountryItem("+91", R.drawable.ic_india));
+        contryItemArrayList.add(new CountryItem("+1", R.drawable.ic_china));
+        contryItemArrayList.add(new CountryItem("+44", R.drawable.ic_new_zealand));
+        contryItemArrayList.add(new CountryItem("+49", R.drawable.ic_portugal));
     }
 }
 

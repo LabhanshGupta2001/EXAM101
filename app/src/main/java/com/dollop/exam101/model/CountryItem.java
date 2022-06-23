@@ -1,11 +1,11 @@
 package com.dollop.exam101.model;
 
-public class CountryItemModel {
+public class CountryItem {
 
     private String code;
     private int image;
 
-    public CountryItemModel(String code, int image) {
+    public CountryItem(String code, int image) {
         this.code = code;
         this.image = image;
     }
