@@ -11,6 +11,9 @@
     <color name="text_color">#141719</color>
     <color name="otp_box">#f9f9f9</color>
 
+    <color name="off_white">#F7F7F7</color>
+    <color name="LavenderBlush">#FBFFFC</color>
+
     <color name="secondaryColor">#FFF</color>
     <color name="grey">#669298A3</color>
     <color name="theme">#00A651</color>
@@ -24,6 +27,15 @@
     <color name="red">#EB4335</color>
     <color name="red_logout">#FE5B52</color>
     <color name="stroke_color">#E9FDF3</color>
+
+
+    <color name="red_logout">#FE5B52</color>
+    <color name="light_gray">#EBF8F1</color>
+    <color name="stroke_color">#E9FDF3</color>
+    <color name="full_black">#000000</color>
+
+
+
 
 
     <color name="lightGrey">#c1cbd6</color>

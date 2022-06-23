@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:shape="rectangle"
+    android:shape="oval"
+    android:useLevel="true"
+    android:dither="true"
     tools:ignore="MissingDefaultResource">
-    <corners android:radius="@dimen/_30sdp" />
-    <solid android:color="@color/white" />
-    <stroke android:color="@color/HorizontallineColor" android:width="@dimen/_1sdp" />
+    <size android:height="8dip" android:width="8dip"/>
 
+    <solid android:color="#bebebe"/>
 </shape>

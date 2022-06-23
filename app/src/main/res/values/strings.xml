@@ -79,6 +79,41 @@
     <string name="creative_art_design">Creative Art Design</string>
     <string name="expiry_date_8_may_2022">Expiry Date: 8 May, 2022</string>
     <string name="attempt_40">Attempt : 40</string>
+    <string name="youremail_gmail_com">youremail@gmail.com</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="title_activity_forget_password">forget_password_activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="sign">Sign</string>
+    <string name="in">In</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="enter_your_email_address_and_n_recover_password">Enter your email address and \n recover password</string>
+    <string name="password">Password</string>
+    <string name="forget">Forget</string>
+    <string name="verification">Verification</string>
+    <string name="otp">OTP</string>
+    <string name="inbox_or_spam_folder_for_otp">inbox or spam folder for OTP</string>
+    <string name="kindly_check_your">Kindly check your</string>
+    <string name="xyz_gmail_com">xyz@gmail.com</string>
+    <string name="verify_otp">Verify Otp</string>
+    <string name="reset">Reset</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="up">Up</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="new_password">New password</string>
+    <string name="conform_password">Conform password</string>
+    <string name="enter_mobile_no">Enter mobile No..</string>
+    <string name="enter_user_name">Enter user name</string>
 
 
     </resources>

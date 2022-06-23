@@ -5,6 +5,5 @@
     tools:ignore="MissingDefaultResource">
     <corners android:radius="@dimen/_30sdp" />
     <solid android:color="@color/white" />
-    <stroke android:color="@color/HorizontallineColor" android:width="@dimen/_1sdp" />
-
+    <stroke android:color="@color/red" android:width="@dimen/_1sdp" />
 </shape>
