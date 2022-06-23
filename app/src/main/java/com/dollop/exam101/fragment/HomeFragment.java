@@ -1,10 +1,7 @@
 package com.dollop.exam101.fragment;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
-
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +12,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +24,8 @@ import com.dollop.exam101.adapter.CourseAdapter;
 import com.dollop.exam101.adapter.PackageAdapter;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.model.CourseModel;
-import com.dollop.exam101.model.HomeBannerOffer;
+import com.dollop.exam101.model.HomeBannerOfferModel;
+import com.dollop.exam101.model.NewsModel;
 import com.dollop.exam101.model.PackageModel;
 
 import java.util.ArrayList;
@@ -38,10 +35,11 @@ public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList=new ArrayList<>();
-    private final Handler sliderHandler = new Handler();
-    CountDownTimer countDownTimer = null;
-    ArrayList<HomeBannerOffer> banners1 = new ArrayList<>();
+    ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
     ArrayList<PackageModel> packageList = new ArrayList<>();
+    ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
+    CountDownTimer countDownTimer = null;
+    private final Handler sliderHandler = new Handler();
     BannerAdapter bannerAdapter;
     PackageAdapter packageAdapter;
     ViewPager viewPager;
@@ -84,17 +82,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.fragment_home, container, false);
-        //        View view = inflater.inflate(R.layout.fragment_home, container, false);
         binding = FragmentHomeBinding.inflate(inflater,container,false);
-       // recyclerViewCourse=view.findViewById(R.id.recyclerViewCourse);
 
-        initialization();
+        init();
 
         return binding.getRoot();
 
     }
-    private void initialization() {
+    private void init() {
 
         //getOfferBannerByUser();
         courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"String"));
@@ -113,10 +108,10 @@ public class HomeFragment extends Fragment {
 
 
         // Banner Code
-        banners1.add(new HomeBannerOffer(R.drawable.vpbannerimage));
-        banners1.add(new HomeBannerOffer(R.drawable.vpbannerimage));
-        banners1.add(new HomeBannerOffer(R.drawable.vpbannerimage));
-        banners1.add(new HomeBannerOffer(R.drawable.vpbannerimage));
+        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
+        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
+        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
+        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         bannerAdapter = new BannerAdapter(getActivity(), banners1);
         binding.vpBanner.setAdapter(bannerAdapter);
         binding.dot2.setViewPager2(binding.vpBanner);
@@ -156,7 +151,12 @@ public class HomeFragment extends Fragment {
         packageAdapter = new PackageAdapter(getActivity(),packageList);
         LinearLayoutManager linearLayoutManager2 =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         binding.rvPackages.setLayoutManager(linearLayoutManager2);
-       // binding.rvPackages.setNestedScrollingEnabled(false);
         binding.rvPackages.setAdapter(packageAdapter);
+
+        // News Recyclerview code....
+
+//        newsModelArrayList.add(new NewsModel());
+
+
 
 }}
