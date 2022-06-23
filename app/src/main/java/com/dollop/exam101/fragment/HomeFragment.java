@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import com.dollop.exam101.R;
 import com.dollop.exam101.adapter.BannerAdapter;
 import com.dollop.exam101.adapter.CourseAdapter;
+import com.dollop.exam101.adapter.NewsAdapter;
 import com.dollop.exam101.adapter.PackageAdapter;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.model.CourseModel;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
-    ArrayList<CourseModel> courseModelArrayList=new ArrayList<>();
+    ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
     ArrayList<PackageModel> packageList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
@@ -42,6 +43,7 @@ public class HomeFragment extends Fragment {
     private final Handler sliderHandler = new Handler();
     BannerAdapter bannerAdapter;
     PackageAdapter packageAdapter;
+    NewsAdapter newsAdapter;
     ViewPager viewPager;
     LinearLayout sliderDotspanel;
     private int dotscount;
@@ -71,9 +73,9 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
     }
+
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
@@ -82,27 +84,28 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater,container,false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         init();
 
         return binding.getRoot();
 
     }
+
     private void init() {
 
         //getOfferBannerByUser();
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"String"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg,"Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "String"));
+        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
         // Add the following lines to create RecyclerView
         CourseAdapter adapter = new CourseAdapter(getContext(), courseModelArrayList);
         //adapter.notifyDataSetChanged();
-        LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         binding.recyclerViewCourse.setLayoutManager(linearLayoutManager);
         binding.recyclerViewCourse.setAdapter(adapter);
 
@@ -132,6 +135,7 @@ public class HomeFragment extends Fragment {
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
             }
+
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -143,20 +147,29 @@ public class HomeFragment extends Fragment {
 
         // Top Package Code....
 
-        packageList.add(new PackageModel("MS Power Point","MS Office, Advance Power point, Animated Slides"));
-        packageList.add(new PackageModel("Digital Design Thinking","Graphic Design, Adobe software, indesgin, figma, in... Slides"));
-        packageList.add(new PackageModel("Creative Express","Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));
-        packageList.add(new PackageModel("Creative Art Design","Banner Design, Logo design,Posters"));
+        packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
+        packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
+        packageList.add(new PackageModel("Creative Express", "Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));
+        packageList.add(new PackageModel("Creative Art Design", "Banner Design, Logo design,Posters"));
 
-        packageAdapter = new PackageAdapter(getActivity(),packageList);
-        LinearLayoutManager linearLayoutManager2 =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        packageAdapter = new PackageAdapter(getActivity(), packageList);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.rvPackages.setLayoutManager(linearLayoutManager2);
         binding.rvPackages.setAdapter(packageAdapter);
 
         // News Recyclerview code....
 
-//        newsModelArrayList.add(new NewsModel());
+        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
+                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
+        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
+                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
+        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
+                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
 
+        newsAdapter = new NewsAdapter(getActivity(), newsModelArrayList);
+        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        binding.rvNews.setLayoutManager(linearLayoutManager3);
+        binding.rvNews.setAdapter(newsAdapter);
 
-
-}}
+    }
+}

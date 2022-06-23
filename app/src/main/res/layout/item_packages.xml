@@ -5,39 +5,6 @@
     android:layout_marginBottom="@dimen/_6sdp"
     android:orientation="vertical">
 
-    <!--    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:id="@+id/tvDate"
-                style="@style/QuaternarySubTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/inter_medium"
-                android:text="02 Jun, 2022" />
-
-            <TextView
-                android:id="@+id/RetNow"
-                style="@style/QuaternaryThemeHeadingTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="@string/rate_now" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_go_arrow" />
-
-        </LinearLayout>-->
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -232,9 +199,9 @@
                         style="@style/QuinaryBlackTextStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
                         android:layout_marginStart="@dimen/_1sdp"
                         android:fontFamily="@font/inter_medium"
+                        android:maxLines="1"
                         android:text="@string/onedottwokrating" />
 
                 </LinearLayout>
@@ -268,7 +235,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </com.google.android.material.card.MaterialCardView>
 
