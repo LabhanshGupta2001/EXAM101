@@ -14,6 +14,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone">
         <activity
+            android:name=".main.activity.MockTestHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.LoginHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.RaiseComplaintFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.RaiseComplaintActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.ContactUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.UpdateBankDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.AffilationBankDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.BankDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.NotificationActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".main.activity.SignUpActivity"
             android:exported="true" />
         <activity
@@ -25,8 +58,6 @@
         <activity
             android:name=".main.activity.OtpVerificationActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".main.activity.WelcomeActivity"
             android:exported="true" />
@@ -38,14 +69,7 @@
             android:exported="true" />
         <activity
             android:name=".main.activity.SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            android:exported="true" />
     </application>
 
 </manifest>

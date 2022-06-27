@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/_15sdp"
+    tools:context=".main.activity.AffilationBankDetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/llToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/_3sdp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_4sdp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:contentDescription="@string/back_arrow"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/ic_backarrow" />
+
+
+        <TextView
+            style="@style/TernaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:text="@string/bank_details" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            >
+
+            <LinearLayout
+                android:id="@+id/llMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TernaryTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:background="@color/lineColor"
+                    android:fontFamily="@font/gothic_bold"
+                    android:text="@string/basic_details" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingVertical="@dimen/_12sdp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvProfile"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        app:cardCornerRadius="@dimen/_45sdp"
+                        app:strokeColor="@color/theme"
+                        app:strokeWidth="@dimen/_1sdp">
+
+                        <ImageView
+                            android:id="@+id/ivProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_userprofile" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/QuaternaryTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mcvProfile"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:text="@string/annirudh_bhati" />
+
+                    <TextView
+                        android:id="@+id/tvGmail"
+                        style="@style/QuinaryLightSubTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvName"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/yogendra54_gmail_com" />
+
+                    <TextView
+                        style="@style/QuinaryLightSubTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvGmail"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="+91 84564 87453" />
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/TernaryTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:background="@color/lineColor"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:fontFamily="@font/gothic_bold"
+                    android:text="@string/bank_details" />
+
+                <LinearLayout
+                    android:id="@+id/llMiddle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_12sdp">
+
+                    <TextView
+                        style="@style/QuaternaryTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/holder_name" />
+
+
+                    <EditText
+                        android:id="@+id/etHolderName"
+                        style="@style/QuinaryTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/input_custom"
+                        android:hint="@string/enter_holder_name"
+                        android:inputType="textPersonName"
+                        android:padding="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <TextView
+                        style="@style/QuaternaryTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/account_number" />
+
+                    <EditText
+                        android:id="@+id/etAccountNumber"
+                        style="@style/QuinaryTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@drawable/input_custom"
+                        android:hint="@string/enter_your_account_number"
+                        android:inputType="number"
+                        android:padding="@dimen/_12sdp"
+                        android:singleLine="true" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            style="@style/QuaternaryTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/ifsc_code" />
+
+                        <TextView
+                            style="@style/QuaternaryTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/type" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <EditText
+                            android:id="@+id/etIfscCode"
+                            style="@style/QuinaryTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input_custom"
+                            android:hint="@string/enter_your_ifsc_code"
+                            android:inputType="number"
+                            android:padding="@dimen/_12sdp"
+                            android:singleLine="true" />
+
+                        <EditText
+                            style="@style/QuinaryTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/input_custom"
+                            android:inputType="number"
+                            android:padding="@dimen/_12sdp"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/QuaternaryTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/branch" />
+
+                    <EditText
+                        android:id="@+id/etBranch"
+                        style="@style/QuinaryTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+
+                        android:background="@drawable/input_custom"
+                        android:hint="@string/enter_your_bank_branch"
+                        android:inputType="textPersonName"
+                        android:padding="@dimen/_12sdp"
+                        android:singleLine="true" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/llSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:background="@drawable/theme_backround"
+            android:gravity="center">
+
+            <TextView
+                style="@style/TernaryWhiteTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/submit" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

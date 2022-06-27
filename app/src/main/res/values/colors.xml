@@ -25,18 +25,17 @@
     <color name="light_blue">#0D1877F2</color>
     <color name="white">#FFF</color>
     <color name="red">#EB4335</color>
-
-
-
+    <color name="blue">#4598E6</color>
+    <color name="lightgrey">#D9D9D9</color>
 
     <color name="stroke_color">#E9FDF3</color>
     <color name="full_black">#000000</color>
+    <color name="theme_light">#F1FFF8</color>
 
 
 
 
-
-    <color name="lightGrey">#c1cbd6</color>
+    <color name="light_grey">#c1cbd6</color>
 
     <color name="lineColor">#F4F8FD</color>
     <color name="HorizontallineColor">#E8EEF6</color>
@@ -64,4 +63,5 @@
 
     <color name="red_logout">#FE5B52</color>
     <color name="light_gray">#EBF8F1</color>
+    <color name="yellow_light">#0FFFBF55</color>
 </resources>

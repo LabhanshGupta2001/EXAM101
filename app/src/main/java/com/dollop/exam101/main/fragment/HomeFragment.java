@@ -95,13 +95,13 @@ public class HomeFragment extends Fragment {
     private void init() {
 
         //getOfferBannerByUser();
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "String"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.personimg, "String"));
+        courseModelArrayList.add(new CourseModel(R.drawable.personimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.personimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.personimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.personimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.personimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.personimg, "Hello"));
         // Add the following lines to create RecyclerView
         CourseAdapter adapter = new CourseAdapter(getContext(), courseModelArrayList);
         //adapter.notifyDataSetChanged();

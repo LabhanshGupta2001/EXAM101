@@ -334,6 +334,19 @@
 
     </style>
 
+   <!-- //Aryan theme-->
+    <style name="MediumTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_22ssp</item>
+    </style>
+    <style name="SenaryBlueTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
+    </style>
+    <style name="QuinaryBlueTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+    </style>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

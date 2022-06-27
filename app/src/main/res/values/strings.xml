@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-        <!--Basic-->
+    <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
@@ -23,7 +23,7 @@
     <string name="enable_permission">Enable permission Manually</string>
     <string name="permit_manually">Permit Manually</string>
     <string name="amount_valid">Please enter valid amount</string>
-    <string name="share_the_ride_and_save_the_enviroment">Share the ride and save the enviroment</string>
+    <string name="share_the_ride_and_save_the_enviroment">Share the ride and save the environment</string>
     <string name="continue_with_phone_number">Continue with Phone Number</string>
     <string name="continue_with_social_networks">Continue with Social Networks</string>
     <string name="connect_via_social_media">Connect via Social Media</string>
@@ -63,19 +63,19 @@
     <string name="top_ten_packages">Top 10 Packages</string>
     <string name="view_all">View all</string>
     <string name="details">Details</string>
-    <string name="graphic_design_text">Graphic Design, Adobe software, indesign, figma, industory, imeulator, photoshop,alkdjfkjsdkfjksdjkfljklsdjf</string>
+    <string name="graphic_design_text">Graphic Design, Adobe software, indesign, figma, industry, emulator, photoshop</string>
     <string name="fourdotfour">4.4</string>
     <string name="onedottwokrating">(1.2k Ratings)</string>
     <string name="current_affairs">Current Affairs</string>
     <string name="news">News</string>
     <string name="results">Results</string>
     <string name="covid19">Covid19</string>
-    <string name="tens_of_thousands_of_people_have_been_marching_in_the_belgain">Tens of thousands of people have been marching in the Belgain.</string>
+    <string name="tens_of_thousands_of_people_have_been_marching_in_the_belgain">Tens of thousands of people have been marching in the Belgian.</string>
     <string name="_09_20_pm">09:20 pm</string>
     <string name="_12th_april">12th April</string>
-    <string name="reffer_a_friend">Reffer A Friend</string>
+    <string name="reffer_a_friend">Refer A Friend</string>
     <string name="logout">Logout</string>
-     <string name="manage_account">Manage Account</string>
+    <string name="manage_account">Manage Account</string>
     <string name="order_history">Order History</string>
     <string name="course_list">Course List</string>
     <string name="my_wishlist">My Wishlist</string>
@@ -93,7 +93,7 @@
     <string name="invoice">Invoice</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="save">Save</string>
-      <string name="my_exam">My Exam</string>
+    <string name="my_exam">My Exam</string>
     <string name="learn_responsive_web_design_nessentials">Learn Responsive Web Design\nEssentials</string>
     <string name="last_activity_on_6_jan_2022">Last activity on 6 Jan, 2022</string>
     <string name="purchase_date_1_jan_2022">Purchase Date: 1 Jan, 2022</string>
@@ -135,7 +135,71 @@
     <string name="conform_password">Conform password</string>
     <string name="enter_mobile_no">Enter mobile No..</string>
     <string name="enter_user_name">Enter user name</string>
+    <string name="notification">Notification</string>
+    <string name="your_exam101_purchase_plan">Your exam101 purchase plan</string>
+    <string name="your_purchase_plan_confirmation_has_been">Your purchase plan confirmation has been...</string>
+    <string name="_45min_ago">45min ago</string>
+    <string name="your_bank_details">Your Bank Details</string>
+    <string name="annirudh_bhati">Annirudh Bhati</string>
+    <string name="saving_account">Saving Account</string>
+    <string name="account_number">Account Number</string>
+    <string name="ifsc_code">IFSC CODE -&#160;</string>
+    <string name="sbin0001707">SBIN0001707</string>
+    <string name="update_bank_details">Update Bank Details</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="basic_details">Basic Details</string>
+    <string name="yogendra54_gmail_com">yogendra54@gmail.com</string>
+    <string name="holder_name">Holder Name</string>
+    <string name="enter_holder_name">Enter holder name</string>
+    <string name="enter_your_account_number">Enter your account number</string>
+    <string name="type">Type</string>
+    <string name="enter_your_ifsc_code">Enter your ifsc code</string>
+    <string name="branch">Branch</string>
+    <string name="enter_your_bank_branch">Enter your bank branch</string>
+    <string name="submit">Submit</string>
+    <string name="save_details">Save Details</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="get_in_touch">Get in touch!</string>
+    <string name="i_have_worls_class_flexible_support_via_live_chat_email_and_nhone_i_guarantee_that_you_ll_be_able_to_have_any_issue_nresolved_within_24_hours">I have world-class, flexible support via live chat, email and\nhone. I guarantee that you’ll be able to have any issue\nresolved within 24 hours.</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_id">Email id</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="message">Message</string>
+    <string name="enter_your_message">Enter your message</string>
+    <string name="raise_complaint_list">Raise Complaint List</string>
+    <string name="add">Add</string>
+    <string name="complaint_subject">Complaint Subject</string>
+    <string name="complaint_id">Complaint ID:</string>
+    <string name="normal_priority">Normal Priority</string>
+    <string name="view_detail">View Detail</string>
+    <string name="active">Active</string>
+    <string name="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_type_n_industry_lorem_ipsum_has_been_the_industry_s_standard_n_dummy_text_ever_since_the_1500s_when_an_unknown_printer_n_took_a_galley_of_type_and_scrambled_it_to_make_a_type_n_specimen_book_it_has_survived_not_only_five_centuries_but_n_the_leap_into_electronic_typesetting_remaining_essentially_n_unchanged">Lorem Ipsum is simply dummy text of the printing and type industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but the leap into electronic typesetting, remaining essentially unchanged.</string>
+    <string name="raise_complaint">Raise Complaint</string>
+    <string name="enter_complaint_subject">Enter Complaint Subject</string>
+    <string name="subject">Subject</string>
+    <string name="description">Description</string>
+    <string name="enter_complaint_descripyion">Enter Complaint Description</string>
+    <string name="priority">Priority</string>
+    <string name="normal">Normal</string>
+    <string name="high">High</string>
+    <string name="critical">Critical</string>
+    <string name="upload_pdf_images">Upload PDF / Images</string>
+    <string name="login_history">Login History</string>
+    <string name="browser_chrome">Browser - Chrome</string>
+    <string name="_2_june_2022">2 June, 2022</string>
+    <string name="duration">Duration</string>
+    <string name="logout_from_this_device">Logout from this device</string>
+    <string name="expire_session">Expire Session</string>
+    <string name="exit_page">Exit Page</string>
+    <string name="mock_test_history">Mock Test History</string>
+    <string name="_01_attempt">01 Attempt</string>
+    <string name="result">Result:</string>
+    <string name="view_result">View Result</string>
+    <string name="current_page">Current Page</string>
+    <string name="back_arrow">BackArrow</string>
+    <string name="download_image">download image</string>
+    <string name="closed">Closed</string>
 
 
-    </resources>
+</resources>
 

@@ -27,12 +27,11 @@ public class MockTestListActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initialise() {
+        list.clear();
         list.add("1");
         list.add("1");
         list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
+
 
         binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvMockTestList.setAdapter(new MockTestListAdapter(activity, list));
