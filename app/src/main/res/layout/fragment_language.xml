@@ -12,14 +12,15 @@
         android:weightSum="1">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/english"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_weight="1"
-            android:theme="@style/QuinaryLightTextStyle" />
+            android:theme="@style/QuinaryLightTextStyle"
+            tools:ignore="InefficientWeight" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -42,7 +43,8 @@
             android:text="@string/espa_ol"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_weight="1"
-            android:theme="@style/QuinaryLightTextStyle" />
+            android:theme="@style/QuinaryLightTextStyle"
+            tools:ignore="InefficientWeight" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -65,7 +67,8 @@
             android:text="@string/yor_b"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_weight="1"
-            android:theme="@style/QuinaryLightTextStyle" />
+            android:theme="@style/QuinaryLightTextStyle"
+            tools:ignore="InefficientWeight" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -88,7 +91,8 @@
             android:text="@string/marathi"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_weight="1"
-            android:theme="@style/QuinaryLightTextStyle" />
+            android:theme="@style/QuinaryLightTextStyle"
+            tools:ignore="InefficientWeight" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -111,7 +115,8 @@
             android:text="@string/hindi"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_weight="1"
-            android:theme="@style/QuinaryLightTextStyle" />
+            android:theme="@style/QuinaryLightTextStyle"
+            tools:ignore="InefficientWeight" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -134,7 +139,8 @@
             android:text="@string/gujarati"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_weight="1"
-            android:theme="@style/QuinaryLightTextStyle" />
+            android:theme="@style/QuinaryLightTextStyle"
+            tools:ignore="InefficientWeight" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -157,7 +163,8 @@
             android:text="@string/malayalam"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_weight="1"
-            android:theme="@style/QuinaryLightTextStyle" />
+            android:theme="@style/QuinaryLightTextStyle"
+            tools:ignore="InefficientWeight" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -166,9 +173,4 @@
             />
 
     </LinearLayout>
-
-
-
-
-
 </LinearLayout>

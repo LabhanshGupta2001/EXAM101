@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
@@ -12,8 +11,8 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
         app:cardCornerRadius="@dimen/_5sdp"
-        app:strokeWidth="@dimen/_1sdp"
-        app:strokeColor="@color/HorizontallineColor">
+        app:strokeColor="@color/HorizontallineColor"
+        app:strokeWidth="@dimen/_1sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,90 +20,51 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/llTopBarId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_6sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginHorizontal="@dimen/_6sdp"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
                 <LinearLayout
-                    android:id="@+id/llTopBarId"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_6sdp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:layout_weight=".8"
+                    android:orientation="vertical">
 
-<!--
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardProfileOne"
-                        android:layout_width="@dimen/_44sdp"
-                        android:layout_height="@dimen/_44sdp"
-                        android:layout_gravity="center"
-                        android:padding="@dimen/_50sdp"
-                        android:paddingBottom="@dimen/_5sdp"
-                        app:cardCornerRadius="@dimen/_5sdp">
 
-                        <ImageView
-                            android:id="@+id/ivPhoto_Id"
-                            android:layout_width="@dimen/_44sdp"
-                            android:layout_height="@dimen/_44sdp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/aman" />
-                    </com.google.android.material.card.MaterialCardView>
-
--->
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tvPowerPoint_Id"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".8"
-                        android:orientation="vertical">
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/microsoft_power_point"
+                        android:theme="@style/QuinaryThemeTextStyle" />
 
-
-                        <TextView
-                            android:id="@+id/tvPowerPoint_Id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/microsoft_power_point"
-                            android:theme="@style/QuinaryThemeTextStyle" />
-
-                        <TextView
-                            android:id="@+id/tvFundamentalDesign_Id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:layout_marginTop="@dimen/_4ssp"
-                            android:fontFamily="@font/gothic_bold"
-                            android:text="@string/best_way_learn_fundamentals_of_ndesign_thinking"
-                            android:theme="@style/QuinaryBlackTextStyle3" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tvFundamentalDesign_Id"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight=".2"
-                        android:orientation="vertical">
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4ssp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:text="@string/best_way_learn_fundamentals_of_ndesign_thinking"
+                        android:theme="@style/QuinaryBlackTextStyle3" />
 
-                        <TextView
-                            android:id="@+id/tvRupees"
-                            style="@style/TernaryThemeTextStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/inter_semibold"
-                            android:text="@string/_3000" />
-
-
-                    </LinearLayout>
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/tvRupees"
+                    style="@style/TernaryThemeTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".2"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/_3000" />
             </LinearLayout>
 
             <View
@@ -121,7 +81,8 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_marginBottom="@dimen/_6sdp"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -130,19 +91,15 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_hart" />
-
                     <TextView
                         android:id="@+id/tvWishList_Id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_2sdp"
+                        android:drawablePadding="@dimen/_2sdp"
                         android:fontFamily="@font/inter_medium"
                         android:text="@string/add_to_wishlist"
-                        android:theme="@style/QuinaryLightSubTextStyle" />
+                        android:theme="@style/QuinaryLightSubTextStyle"
+                        app:drawableStartCompat="@drawable/ic_hart" />
 
                 </LinearLayout>
 
@@ -153,19 +110,16 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_removesvg" />
-
                     <TextView
                         android:id="@+id/tvRemove_Id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2sdp"
+                        android:drawablePadding="@dimen/_2sdp"
                         android:fontFamily="@font/inter_regular"
                         android:text="@string/remove"
-                        android:theme="@style/QuinaryLightSubTextStyle" />
+                        android:theme="@style/QuinaryLightSubTextStyle"
+                        app:drawableStartCompat="@drawable/ic_removesvg" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

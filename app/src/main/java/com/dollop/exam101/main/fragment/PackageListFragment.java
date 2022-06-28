@@ -73,6 +73,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     }
 
     private void init() {
+
         packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
         packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
         packageList.add(new PackageModel("Creative Express", "Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));

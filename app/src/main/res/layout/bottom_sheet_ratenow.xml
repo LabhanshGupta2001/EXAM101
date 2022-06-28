@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,11 +18,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,7 +51,9 @@
                         android:layout_width="@dimen/_44sdp"
                         android:layout_height="@dimen/_44sdp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/dummy"
+                        android:contentDescription="@string/image"
+                        />
                 </com.google.android.material.card.MaterialCardView>
 
 
@@ -88,56 +86,73 @@
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_staricon" />
+                        android:src="@drawable/ic_staricon"
+                        android:contentDescription="@string/image"
+                        />
 
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_18sdp"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_staricon" />
+                        android:src="@drawable/ic_staricon"
+                        android:contentDescription="@string/image"
+                        />
 
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_18sdp"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_staricon" />
+                        android:src="@drawable/ic_staricon"
+                        android:contentDescription="@string/image"
+                        />
 
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_18sdp"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_staricon" />
+                        android:src="@drawable/ic_staricon"
+                        android:contentDescription="@string/image"
+                        />
 
                     <ImageView
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_18sdp"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_union" />
-
+                        android:src="@drawable/ic_union"
+                        android:contentDescription="@string/image"
+                        />
 
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/review"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:theme="@style/QuaternaryTextStyle" />
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvRateId"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/_110sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     app:cardBackgroundColor="@color/stroke_color"
                     app:cardCornerRadius="@dimen/_8sdp"
-                    app:contentPaddingBottom="@dimen/_50sdp"
                     app:strokeColor="@color/lineColor">
 
                     <EditText
                         android:id="@+id/etShareThoughts"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="start"
                         android:background="@color/stroke_color"
                         android:fontFamily="@font/inter_medium"
-                        android:gravity="top"
-                        android:layout_margin="@dimen/_4sdp"
+                        android:layout_margin="@dimen/_12sdp"
                         android:hint="@string/write_your_review"
-                        android:theme="@style/QuaternaryLightSubTextStyle" />
+                        android:theme="@style/QuaternaryLightSubTextStyle"
+                        android:inputType="textPersonName"
+                        tools:ignore="Autofill" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
@@ -153,10 +168,9 @@
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="center"
                     android:padding="@dimen/_11sdp"
-                    android:text="@string/apply" />
+                    android:text="@string/rate_now" />
             </LinearLayout>
 
-        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

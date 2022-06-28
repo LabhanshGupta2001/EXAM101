@@ -35,10 +35,6 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         stringArrayList.clear();
         stringArrayList.add("1");
-        stringArrayList.add("1");
-        stringArrayList.add("1");
-
-
         holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,stringArrayList));
         holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
 

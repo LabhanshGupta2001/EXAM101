@@ -38,7 +38,7 @@ public class ContryAdapter extends ArrayAdapter {
     {
         if(convertView == null)
         {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.contry_spiner,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.country_spinner,parent,false);
 
         }
         ImageView imageViewFlag = convertView.findViewById(R.id.iv_flag_india_id);

@@ -205,6 +205,26 @@
     <string name="subject_1">Subject 1</string>
     <string name="module_1">Module 1</string>
     <string name="remove">Remove</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="image">Image</string>
+    <string name="or">OR</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="back_arrow">back_arrow</string>
+    <string name="_5305">5305</string>
+    <string name="enter_your_new_password_and_confirm_nto_login_into_your_account">Enter your new password and confirm\nto login into your account</string>
+    <string name="change_password">Change Password</string>
+    <string name="email_gmail_com">Email@gmail.com</string>
+    <string name="register">Register</string>
+    <string name="take_your">Take Your</string>
+    <string name="get_start">Get Start</string>
+    <string name="edufie_offers_professional_training_classes_nand_special_features_to_help_you_improve_nyour_skills">Edufie offers professional training classes \nand special features to help you improve \nyour skills.</string>
+    <string name="favorite">Favorite</string>
+    <string name="review">Review</string>
+    <string name="_91">+91</string>
+    <string name="_02_jun_2022">02 Jun, 2022</string>
+    <string name="_1234567475474155">1234567475474155</string>
+    <string name="_001">001</string>
+    <string name="_20_days">20 DAYS</string>
 
 
 </resources>

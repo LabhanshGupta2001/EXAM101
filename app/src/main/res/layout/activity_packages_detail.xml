@@ -19,69 +19,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/rlTop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:background="@color/background"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:id="@+id/ivBack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_vector" />
-
-                    <TextView
-                        style="@style/TernaryTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_12sdp"
-                        android:layout_toRightOf="@id/ivBack"
-                        android:fontFamily="@font/gothic_bold"
-                        android:text="@string/package_detail" />
-
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/CardView"
-                        android:layout_width="@dimen/_34sdp"
-                        android:layout_height="@dimen/_34sdp"
-                        android:layout_alignParentEnd="true"
-                        app:cardCornerRadius="@dimen/_100sdp"
-                        app:strokeColor="@color/lineColor">
-
-                        <ImageView
-                            android:id="@+id/ivLogOut"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_shareicon" />
-
-                    </com.google.android.material.card.MaterialCardView>
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/imageview" />
-            </LinearLayout>
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="16:9"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/imageview"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -158,6 +112,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_4sdp"
+                            android:contentDescription="@string/image"
                             android:src="@drawable/ic_staricon" />
 
                         <TextView
@@ -270,11 +225,13 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/inter_medium"
                                 android:text="@string/course_details"
-                                android:theme="@style/QuaternaryLightTextStyle" />
+                                android:theme="@style/QuaternaryLightTextStyle"
+                                tools:ignore="InefficientWeight" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:contentDescription="@string/image"
                                 android:src="@drawable/ic_uparrowblack" />
 
 
@@ -313,7 +270,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingVertical="@dimen/_10sdp"
-                        android:weightSum="1">
+                        android:weightSum="1"
+                        tools:ignore="UseCompoundDrawables">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -323,7 +281,8 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
                             android:text="@string/requirements"
-                            android:theme="@style/QuaternaryTextStyle" />
+                            android:theme="@style/QuaternaryTextStyle"
+                            tools:ignore="InefficientWeight" />
 
                         <ImageView
                             android:id="@+id/ivRotedArrow"
@@ -331,6 +290,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="@dimen/_10sdp"
+                            android:contentDescription="@string/image"
                             android:rotation="180"
                             android:src="@drawable/ic_uparrowblack" />
 
@@ -350,7 +310,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingVertical="@dimen/_10sdp"
-                        android:weightSum="1">
+                        android:weightSum="1"
+                        tools:ignore="UseCompoundDrawables">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -360,13 +321,15 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
                             android:text="@string/skills_covered_in_this_course"
-                            android:theme="@style/QuaternaryTextStyle" />
+                            android:theme="@style/QuaternaryTextStyle"
+                            tools:ignore="InefficientWeight" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="@dimen/_10sdp"
+                            android:contentDescription="@string/image"
                             android:rotation="180"
                             android:src="@drawable/ic_uparrowblack" />
 
@@ -387,11 +350,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_weight="1"
                     android:fontFamily="@font/gothic_bold"
                     android:text="@string/rating_and_reviews"
-                    android:theme="@style/TernaryBlackTextStyle" />
+                    android:theme="@style/TernaryBlackTextStyle"
+                    tools:ignore="InefficientWeight" />
 
 
                 <TextView
@@ -408,7 +371,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_2sdp"
-                    android:src="@drawable/ic_theemrightarrow" />
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/ic_theemrightarrow"
+
+                    />
 
 
             </LinearLayout>
@@ -440,6 +406,7 @@
         android:layout_height="0dp"
         android:layout_weight=".12"
         android:background="@color/white"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -451,7 +418,7 @@
             android:gravity="center"
             android:orientation="vertical"
 
-            >
+            tools:ignore="NestedWeights">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"

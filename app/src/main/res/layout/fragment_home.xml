@@ -99,15 +99,15 @@
                 style="@style/QuaternaryThemeHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@id/ivArrow"
-                android:layout_marginRight="@dimen/_12sdp"
+                android:layout_alignEnd="@id/ivArrow"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:text="@string/view_all" />
 
             <ImageView
                 android:id="@+id/ivArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_arrowicon" />
         </RelativeLayout>

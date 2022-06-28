@@ -55,51 +55,52 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_6sdp"
-        android:orientation="horizontal"
         android:gravity="center_horizontal"
+        android:orientation="horizontal"
         android:weightSum="3">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:fontFamily="@font/inter_regular"
             android:text="@string/_500"
-            android:layout_weight="1"
             android:theme="@style/QuinaryTextStyle" />
-
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="1"
-            android:paddingStart="@dimen/_15sdp"
-            android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:src="@drawable/ic_twofivezerozero"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_2500"
-            android:layout_marginStart="@dimen/_minus36sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/inter_regular"
-            android:theme="@style/QuinaryWhiteTextStyle"/>
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_twofivezerozero" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_minus36sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/_2500"
+                android:theme="@style/QuinaryWhiteTextStyle" />
 
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
-            android:gravity="end"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:fontFamily="@font/inter_regular"
+            android:gravity="end"
             android:text="@string/_5000"
             android:theme="@style/QuinaryTextStyle" />
 
