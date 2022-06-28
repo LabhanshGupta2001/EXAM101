@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-        <!--Basic-->
+    <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
