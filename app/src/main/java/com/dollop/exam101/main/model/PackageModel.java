@@ -9,6 +9,10 @@ public class PackageModel
     public String days;
     public String ratingNum;
     public String ratingCount;
+    public String Subject;
+        public String Module;
+    public String Chapter;
+
 
     public PackageModel() {
     }

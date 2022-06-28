@@ -17,13 +17,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            android:contentDescription="@string/image"
+            />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_examicon" />
+            android:src="@drawable/ic_examicon"
+            android:contentDescription="@string/image"
+            />
     </RelativeLayout>
 
 
@@ -66,8 +70,7 @@
             android:layout_marginTop="@dimen/_6sdp"
             android:fontFamily="@font/inter_regular"
             android:gravity="center"
-
-            android:text="Kindly check your" />
+            android:text="@string/kindly_check_your" />
 
         <TextView
             style="@style/TernaryLightTextStyle"
@@ -102,7 +105,7 @@
         android:fontFamily="@font/inter_semibold"
         android:inputType="number"
         android:itemBackground="@drawable/selector_background_color"
-        android:text="5305"
+        android:text="@string/_5305"
         android:textColor="@color/primaryColor"
         android:textSize="@dimen/_26ssp"
         app:cursorWidth="2dp"
@@ -119,20 +122,13 @@
         app:lineWidth="2dp"
         app:viewType="rectangle" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_14sdp"
-        android:elevation="@dimen/_2sdp"
-        android:orientation="vertical">
-
-
         <TextView
             android:id="@+id/VerifyOTP_Id"
             style="@style/TernaryWhiteTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:elevation="@dimen/_2sdp"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:background="@drawable/theme_stroke_background"
             android:backgroundTint="@color/theme"
@@ -140,8 +136,5 @@
             android:gravity="center"
             android:padding="@dimen/_12sdp"
             android:text="@string/verify_otp" />
-
-    </LinearLayout>
-
 
 </LinearLayout>

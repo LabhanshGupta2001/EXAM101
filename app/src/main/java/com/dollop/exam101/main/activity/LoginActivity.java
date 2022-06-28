@@ -35,6 +35,7 @@ ActivityLoginBinding binding;
             Utils.I(activity, ForgotPasswordActivity.class,null);
         }else if (view==binding.SignInId){
             Utils.I(activity, DashboardScreenActivity.class,null);
+            finish();
         }else if (view==binding.tvSignUp){
             Utils.I(activity, SignUpActivity.class,null);
         }

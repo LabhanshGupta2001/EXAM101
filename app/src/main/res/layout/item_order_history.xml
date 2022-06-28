@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/_6sdp"
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/inter_medium"
-            android:text="02 Jun, 2022" />
+            android:text="@string/_02_jun_2022" />
 
         <TextView
             android:id="@+id/RetNow"
@@ -36,6 +37,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/image"
             android:src="@drawable/ic_go_arrow" />
 
     </LinearLayout>
@@ -58,8 +60,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginBottom="@dimen/_13sdp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
                 android:weightSum="1">
 
                 <LinearLayout
@@ -87,6 +90,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/image"
                             android:src="@drawable/ic_transaction_money" />
 
                         <TextView
@@ -104,7 +108,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_3sdp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="1234567475474155" />
+                            android:text="@string/_1234567475474155" />
 
                     </LinearLayout>
 
@@ -116,6 +120,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/image"
                             android:paddingTop="@dimen/_2sdp"
                             android:src="@drawable/ic_order_id" />
 
@@ -134,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_3sdp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="001" />
+                            android:text="@string/_001" />
 
                     </LinearLayout>
 
@@ -142,16 +147,17 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_weight=".3"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content">
+                    android:layout_weight=".3">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UselessParent">
 
                         <TextView
                             android:id="@+id/tvRupees"
@@ -159,7 +165,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
-                            android:text="₹3000" />
+                            android:text="@string/_3000" />
 
                         <TextView
                             android:id="@+id/tvTotalRupees"
@@ -168,7 +174,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="@dimen/_2sdp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="₹4500" />
+                            android:text="@string/_4500" />
 
                     </LinearLayout>
                 </RelativeLayout>
@@ -180,68 +186,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin=".5dp"
+                android:orientation="horizontal"
                 android:weightSum="1"
-                android:orientation="horizontal">
+                tools:ignore="DisableBaselineAlignment">
 
-                    <LinearLayout
-                        android:id="@+id/llPackageDuration"
-                        android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/llPackageDuration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".6"
+                    android:background="@drawable/packege_duration"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_11sdp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="@drawable/packege_duration"
-                        android:gravity="center_vertical"
-                        android:layout_weight=".6"
-                        android:padding="@dimen/_11sdp">
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/ic_watch" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_watch"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/package_duration"
-                            android:layout_marginStart="@dimen/_2sdp"
-                            android:fontFamily="@font/inter_medium"
-                            style="@style/QuinaryBlackTextStyle"/>
-
-                        <TextView
-                            android:id="@+id/tvDay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="20 DAYS"
-                            android:layout_marginStart="@dimen/_3sdp"
-                            android:fontFamily="@font/inter_semibold"
-                            style="@style/QuinaryLightTextStyle"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/llInvoice"
-                        android:layout_width="0dp"
+                    <TextView
+                        style="@style/QuinaryBlackTextStyle"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_weight=".4"
-                        android:background="@drawable/invoice_bg"
-                        android:padding="@dimen/_11sdp">
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/package_duration" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/invoice"
-                            android:textColor="@color/white"
-                            android:fontFamily="@font/inter_semibold"
-                            style="@style/QuinaryLightTextStyle"/>
+                    <TextView
+                        android:id="@+id/tvDay"
+                        style="@style/QuinaryLightTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/_20_days" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_5sdp"
-                            android:src="@drawable/ic_file_in"/>
-                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llInvoice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4"
+                    android:background="@drawable/invoice_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_11sdp">
+
+                    <TextView
+                        style="@style/QuinaryLightTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/invoice"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/ic_file_in" />
+                </LinearLayout>
 
             </LinearLayout>
 
