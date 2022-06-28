@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lineColor"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".main.activity.PackagesDetailActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".88">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/rlTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:background="@color/background"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/ivBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_vector" />
+
+                    <TextView
+                        style="@style/TernaryTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_toRightOf="@id/ivBack"
+                        android:fontFamily="@font/gothic_bold"
+                        android:text="@string/package_detail" />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/CardView"
+                        android:layout_width="@dimen/_34sdp"
+                        android:layout_height="@dimen/_34sdp"
+                        android:layout_alignParentEnd="true"
+                        app:cardCornerRadius="@dimen/_100sdp"
+                        app:strokeColor="@color/lineColor">
+
+                        <ImageView
+                            android:id="@+id/ivLogOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_shareicon" />
+
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/imageview" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/_3000"
+                        android:textColor="@color/theme"
+                        android:textSize="@dimen/_24ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/_4500"
+                        android:theme="@style/QuaternaryLightSubTextStyle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/microsoft_power_point"
+                        android:theme="@style/QuinaryThemeTextStyle" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:text="@string/best_way_learn_fundamentals_of_design_nthinking"
+                        android:theme="@style/TernaryBlackTextStyle" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games"
+                        android:textColor="@color/sub_text"
+                        android:textSize="@dimen/_9ssp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:src="@drawable/ic_staricon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_2sdp"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="@string/_4_0"
+                            android:theme="@style/QuaternaryThemeHeadingTextStyle" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_2sdp"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/_54_rating_and_reviews"
+                            android:theme="@style/QuinaryLightSubTextStyle" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tlPackageDetailTabLayoutId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:tabBackground="@drawable/grey_stroke_background"
+                    app:tabIndicator="@android:color/transparent"
+                    app:tabIndicatorColor="@android:color/transparent"
+                    app:tabSelectedTextColor="@color/theme"
+                    app:tabTextColor="@color/white">
+
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/ViewPagerPackageDetailId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </androidx.viewpager2.widget.ViewPager2>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llLogoutDevice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvFirst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!--tools:listitem="@layout/item_pakages_details_primary"-->
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="@font/gothic_bold"
+                android:text="@string/overview"
+                android:theme="@style/TernaryBlackTextStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_4sdp"
+                    app:strokeColor="@color/lineColor">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/course_details"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_uparrowblack" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/lineColor" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_6sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/new_to_web_design_start_here_first_instructor_james_nwilliamson_introduces_the_fundamental_concepts_tools_and_nlearning_paths_for_web_design_he_explains_what_it_means_to_be_na_web_designer_the_various_areas_of_specialization_and_nwhether_web_design_is_the_right_hobby_or_career_for_you_along_nthe_way_he_talks_to_five_prominent_designers_and_developers_nwho_have_each_found_success_in_a_different_corner_of_the_web"
+                            android:textColor="@color/sub_text"
+                            android:textSize="@dimen/_8ssp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvZtoA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/lineColor">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/requirements"
+                            android:theme="@style/QuaternaryTextStyle" />
+
+                        <ImageView
+                            android:id="@+id/ivRotedArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_uparrowblack" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/lineColor">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/skills_covered_in_this_course"
+                            android:theme="@style/QuaternaryTextStyle" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_uparrowblack" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:fontFamily="@font/gothic_bold"
+                    android:text="@string/rating_and_reviews"
+                    android:theme="@style/TernaryBlackTextStyle" />
+
+
+                <TextView
+                    android:id="@+id/tvRateId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/rate_now"
+                    android:theme="@style/QuinaryThemeTextStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:src="@drawable/ic_theemrightarrow" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRatingId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!--tools:listitem="@layout/item_pakages_details_primary"-->
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".12"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight=".50"
+            android:gravity="center"
+            android:orientation="vertical"
+
+            >
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/theme"
+                app:strokeWidth="@dimen/_1sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_20sdp">
+
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center_horizontal"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:text="@string/add_to_wishlist"
+                        android:theme="@style/QuaternaryThemeHeadingTextStyle" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight=".50"
+            android:gravity="center"
+            android:orientation="vertical"
+
+            >
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/theme"
+                app:strokeWidth="@dimen/_1sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/theme"
+                    android:paddingHorizontal="@dimen/_15sdp">
+
+
+                    <TextView
+                        android:id="@+id/tvButtonCheckout_Id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center_horizontal"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:text="@string/add_to_cart"
+                        android:theme="@style/QuaternarySecondaryTextStyle" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

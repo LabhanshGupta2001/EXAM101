@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-        <!--Basic-->
+    <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
@@ -75,7 +75,7 @@
     <string name="_12th_april">12th April</string>
     <string name="reffer_a_friend">Reffer A Friend</string>
     <string name="logout">Logout</string>
-     <string name="manage_account">Manage Account</string>
+    <string name="manage_account">Manage Account</string>
     <string name="order_history">Order History</string>
     <string name="course_list">Course List</string>
     <string name="my_wishlist">My Wishlist</string>
@@ -93,7 +93,7 @@
     <string name="invoice">Invoice</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="save">Save</string>
-      <string name="my_exam">My Exam</string>
+    <string name="my_exam">My Exam</string>
     <string name="learn_responsive_web_design_nessentials">Learn Responsive Web Design\nEssentials</string>
     <string name="last_activity_on_6_jan_2022">Last activity on 6 Jan, 2022</string>
     <string name="purchase_date_1_jan_2022">Purchase Date: 1 Jan, 2022</string>
@@ -135,7 +135,77 @@
     <string name="conform_password">Conform password</string>
     <string name="enter_mobile_no">Enter mobile No..</string>
     <string name="enter_user_name">Enter user name</string>
+    <string name="cart">Cart</string>
+    <string name="yogendra_tiwari">Yogendra Tiwari</string>
+    <string name="yogendratiwari54gmailcom">yogendratiwari54gmailcom</string>
+    <string name="apply">Apply</string>
+    <string name="package_list">Package List</string>
+    <string name="apply_coupon">Apply Coupon</string>
+    <string name="referral_code">Referral Code</string>
+    <string name="oder_summary">Oder Summary</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="_1500">₹1500</string>
+    <string name="sgst_and_cgst_or_igst">SGST and CGST or IGST</string>
+    <string name="_18">18%</string>
+    <string name="coupon_discount">Coupon Discount</string>
+    <string name="_240">₹240</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="_1350">₹1350</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="your_package_is_confirmed_please_proceed_nto_my_packages_option">Your package is confirmed. Please proceed\nto my packages option.</string>
+    <string name="see_your_package">See your Package</string>
+    <string name="package_detail">Package Detail</string>
+    <string name="_3000">₹3000</string>
+    <string name="_4500">₹4500</string>
+    <string name="microsoft_power_point">Microsoft power Point</string>
+    <string name="best_way_learn_fundamentals_of_design_nthinking">Best way learn fundamentals of design\nthinking.</string>
+    <string name="learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games">Learn Python like a Professional Start from the basics and go\nall the way to creating your own applications and games Learn\nPython like a Professional Start from the basics and go all the\nway to creating your own applications and games</string>
+    <string name="_4_0">4.0</string>
+    <string name="_54_rating_and_reviews">(54) Rating and Reviews</string>
+    <string name="overview">Overview</string>
+    <string name="course_details">Course details</string>
+    <string name="new_to_web_design_start_here_first_instructor_james_nwilliamson_introduces_the_fundamental_concepts_tools_and_nlearning_paths_for_web_design_he_explains_what_it_means_to_be_na_web_designer_the_various_areas_of_specialization_and_nwhether_web_design_is_the_right_hobby_or_career_for_you_along_nthe_way_he_talks_to_five_prominent_designers_and_developers_nwho_have_each_found_success_in_a_different_corner_of_the_web">New to web design? Start here first. Instructor James\nWilliamson introduces the fundamental concepts, tools, and\nlearning paths for web design. He explains what it means to be\na web designer, the various areas of specialization, and\nwhether web design is the right hobby or career for you. Along\nthe way, he talks to five prominent designers and developers,\nwho have each found success in a different corner of the web.</string>
+    <string name="requirements">Requirements</string>
+    <string name="skills_covered_in_this_course">Skills covered in this course</string>
+    <string name="rating_and_reviews">Rating and Reviews</string>
+    <string name="add_to_wishlist">Add to Wishlist</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="payment_failed">Payment Failed</string>
+    <string name="oops_something_went_wrong_please_ntry_again_to_purchse_the_package">Oops! something went wrong! please\ntry again to purchse the package.</string>
+    <string name="savepackage50">SAVEPACKAGE50</string>
+    <string name="rate_package">Rate Package</string>
+    <string name="best_way_learn_fundamentals_of_ndesign_thinking">Best Way learn fundamentals of\ndesign thinking.</string>
+    <string name="write_your_review">Write your review...</string>
+    <string name="filter">Filter</string>
+    <string name="yog4500erz">YOG4500ERZ</string>
+    <string name="python">Python</string>
+    <string name="php">Php</string>
+    <string name="html">HTML</string>
+    <string name="css">Css</string>
+    <string name="data_and_analytics">Data and Analytics</string>
+    <string name="digiltal_marketing">Digiltal Marketing</string>
+    <string name="ui_design">UI Design</string>
+    <string name="english">English</string>
+    <string name="espa_ol">Español</string>
+    <string name="yor_b">Yorùbá</string>
+    <string name="marathi">Marathi</string>
+    <string name="hindi">Hindi</string>
+    <string name="gujarati">Gujarati</string>
+    <string name="malayalam">Malayalam</string>
+    <string name="all_packages">All Packages</string>
+    <string name="price_range">Price Range</string>
+    <string name="_500">₹500</string>
+    <string name="_2500">₹2500</string>
+    <string name="_5000">₹5000</string>
+    <string name="aashi_singh">Aashi Singh</string>
+    <string name="today_12_30pm">Today | 12:30PM</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_enim_nmaiores_adipisci_optio_ex_laboriosam_facilis_non_pariatur_itaque_nillo_sunt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim\nmaiores adipisci optio ex, laboriosam facilis non pariatur itaque\nillo sunt?</string>
+    <string name="chapter_1">Chapter 1</string>
+    <string name="subject_1">Subject 1</string>
+    <string name="module_1">Module 1</string>
+    <string name="remove">Remove</string>
 
 
-    </resources>
+</resources>
 

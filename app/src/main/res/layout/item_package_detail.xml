@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/llTopBarId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_margin="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_100sdp"
+                android:id="@+id/mcFriendLogoId">
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/dummy"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/llListFacebookDataId"
+                android:layout_width="0dp"
+                android:layout_weight=".7"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp">
+
+                <TextView
+                    android:id="@+id/tvTitleId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aashi_singh"
+                    android:fontFamily="@font/inter_semibold"
+                    android:theme="@style/QuaternaryFullBlackTextStyle"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tvDescriptionId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/today_12_30pm"
+                    android:fontFamily="@font/inter_medium"
+                    android:theme="@style/SenarySubTextStyle"/>
+
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="0.2"
+                android:layout_gravity="center_vertical"
+                >
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_staricon"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/ivStarId"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_4_0"
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_toRightOf="@+id/ivStarId"
+                    android:theme="@style/QuaternaryThemeHeadingTextStyle"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_enim_nmaiores_adipisci_optio_ex_laboriosam_facilis_non_pariatur_itaque_nillo_sunt"
+    android:fontFamily="@font/inter_regular"
+    android:textColor="@color/sub_text"
+    android:textSize="@dimen/_9ssp"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/lineColor"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

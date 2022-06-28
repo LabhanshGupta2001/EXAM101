@@ -16,6 +16,14 @@
 
     <color name="secondaryColor">#FFF</color>
     <color name="grey">#669298A3</color>
+    <!--aman-->
+    <color name="lightgrey">#D9D9D9</color>
+    <color name="lightpink">#FFEAE8</color>
+    <color name="pink">#FFDAD7</color>
+    <color name="fillColor">#E5FFF2</color>
+    <color name="DarkfillColor">#C3FFE1</color>
+    <color name="WelcomeActivityBackgroundColor">#FBFFFC</color>
+
     <color name="theme">#00A651</color>
     <color name="light_theme">#1400A651</color>
     <color name="status_bar">#DAF1E6</color>
@@ -25,6 +33,10 @@
     <color name="light_blue">#0D1877F2</color>
     <color name="white">#FFF</color>
     <color name="red">#EB4335</color>
+
+
+    <color name="light_red">#F7F7F7</color>
+
 
 
 
@@ -55,7 +67,7 @@
     <color name="Maroon">#087965</color>
 
     //Date Picker colors
-
+    <color name="StrokeColorLightBlue">#EBEBFF</color>
     <color name="color_grey">#999999</color>
     <color name="color_grey1">#bbbbbb</color>
     <color name="color_grey2">#dfdfdf</color>
@@ -64,4 +76,5 @@
 
     <color name="red_logout">#FE5B52</color>
     <color name="light_gray">#EBF8F1</color>
+    <color name="ViewLineColor">#EDEDED</color>
 </resources>

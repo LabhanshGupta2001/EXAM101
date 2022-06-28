@@ -124,11 +124,11 @@
         android:background="@drawable/bottom_curve_background"
         android:elevation="@dimen/_4sdp"
         android:paddingHorizontal="@dimen/_10sdp"
+        app:itemIconTint="@drawable/color_selection"
+        app:itemTextAppearanceActive="@style/BottomNavigationView"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:itemIconTint="@drawable/color_selection"
-        app:itemTextAppearanceInactive="@style/BottomNavigationView"
-        app:itemTextAppearanceActive="@style/BottomNavigationView"
         app:menu="@menu/bottom_nav_menu"
         tools:ignore="MissingConstraints" />
 

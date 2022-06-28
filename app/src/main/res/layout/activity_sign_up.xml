@@ -221,6 +221,7 @@
                     android:backgroundTint="@color/theme"
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="center"
+                    android:id="@+id/tv_Register_Id"
                     android:padding="@dimen/_11sdp"
                     android:text="Register" />
 

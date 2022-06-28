@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityForgotPasswordBinding;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener {
-    Activity activity= ForgotPasswordActivity.this;
+    Activity activity;
     ActivityForgotPasswordBinding binding;
 
     @Override
@@ -20,6 +21,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
        /* setContentView(R.layout.activity_forget_password);*/
         binding = ActivityForgotPasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        activity= ForgotPasswordActivity.this;
         init();
     }
     private void init(){
@@ -30,9 +32,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view) {
         if(view==binding.SendOtpId) {
-            Intent intent = new Intent(ForgotPasswordActivity.this, OtpVerificationActivity.class);
-            startActivity(intent);
-
-    }
+            Utils.I(ForgotPasswordActivity.this, OtpVerificationActivity.class,null);
+        }
 }
 }

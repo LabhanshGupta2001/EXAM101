@@ -7,10 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityOtpVerificationBinding;
 
 public class OtpVerificationActivity extends AppCompatActivity implements View.OnClickListener {
-Activity activity= OtpVerificationActivity.this;
+Activity activity;
 ActivityOtpVerificationBinding binding;
 
     @Override
@@ -19,6 +20,7 @@ ActivityOtpVerificationBinding binding;
       /*  setContentView(R.layout.activity_otp_verification);*/
         binding = ActivityOtpVerificationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        activity= OtpVerificationActivity.this;
         init();
     }
     private void init(){
@@ -29,8 +31,7 @@ ActivityOtpVerificationBinding binding;
     @Override
     public void onClick(View view) {
         if (view == binding.VerifyOTPId) {
-            Intent intent = new Intent(OtpVerificationActivity.this, ResetPasswordActivity.class);
-            startActivity(intent);
+            Utils.I(OtpVerificationActivity.this, ResetPasswordActivity.class,null);
         }
 
     }
