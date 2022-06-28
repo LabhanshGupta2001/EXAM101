@@ -199,6 +199,11 @@
     <string name="back_arrow">BackArrow</string>
     <string name="download_image">download image</string>
     <string name="closed">Closed</string>
+    <string name="all_exams">All Exams</string>
+    <string name="_235_packages">235+ Packages</string>
+    <string name="filter">Filter</string>
+    <string name="ms_power_point">MS Power Point</string>
+    <string name="ms_office_advance_power_point_animated_slides">MS Office, Advance Power point, Animated Slides</string>
 
 
 </resources>

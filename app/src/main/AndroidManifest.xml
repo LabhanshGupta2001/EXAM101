@@ -14,8 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone">
         <activity
-            android:name=".main.activity.MockTestHistoryActivity"
+            android:name=".main.activity.CategoryDetailsActivity"
             android:exported="false" />
+        <activity
+            android:name=".main.activity.MockTestHistoryActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".main.activity.LoginHistoryActivity"
             android:exported="false" />
@@ -40,11 +49,7 @@
         <activity
             android:name=".main.activity.NotificationActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".main.activity.SignUpActivity"
@@ -63,7 +68,7 @@
             android:exported="true" />
         <activity
             android:name=".main.activity.ForgotPasswordActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".main.activity.LoginActivity"
             android:exported="true" />

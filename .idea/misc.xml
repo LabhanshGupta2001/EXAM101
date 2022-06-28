@@ -9,10 +9,15 @@
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/grey_stroke_half_curve.xml" value="0.245" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_backarrow.xml" value="0.2555" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_contact.xml" value="0.2335" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_dataanalysisicon.xml" value="0.2275" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_filtericon.xml" value="0.2275" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_logout.xml" value="0.2335" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_photography.xml" value="0.2275" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_photographyicon.xml" value="0.202" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_rightarrow.xml" value="0.245" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_toggle.xml" value="0.2465" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_uparrowblack.xml" value="0.2335" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_watch.xml" value="0.213" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/ic_world.xml" value="0.1075" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/input_custom.xml" value="0.2335" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/spinner.xml" value="0.1965" />
@@ -21,6 +26,7 @@
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/drawable/theme_stroke_dash.xml" value="0.2335" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.4" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.4" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_category_details.xml" value="0.6" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_contact_us.xml" value="0.264" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.4" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.4" />
@@ -35,7 +41,7 @@
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_otp_verification.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.4" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_raise_complaint.xml" value="0.264" />
-        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_raise_complaint_form.xml" value="0.536" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_raise_complaint_form.xml" value="0.4" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_reset_password.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/activity_update_bank_details.xml" value="0.4" />
@@ -45,8 +51,12 @@
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/contry_spiner.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/country_spinner.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/fragment_all_results.xml" value="0.5714285714285714" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/fragment_category_home.xml" value="0.4" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/fragment_performance.xml" value="0.25" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_category_detail.xml" value="0.536" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_category_details_secondary.xml" value="0.6" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_category_home.xml" value="0.536" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_course.xml" value="0.6" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_current_affairs_news.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_editprofile.xml" value="0.25" />
@@ -58,8 +68,13 @@
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_notification_data.xml" value="0.536" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_notification_primary.xml" value="0.4" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_notification_secondary.xml" value="0.264" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.536" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.6" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/item_vp_banner.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/onboard_screen_layout.xml" value="0.25" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/picker_popup_layout.xml" value="0.25" />
+        <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/progress_dialog.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/grey_stroke_background.xml" value="0.2465" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_camera.xml" value="0.2555" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_flag_of_australia.xml" value="0.2555" />

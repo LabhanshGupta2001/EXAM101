@@ -25,7 +25,6 @@
                 android:layout_margin="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_8sdp"
                 app:strokeColor="@color/HorizontallineColor"
-
                 app:strokeWidth="@dimen/_1sdp">
 
                 <ImageView
