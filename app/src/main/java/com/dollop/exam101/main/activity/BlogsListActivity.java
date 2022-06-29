@@ -10,12 +10,15 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.dollop.exam101.Basics.adapter.AllBlogListAdapter;
-import com.dollop.exam101.Basics.adapter.BlogsListAdapter;
-import com.dollop.exam101.Basics.adapter.ViewPagerFragmentAdapter;
+import com.dollop.exam101.databinding.ActivityBlogsListBinding;
+import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
+import com.dollop.exam101.databinding.BottomSheetBlogShortBinding;
+import com.dollop.exam101.databinding.ItemAllBlogsBinding;
+import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
+import com.dollop.exam101.main.adapter.AllBlogListAdapter;
+import com.dollop.exam101.main.adapter.BlogsListAdapter;
 import com.dollop.exam101.main.fragment.AuthorFragment;
 import com.dollop.exam101.main.fragment.CategoryFragment;
-import com.dollop.exam101.main.fragment.DateFragment;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
 import com.dollop.exam101.R;
@@ -208,12 +211,12 @@ public class BlogsListActivity extends AppCompatActivity implements View.OnClick
         title.add("Author");
 
         fragments.add(new CategoryFragment());
-        fragments.add(new DateFragment());
+      //  fragments.add(new DateFragment());
         fragments.add(new AuthorFragment());
 
         // TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
         //  ViewPager2 viewPager2 = bottomSheetFilter.findViewById(R.id.vpLaunchId);
-        bottomSheetBlogFilterBinding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
+     //   bottomSheetBlogFilterBinding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
 
         new TabLayoutMediator(bottomSheetBlogFilterBinding.tlFilter, bottomSheetBlogFilterBinding.vpLaunchId, (tab, position) -> {
             tab.setText(title.get(position));

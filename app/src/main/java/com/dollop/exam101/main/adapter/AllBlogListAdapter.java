@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.ItemAllBlogsBinding;
 import com.dollop.exam101.main.activity.BlogDetailActivity;
 import com.dollop.exam101.main.model.AllBlogListModel;
 

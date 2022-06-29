@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.ItemCourseListBinding;
 import com.dollop.exam101.main.model.CourseListModel;
 
 import java.util.ArrayList;

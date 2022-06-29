@@ -1,13 +1,14 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.ActivityLoginHistoryBinding;
 import com.dollop.exam101.main.adapter.LoginHistoryAdapter;
 
 import java.util.ArrayList;

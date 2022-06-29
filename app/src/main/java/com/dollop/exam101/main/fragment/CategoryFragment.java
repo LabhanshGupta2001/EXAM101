@@ -9,8 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dollop.exam101.Basics.adapter.AuthorHistoryAdapter;
-import com.dollop.exam101.Basics.adapter.CategoryAdapter;
+import com.dollop.exam101.databinding.FragmentCategoryBinding;
+import com.dollop.exam101.main.adapter.AuthorHistoryAdapter;
+import com.dollop.exam101.main.adapter.CategoryAdapter;
 
 import java.util.ArrayList;
 

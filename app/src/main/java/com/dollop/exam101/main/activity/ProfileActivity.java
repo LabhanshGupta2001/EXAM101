@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 

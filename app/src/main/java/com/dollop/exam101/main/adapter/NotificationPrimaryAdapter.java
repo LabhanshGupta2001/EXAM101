@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemNotificationPrimaryBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 

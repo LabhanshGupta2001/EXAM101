@@ -9,12 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
 import com.dollop.exam101.R;
 
 import java.util.ArrayList;
 
-public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder> {
+public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder>{
     Context context;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
     int pos=0;

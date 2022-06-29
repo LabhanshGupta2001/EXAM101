@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemPakagesDetailsPrimaryBinding;
+
 import java.util.ArrayList;
 
 public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetailPrimaryAdapter.MyViewHolder> {
@@ -26,7 +28,7 @@ public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetai
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemPakagesDetailsPrimaryBinding binding=ItemPakagesDetailsPrimaryBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemPakagesDetailsPrimaryBinding binding= ItemPakagesDetailsPrimaryBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyViewHolder(binding);
     }
 

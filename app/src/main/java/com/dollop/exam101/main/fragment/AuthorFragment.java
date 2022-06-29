@@ -9,7 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dollop.exam101.Basics.adapter.AuthorHistoryAdapter;
+import com.dollop.exam101.databinding.FragmentAuthorBinding;
+import com.dollop.exam101.main.adapter.AuthorHistoryAdapter;
 
 import java.util.ArrayList;
 

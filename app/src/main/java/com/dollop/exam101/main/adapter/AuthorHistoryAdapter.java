@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.ItemAuthoreSearchBinding;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class AuthorHistoryAdapter extends RecyclerView.Adapter<AuthorHistoryAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecycleView") int position) {
+    public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint({"RecycleView", "RecyclerView"}) int position) {
         holder.binding.mcvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

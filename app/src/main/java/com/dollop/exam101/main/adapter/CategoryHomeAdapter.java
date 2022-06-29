@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.ItemCategoryHomeBinding;
 import com.dollop.exam101.main.activity.CategoryDetailsActivity;
 
 import java.util.ArrayList;

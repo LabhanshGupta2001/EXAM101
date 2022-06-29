@@ -8,6 +8,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dollop.exam101.databinding.ActivityOrderHistoryBinding;
+import com.dollop.exam101.databinding.ItemOrderHistoryBinding;
 import com.dollop.exam101.main.adapter.OrderHistoryAdapter;
 import com.dollop.exam101.main.model.OrderHistoryModel;
 

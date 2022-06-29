@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.main.fragment.CategoryHomeFragment;
 import com.dollop.exam101.main.fragment.HomeFragment;
 import com.dollop.exam101.main.fragment.PackageListFragment;
