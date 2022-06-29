@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

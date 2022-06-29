@@ -23,8 +23,8 @@ import android.widget.Toast;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.main.model.CountryItem;
 import com.dollop.exam101.R;
-import com.dollop.exam101.main.fragment.adapter.EditProfileCountryAdapter;
-import com.dollop.exam101.main.fragment.adapter.EditProfileAdapter;
+import com.dollop.exam101.main.adapter.EditProfileCountryAdapter;
+import com.dollop.exam101.main.adapter.EditProfileAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

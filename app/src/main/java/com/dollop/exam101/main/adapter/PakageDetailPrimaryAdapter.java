@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDetailSecondaryAdapter.MyViewHolder> {
+public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetailPrimaryAdapter.MyViewHolder> {
     Context context;
     ArrayList<String> list;
+    int row_index=-1;
     ArrayList<String> stringArrayList=new ArrayList<>();
 
-    public PakageDetailSecondaryAdapter(Context context, ArrayList<String> list) {
+
+    public PakageDetailPrimaryAdapter(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
     }
@@ -24,7 +26,7 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemPakagesDetailsSecondryBinding binding=ItemPakagesDetailsSecondryBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemPakagesDetailsPrimaryBinding binding=ItemPakagesDetailsPrimaryBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyViewHolder(binding);
     }
 
@@ -32,8 +34,9 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         stringArrayList.clear();
         stringArrayList.add("1");
-        holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,stringArrayList));
-        holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
+
+        holder.binding.rvSecond.setAdapter(new PakageDetailSecondaryAdapter(context,stringArrayList));
+        holder.binding.rvSecond.setLayoutManager(new LinearLayoutManager(context));
 
 
     }
@@ -44,8 +47,8 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ItemPakagesDetailsSecondryBinding binding;
-        public MyViewHolder(@NonNull ItemPakagesDetailsSecondryBinding binding) {
+        ItemPakagesDetailsPrimaryBinding binding;
+        public MyViewHolder(@NonNull ItemPakagesDetailsPrimaryBinding binding) {
             super(binding.getRoot());
             this.binding=binding;
         }

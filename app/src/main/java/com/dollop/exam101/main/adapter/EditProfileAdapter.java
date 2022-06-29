@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

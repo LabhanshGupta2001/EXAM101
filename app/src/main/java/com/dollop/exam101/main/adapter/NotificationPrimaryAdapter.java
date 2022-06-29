@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,15 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.ArrayList;
+import java.util.List;
 
-public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapter.MyViewHolder> {
+public class NotificationPrimaryAdapter extends RecyclerView.Adapter<NotificationPrimaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list;
-    int row_index=-1;
+    List<String> list;
+    List<String> stringList = new ArrayList<>();
+    int row_index = -1;
 
-    public MockTestListAdapter(Context context, ArrayList<String> list) {
+    public NotificationPrimaryAdapter(Context context, List<String> list) {
         this.context = context;
         this.list = list;
     }
@@ -24,7 +25,7 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemMockTestListBinding binding=ItemMockTestListBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemNotificationPrimaryBinding binding = ItemNotificationPrimaryBinding.inflate(LayoutInflater.from(context), parent, false);
         return new MyViewHolder(binding);
     }
 
@@ -40,10 +41,11 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ItemMockTestListBinding binding;
-        public MyViewHolder(@NonNull ItemMockTestListBinding binding) {
+        ItemNotificationPrimaryBinding binding;
+
+        public MyViewHolder(@NonNull ItemNotificationPrimaryBinding binding) {
             super(binding.getRoot());
-            this.binding=binding;
+            this.binding = binding;
         }
     }
 }

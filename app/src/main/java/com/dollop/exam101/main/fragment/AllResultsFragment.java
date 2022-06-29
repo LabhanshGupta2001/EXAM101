@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dollop.exam101.databinding.FragmentAllResultsBinding;
-import com.dollop.exam101.main.fragment.adapter.MockHistoryAllResultsAdapter;
+import com.dollop.exam101.main.adapter.MockHistoryAllResultsAdapter;
 
 import java.util.ArrayList;
 

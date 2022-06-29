@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dollop.exam101.R;
-import com.dollop.exam101.main.fragment.adapter.PackageAdapter;
-import com.dollop.exam101.main.fragment.adapter.ViewPagerFragmentAdapter;
+import com.dollop.exam101.main.adapter.PackageAdapter;
+import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.PackageModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;

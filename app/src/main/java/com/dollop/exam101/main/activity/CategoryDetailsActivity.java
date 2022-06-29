@@ -7,8 +7,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.dollop.exam101.main.fragment.adapter.CategoryDetailAdapter;
-import com.dollop.exam101.main.fragment.adapter.CategoryDetailSecondaryAdapter;
+import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
+import com.dollop.exam101.main.adapter.CategoryDetailSecondaryAdapter;
 
 import java.util.ArrayList;
 

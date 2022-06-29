@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemCategoryDetailsSecondaryBinding;
+
 import java.util.ArrayList;
+import java.util.List;
 
-public class PakageDetailTernaryAdapter extends RecyclerView.Adapter<PakageDetailTernaryAdapter.MyViewHolder> {
+public class CategoryDetailSecondaryAdapter extends RecyclerView.Adapter<CategoryDetailSecondaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list=new ArrayList<>();
+    List<String> list;
+    List<String> stringList = new ArrayList<>();
+    int row_index = -1;
 
-    public PakageDetailTernaryAdapter(Context context, ArrayList<String> list) {
+    public CategoryDetailSecondaryAdapter(Context context, List<String> list) {
         this.context = context;
         this.list = list;
     }
@@ -22,7 +27,7 @@ public class PakageDetailTernaryAdapter extends RecyclerView.Adapter<PakageDetai
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemPackagesDetailTernaryBinding binding=ItemPackagesDetailTernaryBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemCategoryDetailsSecondaryBinding binding = ItemCategoryDetailsSecondaryBinding.inflate(LayoutInflater.from(context), parent, false);
         return new MyViewHolder(binding);
     }
 
@@ -38,10 +43,11 @@ public class PakageDetailTernaryAdapter extends RecyclerView.Adapter<PakageDetai
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ItemPackagesDetailTernaryBinding binding;
-        public MyViewHolder(@NonNull ItemPackagesDetailTernaryBinding binding) {
+        ItemCategoryDetailsSecondaryBinding binding;
+
+        public MyViewHolder(@NonNull ItemCategoryDetailsSecondaryBinding binding) {
             super(binding.getRoot());
-            this.binding=binding;
+            this.binding = binding;
         }
     }
 }

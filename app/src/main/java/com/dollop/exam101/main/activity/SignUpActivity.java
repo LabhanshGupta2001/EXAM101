@@ -12,7 +12,7 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 
 import com.dollop.exam101.main.model.ContryItemModel;
 import com.dollop.exam101.R;
-import com.dollop.exam101.main.fragment.adapter.ContryAdapter;
+import com.dollop.exam101.main.adapter.ContryAdapter;
 
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,14 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetailRatingAdapter.MyViewHolder> {
+public class PakageDetailTernaryAdapter extends RecyclerView.Adapter<PakageDetailTernaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list;
-    int row_index=-1;
+    ArrayList<String> list=new ArrayList<>();
 
-
-
-    public PakageDetailRatingAdapter(Context context, ArrayList<String> list) {
+    public PakageDetailTernaryAdapter(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
     }
@@ -25,17 +22,14 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemPackageDetailBinding binding=ItemPackageDetailBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemPackagesDetailTernaryBinding binding=ItemPackagesDetailTernaryBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        list.clear();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
+
+
     }
 
     @Override
@@ -44,8 +38,8 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ItemPackageDetailBinding binding;
-        public MyViewHolder(@NonNull ItemPackageDetailBinding binding) {
+        ItemPackagesDetailTernaryBinding binding;
+        public MyViewHolder(@NonNull ItemPackagesDetailTernaryBinding binding) {
             super(binding.getRoot());
             this.binding=binding;
         }

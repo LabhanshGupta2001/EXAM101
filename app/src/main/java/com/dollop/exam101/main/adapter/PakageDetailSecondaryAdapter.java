@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,16 +6,17 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MockHistoryAllResultsAdapter extends RecyclerView.Adapter<MockHistoryAllResultsAdapter.MyViewHolder> {
+public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDetailSecondaryAdapter.MyViewHolder> {
     Context context;
     ArrayList<String> list;
-    int row_index=-1;
+    ArrayList<String> stringArrayList=new ArrayList<>();
 
-    public MockHistoryAllResultsAdapter(Context context, ArrayList<String> list) {
+    public PakageDetailSecondaryAdapter(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
     }
@@ -23,12 +24,16 @@ public class MockHistoryAllResultsAdapter extends RecyclerView.Adapter<MockHisto
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemMockTestHistoryAllresultsBinding binding=ItemMockTestHistoryAllresultsBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemPakagesDetailsSecondryBinding binding=ItemPakagesDetailsSecondryBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        stringArrayList.clear();
+        stringArrayList.add("1");
+        holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,stringArrayList));
+        holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
 
 
     }
@@ -39,8 +44,8 @@ public class MockHistoryAllResultsAdapter extends RecyclerView.Adapter<MockHisto
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ItemMockTestHistoryAllresultsBinding binding;
-        public MyViewHolder(@NonNull ItemMockTestHistoryAllresultsBinding binding) {
+        ItemPakagesDetailsSecondryBinding binding;
+        public MyViewHolder(@NonNull ItemPakagesDetailsSecondryBinding binding) {
             super(binding.getRoot());
             this.binding=binding;
         }

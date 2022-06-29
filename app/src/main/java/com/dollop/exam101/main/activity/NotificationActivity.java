@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.main.fragment.adapter.NotificationPrimaryAdapter;
+import com.dollop.exam101.main.adapter.NotificationPrimaryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

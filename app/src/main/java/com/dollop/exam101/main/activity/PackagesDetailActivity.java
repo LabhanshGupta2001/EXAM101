@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.R;
-import com.dollop.exam101.main.fragment.adapter.PakageDetailPrimaryAdapter;
-import com.dollop.exam101.main.fragment.adapter.PakageDetailRatingAdapter;
+import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
+import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;

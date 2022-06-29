@@ -1,4 +1,4 @@
-package com.dollop.exam101.main.fragment.adapter;
+package com.dollop.exam101.main.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,14 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.dollop.exam101.main.model.ContryItemModel;
+import com.dollop.exam101.main.model.CountryItem;
 import com.dollop.exam101.R;
 
 import java.util.ArrayList;
 
-public class ContryAdapter extends ArrayAdapter {
+public class EditProfileCountryAdapter extends ArrayAdapter {
 
-    public ContryAdapter(Context context , ArrayList<ContryItemModel>contrylist)
+    public EditProfileCountryAdapter(Context context , ArrayList<CountryItem>contrylist)
     {
         super(context,0,contrylist);
     }
@@ -43,7 +43,7 @@ public class ContryAdapter extends ArrayAdapter {
         }
         ImageView imageViewFlag = convertView.findViewById(R.id.iv_flag_india_id);
         TextView id =convertView.findViewById(R.id.tv_contry_code_id);
-        ContryItemModel contryItem = (ContryItemModel) getItem(posision);
+        CountryItem contryItem = (CountryItem) getItem(posision);
         if(contryItem != null) {
             imageViewFlag.setImageResource(contryItem.getImage());
             id.setText(contryItem.getCode());

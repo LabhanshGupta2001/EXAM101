@@ -13,7 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
-import com.dollop.exam101.main.fragment.adapter.WelcomeAdapter;
+import com.dollop.exam101.main.adapter.WelcomeAdapter;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity;

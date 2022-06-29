@@ -8,7 +8,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.dollop.exam101.main.fragment.adapter.OrderHistoryAdapter;
+import com.dollop.exam101.main.adapter.OrderHistoryAdapter;
 import com.dollop.exam101.main.model.OrderHistoryModel;
 
 import java.util.ArrayList;
