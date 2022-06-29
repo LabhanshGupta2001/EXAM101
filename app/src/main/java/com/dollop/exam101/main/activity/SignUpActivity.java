@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivitySignUpBinding;
 
 import com.dollop.exam101.main.model.ContryItemModel;
@@ -19,7 +20,7 @@ import com.dollop.exam101.main.adapter.ContryAdapter;
 import java.util.ArrayList;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
-    Activity activity = SignUpActivity.this;
+    Activity activity;
     ActivitySignUpBinding binding;
     private ContryAdapter contryAdapter;
     private ArrayList<ContryItemModel> contryItemArrayList;
@@ -30,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         /*setContentView(R.layout.activity_signup);*/
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        activity = SignUpActivity.this;
         sppiner();
     }
 
@@ -60,15 +62,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             contryItemArrayList.add(new ContryItemModel("+44", R.drawable.ic_portugal));
             contryItemArrayList.add(new ContryItemModel("+49", R.drawable.ic_new_zealand));
             
-            
+            binding.SignUPId.setOnClickListener(this);
+            binding.tvRegisterId.setOnClickListener(this);
             
         }
 
     @Override
     public void onClick(View view) {
         if (view == binding.SignUPId) {
-            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-            startActivity(intent);
+            Utils.I(SignUpActivity.this, LoginActivity.class,null);
+        }else if(view==binding.tvRegisterId){
+            Utils.I(SignUpActivity.this,DashboardScreenActivity.class,null);
+            finish();
         }
     }
 }

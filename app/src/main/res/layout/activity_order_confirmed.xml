@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".main.activity.OrderConfirmedActivity">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:cardBackgroundColor="@color/DarkfillColor"
+        app:cardCornerRadius="@dimen/_100sdp"
+        app:strokeColor="@color/stroke_color">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProfile"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_65sdp"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/fillColor"
+            app:cardCornerRadius="@dimen/_100sdp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_hart"
+                android:contentDescription="@string/image"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/gothic_bold"
+        android:gravity="center"
+        android:text="@string/order_confirmed"
+        android:theme="@style/PrimaryFullBlackTextStyle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:gravity="center"
+        android:text="@string/your_package_is_confirmed_please_proceed_nto_my_packages_option"
+        android:theme="@style/QuaternaryLightSubTextStyle" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:background="@drawable/theme_stroke_background"
+        android:backgroundTint="@color/theme"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:text="@string/see_your_package"
+        android:theme="@style/QuaternarySecondaryTextStyle" />
+
+
+</LinearLayout>

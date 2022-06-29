@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvLine"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_5sdp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/_12sdp"
+        app:cardBackgroundColor="@color/lightgrey"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="1dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_curve_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/_12sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:gravity="center"
+            android:text="@string/filter"
+            android:theme="@style/SecondaryFullBlackHeadingTextStyle" />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlTabLayoutId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_11sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:tabBackground="@drawable/top_heading_bg"
+            app:tabContentStart="@dimen/_6sdp"
+            app:tabIndicatorColor="@color/theme"
+            app:tabIndicatorHeight="0dp"
+            app:tabPadding="@dimen/_7sdp"
+            app:tabSelectedTextColor="@color/theme"
+            app:tabTextColor="@color/sub_text">
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_15sdp">
+
+            <LinearLayout
+                android:id="@+id/llDataShow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/tvllSave"
+                android:orientation="vertical">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/ViewPagerId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvllSave"
+                style="@style/TernaryWhiteTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/theme_backround"
+                android:fontFamily="@font/inter_bold"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/apply" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

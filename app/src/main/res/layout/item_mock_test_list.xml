@@ -25,7 +25,6 @@
                 android:layout_margin="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_8sdp"
                 app:strokeColor="@color/HorizontallineColor"
-
                 app:strokeWidth="@dimen/_1sdp">
 
                 <ImageView
@@ -84,6 +83,7 @@
                     app:strokeColor="@color/yellow"
                     app:strokeWidth="@dimen/_1sdp"
                     android:layout_margin="@dimen/_12sdp"
+                    app:cardBackgroundColor="#14FFBF55"
                     app:cardElevation="0dp"
                     >
                     <TextView

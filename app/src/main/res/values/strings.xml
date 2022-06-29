@@ -70,12 +70,12 @@
     <string name="news">News</string>
     <string name="results">Results</string>
     <string name="covid19">Covid19</string>
-    <string name="tens_of_thousands_of_people_have_been_marching_in_the_belgain">Tens of thousands of people have been marching in the Belgain.</string>
+    <string name="tens_of_thousands_of_people_have_been_marching_in_the_belgain">Tens of thousands of people have been marching in the Belgian.</string>
     <string name="_09_20_pm">09:20 pm</string>
     <string name="_12th_april">12th April</string>
-    <string name="reffer_a_friend">Reffer A Friend</string>
+    <string name="reffer_a_friend">Refer A Friend</string>
     <string name="logout">Logout</string>
-     <string name="manage_account">Manage Account</string>
+    <string name="manage_account">Manage Account</string>
     <string name="order_history">Order History</string>
     <string name="course_list">Course List</string>
     <string name="my_wishlist">My Wishlist</string>
@@ -91,9 +91,8 @@
     <string name="order_id">Order ID -</string>
     <string name="package_duration">Package Duration:</string>
     <string name="invoice">Invoice</string>
-    <string name="edit_profile">Edit Profile</string>
     <string name="save">Save</string>
-      <string name="my_exam">My Exam</string>
+    <string name="my_exam">My Exam</string>
     <string name="learn_responsive_web_design_nessentials">Learn Responsive Web Design\nEssentials</string>
     <string name="last_activity_on_6_jan_2022">Last activity on 6 Jan, 2022</string>
     <string name="purchase_date_1_jan_2022">Purchase Date: 1 Jan, 2022</string>
@@ -135,7 +134,258 @@
     <string name="conform_password">Conform password</string>
     <string name="enter_mobile_no">Enter mobile No..</string>
     <string name="enter_user_name">Enter user name</string>
+    <string name="notification">Notification</string>
+    <string name="your_exam101_purchase_plan">Your exam101 purchase plan</string>
+    <string name="your_purchase_plan_confirmation_has_been">Your purchase plan confirmation has been...</string>
+    <string name="_45min_ago">45min ago</string>
+    <string name="your_bank_details">Your Bank Details</string>
+    <string name="annirudh_bhati">Annirudh Bhati</string>
+    <string name="saving_account">Saving Account</string>
+    <string name="account_number">Account Number</string>
+    <string name="ifsc_code">IFSC CODE -&#160;</string>
+    <string name="sbin0001707">SBIN0001707</string>
+    <string name="update_bank_details">Update Bank Details</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="basic_details">Basic Details</string>
+    <string name="yogendra54_gmail_com">yogendra54@gmail.com</string>
+    <string name="holder_name">Holder Name</string>
+    <string name="enter_holder_name">Enter holder name</string>
+    <string name="enter_your_account_number">Enter your account number</string>
+    <string name="type">Type</string>
+    <string name="enter_your_ifsc_code">Enter your ifsc code</string>
+    <string name="branch">Branch</string>
+    <string name="enter_your_bank_branch">Enter your bank branch</string>
+    <string name="submit">Submit</string>
+    <string name="save_details">Save Details</string>
 
+    <string name="get_in_touch">Get in touch!</string>
+    <string name="i_have_worls_class_flexible_support_via_live_chat_email_and_nhone_i_guarantee_that_you_ll_be_able_to_have_any_issue_nresolved_within_24_hours">I have world-class, flexible support via live chat, email and\nhone. I guarantee that you’ll be able to have any issue\nresolved within 24 hours.</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_id">Email id</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="message">Message</string>
+    <string name="enter_your_message">Enter your message</string>
+    <string name="raise_complaint_list">Raise Complaint List</string>
+    <string name="add">Add</string>
+    <string name="complaint_subject">Complaint Subject</string>
+    <string name="complaint_id">Complaint ID:</string>
+    <string name="normal_priority">Normal Priority</string>
+    <string name="view_detail">View Detail</string>
+    <string name="active">Active</string>
+    <string name="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_type_n_industry_lorem_ipsum_has_been_the_industry_s_standard_n_dummy_text_ever_since_the_1500s_when_an_unknown_printer_n_took_a_galley_of_type_and_scrambled_it_to_make_a_type_n_specimen_book_it_has_survived_not_only_five_centuries_but_n_the_leap_into_electronic_typesetting_remaining_essentially_n_unchanged">Lorem Ipsum is simply dummy text of the printing and type industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but the leap into electronic typesetting, remaining essentially unchanged.</string>
+    <string name="raise_complaint">Raise Complaint</string>
+    <string name="enter_complaint_subject">Enter Complaint Subject</string>
+    <string name="subject">Subject</string>
+    <string name="description">Description</string>
+    <string name="enter_complaint_descripyion">Enter Complaint Description</string>
+    <string name="priority">Priority</string>
+    <string name="normal">Normal</string>
+    <string name="high">High</string>
+    <string name="critical">Critical</string>
+    <string name="upload_pdf_images">Upload PDF / Images</string>
 
-    </resources>
+    <string name="browser_chrome">Browser - Chrome</string>
+    <string name="_2_june_2022">2 June, 2022</string>
+    <string name="duration">Duration</string>
+    <string name="logout_from_this_device">Logout from this device</string>
+    <string name="expire_session">Expire Session</string>
+    <string name="exit_page">Exit Page</string>
+    <string name="mock_test_history">Mock Test History</string>
+    <string name="_01_attempt">01 Attempt</string>
+    <string name="result">Result:</string>
+    <string name="view_result">View Result</string>
+    <string name="current_page">Current Page</string>
+
+    <string name="download_image">download image</string>
+    <string name="closed">Closed</string>
+    <string name="all_exams">All Exams</string>
+    <string name="_235_packages">235+ Packages</string>
+
+    <string name="ms_power_point">MS Power Point</string>
+    <string name="ms_office_advance_power_point_animated_slides">MS Office, Advance Power point, Animated Slides</string>
+    <string name="cart">Cart</string>
+
+    <string name="yogendratiwari54gmailcom">yogendratiwari54gmailcom</string>
+
+    <string name="package_list">Package List</string>
+    <string name="apply_coupon">Apply Coupon</string>
+    <string name="referral_code">Referral Code</string>
+    <string name="oder_summary">Oder Summary</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="_1500">₹1500</string>
+    <string name="sgst_and_cgst_or_igst">SGST and CGST or IGST</string>
+    <string name="_18">18%</string>
+    <string name="coupon_discount">Coupon Discount</string>
+    <string name="_240">₹240</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="_1350">₹1350</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="your_package_is_confirmed_please_proceed_nto_my_packages_option">Your package is confirmed. Please proceed\nto my packages option.</string>
+    <string name="see_your_package">See your Package</string>
+    <string name="package_detail">Package Detail</string>
+    <string name="_3000">₹3000</string>
+    <string name="_4500">₹4500</string>
+    <string name="microsoft_power_point">Microsoft power Point</string>
+    <string name="best_way_learn_fundamentals_of_design_nthinking">Best way learn fundamentals of design\nthinking.</string>
+    <string name="learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games">Learn Python like a Professional Start from the basics and go\nall the way to creating your own applications and games Learn\nPython like a Professional Start from the basics and go all the\nway to creating your own applications and games</string>
+    <string name="_4_0">4.0</string>
+    <string name="_54_rating_and_reviews">(54) Rating and Reviews</string>
+    <string name="overview">Overview</string>
+    <string name="course_details">Course details</string>
+    <string name="new_to_web_design_start_here_first_instructor_james_nwilliamson_introduces_the_fundamental_concepts_tools_and_nlearning_paths_for_web_design_he_explains_what_it_means_to_be_na_web_designer_the_various_areas_of_specialization_and_nwhether_web_design_is_the_right_hobby_or_career_for_you_along_nthe_way_he_talks_to_five_prominent_designers_and_developers_nwho_have_each_found_success_in_a_different_corner_of_the_web">New to web design? Start here first. Instructor James\nWilliamson introduces the fundamental concepts, tools, and\nlearning paths for web design. He explains what it means to be\na web designer, the various areas of specialization, and\nwhether web design is the right hobby or career for you. Along\nthe way, he talks to five prominent designers and developers,\nwho have each found success in a different corner of the web.</string>
+    <string name="requirements">Requirements</string>
+    <string name="skills_covered_in_this_course">Skills covered in this course</string>
+    <string name="rating_and_reviews">Rating and Reviews</string>
+    <string name="add_to_wishlist">Add to Wishlist</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="payment_failed">Payment Failed</string>
+    <string name="oops_something_went_wrong_please_ntry_again_to_purchse_the_package">Oops! something went wrong! please\ntry again to purchse the package.</string>
+    <string name="savepackage50">SAVEPACKAGE50</string>
+    <string name="rate_package">Rate Package</string>
+    <string name="best_way_learn_fundamentals_of_ndesign_thinking">Best Way learn fundamentals of\ndesign thinking.</string>
+    <string name="write_your_review">Write your review...</string>
+
+    <string name="yog4500erz">YOG4500ERZ</string>
+    <string name="python">Python</string>
+    <string name="php">Php</string>
+    <string name="html">HTML</string>
+    <string name="css">Css</string>
+    <string name="data_and_analytics">Data and Analytics</string>
+    <string name="digiltal_marketing">Digiltal Marketing</string>
+
+    <string name="english">English</string>
+    <string name="espa_ol">Español</string>
+    <string name="yor_b">Yorùbá</string>
+    <string name="marathi">Marathi</string>
+    <string name="hindi">Hindi</string>
+    <string name="gujarati">Gujarati</string>
+    <string name="malayalam">Malayalam</string>
+    <string name="all_packages">All Packages</string>
+    <string name="price_range">Price Range</string>
+    <string name="_500">₹500</string>
+    <string name="_2500">₹2500</string>
+    <string name="_5000">₹5000</string>
+    <string name="aashi_singh">Aashi Singh</string>
+    <string name="today_12_30pm">Today | 12:30PM</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_enim_nmaiores_adipisci_optio_ex_laboriosam_facilis_non_pariatur_itaque_nillo_sunt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim\nmaiores adipisci optio ex, laboriosam facilis non pariatur itaque\nillo sunt?</string>
+    <string name="chapter_1">Chapter 1</string>
+    <string name="subject_1">Subject 1</string>
+    <string name="module_1">Module 1</string>
+    <string name="remove">Remove</string>
+    <string name="login_with_google">Login with Google</string>
+
+    <string name="or">OR</string>
+    <string name="sign_up">Sign Up</string>
+
+    <string name="_5305">5305</string>
+    <string name="enter_your_new_password_and_confirm_nto_login_into_your_account">Enter your new password and confirm\nto login into your account</string>
+
+    <string name="email_gmail_com">Email@gmail.com</string>
+    <string name="register">Register</string>
+    <string name="take_your">Take Your</string>
+    <string name="get_start">Get Start</string>
+    <string name="edufie_offers_professional_training_classes_nand_special_features_to_help_you_improve_nyour_skills">Edufie offers professional training classes \nand special features to help you improve \nyour skills.</string>
+    <string name="favorite">Favorite</string>
+    <string name="review">Review</string>
+    <string name="_91">+91</string>
+
+    <string name="_1234567475474155">1234567475474155</string>
+    <string name="_001">001</string>
+
+    <string name="send_affiliate_code_to_your_friend">Send affiliate code to your friend</string>
+    <string name="yogendratiwari54_gmail_com">yogendratiwari54@gmail,com</string>
+
+    //Guru String
+    <string name="friend_purchase">Friend purchase
+        the package
+        with <font color="#00A651">5%</font>
+        Discount</string>
+    <string name="get_amount">You get  <font color="#00A651">5%</font>  amount in your wallet</string>
+    <string name="get_syllabus_in_hindi">Get <font color="#FFFFFF">Syllabus</font> in Hindi</string>
+    <string name="get_your_personalised_calender">Get your Personalised Calendar</string>
+    <string name="my_package">My Package</string>
+    <string name="faq">FAQ</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="about_us">About Us</string>
+    <string name="term_and_conditions"><![CDATA[Term & Conditions]]></string>
+    <string name="raise_a_complaint">Raise a Complaint</string>
+    <string name="app_version">App Version : 1.0.1</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="packages_list">Packages List</string>
+    <string name="back_arrow">back_Arrow</string>
+    <string name="purchased">Purchased on:</string>
+    <string name="view_course">View Course</string>
+    <string name="days_left">Days Left</string>
+    <string name="adobe_software">Adobe Software</string>
+    <string name="expire_on">Expire on:</string>
+    <string name="_30_may_2022">30 May,2022</string>
+    <string name="expired">Expired</string>
+    <string name="calander">calander</string>
+    <string name="_02_jun_2022">02 Jun, 2022</string>
+    <string name="_15">15</string>
+    <string name="watch">watch</string>
+    <string name="_20_days">20 DAYS</string>
+    <string name="blogs">Blogs</string>
+    <string name="all_blogs">All Blogs</string>
+    <string name="read_more">Read more</string>
+    <string name="author_name">Author Name</string>
+    <string name="sort_by">Sort By</string>
+    <string name="filter">Filter</string>
+    <string name="sort_a_to_z">Sort A to Z</string>
+    <string name="sort_z_to_a">Sort Z to A</string>
+    <string name="category">Category</string>
+    <string name="date">Date</string>
+    <string name="author">Author</string>
+    <string name="apply">Apply</string>
+    <string name="composition">Composition</string>
+    <string name="exposure">Exposure</string>
+    <string name="practical_photography">Practical Photography</string>
+    <string name="ui_design">UI Design</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
+    <string name="search_for_author">Search for author...</string>
+    <string name="exam101">Exam101</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="blog_detail">Blog Detail</string>
+    <string name="setting">Setting</string>
+    <string name="login_history">Login History</string>
+    <string name="change_password">Change Password</string>
+    <string name="development_article">Development Article</string>
+    <string name="image">image</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="yogendra_tiwari">Yogendra Tiwari</string>
+    <string-array name="Number">
+        <item>+91</item>
+        <item>+289</item>
+        <item>+412</item>
+        <item>+603</item>
+        <item>+544</item>
+        <item>+276</item>
+        <item>+603</item>
+    </string-array>
+    <string-array name="Country">
+        <item>India</item>
+        <item>Pakistan</item>
+        <item>South Africa</item>
+        <item>America</item>
+        <item>Brazil</item>
+    </string-array>
+    <string-array name="City">
+        <item>Indore</item>
+        <item>Dewas</item>
+        <item>Bhopal</item>
+        <item>Satna</item>
+        <item>Khargone</item>
+    </string-array>
+    <string-array name="States">
+        <item>Madhya Pradesh</item>
+        <item>Rajasthan</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Odissa</item>
+    </string-array>
+
+</resources>
 

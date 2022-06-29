@@ -2,6 +2,7 @@
 <resources>
 
     <color name="primaryColor">#01170C</color>
+    <color name="primaryStrokeColor">#1201170C</color>
     <color name="black">#121614</color>
 
     <color name="background">#ffffff</color>
@@ -16,6 +17,14 @@
 
     <color name="secondaryColor">#FFF</color>
     <color name="grey">#669298A3</color>
+    <!--aman-->
+
+    <color name="lightpink">#FFEAE8</color>
+    <color name="pink">#FFDAD7</color>
+    <color name="fillColor">#E5FFF2</color>
+    <color name="DarkfillColor">#C3FFE1</color>
+    <color name="WelcomeActivityBackgroundColor">#FBFFFC</color>
+
     <color name="theme">#00A651</color>
     <color name="light_theme">#1400A651</color>
     <color name="status_bar">#DAF1E6</color>
@@ -25,18 +34,31 @@
     <color name="light_blue">#0D1877F2</color>
     <color name="white">#FFF</color>
     <color name="red">#EB4335</color>
+    <color name="blue">#4598E6</color>
+    <color name="lightgrey">#D9D9D9</color>
+
+
+    <color name="light_red">#F7F7F7</color>
+
 
 
 
 
     <color name="stroke_color">#E9FDF3</color>
     <color name="full_black">#000000</color>
+    <color name="theme_light">#F1FFF8</color>
 
 
 
 
 
-    <color name="lightGrey">#c1cbd6</color>
+
+
+    <color name="DarkBlackBlue">#263238</color>
+    <color name="TvBgColor">#F1FFF8</color>
+    <color name="StrokeColorLightBlue">#EBEBFF</color>
+
+    <color name="light_grey">#c1cbd6</color>
 
     <color name="lineColor">#F4F8FD</color>
     <color name="HorizontallineColor">#E8EEF6</color>
@@ -60,8 +82,12 @@
     <color name="color_grey1">#bbbbbb</color>
     <color name="color_grey2">#dfdfdf</color>
 
-
-
     <color name="red_logout">#FE5B52</color>
     <color name="light_gray">#EBF8F1</color>
+
+    // Course List
+    <color name="dark_gray">#61F1FFF8</color>
+
+
+    <color name="ViewLineColor">#EDEDED</color>
 </resources>

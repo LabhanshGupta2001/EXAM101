@@ -12,12 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.main.adapter.WelcomeAdapter;
 import com.dollop.exam101.databinding.ActivityWelcomeBinding;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
-    Activity activity= WelcomeActivity.this;
+    Activity activity;
     ActivityWelcomeBinding binding;
 
 
@@ -34,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 //        setContentView(R.layout.activity_onboard_screen);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        activity= WelcomeActivity.this;
         init();
 
 
@@ -101,8 +102,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if(view==binding.GetStartId) {
-            Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-            startActivity(intent);
+            Utils.I(WelcomeActivity.this, LoginActivity.class,null);
             finish();
         }
     }

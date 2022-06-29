@@ -95,13 +95,13 @@ public class HomeFragment extends Fragment {
     private void init() {
 
         //getOfferBannerByUser();
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "String"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
-        courseModelArrayList.add(new CourseModel(R.drawable.persionimg, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "String"));
+        courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
+        courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
         // Add the following lines to create RecyclerView
         CourseAdapter adapter = new CourseAdapter(getContext(), courseModelArrayList);
         //adapter.notifyDataSetChanged();
@@ -170,6 +170,9 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.rvNews.setLayoutManager(linearLayoutManager3);
         binding.rvNews.setAdapter(newsAdapter);
+
+        // Calendar View Code...
+        //binding.cvCalendar.setPointerIcon();
 
     }
 }
