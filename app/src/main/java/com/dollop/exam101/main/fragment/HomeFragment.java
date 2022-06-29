@@ -19,11 +19,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.dollop.exam101.R;
-import com.dollop.exam101.main.adapter.BannerAdapter;
-import com.dollop.exam101.main.adapter.CourseAdapter;
-import com.dollop.exam101.main.adapter.NewsAdapter;
-import com.dollop.exam101.main.adapter.PackageAdapter;
-import com.dollop.exam101.databinding.FragmentHomeBinding;
+import com.dollop.exam101.main.fragment.adapter.BannerAdapter;
+import com.dollop.exam101.main.fragment.adapter.CourseAdapter;
+import com.dollop.exam101.main.fragment.adapter.NewsAdapter;
+import com.dollop.exam101.main.fragment.adapter.PackageAdapter;
 import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;

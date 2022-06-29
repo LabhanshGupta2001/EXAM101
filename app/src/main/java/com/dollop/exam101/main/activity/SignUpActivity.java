@@ -3,18 +3,16 @@ package com.dollop.exam101.main.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.databinding.ActivitySignUpBinding;
 
 import com.dollop.exam101.main.model.ContryItemModel;
 import com.dollop.exam101.R;
-import com.dollop.exam101.main.adapter.ContryAdapter;
+import com.dollop.exam101.main.fragment.adapter.ContryAdapter;
 
 
 import java.util.ArrayList;

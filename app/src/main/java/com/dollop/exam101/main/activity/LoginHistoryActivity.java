@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.ActivityLoginHistoryBinding;
-import com.dollop.exam101.main.adapter.LoginHistoryAdapter;
+import com.dollop.exam101.main.fragment.adapter.LoginHistoryAdapter;
 
 import java.util.ArrayList;
 

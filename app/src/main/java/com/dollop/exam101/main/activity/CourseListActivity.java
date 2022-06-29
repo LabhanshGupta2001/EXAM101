@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCourseListBinding;
-import com.dollop.exam101.main.adapter.CourseListAdapter;
+import com.dollop.exam101.main.fragment.adapter.CourseListAdapter;
 import com.dollop.exam101.main.model.CourseListModel;
 
 import java.util.ArrayList;

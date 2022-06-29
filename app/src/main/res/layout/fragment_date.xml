@@ -7,7 +7,7 @@
     android:layout_marginTop="@dimen/_7sdp"
     android:orientation="horizontal"
     android:weightSum="2"
-    tools:context=".Basics.fragment.DateFragment">
+    tools:context=".main.fragment.DateFragment">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"

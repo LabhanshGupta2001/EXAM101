@@ -9,10 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.FragmentCategoryHomeBinding;
-import com.dollop.exam101.main.adapter.CategoryHomeAdapter;
-import com.dollop.exam101.main.adapter.MockHistoryAllResultsAdapter;
+import com.dollop.exam101.main.fragment.adapter.CategoryHomeAdapter;
 
 import java.util.ArrayList;
 

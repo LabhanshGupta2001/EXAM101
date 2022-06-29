@@ -1,6 +1,5 @@
 package com.dollop.exam101.main.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentAllResultsBinding;
-import com.dollop.exam101.main.adapter.MockHistoryAllResultsAdapter;
-import com.facebook.appevents.suggestedevents.ViewOnClickListener;
+import com.dollop.exam101.main.fragment.adapter.MockHistoryAllResultsAdapter;
 
 import java.util.ArrayList;
 

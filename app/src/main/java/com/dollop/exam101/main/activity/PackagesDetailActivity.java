@@ -2,26 +2,17 @@ package com.dollop.exam101.main.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.ActivityOrderHistoryBinding;
-import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
-import com.dollop.exam101.databinding.ItemPakagesDetailsSecondryBinding;
-import com.dollop.exam101.main.adapter.OrderHistoryAdapter;
-import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
-import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
-import com.dollop.exam101.main.model.OrderHistoryModel;
-import com.dollop.exam101.main.model.PackageModel;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.dollop.exam101.main.fragment.adapter.PakageDetailPrimaryAdapter;
+import com.dollop.exam101.main.fragment.adapter.PakageDetailRatingAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PackagesDetailActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity = PackagesDetailActivity.this;

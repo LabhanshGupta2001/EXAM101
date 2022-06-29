@@ -3,15 +3,10 @@ package com.dollop.exam101.main.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.Basics.activity.BlogsListActivity;
-import com.dollop.exam101.Basics.activity.SettingActivity;
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
