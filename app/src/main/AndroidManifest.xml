@@ -18,6 +18,24 @@
             android:name=".main.activity.CategoryDetailsActivity"
             android:exported="false" />
         <activity
+            android:name=".main.activity.EditProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".main.activity.MockTestListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.MyCartActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".main.activity.PackagesDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".main.activity.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.activity.MockTestHistoryActivity"
             android:exported="false">
 

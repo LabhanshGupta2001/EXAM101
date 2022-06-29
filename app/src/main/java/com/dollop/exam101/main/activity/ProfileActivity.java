@@ -34,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         binding.llRequestAffilation.setOnClickListener(this);
         binding.llNotifications.setOnClickListener(this);
         binding.llInviteFriend.setOnClickListener(this);
+        binding.llWishList.setOnClickListener(this);
     }
 
     @Override
@@ -47,17 +48,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             Utils.I(activity,EditProfileActivity.class,null);
         }
         else if (view == binding.llCourseList){
-            Utils.I(activity,MockTestListActivity.class,null);
+            Utils.I(activity,CourseListActivity.class,null);
         }
         else if (view == binding.llNotifications){
             Utils.I(activity,NotificationActivity.class,null);
         }else if (view == binding.llRequestAffilation){
             Utils.I(activity,AffilationBankDetailsActivity.class,null);
-            Utils.I(activity, OrderHistoryActivity.class,null);
+          //  Utils.I(activity, OrderHistoryActivity.class,null);
         } else if (view == binding.llNotifications){
             Utils.I(activity, BlogsListActivity.class,null);
         }else if (view == binding.llInviteFriend){
             Utils.I(activity, SettingActivity.class,null);
+        } else if (view == binding.llWishList){
+       //     Utils.I(activity, MyW.class,null);
         }
     }
 
