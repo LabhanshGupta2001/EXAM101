@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Basics.activity.BlogsListActivity">
+
+    <LinearLayout
+        android:id="@+id/llToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/_3sdp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_4sdp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:contentDescription="@string/image"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/ic_backarrow" />
+
+
+        <TextView
+            style="@style/TernaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:text="@string/blogs" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHorizontalHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llToolbar"
+        android:background="@color/lineColor"
+        android:overScrollMode="never"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingStart="@dimen/_12sdp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBlogs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvHorizontalHeading"
+        android:layout_marginBottom="@dimen/_18sdp"
+        android:background="@color/background"
+        android:elevation="@dimen/_minus4sdp"
+        android:overScrollMode="never"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:id="@+id/llBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bottom_curve_background"
+        android:elevation="@dimen/_10sdp"
+        android:weightSum="2"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:id="@+id/llBtnShort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/image"
+                android:paddingVertical="@dimen/_16sdp"
+                android:src="@drawable/ic_short" />
+
+            <TextView
+                style="@style/QuaternaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/sort_by" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llBtnFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/image"
+                android:paddingVertical="@dimen/_15sdp"
+                android:src="@drawable/ic_filter" />
+
+            <TextView
+                style="@style/QuaternaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/filter" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

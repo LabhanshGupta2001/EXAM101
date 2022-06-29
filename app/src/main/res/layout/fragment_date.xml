@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/_7sdp"
+    android:orientation="horizontal"
+    android:weightSum="2"
+    tools:context=".Basics.fragment.DateFragment">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/QuaternaryLightTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/from_date" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvFromDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_4sdp"
+                app:cardBackgroundColor="@color/background"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/HorizontallineColor"
+                app:strokeWidth="@dimen/_1sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:paddingHorizontal="@dimen/_9sdp">
+
+                    <TextView
+                        android:id="@+id/tvFromDate"
+                        style="@style/QuaternaryLightTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:paddingVertical="@dimen/_11sdp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="08/05/2022" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvFromDateCalender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        app:cardBackgroundColor="@color/primaryColor"
+                        app:cardCornerRadius="@dimen/_4sdp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_calender_whit"
+                            android:padding="@dimen/_4sdp"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/QuaternaryLightTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/to_date" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvToDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_4sdp"
+                app:cardBackgroundColor="@color/background"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/HorizontallineColor"
+                app:strokeWidth="@dimen/_1sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:paddingHorizontal="@dimen/_9sdp">
+
+                    <TextView
+                        android:id="@+id/tvToDate"
+                        style="@style/QuaternaryLightTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:paddingVertical="@dimen/_11sdp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="24/12/2022" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvToDateCalender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        app:cardBackgroundColor="@color/primaryColor"
+                        app:cardCornerRadius="@dimen/_4sdp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_calender_whit"
+                            android:padding="@dimen/_4sdp"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+</LinearLayout>

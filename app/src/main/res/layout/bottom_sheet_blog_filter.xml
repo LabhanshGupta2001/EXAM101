@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BottomSheetBackStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llTransparent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvLine"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:cardBackgroundColor="@color/lightgrey"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="1dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llTransparent"
+        android:background="@drawable/bottom_curve_background"
+        android:paddingBottom="@dimen/_15sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_12sdp">
+
+            <TextView
+                style="@style/SecondaryHeadingTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_13sdp"
+                android:fontFamily="@font/gothic_bold"
+                android:gravity="center"
+                android:text="@string/filter" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey" />
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tlFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                app:tabBackground="@drawable/tabselector"
+                app:tabIndicatorHeight="0dp"
+                app:tabSelectedTextColor="@color/white"
+                android:textAlignment="center"
+                app:tabTextAppearance="@style/TabTextStyle"/>
+
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpLaunchId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/llApply"
+            android:layout_below="@+id/llFilter"
+            android:layout_marginHorizontal="@dimen/_12sdp" />
+
+        <LinearLayout
+            android:id="@+id/llApply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:background="@drawable/theme_backround"
+            android:gravity="center">
+
+            <TextView
+                style="@style/TernaryWhiteTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/apply" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

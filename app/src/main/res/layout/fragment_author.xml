@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:orientation="vertical"
+    tools:context=".Basics.fragment.AuthorFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvAtoZ"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/HorizontallineColor"
+        app:strokeWidth="@dimen/_1sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_12sdp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search"
+                android:contentDescription="@string/image"/>
+
+            <EditText
+                android:id="@+id/tvSearchAuthor"
+                style="@style/QuaternaryTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:background="@null"
+                android:fontFamily="@font/inter_medium"
+                android:hint="@string/search_for_author"
+                android:paddingVertical="@dimen/_10sdp"
+                android:inputType="text"
+                tools:ignore="Autofill" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAuthorSearch"
+            android:layout_width="match_parent"
+            android:overScrollMode="never"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_height="wrap_content" />
+
+</LinearLayout>
