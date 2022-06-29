@@ -19,12 +19,8 @@
             android:exported="false" />
         <activity
             android:name=".main.activity.MockTestHistoryActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".main.activity.LoginHistoryActivity"
@@ -51,6 +47,19 @@
             android:name=".main.activity.NotificationActivity"
             android:exported="true"></activity>
         <activity
+            android:name=".Basics.activity.SettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Basics.activity.BlogDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Basics.activity.BlogsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.OrderHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.activity.SignUpActivity"
             android:exported="true" />
         <activity
@@ -62,6 +71,8 @@
         <activity
             android:name=".main.activity.OtpVerificationActivity"
             android:exported="true" />
+
+
         <activity
             android:name=".main.activity.WelcomeActivity"
             android:exported="true" />
@@ -80,6 +91,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.activity.CourseListActivity" />
     </application>
 
 </manifest>

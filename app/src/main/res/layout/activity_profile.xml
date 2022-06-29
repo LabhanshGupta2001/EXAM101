@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@color/background"
         android:gravity="center_vertical"
         android:padding="@dimen/_12sdp">
@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_vector" />
+            android:src="@drawable/ic_backarrow" />
 
         <TextView
             style="@style/TernaryTextStyle"
@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_toLeftOf="@id/ivLogOut"
             android:fontFamily="@font/inter_medium"
+            android:layout_toLeftOf="@id/ivLogOut"
             android:text="@string/logout" />
 
         <ImageView
@@ -87,7 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_userprofile" />
+                        android:src="@drawable/user_profile" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -105,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/gothic_bold"
-                        android:text="@string/annirudh_bhati" />
+                        android:text="@string/yogendra_tiwari" />
 
                     <TextView
                         android:id="@+id/tvUserEmail"
@@ -114,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_1sdp"
                         android:fontFamily="@font/inter_regular"
-                        android:text="@string/yogendra54_gmail_com" />
+                        android:text="@string/yogendratiwari54_gmail_com" />
 
                 </LinearLayout>
 
@@ -329,7 +329,6 @@
                 android:text="@string/affiliation" />
 
             <LinearLayout
-                android:id="@+id/llRequestAffilation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_8sdp"
@@ -337,6 +336,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="@dimen/_12sdp"
+                android:id="@+id/llRequestAffilation"
                 android:weightSum="1">
 
                 <LinearLayout

@@ -37,6 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:overScrollMode="never"
                     android:scrollbars="none" />
             </LinearLayout>
 
@@ -121,7 +122,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPackages"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:overScrollMode="never" />
         </LinearLayout>
 
         <Space
@@ -172,11 +174,28 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_12sdp" />
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_syllabusbackground" />
+            android:background="@drawable/ic_syllabusbackground"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivBharat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bharatkaitihas" />
+
+            <TextView
+                style="@style/HomeHeadingTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivBharat"
+                android:text="@string/get_syllabus_in_hindi"
+                android:textAlignment="center" />
+
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -257,17 +276,257 @@
                 android:id="@+id/rvNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"/>
+                android:background="@color/white"
+                android:overScrollMode="never" />
         </LinearLayout>
 
         <TextView
             style="@style/HomeHeadingTextStyle"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_6sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_6sdp"
             android:text="@string/reffer_a_friend" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="@dimen/_6sdp"
+                android:weightSum="6">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_110sdp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/_4sdp"
+                    app:cardCornerRadius="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/_6sdp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardVoucher"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_centerHorizontal="true"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/status_bar"
+                            app:cardCornerRadius="@dimen/_2sdp">
+
+                            <ImageView
+                                android:id="@+id/ivVoucher"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_voucher" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            style="@style/QuaternarySpinnerLightTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cardVoucher"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:gravity="center_horizontal"
+                            android:padding="@dimen/_2sdp"
+                            android:text="@string/send_affiliate_code_to_your_friend" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_longarrow" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_110sdp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/_4sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:cardCornerRadius="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:gravity="center"
+                        android:padding="@dimen/_6sdp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardOffer"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_centerHorizontal="true"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/status_bar"
+                            app:cardCornerRadius="@dimen/_2sdp">
+
+                            <ImageView
+                                android:id="@+id/ivOffer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_offer" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            style="@style/QuaternarySpinnerLightTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cardOffer"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:gravity="center"
+                            android:text="@string/friend_purchase" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_longarrow" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_110sdp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/_4sdp"
+                    app:cardCornerRadius="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/_6sdp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardWallet"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_centerHorizontal="true"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="@color/status_bar"
+                            app:cardCornerRadius="@dimen/_2sdp">
+
+                            <ImageView
+                                android:id="@+id/ivWallet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_wallet" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            style="@style/QuaternarySpinnerLightTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cardWallet"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/get_amount" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_12sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                app:cardCornerRadius="@dimen/_6sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/vpbannerimage" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_10sdp">
+
+            <TextView
+                style="@style/HomeHeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/get_your_personalised_calender" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <CalendarView
+                android:id="@+id/cvCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_12sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                app:cardCornerRadius="@dimen/_6sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/vpbannerimage" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
     </LinearLayout>
 
 

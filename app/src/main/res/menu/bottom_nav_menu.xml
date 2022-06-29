@@ -18,12 +18,7 @@
             android:icon="@drawable/ic_packages_icon"
             android:enabled="true"/>
         <item
-            android:id="@+id/blogs"
-            android:title="Blogs"
-            android:icon="@drawable/ic_blog_icon"
-            android:enabled="true"/>
-        <item
-            android:id="@+id/Cart"
+            android:id="@+id/cart"
             android:title="Cart"
             android:icon="@drawable/ic_shopping_cart_icon"
             android:enabled="true"/>

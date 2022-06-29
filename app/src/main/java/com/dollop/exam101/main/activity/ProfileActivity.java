@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.Basics.activity.BlogsListActivity;
+import com.dollop.exam101.Basics.activity.SettingActivity;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityProfileBinding;
 
@@ -30,6 +32,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         binding.llCourseList.setOnClickListener(this);
         binding.llNotifications.setOnClickListener(this);
         binding.llRequestAffilation.setOnClickListener(this);
+        binding.llNotifications.setOnClickListener(this);
+        binding.llInviteFriend.setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +53,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             Utils.I(activity,NotificationActivity.class,null);
         }else if (view == binding.llRequestAffilation){
             Utils.I(activity,AffilationBankDetailsActivity.class,null);
+            Utils.I(activity, OrderHistoryActivity.class,null);
+        } else if (view == binding.llNotifications){
+            Utils.I(activity, BlogsListActivity.class,null);
+        }else if (view == binding.llInviteFriend){
+            Utils.I(activity, SettingActivity.class,null);
         }
     }
+
+
 }

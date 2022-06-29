@@ -2,6 +2,7 @@
 <resources>
 
     <color name="primaryColor">#01170C</color>
+    <color name="primaryStrokeColor">#1201170C</color>
     <color name="black">#121614</color>
 
     <color name="background">#ffffff</color>
@@ -17,7 +18,7 @@
     <color name="secondaryColor">#FFF</color>
     <color name="grey">#669298A3</color>
     <!--aman-->
-    <color name="lightgrey">#D9D9D9</color>
+
     <color name="lightpink">#FFEAE8</color>
     <color name="pink">#FFDAD7</color>
     <color name="fillColor">#E5FFF2</color>
@@ -50,6 +51,13 @@
 
 
 
+
+
+
+    <color name="DarkBlackBlue">#263238</color>
+    <color name="TvBgColor">#F1FFF8</color>
+    <color name="StrokeColorLightBlue">#EBEBFF</color>
+
     <color name="light_grey">#c1cbd6</color>
 
     <color name="lineColor">#F4F8FD</color>
@@ -69,13 +77,17 @@
     <color name="Maroon">#087965</color>
 
     //Date Picker colors
-    <color name="StrokeColorLightBlue">#EBEBFF</color>
+
     <color name="color_grey">#999999</color>
     <color name="color_grey1">#bbbbbb</color>
     <color name="color_grey2">#dfdfdf</color>
 
-
-
     <color name="red_logout">#FE5B52</color>
     <color name="light_gray">#EBF8F1</color>
+
+    // Course List
+    <color name="dark_gray">#61F1FFF8</color>
+
+
+    <color name="ViewLineColor">#EDEDED</color>
 </resources>

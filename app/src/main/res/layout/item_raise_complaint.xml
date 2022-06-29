@@ -149,7 +149,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_4sdp"
-                    app:cardBackgroundColor="@color/yellow_light"
+                    app:cardBackgroundColor="@color/lightYellow"
                     app:cardCornerRadius="@dimen/_20sdp"
                     app:cardElevation="0dp"
                     app:strokeColor="@color/yellow"
