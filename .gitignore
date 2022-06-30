@@ -1,0 +1,17 @@
+/.gradle/
+/.idea/
+/app/src/androidTest/
+/app/src/test/
+/app/app.iml
+/fastlane/
+/gradle/
+/.gitlab-ci.yml
+/.android-template.iml
+/gradlew.bat
+/Gemfile
+/Gemfile.lock
+/gradle.properties
+/Dockerfile
+/gradlew
+/app/src/main/AndroidManifest.xml
+
