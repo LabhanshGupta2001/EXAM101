@@ -51,8 +51,9 @@ public class MockTestHistoryActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack) {
-
+        if (view == binding.ivBack)
+        {
+            onBackPressed();
         }
     }
 }

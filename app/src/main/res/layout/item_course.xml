@@ -13,8 +13,8 @@
         android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
             android:id="@+id/cvImage"
             app:cardUseCompatPadding="true"
             android:elevation="@dimen/_4sdp"
