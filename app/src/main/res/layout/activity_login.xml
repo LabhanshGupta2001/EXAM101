@@ -79,13 +79,14 @@
 
 
             <EditText
-                style="@style/TernarySubTextStyle"
+                android:id="@+id/etUserEmail"
+                style="@style/TernaryBlackTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_14sdp"
                 android:autofillHints="enter Your Email"
-                android:background="@drawable/theme_stroke_background"
+                android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
                 android:hint="@string/enter_your_email"
                 android:inputType="textEmailAddress"
@@ -93,16 +94,17 @@
                 android:singleLine="true" />
 
             <EditText
-                style="@style/TernarySubTextStyle"
+                android:id="@+id/etUserPassword"
+                style="@style/TernaryBlackTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_14sdp"
                 android:autofillHints="Enter Your Passwpord"
-                android:background="@drawable/grey_stroke_background"
+                android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
                 android:hint="@string/enter_password"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:padding="@dimen/_12sdp"
                 android:singleLine="true" />
 

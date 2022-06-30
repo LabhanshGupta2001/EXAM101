@@ -3,9 +3,9 @@
     <string name="app_name">Exam101</string>
 
 
-        <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
+    <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
-        <!--Basic-->
+    <!--Basic-->
     <string name="empty_error">This field can\'t be empty.!</string>
     <string name="invalid_email">Invalid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
@@ -224,8 +224,8 @@
     <string name="your_package_is_confirmed_please_proceed_nto_my_packages_option">Your package is confirmed. Please proceed\nto my packages option.</string>
     <string name="see_your_package">See your Package</string>
     <string name="package_detail">Package Detail</string>
-    <string name="_3000">₹3000</string>
-    <string name="_4500">₹4500</string>
+    <string name="_3000">3000</string>
+    <string name="_4500">4500</string>
     <string name="microsoft_power_point">Microsoft power Point</string>
     <string name="best_way_learn_fundamentals_of_design_nthinking">Best way learn fundamentals of design\nthinking.</string>
     <string name="learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games">Learn Python like a Professional Start from the basics and go\nall the way to creating your own applications and games Learn\nPython like a Professional Start from the basics and go all the\nway to creating your own applications and games</string>
