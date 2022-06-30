@@ -1,5 +1,7 @@
 package com.dollop.exam101.main.fragment;
 
+import static androidx.databinding.DataBindingUtil.setContentView;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,7 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
+import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.databinding.FragmentPackageListBinding;
+import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.PackageModel;
@@ -28,6 +33,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     FragmentPackageListBinding binding;
     Fragment fragment=PackageListFragment.this;
 
+    BottomsheetFilterBinding bottomsheetFilterBinding;
     ViewPagerFragmentAdapter adapter;
     private String[] labels = new String[]{"Categories","Price","Language"};
 
@@ -41,36 +47,12 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentPackageListBinding.inflate(inflater, container, false);
-        init();
 
+        bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(inflater,container,false);
+        init();
        return binding.getRoot();
     }
 
-    private void bottomsheetTask() {
-        bottomSheetDialog = new BottomSheetDialog(getActivity());
-        bottomSheetDialog.setContentView(R.layout.bottomsheet_filter);
-        bottomSheetDialog.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
-        bottomSheetDialog.show();
-        ArrayList<Fragment>Fragment=new ArrayList<>();
-        Fragment.add(new CategoriesFragment());
-        Fragment.add(new PriceFragment());
-        Fragment.add(new LanguageFragment());
-
-        TabLayout tabLayout=bottomSheetDialog.findViewById(R.id.tlTabLayoutId);
-        ViewPager2 viewPager2=bottomSheetDialog.findViewById(R.id.ViewPagerId);
-
-        viewPager2.setAdapter(new ViewPagerFragmentAdapter(getParentFragmentManager(),getLifecycle(),Fragment));
-
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
-            tab.setText(labels[position]);
-        }).attach();
-
-
-
-
-
-
-    }
 
     private void init() {
 
@@ -91,8 +73,6 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         binding.rvPackagesone.setLayoutManager(linearLayoutManager2);
         binding.rvPackagesone.setAdapter(packageAdapter);
         binding.mcvFilterId.setOnClickListener(this);
-        //binding.tvAllPackage.setOnClickListener(this);
-
 
     }
 
@@ -102,4 +82,38 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
             bottomsheetTask();
         }
     }
+
+    private void bottomsheetTask() {
+        bottomSheetDialog = new BottomSheetDialog(getContext());
+        bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(getLayoutInflater());
+        bottomSheetDialog.setContentView(bottomsheetFilterBinding.getRoot());
+
+        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
+        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetDialog.show();
+        ArrayList<Fragment>Fragment=new ArrayList<>();
+        Fragment.add(new CategoriesFragment());
+        Fragment.add(new PriceFragment());
+        Fragment.add(new LanguageFragment());
+       // bottomsheetFilterBinding.ViewPagerId
+
+
+      /*  TabLayout tabLayout=bottomSheetDialog.findViewById(R.id.tlTabLayoutId);
+        ViewPager2 viewPager2=bottomSheetDialog.findViewById(R.id.ViewPagerId);
+*/
+        bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getParentFragmentManager(),getLifecycle(),Fragment));
+
+        new TabLayoutMediator(bottomsheetFilterBinding.tlTabLayoutId, bottomsheetFilterBinding.ViewPagerId, (tab, position) -> {
+            tab.setText(labels[position]);
+        }).attach();
+
+        View tab1 = ((ViewGroup) bottomsheetFilterBinding.tlTabLayoutId.getChildAt(0)).getChildAt(1);
+        ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
+        p.setMargins(20, 0, 20, 0);
+        tab1.requestLayout();
+
+
+    }
+
 }

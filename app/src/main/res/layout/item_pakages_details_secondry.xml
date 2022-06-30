@@ -10,12 +10,17 @@
         android:id="@+id/mcvZtoA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_7sdp"
         app:cardBackgroundColor="@color/white"
-        app:strokeColor="@color/lineColor">
+        app:cardCornerRadius="@dimen/_6sdp"
+        app:strokeColor="@color/HorizontallineColor"
+        app:cardElevation="0dp"
+        app:strokeWidth="@dimen/_1sdp"
+        >
 
         <LinearLayout
+            android:id="@+id/llLaunchId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -49,7 +54,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvThird"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:layout_marginTop="@dimen/_minus4sdp"
+
+        />
 
 </LinearLayout>
 

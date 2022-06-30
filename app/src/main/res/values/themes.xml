@@ -39,178 +39,178 @@
 
     <style name="SuperThemeHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
     <style name="SuperTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
     <style name="SuperWhiteHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
     <style name="PrimaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
     <style name="PrimaryWhiteHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
     <style name="PrimaryGreenHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/_16ssp</item>
     </style>
 
     <style name="SecondaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
     </style>
 
     <style name="SecondaryHeadingTextStyle">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
 
     </style>
 
     <style name="SecondaryFullBlackHeadingTextStyle">
         <item name="android:textColor">@color/full_black</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
     </style>
 
 
 
     <style name="TernaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
     <style name="TernaryThemeHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
     <style name="TernaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
 
     <style name="TernaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
 
     </style>
 
     <style name="TernaryBlackTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
 
     <style name="TernarySubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
     <style name="TernaryThemeTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
     <style name="TernaryRedTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
     <style name="TernaryLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
     <style name="TernaryDarkTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
 
 
     <style name="QuaternaryLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
     <style name="QuaternaryFullBlackTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/full_black</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
 
     <style name="QuaternaryLightSubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
         <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
 
     <style name="QuaternarySpinnerLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
 
     <style name="QuaternarySubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
     <style name="QuaternaryRedTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
     <style name="QuaternaryRedLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/red_logout</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
     <style name="QuaternarySecondaryTextStyle">
         <item name="android:textColor">@color/secondaryColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
     <style name="QuaternaryTextStyle">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
     <style name="QuaternaryWhiteTextStyle">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
 
     <style name="QuaternaryThemeHeadingTextStyle">
         <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
         <item name="android:fontFamily">@font/inter_bold</item>
     </style>
 
 
     <style name="QuaternaryDarkTextStyle">
         <item name="android:textColor">@color/DarkBlackBlue</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
     <style name="TabTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
         <item name="android:textAllCaps">false</item>
 
     </style>
@@ -219,35 +219,35 @@
 
     <style name="QuinaryLightSubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
     <style name="QuinaryLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp </item>
     </style>
 
 
     <style name="QuinaryTextTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/text_color</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
     <style name="QuinaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
 
     <!--Aman-->
     <style name="QuinaryBlackTextStyle3" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/full_black</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
     <style name="QuinaryBlackTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
     <style name="SenaryThemeTextStyle" parent="Widget.AppCompat.TextView">
@@ -256,19 +256,19 @@
     </style>
     <style name="QuinarySubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
     <style name="QuinaryThemeTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
 
     </style>
 
     <style name="QuinaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
     <style name="QuinarySubHeadingTextStyle" parent="Widget.AppCompat.TextView">
@@ -279,29 +279,34 @@
 
     <style name="QuinaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
 
     <style name="SenaryWhiteTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
     </style>
 
     <style name="SenarySubTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/sub_text</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
     </style>
 
     <style name="SenaryYellowTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/yellow</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
     </style>
 
 
     <style name="SenaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
+    </style>
+
+    <style name="SenaryPrimaryTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
 
@@ -318,6 +323,11 @@
     </style>
 
 
+    //aryan
+    <style name="TertialThemeHeadingTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/theme</item>
+        <item name="android:textSize">@dimen/_18ssp</item>
+    </style>
 
 
 
@@ -325,7 +335,7 @@
 
 
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
     </style>
 
     <style name="StrokeCardStyle" parent="Widget.MaterialComponents.CardView">
@@ -338,7 +348,7 @@
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
 
@@ -355,7 +365,7 @@
     <style name="EditTextProfile" parent="Widget.AppCompat.EditText">
         <item name="android:layout_marginTop">@dimen/_4sdp</item>
 
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
         <item name="fontFamily">@font/inter_semibold</item>
     </style>
 
@@ -379,7 +389,7 @@
 
     <style name="SuperFullBlackTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
     <style name="QuinaryThemeNewsTextStyle" parent="Widget.AppCompat.TextView">

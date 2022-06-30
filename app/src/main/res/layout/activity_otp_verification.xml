@@ -30,6 +30,15 @@
             />
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.50"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/bottom_sheet_back"
+        android:elevation="@dimen/_2sdp"
+        android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,9 +114,7 @@
         android:fontFamily="@font/inter_semibold"
         android:inputType="number"
         android:itemBackground="@drawable/selector_background_color"
-        android:text="@string/_5305"
-        android:textColor="@color/primaryColor"
-        android:textSize="@dimen/_26ssp"
+        android:hint="@string/_5305"
         app:cursorWidth="2dp"
         app:hideLineWhenFilled="true"
         app:itemCount="4"
@@ -137,4 +144,5 @@
             android:padding="@dimen/_12sdp"
             android:text="@string/verify_otp" />
 
+    </LinearLayout>
 </LinearLayout>

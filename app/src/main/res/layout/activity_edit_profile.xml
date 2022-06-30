@@ -157,7 +157,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_1sdp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_downarrow" />
+                    android:src="@drawable/ic_downspinner" />
 
                 <LinearLayout
                     android:id="@+id/llspinner"

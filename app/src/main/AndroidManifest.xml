@@ -14,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone">
 
+
         <activity
             android:name=".main.activity.CategoryDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.activity.PackagesDetailActivity"
             android:exported="false" />
         <activity
             android:name=".main.activity.EditProfileActivity"
@@ -26,10 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".main.activity.MyCartActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".main.activity.PackagesDetailActivity"
             android:exported="false" />
 
         <activity

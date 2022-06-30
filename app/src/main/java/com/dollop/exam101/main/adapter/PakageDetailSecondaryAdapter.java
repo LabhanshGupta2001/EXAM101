@@ -3,6 +3,7 @@ package com.dollop.exam101.main.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
     Context context;
     ArrayList<String> list;
     ArrayList<String> stringArrayList=new ArrayList<>();
+    private Boolean dropdown = true;
 
     public PakageDetailSecondaryAdapter(Context context, ArrayList<String> list) {
         this.context = context;
@@ -37,7 +39,20 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
         holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,stringArrayList));
         holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
 
-
+        holder.binding.mcvZtoA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!dropdown) {
+                    holder.binding.rvThird.setVisibility(View.VISIBLE);
+                    holder.binding.ivRotedArrow.animate().rotation(180).setDuration(100).start();
+                    dropdown = true;
+                } else {
+                    holder.binding.rvThird.setVisibility(View.GONE);
+                    holder.binding.ivRotedArrow.animate().rotation(0).setDuration(100).start();
+                    dropdown = false;
+                }
+            }
+        });
     }
 
     @Override

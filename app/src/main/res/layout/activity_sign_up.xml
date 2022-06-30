@@ -79,12 +79,12 @@
                 android:text="@string/login_to_your_account" />
 
             <EditText
-                style="@style/TernarySubTextStyle"
+                style="@style/TernaryLightTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/theme_stroke_background"
+                android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
                 android:hint="@string/enter_user_name"
                 android:inputType="textPersonName"
@@ -93,12 +93,12 @@
                 tools:ignore="Autofill" />
 
             <EditText
-                style="@style/TernarySubTextStyle"
+                style="@style/TernaryLightTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/grey_stroke_background"
+                android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
                 android:hint="@string/email_gmail_com"
                 android:inputType="textEmailAddress"
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/grey_stroke_background"
+                android:background="@drawable/input_custom"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
@@ -122,20 +122,29 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner"
                     android:backgroundTint="@color/white"
-                    tools:listitem="@layout/contry_spiner" />
+                    tools:listitem="@layout/country_spinner" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_downspinner"/>
 
                 <View
                     android:layout_width="@dimen/_1sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_height="@dimen/_24sdp"
                     android:background="@color/HorizontallineColor" />
 
                 <EditText
-                    style="@style/TernarySubTextStyle"
+                    android:id="@+id/etEnterMobile"
+                    style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_4sdp"
                     android:layout_weight=".7"
-                    android:background="@color/white"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:background="@null"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/enter_mobile_no"
                     android:inputType="number"
@@ -145,12 +154,13 @@
             </LinearLayout>
 
             <EditText
-                style="@style/TernarySubTextStyle"
+                android:id="@+id/etPassword"
+                style="@style/TernaryLightTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/grey_stroke_background"
+                android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
                 android:hint="@string/enter_password"
                 android:inputType="textPersonName"
@@ -159,12 +169,13 @@
                 tools:ignore="Autofill" />
 
             <EditText
-                style="@style/TernarySubTextStyle"
+                android:id="@+id/etConformPassword"
+                style="@style/TernaryLightTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/grey_stroke_background"
+                android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
                 android:hint="@string/conform_password"
                 android:inputType="textPersonName"
@@ -197,6 +208,7 @@
 
 
             <LinearLayout
+                android:id="@+id/llLoginWithGoogle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
@@ -223,9 +235,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
+                android:padding="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
                 android:fontFamily="@font/inter_semibold"
                 android:text="@string/sign_in" />
         </LinearLayout>
