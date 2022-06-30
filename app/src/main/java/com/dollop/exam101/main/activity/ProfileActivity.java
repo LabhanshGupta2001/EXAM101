@@ -3,8 +3,10 @@ package com.dollop.exam101.main.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityProfileBinding;
@@ -13,6 +15,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     Activity activity = ProfileActivity.this;
     ActivityProfileBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         binding.llNotifications.setOnClickListener(this);
         binding.llInviteFriend.setOnClickListener(this);
         binding.llWishList.setOnClickListener(this);
+        binding.llMockTest.setOnClickListener(this);
     }
 
     @Override

@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/gothic_bold"
-            android:text="@string/packages_list" />
+            android:text="@string/course_list" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

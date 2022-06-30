@@ -27,7 +27,7 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemPackageDetailBinding binding=ItemPackageDetailBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemPackageDetailBinding binding= ItemPackageDetailBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyViewHolder(binding);
     }
 

@@ -71,6 +71,7 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
         binding.CardView.setOnClickListener(this);
         binding.CardViewOne.setOnClickListener(this);
         binding.tvButtonCheckoutId.setOnClickListener(this);
+        binding.ivBack.setOnClickListener(this);
     }
 
     @Override
@@ -85,6 +86,9 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
             bottomSheetDialog.show();
         }else if (view==binding.tvButtonCheckoutId){
             Utils.I(activity,PaymentFailedActivity.class,null);
+        }
+        else if (view==binding.ivBack){
+           onBackPressed();
         }
     }
 }

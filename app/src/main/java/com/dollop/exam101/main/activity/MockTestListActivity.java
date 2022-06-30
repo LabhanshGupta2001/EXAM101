@@ -25,10 +25,12 @@ public class MockTestListActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         binding = ActivityMockTestListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initialise();
+        init();
     }
 
-    private void initialise() {
+    private void init() {
+
+        binding.ivBack.setOnClickListener(this);
         list.clear();
         list.add("1");
         list.add("1");
@@ -42,7 +44,10 @@ public class MockTestListActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        Utils.I(activity, HomeFragment.class,null);
-        Utils.T(activity,"jsgdfjgshdagfj");
+
+        if (view==binding.ivBack)
+        {
+           finish();
+        }
     }
 }
