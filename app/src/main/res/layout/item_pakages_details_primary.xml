@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:id="@+id/tvSubject1"
         android:fontFamily="@font/inter_semibold"
@@ -20,6 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rvSecond"
-        tools:listitem="@layout/item_pakages_details_secondry"
+        android:overScrollMode="never"
         />
 </LinearLayout>

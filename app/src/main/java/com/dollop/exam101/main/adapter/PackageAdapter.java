@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemPackagesBinding;
 import com.dollop.exam101.main.activity.PackagesDetailActivity;
 import com.dollop.exam101.main.model.PackageModel;
@@ -39,8 +40,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.llInvoiceId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, PackagesDetailActivity.class);
-                view.getContext().startActivity(intent);
+                Utils.I(context,PackagesDetailActivity.class,null);
             }
         });
     }

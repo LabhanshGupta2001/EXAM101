@@ -145,12 +145,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-
         android:background="@drawable/navigation_drower_radius"
         android:scrollbars="none"
-
-
-
         app:headerLayout="@layout/menu_header"
         app:menu="@menu/main_menu" />
 
