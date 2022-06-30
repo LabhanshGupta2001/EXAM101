@@ -44,7 +44,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
 
     }
@@ -88,7 +87,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 chooseImage(activity);
             }
         } else if (view == binding.llSave) {
-            Utils.I(activity, MockTestListActivity.class, null);
+            onBackPressed();
         }else if(view==binding.llspinner){
             binding.SpinnerCountry.performClick();
 

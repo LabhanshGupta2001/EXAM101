@@ -32,7 +32,7 @@ public class UpdateBankDetailsActivity extends AppCompatActivity implements View
         if(view==binding.llSave){
             Utils.I(activity,ContactUsActivity.class,null);
         } else if(view==binding.ivBack){
-            finish();
+           onBackPressed();
         }
     }
 }

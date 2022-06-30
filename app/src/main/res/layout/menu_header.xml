@@ -4,11 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/_80sdp"
     android:scrollbars="none"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:id="@+id/nav_header_profile"
     android:background="@drawable/navigation_drower_radius"
     android:paddingHorizontal="@dimen/_10sdp">
 
     <LinearLayout
-        android:id="@+id/line1"
+        android:id="@+id/llnav_header_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/cardViewProfile"

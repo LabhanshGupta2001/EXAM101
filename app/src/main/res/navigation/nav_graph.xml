@@ -10,8 +10,6 @@
         android:name="com.dollop.exam101.main.fragment.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home" >
-
-
     </fragment>
 
 </navigation>

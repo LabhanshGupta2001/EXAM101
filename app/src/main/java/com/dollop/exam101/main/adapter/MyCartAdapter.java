@@ -28,7 +28,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyCartAdapter.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         MyCartModel myCartModel= myCartModelArrayList.get(position);
        /* holder.binding.ivPhotoId.setImageResource(myCartModel.Photo);*/
         holder.binding.tvPowerPointId.setText(myCartModel.Point);
