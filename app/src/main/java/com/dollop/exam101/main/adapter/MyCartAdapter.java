@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemMyCartBinding;
 import com.dollop.exam101.main.model.MyCartModel;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyCartAdapter.MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         MyCartModel myCartModel= myCartModelArrayList.get(position);
        /* holder.binding.ivPhotoId.setImageResource(myCartModel.Photo);*/
         holder.binding.tvPowerPointId.setText(myCartModel.Point);

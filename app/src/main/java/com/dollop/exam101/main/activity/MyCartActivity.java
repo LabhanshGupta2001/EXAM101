@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.ActivityMyCartBinding;
 import com.dollop.exam101.main.adapter.MyCartAdapter;
 import com.dollop.exam101.main.model.MyCartModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -70,6 +71,7 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
         binding.CardView.setOnClickListener(this);
         binding.CardViewOne.setOnClickListener(this);
         binding.tvButtonCheckoutId.setOnClickListener(this);
+        binding.ivBack.setOnClickListener(this);
     }
 
     @Override
@@ -84,6 +86,9 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
             bottomSheetDialog.show();
         }else if (view==binding.tvButtonCheckoutId){
             Utils.I(activity,PaymentFailedActivity.class,null);
+        }
+        else if (view==binding.ivBack){
+           onBackPressed();
         }
     }
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.ItemEditprofileBinding;
 
 public class EditProfileAdapter extends BaseAdapter {
     Context context;

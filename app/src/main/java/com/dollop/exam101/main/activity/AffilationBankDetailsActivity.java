@@ -27,7 +27,7 @@ public class AffilationBankDetailsActivity extends AppCompatActivity implements 
     }
 
     private void init() {
-        binding.llSave.setOnClickListener(this);
+        binding.llSubmit.setOnClickListener(this);
         binding.etHolderName.setOnClickListener(this);
         binding.etAccountNumber.setOnClickListener(this);
         binding.etIfscCode.setOnClickListener(this);
@@ -37,10 +37,10 @@ public class AffilationBankDetailsActivity extends AppCompatActivity implements 
 
     @Override
     public void onClick(View view) {
-        if (view == binding.llSave) {
+        if (view == binding.llSubmit) {
             Utils.I(activity,BankDetailActivity.class,null);
         } else if(view==binding.ivBack){
-            finish();
+            onBackPressed();
         }
 
     }

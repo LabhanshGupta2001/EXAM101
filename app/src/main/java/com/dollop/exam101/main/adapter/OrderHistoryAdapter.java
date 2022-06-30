@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemOrderHistoryBinding;
 import com.dollop.exam101.main.model.OrderHistoryModel;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemOrderHistoryBinding binding =ItemOrderHistoryBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemOrderHistoryBinding binding = ItemOrderHistoryBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyHolder(binding);
     }
 

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemPackageDetailBinding;
+
 import java.util.ArrayList;
 
 public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetailRatingAdapter.MyViewHolder> {
@@ -25,7 +27,7 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemPackageDetailBinding binding=ItemPackageDetailBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemPackageDetailBinding binding= ItemPackageDetailBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyViewHolder(binding);
     }
 

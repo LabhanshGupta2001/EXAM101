@@ -75,6 +75,30 @@
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/onboard_screen_layout.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/picker_popup_layout.xml" value="0.25" />
         <entry key="..\:/ANdroid PRoject/exam101-android/app/src/main/res/layout/progress_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/color_selection.xml" value="0.121" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_course_list.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_courses_detail.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.27025641025641023" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_mock_test_history.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_mock_test_list.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_setting.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.27025641025641023" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_welcome.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_course.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_course_list.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_login_history.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_history_allresults.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_list.xml" value="0.264" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_package_detail.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/layout/menu_header.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/exam101-android/app/src/main/res/menu/main_menu.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/grey_stroke_background.xml" value="0.2465" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_camera.xml" value="0.2555" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_flag_of_australia.xml" value="0.2555" />
@@ -90,7 +114,7 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_list.xml" value="0.6" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/picker_popup_layout.xml" value="0.1" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/progress_dialog.xml" value="0.25" />
-        <entry key="..\:/Users/dell/Desktop/AniruddhaDollopProject/exam101-android1/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.1" />
+        <entry key="..\:/Users/dell/Desktop/AniruddhaDollopProject/exam101-android1/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.125" />
         <entry key="..\:/Users/dell/Desktop/AniruddhaDollopProject/exam101-android1/app/src/main/res/layout/activity_order_confirmed.xml" value="0.2" />
         <entry key="..\:/Users/dell/Desktop/AniruddhaDollopProject/exam101-android1/app/src/main/res/layout/activity_payment_failed.xml" value="0.125" />
         <entry key="..\:/Users/dell/Desktop/AniruddhaDollopProject/exam101-android1/app/src/main/res/layout/activity_profile.xml" value="0.125" />

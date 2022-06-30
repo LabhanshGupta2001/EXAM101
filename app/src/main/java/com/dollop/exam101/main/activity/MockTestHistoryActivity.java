@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.databinding.ActivityMockTestHistoryBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
 import com.dollop.exam101.main.fragment.AllResultsFragment;
 import com.dollop.exam101.main.fragment.CategoryHomeFragment;
@@ -50,8 +51,9 @@ public class MockTestHistoryActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack) {
-
+        if (view == binding.ivBack)
+        {
+            onBackPressed();
         }
     }
 }

@@ -133,6 +133,7 @@
             android:elevation="@dimen/_4sdp"
             android:paddingHorizontal="@dimen/_10sdp"
             app:itemIconTint="@drawable/color_selection"
+            app:itemTextColor="@drawable/color_selection"
             app:itemTextAppearanceActive="@style/BottomNavigationView"
             app:itemTextAppearanceInactive="@style/BottomNavigationView"
             app:labelVisibilityMode="labeled"
@@ -141,16 +142,12 @@
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
+        android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-
         android:background="@drawable/navigation_drower_radius"
         android:scrollbars="none"
-
-
-
         app:headerLayout="@layout/menu_header"
         app:menu="@menu/main_menu" />
 

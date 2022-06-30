@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;

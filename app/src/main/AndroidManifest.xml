@@ -110,6 +110,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.activity.CourseListActivity" />
+        <activity android:name=".main.activity.CoursesDetailActivity" />
     </application>
 
 </manifest>

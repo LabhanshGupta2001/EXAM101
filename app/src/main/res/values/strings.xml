@@ -356,6 +356,12 @@
     <string name="image">image</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="yogendra_tiwari">Yogendra Tiwari</string>
+    <string name="mock_test">Mock Test</string>
+    <string name="attempt">Attempt</string>
+    <string name="history">History</string>
+    <string name="remaining">Remaining</string>
+    <string name="start_test">Start Test</string>
+    <string name="course_video">Course Video</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

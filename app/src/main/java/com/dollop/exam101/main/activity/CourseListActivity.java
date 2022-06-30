@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.dollop.exam101.databinding.ActivityCourseListBinding;
 import com.dollop.exam101.main.adapter.CourseListAdapter;
@@ -13,7 +14,7 @@ import com.dollop.exam101.main.model.CourseListModel;
 
 import java.util.ArrayList;
 
-public class CourseListActivity extends AppCompatActivity {
+public class CourseListActivity extends AppCompatActivity implements View.OnClickListener {
 
     Activity activity=CourseListActivity.this;
     ActivityCourseListBinding binding;
@@ -31,6 +32,8 @@ public class CourseListActivity extends AppCompatActivity {
     }
    void init()
     {
+        binding.ivBack.setOnClickListener(this);
+
         courseListModels.add(new CourseListModel("Adobe Software","Digital Design Thinking","04 Jul,2022","20","30 DAYS"));
         courseListModels.add(new CourseListModel("Adobe Software","Digital Design Thinking","04 Jul,2022","20","30 DAYS"));
         courseListModels.add(new CourseListModel("Adobe Software","Digital Design Thinking","04 Jul,2022","20","30 DAYS"));
@@ -41,5 +44,14 @@ public class CourseListActivity extends AppCompatActivity {
         binding.rvCourseList.setLayoutManager(linearLayoutManager3);
         binding.rvCourseList.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        if (view == binding.ivBack)
+        {
+            onBackPressed();
+        }
     }
 }

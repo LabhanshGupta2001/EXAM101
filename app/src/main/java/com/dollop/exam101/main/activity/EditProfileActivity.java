@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.ActivityEditProfileBinding;
 import com.dollop.exam101.main.model.CountryItem;
 import com.dollop.exam101.R;
 import com.dollop.exam101.main.adapter.EditProfileCountryAdapter;
@@ -43,7 +44,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
 
     }
@@ -87,7 +87,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 chooseImage(activity);
             }
         } else if (view == binding.llSave) {
-            Utils.I(activity, MockTestListActivity.class, null);
+            onBackPressed();
         }else if(view==binding.llspinner){
             binding.SpinnerCountry.performClick();
 

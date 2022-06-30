@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.databinding.ItemCourseBinding;
 import com.dollop.exam101.main.model.CourseModel;
 
 import java.util.ArrayList;

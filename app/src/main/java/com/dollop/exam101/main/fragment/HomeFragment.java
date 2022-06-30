@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
 import com.dollop.exam101.main.adapter.NewsAdapter;

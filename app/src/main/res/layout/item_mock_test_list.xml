@@ -3,49 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        app:cardCornerRadius="@dimen/_8sdp"
-        app:strokeColor="@color/HorizontallineColor"
-        app:strokeWidth="@dimen/_1sdp">
+        android:layout_marginTop="@dimen/_12sdp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.google.android.material.card.MaterialCardView
+            <ImageView
+                android:id="@+id/ivCalendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:strokeColor="@color/HorizontallineColor"
-                app:strokeWidth="@dimen/_1sdp">
+                android:contentDescription="@string/calander"
+                android:src="@drawable/ic_calender" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_14sdp"
-                    android:layout_marginHorizontal="@dimen/_16sdp"
-                    android:src="@drawable/ic_notepad" />
-            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/tvPurchasdOn"
+                style="@style/QuaternarySubTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/purchased" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                style="@style/QuaternarySubTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/tvPurchasdOn"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/_02_jun_2022" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/tvHistory"
+            android:src="@drawable/ic_history"
+            android:layout_marginEnd="@dimen/_2sdp"/>
+
+        <TextView
+            android:id="@+id/tvHistory"
+            style="@style/SenaryThemeTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/history" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_2sdp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="@dimen/_1sdp"
+        app:strokeColor="@color/stroke_color"
+        app:strokeWidth=".8dp">
+
+        <LinearLayout
+            android:id="@+id/cardCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="1">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:strokeColor="@color/HorizontallineColor"
+                    app:strokeWidth="@dimen/_1sdp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:layout_marginVertical="@dimen/_14sdp"
+                        android:src="@drawable/ic_notepad" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_12sdp"
-                    android:layout_weight="1"
+                    android:layout_weight=".7"
                     android:orientation="vertical">
 
                     <TextView
@@ -53,18 +114,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/gothic_bold"
-                        android:text="@string/creative_art_design"
                         android:singleLine="true"
-                        />
-
-                    <TextView
-                        style="@style/SenarySubTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/inter_medium"
-                        android:maxLines="1"
-                        android:text="@string/purchase_date_1_jan_2022" />
+                        android:text="@string/creative_art_design" />
 
                     <TextView
                         style="@style/SenarySubTextStyle"
@@ -75,30 +126,125 @@
                         android:text="@string/expiry_date_8_may_2022" />
                 </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:cardCornerRadius="@dimen/_20sdp"
-                    app:strokeColor="@color/yellow"
-                    app:strokeWidth="@dimen/_1sdp"
-                    android:layout_margin="@dimen/_12sdp"
-                    app:cardBackgroundColor="#14FFBF55"
-                    app:cardElevation="0dp"
-                    >
+                    android:layout_weight=".3"
+                    android:gravity="center_vertical">
+
                     <TextView
-                        style="@style/SenaryYellowTextStyle"
+                        android:id="@+id/tvExpired"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/expired"
+                        android:textColor="@color/red_logout"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/llDaysLeft"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tvAttempts"
+                            style="@style/PrimaryGreenHeadingTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="@string/_15" />
+
+                        <TextView
+                            style="@style/SenaryTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_2sdp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/attempt" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:baselineAligned="true"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:id="@+id/llPackageDuration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".6"
+                    android:background="@drawable/packege_duration"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_11sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="@string/attempt_40"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginVertical="@dimen/_6sdp"
-                        />
-                </com.google.android.material.card.MaterialCardView>
+                        android:text="@string/remaining"
+                        style="@style/SenaryPrimaryTextStyle"/>
+
+                    <TextView
+                        android:id="@+id/tvPackageDurationDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/_20_days"
+                        style="@style/SenaryPrimaryTextStyle"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llViewCourse"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".4"
+                    android:background="@drawable/invoice_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_9sdp">
+
+                    <TextView
+                        style="@style/QuinaryLightTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/start_test"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/ivViewCourse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:contentDescription="@string/view_course"
+                        android:src="@drawable/ic_go_arrow"
+                        app:tint="@color/white" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.ActivityMockTestListBinding;
 import com.dollop.exam101.main.adapter.MockTestListAdapter;
 import com.dollop.exam101.main.fragment.HomeFragment;
 
@@ -24,10 +25,12 @@ public class MockTestListActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         binding = ActivityMockTestListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initialise();
+        init();
     }
 
-    private void initialise() {
+    private void init() {
+
+        binding.ivBack.setOnClickListener(this);
         list.clear();
         list.add("1");
         list.add("1");
@@ -41,7 +44,10 @@ public class MockTestListActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        Utils.I(activity, HomeFragment.class,null);
-        Utils.T(activity,"jsgdfjgshdagfj");
+
+        if (view==binding.ivBack)
+        {
+           finish();
+        }
     }
 }
