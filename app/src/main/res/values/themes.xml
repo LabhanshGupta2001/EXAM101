@@ -18,7 +18,6 @@
         <item name="android:windowTranslucentStatus">false</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
@@ -84,11 +83,11 @@
 
     </style>
 
+
     <style name="SecondaryFullBlackHeadingTextStyle">
         <item name="android:textColor">@color/full_black</item>
         <item name="android:textSize">18sp</item>
     </style>
-
 
 
     <style name="TernaryHeadingTextStyle" parent="Widget.AppCompat.TextView">
@@ -146,6 +145,11 @@
     </style>
 
 
+    <style name="SecondaryWhitHeadingTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+    </style>
 
     <style name="QuaternaryLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
@@ -281,6 +285,11 @@
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/inter_medium</item>
 
+    </style>
+
+    <style name="QuinaryTheemTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/theme</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
     </style>
 
     <style name="QuinaryWhiteTextStyle" parent="Widget.AppCompat.TextView">

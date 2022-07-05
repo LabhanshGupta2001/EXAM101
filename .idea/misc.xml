@@ -3,36 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/HP/.gradle/wrapper/dists/gradle-7.4.2-bin/caches/transforms-3/1de6991ffdb9e3f36688d746fb98bde7/transformed/jetified-viewpagerdotsindicator-4.1.2/res/drawable/worm_dot_stroke_background.xml" value="0.127" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/click_change_bg.xml" value="0.1" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/custom_course_progress_bar.xml" value="0.1205" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/ic_blog_icon.xml" value="0.1795" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/ic_home_icon.xml" value="0.1" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/navigation_drower_radius.xml" value="0.1305" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/select_option_background.xml" value="0.1" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/selector_background_color.xml" value="0.127" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/stroke_curve_bottom.xml" value="0.102" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_course_test.xml" value="0.264" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_course_test2.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_courses_detail.xml" value="0.29010416666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_courses_material.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20092592592592592" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_packages_detail.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/bottom_sheet_practice_test.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/fragment_course_material.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/fragment_home.xml" value="0.29010416666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_material_chapter_name_list.xml" value="0.27335640138408307" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_material_subject_module_list.xml" value="0.2675925925925926" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_material_subject_name.xml" value="0.2734375" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_test_question_list.xml" value="0.2734375" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_test_question_option_list.xml" value="0.264" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_package_detail.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_packages_detail_ternary.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_pakages_details_primary.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_pakages_details_secondry.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/nav_header_dashboard.xml" value="0.29010416666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/menu/bottom_nav_menu.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/menu/main_menu.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Nilesh Patidar/AndroidStudioProjects/exam101-android/app/src/main/res/drawable-hdpi/tab_seleted_shape.xml" value="0.244" />
         <entry key="..\:/Users/Nilesh Patidar/AndroidStudioProjects/exam101-android/app/src/main/res/drawable-hdpi/tab_unselected_shape.xml" value="0.244" />
         <entry key="..\:/Users/Nilesh Patidar/AndroidStudioProjects/exam101-android/app/src/main/res/drawable-hdpi/tabselector.xml" value="0.244" />
@@ -142,6 +112,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_not_result_found.xml" value="0.168" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_notification.xml" value="0.168" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_removesvg.xml" value="0.168" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_right.xml" value="0.1305" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_search.xml" value="0.168" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_searchicon.xml" value="0.168" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_shopping_cart_trolly.xml" value="0.168" />
@@ -202,6 +173,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_category_detail.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_list.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_material_chapter_name_list.xml" value="0.8" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_current_affairs_news.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_editprofile.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_flex_box.xml" value="0.6" />
@@ -219,6 +191,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_search_history.xml" value="0.3916967509025271" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_test_ans.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.4" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/no_internet_connection.xml" value="0.176" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/no_result_found.xml" value="0.2" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/welcome_layout.xml" value="0.25052083333333336" />

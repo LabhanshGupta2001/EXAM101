@@ -14,16 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone">
         <activity
-            android:name=".AffiliatePurchaseListActivity"
+            android:name=".main.activity.AffiliatePurchaseListActivity"
             android:exported="false" />
         <activity
             android:name=".main.activity.SearchHistoryActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".main.activity.MyWishlistActivity"
@@ -120,7 +115,13 @@
             android:exported="true" />
         <activity
             android:name=".main.activity.SplashActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".main.activity.CourseListActivity" />
         <activity android:name=".main.activity.CoursesDetailActivity" />
     </application>
