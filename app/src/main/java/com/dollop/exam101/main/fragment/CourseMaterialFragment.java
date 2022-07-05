@@ -18,16 +18,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 
 
-public class CourseMaterialFragment extends Fragment implements View.OnClickListener{
-    Fragment fragment=CourseMaterialFragment.this;
+public class CourseMaterialFragment extends Fragment implements View.OnClickListener {
+    Fragment fragment = CourseMaterialFragment.this;
     FragmentCourseMaterialBinding binding;
     ArrayList<String> list = new ArrayList<>();
     private Boolean dropdown = true;
 
     BottomSheetDialog bottomSheetDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         binding=FragmentCourseMaterialBinding.inflate(inflater, container, false);
+        binding = FragmentCourseMaterialBinding.inflate(inflater, container, false);
         init();
 
         return binding.getRoot();

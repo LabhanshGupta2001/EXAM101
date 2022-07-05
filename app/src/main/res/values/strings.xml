@@ -414,6 +414,10 @@
     <string name="total_balance">Total balance</string>
 
 
+    <string name="test_1">Test 1</string>
+    <string name="course_material">Course Material</string>
+    <string name="general">General</string>
+    <string name="other">Other</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

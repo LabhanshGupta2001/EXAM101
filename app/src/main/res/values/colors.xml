@@ -9,10 +9,12 @@
     <color name="arrow_color">#121614</color>
     <color name="black_to_subtext">#121614</color>
     <color name="sub_text">#6f7c8e</color>
+    
     <color name="text_color">#141719</color>
     <color name="otp_box">#f9f9f9</color>
 
     <color name="off_white">#F7F7F7</color>
+    <color name="low_white">#4DFDFBFB</color> <!--guru-->
     <color name="LavenderBlush">#FBFFFC</color>
 
     <color name="secondaryColor">#FFF</color>
@@ -81,13 +83,15 @@
     <color name="color_grey">#999999</color>
     <color name="color_grey1">#bbbbbb</color>
     <color name="color_grey2">#dfdfdf</color>
+    <color name="color_gray3">#DDDDDD</color> <!--Guru-->
 
     <color name="red_logout">#FE5B52</color>
     <color name="light_gray">#EBF8F1</color>
 
     // Course List
     <color name="dark_gray">#61F1FFF8</color>
-
+    <color name="bright_gray">#E9F6F0</color>
+    
 
     <color name="ViewLineColor">#EDEDED</color>
 
