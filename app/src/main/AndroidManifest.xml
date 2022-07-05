@@ -13,8 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone">
+        <activity
+            android:name=".main.activity.CourseTestActivity"
+            android:exported="true" >
 
-
+        </activity>
         <activity
             android:name=".main.activity.CategoryDetailsActivity"
             android:exported="false" />
@@ -24,22 +27,18 @@
         <activity
             android:name=".main.activity.EditProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".main.activity.MockTestListActivity"
             android:exported="false" />
         <activity
             android:name=".main.activity.MyCartActivity"
             android:exported="false" />
-
         <activity
             android:name=".main.activity.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".main.activity.MockTestHistoryActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".main.activity.LoginHistoryActivity"
             android:exported="false" />
@@ -63,11 +62,10 @@
             android:exported="false" />
         <activity
             android:name=".main.activity.NotificationActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".main.activity.SettingActivity"
             android:exported="false" />
-
         <activity
             android:name=".main.activity.BlogDetailActivity"
             android:exported="false" />
@@ -89,8 +87,6 @@
         <activity
             android:name=".main.activity.OtpVerificationActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".main.activity.WelcomeActivity"
             android:exported="true" />
@@ -103,14 +99,21 @@
         <activity
             android:name=".main.activity.SplashActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".main.activity.CourseListActivity" />
         <activity android:name=".main.activity.CoursesDetailActivity" />
+        <activity
+            android:name=".main.activity.CoursesMaterial"
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>
