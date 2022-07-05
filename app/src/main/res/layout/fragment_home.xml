@@ -473,18 +473,14 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_10sdp">
 
             <TextView
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 style="@style/HomeHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/get_your_personalised_calender" />
-        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -494,9 +490,7 @@
             <CalendarView
                 android:id="@+id/cvCalendar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                />
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 

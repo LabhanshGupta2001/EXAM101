@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".main.activity.TestResultActivity">
+
+    <LinearLayout
+        android:id="@+id/llToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/_3sdp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_4sdp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/ic_backarrow" />
+
+
+        <TextView
+            style="@style/TernaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:text="@string/test_result" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLineClor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lineColor"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_12sdp"
+            android:background="@drawable/theem_result_bg"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_8ssp"
+            android:weightSum="3">
+
+            <RelativeLayout
+                android:id="@+id/rlNumbers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvYourNumber"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="75" />
+
+                <TextView
+                    android:id="@+id/tvSlash"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvYourNumber"
+                    android:text="/" />
+
+                <TextView
+                    android:id="@+id/tvTotalNumber"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvSlash"
+                    android:text="100" />
+
+                <TextView
+                    android:id="@+id/tvNumber"
+                    style="@style/QuinaryWhiteTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTotalNumber"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/numbers" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="match_parent"
+                android:background="@color/HorizontallineColor" />
+
+            <RelativeLayout
+                android:id="@+id/rlCorrect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvYourCorrectQ"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28" />
+
+                <TextView
+                    android:id="@+id/tvSlash2"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvYourCorrectQ"
+                    android:text="/" />
+
+                <TextView
+                    android:id="@+id/tvTotalQ"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvSlash2"
+                    android:text="40" />
+
+                <TextView
+                    android:id="@+id/tvCorrect"
+                    style="@style/QuinaryWhiteTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTotalQ"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/correct" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="match_parent"
+                android:background="@color/HorizontallineColor" />
+
+            <RelativeLayout
+                android:id="@+id/rlWrong"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvYourWrongQ"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28" />
+
+                <TextView
+                    android:id="@+id/tvSlash3"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvYourWrongQ"
+                    android:text="/" />
+
+                <TextView
+                    android:id="@+id/tvTotalQuestion"
+                    style="@style/SecondaryWhitHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvSlash3"
+                    android:text="40" />
+
+                <TextView
+                    android:id="@+id/tvWrong"
+                    style="@style/QuinaryWhiteTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTotalQuestion"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/wrong" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/TernaryBlackTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:text="@string/list_of_questions"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:fontFamily="@font/gothic_bold"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListOfQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_12sdp"/>
+
+</LinearLayout>

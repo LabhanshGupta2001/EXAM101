@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvLine"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_5sdp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/_12sdp"
+        app:cardBackgroundColor="@color/lightgrey"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="1dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_curve_background"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ivTop"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/ic_notepad"
+            android:layout_marginVertical="@dimen/_16ssp" />
+
+        <TextView
+            android:id="@+id/tvHeading"
+            style="@style/SecondaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_minus4sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:text="@string/digital_design_thinking" />
+
+        <TextView
+            style="@style/QuaternarySubTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:fontFamily="@font/inter_medium"
+          android:text="@string/answer_these_simple_questions_on_digital"/>
+
+   <TextView
+            style="@style/QuaternarySubTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:fontFamily="@font/inter_medium"
+          android:text="@string/design_and_know_where_you_stand"/>
+
+
+        <LinearLayout
+            android:id="@+id/llBtnStartTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:background="@drawable/theme_backround"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_18ssp"
+            android:padding="@dimen/_10sdp">
+
+            <TextView
+                style="@style/TernaryWhiteTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/start_test" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

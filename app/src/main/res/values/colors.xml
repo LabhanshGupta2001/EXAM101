@@ -90,4 +90,11 @@
 
 
     <color name="ViewLineColor">#EDEDED</color>
+
+    <color name="LightGreenColor">#E6F7EE</color>
+
+    <color name="LightGreenBgColor">#F6FFFB</color>
+    <color name="LightestGreenBgColor">#F2FAF6</color>
+    <color name="DarkGreenBgColor">#26A564</color>
+
 </resources>

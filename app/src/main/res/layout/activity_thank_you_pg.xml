@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".main.activity.ThankYouPgActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_thank_you"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:id="@+id/ivThankYou"/>
+    <TextView
+        android:id="@+id/tvThankYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothic_bold"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="@string/thank_you"
+        android:theme="@style/SuperThemeHeadingTextStyle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_28sdp"
+        android:gravity="center"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/thank_you_so_much_for_your_order_we_really_appreciate_your_business_and_hope_that_you_love_your_purchase"
+        android:theme="@style/QuaternarySubTextStyle" />
+
+
+    <TextView
+        android:id="@+id/tvBtnBackToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/_24sdp"
+        android:background="@drawable/theme_stroke_background"
+        android:backgroundTint="@color/theme"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/_30sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        android:text="@string/back_to_home"
+        android:theme="@style/QuaternarySecondaryTextStyle" />
+
+</LinearLayout>

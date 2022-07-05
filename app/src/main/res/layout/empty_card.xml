@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:src="@drawable/ic_empty_card" />
+
+    <TextView
+        android:id="@+id/tvThankYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="@string/sorry"
+        android:theme="@style/SecondaryFullBlackHeadingTextStyle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_46sdp"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        android:text="@string/your_cart_is_currently_empty"
+        android:theme="@style/QuinaryLightTextStyle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_46sdp"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        android:text="@string/get_the_most_dedicated_consultation_for_your_life_changing_course"
+        android:theme="@style/QuinaryLightTextStyle" />
+
+
+    <TextView
+        android:id="@+id/tvBtnBackToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:padding="@dimen/_6sdp"
+        android:text="@string/go_to_home"
+        android:theme="@style/TernaryThemeTextStyle" />
+
+
+</LinearLayout>
