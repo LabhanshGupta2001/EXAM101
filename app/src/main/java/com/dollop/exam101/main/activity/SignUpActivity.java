@@ -11,9 +11,12 @@ import android.widget.Spinner;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 
 import com.dollop.exam101.databinding.ActivitySignUpBinding;
+import com.dollop.exam101.databinding.BottomSheetQuitExamBinding;
+import com.dollop.exam101.databinding.BottomSheetStartTestBinding;
 import com.dollop.exam101.main.model.ContryItemModel;
 import com.dollop.exam101.R;
 import com.dollop.exam101.main.adapter.ContryAdapter;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 
 import java.util.ArrayList;
@@ -24,6 +27,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private ContryAdapter contryAdapter;
     private ArrayList<ContryItemModel> contryItemArrayList;
 
+    BottomSheetDialog bottomSheetDialog,quitTestDialog;
+    BottomSheetStartTestBinding bottomSheetStartTestBinding;
+    BottomSheetQuitExamBinding bottomSheetQuitExamBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +69,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             
             binding.SignUPId.setOnClickListener(this);
             binding.tvRegisterId.setOnClickListener(this);
-            
+            binding.llLoginWithGoogle.setOnClickListener(this);
+            binding.llSignUp.setOnClickListener(this);
         }
 
     @Override
@@ -73,6 +80,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }else if(view==binding.tvRegisterId){
             Utils.I(SignUpActivity.this,DashboardScreenActivity.class,null);
             finish();
+        } else if (view == binding.llLoginWithGoogle){
+            bottomSheetDialog = new BottomSheetDialog(activity);
+            bottomSheetStartTestBinding = BottomSheetStartTestBinding.inflate(getLayoutInflater());
+            bottomSheetDialog.setContentView(bottomSheetStartTestBinding.getRoot());
+            bottomSheetDialog.show();
+        }else if (view == binding.llSignUp){
+            quitTestDialog = new BottomSheetDialog(activity);
+            bottomSheetQuitExamBinding = BottomSheetQuitExamBinding.inflate(getLayoutInflater());
+            quitTestDialog.setContentView(bottomSheetQuitExamBinding.getRoot());
+            quitTestDialog.show();
         }
     }
 }

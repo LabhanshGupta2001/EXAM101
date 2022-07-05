@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/them_main_bg"
     tools:context=".main.activity.SplashActivity">
 
 
@@ -17,9 +17,9 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_50sdp"
+        android:layout_centerInParent="true"
         android:contentDescription="@string/image"
         android:src="@drawable/ic_examicon"
         />

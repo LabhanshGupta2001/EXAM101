@@ -362,6 +362,62 @@
     <string name="remaining">Remaining</string>
     <string name="start_test">Start Test</string>
     <string name="course_video">Course Video</string>
+    <string name="favorite_class">Favorite <Font Color="#FF00A651"> Class</Font></string>
+
+    \\ nilesh patidar
+    <string name="answer_these_simple_questions_on_digital">Answer these simple questions On Digital</string>
+    <string name="design_and_know_where_you_stand">Design and know where you stand.</string>
+    <string name="time">Time:</string>
+    <string name="quit_exam">Quit Exam</string>
+    <string name="total_questions">Total Questions</string>
+    <string name="attempted">Attempted</string>
+    <string name="not_yet_visited">Not Yet visited</string>
+    <string name="of">of</string>
+    <string name="pages">pages</string>
+    <string name="do_you_want_to_end_the_test">Do you want to end the test??</string>
+    <string name="you_still_have">You still have</string>
+    <string name="quit_test">Quit Test</string>
+    <string name="if_you_want_to_check_your_answer_again_press_cancel">If you want to check your answer again, press cancel</string>
+    <string name="button_if_you_want_to_end_the_test_and_submit_your">button. If you want to end the test and submit your</string>
+    <string name="answers_you_can_press_submit_buttong">answers you can press submit buttong</string>
+    <string name="test_result">Test Result</string>
+    <string name="numbers">Numbers</string>
+    <string name="correct">Correct</string>
+    <string name="wrong">Wrong</string>
+    <string name="list_of_questions">List of Questions</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="wrong_answer">Wrong Answer</string>
+    <string name="current_password">Current Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="save_password">Save Password</string>
+    <string name="thank_you">Thank You!</string>
+    <string name="thank_you_so_much_for_your_order_we_really_appreciate_your_business_and_hope_that_you_love_your_purchase">Thank you so much for your order. We really appreciate your business and hope that you love your purchase.</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="coupon">Coupon</string>
+    <string name="no_data_found">No Data Found!</string>
+    <string name="no_packages_found_in_this_page">No packages found in this page.</string>
+    <string name="try_again">Try Again</string>
+    <string name="no_results_found">No results found</string>
+    <string name="the_search_could_not_be_found_please_check_spelling_or_write_another_word">The search could not be found, please check spelling or write another word.</string>
+    <string name="no_internet_connection">No Internet Connection!</string>
+    <string name="could_not_connect_to_internet_please_check_your_wifi_or_mobile_data_to_connect">Could not connect to internet please check your wifi or mobile data to connect</string>
+    <string name="search_here">Search here..</string>
+    <string name="search_history">Search History</string>
+    <string name="clear">Clear</string>
+    <string name="designing">Designing</string>
+    <string name="browse_category">Browse Category</string>
+    <string name="sorry">Sorry!!</string>
+    <string name="go_to_home">Go to Home</string>
+    <string name="your_cart_is_currently_empty">Your Cart Is Currently Empty.</string>
+    <string name="get_the_most_dedicated_consultation_for_your_life_changing_course">Get the most dedicated consultation for your life-changing course</string>
+    <string name="affiliate_purchase_list">Affiliate Purchase List</string>
+    <string name="total_balance">Total balance</string>
+
+
+    <string name="test_1">Test 1</string>
+    <string name="course_material">Course Material</string>
+    <string name="general">General</string>
+    <string name="other">Other</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvAns"
+        android:layout_width="match_parent"
+        android:theme="@style/Theme.MaterialComponents.DayNight"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_gravity="center_vertical"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@color/HorizontallineColor"
+        app:cardCornerRadius="@dimen/_6sdp"
+        app:cardBackgroundColor="@color/background">
+
+        <RadioButton
+            android:id="@+id/radioBtn"
+            android:button="@drawable/custom_radio_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_8sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_12sdp"
+            android:text="High Text Machine Language"
+            style="@style/QuaternaryFullBlackTextStyle"
+            android:fontFamily="@font/inter_regular" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+</LinearLayout>

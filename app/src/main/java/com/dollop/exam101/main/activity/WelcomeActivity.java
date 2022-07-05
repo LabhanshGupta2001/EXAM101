@@ -21,8 +21,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     ActivityWelcomeBinding binding;
 
 
-
-
     ViewPager viewPager;
     LinearLayout sliderDotspanel;
     private int dotscount;
@@ -37,14 +35,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         activity= WelcomeActivity.this;
         init();
 
-
        viewPager = (ViewPager) findViewById(R.id.viewPager);
-
         WelcomeAdapter onboardAdapter=new WelcomeAdapter(this);
-
         viewPager.setAdapter(onboardAdapter);
-
-
 
         dotscount = onboardAdapter.getCount();
         dots = new ImageView[dotscount];

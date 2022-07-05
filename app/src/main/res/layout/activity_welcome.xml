@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".66"
+        android:layout_weight=".97"
         android:orientation="vertical">
 
         <androidx.viewpager.widget.ViewPager
@@ -25,89 +25,65 @@
         android:id="@+id/SliderDots"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".01"
+        android:layout_weight=".03"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal">
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".33">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:ignore="UselessParent">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/TakeYour_Id"
+            style="@style/SuperMainThemeHeadingTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:text="@string/take_your" />
+
+
+        <TextView
+            android:id="@+id/Favorite_Id"
+            style="@style/SuperMainThemeHeadingTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/TakeYour_Id"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:text="@string/favorite_class" />
+
+        <TextView
+            android:id="@+id/Classes_Id"
+            style="@style/TernaryHeadingTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Favorite_Id"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_12sdp"
             android:background="@color/white"
-            tools:ignore="UselessParent">
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/edufie_offers_professional_training_classes_nand_special_features_to_help_you_improve_nyour_skills" />
 
-            <TextView
-                android:id="@+id/TakeYour_Id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:fontFamily="@font/gothic_bold"
-                android:text="@string/take_your"
-                android:textColor="@color/full_black"
-                android:textSize="@dimen/_31ssp" />
+        <TextView
+            android:id="@+id/GetStart_Id"
+            style="@style/TernaryWhiteTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Classes_Id"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+           android:layout_marginVertical="@dimen/_10ssp"
+            android:background="@drawable/theme_stroke_background"
+            android:backgroundTint="@color/theme"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:padding="@dimen/_11sdp"
+            android:text="@string/get_start" />
 
-            <LinearLayout
-                android:id="@+id/Favorite_Id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/TakeYour_Id"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:text="@string/favorite"
-                    android:textColor="@color/full_black"
-                    android:textSize="@dimen/_31ssp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:text="Class"
-                    android:textColor="@color/theme"
-                    android:textSize="@dimen/_31ssp"
-                    tools:ignore="HardcodedText" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/Classes_Id"
-                style="@style/TernaryHeadingTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/Favorite_Id"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:background="@color/white"
-                android:fontFamily="@font/inter_regular"
-                android:text="@string/edufie_offers_professional_training_classes_nand_special_features_to_help_you_improve_nyour_skills" />
-
-            <TextView
-                android:id="@+id/GetStart_Id"
-                style="@style/TernaryWhiteTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/Classes_Id"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:background="@drawable/theme_stroke_background"
-                android:backgroundTint="@color/theme"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center"
-                android:padding="@dimen/_11sdp"
-                android:text="@string/get_start" />
-
-        </RelativeLayout>
-    </ScrollView>
+    </RelativeLayout>
 </LinearLayout>

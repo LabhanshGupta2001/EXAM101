@@ -41,7 +41,6 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         binding.rvPackages.setHasFixedSize(true);
         binding.rvPackages.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false));
 
-
         arrayList.clear();
         arrayList.add("1");
         arrayList.add("1");

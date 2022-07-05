@@ -1,25 +1,33 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
-import com.dollop.exam101.main.fragment.CategoryHomeFragment;
 import com.dollop.exam101.main.fragment.HomeFragment;
-import com.dollop.exam101.main.fragment.PackageListFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class DashboardScreenActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class DashboardScreenActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
+    AppBarConfiguration appBarConfiguration;
+    NavController navController;
     Activity activity = DashboardScreenActivity.this;
     ActivityDashboardScreenBinding binding;
 
@@ -29,20 +37,26 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         binding = ActivityDashboardScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-
     }
 
+    @SuppressLint("ResourceAsColor")
     void init() {
-        getSupportFragmentManager().beginTransaction().
-                replace(R.id.fragmentContainer, new HomeFragment(), "SOMETAG").
-                commit();
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener(this);
         binding.navigationView.setNavigationItemSelectedListener(this);
+       // changeNavigatioDrawerColor();
 
         binding.ivNavBar.setOnClickListener(this);
         binding.ivProfile.setOnClickListener(this);
         binding.ivNotification.setOnClickListener(this);
         binding.navigationView.getHeaderView(0).setOnClickListener(this);
+
+        appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.bottom_home, R.id.bottom_category, R.id.bottom_packages, R.id.bottom_cart)
+                .build();
+
+        navController = Navigation.findNavController(this, R.id.fragmentContainerView);
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
+
 
     }
 
@@ -51,7 +65,6 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-
         if (view == binding.ivProfile) {
             Utils.I(activity, ProfileActivity.class, null);
         }
@@ -70,31 +83,14 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.category) {
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragmentContainer, new CategoryHomeFragment(), "Category").
-                    commit();
-        }
-        if (item.getItemId() == R.id.home) {
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragmentContainer, new HomeFragment(), "Home").
-                    commit();
-        }
-        if (item.getItemId() == R.id.packages) {
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragmentContainer, new PackageListFragment(), "Package").
-                    commit();
-        }
-        if (item.getItemId() == R.id.cart) {
-            Utils.I(activity, MyCartActivity.class, null);
-        }
         if (item.getItemId() == R.id.nav_home) {
-            binding.drawerLayout.close();
+            binding.bottomNavigationView.setSelectedItemId(R.id.home);
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragmentContainer, new HomeFragment(), "Home Fragment").
+                    replace(R.id.fragmentContainerView, new HomeFragment(), "Home").
                     commit();
+            binding.drawerLayout.close();
         }
-        if (item.getItemId() == R.id.nav_package) {
+/*        if (item.getItemId() == R.id.nav_package) {
             Utils.I(activity, CourseListActivity.class, null);
             binding.drawerLayout.close();
         }
@@ -129,7 +125,21 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         if (item.getItemId() == R.id.nav_raise_a_complaint) {
             Utils.I(activity, RaiseComplaintActivity.class, null);
             binding.drawerLayout.closeDrawers();
-        }
+        }*/
         return false;
+    }
+
+    void changeNavigatioDrawerColor() {
+        binding.navigationView.getMenu().getItem(0).getSubMenu().getItem(0);
+        SpannableString spanString = new SpannableString(binding.navigationView.getMenu().getItem(0).getSubMenu().getItem(0).getTitle().toString());
+        spanString.setSpan(new ForegroundColorSpan(ContextCompat.getColor(this, R.color.green)), 0, spanString.length(), 0);
+        binding.navigationView.getMenu().getItem(0).getSubMenu().getItem(0).setTitle(spanString);
+        binding.navigationView.getMenu().getItem(0).getSubMenu().getItem(0);
+
+        binding.navigationView.getMenu().getItem(1).getSubMenu().getItem(1);
+        SpannableString spanString2 = new SpannableString(binding.navigationView.getMenu().getItem(1).getSubMenu().getItem(6).getTitle().toString());
+        spanString2.setSpan(new ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)), 0, spanString2.length(), 0);
+        binding.navigationView.getMenu().getItem(1).getSubMenu().getItem(6).setTitle(spanString2);
+        binding.navigationView.getMenu().getItem(1).getSubMenu().getItem(6);
     }
 }

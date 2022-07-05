@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_not_result_found"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:id="@+id/ivThankYou"/>
+    <TextView
+        android:id="@+id/tvThankYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_medium"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:gravity="center"
+        android:text="@string/no_results_found"
+        android:theme="@style/PrimaryFullBlackTextStyle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_28sdp"
+        android:gravity="center"
+        android:fontFamily="@font/inter_regular"
+        android:text="@string/the_search_could_not_be_found_please_check_spelling_or_write_another_word"
+        android:theme="@style/QuinaryBlackTextStyle" />
+
+
+
+</LinearLayout>

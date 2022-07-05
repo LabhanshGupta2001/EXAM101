@@ -3,13 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_home">
+    app:startDestination="@id/bottom_home">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/bottom_home"
         android:name="com.dollop.exam101.main.fragment.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home" >
     </fragment>
+    <fragment
+        android:id="@+id/bottom_category"
+        android:name="com.dollop.exam101.main.fragment.CategoryHomeFragment"
+        android:label="fragment_category_home"
+        tools:layout="@layout/fragment_category_home" />
+    <fragment
+        android:id="@+id/bottom_packages"
+        android:name="com.dollop.exam101.main.fragment.PackageListFragment"
+        android:label="fragment_package_list"
+        tools:layout="@layout/fragment_package_list" />
+    <activity
+        android:id="@+id/bottom_cart"
+        android:name="com.dollop.exam101.main.activity.MyCartActivity"
+        android:label="activity_my_cart"
+        tools:layout="@layout/activity_my_cart" />
 
 </navigation>
