@@ -20,7 +20,7 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
     BottomSheetDialog quitTestDialog;
     BottomSheetQuitExamBinding bottomSheetQuitExamBinding;
     ArrayList<String> list = new ArrayList<>();
-    int layoutWidth=1;
+    int layoutWidth = 1;
 
 
     @Override
@@ -33,7 +33,7 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
         list.add("1");
         list.add("1");
         list.add("1");
-        MockTestQuestionAdapter mockTestQuestionAdapter = new MockTestQuestionAdapter(list, binding.vpQuestion,getApplicationContext());
+        MockTestQuestionAdapter mockTestQuestionAdapter = new MockTestQuestionAdapter(list, binding.vpQuestion, getApplicationContext());
         binding.vpQuestion.setAdapter(mockTestQuestionAdapter);
 
         layoutWidth = binding.vpQuestion.getWidth();
@@ -42,29 +42,45 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
     }
 
     private void init() {
+        setBottomSheet();
         binding.tvQuitExam.setOnClickListener(this);
         binding.tvButtonSubmit.setOnClickListener(this);
         binding.mcvMoveBack.setOnClickListener(this);
         binding.mcvMoveNext.setOnClickListener(this);
+        bottomSheetQuitExamBinding.mcvBtnQuitTest.setOnClickListener(this);
+        bottomSheetQuitExamBinding.mcvBtnCancel.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-        if (view == binding.tvQuitExam) {
-            quitTestDialog = new BottomSheetDialog(activity);
-            bottomSheetQuitExamBinding = BottomSheetQuitExamBinding.inflate(getLayoutInflater());
-            quitTestDialog.setContentView(bottomSheetQuitExamBinding.getRoot());
+        if (view == binding.tvQuitExam)
+        {
             quitTestDialog.show();
+
         } else if (view == binding.tvButtonSubmit) {
-            Utils.I(activity, TestResultActivity.class, null);
+            Utils.I_clear(activity, TestResultActivity.class, null);
         } else if (view == binding.mcvMoveNext) {
             binding.vpQuestion.setCurrentItem((Integer) getItem(+1), true);
         } else if (view == binding.mcvMoveBack) {
             binding.vpQuestion.setCurrentItem((Integer) getItem(-1), true);
+        } else if(view == bottomSheetQuitExamBinding.mcvBtnCancel)
+        {
+            quitTestDialog.cancel();
+        }  else if(view == bottomSheetQuitExamBinding.mcvBtnQuitTest)
+        {
+            Utils.I_clear(activity, TestResultActivity.class, null);
         }
     }
 
     private Object getItem(int i) {
         return binding.vpQuestion.getCurrentItem() + i;
+    }
+
+    void setBottomSheet()
+    {
+        quitTestDialog = new BottomSheetDialog(activity);
+        bottomSheetQuitExamBinding = BottomSheetQuitExamBinding.inflate(getLayoutInflater());
+        quitTestDialog.setContentView(bottomSheetQuitExamBinding.getRoot());
     }
 }

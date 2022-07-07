@@ -2,17 +2,22 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCourseListBinding;
+import com.dollop.exam101.main.activity.CoursesMaterial;
+import com.dollop.exam101.main.activity.ProfileActivity;
 import com.dollop.exam101.main.model.CourseListModel;
 
 import java.util.ArrayList;
@@ -36,6 +41,13 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyCourseListViewHolder holder, int position) {
         CourseListModel courseModel = courseModelList.get(position);
+
+        holder.itemCourseListBinding.llViewCourse.setOnClickListener(view ->
+        {
+            Toast.makeText(context, "Click On View Course ", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(context, CoursesMaterial.class);
+            context.startActivity(intent);
+        });
         //holder.itemCourseListBinding.tvCourseName.setText(String.valueOf(courseModel.name));
         //holder.itemCourseListBinding.ivCourseImageView.setImageResource(courseModel.image);
 

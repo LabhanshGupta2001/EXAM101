@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
@@ -55,8 +56,16 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     public void onClick(View view) {
         if (view == binding.tvRateId) {
             bottomSheetDialog = new BottomSheetDialog(getContext());
-            bottomSheetDialog.setContentView(R.layout.bottom_sheet_ratenow);
+            BottomSheetRatenowBinding bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+            bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+
+         /*   bottomSheetDialog = new BottomSheetDialog(getContext());
+            bottomSheetDialog.setContentView(R.layout.bottom_sheet_ratenow);*/
             bottomSheetDialog.show();
+            bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view1 ->
+            {
+                bottomSheetDialog.cancel();
+            });
         }
     }
 }

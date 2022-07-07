@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/rvOderHistory"
         android:padding="@dimen/_12sdp"
+        android:overScrollMode="never"
         android:background="@color/white">
 
     </androidx.recyclerview.widget.RecyclerView>

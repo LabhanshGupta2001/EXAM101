@@ -25,10 +25,15 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
     private void init(){
         binding.ivBack.setOnClickListener(this);
+        binding.llSavePassword.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
         if(view==binding.ivBack){
+            onBackPressed();
+        }
+        if (view == binding.llSavePassword)
+        {
             onBackPressed();
         }
     }

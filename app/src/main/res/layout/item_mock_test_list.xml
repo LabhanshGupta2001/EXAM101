@@ -212,7 +212,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/llViewCourse"
+                    android:id="@+id/llStartTest"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".4"

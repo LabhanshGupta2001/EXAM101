@@ -3,20 +3,32 @@ package com.dollop.exam101.main.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
+import com.dollop.exam101.databinding.BottomSheetStartTestBinding;
 import com.dollop.exam101.databinding.ItemMockTestListBinding;
+import com.dollop.exam101.main.activity.MockTestListActivity;
+import com.dollop.exam101.main.activity.MockTestQuestionsActivity;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
 public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapter.MyViewHolder> {
     Context context;
+    ViewGroup viewGroup;
     ArrayList<String> list;
     int row_index=-1;
+    @NonNull
+    BottomSheetStartTestBinding bottomSheetStartTestBinding;
+    BottomSheetDialog bottomSheetDialog;
 
     public MockTestListAdapter(Context context, ArrayList<String> list) {
         this.context = context;
@@ -27,12 +39,30 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemMockTestListBinding binding=ItemMockTestListBinding.inflate(LayoutInflater.from(context),parent,false);
+        viewGroup=parent;
         return new MyViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position)
+    {
+        holder.binding.llStartTest.setOnClickListener(view ->
+        {
+            bottomSheetDialog =new BottomSheetDialog(context);
+            bottomSheetStartTestBinding = BottomSheetStartTestBinding.inflate(LayoutInflater.from(context),viewGroup,false);
+            bottomSheetDialog.setContentView(bottomSheetStartTestBinding.getRoot());
 
+            BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetStartTestBinding.getRoot().getParent()));
+            behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            bottomSheetDialog.show();
+
+            bottomSheetStartTestBinding.llBtnStartTest.setOnClickListener(view1 ->
+            {
+                Utils.I_clear(context, MockTestQuestionsActivity.class,null);
+
+            });
+        });
 
     }
 
@@ -48,4 +78,5 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
             this.binding=binding;
         }
     }
+
 }

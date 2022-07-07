@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -34,44 +34,185 @@
             android:text="@string/affiliate_purchase_list" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rlLineColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/_16sdp"
-        android:paddingHorizontal="@dimen/_12sdp"
+        android:layout_below="@id/llToolbar"
+        android:background="@color/lineColor"
         android:orientation="vertical"
-        android:backgroundTint="@color/lineColor">
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingTop="@dimen/_16sdp">
 
         <RelativeLayout
+            android:id="@+id/rlCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rlCard">
+            android:background="@drawable/bg_theme_curve">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cvImage"
                 android:layout_marginVertical="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 app:cardBackgroundColor="@color/DarkGreenBgColor"
-                app:cardCornerRadius="@dimen/_12sdp">
+                app:cardCornerRadius="@dimen/_12sdp"
+                app:cardElevation="0dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_money_on_heand"
-                    android:padding="@dimen/_10sdp"/>
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_money_on_heand" />
 
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tvTotalBalance"
+                style="@style/QuaternarySecondaryTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_balance"/>
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_toRightOf="@+id/cvImage"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/total_balance" />
+
+            <TextView
+                android:id="@+id/rupeeSign"
+                style="@style/PrimaryWhiteHeadingTextStyle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTotalBalance"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_toRightOf="@+id/cvImage"
+                android:fontFamily="@font/gothic_bold"
+                android:text="₹" />
+
+            <TextView
+                android:id="@+id/tvTotalRupees"
+                style="@style/PrimaryWhiteHeadingTextStyle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTotalBalance"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_toRightOf="@+id/rupeeSign"
+                android:fontFamily="@font/gothic_bold"
+                android:text="2450.0" />
+
+            <ImageView
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_minus16sdp"
+                android:rotation="4"
+                android:layout_marginTop="@dimen/_minus16sdp"
+                android:layout_marginBottom="@dimen/_minus20sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/line" />
 
         </RelativeLayout>
 
-    </LinearLayout>
+        <!--    <ImageView
+                android:id="@+id/lineView"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_minus45sdp"
+                android:layout_marginEnd="@dimen/_minus60sdp"
+                android:src="@drawable/ic_line_view" />
+    -->
+        <LinearLayout
+            android:id="@+id/llPaidAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlCard"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:background="@drawable/bottom_bg_card"
+            android:elevation="@dimen/_6sdp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tvPaidAmount"
+                style="@style/QuinaryBlackTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_5sdp"
+                android:text="@string/paid_amount" />
+
+            <View
+                android:layout_width="0.7dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@color/theme" />
+
+            <TextView
+                android:id="@+id/tvTotalPaidRupees"
+                style="@style/QuinaryBlackTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/gothic_bold"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_6sdp"
+                android:text="₹750.0" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlLineColor"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:textAlignment="center"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="scrollable"
+        app:tabTextAppearance="@style/QuinaryTabTextStyle"
+
+        />
+    <TextView
+        android:id="@+id/tvFilter"
+        style="@style/SenaryTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlLineColor"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/grey_stroke_background"
+        android:drawableStart="@drawable/ic_filtericon"
+        android:drawablePadding="@dimen/_4sdp"
+        android:fontFamily="@font/inter_medium"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="@string/filter" />
 
 
-</LinearLayout>
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/tabLayout"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:background="@color/HorizontallineColor" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpLaunchId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/viewLine"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_4sdp">
+
+    </androidx.viewpager2.widget.ViewPager2>
+</RelativeLayout>

@@ -25,9 +25,22 @@ public class MyWishlistActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         binding = ActivityMyWishlistBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
 
+    }
+    private void init(){
+        getWishlist();
+        binding.ivBack.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == binding.ivBack){
+            onBackPressed();
+        }
+    }
+    void getWishlist()
+    {
         list.clear();
         list.add("1");
         list.add("1");
@@ -38,15 +51,5 @@ public class MyWishlistActivity extends AppCompatActivity implements View.OnClic
         MyWishListAdapter myWishListAdapter = new MyWishListAdapter(activity,list);
         binding.rvWishList.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvWishList.setAdapter(myWishListAdapter);
-    }
-    private void init(){
-        binding.ivBack.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view == binding.ivBack){
-            onBackPressed();
-        }
     }
 }

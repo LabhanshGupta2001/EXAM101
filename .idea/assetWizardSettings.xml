@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -14,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_money_on_heand" />
-                            <entry key="sourceFile" value="C:\Users\Nilesh Patidar\Downloads\Android Imgs\Exam101 image\money_on_heand.svg" />
+                            <entry key="outputName" value="ic_note" />
+                            <entry key="sourceFile" value="C:\Users\HP\Downloads\note.svg" />
                           </map>
                         </option>
                       </PersistentState>

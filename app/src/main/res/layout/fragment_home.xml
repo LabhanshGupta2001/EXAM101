@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lineColor"
+    android:overScrollMode="never"
     tools:context=".main.fragment.HomeFragment">
 
     <LinearLayout
@@ -306,6 +307,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_110sdp"
+                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:elevation="@dimen/_4sdp"
                     app:cardCornerRadius="@dimen/_2sdp">
@@ -318,8 +320,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardVoucher"
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
                             android:elevation="0dp"
                             app:cardBackgroundColor="@color/status_bar"
@@ -334,7 +336,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            style="@style/QuaternarySpinnerLightTextStyle"
+                            style="@style/SenaryPrimaryTextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardVoucher"
@@ -354,6 +356,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_110sdp"
+                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:elevation="@dimen/_4sdp"
                     android:padding="@dimen/_6sdp"
@@ -368,8 +371,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardOffer"
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
                             android:elevation="0dp"
                             app:cardBackgroundColor="@color/status_bar"
@@ -384,7 +387,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            style="@style/QuaternarySpinnerLightTextStyle"
+                            style="@style/SenaryPrimaryTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardOffer"
@@ -403,8 +406,9 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_110sdp"
+                    android:layout_marginVertical="@dimen/_3sdp"
                     android:layout_weight="1"
-                    android:elevation="@dimen/_4sdp"
+                    android:elevation="@dimen/_6sdp"
                     app:cardCornerRadius="@dimen/_2sdp">
 
                     <RelativeLayout
@@ -415,8 +419,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardWallet"
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
                             android:elevation="0dp"
                             app:cardBackgroundColor="@color/status_bar"
@@ -431,7 +435,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            style="@style/QuaternarySpinnerLightTextStyle"
+                            style="@style/SenaryPrimaryTextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardWallet"
@@ -474,13 +478,13 @@
         </LinearLayout>
 
 
-            <TextView
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_10sdp"
-                style="@style/HomeHeadingTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/get_your_personalised_calender" />
+        <TextView
+            style="@style/HomeHeadingTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:text="@string/get_your_personalised_calender" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -490,7 +494,7 @@
             <CalendarView
                 android:id="@+id/cvCalendar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

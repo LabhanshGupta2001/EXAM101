@@ -3,6 +3,50 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/bg_theme_curve.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/bottom_bg_card.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/bottom_linecolor_bg.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/ic_music.xml" value="0.121" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/ic_transaction_money.xml" value="0.1015" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/ic_transection_money.xml" value="0.1015" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/ic_transection_money_theam.xml" value="0.1315" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/drawable/ll_bg_corner.xml" value="0.1" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_affiliate_purchase_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_blogs_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_course_list.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_course_test.xml" value="0.20092592592592592" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_courses_detail.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_courses_material.xml" value="0.2506265664160401" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.27025641025641023" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_edit_profile.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_faqs.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_login.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_mock_test_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_my_cart.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_order_history.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_privacy_policy.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_profile.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_setting.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/activity_test_result.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/bottom_sheet_affiliate_purchase_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/bottom_sheet_practice_test.xml" value="0.2" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/bottom_sheet_ratenow.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/bottom_sheet_start_test.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/fragment_category_home.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/fragment_home.xml" value="0.23033216783216784" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/fragment_package_list.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/fragment_purchase_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/fragment_transaction_history.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_all_blogs.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_blogs_horizontal.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_list.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_material_chapter_name_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_course_material_subject_name.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_mock_test_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_packages.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_purchase_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/item_transaction_history.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/HP/Desktop/Dollop Projects 2/Exam 101/app/src/main/res/layout/nav_header_dashboard.xml" value="0.20092592592592592" />
         <entry key="..\:/Users/Nilesh Patidar/AndroidStudioProjects/exam101-android/app/src/main/res/drawable-hdpi/tab_seleted_shape.xml" value="0.244" />
         <entry key="..\:/Users/Nilesh Patidar/AndroidStudioProjects/exam101-android/app/src/main/res/drawable-hdpi/tab_unselected_shape.xml" value="0.244" />
         <entry key="..\:/Users/Nilesh Patidar/AndroidStudioProjects/exam101-android/app/src/main/res/drawable-hdpi/tabselector.xml" value="0.244" />

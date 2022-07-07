@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvChapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_4sdp"
@@ -46,7 +47,7 @@
                 android:layout_toEndOf="@+id/mcvTick"
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/chapter_1"
-                android:theme="@style/QuinaryBlackTextStyle"/>
+                android:theme="@style/QuinaryBlackTextStyle" />
 
             <TextView
                 android:layout_width="match_parent"
