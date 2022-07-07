@@ -52,6 +52,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         binding.mcvProfileSelector.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
         binding.llspinner.setOnClickListener(this);
+        binding.ivBack.setOnClickListener(this);
 
         initList();
         spinner();
@@ -88,9 +89,11 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             }
         } else if (view == binding.llSave) {
             onBackPressed();
-        }else if(view==binding.llspinner){
+        } else if (view == binding.llspinner) {
             binding.SpinnerCountry.performClick();
-
+        } else if (view == binding.ivBack)
+        {
+            finish();
         }
 
     }

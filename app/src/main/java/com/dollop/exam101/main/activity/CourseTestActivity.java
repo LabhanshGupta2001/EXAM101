@@ -5,14 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCourseTestBinding;
 import com.dollop.exam101.main.adapter.CourseTestQuestionAdapter;
 
 import java.util.ArrayList;
 
-public class CourseTestActivity extends AppCompatActivity {
+public class CourseTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     Activity activity=CourseTestActivity.this;
     ActivityCourseTestBinding binding;
@@ -25,6 +28,14 @@ public class CourseTestActivity extends AppCompatActivity {
     }
     void init()
     {
+        binding.ivBack.setOnClickListener(this);
+        binding.ivAbout.setOnClickListener(this);
+        binding.btnSubmit.setOnClickListener(this);
+        getQuestin();    
+        
+    }
+    void getQuestin()
+    {
         ArrayList<String> arrayList=new ArrayList<String>();
         arrayList.add("1) What is Software ");
         arrayList.add("2) what is Android");
@@ -33,7 +44,22 @@ public class CourseTestActivity extends AppCompatActivity {
         arrayList.add("5) what is Intent And How To Use it what is Intent And How To Use it ");
         binding.rvQuestion.setAdapter(new CourseTestQuestionAdapter(activity,arrayList));
         binding.rvQuestion.setLayoutManager(new LinearLayoutManager(activity));
-
-        //binding.rvQuestion.setLayoutManager();
     }
+
+    @Override
+    public void onClick(View view) {
+        if (view==binding.ivBack)
+        {
+            finish();
+        }
+        else if(view == binding.ivAbout)
+        {
+            Toast.makeText(activity, "About This App", Toast.LENGTH_SHORT).show();
+        }else if (view == binding.btnSubmit)
+        {
+            Utils.I(activity, TestResultActivity.class,null);
+        }
+    }
+
+
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollIndicators="none"
     android:background="@drawable/navigation_drower_radius"
     android:orientation="vertical">
 
@@ -46,6 +45,7 @@
                             android:id="@+id/ivProfile"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:src="@drawable/user_profile"
                             android:scaleType="centerCrop" />
                     </com.google.android.material.card.MaterialCardView>
 
@@ -74,12 +74,13 @@
                     <TextView
                         android:id="@+id/tvName"
                         android:layout_width="wrap_content"
-
+                        android:text="@string/author_name"
                         android:layout_height="wrap_content"
                         android:theme="@style/TernaryHeadingTextStyle" />
 
                     <TextView
                         android:id="@+id/tvEmail"
+                        android:text="@string/yogendratiwari54_gmail_com"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
@@ -516,15 +517,16 @@
                     android:theme="@style/QuaternaryLightSubTextStyle" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
                 android:layout_marginVertical="@dimen/_8sdp"
                 android:background="@color/HorizontallineColor" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/QuaternaryLightSubTextStyle"
+                android:text="@string/app_version"/>
 <!--
             <ImageView
                 android:layout_width="wrap_content"

@@ -30,7 +30,7 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         if(view==binding.llSave){
-            Utils.I(activity,RaiseComplaintActivity.class,null);
+           finish();
 
         } else if(view==binding.ivBack){
             finish();

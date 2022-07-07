@@ -38,8 +38,11 @@ public class AffilationBankDetailsActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View view) {
         if (view == binding.llSubmit) {
-            Utils.I(activity,BankDetailActivity.class,null);
-        } else if(view==binding.ivBack){
+            finish();
+/*
+            Utils.I(activity, BankDetailActivity.class, null);
+*/
+        } else if (view == binding.ivBack) {
             onBackPressed();
         }
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.dollop.exam101.databinding.ActivityBlogsListBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
@@ -17,13 +18,16 @@ import com.dollop.exam101.databinding.ItemAllBlogsBinding;
 import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.AllBlogListAdapter;
 import com.dollop.exam101.main.adapter.BlogsListAdapter;
+import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.fragment.AuthorFragment;
 import com.dollop.exam101.main.fragment.CategoryFragment;
+import com.dollop.exam101.main.fragment.DateFragment;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
 import com.dollop.exam101.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
@@ -200,6 +204,11 @@ public class BlogsListActivity extends AppCompatActivity implements View.OnClick
         bottomSheetBlogFilterBinding = BottomSheetBlogFilterBinding.inflate(getLayoutInflater());
         bottomSheetFilter.setContentView(bottomSheetBlogFilterBinding.getRoot());
 
+        bottomSheetBlogFilterBinding.llApply.setOnClickListener(view ->
+        {
+           bottomSheetFilter.cancel();
+        });
+
         BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetBlogFilterBinding.getRoot().getParent()));
         behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -211,12 +220,12 @@ public class BlogsListActivity extends AppCompatActivity implements View.OnClick
         title.add("Author");
 
         fragments.add(new CategoryFragment());
-      //  fragments.add(new DateFragment());
+        fragments.add(new DateFragment());
         fragments.add(new AuthorFragment());
 
-        // TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
-        //  ViewPager2 viewPager2 = bottomSheetFilter.findViewById(R.id.vpLaunchId);
-     //   bottomSheetBlogFilterBinding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
+         TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
+          ViewPager2 viewPager2 = bottomSheetFilter.findViewById(R.id.vpLaunchId);
+        bottomSheetBlogFilterBinding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
 
         new TabLayoutMediator(bottomSheetBlogFilterBinding.tlFilter, bottomSheetBlogFilterBinding.vpLaunchId, (tab, position) -> {
             tab.setText(title.get(position));

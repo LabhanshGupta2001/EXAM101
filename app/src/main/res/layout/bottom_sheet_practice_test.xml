@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<!--    <com.google.android.material.card.MaterialCardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvLine"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_5sdp"
@@ -37,7 +37,6 @@
                 android:contentDescription="@string/image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_notes" />
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -75,6 +74,6 @@
                 android:text="@string/practice_test" />
         </LinearLayout>
 
-    </ScrollView>-->
+    </ScrollView>
 
 </LinearLayout>

@@ -43,6 +43,10 @@ public class RaiseComplaintAdapter extends RecyclerView.Adapter<RaiseComplaintAd
                 binding = BottomsheetRaiseComplaintsBinding.inflate(LayoutInflater.from(context));
                 bottomSheetDialog.setContentView(binding.getRoot());
                 bottomSheetDialog.show();
+                binding.llSave.setOnClickListener(view1 ->
+                {
+                    bottomSheetDialog.cancel();
+                });
             }
         });
 

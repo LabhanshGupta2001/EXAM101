@@ -413,11 +413,25 @@
     <string name="affiliate_purchase_list">Affiliate Purchase List</string>
     <string name="total_balance">Total balance</string>
 
+    <!--Nilu-->
+    <string name="paid_amount">Paid Amount</string>
+    <string name="bank_transfer">Bank Transfer</string>
+    <string name="transaction_id2">Transaction ID:</string>
+    <string name="cheque">Cheque</string>
+    <string name="pakage_name">Pakage Name</string>
+    <string name="price">Price</string>
+    <string name="commision_in_persantage">Commision in Persantage</string>
+    <string name="amount">Amount</string>
+
 
     <string name="test_1">Test 1</string>
     <string name="course_material">Course Material</string>
     <string name="general">General</string>
     <string name="other">Other</string>
+    <!--Guru-->
+    <string name="note">Note</string>
+    <string name="note_text">All questions have multiple choice answers. Select the answer closest to your understanding. Individuals who generate a score below 100% need to try the test again. \n<b>Good luck!</b></string>
+    <string name="practice_test">Practice Test</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

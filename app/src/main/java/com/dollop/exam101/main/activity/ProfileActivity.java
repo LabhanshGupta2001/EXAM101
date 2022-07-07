@@ -33,12 +33,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         binding.llInviteFriend.setOnClickListener(this);
         binding.llWishList.setOnClickListener(this);
         binding.llMockTest.setOnClickListener(this);
+        binding.tvLogOut.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
-            onBackPressed();
+            Utils.I_clear(activity, DashboardScreenActivity.class, null);
         } else if (view == binding.llOderHistory) {
             Utils.I(activity, OrderHistoryActivity.class, null);
         } else if (view == binding.llEditProfile) {
@@ -51,9 +52,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             Utils.I(activity, AffilationBankDetailsActivity.class, null);
             //  Utils.I(activity, OrderHistoryActivity.class,null);
         } else if (view == binding.llInviteFriend) {
-            Utils.I(activity, SettingActivity.class, null);
+            /* Utils.I(activity, SettingActivity.class, null);*/
         } else if (view == binding.llWishList) {
-            //     Utils.I(activity, MyW.class,null);
+            Utils.I(activity, MyWishlistActivity.class, null);
+        } else if (view == binding.llMockTest) {
+            Utils.I(activity, MockTestListActivity.class, null);
+        } else if (view == binding.tvLogOut) {
+            Utils.I_clear(activity, LoginActivity.class, null);
         }
     }
 

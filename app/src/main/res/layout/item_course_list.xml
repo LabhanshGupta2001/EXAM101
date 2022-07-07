@@ -218,7 +218,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".4"
                     android:background="@drawable/invoice_bg"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="@dimen/_9sdp">
 

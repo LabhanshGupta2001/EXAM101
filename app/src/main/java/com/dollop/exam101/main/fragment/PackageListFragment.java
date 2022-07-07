@@ -96,12 +96,17 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         Fragment.add(new CategoriesFragment());
         Fragment.add(new PriceFragment());
         Fragment.add(new LanguageFragment());
+
+        bottomsheetFilterBinding.tvllSave.setOnClickListener(view ->
+        {
+            bottomSheetDialog.cancel();
+        });
+
        // bottomsheetFilterBinding.ViewPagerId
 
 
       /*  TabLayout tabLayout=bottomSheetDialog.findViewById(R.id.tlTabLayoutId);
-        ViewPager2 viewPager2=bottomSheetDialog.findViewById(R.id.ViewPagerId);
-*/
+        ViewPager2 viewPager2=bottomSheetDialog.findViewById(R.id.ViewPagerId); */
         bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getParentFragmentManager(),getLifecycle(),Fragment));
 
         new TabLayoutMediator(bottomsheetFilterBinding.tlTabLayoutId, bottomsheetFilterBinding.ViewPagerId, (tab, position) -> {

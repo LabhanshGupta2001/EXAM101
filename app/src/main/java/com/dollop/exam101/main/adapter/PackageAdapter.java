@@ -37,7 +37,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.tvPackageHeading.setText(packageModel.packageHeading);
         holder.itemPackagesBinding.tvPackageDescription.setText(packageModel.packageDescription);
 
-        holder.itemPackagesBinding.llInvoiceId.setOnClickListener(new View.OnClickListener() {
+        holder.itemPackagesBinding.llDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Utils.I(context,PackagesDetailActivity.class,null);

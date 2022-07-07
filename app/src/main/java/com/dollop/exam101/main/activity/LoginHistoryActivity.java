@@ -39,8 +39,10 @@ public class LoginHistoryActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        if(view==binding.ivBack){
-            Utils.I(activity,MockTestHistoryActivity.class,null);
+        if(view==binding.ivBack)
+        {
+            finish();
+          /*  Utils.I(activity,MockTestHistoryActivity.class,null);*/
         }
     }
 }

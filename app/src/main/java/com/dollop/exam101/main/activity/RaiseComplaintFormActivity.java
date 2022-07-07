@@ -34,7 +34,7 @@ public class RaiseComplaintFormActivity extends AppCompatActivity implements Vie
         if(view == binding.ivBack) {
             finish();
         }else if(view == binding.llSave) {
-            Utils.I(activity,LoginHistoryActivity.class,null);
+          finish();
         }else if(view==binding.tvNormal){
 
         }

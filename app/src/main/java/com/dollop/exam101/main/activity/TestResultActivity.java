@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityTestResultBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class TestResultActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity = TestResultActivity.this;
     ActivityTestResultBinding binding;
-    ArrayList<String> list=new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +35,27 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
         list.add("1");
         list.add("1");
 
-        binding.rvListOfQuestion.setAdapter(new TestResultAdapter(activity,list));
+        binding.rvListOfQuestion.setAdapter(new TestResultAdapter(activity, list));
         binding.rvListOfQuestion.setHasFixedSize(true);
         binding.rvListOfQuestion.setLayoutManager(new LinearLayoutManager(activity));
 
     }
-    private void init(){
+
+    private void init() {
         binding.ivBack.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if(view == binding.ivBack){
-            onBackPressed();
+        if (view == binding.ivBack) {
+            Utils.I_clear(activity, CoursesMaterial.class, null);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Utils.I_clear(activity, CoursesMaterial.class, null);
+        finish();
     }
 }

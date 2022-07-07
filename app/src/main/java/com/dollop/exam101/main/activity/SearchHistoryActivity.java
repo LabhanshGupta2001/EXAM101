@@ -67,12 +67,17 @@ public class SearchHistoryActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private void init(){
-
+    private void init()
+    {
+        binding.ivBack.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View view)
+    {
+        if (view == binding.ivBack)
+        {
+            finish();
+        }
     }
 }

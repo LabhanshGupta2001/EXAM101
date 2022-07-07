@@ -150,12 +150,12 @@
         android:layout_height="match_parent"
         android:background="@drawable/navigation_drower_radius"
         android:layout_gravity="start"
+        android:overScrollMode="never"
         android:fitsSystemWindows="true"
         android:outlineAmbientShadowColor="@color/transparent"
         android:scrollbars="none"
         app:headerLayout="@layout/nav_header_dashboard"
         />
-       <!-- app:headerLayout="@layout/menu_header"
-        app:menu="@menu/main_menu" />-->
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

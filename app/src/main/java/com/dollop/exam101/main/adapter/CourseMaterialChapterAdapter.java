@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCourseMaterialChapterNameListBinding;
+import com.dollop.exam101.main.activity.CoursesDetailActivity;
 
 import java.util.ArrayList;
 
@@ -27,11 +29,16 @@ public class CourseMaterialChapterAdapter extends RecyclerView.Adapter<CourseMat
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCourseMaterialChapterNameListBinding binding = ItemCourseMaterialChapterNameListBinding.inflate(LayoutInflater.from(context), parent, false);
         return new MyViewHolder(binding);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position)
+    {
+        holder.binding.mcvChapter.setOnClickListener( view ->
+        {
+            Utils.I(context, CoursesDetailActivity.class,null);
+        });
 
     }
 

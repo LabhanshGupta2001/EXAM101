@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCourseListBinding;
 import com.dollop.exam101.main.adapter.CourseListAdapter;
 import com.dollop.exam101.main.model.CourseListModel;
@@ -52,6 +53,9 @@ public class CourseListActivity extends AppCompatActivity implements View.OnClic
         if (view == binding.ivBack)
         {
             onBackPressed();
+
         }
     }
+
+
 }

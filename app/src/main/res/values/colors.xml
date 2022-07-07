@@ -97,8 +97,11 @@
 
     <color name="LightGreenColor">#E6F7EE</color>
 
+    <!--Nilu-->
     <color name="LightGreenBgColor">#F6FFFB</color>
     <color name="LightestGreenBgColor">#F2FAF6</color>
     <color name="DarkGreenBgColor">#26A564</color>
+    <color name="LightGrayishColor">#F3FFF3</color>
+
 
 </resources>
