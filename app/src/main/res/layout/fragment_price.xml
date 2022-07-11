@@ -25,10 +25,11 @@
         android:minHeight="15dp"
         android:minWidth="15dp"
         android:maxHeight="15dp"
+        android:min="500"
         android:maxWidth="15dp"
         android:thumbTintMode="src_atop"
         android:scrollIndicators="start"
-        android:progress="100"
+        android:progress="5000"
         android:progressDrawable="@drawable/custom_seekbar"
         android:thumb="@drawable/custom_seek_thumb" />
 

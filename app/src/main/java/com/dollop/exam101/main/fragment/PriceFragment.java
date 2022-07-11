@@ -31,6 +31,11 @@ public class PriceFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Utils.T(getActivity(),"seekbar progress "+progress );
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                binding.tvPricePopup.setVisibility(View.VISIBLE);
+                binding.tvPricePopup.setText("₹" + progress);
+                binding.tvPricePopup.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+                //textView.setY(100); just added a value set this properly using screen with height aspect ratio , if you do not set it by default it will be there below seek bar
 
             }
 
