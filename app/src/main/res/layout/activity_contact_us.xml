@@ -87,7 +87,7 @@
 
         <EditText
             android:id="@+id/etHolderName"
-            style="@style/QuaternarySubTextStyle"
+            style="@style/QuaternarySpinnerLightTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
@@ -107,7 +107,7 @@
 
         <EditText
             android:id="@+id/etAccountNumber"
-            style="@style/QuaternarySubTextStyle"
+            style="@style/QuaternarySpinnerLightTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
@@ -126,7 +126,7 @@
             android:text="@string/mobile_number" />
 
         <EditText
-            style="@style/QuaternarySubTextStyle"
+            style="@style/QuaternarySpinnerLightTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
@@ -146,13 +146,14 @@
 
         <EditText
             android:id="@+id/etMessage"
-            style="@style/QuinarySubTextStyle"
+            style="@style/QuaternarySpinnerLightTextStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:autofillHints="enter complaint"
             android:background="@drawable/grey_stroke_half_curve"
             android:gravity="start"
+            android:imeOptions="actionDone"
             android:hint="@string/enter_your_message"
             android:inputType="textPersonName"
             android:padding="@dimen/_12sdp" />

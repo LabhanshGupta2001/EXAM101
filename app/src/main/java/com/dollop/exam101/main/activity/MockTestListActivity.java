@@ -41,7 +41,8 @@ public class MockTestListActivity extends AppCompatActivity implements View.OnCl
 
         if (view==binding.ivBack)
         {
-            onBackPressed();
+           activity.finish();
+            Utils.I(activity,ProfileActivity.class,null);
         }
     }
     void getTestList()

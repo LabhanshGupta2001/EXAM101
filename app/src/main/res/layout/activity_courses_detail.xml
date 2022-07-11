@@ -49,18 +49,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_10sdp"
-        android:layout_below="@id/llToolbar"
-        android:background="@color/lineColor" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/view"
+        android:layout_below="@id/llToolbar"
         android:layout_above="@id/bottomView"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="@dimen/_10sdp"
@@ -73,6 +67,11 @@
             android:layout_marginBottom="@dimen/_20sdp"
             android:orientation="vertical">
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@color/lineColor" />
 
             <TextView
                 android:layout_width="match_parent"

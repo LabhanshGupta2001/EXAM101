@@ -154,10 +154,11 @@
 
                     <EditText
                         android:id="@+id/etHolderName"
-                        style="@style/QuinaryTextStyle"
+                        style="@style/SenaryPrimaryTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
+                        android:imeOptions="actionNext"
                         android:background="@drawable/input_custom"
                         android:hint="@string/enter_holder_name"
                         android:inputType="textPersonName"
@@ -174,10 +175,11 @@
 
                     <EditText
                         android:id="@+id/etAccountNumber"
-                        style="@style/QuinaryTextStyle"
+                        style="@style/SenaryPrimaryTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
+                        android:imeOptions="actionNext"
                         android:background="@drawable/input_custom"
                         android:hint="@string/enter_your_account_number"
                         android:inputType="number"
@@ -220,25 +222,27 @@
 
                         <EditText
                             android:id="@+id/etIfscCode"
-                            style="@style/QuinaryTextStyle"
+                            style="@style/SenaryPrimaryTextStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_8sdp"
                             android:layout_weight="1"
+                            android:imeOptions="actionNext"
                             android:background="@drawable/input_custom"
                             android:hint="@string/enter_your_ifsc_code"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:padding="@dimen/_12sdp"
                             android:singleLine="true" />
 
                         <EditText
-                            style="@style/QuinaryTextStyle"
+                            style="@style/SenaryPrimaryTextStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/input_custom"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:padding="@dimen/_12sdp"
+                            android:imeOptions="actionNext"
                             android:singleLine="true" />
 
                     </LinearLayout>
@@ -253,11 +257,11 @@
 
                     <EditText
                         android:id="@+id/etBranch"
-                        style="@style/QuinaryTextStyle"
+                        style="@style/SenaryPrimaryTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
-
+                        android:imeOptions="actionDone"
                         android:background="@drawable/input_custom"
                         android:hint="@string/enter_your_bank_branch"
                         android:inputType="textPersonName"

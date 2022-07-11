@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".main.fragment.CourseMaterialFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFirst"
             android:layout_width="match_parent"
@@ -30,148 +34,11 @@
             android:paddingBottom="@dimen/_8sdp"
             android:text="@string/overview" />
 
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_4sdp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/HorizontallineColor"
-            app:strokeWidth="@dimen/_1sdp">
-
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/course_details"
-                        android:theme="@style/QuaternaryLightTextStyle"
-                        tools:ignore="InefficientWeight" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/image"
-                        android:src="@drawable/ic_uparrowblack" />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@color/HorizontallineColor" />
-
-                <TextView
-                    style="@style/QuinarySubTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_6sdp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="@string/new_to_web_design_start_here_first_instructor_james_nwilliamson_introduces_the_fundamental_concepts_tools_and_nlearning_paths_for_web_design_he_explains_what_it_means_to_be_na_web_designer_the_various_areas_of_specialization_and_nwhether_web_design_is_the_right_hobby_or_career_for_you_along_nthe_way_he_talks_to_five_prominent_designers_and_developers_nwho_have_each_found_success_in_a_different_corner_of_the_web" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvZtoA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/HorizontallineColor"
-            app:strokeWidth="@dimen/_1sdp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_10sdp"
-                android:weightSum="1"
-                tools:ignore="UseCompoundDrawables">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="@string/requirements"
-                    android:theme="@style/QuaternaryTextStyle"
-                    tools:ignore="InefficientWeight" />
-
-                <ImageView
-                    android:id="@+id/ivRotedArrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:contentDescription="@string/image"
-                    android:rotation="180"
-                    android:src="@drawable/ic_uparrowblack" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/HorizontallineColor"
-            app:strokeWidth="@dimen/_1sdp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_10sdp"
-                android:weightSum="1"
-                tools:ignore="UseCompoundDrawables">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="@string/skills_covered_in_this_course"
-                    android:theme="@style/QuaternaryTextStyle"
-                    tools:ignore="InefficientWeight" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:contentDescription="@string/image"
-                    android:rotation="180"
-                    android:src="@drawable/ic_uparrowblack" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                android:id="@+id/rvOverView"
+                android:paddingVertical="@dimen/_4sdp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -213,12 +80,12 @@
 
         </LinearLayout>
 
+        </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRatingId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
-
             />
     </LinearLayout>
 

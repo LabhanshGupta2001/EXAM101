@@ -14,6 +14,7 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
 import com.dollop.exam101.databinding.BottomSheetStartTestBinding;
 import com.dollop.exam101.databinding.ItemMockTestListBinding;
+import com.dollop.exam101.main.activity.MockTestHistoryActivity;
 import com.dollop.exam101.main.activity.MockTestListActivity;
 import com.dollop.exam101.main.activity.MockTestQuestionsActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -46,22 +47,26 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position)
     {
+        holder.binding.tvHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.I(context, MockTestHistoryActivity.class,null);
+            }
+        });
         holder.binding.llStartTest.setOnClickListener(view ->
         {
             bottomSheetDialog =new BottomSheetDialog(context);
             bottomSheetStartTestBinding = BottomSheetStartTestBinding.inflate(LayoutInflater.from(context),viewGroup,false);
             bottomSheetDialog.setContentView(bottomSheetStartTestBinding.getRoot());
-
-            BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetStartTestBinding.getRoot().getParent()));
-            behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
-            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             bottomSheetDialog.show();
 
             bottomSheetStartTestBinding.llBtnStartTest.setOnClickListener(view1 ->
             {
-                Utils.I_clear(context, MockTestQuestionsActivity.class,null);
+                Utils.I(context, MockTestQuestionsActivity.class,null);
 
             });
+
+
         });
 
     }

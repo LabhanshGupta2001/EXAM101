@@ -47,6 +47,7 @@
             android:layout_marginTop="@dimen/_11sdp"
             android:layout_marginBottom="@dimen/_15sdp"
             android:textAlignment="center"
+            app:tabRippleColor="@null"
             app:tabBackground="@drawable/tabselector"
             app:tabIndicatorHeight="0dp"
             app:tabSelectedTextColor="@color/white"
@@ -67,7 +68,7 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/ViewPagerId"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 

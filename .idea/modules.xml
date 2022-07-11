@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Exam_101.iml" filepath="$PROJECT_DIR$/.idea/modules/Exam_101.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Exam_101.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Exam_101.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Exam_101.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Exam_101.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Exam_101.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Exam_101.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Exam_101.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Exam_101.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/exam101-android.iml" filepath="$PROJECT_DIR$/.idea/modules/exam101-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/exam101-android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/exam101-android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/exam101-android.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/exam101-android.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/exam101-android.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/exam101-android.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/exam101-android.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/exam101-android.app.unitTest.iml" />
     </modules>
   </component>
 </project>

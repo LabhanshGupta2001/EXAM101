@@ -11,6 +11,9 @@ import android.view.View;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityMyCartBinding;
+import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
+import com.dollop.exam101.databinding.BottomsheetApplycouponBinding;
+import com.dollop.exam101.databinding.BottomsheetReferralcodeBinding;
 import com.dollop.exam101.main.adapter.MyCartAdapter;
 import com.dollop.exam101.main.model.MyCartModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -18,11 +21,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 
 public class MyCartActivity extends AppCompatActivity implements View.OnClickListener {
-    Activity activity=MyCartActivity.this;
+    Activity activity;
     ActivityMyCartBinding binding;
-    BottomSheetDialog bottomSheetDialog;
+    BottomSheetDialog bottomSheetApplyCoupon,bottomSheetDialogReferralCode;
     ArrayList<MyCartModel> myCartModelArrayList = new ArrayList<>();
     RecyclerView recyclerView;
+
+    BottomsheetApplycouponBinding bottomsheetApplycouponBinding;
+    BottomsheetReferralcodeBinding bottomsheetReferralcodeBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +74,8 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void init() {
+        activity=MyCartActivity.this;
+
         binding.CardView.setOnClickListener(this);
         binding.CardViewOne.setOnClickListener(this);
         binding.tvButtonCheckoutId.setOnClickListener(this);
@@ -77,13 +85,30 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == binding.CardView) {
-            bottomSheetDialog = new BottomSheetDialog(MyCartActivity.this);
-            bottomSheetDialog.setContentView(R.layout.bottomsheet_applycoupon);
-            bottomSheetDialog.show();
+            bottomSheetApplyCoupon = new BottomSheetDialog(activity);
+            bottomsheetApplycouponBinding = BottomsheetApplycouponBinding.inflate(getLayoutInflater());
+            bottomSheetApplyCoupon.setContentView(bottomsheetApplycouponBinding.getRoot());
+            bottomSheetApplyCoupon.show();
+
+            bottomsheetApplycouponBinding.tvApply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottomSheetApplyCoupon.cancel();
+                }
+            });
         }else if(view==binding.CardViewOne){
-            bottomSheetDialog = new BottomSheetDialog(MyCartActivity.this);
-            bottomSheetDialog.setContentView(R.layout.bottomsheet_referralcode);
-            bottomSheetDialog.show();
+            bottomSheetDialogReferralCode = new BottomSheetDialog(activity);
+            bottomsheetReferralcodeBinding = BottomsheetReferralcodeBinding.inflate(getLayoutInflater());
+            bottomSheetDialogReferralCode.setContentView(bottomsheetReferralcodeBinding.getRoot());
+            bottomSheetDialogReferralCode.show();
+
+
+            bottomsheetReferralcodeBinding.tvApply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottomSheetDialogReferralCode.cancel();
+                }
+            });
         }else if (view==binding.tvButtonCheckoutId){
             Utils.I(activity,PaymentFailedActivity.class,null);
         }

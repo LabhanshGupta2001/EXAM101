@@ -60,7 +60,7 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         if (view == binding.ivBack)
         {
-            Utils.I(activity,ProfileActivity.class,null);
+            Utils.I(activity,CourseListActivity.class,null);
             finish();
         }
     }
@@ -68,7 +68,7 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Utils.I(activity,ProfileActivity.class,null);
+        Utils.I(activity,CourseListActivity.class,null);
         finish();
     }
 }

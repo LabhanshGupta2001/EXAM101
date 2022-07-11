@@ -39,32 +39,23 @@
             android:background="@color/lineColor" />
 
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_24sdp"
-            android:paddingVertical="@dimen/_12sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:strokeColor="@color/HorizontallineColor"
-            app:strokeWidth="@dimen/_1sdp">
 
-            <TextView
-                android:id="@+id/tvApplyCoupon_Id"
+            <EditText
+                android:id="@+id/etApplyCoupon_Id"
                 android:layout_width="match_parent"
+                android:background="@drawable/click_change_bg"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_toEndOf="@id/cardProfile"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:singleLine="true"
+                android:layout_marginVertical="@dimen/_24sdp"
                 android:fontFamily="@font/inter_semibold"
                 android:paddingVertical="@dimen/_12sdp"
-                android:text="@string/savepackage50"
+                android:paddingHorizontal="@dimen/_6sdp"
+                android:hint="@string/savepackage50"
                 android:theme="@style/QuaternaryTextStyle" />
 
-
-        </com.google.android.material.card.MaterialCardView>
-
         <TextView
+            android:id="@+id/tvApply"
             style="@style/TernaryWhiteTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

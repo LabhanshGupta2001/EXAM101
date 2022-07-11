@@ -71,13 +71,13 @@
             </LinearLayout>
 
             <TextView
-                style="@style/TernarySubTextStyle"
+                style="@style/TernaryBlackTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:fontFamily="@font/inter_regular"
                 android:gravity="center"
-                android:text="@string/login_to_your_account" />
+                android:text="@string/create_your_new_account" />
 
             <EditText
                 style="@style/TernaryLightTextStyle"
@@ -87,7 +87,7 @@
                 android:layout_marginTop="@dimen/_14sdp"
                 android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
-                android:hint="@string/enter_user_name"
+                android:hint="User Name"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp"
                 android:singleLine="true"
@@ -163,7 +163,7 @@
                 android:layout_marginTop="@dimen/_14sdp"
                 android:background="@drawable/input_custom"
                 android:fontFamily="@font/inter_regular"
-                android:hint="@string/enter_password"
+                android:hint="@string/password"
                 android:inputType="textPersonName"
                 android:padding="@dimen/_12sdp"
                 android:singleLine="true"

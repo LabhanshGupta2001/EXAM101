@@ -44,11 +44,11 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
             public void onClick(View view) {
                 if (!dropdown) {
                     holder.binding.rvThird.setVisibility(View.VISIBLE);
-                    holder.binding.ivRotedArrow.animate().rotation(180).setDuration(100).start();
+                    holder.binding.ivRotedArrow.animate().rotation(0).setDuration(100).start();
                     dropdown = true;
                 } else {
                     holder.binding.rvThird.setVisibility(View.GONE);
-                    holder.binding.ivRotedArrow.animate().rotation(0).setDuration(100).start();
+                    holder.binding.ivRotedArrow.animate().rotation(180).setDuration(100).start();
                     dropdown = false;
                 }
             }

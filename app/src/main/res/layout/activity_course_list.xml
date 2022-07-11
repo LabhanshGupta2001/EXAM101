@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lineColor"
     android:orientation="vertical"
     tools:context=".main.activity.CourseListActivity">
 
@@ -20,9 +19,9 @@
             android:id="@+id/ivBack"
             android:layout_width="@dimen/_34sdp"
             android:layout_height="@dimen/_28sdp"
+            android:contentDescription="@string/back_arrow"
             android:padding="@dimen/_8sdp"
-            android:src="@drawable/ic_backarrow"
-            android:contentDescription="@string/back_arrow" />
+            android:src="@drawable/ic_backarrow" />
 
         <TextView
             style="@style/TernaryTextStyle"
@@ -33,13 +32,32 @@
             android:text="@string/course_list" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCourseList"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:overScrollMode="never"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/bottomView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_12sdp"
+                android:background="@color/lineColor" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCourseList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white"
+                android:overScrollMode="never">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

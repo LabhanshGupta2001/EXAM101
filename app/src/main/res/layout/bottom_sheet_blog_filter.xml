@@ -63,6 +63,7 @@
                 android:layout_marginBottom="@dimen/_15sdp"
                 app:tabBackground="@drawable/tabselector"
                 app:tabIndicatorHeight="0dp"
+                app:tabRippleColor="@null"
                 app:tabSelectedTextColor="@color/white"
                 android:textAlignment="center"
                 app:tabTextAppearance="@style/TabTextStyle"/>

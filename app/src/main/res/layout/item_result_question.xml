@@ -17,6 +17,7 @@
         app:strokeColor="@color/lineColor">
 -->
         <LinearLayout
+            android:id="@+id/llMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -28,15 +29,15 @@
             <LinearLayout
                 android:id="@+id/llIn"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_weight="1"
                 android:paddingVertical="@dimen/_10sdp"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/SenaryPrimaryTextStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/inter_semibold"
@@ -45,15 +46,16 @@
 
                 <TextView
                     style="@style/QuinaryTheemTextStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/inter_regular"
                     android:text="@string/correct_answer"
                     tools:ignore="InefficientWeight" />
                 <TextView
+                    android:id="@+id/tvWrongAnwar"
                     style="@style/QuinaryRedTextStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:layout_gravity="center_vertical"
@@ -70,7 +72,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:contentDescription="@string/image"
-                android:rotation="-90"
+                android:rotation="90"
                 android:src="@drawable/ic_arrow_right" />
         </LinearLayout>
 

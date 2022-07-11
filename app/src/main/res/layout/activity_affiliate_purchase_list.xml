@@ -102,28 +102,14 @@
                 android:fontFamily="@font/gothic_bold"
                 android:text="2450.0" />
 
-            <ImageView
-                android:layout_width="@dimen/_220sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/_minus16sdp"
-                android:rotation="4"
-                android:layout_marginTop="@dimen/_minus16sdp"
-                android:layout_marginBottom="@dimen/_minus20sdp"
-                android:scaleType="fitXY"
-                android:src="@drawable/line" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_white_wave_test"
+            android:layout_alignParentEnd="true"/>
 
         </RelativeLayout>
 
-        <!--    <ImageView
-                android:id="@+id/lineView"
-                android:layout_width="@dimen/_300sdp"
-                android:layout_height="@dimen/_150sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_minus45sdp"
-                android:layout_marginEnd="@dimen/_minus60sdp"
-                android:src="@drawable/ic_line_view" />
-    -->
         <LinearLayout
             android:id="@+id/llPaidAmount"
             android:layout_width="match_parent"

@@ -44,20 +44,13 @@
                 android:text="@string/_02_jun_2022" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/ivHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/tvHistory"
-            android:src="@drawable/ic_history"
-            android:layout_marginEnd="@dimen/_2sdp"/>
-
         <TextView
             android:id="@+id/tvHistory"
             style="@style/SenaryThemeTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_2sdp"
+            android:drawableLeft="@drawable/ic_back_history"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="@string/history" />

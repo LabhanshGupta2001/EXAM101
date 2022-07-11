@@ -51,7 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/theme"
-                android:paddingStart="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_10sdp">
 
                 <RelativeLayout
@@ -64,7 +63,7 @@
                         style="@style/PrimaryWhiteHeadingTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:fontFamily="@font/gothic_bold"
                         android:text="@string/digital_design_thinking" />
 
@@ -94,7 +93,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_4sdp"
                         android:layout_below="@id/tvLastActivityTime"
-                        android:layout_marginVertical="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_6sdp"
                         android:progressDrawable="@drawable/custom_course_progress_bar" />
 
                     <TextView
@@ -103,7 +103,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/progressBar"
-                        android:layout_marginTop="-28dp"
                         android:fontFamily="@font/gothic_bold"
                         android:text="50% Complete" />
 

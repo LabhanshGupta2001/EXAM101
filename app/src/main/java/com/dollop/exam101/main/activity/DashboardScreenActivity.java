@@ -2,12 +2,15 @@ package com.dollop.exam101.main.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +20,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
 import com.dollop.exam101.main.fragment.HomeFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -32,6 +42,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
     Activity activity = DashboardScreenActivity.this;
     ActivityDashboardScreenBinding binding;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
+    GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
 
     @SuppressLint("ResourceAsColor")
     void init() {
+
         navigationSetup();
         binding.ivNavBar.setOnClickListener(this);
         binding.ivProfile.setOnClickListener(this);
@@ -64,6 +76,8 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         navHeaderDashboardBinding.llTermCondition.setOnClickListener(this);
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
 
+
+
     }
 
     private void navigationSetup() {
@@ -74,6 +88,18 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
       //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            Uri personPhoto = acct.getPhotoUrl();
+
+            Glide.with(this).load(String.valueOf(personPhoto)).into(binding.ivProfile);
+        }
     }
 
     @Override
@@ -153,14 +179,26 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         }
         if (view == navHeaderDashboardBinding.llLogout)
         {
-            Utils.I(activity,LoginActivity.class,null);
-
+            signOut();
+            Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(activity, LoginActivity.class));
         }
         if (view == navHeaderDashboardBinding.llFaq)
         {
             Utils.I(activity,FaqsActivity.class,null);
         }
 
+    }
+
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(activity, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // ...
+                        finish();
+                    }
+                });
     }
 
 
