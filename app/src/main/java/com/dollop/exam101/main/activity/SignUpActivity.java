@@ -1,7 +1,5 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,37 +10,45 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.dollop.exam101.Basics.UtilityTools.Utils;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivitySignUpBinding;
 import com.dollop.exam101.databinding.BottomSheetQuitExamBinding;
 import com.dollop.exam101.databinding.BottomSheetStartTestBinding;
-import com.dollop.exam101.main.model.ContryItemModel;
-import com.dollop.exam101.R;
 import com.dollop.exam101.main.adapter.ContryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.ContryItemModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final int RC_SIGN_IN = 100;
     Activity activity;
     ActivitySignUpBinding binding;
-    private ContryAdapter contryAdapter;
-    private ArrayList<ContryItemModel> contryItemArrayList;
-    private static final int RC_SIGN_IN = 100;
     GoogleSignInClient mGoogleSignInClient;
-
-    BottomSheetDialog bottomSheetDialog,quitTestDialog;
+    BottomSheetDialog bottomSheetDialog, quitTestDialog;
     BottomSheetStartTestBinding bottomSheetStartTestBinding;
     BottomSheetQuitExamBinding bottomSheetQuitExamBinding;
+    private ContryAdapter contryAdapter;
+    private ArrayList<ContryItemModel> contryItemArrayList;
+    private ApiService apiservice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +80,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void init() {
+        apiservice = RetrofitClient.getClient();
         contryItemArrayList = new ArrayList<>();
         contryItemArrayList.add(new ContryItemModel("+91", R.drawable.ic_india));
         contryItemArrayList.add(new ContryItemModel("+1", R.drawable.ic_china));
@@ -135,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 String personEmail = acct.getEmail();
                 String personId = acct.getId();
                 Uri personPhoto = acct.getPhotoUrl();
-                Log.e(String.valueOf(activity), "handleSignInResult: "+personName );
+                Log.e(String.valueOf(activity), "handleSignInResult: " + personName);
                 Toast.makeText(this, "successfully Sing in", Toast.LENGTH_SHORT).show();
             }
             startActivity(new Intent(activity, DashboardScreenActivity.class));
@@ -151,20 +158,36 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == binding.SignUPId) {
-            Utils.I(SignUpActivity.this, LoginActivity.class,null);
-        }else if(view==binding.tvRegisterId){
-            Utils.I(SignUpActivity.this,DashboardScreenActivity.class,null);
+            Utils.I(SignUpActivity.this, LoginActivity.class, null);
+        } else if (view == binding.tvRegisterId) {
+            Utils.I(SignUpActivity.this, DashboardScreenActivity.class, null);
             finish();
-        } else if (view == binding.llLoginWithGoogle){
+        } else if (view == binding.llLoginWithGoogle) {
             bottomSheetDialog = new BottomSheetDialog(activity);
             bottomSheetStartTestBinding = BottomSheetStartTestBinding.inflate(getLayoutInflater());
             bottomSheetDialog.setContentView(bottomSheetStartTestBinding.getRoot());
             bottomSheetDialog.show();
-        }else if (view == binding.llSignUp){
+        } else if (view == binding.llSignUp) {
             quitTestDialog = new BottomSheetDialog(activity);
             bottomSheetQuitExamBinding = BottomSheetQuitExamBinding.inflate(getLayoutInflater());
             quitTestDialog.setContentView(bottomSheetQuitExamBinding.getRoot());
             quitTestDialog.show();
         }
     }
+
+    void userSignup() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiservice.userSignup(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

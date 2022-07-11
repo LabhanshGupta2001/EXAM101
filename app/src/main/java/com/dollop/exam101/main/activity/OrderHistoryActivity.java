@@ -8,18 +8,27 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.ActivityOrderHistoryBinding;
 import com.dollop.exam101.databinding.ItemOrderHistoryBinding;
 import com.dollop.exam101.main.adapter.OrderHistoryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.OrderHistoryModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrderHistoryActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity = OrderHistoryActivity.this;
     ActivityOrderHistoryBinding binding;
     ItemOrderHistoryBinding itemOrderHistoryBinding;
     ArrayList<OrderHistoryModel> orderHistoryModelArrayList = new ArrayList<>();
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +38,9 @@ public class OrderHistoryActivity extends AppCompatActivity implements View.OnCl
         setContentView(itemOrderHistoryBinding.getRoot());
         setContentView(binding.getRoot());
 
-       // itemOrderHistoryBinding.tvTotalRupees.setPaintFlags(itemOrderHistoryBinding.tvTotalRupees.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        // itemOrderHistoryBinding.tvTotalRupees.setPaintFlags(itemOrderHistoryBinding.tvTotalRupees.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        initialise();
+        init();
 
         OrderHistoryModel orderHistoryModel = new OrderHistoryModel();
         OrderHistoryModel orderHistoryModel1 = new OrderHistoryModel();
@@ -93,12 +102,12 @@ public class OrderHistoryActivity extends AppCompatActivity implements View.OnCl
 
         binding.rvOderHistory.setHasFixedSize(true);
         binding.rvOderHistory.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvOderHistory.setAdapter(new OrderHistoryAdapter(activity,orderHistoryModelArrayList));
+        binding.rvOderHistory.setAdapter(new OrderHistoryAdapter(activity, orderHistoryModelArrayList));
 
     }
 
-    private void initialise() {
-
+    private void init() {
+        apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
 
         itemOrderHistoryBinding.tvTotalRupees.setPaintFlags(itemOrderHistoryBinding.tvTotalRupees.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
@@ -111,5 +120,20 @@ public class OrderHistoryActivity extends AppCompatActivity implements View.OnCl
         if (view == binding.ivBack) {
             onBackPressed();
         }
+    }
+
+    void getOrderHisrory() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        apiService.getorderHistory(hashMap).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

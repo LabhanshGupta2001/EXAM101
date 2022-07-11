@@ -1,6 +1,13 @@
 package com.dollop.exam101.main.fragment;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,46 +17,37 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
 import com.dollop.exam101.main.adapter.NewsAdapter;
 import com.dollop.exam101.main.adapter.PackageAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
 import com.dollop.exam101.main.model.PackageModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment {
-
+    private final Handler sliderHandler = new Handler();
+    ApiService apiService;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
     ArrayList<PackageModel> packageList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
     CountDownTimer countDownTimer = null;
-    private final Handler sliderHandler = new Handler();
-    BannerAdapter bannerAdapter;
-    PackageAdapter packageAdapter;
-    NewsAdapter newsAdapter;
-    ViewPager viewPager;
-    LinearLayout sliderDotspanel;
-    private int dotscount;
-    private ImageView[] dots;
-
-
     private final Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
@@ -69,6 +67,13 @@ public class HomeFragment extends Fragment {
             }
         }
     };
+    BannerAdapter bannerAdapter;
+    PackageAdapter packageAdapter;
+    NewsAdapter newsAdapter;
+    ViewPager viewPager;
+    LinearLayout sliderDotspanel;
+    private int dotscount;
+    private ImageView[] dots;
 
 
     public HomeFragment() {
@@ -93,8 +98,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void init() {
-
+apiService= RetrofitClient.getClient();
         //getOfferBannerByUser();
+        courseModelArrayList.clear();
         courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "String"));
         courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
         courseModelArrayList.add(new CourseModel(R.drawable.user_profile, "Hello"));
@@ -111,6 +117,7 @@ public class HomeFragment extends Fragment {
 
 
         // Banner Code
+        banners1.clear();
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
@@ -146,7 +153,7 @@ public class HomeFragment extends Fragment {
         });
 
         // Top Package Code....
-
+        packageList.clear();
         packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
         packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
         packageList.add(new PackageModel("Creative Express", "Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));
@@ -158,7 +165,7 @@ public class HomeFragment extends Fragment {
         binding.rvPackages.setAdapter(packageAdapter);
 
         // News Recyclerview code....
-
+        newsModelArrayList.clear();
         newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
                 String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
         newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
@@ -174,5 +181,50 @@ public class HomeFragment extends Fragment {
         // Calendar View Code...
         //binding.cvCalendar.setPointerIcon();
 
+    }
+
+    void getBanner() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getBanner(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    void getUser() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getUser(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    void getTopTen() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getTopTen(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

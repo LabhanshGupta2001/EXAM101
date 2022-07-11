@@ -1,32 +1,38 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityMyCartBinding;
-import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.databinding.BottomsheetApplycouponBinding;
 import com.dollop.exam101.databinding.BottomsheetReferralcodeBinding;
 import com.dollop.exam101.main.adapter.MyCartAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.MyCartModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyCartActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity;
     ActivityMyCartBinding binding;
-    BottomSheetDialog bottomSheetApplyCoupon,bottomSheetDialogReferralCode;
+    BottomSheetDialog bottomSheetApplyCoupon, bottomSheetDialogReferralCode;
     ArrayList<MyCartModel> myCartModelArrayList = new ArrayList<>();
     RecyclerView recyclerView;
-
+    ApiService apiService;
     BottomsheetApplycouponBinding bottomsheetApplycouponBinding;
     BottomsheetReferralcodeBinding bottomsheetReferralcodeBinding;
 
@@ -74,8 +80,8 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void init() {
-        activity=MyCartActivity.this;
-
+        activity = MyCartActivity.this;
+        apiService = RetrofitClient.getClient();
         binding.CardView.setOnClickListener(this);
         binding.CardViewOne.setOnClickListener(this);
         binding.tvButtonCheckoutId.setOnClickListener(this);
@@ -96,7 +102,7 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
                     bottomSheetApplyCoupon.cancel();
                 }
             });
-        }else if(view==binding.CardViewOne){
+        } else if (view == binding.CardViewOne) {
             bottomSheetDialogReferralCode = new BottomSheetDialog(activity);
             bottomsheetReferralcodeBinding = BottomsheetReferralcodeBinding.inflate(getLayoutInflater());
             bottomSheetDialogReferralCode.setContentView(bottomsheetReferralcodeBinding.getRoot());
@@ -109,11 +115,25 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
                     bottomSheetDialogReferralCode.cancel();
                 }
             });
-        }else if (view==binding.tvButtonCheckoutId){
-            Utils.I(activity,PaymentFailedActivity.class,null);
+        } else if (view == binding.tvButtonCheckoutId) {
+            Utils.I(activity, PaymentFailedActivity.class, null);
+        } else if (view == binding.ivBack) {
+            onBackPressed();
         }
-        else if (view==binding.ivBack){
-           onBackPressed();
-        }
+    }
+
+    void getCartItem() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getCartList(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

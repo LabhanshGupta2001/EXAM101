@@ -11,14 +11,12 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 
@@ -27,18 +25,71 @@ import retrofit2.http.PartMap;
  */
 public interface ApiService {
 
+
+
     @FormUrlEncoded
     @POST(Const.user_signup)
+
     Call<AllResponseModel> userSignup(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.aboutUs)
-    Call<AllResponseModel> getAboutUs(@Header(Constants.Authorization) String token);
 
-    @GET(Const.getBankProfile)
-    Call<AllResponseModel> getBankProfile(@Header(Constants.Authorization) String token);
+    @FormUrlEncoded
+    @POST(Const.user_login)
+    Call<AllResponseModel> userLogin(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.getBankUserDetails)
-    Call<AllResponseModel> GetBankUserDetails(@Header(Constants.Authorization) String token);
+    @FormUrlEncoded
+    @POST(Const.update_details)
+    Call<AllResponseModel> updateBankDetails(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @GET(Const.get_result)
+    Call<AllResponseModel> getResult(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @GET(Const.get_search_history)
+    Call<AllResponseModel> getSearchHistory(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @GET(Const.get_flex_box)
+    Call<AllResponseModel> getFlexBox(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.reset_password)
+    Call<AllResponseModel> resetPassword(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.lang)
+    Call<AllResponseModel> setLanguage(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.rapse_complaint)
+    Call<AllResponseModel> raiseComplaint(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.otp_verification)
+    Call<AllResponseModel> otpVerification(@Field("otp") String otp);
+
+    @FormUrlEncoded
+    @GET(Const.get_complaint)
+    Call<AllResponseModel> getComplaintList(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @GET(Const.order_history)
+    Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @GET(Const.login_history)
+    Call<AllResponseModel> getloginHistory(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @GET(Const.get_cart)
+    Call<AllResponseModel> getCartList(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @GET(Const.wish_list)
+    Call<AllResponseModel> getWishList(@FieldMap HashMap<String, String> hm);
+
+
 
     @GET(Const.getBlogDetails)
     Call<AllResponseModel> getBlogDetails(@Header(Constants.Authorization) String token);
