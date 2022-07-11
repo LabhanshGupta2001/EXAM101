@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.ActivityBlogsListBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogShortBinding;
@@ -23,6 +25,7 @@ import com.dollop.exam101.main.fragment.AuthorFragment;
 import com.dollop.exam101.main.fragment.CategoryFragment;
 import com.dollop.exam101.main.fragment.DateFragment;
 import com.dollop.exam101.main.model.AllBlogListModel;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
 import com.dollop.exam101.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -32,10 +35,15 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class BlogsListActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity = BlogsListActivity.this;
     ActivityBlogsListBinding binding;
     BottomSheetDialog bottomSheetDialog, bottomSheetFilter;
+    ApiService apiService;
 
     ItemBlogsHorizontalBinding itemBlogsHorizontalBinding;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList = new ArrayList<>();
@@ -62,6 +70,8 @@ public class BlogsListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void init() {
+
+        apiService= RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
         binding.llBtnShort.setOnClickListener(this);
         binding.llBtnFilter.setOnClickListener(this);
@@ -235,5 +245,61 @@ public class BlogsListActivity extends AppCompatActivity implements View.OnClick
         ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
         p.setMargins(20, 0, 20, 0);
         tab1.requestLayout();
+    }
+
+    private void getBlogsCategory(){
+        apiService.getBlogsCategory("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getBlogsData(){
+        apiService.getBlogsData("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getBlogsSortBy(){
+        apiService.getBlogsSortBy("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getBlogsFilterBy(){
+        apiService.getBlogsFilterBy("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

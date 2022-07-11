@@ -79,7 +79,6 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_below="@id/llToolbar"
                 android:background="@color/lineColor"
                 android:orientation="vertical" />
 
@@ -87,7 +86,6 @@
                 android:id="@+id/llmicrosoft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/view"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:background="@color/white"
@@ -201,7 +199,6 @@
                 android:id="@+id/viewtwo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_12sdp"
-                android:layout_below="@id/llmicrosoft"
                 android:background="@color/lineColor"
                 android:orientation="vertical" />
 
@@ -218,7 +215,6 @@
                         android:id="@+id/tlPackageDetailTabLayoutId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/viewtwo"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:overScrollMode="never"
                         app:tabIndicator="@color/theme"

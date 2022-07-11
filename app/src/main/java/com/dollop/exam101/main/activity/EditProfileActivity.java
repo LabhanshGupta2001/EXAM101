@@ -20,8 +20,11 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityEditProfileBinding;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CountryItem;
 import com.dollop.exam101.R;
 import com.dollop.exam101.main.adapter.EditProfileCountryAdapter;
@@ -30,10 +33,15 @@ import com.dollop.exam101.main.adapter.EditProfileAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     Activity activity = EditProfileActivity.this;
     ActivityEditProfileBinding binding;
+    ApiService apiService;
     ImageView imageView;
     EditProfileCountryAdapter contryAdapter;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
@@ -49,6 +57,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void init() {
+
+        apiService= RetrofitClient.getClient();
+
         binding.mcvProfileSelector.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
         binding.llspinner.setOnClickListener(this);
@@ -59,7 +70,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         spinner();
         imageView = binding.ivProfile;
         String[] countryNames = {"India", "China", "Australia", "Portugle", "America", "New Zealand"};
-        int flags[] = {R.drawable.ic_india, R.drawable.ic_china, R.drawable.ic_flag_of_australia, R.drawable.ic_portugal, R.drawable.ic_portugal, R.drawable.ic_new_zealand};
+        int[] flags = {R.drawable.ic_india, R.drawable.ic_china, R.drawable.ic_flag_of_australia, R.drawable.ic_portugal, R.drawable.ic_portugal, R.drawable.ic_new_zealand};
         binding.Spinner.setOnItemSelectedListener(this);
         EditProfileAdapter editProfileAdapter = new EditProfileAdapter(getApplicationContext(), flags, countryNames);
         binding.Spinner.setAdapter(editProfileAdapter);
@@ -228,6 +239,34 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         contryItemArrayList.add(new CountryItem("+1", R.drawable.ic_china));
         contryItemArrayList.add(new CountryItem("+44", R.drawable.ic_new_zealand));
         contryItemArrayList.add(new CountryItem("+49", R.drawable.ic_portugal));
+    }
+
+    private void getEditProfileDetails(){
+        apiService.getEditProfileDetails("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void EditProfileImage(){
+        apiService.EditProfileImage("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }
 

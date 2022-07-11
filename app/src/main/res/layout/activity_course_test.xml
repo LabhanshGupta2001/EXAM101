@@ -47,27 +47,28 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_below="@id/llToolbar"
-        android:layout_above="@+id/bottomView"
-        android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_12sdp"
-        android:background="@color/lineColor" />
+        android:layout_above="@+id/bottomView"
+        android:layout_below="@id/llToolbar">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:paddingBottom="@dimen/_12sdp" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_12sdp"
+                android:background="@color/lineColor" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:paddingBottom="@dimen/_12sdp" />
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
     <View

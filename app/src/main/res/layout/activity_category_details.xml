@@ -84,7 +84,7 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:overScrollMode="never"
-        tools:listitem="@layout/item_category_detail" />
+ />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -93,6 +93,6 @@
         android:layout_below="@id/rvPackages"
         android:layout_marginTop="@dimen/_10sdp"
         android:overScrollMode="never"
-        tools:listitem="@layout/item_category_details_secondary"
+
         />
 </RelativeLayout>

@@ -58,7 +58,7 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
             bottomSheetDialog =new BottomSheetDialog(context);
             bottomSheetStartTestBinding = BottomSheetStartTestBinding.inflate(LayoutInflater.from(context),viewGroup,false);
             bottomSheetDialog.setContentView(bottomSheetStartTestBinding.getRoot());
-            bottomSheetDialog.show();
+            bottomSheetDialog.  show();
 
             bottomSheetStartTestBinding.llBtnStartTest.setOnClickListener(view1 ->
             {

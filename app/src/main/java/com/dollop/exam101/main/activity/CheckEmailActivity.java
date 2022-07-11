@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCheckEmailBinding;
@@ -13,6 +14,7 @@ import com.dollop.exam101.databinding.ActivityCheckEmailBinding;
 public class CheckEmailActivity extends AppCompatActivity {
     Activity activity = CheckEmailActivity.this;
     ActivityCheckEmailBinding binding;
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
