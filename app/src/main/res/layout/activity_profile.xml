@@ -9,29 +9,34 @@
     tools:context=".main.activity.ProfileActivity">
 
     <RelativeLayout
-        android:id="@+id/rlTop"
+        android:id="@+id/llToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/_3sdp"
         android:gravity="center_vertical"
-        android:padding="@dimen/_12sdp">
+        android:padding="@dimen/_4sdp">
 
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_28sdp"
             android:layout_centerVertical="true"
+            android:contentDescription="@string/back_arrow"
+            android:padding="@dimen/_8sdp"
             android:src="@drawable/ic_backarrow" />
+
 
         <TextView
             style="@style/TernaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_toRightOf="@id/ivBack"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_toEndOf="@id/ivBack"
             android:fontFamily="@font/gothic_bold"
-            android:text="@string/profile" />
+            android:text="@string/profile"
+            tools:ignore="RelativeOverlap" />
 
         <TextView
             android:id="@+id/tvLogOut"
@@ -39,18 +44,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_toLeftOf="@id/ivLogOut"
+            android:drawablePadding="@dimen/_6sdp"
             android:fontFamily="@font/inter_medium"
+            android:drawableRight="@drawable/ic_logout"
             android:text="@string/logout" />
 
-        <ImageView
-            android:id="@+id/ivLogOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_logout" />
+
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -231,52 +233,6 @@
                     android:layout_marginVertical="@dimen/_10sdp"
                     android:background="@color/HorizontallineColor" />
 
-
-                <LinearLayout
-                    android:id="@+id/llCourseList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/light_gray"
-                        app:cardCornerRadius="@dimen/_4sdp"
-                        app:cardElevation="0dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/ic_course_list" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        style="@style/QuaternaryLightTextStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/course_list" />
-
-                    <ImageView
-                        android:id="@+id/ivCourseList"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/_3sdp"
-                        android:paddingVertical="@dimen/_2sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:background="@color/HorizontallineColor" />
-
                 <LinearLayout
                     android:id="@+id/llMockTest"
                     android:layout_width="match_parent"
@@ -418,6 +374,155 @@
                     android:src="@drawable/ic_arrow_right" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRequestPendingCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:background="@color/background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:padding="@dimen/_12sdp"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:id="@+id/llRCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/QuaternaryYellowTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/request_pending_for_affiliation_code" />
+
+                    <TextView
+                        style="@style/QuinaryLightSubTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/you_will_get_a_code_when_admin_approved_your_request" />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/ivGlassTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:src="@drawable/ic_glass_timer" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:background="@color/background"
+                android:visibility="gone"
+                android:id="@+id/llBankDetailsAndAffiliation">
+                <LinearLayout
+                    android:id="@+id/llBankDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_12sdp"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:id="@+id/llInBank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/QuaternaryLightTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="@string/your_bank_details" />
+
+                        <TextView
+                            style="@style/QuinaryLightSubTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/edit_and_update_your_bank_account_details" />
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/ivBankD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:src="@drawable/ic_arrow_right" />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/HorizontallineColor" />
+                <LinearLayout
+                    android:id="@+id/llAffiliatePurchaseList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_12sdp"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:id="@+id/llAffiliateList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/QuaternaryLightTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="@string/affiliate_purchase_list" />
+
+                        <TextView
+                            style="@style/QuinaryLightSubTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/check_the_history_of_affiliated_purchases" />
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/ivAffiliate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:src="@drawable/ic_arrow_right" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <TextView
                 style="@style/TernaryHeadingTextStyle"

@@ -182,9 +182,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".6"
                     android:background="@drawable/packege_duration"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_11sdp">
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:paddingVertical="@dimen/_11sdp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -195,7 +196,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/SenaryPrimaryTextStyle"
+                        style="@style/QuinaryBlackTextStyle"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/inter_medium"
                         android:text="@string/package_duration" />
@@ -206,7 +207,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_3sdp"
                         style="@style/SenaryPrimaryTextStyle"
-                        android:fontFamily="@font/inter_semibold"
+                        android:fontFamily="@font/inter_medium"
                         android:text="@string/_20_days" />
 
                 </LinearLayout>

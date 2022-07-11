@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.activity.CheckEmailActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_24sdp"
+        android:src="@drawable/ic_plant_email" />
+
+    <TextView
+        android:id="@+id/tvThankYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fontFamily="@font/gothic_bold"
+        android:gravity="center"
+        android:text="@string/check_your_email"
+        android:theme="@style/PrimaryThemeHeadingTextStyle1" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        android:text="@string/check_your_email_for_a_link_to_reset_your_password_if_it_doesn_t_appear_within_a_few_minutes_check_your_spam_folder"
+        android:theme="@style/QuaternarySubTextStyle" />
+
+    <TextView
+        android:id="@+id/tvReturnToSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/_24sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingHorizontal="@dimen/_38sdp"
+        android:background="@drawable/theme_backround"
+        android:text="@string/return_to_sign_in"
+        android:theme="@style/TernaryWhiteTextStyle" />
+
+
+</LinearLayout>

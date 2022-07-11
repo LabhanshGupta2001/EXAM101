@@ -62,19 +62,32 @@
         </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
 
-    <View
-        android:layout_below="@id/llToolbar"
-        android:id="@+id/view"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_12sdp"
-        android:background="@color/lineColor"
-        android:orientation="vertical" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llBtn"
+        android:layout_below="@id/llToolbar"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_12sdp"
+                android:layout_below="@id/llToolbar"
+                android:background="@color/lineColor"
+                android:orientation="vertical" />
 
             <LinearLayout
                 android:id="@+id/llmicrosoft"
-                android:layout_below="@id/view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/view"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:background="@color/white"
@@ -98,8 +111,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/_6sdp">
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:orientation="horizontal">
 
                     <TextView
                         style="@style/TertialThemeHeadingTextStyle"
@@ -186,35 +199,50 @@
 
             <View
                 android:id="@+id/viewtwo"
-                android:layout_below="@id/llmicrosoft"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_12sdp"
+                android:layout_below="@id/llmicrosoft"
                 android:background="@color/lineColor"
                 android:orientation="vertical" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tlPackageDetailTabLayoutId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/viewtwo"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:overScrollMode="never"
-        app:tabIndicator="@color/theme"
-        app:tabIndicatorColor="@color/theme"
-        app:tabIndicatorHeight="3dp"
-        app:tabMode="scrollable"
-        app:tabRippleColor="@color/transparent"
-        app:tabSelectedTextColor="@color/theme"
-        app:tabTextAppearance="@style/TabTextStyle"
-        app:tabTextColor="@color/black" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:layout_below="@id/tlPackageDetailTabLayoutId"
-                android:id="@+id/ViewPagerPackageDetailId"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tlPackageDetailTabLayoutId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/viewtwo"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:overScrollMode="never"
+                        app:tabIndicator="@color/theme"
+                        app:tabIndicatorColor="@color/theme"
+                        app:tabIndicatorHeight="3dp"
+                        app:tabMode="scrollable"
+                        app:tabRippleColor="@color/transparent"
+                        app:tabSelectedTextColor="@color/theme"
+                        app:tabTextAppearance="@style/TabTextStyle"
+                        app:tabTextColor="@color/black" />
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/ViewPagerPackageDetailId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tlPackageDetailTabLayoutId" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
+        android:id="@+id/llBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -268,4 +296,5 @@
                 android:theme="@style/QuaternarySecondaryTextStyle" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
+
 </RelativeLayout>

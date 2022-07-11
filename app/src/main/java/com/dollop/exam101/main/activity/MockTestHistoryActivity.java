@@ -36,11 +36,9 @@ public class MockTestHistoryActivity extends AppCompatActivity implements View.O
         binding.ivBack.setOnClickListener(this);
         Tittle.add("All Results");
         Tittle.add("Performance");
-        Tittle.add("DashBoard");
 
         fragments.add(new AllResultsFragment());
         fragments.add(new PerformanceFragment());
-       fragments.add(new CategoryHomeFragment());
         mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         binding.viewpagertwo.setAdapter(mockTestViewPagerAdapter);
 

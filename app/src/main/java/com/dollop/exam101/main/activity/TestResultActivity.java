@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -48,14 +49,16 @@ public class TestResultActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
-            Utils.I_clear(activity, CoursesMaterial.class, null);
+           // Utils.T(activity,"back prass");
+            Utils.I(activity, MockTestListActivity.class, null);
+            activity.finish();
         }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Utils.I_clear(activity, CoursesMaterial.class, null);
+       // Utils.I_clear(activity, MockTestListActivity.class, null);
         finish();
     }
 }

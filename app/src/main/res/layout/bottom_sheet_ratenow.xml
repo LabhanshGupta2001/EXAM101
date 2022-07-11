@@ -5,23 +5,27 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvLine"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_5sdp"
-        android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/_8sdp"
-        app:cardBackgroundColor="@color/lightgrey"
-        app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="1dp" />
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/llTransparent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/_50sdp"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvLine"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:cardBackgroundColor="@color/lightgrey"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="1dp" />
+    </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:background="@drawable/bottom_curve_background"
@@ -75,54 +79,14 @@
                     android:text="@string/best_way_learn_fundamentals_of_ndesign_thinking"
                     android:theme="@style/QuaternaryFullBlackTextStyle" />
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <RatingBar
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_staricon"
-                        android:contentDescription="@string/image"
-                        />
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_staricon"
-                        android:contentDescription="@string/image"
-                        />
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_staricon"
-                        android:contentDescription="@string/image"
-                        />
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_staricon"
-                        android:contentDescription="@string/image"
-                        />
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:src="@drawable/ic_union"
-                        android:contentDescription="@string/image"
-                        />
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:saveEnabled="true"
+                    android:numStars="5"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -151,7 +115,7 @@
                         android:layout_margin="@dimen/_12sdp"
                         android:hint="@string/write_your_review"
                         android:theme="@style/QuaternaryLightSubTextStyle"
-                        android:inputType="textPersonName"
+                        android:inputType="textMultiLine"
                         tools:ignore="Autofill" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -170,7 +134,5 @@
                     android:padding="@dimen/_11sdp"
                     android:text="@string/rate_now" />
             </LinearLayout>
-
-    </ScrollView>
 
 </LinearLayout>

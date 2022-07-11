@@ -53,6 +53,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         binding.llSave.setOnClickListener(this);
         binding.llspinner.setOnClickListener(this);
         binding.ivBack.setOnClickListener(this);
+        binding.etMobileNo.setOnClickListener(this);
 
         initList();
         spinner();
@@ -94,6 +95,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         } else if (view == binding.ivBack)
         {
             finish();
+        } else if(view == binding.etMobileNo){
         }
 
     }

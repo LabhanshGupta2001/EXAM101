@@ -41,16 +41,30 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
                 notifyDataSetChanged();
             }
         });
+        holder.binding.llMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!dropdown) {
+                    holder.binding.llBelow.setVisibility(View.VISIBLE);
+                    holder.binding.ivDropdown.animate().rotation(-90).setDuration(100).start();
+                    dropdown = true;
+                } else {
+                    holder.binding.llBelow.setVisibility(View.GONE);
+                    holder.binding.ivDropdown.animate().rotation(90).setDuration(100).start();
+                    dropdown = false;
+                }
+            }
+        });
         holder.binding.llIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!dropdown) {
                     holder.binding.llBelow.setVisibility(View.VISIBLE);
-                    holder.binding.ivDropdown.animate().rotation(90).setDuration(100).start();
+                    holder.binding.ivDropdown.animate().rotation(-90).setDuration(100).start();
                     dropdown = true;
                 } else {
                     holder.binding.llBelow.setVisibility(View.GONE);
-                    holder.binding.ivDropdown.animate().rotation(-90).setDuration(100).start();
+                    holder.binding.ivDropdown.animate().rotation(90).setDuration(100).start();
                     dropdown = false;
                 }
             }

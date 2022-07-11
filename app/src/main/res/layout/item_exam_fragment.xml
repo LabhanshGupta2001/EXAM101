@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/_6sdp"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mcvExamName"
+        android:layout_marginVertical="@dimen/_2sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        app:strokeWidth="@dimen/_1sdp"
+        app:cardCornerRadius="@dimen/_5sdp">
+
+        <TextView
+            android:id="@+id/tvAllExam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All Courses"
+            android:fontFamily="@font/inter_medium"
+            style="@style/QuaternaryFullBlackTextStyle"
+            android:padding="@dimen/_12sdp"
+            android:background="@drawable/click_change_bg"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

@@ -60,7 +60,7 @@
         android:text="@string/_235_packages" />
 
     <TextView
-        android:id="@+id/tvpakages"
+        android:id="@+id/tvFilter"
         style="@style/SenaryTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,12 +80,11 @@
         android:id="@+id/rvPackages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvpakages"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_below="@id/tvFilter"
         android:layout_marginStart="@dimen/_12sdp"
-        tools:listitem="@layout/item_category_detail"
+        android:layout_marginTop="@dimen/_4sdp"
         android:overScrollMode="never"
-        />
+        tools:listitem="@layout/item_category_detail" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

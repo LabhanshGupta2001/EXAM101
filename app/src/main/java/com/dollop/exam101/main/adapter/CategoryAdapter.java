@@ -43,8 +43,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
             }
         });
         if (index == position){
-            holder.binding.mcvCategoryItem.setCardBackgroundColor(ContextCompat.getColor(context,R.color.TvBgColor));
             holder.binding.tvItem.setTextColor(ContextCompat.getColor(context,R.color.theme));
+            holder.binding.mcvCategoryItem.setCardBackgroundColor(ContextCompat.getColor(context,R.color.TvBgColor));
             holder.binding.mcvCategoryItem.setStrokeColor(ContextCompat.getColor(context,R.color.theme));
 
         } else{

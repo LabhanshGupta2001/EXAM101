@@ -19,9 +19,9 @@
             android:id="@+id/ivBack"
             android:layout_width="@dimen/_34sdp"
             android:layout_height="@dimen/_28sdp"
+            android:contentDescription="@string/image"
             android:padding="@dimen/_8sdp"
-            android:src="@drawable/ic_backarrow"
-            android:contentDescription="@string/image"/>
+            android:src="@drawable/ic_backarrow" />
 
 
         <TextView
@@ -33,20 +33,34 @@
             android:text="@string/order_history" />
     </LinearLayout>
 
-    <View
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_12sdp"
-        android:background="@color/lineColor"
-        android:id="@+id/viewOne"/>
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rvOderHistory"
-        android:padding="@dimen/_12sdp"
-        android:overScrollMode="never"
-        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:id="@+id/viewOne"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_12sdp"
+                android:background="@color/lineColor" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOderHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                android:padding="@dimen/_12sdp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

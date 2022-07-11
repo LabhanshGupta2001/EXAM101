@@ -38,32 +38,21 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@color/lineColor" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_24sdp"
-                android:paddingVertical="@dimen/_12sdp"
-                app:cardCornerRadius="@dimen/_5sdp"
-                app:strokeColor="@color/HorizontallineColor"
-                app:strokeWidth="@dimen/_1sdp">
-
-                <TextView
-                    android:id="@+id/tvApplyCoupon_Id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginHorizontal="@dimen/_8sdp"
-                    android:layout_toEndOf="@id/cardProfile"
-                    android:fontFamily="@font/inter_semibold"
-                    android:paddingVertical="@dimen/_12sdp"
-                    android:text="@string/yog4500erz"
-                    android:theme="@style/QuaternaryTextStyle" />
-
-            </com.google.android.material.card.MaterialCardView>
-
+        <EditText
+            android:id="@+id/etReferralCode_Id"
+            android:layout_width="match_parent"
+            android:background="@drawable/click_change_bg"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_24sdp"
+            android:singleLine="true"
+            android:fontFamily="@font/inter_semibold"
+            android:paddingVertical="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:hint="@string/yog4500erz"
+            android:theme="@style/QuaternaryTextStyle" />
         <TextView
-            android:id="@+id/SignIn_Id"
+            android:id="@+id/tvApply"
             style="@style/TernaryWhiteTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

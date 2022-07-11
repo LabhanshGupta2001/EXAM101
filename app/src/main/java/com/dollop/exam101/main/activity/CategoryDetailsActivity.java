@@ -1,15 +1,35 @@
 package com.dollop.exam101.main.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCategoryDetailsBinding;
+import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
+import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
+import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
 import com.dollop.exam101.main.adapter.CategoryDetailSecondaryAdapter;
+import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
+import com.dollop.exam101.main.fragment.AuthorFragment;
+import com.dollop.exam101.main.fragment.CategoriesFragment;
+import com.dollop.exam101.main.fragment.CategoryFragment;
+import com.dollop.exam101.main.fragment.DateFragment;
+import com.dollop.exam101.main.fragment.ExamFilterFragment;
+import com.dollop.exam101.main.fragment.LanguageFragment;
+import com.dollop.exam101.main.fragment.PriceFragment;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
@@ -19,6 +39,10 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
     ActivityCategoryDetailsBinding binding;
     ArrayList<String>list=new ArrayList<>();
     ArrayList<String>arrayList=new ArrayList<>();
+
+    BottomSheetDialog bottomSheetFilter;
+    BottomsheetFilterBinding bottomsheetFilterBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +52,7 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
     }
     private void init(){
         binding.ivBack.setOnClickListener(this);
+        binding.tvFilter.setOnClickListener(this);
 
         list.clear();
         list.add("1");
@@ -59,6 +84,49 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
 
         if(view==binding.ivBack){
             finish();
+        } else if (view == binding.tvFilter){
+            bottomSheetFilterTask();
         }
+    }
+
+    private void bottomSheetFilterTask() {
+        bottomSheetFilter = new BottomSheetDialog(activity);
+        bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(getLayoutInflater());
+        bottomSheetFilter.setContentView(bottomsheetFilterBinding.getRoot());
+
+        bottomsheetFilterBinding.tvllSave.setOnClickListener(view ->
+        {
+            bottomSheetFilter.cancel();
+        });
+
+        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
+        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetFilter.show();
+
+        ArrayList<String> title = new ArrayList<>();
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        title.add("Exam");
+        title.add("Price");
+        title.add("Language");
+
+
+        fragments.add(new ExamFilterFragment());
+        fragments.add(new PriceFragment());
+        fragments.add(new LanguageFragment());
+
+        /*TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
+        ViewPager2 viewPager2 = bottomSheetFilter.findViewById(R.id.vpLaunchId);*/
+        bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
+
+        new TabLayoutMediator(bottomsheetFilterBinding.tlTabLayoutId, bottomsheetFilterBinding.ViewPagerId, (tab, position) -> {
+            tab.setText(title.get(position));
+        }).attach();
+
+        View tab1 = ((ViewGroup) bottomsheetFilterBinding.tlTabLayoutId.getChildAt(0)).getChildAt(1);
+        ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
+        p.setMargins(20, 0, 20, 0);
+        tab1.requestLayout();
+
     }
 }

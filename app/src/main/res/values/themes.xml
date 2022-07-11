@@ -42,6 +42,11 @@
         <item name="android:textSize">@dimen/_30ssp</item>
     </style>
 
+    <style name="SuperMainThemeHeadingTextStyle2" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/theme</item>
+        <item name="android:textSize">@dimen/_30ssp</item>
+    </style>
+
     <style name="SuperThemeHeadingTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/theme</item>
         <item name="android:textSize">@dimen/_20ssp</item>
@@ -55,6 +60,11 @@
 
     <style name="PrimaryWhiteHeadingTextStyle1" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_18ssp</item>
+    </style>
+
+    <style name="PrimaryThemeHeadingTextStyle1" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/theme</item>
         <item name="android:textSize">@dimen/_18ssp</item>
     </style>
 
@@ -209,6 +219,11 @@
 
     <style name="QuaternaryTextStyle">
         <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+    </style>
+
+    <style name="QuaternaryYellowTextStyle">
+        <item name="android:textColor">@color/yellow</item>
         <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 

@@ -41,40 +41,49 @@
             android:id="@+id/ivAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_6sdp"
+            android:layout_marginRight="@dimen/_8sdp"
             android:src="@drawable/ic_about" />
     </LinearLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/llToolbar"
+        android:layout_above="@+id/bottomView"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_10sdp"
-        android:layout_below="@id/llToolbar"
+        android:layout_height="@dimen/_12sdp"
         android:background="@color/lineColor" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvQuestion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/view"
-        android:layout_alignBottom="@id/bottomView"
+        android:layout_height="wrap_content"
         android:overScrollMode="never"
         android:paddingBottom="@dimen/_12sdp" />
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <View
         android:id="@+id/bottomView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_5sdp"
+        android:layout_height="@dimen/_4sdp"
         android:layout_above="@id/llNextBtn"
         android:background="@color/lineColor" />
-
     <LinearLayout
         android:id="@+id/llNextBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginVertical="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
         android:background="@color/white"
+        android:elevation="@dimen/_4sdp"
         android:gravity="center_vertical">
 
         <Button
