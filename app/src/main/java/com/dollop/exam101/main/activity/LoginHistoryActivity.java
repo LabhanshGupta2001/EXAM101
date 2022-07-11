@@ -7,42 +7,66 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.ActivityLoginHistoryBinding;
 import com.dollop.exam101.main.adapter.LoginHistoryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class LoginHistoryActivity extends AppCompatActivity implements View.OnClickListener{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    Activity activity=LoginHistoryActivity.this;
+public class LoginHistoryActivity extends AppCompatActivity implements View.OnClickListener {
+    ApiService apiService;
+    Activity activity = LoginHistoryActivity.this;
     ActivityLoginHistoryBinding binding;
-    ArrayList<String>list=new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityLoginHistoryBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginHistoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
     }
-    private void init(){
-        binding.ivBack.setOnClickListener(this);
 
+    private void init() {
+        binding.ivBack.setOnClickListener(this);
+        apiService = RetrofitClient.getClient();
         list.clear();
         list.add("1");
         list.add("1");
         list.add("1");
 
         binding.rvLoginHistory.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvLoginHistory.setAdapter(new LoginHistoryAdapter(activity,list));
+        binding.rvLoginHistory.setAdapter(new LoginHistoryAdapter(activity, list));
     }
 
     @Override
     public void onClick(View view) {
-        if(view==binding.ivBack)
-        {
+        if (view == binding.ivBack) {
             finish();
-          /*  Utils.I(activity,MockTestHistoryActivity.class,null);*/
+            /*  Utils.I(activity,MockTestHistoryActivity.class,null);*/
         }
     }
+
+    void getloginHistory() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        apiService.getloginHistory(hashMap).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

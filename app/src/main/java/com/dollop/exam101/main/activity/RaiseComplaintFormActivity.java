@@ -7,10 +7,20 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityRaiseComplaintFormBinding;
+import com.dollop.exam101.main.model.AllResponseModel;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RaiseComplaintFormActivity extends AppCompatActivity implements View.OnClickListener {
+    ApiService apiService;
 
     Activity activity = RaiseComplaintFormActivity.this;
     ActivityRaiseComplaintFormBinding binding;
@@ -24,6 +34,7 @@ public class RaiseComplaintFormActivity extends AppCompatActivity implements Vie
     }
 
     private void init() {
+        apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
         binding.llHigh.setOnClickListener(this);
@@ -83,4 +94,20 @@ public class RaiseComplaintFormActivity extends AppCompatActivity implements Vie
 
         }
     }
+
+    void raiseComplaint() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.raiseComplaint(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

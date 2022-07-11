@@ -1,28 +1,34 @@
 package com.dollop.exam101.main.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.FragmentMockTestBinding;
-import com.dollop.exam101.databinding.ItemMockTestPackageBinding;
 import com.dollop.exam101.main.adapter.PakageDetailMockTestFragmentAdapter;
-import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
-public class MockTestFragment extends Fragment  implements View.OnClickListener{
+public class MockTestFragment extends Fragment implements View.OnClickListener {
     Fragment fragment = MockTestFragment.this;
     FragmentMockTestBinding binding;
+    ApiService apiService;
+
     ArrayList<String> list = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentMockTestBinding.inflate(inflater, container, false);
@@ -32,6 +38,7 @@ public class MockTestFragment extends Fragment  implements View.OnClickListener{
     }
 
     private void init() {
+        apiService = RetrofitClient.getClient();
 
         list.clear();
         list.add("1");
@@ -51,5 +58,21 @@ public class MockTestFragment extends Fragment  implements View.OnClickListener{
     @Override
     public void onClick(View v) {
 
+    }
+
+
+    void getMockTest() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getMockTest(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -6,6 +6,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityMockTestQuestionsBinding;
 import com.dollop.exam101.databinding.BottomSheetQuitExamBinding;
@@ -21,7 +23,7 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
     BottomSheetQuitExamBinding bottomSheetQuitExamBinding;
     ArrayList<String> list = new ArrayList<>();
     int layoutWidth = 1;
-
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
 
     private void init() {
         setBottomSheet();
+        apiService= RetrofitClient.getClient();
         binding.tvQuitExam.setOnClickListener(this);
         binding.tvButtonSubmit.setOnClickListener(this);
         binding.mcvMoveBack.setOnClickListener(this);
@@ -54,8 +57,7 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        if (view == binding.tvQuitExam)
-        {
+        if (view == binding.tvQuitExam) {
             quitTestDialog.show();
 
         } else if (view == binding.tvButtonSubmit) {
@@ -64,11 +66,9 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
             binding.vpQuestion.setCurrentItem((Integer) getItem(+1), true);
         } else if (view == binding.mcvMoveBack) {
             binding.vpQuestion.setCurrentItem((Integer) getItem(-1), true);
-        } else if(view == bottomSheetQuitExamBinding.mcvBtnCancel)
-        {
+        } else if (view == bottomSheetQuitExamBinding.mcvBtnCancel) {
             quitTestDialog.cancel();
-        }  else if(view == bottomSheetQuitExamBinding.mcvBtnQuitTest)
-        {
+        } else if (view == bottomSheetQuitExamBinding.mcvBtnQuitTest) {
             Utils.I_clear(activity, TestResultActivity.class, null);
         }
     }
@@ -77,10 +77,12 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
         return binding.vpQuestion.getCurrentItem() + i;
     }
 
-    void setBottomSheet()
-    {
+    void setBottomSheet() {
         quitTestDialog = new BottomSheetDialog(activity);
         bottomSheetQuitExamBinding = BottomSheetQuitExamBinding.inflate(getLayoutInflater());
         quitTestDialog.setContentView(bottomSheetQuitExamBinding.getRoot());
+    }
+    void submit(){
+
     }
 }

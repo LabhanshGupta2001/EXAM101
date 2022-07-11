@@ -10,8 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityLoginBinding;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -19,11 +22,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final int RC_SIGN_IN = 100;
     Activity activity;
     ActivityLoginBinding binding;
     GoogleSignInClient mGoogleSignInClient;
-    private static final int RC_SIGN_IN = 100;
+    ApiService apiservice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void init() {
+        apiservice = RetrofitClient.getClient();
         binding.tvForgetPasswordId.setOnClickListener(this);
         binding.SignInId.setOnClickListener(this);
         binding.tvSignUp.setOnClickListener(this);
@@ -89,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String personEmail = acct.getEmail();
                 String personId = acct.getId();
                 Uri personPhoto = acct.getPhotoUrl();
-                Log.e(String.valueOf(activity), "handleSignInResult: "+personName );
+                Log.e(String.valueOf(activity), "handleSignInResult: " + personName);
                 Toast.makeText(this, "successfully Sing in", Toast.LENGTH_SHORT).show();
             }
             startActivity(new Intent(activity, DashboardScreenActivity.class));
@@ -97,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Log.e("massage", e.toString());
         }
 
-}
+    }
 
     @Override
     public void onClick(View view) {
@@ -110,6 +121,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Utils.I(activity, SignUpActivity.class, null);
         }
     }
+
+    void userLogin() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiservice.userLogin(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }
 
 /* if (v == binding.cvViewCart) {
