@@ -5,9 +5,15 @@
         android:endColor="@color/white"
         android:startColor="@color/white" />
 
+
+    <item
+        android:bottom="4dp"
+        android:left="4dp"
+        android:right="4dp"
+        android:top="4dp"/>
     <size
         android:height="16dp"
         android:width="16dp" />
-    <stroke android:width="@dimen/_1sdp" android:color="@color/theme"/>
+    <stroke android:width="@dimen/_1sdp" android:color="@color/theme" />
 
 </shape>

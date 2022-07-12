@@ -7,17 +7,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PackagesDetailActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity = PackagesDetailActivity.this;
     ActivityPackagesDetailBinding binding;
+    ApiService apiService;
     MockTestViewPagerAdapter mockTestViewPagerAdapter;
     ArrayList<String> Tittle = new ArrayList<>();
     ArrayList<Fragment> fragments = new ArrayList<>();
@@ -33,6 +41,8 @@ public class PackagesDetailActivity extends AppCompatActivity implements View.On
     }
 
     private void init() {
+
+        apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
 
         fragments.add(new CourseMaterialFragment());
@@ -52,6 +62,18 @@ public class PackagesDetailActivity extends AppCompatActivity implements View.On
         if(view==binding.ivBack){
             onBackPressed();
         }
+    }
+    private void getPakageDetails(){
+        apiService.getPakageDetails("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

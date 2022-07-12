@@ -7,13 +7,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityOtpVerificationBinding;
+import com.dollop.exam101.main.model.AllResponseModel;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OtpVerificationActivity extends AppCompatActivity implements View.OnClickListener {
 Activity activity;
 ActivityOtpVerificationBinding binding;
-
+ApiService apiService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +33,7 @@ ActivityOtpVerificationBinding binding;
         init();
     }
     private void init(){
+        apiService= RetrofitClient.getClient();
         binding.VerifyOTPId.setOnClickListener(this);
 
     }
@@ -35,4 +45,19 @@ ActivityOtpVerificationBinding binding;
         }
 
     }
+    void otpVerification(){
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.otpVerification(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

@@ -9,17 +9,25 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCoursesMaterialBinding;
 import com.dollop.exam101.main.adapter.CourseMaterialSubjectAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CoursesMaterial extends AppCompatActivity implements View.OnClickListener {
     Activity activity = CoursesMaterial.this;
     ActivityCoursesMaterialBinding binding;
     ArrayList<String> list = new ArrayList<>();
+    ApiService apiService;
     private Boolean dropdown = true;
 
 
@@ -34,6 +42,9 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
     }
 
     void init() {
+
+        apiService= RetrofitClient.getClient();
+
         setProgress();
         getCourseList();
     }
@@ -71,4 +82,32 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
         Utils.I(activity,CourseListActivity.class,null);
         finish();
     }
+
+    private void getCourseMaterialProgressBar(){
+        apiService.getCourseMaterialProgressBar("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+    private void getCourseMaterialList(){
+        apiService.getCourseMaterialList("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

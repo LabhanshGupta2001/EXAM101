@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCategoryDetailsBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
@@ -25,6 +27,7 @@ import com.dollop.exam101.main.fragment.DateFragment;
 import com.dollop.exam101.main.fragment.ExamFilterFragment;
 import com.dollop.exam101.main.fragment.LanguageFragment;
 import com.dollop.exam101.main.fragment.PriceFragment;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -33,12 +36,17 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CategoryDetailsActivity extends AppCompatActivity implements View.OnClickListener{
 
     Activity activity=CategoryDetailsActivity.this;
     ActivityCategoryDetailsBinding binding;
     ArrayList<String>list=new ArrayList<>();
     ArrayList<String>arrayList=new ArrayList<>();
+    ApiService apiService;
 
     BottomSheetDialog bottomSheetFilter;
     BottomsheetFilterBinding bottomsheetFilterBinding;
@@ -51,6 +59,9 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         init();
     }
     private void init(){
+
+        apiService= RetrofitClient.getClient();
+
         binding.ivBack.setOnClickListener(this);
         binding.tvFilter.setOnClickListener(this);
 
@@ -127,6 +138,47 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
         p.setMargins(20, 0, 20, 0);
         tab1.requestLayout();
+    }
 
+    private void getCategories(){
+        apiService.getCategory("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getCategoryDetails(){
+        apiService.getCategoryDetails("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getCategoryFilter(){
+        apiService.getCategoryFilter("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

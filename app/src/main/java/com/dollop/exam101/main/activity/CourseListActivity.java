@@ -8,17 +8,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCourseListBinding;
 import com.dollop.exam101.main.adapter.CourseListAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseListModel;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CourseListActivity extends AppCompatActivity implements View.OnClickListener {
 
     Activity activity=CourseListActivity.this;
     ActivityCourseListBinding binding;
+    ApiService apiService;
     ArrayList<CourseListModel> courseListModels=new ArrayList<>();
 
     @Override
@@ -33,6 +41,7 @@ public class CourseListActivity extends AppCompatActivity implements View.OnClic
     }
    void init()
     {
+        apiService= RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
 
         courseListModels.add(new CourseListModel("Adobe Software","Digital Design Thinking","04 Jul,2022","20","30 DAYS"));
@@ -47,6 +56,19 @@ public class CourseListActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    private void getCourseList(){
+        apiService.getCourseList("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
     @Override
     public void onClick(View view)
     {

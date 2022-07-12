@@ -1,20 +1,28 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityRaiseComplaintBinding;
 import com.dollop.exam101.main.adapter.RaiseComplaintAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RaiseComplaintActivity extends AppCompatActivity implements View.OnClickListener {
-
+    ApiService apiService;
     Activity activity = RaiseComplaintActivity.this;
     ActivityRaiseComplaintBinding binding;
     ArrayList<String> list = new ArrayList<>();
@@ -28,6 +36,8 @@ public class RaiseComplaintActivity extends AppCompatActivity implements View.On
     }
 
     private void init() {
+        apiService = RetrofitClient.getClient();
+
         binding.ivBack.setOnClickListener(this);
         binding.mcvAdd.setOnClickListener(this);
 
@@ -48,4 +58,20 @@ public class RaiseComplaintActivity extends AppCompatActivity implements View.On
             Utils.I(activity, RaiseComplaintFormActivity.class, null);
         }
     }
+
+    void getComplaintList() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getComplaintList(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

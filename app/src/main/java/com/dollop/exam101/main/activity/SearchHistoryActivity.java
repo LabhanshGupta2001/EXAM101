@@ -1,30 +1,36 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.dollop.exam101.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.ActivitySearchHistoryBinding;
 import com.dollop.exam101.main.adapter.FlexBoxAdapter;
 import com.dollop.exam101.main.adapter.ResentSearchHistoryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SearchHistoryActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity = SearchHistoryActivity.this;
     ActivitySearchHistoryBinding binding;
     ArrayList<String> list = new ArrayList<>();
-
+    ApiService apiService;
     RecyclerView recyclerView;
     ArrayList<String> arrayList = new ArrayList<>();
     FlexBoxAdapter adapter;
@@ -67,17 +73,45 @@ public class SearchHistoryActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private void init()
-    {
+    private void init() {
+        apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view)
-    {
-        if (view == binding.ivBack)
-        {
+    public void onClick(View view) {
+        if (view == binding.ivBack) {
             finish();
         }
+    }
+
+    void getSearchHistory() {
+        HashMap<String, String> hm = new HashMap();
+        apiService.getSearchHistory(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    void getFlexBox() {
+        HashMap<String, String> hashMap = new HashMap();
+        apiService.getFlexBox(hashMap).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

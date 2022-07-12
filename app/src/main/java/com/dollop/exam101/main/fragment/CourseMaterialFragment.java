@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
@@ -21,30 +23,39 @@ import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
 import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class CourseMaterialFragment extends Fragment implements View.OnClickListener {
-    Fragment fragment = CourseMaterialFragment.this;
+    Activity activity;
     FragmentCourseMaterialBinding binding;
     ArrayList<String> list = new ArrayList<>();
     private Boolean dropdown = true;
 
+    ApiService apiService;
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCourseMaterialBinding.inflate(inflater, container, false);
+        activity = requireActivity();
         init();
 
         return binding.getRoot();
     }
 
     private void init() {
+
+        apiService= RetrofitClient.getClient();
         binding.tvRateId.setOnClickListener(this);
 
         list.clear();
@@ -114,5 +125,33 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         DisplayMetrics displayMetrics = new DisplayMetrics();
         (getActivity()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
+    }
+
+    private void getPackageDetailsCourseMaterial(){
+        apiService.getPackageDetailsCourseMaterial("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void GetPackageDetailsMockTestListRatingNow(){
+        apiService.getPackageDetailsMockTestListRatingNow("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

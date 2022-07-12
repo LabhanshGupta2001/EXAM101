@@ -1,25 +1,30 @@
 package com.dollop.exam101.main.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.FragmentPurchaseListBinding;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.FragmentTransactionHistoryBinding;
-import com.dollop.exam101.main.adapter.PurchaseListAdapter;
 import com.dollop.exam101.main.adapter.TransactionHistoryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TransactionHistoryFragment extends Fragment implements View.OnClickListener {
     FragmentTransactionHistoryBinding binding;
     ArrayList<String> list = new ArrayList<>();
+    ApiService apiService;
 
     public TransactionHistoryFragment() {
         // Required empty public constructor
@@ -27,12 +32,14 @@ public class TransactionHistoryFragment extends Fragment implements View.OnClick
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTransactionHistoryBinding.inflate(inflater,container,false);
+        binding = FragmentTransactionHistoryBinding.inflate(inflater, container, false);
         init();
         return binding.getRoot();
     }
 
-    private void init(){
+    private void init() {
+        apiService = RetrofitClient.getClient();
+
         list.clear();
         list.add("1");
         list.add("1");
@@ -46,11 +53,26 @@ public class TransactionHistoryFragment extends Fragment implements View.OnClick
 
         binding.rvTransactionHistory.setHasFixedSize(true);
         binding.rvTransactionHistory.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvTransactionHistory.setAdapter(new TransactionHistoryAdapter(getContext(),list));
+        binding.rvTransactionHistory.setAdapter(new TransactionHistoryAdapter(getContext(), list));
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    void getTransactionHistory() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getTransactionHistory(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }

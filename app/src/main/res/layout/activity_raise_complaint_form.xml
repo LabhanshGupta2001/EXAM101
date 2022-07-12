@@ -91,11 +91,11 @@
             android:autofillHints="enter complaint"
             android:background="@drawable/grey_stroke_half_curve"
             android:gravity="start"
-            android:imeOptions="actionDone"
             android:hint="@string/enter_complaint_descripyion"
-            android:inputType="textPersonName"
-            android:padding="@dimen/_14sdp"
-            android:maxLines="5" />
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:padding="@dimen/_14sdp" />
 
         <TextView
             style="@style/QuaternaryTextStyle"
@@ -119,8 +119,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/gray_strock_bg"
                 android:gravity="center"
-                android:padding="@dimen/_12sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/_12sdp">
 
                 <ImageView
                     android:id="@+id/Image"
@@ -144,10 +144,10 @@
                 android:id="@+id/llHigh"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_weight="1"
                 android:background="@drawable/gray_strock_bg"
                 android:gravity="center"
-                android:layout_marginHorizontal="@dimen/_12sdp"
                 android:orientation="horizontal"
                 android:padding="@dimen/_12sdp">
 
@@ -218,29 +218,66 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvUpload"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                app:cardBackgroundColor="@color/lineColor"
-                app:cardCornerRadius="@dimen/_20sdp"
-                app:cardElevation="0dp">
+            <LinearLayout
+                android:id="@+id/llUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvUpload"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    app:cardBackgroundColor="@color/lineColor"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/download_image"
+                        android:src="@drawable/ic_download" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/tvUpload"
+                    style="@style/QuinaryThemeTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/download_image"
-                    android:src="@drawable/ic_download" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/upload_pdf_images" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llUploadPdfDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/PdfImg"
+                android:layout_width="@dimen/_34sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:src="@drawable/ic_mock_test" />
 
             <TextView
+                android:id="@+id/tvUploadFilename"
                 style="@style/QuinaryThemeTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="@string/upload_pdf_images" />
+                android:layout_marginTop="@dimen/_5sdp" />
+
         </LinearLayout>
+
+
+    </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

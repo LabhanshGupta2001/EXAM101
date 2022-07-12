@@ -1,24 +1,33 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityNotificationBinding;
 import com.dollop.exam101.main.adapter.NotificationPrimaryAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NotificationActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity = NotificationActivity.this;
     ActivityNotificationBinding binding;
     NotificationPrimaryAdapter notificationAdapter;
     List<String> notificationList = new ArrayList<>();
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     private void init() {
         binding.ivBack.setOnClickListener(this);
         binding.llToolbar.setOnClickListener(this);
+        apiService = RetrofitClient.getClient();
 
 
         notificationList.clear();
@@ -46,9 +56,24 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         if (view == binding.ivBack) {
             finish();
-        }
-        else if(view ==binding.llToolbar){
-            Utils.I(activity,AffilationBankDetailsActivity.class,null);
+        } else if (view == binding.llToolbar) {
+            Utils.I(activity, AffilationBankDetailsActivity.class, null);
         }
     }
+
+    void getNotification() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.getNotification(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

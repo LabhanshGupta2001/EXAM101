@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCoursesDetailBinding;
 import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CoursesDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +27,7 @@ public class CoursesDetailActivity extends AppCompatActivity implements View.OnC
     ActivityCoursesDetailBinding binding;
     BottomSheetPracticeTestBinding bottomSheetPracticeTestBinding;
     BottomSheetDialog bottomSheetDialog;
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,8 @@ public class CoursesDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     void init() {
+
+        apiService= RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
         binding.btnNext.setOnClickListener(this);
 
@@ -44,6 +54,20 @@ public class CoursesDetailActivity extends AppCompatActivity implements View.OnC
             showBottomSheetDialog();
         }
 
+    }
+
+    private void getCourseDetails(){
+        apiService.getCourseDetails("").enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 
     private void showBottomSheetDialog() {

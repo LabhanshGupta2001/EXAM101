@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
@@ -20,6 +22,7 @@ import com.dollop.exam101.databinding.FragmentPackageListBinding;
 import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.PackageModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -27,11 +30,17 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class PackageListFragment extends Fragment implements View.OnClickListener {
     FragmentPackageListBinding binding;
     Fragment fragment=PackageListFragment.this;
+    ApiService apiService;
 
     BottomsheetFilterBinding bottomsheetFilterBinding;
     ViewPagerFragmentAdapter adapter;
@@ -55,6 +64,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
 
     private void init() {
+        apiService = RetrofitClient.getClient();
 
         packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
         packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
@@ -115,5 +125,18 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
 
     }
+    void packageList() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.packageList(hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 
+            }
+
+            @Override
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
 }
