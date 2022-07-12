@@ -12,6 +12,8 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityForgotPasswordBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 
+import java.util.HashMap;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +37,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         binding.SendOtpId.setOnClickListener(this);
     }
     private void ForgetPassword(){
-        apiService.ForgetPassword("").enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.ForgetPassword(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 

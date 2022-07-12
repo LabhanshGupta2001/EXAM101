@@ -29,7 +29,7 @@ public class Const {
     public static final String get_complaint = "get_complaint";
     public static final String reset_password = "reset_password";
     public static final String otp_verification = "otp_verification";
-    public static final String rapse_complaint = "rapse_complaint";
+    public static final String raise_complaint = "raise_complaint";
     public static final String login_history = "login_history";
     public static final String get_cart = "get_cart";
     public static final String wish_list = "wish_list";

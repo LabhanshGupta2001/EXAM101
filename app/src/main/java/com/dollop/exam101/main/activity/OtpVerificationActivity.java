@@ -46,7 +46,8 @@ ApiService apiService;
 
     }
     void otpVerification(){
-        apiService.otpVerification("").enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.otpVerification(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 

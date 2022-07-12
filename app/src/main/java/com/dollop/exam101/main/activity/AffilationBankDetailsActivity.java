@@ -14,6 +14,8 @@ import com.dollop.exam101.databinding.ActivityAffilationBankDetailsBinding;
 import com.dollop.exam101.databinding.ActivityBankDetailBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 
+import java.util.HashMap;
+
 import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,7 +62,8 @@ public class AffilationBankDetailsActivity extends AppCompatActivity implements 
     }
 
     private void BankUserDetails(){
-       apiService.UserBankDetails("").enqueue(new Callback<AllResponseModel>() {
+        HashMap<String,String>hashMap=new HashMap<>();
+       apiService.UserBankDetails(hashMap).enqueue(new Callback<AllResponseModel>() {
            @Override
            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 

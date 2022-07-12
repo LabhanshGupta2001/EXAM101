@@ -440,6 +440,7 @@
     <string name="check_your_email_for_a_link_to_reset_your_password_if_it_doesn_t_appear_within_a_few_minutes_check_your_spam_folder">Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder.</string>
     <string name="return_to_sign_in">Return to Sign In</string>
     <string name="create_your_new_account">Create your new account</string>
+    <string name="passwordStrong">passwordStrong</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>
@@ -450,6 +451,7 @@
         <item>+603</item>
     </string-array>
     <string-array name="Country">
+        <item>Country</item>
         <item>India</item>
         <item>Pakistan</item>
         <item>South Africa</item>
@@ -464,6 +466,7 @@
         <item>Khargone</item>
     </string-array>
     <string-array name="States">
+        <item>State</item>
         <item>Madhya Pradesh</item>
         <item>Rajasthan</item>
         <item>Goa</item>

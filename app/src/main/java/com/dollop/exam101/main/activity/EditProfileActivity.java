@@ -31,6 +31,7 @@ import com.dollop.exam101.main.adapter.EditProfileCountryAdapter;
 import com.dollop.exam101.main.adapter.EditProfileAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -256,7 +257,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void EditProfileImage(){
-        apiService.EditProfileImage("").enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.EditProfileImage(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 

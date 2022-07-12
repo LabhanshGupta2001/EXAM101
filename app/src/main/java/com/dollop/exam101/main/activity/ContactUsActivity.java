@@ -13,6 +13,8 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityContactUsBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 
+import java.util.HashMap;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +41,8 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void ContactUs(){
-        apiService.ContactUs("").enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.ContactUs(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 

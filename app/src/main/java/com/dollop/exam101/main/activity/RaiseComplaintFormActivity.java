@@ -41,6 +41,7 @@ public class RaiseComplaintFormActivity extends AppCompatActivity implements Vie
         binding.llNormal.setOnClickListener(this);
         binding.llCritical.setOnClickListener(this);
         binding.mcvUpload.setOnClickListener(this);
+        binding.llUploadPdfDone.setOnClickListener(this);
     }
 
     @Override
