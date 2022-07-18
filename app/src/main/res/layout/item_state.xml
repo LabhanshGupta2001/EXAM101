@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/llState"
+    android:background="@drawable/grey_stroke_half_curve"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:paddingHorizontal="@dimen/_12sdp">
+
+    <TextView
+        android:id="@+id/tvState"
+        style="@style/QuaternarySpinnerLightTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Madhya Pradesh"
+        android:paddingVertical="@dimen/_14sdp"
+        android:singleLine="true"
+        android:textColorHint="@color/sub_text"
+        android:textStyle="bold" />
+
+</LinearLayout>

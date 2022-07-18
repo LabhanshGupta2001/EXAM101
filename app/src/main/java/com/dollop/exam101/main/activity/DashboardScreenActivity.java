@@ -5,22 +5,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
@@ -32,10 +28,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
-public class DashboardScreenActivity extends AppCompatActivity implements View.OnClickListener{
+public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
     AppBarConfiguration appBarConfiguration;
     NavController navController;
@@ -54,7 +48,8 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
 
     @SuppressLint("ResourceAsColor")
     void init() {
-
+        /*navHeaderDashboardBinding.tvName.setText(Utils.GetSession().stateName);
+        navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);*/
         navigationSetup();
         binding.ivNavBar.setOnClickListener(this);
         binding.ivProfile.setOnClickListener(this);
@@ -77,7 +72,6 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
 
 
-
     }
 
     private void navigationSetup() {
@@ -87,7 +81,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
 
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
-      //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
+        //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -116,9 +110,8 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.ivSearch)
-        {
-            Utils.I(activity,SearchHistoryActivity.class,null);
+        if (view == binding.ivSearch) {
+            Utils.I(activity, SearchHistoryActivity.class, null);
         }
 
         if (view == binding.navigationView.getHeaderView(0)) {
@@ -128,8 +121,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
 
         // Navigatin Drawer Click
 
-        if (view == navHeaderDashboardBinding.llHome)
-        {
+        if (view == navHeaderDashboardBinding.llHome) {
             getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragmentContainerView, new HomeFragment(), "Home").
                     commit();
@@ -152,8 +144,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
             binding.drawerLayout.close();
             Utils.I(activity, SettingActivity.class, null);
         }
-        if (view == navHeaderDashboardBinding.llFaq)
-        {
+        if (view == navHeaderDashboardBinding.llFaq) {
 
         }
         if (view == navHeaderDashboardBinding.llContactUs) {
@@ -161,13 +152,13 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
             Utils.I(activity, ContactUsActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llAbout) {
-             Utils.I(activity, AboutUsActivity.class, null);
+            Utils.I(activity, AboutUsActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llTermCondition) {
-              Utils.I(activity, TermAndConditionActivity.class, null);
+            Utils.I(activity, TermAndConditionActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llPrivacyPolicy) {
-             Utils.I(activity, PrivacyPolicyActivity.class, null);
+            Utils.I(activity, PrivacyPolicyActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llHeader) {
             Utils.I(activity, ProfileActivity.class, null);
@@ -177,15 +168,13 @@ public class DashboardScreenActivity extends AppCompatActivity implements View.O
             Utils.I(activity, RaiseComplaintActivity.class, null);
             binding.drawerLayout.closeDrawers();
         }
-        if (view == navHeaderDashboardBinding.llLogout)
-        {
+        if (view == navHeaderDashboardBinding.llLogout) {
             signOut();
             Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(activity, LoginActivity.class));
         }
-        if (view == navHeaderDashboardBinding.llFaq)
-        {
-            Utils.I(activity,FaqsActivity.class,null);
+        if (view == navHeaderDashboardBinding.llFaq) {
+            Utils.I(activity, FaqsActivity.class, null);
         }
 
     }

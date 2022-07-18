@@ -1,37 +1,27 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
-import com.dollop.exam101.R;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivityCategoryDetailsBinding;
-import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
-import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
 import com.dollop.exam101.main.adapter.CategoryDetailSecondaryAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
-import com.dollop.exam101.main.fragment.AuthorFragment;
-import com.dollop.exam101.main.fragment.CategoriesFragment;
-import com.dollop.exam101.main.fragment.CategoryFragment;
-import com.dollop.exam101.main.fragment.DateFragment;
 import com.dollop.exam101.main.fragment.ExamFilterFragment;
 import com.dollop.exam101.main.fragment.LanguageFragment;
 import com.dollop.exam101.main.fragment.PriceFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
@@ -40,12 +30,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryDetailsActivity extends AppCompatActivity implements View.OnClickListener{
+public class CategoryDetailsActivity extends BaseActivity implements View.OnClickListener {
 
-    Activity activity=CategoryDetailsActivity.this;
+    Activity activity = CategoryDetailsActivity.this;
     ActivityCategoryDetailsBinding binding;
-    ArrayList<String>list=new ArrayList<>();
-    ArrayList<String>arrayList=new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
+    ArrayList<String> arrayList = new ArrayList<>();
     ApiService apiService;
 
     BottomSheetDialog bottomSheetFilter;
@@ -54,13 +44,14 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityCategoryDetailsBinding.inflate(getLayoutInflater());
+        binding = ActivityCategoryDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
     }
-    private void init(){
 
-        apiService= RetrofitClient.getClient();
+    private void init() {
+
+        apiService = RetrofitClient.getClient();
 
         binding.ivBack.setOnClickListener(this);
         binding.tvFilter.setOnClickListener(this);
@@ -73,9 +64,9 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         list.add("1");
         list.add("1");
 
-        binding.rvPackages.setAdapter(new CategoryDetailAdapter(activity,list));
+        binding.rvPackages.setAdapter(new CategoryDetailAdapter(activity, list));
         binding.rvPackages.setHasFixedSize(true);
-        binding.rvPackages.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false));
+        binding.rvPackages.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
 
         arrayList.clear();
         arrayList.add("1");
@@ -85,7 +76,7 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         arrayList.add("1");
         arrayList.add("1");
 
-        binding.rvPackagesSecondary.setAdapter(new CategoryDetailSecondaryAdapter(activity,arrayList));
+        binding.rvPackagesSecondary.setAdapter(new CategoryDetailSecondaryAdapter(activity, arrayList));
         binding.rvPackagesSecondary.setHasFixedSize(true);
         binding.rvPackagesSecondary.setLayoutManager(new LinearLayoutManager(activity));
     }
@@ -93,9 +84,9 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View view) {
 
-        if(view==binding.ivBack){
+        if (view == binding.ivBack) {
             finish();
-        } else if (view == binding.tvFilter){
+        } else if (view == binding.tvFilter) {
             bottomSheetFilterTask();
         }
     }
@@ -140,7 +131,7 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         tab1.requestLayout();
     }
 
-    private void getCategories(){
+    private void getCategories() {
         apiService.getCategory("").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
@@ -154,7 +145,7 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         });
     }
 
-    private void getCategoryDetails(){
+    private void getCategoryDetails() {
         apiService.getCategoryDetails("").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
@@ -168,7 +159,7 @@ public class CategoryDetailsActivity extends AppCompatActivity implements View.O
         });
     }
 
-    private void getCategoryFilter(){
+    private void getCategoryFilter() {
         apiService.getCategoryFilter("").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {

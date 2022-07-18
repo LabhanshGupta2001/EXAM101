@@ -31,7 +31,7 @@ public class RetrofitClient {
                 .connectTimeout(2, TimeUnit.MINUTES)
                 .readTimeout(2, TimeUnit.MINUTES);
 
-        if (Const.Development.equals(Constants.Debug)) {
+        if (Const.Development.equals(Constants.Key.Debug)) {
             client.addInterceptor(interceptor);
         }
 

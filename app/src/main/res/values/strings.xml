@@ -131,7 +131,7 @@
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_password">Enter password</string>
     <string name="new_password">New password</string>
-    <string name="conform_password">Conform password</string>
+    <string name="conform_password">Confirm password</string>
     <string name="enter_mobile_no">Enter mobile No..</string>
     <string name="enter_user_name">Enter user name</string>
     <string name="notification">Notification</string>
@@ -228,7 +228,7 @@
     <string name="_4500">4500</string>
     <string name="microsoft_power_point">Microsoft power Point</string>
     <string name="best_way_learn_fundamentals_of_design_nthinking">Best way learn fundamentals of design\nthinking.</string>
-    <string name="learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games">Learn Python like a Professional Start from the basics and go\nall the way to creating your own applications and games Learn\nPython like a Professional Start from the basics and go all the\nway to creating your own applications and games</string>
+    <string name="learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games">Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</string>
     <string name="_4_0">4.0</string>
     <string name="_54_rating_and_reviews">(54) Rating and Reviews</string>
     <string name="overview">Overview</string>
@@ -441,6 +441,11 @@
     <string name="return_to_sign_in">Return to Sign In</string>
     <string name="create_your_new_account">Create your new account</string>
     <string name="passwordStrong">passwordStrong</string>
+    <string name="select_state">Select State</string>
+    <string name="please_select_the_country">Please select country</string>
+    <string name="please_select_the_state">Please select state</string>
+    <string name="please_select_the_city">Please select city</string>
+    <string name="select_city">Select City</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

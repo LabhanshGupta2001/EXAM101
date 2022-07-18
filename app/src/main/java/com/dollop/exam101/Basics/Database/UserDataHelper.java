@@ -69,8 +69,8 @@ public class UserDataHelper {
      */
     public void delete(UserData userData) {
         open();
-        db.delete(UserData.TABLE_NAME, UserData.KEY_USER_ID + " = '"
-                + userData.userId + "'", null);
+        db.delete(UserData.TABLE_NAME, UserData.KEY_StudentId + " = '"
+                + userData.studentId + "'", null);
         close();
     }
 
@@ -91,8 +91,8 @@ public class UserDataHelper {
      */
     private boolean isExist(UserData userData) {
         read();
-        @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + UserData.TABLE_NAME + " where " + UserData.KEY_USER_ID + "='"
-                + userData.userId + "'", null);
+        @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + UserData.TABLE_NAME + " where " + UserData.KEY_StudentId + "='"
+                + userData.studentId + "'", null);
         if (cur.moveToFirst()) {
             return true;
         }
@@ -107,28 +107,20 @@ public class UserDataHelper {
     public void insertData(UserData userData) {
         open();
         ContentValues values = new ContentValues();
-        values.put(UserData.KEY_USER_ID, userData.userId);
-        values.put(UserData.KeyUserName, userData.name);
-        values.put(UserData.KeyUserEmail, userData.email);
-        values.put(UserData.KeyUserMobile, userData.mobile);
-        values.put(UserData.KEY_USER_Profile_PIC, userData.profilePic);
-        values.put(UserData.Key_Token, userData.token);
-        values.put(UserData.KEY_USER_fcm_id, userData.fcmId);
-        values.put(UserData.KEY_USER_device_type, userData.deviceType);
-        values.put(UserData.KEY_selfReferralCode, userData.selfReferralCode);
-        values.put(UserData.KEY_registerReferralCode, userData.registerReferralCode);
-        values.put(UserData.KEY_primeReferral, userData.primeReferral);
-        values.put(UserData.KEY_primePlusReferral, userData.primePlusReferral);
-        values.put(UserData.KEY_wallet, userData.wallet);
-        values.put(UserData.KEY_cashback, userData.cashback);
-        values.put(UserData.KEY_premiumBalance, userData.premiumBalance);
-        values.put(UserData.KEY_referralCommission, userData.referralCommission);
-        values.put(UserData.KEY_roleType, userData.roleType);
-        values.put(UserData.KEY_userType, userData.userType);
-        values.put(UserData.KEY_userCode, userData.userCode);
-        values.put(UserData.KEY_userPin, userData.userPin);
-        values.put(UserData.KEY_userPin, userData.userPin);
-        values.put(UserData.KEY_created_at, userData.created_at);
+       // values.put(UserData.KEY_ID, userData.userId);
+        values.put(UserData.KEY_StudentId, userData.studentId);
+        values.put(UserData.Key_StudentName, userData.studentName);
+        values.put(UserData.Key_StudentEmail, userData.studentEmail);
+        values.put(UserData.Key_StudentMobileNo, userData.studentMobileNo);
+        values.put(UserData.Key_CountryCode, userData.countryCode);
+        values.put(UserData.Key_CountryName, userData.countryName);
+        values.put(UserData.Key_StateName, userData.stateName);
+        values.put(UserData.Key_FcmId, userData.fcmId);
+        values.put(UserData.Key_MobileVerified, userData.mobileVerified);
+        values.put(UserData.Key_EmailVerified, userData.emailVerified);
+        values.put(UserData.Key_RoleType, userData.roleType);
+        values.put(UserData.KEY_Token,userData.token);
+
 
 
         if (!isExist(userData)) {
@@ -137,7 +129,7 @@ public class UserDataHelper {
             db.insert(UserData.TABLE_NAME, null, values);
         } else {
             Utils.E("update successfully");
-            db.update(UserData.TABLE_NAME, values, UserData.KEY_USER_ID + "=" + userData.userId, null);
+            db.update(UserData.TABLE_NAME, values, UserData.KEY_StudentId + "=" + userData.studentId, null);
         }
         close();
     }
@@ -157,27 +149,20 @@ public class UserDataHelper {
             cursor.moveToLast();
             do {
                 UserData userData = new UserData();
-                userData.userId = cursor.getString(cursor.getColumnIndex(UserData.KEY_USER_ID));
-                userData.name = cursor.getString(cursor.getColumnIndex(UserData.KeyUserName));
-                userData.email = cursor.getString(cursor.getColumnIndex(UserData.KeyUserEmail));
-                userData.mobile = cursor.getString(cursor.getColumnIndex(UserData.KeyUserMobile));
-                userData.profilePic = cursor.getString(cursor.getColumnIndex(UserData.KEY_USER_Profile_PIC));
-                userData.token = cursor.getString(cursor.getColumnIndex(UserData.Key_Token));
-                userData.fcmId = cursor.getString(cursor.getColumnIndex(UserData.KEY_USER_fcm_id));
-                userData.deviceType = cursor.getString(cursor.getColumnIndex(UserData.KEY_USER_device_type));
-                userData.selfReferralCode = cursor.getString(cursor.getColumnIndex(UserData.KEY_selfReferralCode));
-                userData.registerReferralCode = cursor.getString(cursor.getColumnIndex(UserData.KEY_registerReferralCode));
-                userData.primeReferral = cursor.getString(cursor.getColumnIndex(UserData.KEY_primeReferral));
-                userData.primePlusReferral = cursor.getString(cursor.getColumnIndex(UserData.KEY_primePlusReferral));
-                userData.wallet = cursor.getString(cursor.getColumnIndex(UserData.KEY_wallet));
-                userData.cashback = cursor.getString(cursor.getColumnIndex(UserData.KEY_cashback));
-                userData.premiumBalance = cursor.getString(cursor.getColumnIndex(UserData.KEY_premiumBalance));
-                userData.referralCommission = cursor.getString(cursor.getColumnIndex(UserData.KEY_referralCommission));
-                userData.roleType = cursor.getString(cursor.getColumnIndex(UserData.KEY_roleType));
-                userData.userType = cursor.getString(cursor.getColumnIndex(UserData.KEY_userType));
-                userData.userCode = cursor.getString(cursor.getColumnIndex(UserData.KEY_userCode));
-                userData.userPin = cursor.getString(cursor.getColumnIndex(UserData.KEY_userPin));
-                userData.created_at = cursor.getString(cursor.getColumnIndex(UserData.KEY_created_at));
+               // userData.userId = cursor.getString(cursor.getColumnIndex(UserData.KEY_ID));
+                userData.studentId = cursor.getString(cursor.getColumnIndex(UserData.KEY_StudentId));
+                userData.studentName = cursor.getString(cursor.getColumnIndex(UserData.Key_StudentName));
+                userData.studentEmail = cursor.getString(cursor.getColumnIndex(UserData.Key_StudentEmail));
+                userData.studentMobileNo = cursor.getString(cursor.getColumnIndex(UserData.Key_StudentMobileNo));
+                userData.countryCode = cursor.getString(cursor.getColumnIndex(UserData.Key_CountryCode));
+                userData.countryName = cursor.getString(cursor.getColumnIndex(UserData.Key_CountryName));
+                userData.stateName = cursor.getString(cursor.getColumnIndex(UserData.Key_StateName));
+                userData.fcmId = cursor.getString(cursor.getColumnIndex(UserData.Key_FcmId));
+                userData.mobileVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_MobileVerified));
+                userData.emailVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_EmailVerified));
+                userData.roleType = cursor.getString(cursor.getColumnIndex(UserData.Key_RoleType));
+                userData.token=cursor.getString(cursor.getColumnIndex(UserData.KEY_Token));
+
                 userItem.add(userData);
 
             } while ((cursor.moveToPrevious()));

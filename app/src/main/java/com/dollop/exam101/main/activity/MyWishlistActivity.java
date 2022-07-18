@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivityMyWishlistBinding;
 import com.dollop.exam101.main.adapter.MyWishListAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
@@ -20,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyWishlistActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyWishlistActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = MyWishlistActivity.this;
     ActivityMyWishlistBinding binding;
     ArrayList<String> list = new ArrayList<>();

@@ -102,6 +102,8 @@
     <color name="LightestGreenBgColor">#F2FAF6</color>
     <color name="DarkGreenBgColor">#26A564</color>
     <color name="LightGrayishColor">#F3FFF3</color>
+    <color name="status_bar_color">#0D00984A</color>
+
 
 
 </resources>

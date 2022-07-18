@@ -1,44 +1,70 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
+import com.dollop.exam101.Basics.Database.UserData;
+import com.dollop.exam101.Basics.Database.UserDataHelper;
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityLoginBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.validation.ResultReturn;
+import com.dollop.exam101.main.validation.Validation;
+import com.dollop.exam101.main.validation.ValidationModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private static final int RC_SIGN_IN = 100;
     Activity activity;
     ActivityLoginBinding binding;
     GoogleSignInClient mGoogleSignInClient;
     ApiService apiservice;
+    String personName,personEmail;
+    List<ValidationModel> errorValidationModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // anil sir 15-07
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.status_bar_color));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
         super.onCreate(savedInstanceState);
-        /* setContentView(R.layout.activity_login);*/
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         activity = LoginActivity.this;
@@ -94,16 +120,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
-                String personName = acct.getDisplayName();
+                personName = acct.getDisplayName();
                 String personGivenName = acct.getGivenName();
                 String personFamilyName = acct.getFamilyName();
-                String personEmail = acct.getEmail();
+                 personEmail = acct.getEmail();
                 String personId = acct.getId();
                 Uri personPhoto = acct.getPhotoUrl();
                 Log.e(String.valueOf(activity), "handleSignInResult: " + personName);
-                Toast.makeText(this, "successfully Sing in", Toast.LENGTH_SHORT).show();
             }
-            startActivity(new Intent(activity, DashboardScreenActivity.class));
+            SocialLogin();
+           // startActivity(new Intent(activity, DashboardScreenActivity.class));
         } catch (ApiException e) {
             Log.e("massage", e.toString());
         }
@@ -115,32 +141,136 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view == binding.tvForgetPasswordId) {
             Utils.I(activity, ForgotPasswordActivity.class, null);
         } else if (view == binding.SignInId) {
-            Utils.I(activity, DashboardScreenActivity.class, null);
-            finish();
+            CheckValidationTask();
         } else if (view == binding.tvSignUp) {
             Utils.I(activity, SignUpActivity.class, null);
         }
     }
 
+    private void CheckValidationTask() {
+        errorValidationModels.clear();
+        errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserEmail, binding.etUserPassword));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail));
+        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etUserPassword));
+        Validation validation = Validation.getInstance();
+        ResultReturn resultReturn = validation.CheckValidation(activity, errorValidationModels);
+        if (resultReturn.aBoolean) {
+            userLogin();
+        } else {
+            // resultReturn.errorTextView.setVisibility(View.VISIBLE);
+            if (resultReturn.type == Validation.Type.EmptyString) {
+
+                //  resultReturn.errorTextView.setText(resultReturn.errorMessage);
+                Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
+            } else {
+                //   resultReturn.errorTextView.setText(validation.errorMessage);
+                validation.EditTextPointer.setError(validation.errorMessage);
+                validation.EditTextPointer.requestFocus();
+            }
+
+        }
+
+    }
+
     void userLogin() {
+        String fcmid = "";
         HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.studentEmail, binding.etUserEmail.getText().toString().trim());
+        hm.put(Constants.Key.password, binding.etUserPassword.getText().toString().trim());
+        hm.put(Constants.Key.fcmId, fcmid);
+
         apiservice.userLogin(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        Bundle bundle = new Bundle();
+                        assert response.body() != null;
+                        UserData userModel = response.body().userData;
+                      //  Utils.E("userModel::"+userModel);
+                       // Utils.E("UserDataHelper.getInstance()::"+UserDataHelper.getInstance());
+                        UserDataHelper.getInstance().insertData(userModel);
+                        Utils.I(activity, DashboardScreenActivity.class, bundle);
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }
 
-}
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            // remove focus from edit text on click outside
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                final boolean globalVisibleRect;
+                globalVisibleRect = v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
 
-/* if (v == binding.cvViewCart) {
-          Bundle bundle = new Bundle();
-          bundle.putString(Constants.From, Constants.Restaurant);
-          Utils.I(activity, DashboardActivity.class, bundle);
-        }*/
+    void SocialLogin() {
+        mGoogleSignInClient.signOut();
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put(Constants.Key.studentName, personName);
+        hashMap.put(Constants.Key.studentEmail, personEmail);
+        hashMap.put(Constants.Key.loginType, "Google");
+        hashMap.put(Constants.Key.fcmId, "asdasdasdsad");
+
+        apiservice.SocialLogin(hashMap).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        Utils.E("Google:::"+response.body().userData.studentId);
+                        assert response.body() != null;
+                        UserDataHelper.getInstance().insertData(response.body().userData);
+                        Utils.I_clear(activity, DashboardScreenActivity.class,null);
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.alert(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+}
