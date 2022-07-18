@@ -6,6 +6,7 @@ package com.dollop.exam101.Basics.UtilityTools;
  * Created by Anil on 9/4/2021.
  */
 public class Constants {
+    String Test = "Test";
 
     public interface Key {
         String TEXT_PLAIN_TYPE = "text/plain";
@@ -18,7 +19,6 @@ public class Constants {
         //Environment
         String Debug = "Debug";
         String Live = "Live";
-        String Test = "Test";
 
         //Bundle Constant and Keys
         String From = "From";
@@ -41,6 +41,7 @@ public class Constants {
 
         // Language
          String blank = "";
+         String Country_Id = "101";
          String english = "en";
 
 
@@ -67,6 +68,22 @@ public class Constants {
          String ClickSign = "ClickSign";
          String ClickProfile = "ClickProfile";
          String EditProfile = "EditProfile";
+         String Take_Photo = "Take Photo";
+         String Choose_From_Gallery = "Choose from Gallery";
+         String Exit = "Exit";
+         String FlagUp_Requires_Access_To_Camara = "FlagUp Requires Access to Camara.";
+         String FlagUp_Requires_Access_To_Your_Storage = "FlagUp Requires Access to Your Storage.";
+         String Need_Permissions = "Need Permissions";
+         String GOTO_SETTINGS = "GOTO SETTINGS";
+         String Package = "package";
+         String Cancel = "Cancel";
+         String Data = "data";
+         String Image_png = "image.png";
+         String Image = "image/*";
+         String All_Validation_Pass = "All Validation Pass";
+         String Google = "Google";
+
+
 
 
          String Man = "Man";

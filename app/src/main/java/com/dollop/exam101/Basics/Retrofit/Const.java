@@ -10,7 +10,8 @@ public class Const {
     public static String Development = Constants.Key.Debug;
     //Live
    // public static final String HOST_URL = "http://examoneOoneweb.dollopinfotech.com/";
-    public static final String HOST_URL = "http://exam101.dollopinfotech.com/";
+    //public static final String HOST_URL = "http://exam101.dollopinfotech.com/";
+    public static final String HOST_URL = "http://exam101stg.dollopinfotech.com/";
 
     //Versioning URL
     public static final String MAIN_HOST_URL = HOST_URL + "v12/";

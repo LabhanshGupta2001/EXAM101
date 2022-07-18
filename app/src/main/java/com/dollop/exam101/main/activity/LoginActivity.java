@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -173,6 +174,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     void userLogin() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         String fcmid = "";
         HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.studentEmail, binding.etUserEmail.getText().toString().trim());
@@ -182,6 +184,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         apiservice.userLogin(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+               progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
@@ -210,6 +213,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -234,6 +238,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     void SocialLogin() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         mGoogleSignInClient.signOut();
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.studentName, personName);
@@ -244,11 +249,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         apiservice.SocialLogin(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+            progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
-                        Utils.E("Google:::"+response.body().userData.studentId);
                         assert response.body() != null;
-                        UserDataHelper.getInstance().insertData(response.body().userData);
+                        UserDataHelper.getInstance().insertData(response.body().User);
                         Utils.I_clear(activity, DashboardScreenActivity.class,null);
 
                     } else {
@@ -269,6 +274,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

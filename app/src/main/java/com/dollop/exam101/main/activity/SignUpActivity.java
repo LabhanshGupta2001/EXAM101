@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -315,6 +316,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     void userSignup() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
         String fcmid = "";
         hm.put(Constants.Key.studentName, binding.etUserName.getText().toString().trim());
@@ -329,6 +331,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         apiservice.userSignup(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+             progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
@@ -337,11 +340,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                        if (response.code() != StatusCodeConstant.BAD_REQUEST) {
+                            if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                                Utils.T(activity, message.message);
+                                Utils.UnAuthorizationToken(activity);
+                            }
+                        } else {
                             Utils.T(activity, message.message);
-                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
-                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {
@@ -354,6 +359,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -366,6 +372,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         this.selectedCountryFlag = flag;
         binding.tvCountryCodeId.setText(selectedCountryCode);
         binding.tvSelectCountry.setText(selectedCountryName);
+        binding.tvSelectState.setText(Constants.Key.blank);
         Picasso.get().load(Const.FLAG_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
         bottomSheetDialog.dismiss();
     }
@@ -394,18 +401,21 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     void SocialLogin() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         mGoogleSignInClient.signOut();
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.studentName, personName);
         hashMap.put(Constants.Key.studentEmail, personEmail);
-        hashMap.put(Constants.Key.loginType, "Google");
+        hashMap.put(Constants.Key.loginType, Constants.Key.Google);
         hashMap.put(Constants.Key.fcmId, "asdasdasdsad");
 
         apiservice.SocialLogin(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+             progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
                         Utils.E("Google:::"+response.body().userData.studentId);
                         assert response.body() != null;
                         UserDataHelper.getInstance().insertData(response.body().userData);
@@ -414,10 +424,12 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                        if (response.code() != StatusCodeConstant.BAD_REQUEST) {
+                            if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                                Utils.T(activity, message.message);
+                            }
+                        } else {
                             Utils.alert(activity, message.message);
-                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
                         }
                     }
                 } catch (Exception e) {
@@ -429,6 +441,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

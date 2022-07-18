@@ -21,6 +21,7 @@ public class SavedData {
     private static final String latitude = "latitude";
     private static final String longitude = "longitude";
     private static final String CountryKey = "CountryKey";
+    private static final String CountryId = "CountryId";
     public static SharedPreferences getInstance() {
         if (prefs == null) {
             prefs = PreferenceManager.getDefaultSharedPreferences(AppController.getInstance());
@@ -66,6 +67,14 @@ public class SavedData {
     public static void saveReferralCode(String token) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(ReferralCode, token);
+        editor.apply();
+    }
+    public static String getCountryId() {
+        return getInstance().getString(CountryId, Constants.Key.Country_Id);
+    }
+    public static void saveCountryId(String Id) {
+        SharedPreferences.Editor editor = getInstance().edit();
+        editor.putString(CountryId, Id);
         editor.apply();
     }
 
