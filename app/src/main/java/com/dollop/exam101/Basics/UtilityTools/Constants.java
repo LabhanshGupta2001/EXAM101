@@ -6,66 +6,81 @@ package com.dollop.exam101.Basics.UtilityTools;
  * Created by Anil on 9/4/2021.
  */
 public class Constants {
-    public static final String TEXT_PLAIN_TYPE = "text/plain";
-    public static final String CONTENT_IMAGE = "image/jpeg";
-    public static final String CONTENT_ALL_IMAGE = "image/*";
-    public static final String IMAGE_JPEG = ".jpeg";
-    public static final int Unauthorized = 401;
-    public static final String currency = "₹";
 
-    //Environment
-    public static final String Debug = "Debug";
-    public static final String Live = "Live";
-    public static final String Test = "Test";
+    public interface Key {
+        String TEXT_PLAIN_TYPE = "text/plain";
+        String CONTENT_IMAGE = "image/jpeg";
+        String CONTENT_ALL_IMAGE = "image/*";
+        String IMAGE_JPEG = ".jpeg";
+        int Unauthorized = 401;
+        String currency = "₹";
 
-    //Bundle Constant and Keys
-    public static final String From = "From";
-    public static final String For = "For";
+        //Environment
+        String Debug = "Debug";
+        String Live = "Live";
+        String Test = "Test";
 
-    //Parameters
-    public static final String Authorization = "Authorization";
+        //Bundle Constant and Keys
+        String From = "From";
+        String For = "For";
 
-    //Firebase
-    public static final String Notification = "Notification";
-    public static final String operatorType = "operator_type";
-    public static final String simType = "sim_type";
+        //Parameters
+        String Authorization = "Authorization";
 
-    //Action Firebase
-    public static final String action = "action";
-    public static final String payload = "payload";
-    public static final String data = "data";
-    public static final String message = "message";
-    public static final String title = "title";
+        //Firebase
+        String Notification = "Notification";
+        String operatorType = "operator_type";
+        String simType = "sim_type";
 
-    // Language
-    public static String blank = "";
-    public static String english = "en";
+        //Action Firebase
+        String action = "action";
+        String payload = "payload";
+        String data = "data";
+        String message = "message";
+        String title = "title";
 
-
-    public static String Normal = "Normal";
-    public static String socialLogin = "socialLogin";
-    public static String Android = "Android";
-    public static String mobile = "mobile";
-    public static String otp = "otp";
-    public static String fcm_id = "fcm_id";
-    public static String device_type = "device_type";
-    public static String email = "email";
-    public static String full_name = "full_name";
-    public static String No = "No";
-    public static String Yes = "Yes";
+        // Language
+         String blank = "";
+         String english = "en";
 
 
-    public static String Man = "Man";
-    public static String Woman = "Woman";
-    public static String Transgender = "Transgender";
-    public static String Nonbinary = "Non-binary / Non-Conforming";
-    public static String Prefer_not_to_respond = "Prefer not to respond";
-    public static String dob = "dob";
-    public static String profilePic = "profilePic";
-    public static String gender = "gender";
-    public static String userBio = "userBio";
-    public static String LoginSignup = "LoginSignup";
-    public static String Register = "Register";
+         String Normal = "Normal";
+         String socialLogin = "socialLogin";
+         String Android = "Android";
+         String studentMobileNo = "studentMobileNo";
+         String countryCode = "countryCode";
+         String countryName = "countryName";
+         String stateName = "stateName";
+         String password = "password";
+         String otp = "otp";
+         String fcmId = "fcmId";
+         String device_type = "device_type";
+         String studentEmail = "studentEmail";
+         String loginType = "loginType";
+         String studentName = "studentName";
+         String No = "No";
+         String Yes = "Yes";
+         String newPassword = "newPassword";
+         String confirmPassword = "confirmPassword";
+         String oldPassword = "oldPassword";
+         String Login = "Login";
+         String ClickSign = "ClickSign";
+         String ClickProfile = "ClickProfile";
+         String EditProfile = "EditProfile";
 
+
+         String Man = "Man";
+         String Woman = "Woman";
+         String Transgender = "Transgender";
+         String Nonbinary = "Non-binary / Non-Conforming";
+         String Prefer_not_to_respond = "Prefer not to respond";
+         String dob = "dob";
+         String profilePic = "profilePic";
+         String gender = "gender";
+         String userBio = "userBio";
+         String LoginSignup = "LoginSignup";
+         String Register = "Register";
+
+    }
 
 }

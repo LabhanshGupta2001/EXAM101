@@ -30,6 +30,7 @@ import com.dollop.exam101.Basics.Database.UserData;
 import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.R;
+import com.dollop.exam101.main.activity.LoginActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -63,6 +64,10 @@ public class Utils {
     }
 
 
+    public static void UnAuthorizationToken(Context cx) {
+        UserDataHelper.getInstance().deleteAll();
+        I_clear(cx, LoginActivity.class, null);
+    }
 
 
     public static void Picasso(String Url, ImageView imageView, int dummy) {
@@ -229,7 +234,7 @@ public class Utils {
     }
 
     public static void E(String msg) {
-        if (Const.Development.equals(Constants.Debug))
+        if (Const.Development.equals(Constants.Key.Debug))
             Log.e("Log.E", msg);
     }
     public static int DetectUIMode(Activity activity) {

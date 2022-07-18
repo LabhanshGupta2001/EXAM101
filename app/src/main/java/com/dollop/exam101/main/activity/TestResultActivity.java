@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityTestResultBinding;
 import com.dollop.exam101.main.adapter.TestResultAdapter;
@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TestResultActivity extends AppCompatActivity implements View.OnClickListener {
+public class TestResultActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = TestResultActivity.this;
     ActivityTestResultBinding binding;
     ArrayList<String> list = new ArrayList<>();

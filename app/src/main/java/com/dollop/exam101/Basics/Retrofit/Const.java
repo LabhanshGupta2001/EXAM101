@@ -7,21 +7,22 @@ import com.dollop.exam101.Basics.UtilityTools.Constants;
 public class Const {
 
     //Environment  **NOTE**  Change "Live" With "Debug"  When Going Live
-    public static String Development = Constants.Debug;
+    public static String Development = Constants.Key.Debug;
     //Live
-    public static final String HOST_URL = "http://examoneOoneweb.dollopinfotech.com/";
+   // public static final String HOST_URL = "http://examoneOoneweb.dollopinfotech.com/";
+    public static final String HOST_URL = "http://exam101.dollopinfotech.com/";
 
     //Versioning URL
     public static final String MAIN_HOST_URL = HOST_URL + "v12/";
 
 
-    public static final String FLAG_URL = "https://countryflagsapi.com/png/";
+    public static final String  FLAG_URL = "https://countryflagsapi.com/png/";
 
     public static final String get_otp = "get_otp";
     public static final String match_otp = "match_otp";
     public static final String social_login = "social_login";
-    public static final String user_signup = "user_signup";
-    public static final String user_login = "user_login";
+    public static final String registrationApi = "registrationApi";
+    public static final String loginApi = "loginApi";
     public static final String update_details = "update_details";
     public static final String get_search_history = "get_search_history";
     public static final String get_flex_box = "get_flex_box";
@@ -45,7 +46,8 @@ public class Const {
     public static final String purchase = "purchase";
     public static final String transaction = "transaction";
     public static final String getUserProfileApi = "getUserProfileApi";
-    public static final String country_code = "country_code.json";
+    public static final String getCountryListApi = "getCountryListApi";
+    public static final String getStateListApi = "getStateListApi";
     public static final String aboutUs = "aboutUs";
     public static final String getBankProfile = "getBankProfile";
     public static final String getBankUserDetails = "getBankUserDetails";
@@ -57,7 +59,7 @@ public class Const {
     public static final String getCategory = "getCategory";
     public static final String getCategoryDetails = "getCategoryDetails";
     public static final String getCategoryFilter = "getCategoryFilter";
-    public static final String ChangePassword = "ChangePassword";
+    public static final String changePasswordApi = "changePasswordApi";
     public static final String ContactUs = "ContactUs";
     public static final String getCourseList = "getCourseList";
     public static final String getCourseDetails = "getCourseDetails";
@@ -65,9 +67,11 @@ public class Const {
     public static final String getCourseMaterialList = "getCourseMaterialList";
     public static final String getMyPackagesList = "getMyPakagesList";
     public static final String getFaqsList = "getFaqsList";
-    public static final String getEditProfileDetails = "getEditProfileDetails";
-    public static final String EditProfileImage = "EditProfileImage";
-    public static final String ForgetPassword = "ForgetPassword";
+    public static final String getProfileDetailApi = "getProfileDetailApi";
+    public static final String updateProfileApi = "updateProfileApi";
+    public static final String socialLoginApi = "socialLoginApi";
+
+    public static final String forgotPasswordApi = "forgotPasswordApi";
     public static final String getPackageDetails = "getPakageDetails";
     public static final String getPackageDetailsCourseMaterial = "getPackageDetailsCourseMaterial";
     public static final String getPackageDetailsMockTestList = "getPackageDetailsMockTestList";
@@ -77,8 +81,5 @@ public class Const {
     public static final String CategoriesList = "CategoriesList";
     public static final String CategoriesAllBlogsList = "CategoriesAllBlogsList";
     public static final String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
-
-
-
     public static final String updateUserProfileApi = "updateUserProfileApi";
 }

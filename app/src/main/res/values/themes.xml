@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.examoneOone" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.examoneOone" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme</item>
         <item name="colorPrimaryDark">@color/theme</item>
@@ -19,6 +19,7 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
         <!-- Customize your theme here. -->
     </style>
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/ic_rectangle"
+    android:background="@drawable/login_gradient"
     android:orientation="vertical"
     tools:context=".main.activity.OtpVerificationActivity">
 
@@ -17,128 +17,125 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_back"
             android:contentDescription="@string/image"
-            />
+            android:src="@drawable/ic_back" />
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_120sdp"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_examicon"
             android:contentDescription="@string/image"
-            />
+            android:src="@drawable/ic_examicon" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.50"
         android:layout_marginTop="@dimen/_12sdp"
+        android:layout_weight="1.50"
         android:background="@drawable/bottom_sheet_back"
         android:elevation="@dimen/_2sdp"
         android:orientation="vertical">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/SuperFullBlackTextStyle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/gothic_bold"
+            android:layout_marginTop="@dimen/_16sdp"
             android:gravity="center"
-            android:text="@string/otp" />
+            android:orientation="horizontal">
 
-        <TextView
-            style="@style/SuperThemeHeadingTextStyle"
-            android:layout_width="wrap_content"
+            <TextView
+                style="@style/SuperFullBlackTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gothic_bold"
+                android:gravity="center"
+                android:text="@string/otp" />
+
+            <TextView
+                style="@style/SuperThemeHeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/gothic_bold"
+                android:text="@string/verification" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:fontFamily="@font/gothic_bold"
-            android:text="@string/verification" />
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                style="@style/TernarySubTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/inter_regular"
+                android:gravity="center"
+                android:text="@string/kindly_check_your" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+            <TextView
+                style="@style/TernaryLightTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/inter_regular"
+                android:gravity="center"
+                android:text="@string/xyz_gmail_com" />
+        </LinearLayout>
 
         <TextView
             style="@style/TernarySubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_6sdp"
             android:fontFamily="@font/inter_regular"
-            android:gravity="center"
-            android:text="@string/kindly_check_your" />
+            android:text="@string/inbox_or_spam_folder_for_otp" />
 
-        <TextView
-            style="@style/TernaryLightTextStyle"
+
+        <com.chaos.view.PinView
+            android:id="@+id/PinView"
+            style="@style/PinWidget.PinView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:fontFamily="@font/inter_regular"
-            android:gravity="center"
-            android:text="@string/xyz_gmail_com" />
-    </LinearLayout>
-
-    <TextView
-        style="@style/TernarySubTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:fontFamily="@font/inter_regular"
-        android:text="@string/inbox_or_spam_folder_for_otp" />
-
-
-    <com.chaos.view.PinView
-        android:id="@+id/PinView"
-        style="@style/PinWidget.PinView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:cursorVisible="true"
-        android:elevation="@dimen/_2sdp"
-        android:fontFamily="@font/inter_semibold"
-        android:inputType="number"
-        android:itemBackground="@drawable/selector_background_color"
-        android:hint="@string/_5305"
-        app:cursorWidth="2dp"
-        app:hideLineWhenFilled="true"
-        app:itemCount="4"
-        app:itemHeight="@dimen/_50sdp"
-        app:itemRadius="@dimen/_6sdp"
-        app:itemSpacing="@dimen/_15sdp"
-        app:itemWidth="@dimen/_50sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNumber"
-        app:lineColor="@drawable/selector_line_color"
-        app:lineWidth="2dp"
-        app:viewType="rectangle" />
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:cursorVisible="true"
+            android:elevation="@dimen/_2sdp"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="@string/_5305"
+            android:inputType="number"
+            android:itemBackground="@drawable/selector_background_color"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="true"
+            app:itemCount="4"
+            app:itemHeight="@dimen/_50sdp"
+            app:itemRadius="@dimen/_6sdp"
+            app:itemSpacing="@dimen/_15sdp"
+            app:itemWidth="@dimen/_50sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumber"
+            app:lineColor="@drawable/selector_line_color"
+            app:lineWidth="2dp"
+            app:viewType="rectangle" />
 
         <TextView
             android:id="@+id/VerifyOTP_Id"
             style="@style/TernaryWhiteTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:elevation="@dimen/_2sdp"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:background="@drawable/theme_stroke_background"
             android:backgroundTint="@color/theme"
+            android:elevation="@dimen/_2sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
             android:padding="@dimen/_12sdp"

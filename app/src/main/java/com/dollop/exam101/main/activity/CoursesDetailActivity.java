@@ -1,16 +1,13 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCoursesDetailBinding;
 import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
@@ -21,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CoursesDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class CoursesDetailActivity extends BaseActivity implements View.OnClickListener {
 
     Activity activity = CoursesDetailActivity.this;
     ActivityCoursesDetailBinding binding;
@@ -40,7 +37,7 @@ public class CoursesDetailActivity extends AppCompatActivity implements View.OnC
 
     void init() {
 
-        apiService= RetrofitClient.getClient();
+        apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
         binding.btnNext.setOnClickListener(this);
 
@@ -56,7 +53,7 @@ public class CoursesDetailActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private void getCourseDetails(){
+    private void getCourseDetails() {
         apiService.getCourseDetails("").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
@@ -71,8 +68,8 @@ public class CoursesDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void showBottomSheetDialog() {
-        
-        bottomSheetDialog =new BottomSheetDialog(activity);
+
+        bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetPracticeTestBinding = BottomSheetPracticeTestBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetPracticeTestBinding.getRoot());
 
@@ -83,7 +80,7 @@ public class CoursesDetailActivity extends AppCompatActivity implements View.OnC
 
         bottomSheetPracticeTestBinding.tvBtnPracticeTest.setOnClickListener(view ->
         {
-           Utils.I(activity,CourseTestActivity.class,null);
+            Utils.I(activity, CourseTestActivity.class, null);
         });
 
     }

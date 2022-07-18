@@ -4,23 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivityAffiliatePurchaseListBinding;
 import com.dollop.exam101.databinding.BottomSheetAffiliatePurchaseListBinding;
-import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.fragment.PurchaseListFragment;
 import com.dollop.exam101.main.fragment.TransactionHistoryFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
-public class AffiliatePurchaseListActivity extends AppCompatActivity implements View.OnClickListener {
+public class AffiliatePurchaseListActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = AffiliatePurchaseListActivity.this;
     ActivityAffiliatePurchaseListBinding binding;
     BottomSheetDialog bottomSheetDialog;
@@ -51,7 +48,7 @@ public class AffiliatePurchaseListActivity extends AppCompatActivity implements 
 
         /* TabLayout tabLayout = binding.tabLayout;
           ViewPager2 viewPager2 = binding.vpLaunchId;*/
-          binding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
+        binding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
 
         new TabLayoutMediator(binding.tabLayout, binding.vpLaunchId, (tab, position) -> {
             tab.setText(title.get(position));
@@ -60,9 +57,9 @@ public class AffiliatePurchaseListActivity extends AppCompatActivity implements 
 
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack){
+        if (view == binding.ivBack) {
             onBackPressed();
-        } else if (view == binding.tvFilter){
+        } else if (view == binding.tvFilter) {
             bottomSheetFilterTask();
         }
     }

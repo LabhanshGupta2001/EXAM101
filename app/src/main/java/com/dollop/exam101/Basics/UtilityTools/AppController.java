@@ -56,7 +56,6 @@ public class AppController extends Application {
         return connected;
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();

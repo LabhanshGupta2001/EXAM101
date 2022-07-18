@@ -1,20 +1,17 @@
 package com.dollop.exam101.main.activity;
 
-import static com.dollop.exam101.Basics.UtilityTools.AppController.getContext;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCoursesMaterialBinding;
 import com.dollop.exam101.main.adapter.CourseMaterialSubjectAdapter;
-import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.ArrayList;
@@ -23,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CoursesMaterial extends AppCompatActivity implements View.OnClickListener {
+public class CoursesMaterial extends BaseActivity implements View.OnClickListener {
     Activity activity = CoursesMaterial.this;
     ActivityCoursesMaterialBinding binding;
     ArrayList<String> list = new ArrayList<>();
@@ -43,7 +40,7 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
 
     void init() {
 
-        apiService= RetrofitClient.getClient();
+        apiService = RetrofitClient.getClient();
 
         setProgress();
         getCourseList();
@@ -69,9 +66,8 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack)
-        {
-            Utils.I(activity,CourseListActivity.class,null);
+        if (view == binding.ivBack) {
+            Utils.I(activity, CourseListActivity.class, null);
             finish();
         }
     }
@@ -79,11 +75,11 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Utils.I(activity,CourseListActivity.class,null);
+        Utils.I(activity, CourseListActivity.class, null);
         finish();
     }
 
-    private void getCourseMaterialProgressBar(){
+    private void getCourseMaterialProgressBar() {
         apiService.getCourseMaterialProgressBar("").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
@@ -96,7 +92,8 @@ public class CoursesMaterial extends AppCompatActivity implements View.OnClickLi
             }
         });
     }
-    private void getCourseMaterialList(){
+
+    private void getCourseMaterialList() {
         apiService.getCourseMaterialList("").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {

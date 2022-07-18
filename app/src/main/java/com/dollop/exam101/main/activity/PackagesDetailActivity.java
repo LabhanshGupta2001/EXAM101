@@ -1,14 +1,14 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
+
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PackagesDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class PackagesDetailActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = PackagesDetailActivity.this;
     ActivityPackagesDetailBinding binding;
     ApiService apiService;
@@ -59,11 +59,12 @@ public class PackagesDetailActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        if(view==binding.ivBack){
+        if (view == binding.ivBack) {
             onBackPressed();
         }
     }
-    private void getPakageDetails(){
+
+    private void getPakageDetails() {
         apiService.getPakageDetails("").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {

@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityMockTestQuestionsBinding;
 import com.dollop.exam101.databinding.BottomSheetQuitExamBinding;
@@ -16,7 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
-public class MockTestQuestionsActivity extends AppCompatActivity implements View.OnClickListener {
+public class MockTestQuestionsActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = MockTestQuestionsActivity.this;
     ActivityMockTestQuestionsBinding binding;
     BottomSheetDialog quitTestDialog;
@@ -45,7 +44,7 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
 
     private void init() {
         setBottomSheet();
-        apiService= RetrofitClient.getClient();
+        apiService = RetrofitClient.getClient();
         binding.tvQuitExam.setOnClickListener(this);
         binding.tvButtonSubmit.setOnClickListener(this);
         binding.mcvMoveBack.setOnClickListener(this);
@@ -82,7 +81,8 @@ public class MockTestQuestionsActivity extends AppCompatActivity implements View
         bottomSheetQuitExamBinding = BottomSheetQuitExamBinding.inflate(getLayoutInflater());
         quitTestDialog.setContentView(bottomSheetQuitExamBinding.getRoot());
     }
-    void submit(){
+
+    void submit() {
 
     }
 }

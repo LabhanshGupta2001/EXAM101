@@ -7,16 +7,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityWelcomeBinding;
 import com.dollop.exam101.main.adapter.WelcomeAdapter;
 
-public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class WelcomeActivity extends BaseActivity implements View.OnClickListener {
     Activity activity;
     ActivityWelcomeBinding binding;
 
@@ -32,17 +32,17 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 //        setContentView(R.layout.activity_onboard_screen);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        activity= WelcomeActivity.this;
+        activity = WelcomeActivity.this;
         init();
 
-       viewPager = (ViewPager) findViewById(R.id.viewPager);
-        WelcomeAdapter onboardAdapter=new WelcomeAdapter(this);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        WelcomeAdapter onboardAdapter = new WelcomeAdapter(this);
         viewPager.setAdapter(onboardAdapter);
 
         dotscount = onboardAdapter.getCount();
         dots = new ImageView[dotscount];
 
-        for(int i = 0; i < dotscount; i++){
+        for (int i = 0; i < dotscount; i++) {
 
             dots[i] = new ImageView(this);
             dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active_dot));
@@ -51,7 +51,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
             params.setMargins(8, 0, 8, 0);
 
-            Log.e("TAG", "onCreate: dot"+dots[i]+ "params"+params+" slid "+sliderDotspanel );
+            Log.e("TAG", "onCreate: dot" + dots[i] + "params" + params + " slid " + sliderDotspanel);
             binding.SliderDots.addView(dots[i], params);
 
         }
@@ -67,7 +67,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onPageSelected(int position) {
 
-                for(int i = 0; i< dotscount; i++){
+                for (int i = 0; i < dotscount; i++) {
                     dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.non_active_dot));
                 }
 
@@ -82,19 +82,16 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         });
 
 
-
-
-
-
     }
-    private  void init(){
+
+    private void init() {
         binding.GetStartId.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if(view==binding.GetStartId) {
-            Utils.I(WelcomeActivity.this, LoginActivity.class,null);
+        if (view == binding.GetStartId) {
+            Utils.I(WelcomeActivity.this, LoginActivity.class, null);
             finish();
         }
     }

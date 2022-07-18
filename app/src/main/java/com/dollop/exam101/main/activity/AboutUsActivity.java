@@ -1,14 +1,12 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
-import com.dollop.exam101.R;
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivityAboutUsBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 
@@ -16,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AboutUsActivity extends AppCompatActivity implements View.OnClickListener {
+public class AboutUsActivity extends BaseActivity implements View.OnClickListener {
 
     Activity activity = AboutUsActivity.this;
     ActivityAboutUsBinding binding;

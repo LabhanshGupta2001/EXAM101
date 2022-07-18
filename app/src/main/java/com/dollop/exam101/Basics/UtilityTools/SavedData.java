@@ -20,6 +20,7 @@ public class SavedData {
     private static SharedPreferences prefs;
     private static final String latitude = "latitude";
     private static final String longitude = "longitude";
+    private static final String CountryKey = "CountryKey";
     public static SharedPreferences getInstance() {
         if (prefs == null) {
             prefs = PreferenceManager.getDefaultSharedPreferences(AppController.getInstance());
@@ -27,7 +28,7 @@ public class SavedData {
         return prefs;
     }
     public static String getLanguage() {
-        return getInstance().getString(Language, Constants.english);
+        return getInstance().getString(Language, Constants.Key.english);
     }
     public static void saveLanguage(String role) {
         SharedPreferences.Editor editor = getInstance().edit();
@@ -42,16 +43,25 @@ public class SavedData {
         editor.apply();
     }
     public static String getFirebaseToken() {
-        return getInstance().getString(FirebaseToken, Constants.blank);
+        return getInstance().getString(FirebaseToken, Constants.Key.blank);
     }
     public static void saveFirebaseToken(String token) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(FirebaseToken, token);
         editor.apply();
     }
+    public static String getCountryKey() {
+        return getInstance().getString(CountryKey, Constants.Key.blank);
+    }
+
+    public static void saveCountryKey(String key) {
+        SharedPreferences.Editor editor = getInstance().edit();
+        editor.putString(CountryKey, key);
+        editor.apply();
+    }
 
     public static String getReferralCode() {
-        return getInstance().getString(ReferralCode, Constants.blank);
+        return getInstance().getString(ReferralCode, Constants.Key.blank);
     }
     public static void saveReferralCode(String token) {
         SharedPreferences.Editor editor = getInstance().edit();

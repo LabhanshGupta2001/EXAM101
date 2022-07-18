@@ -1,22 +1,21 @@
 package com.dollop.exam101.main.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
+
+import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivityMockTestHistoryBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
 import com.dollop.exam101.main.fragment.AllResultsFragment;
-import com.dollop.exam101.main.fragment.CategoryHomeFragment;
 import com.dollop.exam101.main.fragment.PerformanceFragment;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 
-public class MockTestHistoryActivity extends AppCompatActivity implements View.OnClickListener {
+public class MockTestHistoryActivity extends BaseActivity implements View.OnClickListener {
 
     MockTestViewPagerAdapter mockTestViewPagerAdapter;
     Activity activity = MockTestHistoryActivity.this;
@@ -49,8 +48,7 @@ public class MockTestHistoryActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack)
-        {
+        if (view == binding.ivBack) {
             onBackPressed();
         }
     }

@@ -72,24 +72,24 @@ public class AppHelper {
 
     public static MultipartBody.Part prepareFilePart(Context context, String partName, Uri fileUri) {
         RequestBody requestBody =
-                RequestBody.create( getFileDataFromDrawable(context, fileUri), MediaType.parse(Constants.CONTENT_IMAGE));
-        return MultipartBody.Part.createFormData(partName, "Image"+Constants.IMAGE_JPEG, requestBody);
+                RequestBody.create( getFileDataFromDrawable(context, fileUri), MediaType.parse(Constants.Key.CONTENT_IMAGE));
+        return MultipartBody.Part.createFormData(partName, "Image"+Constants.Key.IMAGE_JPEG, requestBody);
     }
 
     public static MultipartBody.Part prepareFilePart(String partName, Drawable fileUri) {
         RequestBody requestBody =
-                RequestBody.create(getFileDataFromDrawable(fileUri), MediaType.parse(Constants.CONTENT_IMAGE));
-        return MultipartBody.Part.createFormData(partName, "Image"+Constants.IMAGE_JPEG, requestBody);
+                RequestBody.create(getFileDataFromDrawable(fileUri), MediaType.parse(Constants.Key.CONTENT_IMAGE));
+        return MultipartBody.Part.createFormData(partName, "Image"+Constants.Key.IMAGE_JPEG, requestBody);
     }
 
     public static MultipartBody.Part prepareFilePart(Context context, String partName, int fileUri) {
         RequestBody requestBody =
-                RequestBody.create(getBitmapFromVectorDrawable(context, fileUri), MediaType.parse(Constants.CONTENT_IMAGE));
-        return MultipartBody.Part.createFormData(partName, "Image"+Constants.IMAGE_JPEG, requestBody);
+                RequestBody.create(getBitmapFromVectorDrawable(context, fileUri), MediaType.parse(Constants.Key.CONTENT_IMAGE));
+        return MultipartBody.Part.createFormData(partName, "Image"+Constants.Key.IMAGE_JPEG, requestBody);
     }
 
     public static MultipartBody.Part prepareFilePart(String partName) {
-        RequestBody requestBody = RequestBody.create("", MediaType.parse(Constants.CONTENT_IMAGE));
+        RequestBody requestBody = RequestBody.create("", MediaType.parse(Constants.Key.CONTENT_IMAGE));
 
         return MultipartBody.Part.createFormData(partName, "", requestBody);
     }
