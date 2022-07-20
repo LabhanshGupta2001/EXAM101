@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/BottomSheetBackStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llTransparent"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:gravity="bottom"
-        android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvLine"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_5sdp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/_8sdp"
-            app:cardBackgroundColor="@color/lightgrey"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="1dp" />
-    </LinearLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvLine"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_5sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:cardBackgroundColor="@color/lightgrey"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="1dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/llTransparent"
+        android:layout_below="@+id/mcvLine"
         android:background="@drawable/bottom_curve_background"
-        android:paddingBottom="@dimen/_15sdp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_15sdp">
 
         <LinearLayout
             android:id="@+id/llFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/_12sdp">
 
@@ -61,12 +58,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_11sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
+                android:textAlignment="center"
+                android:visibility="gone"
                 app:tabBackground="@drawable/tabselector"
                 app:tabIndicatorHeight="0dp"
                 app:tabRippleColor="@null"
                 app:tabSelectedTextColor="@color/white"
-                android:textAlignment="center"
-                app:tabTextAppearance="@style/TabTextStyle"/>
+                app:tabTextAppearance="@style/TabTextStyle" />
 
         </LinearLayout>
 
@@ -76,7 +74,33 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/llApply"
             android:layout_below="@+id/llFilter"
-            android:layout_marginHorizontal="@dimen/_12sdp" />
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:visibility="gone" />
+
+        <SearchView
+            android:id="@+id/searchViewId"
+            style="@style/QuaternaryTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/llFilter"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:background="@drawable/input_custom"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/inter_medium"
+            android:iconifiedByDefault="false"
+            android:queryBackground="@null"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:queryHint="Search Blogs Category"
+            android:singleLine="true"
+            android:textColorHint="@color/sub_text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAuthorSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/searchViewId"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:overScrollMode="never" />
 
         <LinearLayout
             android:id="@+id/llApply"
@@ -86,7 +110,8 @@
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_9sdp"
             android:background="@drawable/theme_backround"
-            android:gravity="center">
+            android:gravity="center"
+            android:visibility="gone">
 
             <TextView
                 style="@style/TernaryWhiteTextStyle"

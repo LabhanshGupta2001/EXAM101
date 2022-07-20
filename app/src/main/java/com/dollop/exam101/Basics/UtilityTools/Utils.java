@@ -15,6 +15,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.Base64;
 import android.util.Log;
@@ -31,6 +32,7 @@ import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.R;
 import com.dollop.exam101.main.activity.LoginActivity;
+import com.dollop.exam101.main.model.CurrentCountryModel;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -45,6 +47,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import io.michaelrocks.libphonenumber.android.PhoneNumberUtil;
 
 
 public class Utils {
@@ -216,6 +220,14 @@ public class Utils {
         return key;
     }
 
+    public static CurrentCountryModel getDefaultCountryCode(Context context) {
+        PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.createInstance(context);
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String countryCodeValue = tm.getNetworkCountryIso();
+        Locale locale = new Locale("en", countryCodeValue);
+        String countryName = locale.getDisplayCountry();
+        return new CurrentCountryModel(countryCodeValue.toUpperCase(),"+"+phoneNumberUtil.getCountryCodeForRegion(countryCodeValue.toUpperCase()),countryName);
+    }
 
     public static void I_finish(Context cx, Class<?> startActivity, Bundle data) {
         Intent i = new Intent(cx, startActivity);

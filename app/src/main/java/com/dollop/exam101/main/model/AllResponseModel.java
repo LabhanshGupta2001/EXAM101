@@ -35,8 +35,27 @@ public class AllResponseModel {
     @Expose
     public UserData userData;
 
+    @SerializedName("User")
+    @Expose
+    public UserData User;
+
     @SerializedName("studentData")
     @Expose
     public UserData studentData;
 
+    @SerializedName("blogsCat")
+    @Expose
+    public List<BlogListHeadingModel> blogsCat = null;
+
+    @SerializedName("blogs")
+    @Expose
+    public List<AllBlogListModel> blogs = null;
+
+    @SerializedName("blog")
+    @Expose
+    public AllBlogListModel blog;
+
+    @SerializedName("privacy")
+    @Expose
+    public Privacy privacy;
 }

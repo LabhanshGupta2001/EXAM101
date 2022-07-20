@@ -1,6 +1,16 @@
 package com.dollop.exam101.main.model;
 
-public class BlogListHeadingModel {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public String Heading;
+public class BlogListHeadingModel {
+    @SerializedName("blogCatId")
+    @Expose
+    public String blogCatId;
+    @SerializedName("blogCatUrlSlug")
+    @Expose
+    public String blogCatUrlSlug;
+    @SerializedName("blogCatName")
+    @Expose
+    public String blogCatName;
 }

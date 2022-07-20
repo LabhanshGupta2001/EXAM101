@@ -2,24 +2,21 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.OnRecycleViewItemCountryClick;
 import com.dollop.exam101.Basics.UtilityTools.SavedData;
-import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.CountryAdapterBinding;
 import com.dollop.exam101.main.activity.EditProfileActivity;
-import com.dollop.exam101.main.activity.LoginActivity;
 import com.dollop.exam101.main.activity.SignUpActivity;
 import com.dollop.exam101.main.model.CountryModel;
 import com.squareup.picasso.Picasso;
@@ -27,21 +24,20 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder> {
-    public String countryKey,Where;
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder> implements Filterable {
+    public String countryKey, Where;
     Context context;
     List<CountryModel> countryList;
+    List<CountryModel> filterList;
     int Position = 0;
 
 
-    public CountryAdapter(Context activity, ArrayList<CountryModel> contryItemArrayList,String from,String From){
+    public CountryAdapter(Context activity, ArrayList<CountryModel> contryItemArrayList, String CountryCode, String From) {
         this.context = activity;
         this.countryList = contryItemArrayList;
-        countryKey = from;
+        this.filterList = contryItemArrayList;
+        countryKey = CountryCode;
         Where = From;
-        Utils.E("cl" + countryList.size());
-        Utils.E("cIl" + contryItemArrayList.size());
-        Utils.E("cIllll" + countryKey);
     }
 
     @NonNull
@@ -51,50 +47,74 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         return new ViewHolder(binding);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
-        CountryModel itemCountry = countryList.get(position);
-
-
+        CountryModel itemCountry = filterList.get(position);
         holder.binding.etCodeId.setText(itemCountry.phoneCode);
         holder.binding.tvNameId.setText(itemCountry.countryName);
-        Picasso.get().load(Const.FLAG_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivCountryFlags);
-        Picasso.get().load(Const.FLAG_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivStartCountryFlags);
-
-        if (TextUtils.equals("Login",Where)){
-            holder.binding.llItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Position = holder.getAdapterPosition();
-                    notifyDataSetChanged();
-                    ((SignUpActivity)context).onCountrySelected(itemCountry.countryId,itemCountry.phoneCode,itemCountry.countryName,itemCountry.flag);
-                }
-            });
-        } else if (TextUtils.equals("EditProfile",Where)){
-            holder.binding.llItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Position = holder.getAdapterPosition();
-                    notifyDataSetChanged();
-                    ((EditProfileActivity)context).onCountrySelectedE(itemCountry.countryId,itemCountry.phoneCode,itemCountry.countryName,itemCountry.flag);
-                }
-            });
-        } else if (TextUtils.equals("No", countryKey)) {
+        Picasso.get().load(Const.HOST_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivCountryFlags);
+        Picasso.get().load(Const.HOST_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivStartCountryFlags);
+        holder.binding.llItem.setOnClickListener(view -> {
+            Position = holder.getAdapterPosition();
+            SavedData.saveCountryId(itemCountry.countryId);
+            SavedData.saveCountryKey(itemCountry.sortName);
+            notifyDataSetChanged();
+            if (Constants.Key.Login.equals(Where)){
+                ((SignUpActivity) context).onCountrySelected(itemCountry.countryId, itemCountry.phoneCode, itemCountry.countryName, itemCountry.flag);
+            } else if (Constants.Key.EditProfile.equals(Where)){
+                ((EditProfileActivity) context).onCountrySelectedE(itemCountry.countryId, itemCountry.phoneCode, itemCountry.countryName, itemCountry.flag);
+            }
+        });
+        if (Constants.Key.Country_Code_Nan.equals(countryKey)){
             holder.binding.cvCountryFlagStart.setVisibility(View.VISIBLE);
             holder.binding.etCodeId.setVisibility(View.GONE);
             holder.binding.cvCountryFlag.setVisibility(View.GONE);
+        } else {
+            holder.binding.cvCountryFlagStart.setVisibility(View.GONE);
+            holder.binding.etCodeId.setVisibility(View.VISIBLE);
+            holder.binding.cvCountryFlag.setVisibility(View.VISIBLE);
         }
     }
 
-
-
     @Override
     public int getItemCount() {
-        return countryList.size();
+        return filterList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+                if (charString.isEmpty()) {
+                    filterList = countryList;
+                } else {
+                    List<CountryModel> filteredList = new ArrayList<>();
+                    for (CountryModel row : countryList) {
+                        if (row.countryName.toLowerCase().contains(charString.toLowerCase()) || row.phoneCode.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+                    filterList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filterList;
+                return filterResults;
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filterList = (List<CountryModel>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         CountryAdapterBinding binding;
 
         public ViewHolder(@NonNull CountryAdapterBinding binding) {

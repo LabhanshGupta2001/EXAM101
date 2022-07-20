@@ -13,6 +13,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rlTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -37,14 +38,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
+            android:id="@+id/llChild"
             android:background="@drawable/bottom_sheet_back"
             android:elevation="@dimen/_3sdp"
             android:orientation="vertical">
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="@dimen/_3sdp"
-                        android:text="@string/_91"
+                        android:hint="+91"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp"
                         tools:ignore="SpUsage" />

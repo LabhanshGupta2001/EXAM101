@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -58,9 +59,11 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         hm.put(Constants.Key.newPassword, binding.etNewPassword.getText().toString().trim());
         hm.put(Constants.Key.confirmPassword, binding.etConfirmNewPassword.getText().toString().trim());
         hm.put(Constants.Key.oldPassword, binding.etCurrentPassword.getText().toString().trim());
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiService.ChangePassword(Token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -83,6 +86,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

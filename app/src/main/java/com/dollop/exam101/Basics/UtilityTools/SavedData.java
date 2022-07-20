@@ -1,5 +1,6 @@
 package com.dollop.exam101.Basics.UtilityTools;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.preference.PreferenceManager;
@@ -21,6 +22,7 @@ public class SavedData {
     private static final String latitude = "latitude";
     private static final String longitude = "longitude";
     private static final String CountryKey = "CountryKey";
+    private static final String CountryId = "CountryId";
     public static SharedPreferences getInstance() {
         if (prefs == null) {
             prefs = PreferenceManager.getDefaultSharedPreferences(AppController.getInstance());
@@ -50,8 +52,8 @@ public class SavedData {
         editor.putString(FirebaseToken, token);
         editor.apply();
     }
-    public static String getCountryKey() {
-        return getInstance().getString(CountryKey, Constants.Key.blank);
+    public static String getCountryKey(Context context) {
+        return getInstance().getString(CountryKey, Utils.getDefaultCountryCode(context).Region);
     }
 
     public static void saveCountryKey(String key) {
@@ -66,6 +68,14 @@ public class SavedData {
     public static void saveReferralCode(String token) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(ReferralCode, token);
+        editor.apply();
+    }
+    public static String getCountryId() {
+        return getInstance().getString(CountryId, Constants.Key.Country_Id);
+    }
+    public static void saveCountryId(String Id) {
+        SharedPreferences.Editor editor = getInstance().edit();
+        editor.putString(CountryId, Id);
         editor.apply();
     }
 

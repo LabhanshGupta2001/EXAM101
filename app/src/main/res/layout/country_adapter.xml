@@ -7,7 +7,7 @@
     android:id="@+id/llItem"
     android:background="@drawable/grey_stroke_half_curve"
     android:orientation="horizontal"
-    android:padding="@dimen/_12sdp">
+    android:padding="@dimen/_10sdp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvCountryFlagStart"
@@ -22,6 +22,7 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_india" />
     </androidx.cardview.widget.CardView>
 
@@ -62,6 +63,7 @@
             android:id="@+id/ivCountryFlags"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
+            android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:src="@drawable/ic_india" />
     </androidx.cardview.widget.CardView>

@@ -2,18 +2,13 @@ package com.dollop.exam101.main.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.dollop.exam101.Basics.UtilityTools.OnRecycleViewItemCountryClick;
 import com.dollop.exam101.databinding.FragmentBottomCountryBinding;
 import com.dollop.exam101.main.activity.OnCountrySelectListner;
-import com.dollop.exam101.main.adapter.CountryAdapter;
 import com.dollop.exam101.main.model.CountryModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
