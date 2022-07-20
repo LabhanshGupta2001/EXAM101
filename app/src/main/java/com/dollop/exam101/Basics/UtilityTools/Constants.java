@@ -42,7 +42,9 @@ public class Constants {
         // Language
          String blank = "";
          String Country_Id = "101";
+         String Default_Country_Code = "+91";
          String english = "en";
+         String Pleas_Select_Country = "Pleas Select Country";
 
 
          String Normal = "Normal";
@@ -59,8 +61,8 @@ public class Constants {
          String studentEmail = "studentEmail";
          String loginType = "loginType";
          String studentName = "studentName";
-         String No = "No";
-         String Yes = "Yes";
+         String Country_Code_Nan = "Country_Code_Nan";
+         String CountryId_Show = "Yes";
          String newPassword = "newPassword";
          String confirmPassword = "confirmPassword";
          String oldPassword = "oldPassword";
@@ -82,6 +84,7 @@ public class Constants {
          String Image = "image/*";
          String All_Validation_Pass = "All Validation Pass";
          String Google = "Google";
+         String Massage = "massage";
 
 
 

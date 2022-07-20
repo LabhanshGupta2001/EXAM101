@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/_12sdp"
+    android:layout_height="match_parent"
+    android:id="@+id/rlParent"
     tools:context=".main.activity.EditProfileActivity">
 
     <LinearLayout
@@ -33,11 +33,19 @@
             android:fontFamily="@font/gothic_bold"
             android:text="@string/edit_profile" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rlChildParent"
+        android:layout_below="@id/llToolbar">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/llToolbar"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_above="@id/llSave"
         android:overScrollMode="never">
 
         <LinearLayout
@@ -233,23 +241,26 @@
             </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/llSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:background="@drawable/theme_backround"
-        android:gravity="center"
-        android:padding="@dimen/_10sdp">
-
-        <TextView
-            style="@style/TernaryWhiteTextStyle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llSave"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/save" />
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/theme_backround"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp">
+
+            <TextView
+                style="@style/TernaryWhiteTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/save" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
 

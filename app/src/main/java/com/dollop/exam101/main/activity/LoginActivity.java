@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -56,14 +54,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     ActivityLoginBinding binding;
     GoogleSignInClient mGoogleSignInClient;
     ApiService apiservice;
-    String personName,personEmail;
+    String personName, personEmail;
     List<ValidationModel> errorValidationModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // anil sir 15-07
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.status_bar_color));
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -89,12 +87,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
-        binding.llLoginWithGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
+        binding.llLoginWithGoogle.setOnClickListener(v -> signIn());
     }
 
     private void signIn() {
@@ -122,15 +115,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
                 personName = acct.getDisplayName();
-                String personGivenName = acct.getGivenName();
+                personEmail = acct.getEmail();
+              /*  String personGivenName = acct.getGivenName();
                 String personFamilyName = acct.getFamilyName();
-                 personEmail = acct.getEmail();
                 String personId = acct.getId();
                 Uri personPhoto = acct.getPhotoUrl();
-                Log.e(String.valueOf(activity), "handleSignInResult: " + personName);
+                Log.e(String.valueOf(activity), "handleSignInResult: " + personName);*/
             }
             SocialLogin();
-           // startActivity(new Intent(activity, DashboardScreenActivity.class));
+            // startActivity(new Intent(activity, DashboardScreenActivity.class));
         } catch (ApiException e) {
             Log.e("massage", e.toString());
         }
@@ -184,14 +177,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         apiservice.userLogin(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-               progressDialog.dismiss();
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
                         assert response.body() != null;
                         UserData userModel = response.body().userData;
-                      //  Utils.E("userModel::"+userModel);
-                       // Utils.E("UserDataHelper.getInstance()::"+UserDataHelper.getInstance());
                         UserDataHelper.getInstance().insertData(userModel);
                         Utils.I(activity, DashboardScreenActivity.class, bundle);
                     } else {
@@ -225,8 +216,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             View v = getCurrentFocus();
             if (v instanceof EditText) {
                 Rect outRect = new Rect();
-                final boolean globalVisibleRect;
-                globalVisibleRect = v.getGlobalVisibleRect(outRect);
+               /* final boolean globalVisibleRect;
+                globalVisibleRect = v.getGlobalVisibleRect(outRect);*/
                 if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -243,18 +234,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.studentName, personName);
         hashMap.put(Constants.Key.studentEmail, personEmail);
-        hashMap.put(Constants.Key.loginType, "Google");
+        hashMap.put(Constants.Key.loginType, Constants.Key.Google);
         hashMap.put(Constants.Key.fcmId, "asdasdasdsad");
 
         apiservice.SocialLogin(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-            progressDialog.dismiss();
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         UserDataHelper.getInstance().insertData(response.body().User);
-                        Utils.I_clear(activity, DashboardScreenActivity.class,null);
+                        Utils.I_clear(activity, DashboardScreenActivity.class, null);
 
                     } else {
                         assert response.errorBody() != null;
@@ -262,7 +253,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.alert(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {

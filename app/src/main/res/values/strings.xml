@@ -29,7 +29,7 @@
     <string name="connect_via_social_media">Connect via Social Media</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_facebook">Continue with Facebook</string>
-    <string name="select_country">Select Country</string>
+    <string name="select_country">Search Country</string>
     <string name="search_for_country">Search for Country</string>
     <string name="what_s_your_phone_number">What\'s your phone number?</string>
     <string name="enter_your_phone_number">Enter Your Phone Number</string>
@@ -407,6 +407,7 @@
     <string name="designing">Designing</string>
     <string name="browse_category">Browse Category</string>
     <string name="sorry">Sorry!!</string>
+    <string name="enter_a_valid_number">Enter a valid number</string>
     <string name="go_to_home">Go to Home</string>
     <string name="your_cart_is_currently_empty">Your Cart Is Currently Empty.</string>
     <string name="get_the_most_dedicated_consultation_for_your_life_changing_course">Get the most dedicated consultation for your life-changing course</string>
@@ -441,7 +442,7 @@
     <string name="return_to_sign_in">Return to Sign In</string>
     <string name="create_your_new_account">Create your new account</string>
     <string name="passwordStrong">passwordStrong</string>
-    <string name="select_state">Select State</string>
+    <string name="select_state">Search State</string>
     <string name="please_select_the_country">Please select country</string>
     <string name="please_select_the_state">Please select state</string>
     <string name="please_select_the_city">Please select city</string>

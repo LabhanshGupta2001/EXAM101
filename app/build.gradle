@@ -82,4 +82,7 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     // flexBox
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+    //Validation For Phone Number
+    implementation 'io.michaelrocks:libphonenumber-android:8.12.49'
 }

@@ -1,5 +1,6 @@
 package com.dollop.exam101.Basics.UtilityTools;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.preference.PreferenceManager;
@@ -51,8 +52,8 @@ public class SavedData {
         editor.putString(FirebaseToken, token);
         editor.apply();
     }
-    public static String getCountryKey() {
-        return getInstance().getString(CountryKey, Constants.Key.blank);
+    public static String getCountryKey(Context context) {
+        return getInstance().getString(CountryKey, Utils.getDefaultCountryCode(context).Region);
     }
 
     public static void saveCountryKey(String key) {

@@ -17,7 +17,7 @@ public class Const {
     public static final String MAIN_HOST_URL = HOST_URL + "v12/";
 
 
-    public static final String  FLAG_URL = "https://countryflagsapi.com/png/";
+
 
     public static final String get_otp = "get_otp";
     public static final String match_otp = "match_otp";
@@ -82,5 +82,5 @@ public class Const {
     public static final String CategoriesList = "CategoriesList";
     public static final String CategoriesAllBlogsList = "CategoriesAllBlogsList";
     public static final String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
-    public static final String updateUserProfileApi = "updateUserProfileApi";
+    public static final String getPrivacyPolicyApi = "getPrivacyPolicyApi";
 }

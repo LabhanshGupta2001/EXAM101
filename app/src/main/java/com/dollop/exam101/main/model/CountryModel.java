@@ -1,5 +1,7 @@
 package com.dollop.exam101.main.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -36,6 +38,7 @@ public class CountryModel {
         @Expose
         public String unit;
 
+        @NonNull
         @Override
         public String toString() {
                 return "CountryModel{" +

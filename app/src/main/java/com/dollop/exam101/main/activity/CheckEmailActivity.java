@@ -12,7 +12,6 @@ import com.dollop.exam101.databinding.ActivityCheckEmailBinding;
 public class CheckEmailActivity extends BaseActivity {
     Activity activity = CheckEmailActivity.this;
     ActivityCheckEmailBinding binding;
-    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +19,6 @@ public class CheckEmailActivity extends BaseActivity {
         binding = ActivityCheckEmailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tvReturnToSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utils.I(activity, LoginActivity.class, null);
-            }
-        });
+        binding.tvReturnToSignIn.setOnClickListener(v -> Utils.I(activity, LoginActivity.class, null));
     }
 }

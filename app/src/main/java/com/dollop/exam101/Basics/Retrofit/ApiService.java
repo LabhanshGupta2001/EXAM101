@@ -117,7 +117,6 @@ public interface ApiService {
     Call<AllResponseModel> SocialLogin(@FieldMap HashMap<String, String> hm);
 
 
-
     @FormUrlEncoded
     @POST(Const.forgotPasswordApi)
     Call<AllResponseModel> ForgetPassword(@FieldMap HashMap<String, String> hm);
@@ -236,5 +235,8 @@ public interface ApiService {
 
     @GET(Const.transaction)
     Call<AllResponseModel> getTransactionHistory(@FieldMap HashMap<String, String> hm);
+
+    @GET(Const.getPrivacyPolicyApi)
+    Call<AllResponseModel> getPrivacyAndPolicy();
 
 }

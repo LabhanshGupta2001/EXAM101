@@ -1,24 +1,18 @@
 package com.dollop.exam101.main.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,14 +59,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Filter;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -84,7 +73,9 @@ import retrofit2.Response;
 public class EditProfileActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
-    String selectedCountryId, selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
+    private final ArrayList<CountryModel> contryItemArrayList = new ArrayList<>();
+    private final ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
+    String selectedCountryId = "", selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
     Activity activity = EditProfileActivity.this;
     ActivityEditProfileBinding binding;
     ApiService apiService;
@@ -97,8 +88,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     Uri profileUri = null;
     private CountryAdapter countryAdapter;
     private StateAdapter stateAdapter;
-    private ArrayList<CountryModel> contryItemArrayList = new ArrayList<>();
-    private ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
 
     ActivityResultLauncher<String> openGallery = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
         if (uri != null) {
@@ -111,13 +100,13 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     ActivityResultLauncher<Intent> openCamera = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
             assert result.getData() != null;
-            Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
-            Utils.E("bitmap:::" + bitmap);
+            Bitmap bitmap = (Bitmap) result.getData().getExtras().get(Constants.Key.Data);
             binding.ivProfile.setImageBitmap(bitmap);
             profile = true;
             profileUri = Utils.getImageUri(activity, bitmap);
         }
     });
+
 
     public static boolean checkAndRequestPermissions(final Activity context) {
         int WExtstorePermission = ContextCompat.checkSelfPermission(context,
@@ -153,10 +142,8 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     private void init() {
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
-        Utils.E("Token:::" + Token);
         getEditProfileDetails();
         getCountryList();
-
 
         binding.mcvProfileSelector.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
@@ -172,41 +159,42 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View view) {
         if (view == binding.mcvProfileSelector) {
             if (checkAndRequestPermissions(activity)) {
-                chooseImage(activity);
+                chooseImage();
             }
         } else if (view == binding.llSave) {
             CheckValidationTask();
         } else if (view == binding.ivBack) {
             finish();
-        } else if (view == binding.etEnterMobile) {
-
-        } else if (view == binding.tvSelectCountry) {
-            bottomSheetCountryTask(Constants.Key.No, Constants.Key.EditProfile);
-        } else if (view == binding.tvSelectState) {
-            bottomSheetStateTask();
-        } else if (view == binding.llCountryCode) {
-            bottomSheetCountryTask(Constants.Key.Yes, Constants.Key.EditProfile);
+        } else {
+            if (view != binding.etEnterMobile) {
+                if (view == binding.tvSelectCountry) {
+                    bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
+                } else if (view == binding.tvSelectState) {
+                    if (selectedCountryId.equals(Constants.Key.blank))
+                        Utils.T(activity, Constants.Key.Pleas_Select_Country);
+                    else bottomSheetStateTask();
+                } else if (view == binding.llCountryCode) {
+                    bottomSheetCountryTask(Constants.Key.CountryId_Show);
+                }
+            }
         }
 
     }
 
-    private void chooseImage(Activity activity) {
-    final CharSequence[] optionsMenu = {Constants.Key.Take_Photo, Constants.Key.Choose_From_Gallery, Constants.Key.Exit}; // create a menuOption Array
+    private void chooseImage() {
+        final CharSequence[] optionsMenu = {Constants.Key.Take_Photo, Constants.Key.Choose_From_Gallery, Constants.Key.Exit}; // create a menuOption Array
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setItems(optionsMenu, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (optionsMenu[i].equals(Constants.Key.Take_Photo)) {
-                    openCamera.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
-                    //  Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                   // startActivityForResult(takePicture, 0);
-                } else if (optionsMenu[i].equals(Constants.Key.Choose_From_Gallery)) {
-                  /*  Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(pickPhoto, 1);*/
-                    openGallery.launch(Constants.Key.CONTENT_ALL_IMAGE);
-                } else if (optionsMenu[i].equals(Constants.Key.Exit)) {
-                    dialogInterface.dismiss();
-                }
+        builder.setItems(optionsMenu, (dialogInterface, i) -> {
+            if (optionsMenu[i].equals(Constants.Key.Take_Photo)) {
+                openCamera.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
+                //  Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                // startActivityForResult(takePicture, 0);
+            } else if (optionsMenu[i].equals(Constants.Key.Choose_From_Gallery)) {
+              /*  Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto, 1);*/
+                openGallery.launch(Constants.Key.CONTENT_ALL_IMAGE);
+            } else if (optionsMenu[i].equals(Constants.Key.Exit)) {
+                dialogInterface.dismiss();
             }
         });
         builder.show();
@@ -214,23 +202,21 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     // Handled permission Result
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case REQUEST_ID_MULTIPLE_PERMISSIONS:
-                if (ContextCompat.checkSelfPermission(activity,
-                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(),
-                                    Constants.Key.FlagUp_Requires_Access_To_Camara, Toast.LENGTH_SHORT)
-                            .show();
-                } else if (ContextCompat.checkSelfPermission(activity,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    showSettingsDialog();
-                    Toast.makeText(getApplicationContext(), Constants.Key.FlagUp_Requires_Access_To_Your_Storage, Toast.LENGTH_SHORT).show();
-                } else {
-                    chooseImage(activity);
-                }
-                break;
+        if (requestCode == REQUEST_ID_MULTIPLE_PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(activity,
+                    Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(),
+                                Constants.Key.FlagUp_Requires_Access_To_Camara, Toast.LENGTH_SHORT)
+                        .show();
+            } else if (ContextCompat.checkSelfPermission(activity,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                showSettingsDialog();
+                Toast.makeText(getApplicationContext(), Constants.Key.FlagUp_Requires_Access_To_Your_Storage, Toast.LENGTH_SHORT).show();
+            } else {
+                chooseImage();
+            }
         }
     }
 
@@ -239,22 +225,14 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         builder.setTitle(Constants.Key.Need_Permissions);
 
         builder.setMessage(R.string.needs_permission);
-        builder.setPositiveButton(Constants.Key.GOTO_SETTINGS, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts(Constants.Key.Package, getPackageName(), null);
-                intent.setData(uri);
-                startActivityForResult(intent, 101);
-            }
+        builder.setPositiveButton(Constants.Key.GOTO_SETTINGS, (dialog, which) -> {
+            dialog.cancel();
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts(Constants.Key.Package, getPackageName(), null);
+            intent.setData(uri);
+            startActivityForResult(intent, 101);
         });
-        builder.setNegativeButton(Constants.Key.Cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton(Constants.Key.Cancel, (dialog, which) -> dialog.cancel());
         builder.show();
     }
 
@@ -289,23 +267,20 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    private void bottomSheetCountryTask(String from, String FROM) {
+    private void bottomSheetCountryTask(String countryKey) {
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetCountryBinding = BottomSheetCountryBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetCountryBinding.getRoot());
-       /* BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetCountryBinding.getRoot().getParent()));
-        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);*/
-        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetCountryBinding.getRoot().getParent()));
-        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-        bottomSheetBehavior.setSkipCollapsed(true);
-        bottomSheetBehavior.setHalfExpandedRatio(0.9f);
 
-        countryAdapter = new CountryAdapter(activity, contryItemArrayList, from, FROM);
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetCountryBinding.getRoot().getParent()));
+        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setMaxHeight(binding.rlChildParent.getHeight());
+        bottomSheetBehavior.setSkipCollapsed(true);
+
+        countryAdapter = new CountryAdapter(activity, contryItemArrayList, countryKey, Constants.Key.EditProfile);
         bottomSheetCountryBinding.rvCountryListId.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
         bottomSheetCountryBinding.rvCountryListId.setAdapter(countryAdapter);
-
         bottomSheetCountryBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -321,27 +296,43 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         });
 
         bottomSheetDialog.show();
-
     }
-
 
     private void bottomSheetStateTask() {
         bottomSheetStateDialog = new BottomSheetDialog(activity);
         bottomSheetStateBinding = BottomSheetStateBinding.inflate(getLayoutInflater());
         bottomSheetStateDialog.setContentView(bottomSheetStateBinding.getRoot());
 
-        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetStateBinding.getRoot().getParent()));
-        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetStateBinding.getRoot().getParent()));
+        bottomSheetStateDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setMaxHeight(binding.rlChildParent.getHeight());
+        bottomSheetBehavior.setSkipCollapsed(true);
         getState();
+
+        bottomSheetStateBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                stateAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                stateAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         bottomSheetStateDialog.show();
 
     }
 
     private void getCountryList() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getCountryList().enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -367,6 +358,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -378,7 +370,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         apiService.getStateList(SavedData.getCountryId()).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-             progressDialog.dismiss();
+                progressDialog.dismiss();
                 try {
 
                     if (response.code() == StatusCodeConstant.OK) {
@@ -427,37 +419,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         hashMap.put(Constants.Key.countryCode, RequestBody.create(binding.tvCountryCodeId.getText().toString().trim(), MediaType.parse(Constants.Key.TEXT_PLAIN_TYPE)));
         hashMap.put(Constants.Key.countryName, RequestBody.create(binding.tvSelectCountry.getText().toString().trim(), MediaType.parse(Constants.Key.TEXT_PLAIN_TYPE)));
         hashMap.put(Constants.Key.stateName, RequestBody.create(binding.tvSelectState.getText().toString().trim(), MediaType.parse(Constants.Key.TEXT_PLAIN_TYPE)));
-/*
-
-        File f = new File(this.getCacheDir(), Constants.Key.Image_png);
-        try {
-            f.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // RequestBody Name = RequestBody.create(MediaType.parse("text/plain"), name.getText().toString());
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) binding.ivProfile.getDrawable();
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
-        byte[] imageBytes = baos.toByteArray();
-        RequestBody profilePicRequest = RequestBody.create(MediaType.parse(Constants.Key.Image), f);
-
-        try {
-            if (!f.exists()) {
-                f.createNewFile();
-            }
-            FileOutputStream fos = new FileOutputStream(f);
-            fos.write(imageBytes);
-            fos.close();
-        } catch (Exception e) {
-            Log.e("TAG", e.getMessage());
-        }
-
-
-        MultipartBody.Part part = MultipartBody.Part.createFormData("profile_pic", f.getName(), profilePicRequest);
-*/
 
         if (profile && profileUri != null) {
             profilePic = AppHelper.prepareFilePart(Constants.Key.profilePic, binding.ivProfile.getDrawable());
@@ -467,7 +428,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         apiService.EditProfileImage(Token, hashMap, profilePic).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                    progressDialog.dismiss();
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -480,7 +441,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.alert(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {
@@ -511,7 +472,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
             UpdateProfile();
-            Toast.makeText(this, Constants.Key.All_Validation_Pass, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, Constants.Key.All_Validation_Pass, Toast.LENGTH_SHORT).show();
 
         } else {
             if (resultReturn.type == Validation.Type.EmptyString) {
@@ -529,9 +490,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     //GetApiProfileData
     private void getEditProfileDetails() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getEditProfileDetails(Token).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -539,12 +502,22 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         binding.etEnterMobile.setText(userData.studentMobileNo);
                         binding.etUserEmail.setText(userData.studentEmail);
                         binding.etUserName.setText(userData.studentName);
-                        binding.tvCountryCodeId.setText(userData.countryCode);
-                        binding.tvSelectCountry.setText(userData.countryName);
                         binding.etUserName.setText(userData.studentName);
                         binding.tvSelectState.setText(userData.stateName);
+                        //Picasso.get().load(Const.HOST_URL + userData.flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
+
+                        if (userData.countryName.equals(Constants.Key.blank)) {
+                            binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
+                        } else {
+                            binding.tvSelectCountry.setText(userData.countryName);
+                        }
+                        if (userData.countryCode.equals(Constants.Key.blank)) {
+                            //   binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
+                            binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
+                        } else {
+                            binding.tvCountryCodeId.setText(userData.countryCode);
+                        }
                         //  Picasso.get().load(Const.FLAG_URL + userData.flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
-                        // Picasso.get().load(Const.FLAG_URL + userData.).error(R.drawable.ic_india).into(binding.ivProfile);
                         UserData DatabaseData = Utils.GetSession();
                         userData.studentId = DatabaseData.studentId;
                         userData.token = DatabaseData.token;
@@ -557,7 +530,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.alert(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {
@@ -569,10 +542,12 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
     }
+
 
     public void onCountrySelectedE(String countryId, String countryCode, String CountryName, String flag) {
         this.selectedCountryId = countryId;
@@ -582,7 +557,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.tvCountryCodeId.setText(selectedCountryCode);
         binding.tvSelectCountry.setText(selectedCountryName);
         binding.tvSelectState.setText(Constants.Key.blank);
-        Picasso.get().load(Const.FLAG_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
+        Picasso.get().load(Const.HOST_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
         bottomSheetDialog.dismiss();
     }
 
@@ -598,8 +573,8 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             View v = getCurrentFocus();
             if (v instanceof EditText) {
                 Rect outRect = new Rect();
-                final boolean globalVisibleRect;
-                globalVisibleRect = v.getGlobalVisibleRect(outRect);
+               /* final boolean globalVisibleRect;
+                globalVisibleRect = v.getGlobalVisibleRect(outRect);*/
                 if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

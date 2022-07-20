@@ -43,4 +43,7 @@ public class AllResponseModel {
     @Expose
     public UserData studentData;
 
+    @SerializedName("privacy")
+    @Expose
+    public Privacy privacy;
 }
