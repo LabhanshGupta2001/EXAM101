@@ -173,7 +173,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         hm.put(Constants.Key.studentEmail, binding.etUserEmail.getText().toString().trim());
         hm.put(Constants.Key.password, binding.etUserPassword.getText().toString().trim());
         hm.put(Constants.Key.fcmId, fcmid);
-        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.userLogin(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -236,7 +235,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         hashMap.put(Constants.Key.studentEmail, personEmail);
         hashMap.put(Constants.Key.loginType, Constants.Key.Google);
         hashMap.put(Constants.Key.fcmId, "asdasdasdsad");
-        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.SocialLogin(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {

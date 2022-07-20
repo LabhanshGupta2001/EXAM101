@@ -2,7 +2,6 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,11 @@ import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemStateBinding;
 import com.dollop.exam101.main.activity.EditProfileActivity;
 import com.dollop.exam101.main.activity.SignUpActivity;
-import com.dollop.exam101.main.model.CountryModel;
 import com.dollop.exam101.main.model.StateModel;
 
 import java.util.ArrayList;
