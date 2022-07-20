@@ -67,6 +67,13 @@ public class Constants {
          String ClickSign = "ClickSign";
          String ClickProfile = "ClickProfile";
          String EditProfile = "EditProfile";
+         String name = "name";
+         String email = "email";
+         String mobile = "mobile";
+         String urlSlug = "urlSlug";
+         String countryId = "countryId";
+         String BlogId = "BlogId";
+
 
 
          String Man = "Man";
@@ -81,6 +88,7 @@ public class Constants {
          String LoginSignup = "LoginSignup";
          String Register = "Register";
 
-    }
 
+    }
+    public static String blogCategoryId = "";
 }

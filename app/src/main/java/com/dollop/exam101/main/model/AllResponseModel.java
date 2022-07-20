@@ -39,4 +39,16 @@ public class AllResponseModel {
     @Expose
     public UserData studentData;
 
+    @SerializedName("blogsCat")
+    @Expose
+    public List<BlogListHeadingModel> blogsCat = null;
+
+    @SerializedName("blogs")
+    @Expose
+    public List<AllBlogListModel> blogs = null;
+
+    @SerializedName("blog")
+    @Expose
+    public AllBlogListModel blog;
+
 }

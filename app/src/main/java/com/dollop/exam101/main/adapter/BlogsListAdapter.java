@@ -1,6 +1,8 @@
 package com.dollop.exam101.main.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
+import com.dollop.exam101.main.activity.BlogsListActivity;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
 import com.dollop.exam101.R;
 
@@ -18,12 +23,17 @@ import java.util.ArrayList;
 public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder>{
     Context context;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
+    String blogCategoryId;
     int pos=0;
 
-    public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
+
+    public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList,String blogCategoryId) {
         this.context = context;
         this.blogListHeadingModelArrayList = blogListHeadingModelArrayList;
+        this.blogCategoryId = blogCategoryId;
+
     }
+
 
     @NonNull
     @Override
@@ -33,19 +43,23 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
 
         BlogListHeadingModel blogListHeadingModel = blogListHeadingModelArrayList.get(position);
-        holder.binding.tvBlogHeading.setText(blogListHeadingModel.Heading);
+        holder.binding.tvBlogHeading.setText(blogListHeadingModel.blogCatName);
 
         holder.binding.tvBlogHeading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pos = position;
+                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUrlSlug);
                 notifyDataSetChanged();
+                Utils.E("categoryId...Heading.."+blogListHeadingModel.blogCatId);
             }
         });
-        if (pos == position){
+        Utils.E("blogCategoryId::"+Constants.blogCategoryId);
+        Utils.E("blogListHeadingModel.blogCatId::"+blogListHeadingModel.blogCatId);
+        if (pos == position || blogListHeadingModel.blogCatId.equals(Constants.blogCategoryId)){
                 holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
                 holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.white));
                 holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.theme));

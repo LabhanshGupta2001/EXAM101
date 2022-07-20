@@ -30,7 +30,7 @@ public interface ApiService {
     Call<AllResponseModel> getCountryList();
 
     @GET(Const.getStateListApi)
-    Call<AllResponseModel> getStateList(@Query("countryId") String countryId);
+    Call<AllResponseModel> getStateList(@Query(Constants.Key.countryId) String countryId);
 
     @GET(Const.aboutUs)
     Call<AllResponseModel> getAboutUs(@Header(Constants.Key.Authorization) String token);
@@ -41,25 +41,25 @@ public interface ApiService {
     @GET(Const.getBankUserDetails)
     Call<AllResponseModel> GetBankUserDetails(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getBlogDetails)
-    Call<AllResponseModel> getBlogDetails(@Header(Constants.Key.Authorization) String token);
+    @GET(Const.getBlogDetailApi)
+    Call<AllResponseModel> getBlogDetails(@Query(Constants.Key.urlSlug) String urlSlug);
 
     @FormUrlEncoded
     @POST(Const.getBankProfile)
     Call<AllResponseModel> UserBankDetails(@FieldMap HashMap<String, String> hm);
 
     //Blogs
-    @GET(Const.getBlogsCategory)
-    Call<AllResponseModel> getBlogsCategory(@Header(Constants.Key.Authorization) String token);
+    @GET(Const.getBlogCategoryListApi)
+    Call<AllResponseModel> getBlogsCategory();
 
-    @GET(Const.getBlogsData)
-    Call<AllResponseModel> getBlogsData(@Header(Constants.Key.Authorization) String token);
+    @GET(Const.getBlogListApi)
+    Call<AllResponseModel> getBlogsData(@Query(Constants.Key.urlSlug) String urlSlug);
 
     @GET(Const.getBlogsSortBy)
     Call<AllResponseModel> getBlogsSortBy(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getBlogsFilterBy)
-    Call<AllResponseModel> getBlogsFilterBy(@Header(Constants.Key.Authorization) String token);
+    @GET(Const.getBlogCategoryListApi)
+    Call<AllResponseModel> getBlogsFilterBy();
 
     //CategoryDetails
     @GET(Const.getCategory)
@@ -79,7 +79,7 @@ public interface ApiService {
 
 
     @FormUrlEncoded
-    @POST(Const.ContactUs)
+    @POST(Const.contactUsApi)
     Call<AllResponseModel> ContactUs(@FieldMap HashMap<String, String> hm);
 
     @GET(Const.getCourseList)

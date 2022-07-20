@@ -22,9 +22,9 @@ public class RetrofitClient {
 
     public static ApiService getClient() {
 
-        /*if(!AppController.getInstance().isOnline()){
+        if(!AppController.getInstance().isOnline()){
             Utils.T_Long(AppController.getContext(),"Please check your Internet Connection");
-        }*/
+        }
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder client = new OkHttpClient.Builder()

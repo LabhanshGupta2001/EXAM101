@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -94,9 +95,11 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
     private void ForgetPassword(){
         HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.studentEmail,binding.etEmail.getText().toString().trim());
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiService.ForgetPassword(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
@@ -121,6 +124,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

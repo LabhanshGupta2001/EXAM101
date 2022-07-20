@@ -3,6 +3,7 @@ package com.dollop.exam101.main.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -343,9 +344,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     }
     private void getCountryList() {
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiService.getCountryList().enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -371,6 +374,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -378,9 +382,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getState(String countryId) {
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiService.getStateList(countryId).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
 
                     if (response.code() == StatusCodeConstant.OK) {
@@ -409,12 +415,12 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
 
     }
-
 
     //UpdateProfileApi
     private void UpdateProfile() {
@@ -462,9 +468,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         } else {
             profilePic = AppHelper.prepareFilePart(Constants.Key.profilePic);
         }*/
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiService.EditProfileImage(Token,hashMap, part).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -489,6 +497,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -524,9 +533,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     //GetApiProfileData
     private void getEditProfileDetails() {
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiService.getEditProfileDetails(Token).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -565,6 +576,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

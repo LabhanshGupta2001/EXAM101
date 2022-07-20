@@ -4,6 +4,7 @@
       <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-7.4.2-bin/caches/transforms-3/c50053e5dacca7a4d7181b25e6789250/transformed/jetified-installreferrer-1.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bfda86030cb3db4f6cb9222a7e500bdd/transformed/jetified-installreferrer-1.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e0ba0adb440ebe4bb2ec80251d7f3c81/transformed/jetified-installreferrer-1.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3fe136d758dbf9b70e651581827975aa/transformed/jetified-installreferrer-1.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-7.4.2-bin/caches/transforms-3/c50053e5dacca7a4d7181b25e6789250/transformed/jetified-installreferrer-1.0/jars/classes.jar!/" />
@@ -16,6 +17,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e0ba0adb440ebe4bb2ec80251d7f3c81/transformed/jetified-installreferrer-1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e0ba0adb440ebe4bb2ec80251d7f3c81/transformed/jetified-installreferrer-1.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e0ba0adb440ebe4bb2ec80251d7f3c81/transformed/jetified-installreferrer-1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3fe136d758dbf9b70e651581827975aa/transformed/jetified-installreferrer-1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3fe136d758dbf9b70e651581827975aa/transformed/jetified-installreferrer-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3fe136d758dbf9b70e651581827975aa/transformed/jetified-installreferrer-1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-7.4.2-bin/caches/modules-2/files-2.1/com.android.installreferrer/installreferrer/1.0/a572d7b98f4738eb9677ff7bce82608f28c5b0e/installreferrer-1.0-javadoc.jar!/" />

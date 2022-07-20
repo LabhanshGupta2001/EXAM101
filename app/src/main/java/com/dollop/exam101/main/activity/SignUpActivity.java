@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -183,9 +184,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void getState(String countryId) {
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.getStateList(countryId).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                try {
 
                 if (response.code() == StatusCodeConstant.OK) {
@@ -214,6 +217,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -221,9 +225,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void getCountryList() {
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.getCountryList().enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -249,6 +255,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -325,10 +332,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         hm.put(Constants.Key.countryName, selectedCountryName);
         hm.put(Constants.Key.stateName, selectedState);
         hm.put(Constants.Key.fcmId, fcmid);
-
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.userSignup(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
@@ -354,6 +362,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -400,10 +409,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         hashMap.put(Constants.Key.studentEmail, personEmail);
         hashMap.put(Constants.Key.loginType, "Google");
         hashMap.put(Constants.Key.fcmId, "asdasdasdsad");
-
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.SocialLogin(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Utils.E("Google:::"+response.body().userData.studentId);
@@ -429,6 +439,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

@@ -6,6 +6,6 @@
         </trust-anchors>
     </base-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">exam101.dollopinfotech.com</domain> <!-- Debug port -->
+        <domain includeSubdomains="true">exam101stg.dollopinfotech.com</domain> <!-- Debug port -->
     </domain-config>
 </network-security-config>

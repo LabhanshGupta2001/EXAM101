@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -178,10 +179,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         hm.put(Constants.Key.studentEmail, binding.etUserEmail.getText().toString().trim());
         hm.put(Constants.Key.password, binding.etUserPassword.getText().toString().trim());
         hm.put(Constants.Key.fcmId, fcmid);
-
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.userLogin(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
@@ -210,6 +212,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
@@ -240,10 +243,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         hashMap.put(Constants.Key.studentEmail, personEmail);
         hashMap.put(Constants.Key.loginType, "Google");
         hashMap.put(Constants.Key.fcmId, "asdasdasdsad");
-
+        Dialog progressDialog=Utils.initProgressDialog(activity);
         apiservice.SocialLogin(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Utils.E("Google:::"+response.body().userData.studentId);
@@ -269,6 +273,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

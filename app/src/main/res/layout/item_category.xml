@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/llParent"
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
@@ -12,6 +13,7 @@
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
         app:strokeColor="@color/StrokeColorLightBlue"
         app:strokeWidth="@dimen/_1sdp"
         app:cardElevation="0dp">

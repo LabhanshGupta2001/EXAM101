@@ -121,7 +121,9 @@
             android:exported="true" />
         <activity
             android:name=".main.activity.DashboardScreenActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".main.activity.ResetPasswordActivity"
             android:exported="true" />

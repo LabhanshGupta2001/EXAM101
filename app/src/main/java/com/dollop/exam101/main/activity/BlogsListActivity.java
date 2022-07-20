@@ -1,18 +1,22 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager2.widget.ViewPager2;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogsListBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
@@ -21,17 +25,13 @@ import com.dollop.exam101.databinding.ItemAllBlogsBinding;
 import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.AllBlogListAdapter;
 import com.dollop.exam101.main.adapter.BlogsListAdapter;
-import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
-import com.dollop.exam101.main.fragment.AuthorFragment;
-import com.dollop.exam101.main.fragment.CategoryFragment;
-import com.dollop.exam101.main.fragment.DateFragment;
+import com.dollop.exam101.main.adapter.FilterSearchAdapter;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -42,11 +42,18 @@ import retrofit2.Response;
 public class BlogsListActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = BlogsListActivity.this;
     ActivityBlogsListBinding binding;
-    BottomSheetDialog bottomSheetDialog, bottomSheetFilter;
+    BottomSheetDialog bottomSheetDialog;
+    public BottomSheetDialog bottomSheetFilter;
     ApiService apiService;
+    BlogsListAdapter blogsListAdapter;
+    FilterSearchAdapter filterSearchAdapter;
+    private ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
+
+
+    private ArrayList<BlogListHeadingModel> blogsList = new ArrayList<>();
+    private ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
 
     ItemBlogsHorizontalBinding itemBlogsHorizontalBinding;
-    ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList = new ArrayList<>();
 
     ItemAllBlogsBinding itemAllBlogsBinding;
     ArrayList<AllBlogListModel> allBlogListArrayList = new ArrayList<>();
@@ -67,6 +74,9 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
         setContentView(binding.getRoot());
         init();
+        getBlogsCategory(Constants.Key.blank);
+
+        getBlogsData(Constants.Key.blank);
     }
 
     private void init() {
@@ -75,110 +85,15 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         binding.ivBack.setOnClickListener(this);
         binding.llBtnShort.setOnClickListener(this);
         binding.llBtnFilter.setOnClickListener(this);
-
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetBlogShortBinding = BottomSheetBlogShortBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetBlogShortBinding.getRoot());
         bottomSheetBlogShortBinding.mcvAtoZ.setOnClickListener(this);
         bottomSheetBlogShortBinding.mcvZtoA.setOnClickListener(this);
-
-
-        BlogListHeadingModel blogListHeadingModel = new BlogListHeadingModel();
-        BlogListHeadingModel blogListHeadingModel1 = new BlogListHeadingModel();
-        BlogListHeadingModel blogListHeadingModel2 = new BlogListHeadingModel();
-        BlogListHeadingModel blogListHeadingModel3 = new BlogListHeadingModel();
-
-        blogListHeadingModel.Heading = "All Blogs";
-        blogListHeadingModel1.Heading = "Composition";
-        blogListHeadingModel2.Heading = "Exposure";
-        blogListHeadingModel3.Heading = "Practical Photography";
-
-        blogListHeadingModelArrayList.clear();
-        blogListHeadingModelArrayList.add(blogListHeadingModel);
-        blogListHeadingModelArrayList.add(blogListHeadingModel1);
-        blogListHeadingModelArrayList.add(blogListHeadingModel2);
-        blogListHeadingModelArrayList.add(blogListHeadingModel3);
-
-        binding.rvHorizontalHeading.setHasFixedSize(true);
+        blogsListAdapter = new BlogsListAdapter(activity, blogsList,"");
+        binding.rvHorizontalHeading.setAdapter(blogsListAdapter);
         binding.rvHorizontalHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        binding.rvHorizontalHeading.setAdapter(new BlogsListAdapter(activity, blogListHeadingModelArrayList));
 
-        AllBlogListModel allBlogListModel = new AllBlogListModel();
-        AllBlogListModel allBlogListModel1 = new AllBlogListModel();
-        AllBlogListModel allBlogListModel2 = new AllBlogListModel();
-        AllBlogListModel allBlogListModel3 = new AllBlogListModel();
-        AllBlogListModel allBlogListModel4 = new AllBlogListModel();
-        AllBlogListModel allBlogListModel5 = new AllBlogListModel();
-        AllBlogListModel allBlogListModel6 = new AllBlogListModel();
-
-        allBlogListModel.Date = "2 June, 2021";
-        allBlogListModel.MainBlogHeading = "5 Ways Google Cloud...";
-        allBlogListModel.NewsHeading = "Guide to Using the Right sit amet, elit. Velit" +
-                "sit ornare tortor arcu, euismod...";
-        allBlogListModel.AuthorName = "Author Name";
-        allBlogListModel.BlogMainImg = R.drawable.user_profile;
-        allBlogListModel.AuthorProfile = R.drawable.user_profile;
-
-        allBlogListModel1.Date = "Today";
-        allBlogListModel1.MainBlogHeading = "Using the Right DevOps Tools...";
-        allBlogListModel1.NewsHeading = "Guide to Using the Right sit amet, elit. Velit" +
-                "sit ornare tortor arcu, euismod...";
-        allBlogListModel1.AuthorName = "Patel Saheb";
-        allBlogListModel1.BlogMainImg = R.drawable.user_profile;
-        allBlogListModel1.AuthorProfile = R.drawable.user_profile;
-
-        allBlogListModel2.Date = "1 Jan,2021";
-        allBlogListModel2.MainBlogHeading = "The Right DevOps Tools 2021...";
-        allBlogListModel2.NewsHeading = "Guide to Using the Right sit amet, elit. Velit\n" +
-                "sit ornare tortor arcu, euismod...";
-        allBlogListModel2.AuthorName = "Aryan jayswal";
-        allBlogListModel2.BlogMainImg = R.drawable.user_profile;
-        allBlogListModel2.AuthorProfile = R.drawable.user_profile;
-
-        allBlogListModel3.Date = "1 Jan,2021";
-        allBlogListModel3.MainBlogHeading = "The Right DevOps Tools 2021...";
-        allBlogListModel3.NewsHeading = "Guide to Using the Right sit amet, elit. Velit" +
-                "sit ornare tortor arcu, euismod...";
-        allBlogListModel3.AuthorName = "Guru Patidar";
-        allBlogListModel3.BlogMainImg = R.drawable.user_profile;
-        allBlogListModel3.AuthorProfile = R.drawable.user_profile;
-
-        allBlogListModel4.Date = "Yestarday";
-        allBlogListModel4.MainBlogHeading = "The Right DevOps Tools 2021...";
-        allBlogListModel4.NewsHeading = "Guide to Using the Right sit amet, elit. Velit\n" +
-                "sit ornare tortor arcu, euismod...";
-        allBlogListModel4.AuthorName = "Labhansh gupta";
-        allBlogListModel4.BlogMainImg = R.drawable.user_profile;
-        allBlogListModel4.AuthorProfile = R.drawable.user_profile;
-
-        allBlogListModel5.Date = "1 Jan,2021";
-        allBlogListModel5.MainBlogHeading = "The Right DevOps Tools 2021...";
-        allBlogListModel5.NewsHeading = "Guide to Using the Right sit amet, elit. Velit" +
-                "sit ornare tortor arcu, euismod...";
-        allBlogListModel5.AuthorName = "Nilu Patel";
-        allBlogListModel5.BlogMainImg = R.drawable.user_profile;
-        allBlogListModel5.AuthorProfile = R.drawable.user_profile;
-
-        allBlogListModel6.Date = "1 Jan,2021";
-        allBlogListModel6.MainBlogHeading = "The Right DevOps Tools 2021...";
-        allBlogListModel6.NewsHeading = "Guide to Using the Right sit amet, elit. Velit\n" +
-                "sit ornare tortor arcu, euismod...";
-        allBlogListModel6.AuthorName = "Aman Rathor";
-        allBlogListModel6.BlogMainImg = R.drawable.user_profile;
-        allBlogListModel6.AuthorProfile = R.drawable.user_profile;
-
-        allBlogListArrayList.clear();
-        allBlogListArrayList.add(allBlogListModel);
-        allBlogListArrayList.add(allBlogListModel1);
-        allBlogListArrayList.add(allBlogListModel2);
-        allBlogListArrayList.add(allBlogListModel3);
-        allBlogListArrayList.add(allBlogListModel4);
-        allBlogListArrayList.add(allBlogListModel5);
-        allBlogListArrayList.add(allBlogListModel6);
-
-        binding.rvBlogs.setHasFixedSize(true);
-        binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
-        binding.rvBlogs.setAdapter(new AllBlogListAdapter(activity, allBlogListArrayList));
     }
 
     @Override
@@ -186,34 +101,37 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         if (view == binding.ivBack) {
             onBackPressed();
         } else if (view == binding.llBtnShort) {
-            bottomSheetDialog.show();
+            //   bottomSheetDialog.show();
         } else if (view == bottomSheetBlogShortBinding.mcvAtoZ) {
+
             bottomSheetBlogShortBinding.mcvAtoZ.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.TvBgColor));
             bottomSheetBlogShortBinding.mcvAtoZ.setStrokeColor(ContextCompat.getColor(activity, R.color.theme));
             bottomSheetBlogShortBinding.tvAtoZ.setTextColor(ContextCompat.getColor(activity, R.color.theme));
-
             bottomSheetBlogShortBinding.mcvZtoA.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.background));
             bottomSheetBlogShortBinding.mcvZtoA.setStrokeColor(ContextCompat.getColor(activity, R.color.StrokeColorLightBlue));
             bottomSheetBlogShortBinding.tvZtoA.setTextColor(ContextCompat.getColor(activity, R.color.primaryColor));
+
         } else if (view == bottomSheetBlogShortBinding.mcvZtoA) {
+
             bottomSheetBlogShortBinding.mcvZtoA.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.TvBgColor));
             bottomSheetBlogShortBinding.mcvZtoA.setStrokeColor(ContextCompat.getColor(activity, R.color.theme));
             bottomSheetBlogShortBinding.tvZtoA.setTextColor(ContextCompat.getColor(activity, R.color.theme));
-
             bottomSheetBlogShortBinding.mcvAtoZ.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.background));
             bottomSheetBlogShortBinding.mcvAtoZ.setStrokeColor(ContextCompat.getColor(activity, R.color.StrokeColorLightBlue));
             bottomSheetBlogShortBinding.tvAtoZ.setTextColor(ContextCompat.getColor(activity, R.color.primaryColor));
+
         } else if (view == binding.llBtnFilter) {
             bottomSheetFilterTask();
         }
     }
 
     private void bottomSheetFilterTask() {
-
         bottomSheetFilter = new BottomSheetDialog(activity);
         bottomSheetBlogFilterBinding = BottomSheetBlogFilterBinding.inflate(getLayoutInflater());
         bottomSheetFilter.setContentView(bottomSheetBlogFilterBinding.getRoot());
-
+        filterSearchAdapter = new FilterSearchAdapter(activity, blogsListFilter);
+        bottomSheetBlogFilterBinding.rvAuthorSearch.setAdapter(filterSearchAdapter);
+        bottomSheetBlogFilterBinding.rvAuthorSearch.setLayoutManager(new LinearLayoutManager(activity));
         bottomSheetBlogFilterBinding.llApply.setOnClickListener(view ->
         {
             bottomSheetFilter.cancel();
@@ -223,7 +141,22 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetFilter.show();
-        ArrayList<String> title = new ArrayList<>();
+        bottomSheetBlogFilterBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                filterSearchAdapter.getFilter().filter(s.trim());
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filterSearchAdapter.getFilter().filter(s.trim());
+                return false;
+            }
+        });
+        getBlogsCategory(Constants.Key.From);
+
+     /*   ArrayList<String> title = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
         title.add("Category");
         title.add("Date");
@@ -231,74 +164,105 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
         fragments.add(new CategoryFragment());
         fragments.add(new DateFragment());
-        fragments.add(new AuthorFragment());
+        fragments.add(new AuthorFragment());*/
 
-        TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
+     /*   TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
         ViewPager2 viewPager2 = bottomSheetFilter.findViewById(R.id.vpLaunchId);
         bottomSheetBlogFilterBinding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
 
         new TabLayoutMediator(bottomSheetBlogFilterBinding.tlFilter, bottomSheetBlogFilterBinding.vpLaunchId, (tab, position) -> {
             tab.setText(title.get(position));
-        }).attach();
-
+        }).attach();*/
+/*
         View tab1 = ((ViewGroup) bottomSheetBlogFilterBinding.tlFilter.getChildAt(0)).getChildAt(1);
         ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
         p.setMargins(20, 0, 20, 0);
-        tab1.requestLayout();
+        tab1.requestLayout();*/
     }
 
-    private void getBlogsCategory() {
-        apiService.getBlogsCategory("").enqueue(new Callback<AllResponseModel>() {
+    private void getBlogsCategory(String from) {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getBlogsCategory().enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        if (from.equals(Constants.Key.From)) {
+                            blogsListFilter.clear();
+                            blogsListFilter.addAll(response.body().blogsCat);
+                            filterSearchAdapter.notifyDataSetChanged();
+                        } else {
+                            blogsList.clear();
+                            blogsList.addAll(response.body().blogsCat);
+                            blogsListAdapter.notifyDataSetChanged();
+                        }
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }
 
-    private void getBlogsData() {
-        apiService.getBlogsData("").enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
-            }
-        });
+    public void DataChangeBlogListAdapter(){
+        blogsListAdapter.notifyDataSetChanged();
     }
 
-    private void getBlogsSortBy() {
-        apiService.getBlogsSortBy("").enqueue(new Callback<AllResponseModel>() {
+    public void getBlogsData(String urlSlug) {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getBlogsData(urlSlug).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    Blogarraylist.clear();
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
 
+                        Blogarraylist.addAll(response.body().blogs);
+                        binding.rvBlogs.setHasFixedSize(true);
+                        binding.rvBlogs.setAdapter(new AllBlogListAdapter(activity, Blogarraylist));
+                        binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity));
+
+                    } else {
+                        // assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void getBlogsFilterBy() {
-        apiService.getBlogsFilterBy("").enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }
