@@ -10,14 +10,13 @@ public class Const {
     public static String Development = Constants.Key.Debug;
     //Live
    // public static final String HOST_URL = "http://examoneOoneweb.dollopinfotech.com/";
-   // public static final String HOST_URL = "http://exam101.dollopinfotech.com/";
-  public static final String HOST_URL = "http://exam101stg.dollopinfotech.com/";
+    //public static final String HOST_URL = "http://exam101.dollopinfotech.com/";
+    public static final String HOST_URL = "http://exam101stg.dollopinfotech.com/";
 
     //Versioning URL
     public static final String MAIN_HOST_URL = HOST_URL + "v12/";
 
 
-    public static final String  FLAG_URL = "https://countryflagsapi.com/png/";
 
     public static final String get_otp = "get_otp";
     public static final String match_otp = "match_otp";
@@ -52,16 +51,16 @@ public class Const {
     public static final String aboutUs = "aboutUs";
     public static final String getBankProfile = "getBankProfile";
     public static final String getBankUserDetails = "getBankUserDetails";
-    public static final String getBlogDetailApi = "getBlogDetailApi";
-    public static final String getBlogListApi = "getBlogListApi";
-    public static final String getBlogCategoryListApi = "getBlogCategoryListApi";
+    public static final String getBlogDetails = "getBlogDetails";
+    public static final String getBlogsCategory = "getBlogsCategory";
+    public static final String getBlogsData = "getBlogsData";
     public static final String getBlogsSortBy = "getBlogsSortBy";
     public static final String getBlogsFilterBy = "getBlogsFilterBy";
     public static final String getCategory = "getCategory";
     public static final String getCategoryDetails = "getCategoryDetails";
     public static final String getCategoryFilter = "getCategoryFilter";
     public static final String changePasswordApi = "changePasswordApi";
-    public static final String contactUsApi = "contactUsApi";
+    public static final String ContactUs = "ContactUs";
     public static final String getCourseList = "getCourseList";
     public static final String getCourseDetails = "getCourseDetails";
     public static final String getCourseMaterialProgressBar = "getCourseMaterialProgressBar";

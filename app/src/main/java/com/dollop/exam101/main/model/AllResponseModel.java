@@ -35,6 +35,10 @@ public class AllResponseModel {
     @Expose
     public UserData userData;
 
+    @SerializedName("User")
+    @Expose
+    public UserData User;
+
     @SerializedName("studentData")
     @Expose
     public UserData studentData;
@@ -51,4 +55,7 @@ public class AllResponseModel {
     @Expose
     public AllBlogListModel blog;
 
+    @SerializedName("privacy")
+    @Expose
+    public Privacy privacy;
 }

@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.dollop.exam101.Basics.UtilityTools.SavedData;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +17,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.michaelrocks.libphonenumber.android.PhoneNumberUtil;
+import io.michaelrocks.libphonenumber.android.Phonenumber;
 
 /**
  * Created by Anil on 6/july/2022.
@@ -24,6 +29,7 @@ public class Validation {
 
     public EditText EditTextPointer;
     public String errorMessage;
+    PhoneNumberUtil phoneNumberUtil;
     @SuppressLint("StaticFieldLeak")
     private static Validation validation;
 
@@ -65,6 +71,7 @@ public class Validation {
      */
     public ResultReturn CheckValidation(Context context, @NonNull List<ValidationModel> errorValidationModels){
         boolean validationCheck=false;
+        phoneNumberUtil = PhoneNumberUtil.createInstance(context);
         Type type = null;
         String errorMessage = null;
         String parameter = null;
@@ -195,7 +202,15 @@ public class Validation {
             EditTextPointer = editText;
             return false;
         } else {
-            if (editText.getText().toString().length() != 10) {
+            if (validateMobileNumber(editText.getText().toString().trim(),context)){
+                return true;
+            }else {
+                EditTextPointer = editText;
+                errorMessage = context.getString(R.string.enter_a_valid_number);
+                return false;
+            }
+
+           /* if (editText.getText().toString().length() != 10) {
                 EditTextPointer = editText;
                 errorMessage = context.getString(R.string.enter_ten_digits_number);
                 return false;
@@ -207,7 +222,7 @@ public class Validation {
                     errorMessage = context.getString(R.string.valid_number);
                     return false;
                 }
-            }
+            }*/
         }
     }
 
@@ -364,6 +379,27 @@ public class Validation {
             }
 
         }
+    }
+
+    public boolean validateMobileNumber(String phoneNo,Context context) {
+        Phonenumber.PhoneNumber phonenumber = null;
+        String regionalCode = SavedData.getCountryKey(context);
+        Utils.E("regionalCode::"+regionalCode);
+        String NationalPhoneNumber;
+        try {
+            phonenumber = phoneNumberUtil.parse(phoneNo, regionalCode);
+            NationalPhoneNumber = String.valueOf(phonenumber.getNationalNumber());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        if (NationalPhoneNumber.equals(phoneNo)) {
+            boolean phoneIsValid = phoneNumberUtil.isValidNumber(phonenumber);
+            return phoneIsValid;
+        } else {
+            return false;
+        }
+
     }
 
 }

@@ -6,6 +6,7 @@ package com.dollop.exam101.Basics.UtilityTools;
  * Created by Anil on 9/4/2021.
  */
 public class Constants {
+    String Test = "Test";
 
     public interface Key {
         String TEXT_PLAIN_TYPE = "text/plain";
@@ -41,7 +42,10 @@ public class Constants {
 
         // Language
          String blank = "";
+         String Country_Id = "101";
+         String Default_Country_Code = "+91";
          String english = "en";
+         String Pleas_Select_Country = "Pleas Select Country";
 
 
          String Normal = "Normal";
@@ -58,8 +62,8 @@ public class Constants {
          String studentEmail = "studentEmail";
          String loginType = "loginType";
          String studentName = "studentName";
-         String No = "No";
-         String Yes = "Yes";
+         String Country_Code_Nan = "Country_Code_Nan";
+         String CountryId_Show = "Yes";
          String newPassword = "newPassword";
          String confirmPassword = "confirmPassword";
          String oldPassword = "oldPassword";
@@ -74,6 +78,23 @@ public class Constants {
          String countryId = "countryId";
          String BlogId = "BlogId";
 
+         String Take_Photo = "Take Photo";
+         String Choose_From_Gallery = "Choose from Gallery";
+         String Exit = "Exit";
+         String FlagUp_Requires_Access_To_Camara = "FlagUp Requires Access to Camara.";
+         String FlagUp_Requires_Access_To_Your_Storage = "FlagUp Requires Access to Your Storage.";
+         String Need_Permissions = "Need Permissions";
+         String GOTO_SETTINGS = "GOTO SETTINGS";
+         String Package = "package";
+         String Cancel = "Cancel";
+         String Data = "data";
+         String Image_png = "image.png";
+         String Image = "image/*";
+         String All_Validation_Pass = "All Validation Pass";
+         String Google = "Google";
+         String Massage = "massage";
+
+
 
 
          String Man = "Man";
@@ -87,7 +108,6 @@ public class Constants {
          String userBio = "userBio";
          String LoginSignup = "LoginSignup";
          String Register = "Register";
-
 
     }
     public static String blogCategoryId = "";

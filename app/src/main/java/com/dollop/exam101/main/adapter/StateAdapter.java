@@ -6,10 +6,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.Retrofit.Const;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemStateBinding;
 import com.dollop.exam101.main.activity.EditProfileActivity;
@@ -20,9 +24,10 @@ import com.dollop.exam101.main.model.StateModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.ViewHolder>{
+public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.ViewHolder> implements Filterable {
     Context context;
     List<StateModel> stateList;
+    List<StateModel> FilterList;
     int Position = 0;
     String Click;
 
@@ -30,6 +35,7 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.ViewHolder>
     public StateAdapter(Context activity, ArrayList<StateModel> stateItemArrayList,String from) {
         this.context = activity;
         this.stateList = stateItemArrayList;
+        this.FilterList = stateItemArrayList;
         Click = from;
         Utils.E("sl" + stateList.size());
         Utils.E("sil" + stateItemArrayList.size());
@@ -44,35 +50,62 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull StateAdapter.ViewHolder holder, int position) {
-        StateModel itemState = stateList.get(position);
+        StateModel itemState = FilterList.get(position);
         holder.binding.tvState.setText(itemState.stateName);
 
-        if (TextUtils.equals("ClickProfile",Click)){
+
             holder.binding.llState.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Position = holder.getAdapterPosition();
                     notifyDataSetChanged();
-                    ((EditProfileActivity)context).onStateSelectedE(itemState.stateName);
+                    if (Constants.Key.ClickProfile.equals(Click)) {
+                        ((EditProfileActivity) context).onStateSelectedE(itemState.stateName);
+                    } else if (Constants.Key.ClickSign.equals(Click))
+                         ((SignUpActivity)context).onStateSelected(itemState.stateName);
                 }
             });
-        } else if (TextUtils.equals("ClickSign",Click)){
-            holder.binding.llState.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Position = holder.getAdapterPosition();
-                    notifyDataSetChanged();
-                    ((SignUpActivity)context).onStateSelected(itemState.stateName);
-                }
-            });
-        }
 
     }
 
     @Override
     public int getItemCount() {
-        return stateList.size();
+        return FilterList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+                if (charString.isEmpty()) {
+                    FilterList = stateList;
+                }else {
+                    List<StateModel> filteredList = new ArrayList<>();
+                    for (StateModel row : stateList) {
+                        if (row.stateName.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+                    FilterList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = FilterList;
+                return filterResults;
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                FilterList = (List<StateModel>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ItemStateBinding binding;

@@ -51,24 +51,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         binding.tvLogOut.setOnClickListener(this);
 
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            String personGivenName = acct.getGivenName();
-            String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
-
-            binding.tvUserName.setText(personName);
-            binding.tvUserEmail.setText(personEmail);
-            Glide.with(this).load(String.valueOf(personPhoto)).into(binding.ivProfile);
-        }
     }
 
     @Override
@@ -92,23 +75,11 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         } else if (view == binding.llWishList) {
             Utils.I(activity, MyWishlistActivity.class, null);
         } else if (view == binding.tvLogOut) {
-            signOut();
-            Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(activity, LoginActivity.class));
+            Utils.UnAuthorizationToken(activity);
 
         }
     }
 
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(activity, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                        finish();
-                    }
-                });
-    }
 
 
 }
