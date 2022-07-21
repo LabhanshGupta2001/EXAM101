@@ -34,6 +34,7 @@ import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
+import com.dollop.exam101.main.model.Package;
 import com.google.gson.Gson;
 
 
@@ -50,10 +51,9 @@ public class HomeFragment extends Fragment {
     ApiService apiService;
     String Token;
     FragmentHomeBinding binding;
-    Fragment fragment = HomeFragment.this;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
-    ArrayList<PackageModel> packageList = new ArrayList<>();
+    ArrayList<Package> packageList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
     CountDownTimer countDownTimer = null;
     private final Runnable sliderRunnable = new Runnable() {
@@ -209,36 +209,6 @@ public class HomeFragment extends Fragment {
                 t.printStackTrace();
                 progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
-            }
-        });
-    }
-
-    void getBanner() {
-        HashMap<String, String> hm = new HashMap<>();
-        apiService.getBanner(hm).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
-            }
-        });
-    }
-
-    void getUser() {
-        HashMap<String, String> hm = new HashMap<>();
-        apiService.getUser(hm).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
             }
         });
     }

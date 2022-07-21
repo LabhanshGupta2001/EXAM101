@@ -172,7 +172,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_filter.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_raise_complaints.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_referralcode.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/country_adapter.xml" value="0.4" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/country_adapter.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/country_spinner.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_author.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_bottom_country.xml" value="0.25416666666666665" />
@@ -196,8 +196,8 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_affiliate_purchase_list.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.4" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.264" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_blogs_list.xml" value="0.264" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_blogs_list.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_category_details.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.536" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_check_email.xml" value="0.4" />
@@ -217,15 +217,7 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_raise_complaint.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_search_history.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_affiliate_purchase_list.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_blog_filter.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_blog_short.xml" value="0.24583333333333332" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_country.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_practice_test.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_quit_exam.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_ratenow.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottomsheet_filter.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottomsheet_raise_complaints.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottomsheet_referralcode.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_all_results.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_author.xml" value="0.25" />
@@ -233,6 +225,9 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_course_material.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_date.xml" value="0.6" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_authore_search.xml" value="0.6" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_categories_fragment.xml" value="0.536" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_category.xml" value="0.4" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_language.xml" value="0.4" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25" />
@@ -282,7 +277,7 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/progress_dialog.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/welcome_layout.xml" value="0.25" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/bottom_sheet_back.xml" value="0.1515" />
-        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
       </map>
     </option>
   </component>

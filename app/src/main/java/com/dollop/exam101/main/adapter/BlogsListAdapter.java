@@ -23,16 +23,14 @@ import java.util.ArrayList;
 public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder>{
     Context context;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
-    String blogCategoryId;
     int pos=0;
 
 
-    public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList,String blogCategoryId) {
+    public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
         this.context = context;
         this.blogListHeadingModelArrayList = blogListHeadingModelArrayList;
-        this.blogCategoryId = blogCategoryId;
-
     }
+
 
 
     @NonNull
@@ -57,13 +55,12 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
                 Utils.E("categoryId...Heading.."+blogListHeadingModel.blogCatId);
             }
         });
-        Utils.E("blogCategoryId::"+Constants.blogCategoryId);
+        Utils.E("blogCategoryId::"+pos);
         Utils.E("blogListHeadingModel.blogCatId::"+blogListHeadingModel.blogCatId);
-        if (pos == position || blogListHeadingModel.blogCatId.equals(Constants.blogCategoryId)){
+        if (pos == position){
                 holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
                 holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.white));
                 holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.theme));
-
         } else{
                 holder.binding.tvBlogHeading.setBackgroundResource(R.color.light_red);
                 holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.sub_text));
