@@ -1,33 +1,32 @@
 package com.dollop.exam101.main.fragment;
 
-import static androidx.databinding.DataBindingUtil.setContentView;
-
+import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.databinding.FragmentPackageListBinding;
-import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.PackageModel;
+import com.dollop.exam101.main.model.Package;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,25 +38,24 @@ import retrofit2.Response;
 
 public class PackageListFragment extends Fragment implements View.OnClickListener {
     FragmentPackageListBinding binding;
-    Fragment fragment=PackageListFragment.this;
     ApiService apiService;
+    String token;
+    Activity activity;
 
     BottomsheetFilterBinding bottomsheetFilterBinding;
     ViewPagerFragmentAdapter adapter;
-    private String[] labels = new String[]{"Categories","Price","Language"};
-
-
+    private final String[] labels = new String[]{"Categories","Price","Language"};
     BottomSheetDialog bottomSheetDialog;
-    ArrayList<PackageModel> packageList = new ArrayList<>();
+    ArrayList<Package> packageList = new ArrayList<>();
     PackageAdapter packageAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentPackageListBinding.inflate(inflater, container, false);
-
         bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(inflater,container,false);
+        activity = requireActivity();
         init();
        return binding.getRoot();
     }
@@ -65,25 +63,9 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
     private void init() {
         apiService = RetrofitClient.getClient();
-
-        packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
-        packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
-        packageList.add(new PackageModel("Creative Express", "Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));
-        packageList.add(new PackageModel("Creative Art Design", "Banner Design, Logo design,Posters"));
-
-
-        packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
-        packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
-        packageList.add(new PackageModel("Creative Express", "Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));
-        packageList.add(new PackageModel("Creative Art Design", "Banner Design, Logo design,Posters"));
-
-
-        packageAdapter = new PackageAdapter(getActivity(), packageList);
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.rvPackagesone.setLayoutManager(linearLayoutManager2);
-        binding.rvPackagesone.setAdapter(packageAdapter);
+        token = Utils.GetSession().token;
         binding.mcvFilterId.setOnClickListener(this);
-
+        packageList();
     }
 
     @Override
@@ -94,10 +76,9 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     }
 
     private void bottomsheetTask() {
-        bottomSheetDialog = new BottomSheetDialog(getContext());
+        bottomSheetDialog = new BottomSheetDialog(activity);
         bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomsheetFilterBinding.getRoot());
-
         BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
         behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -125,18 +106,45 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
 
     }
-    void packageList() {
-        HashMap<String, String> hm = new HashMap<>();
-        apiService.packageList(hm).enqueue(new Callback<AllResponseModel>() {
+    private void packageList() {
+        Dialog progressDialog = Utils.initProgressDialog(requireActivity());
+        apiService.packageListItem(token).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        packageList.clear();
+                        // Bundle bundle = new Bundle();
+                        assert response.body() != null;
+                        packageList.addAll(response.body().packages);
 
+                        packageAdapter = new PackageAdapter(getActivity(), packageList);
+                        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+                        binding.rvPackagesone.setLayoutManager(linearLayoutManager2);
+                        binding.rvPackagesone.setAdapter(packageAdapter);
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() != StatusCodeConstant.BAD_REQUEST) {
+                            if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                                Utils.T(requireActivity(), message.message);
+                                Utils.UnAuthorizationToken(requireActivity());
+                            }
+                        } else {
+                            Utils.T(requireActivity(), message.message);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
-    }
-}
+    }}

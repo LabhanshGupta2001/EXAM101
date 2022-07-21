@@ -25,12 +25,41 @@ import retrofit2.http.Query;
  */
 public interface ApiService {
 
-
+// Nilesh..
     @GET(Const.getCountryListApi)
     Call<AllResponseModel> getCountryList();
 
     @GET(Const.getStateListApi)
     Call<AllResponseModel> getStateList(@Query(Constants.Key.countryId) String countryId);
+
+    //EditProfile
+    @GET(Const.getProfileDetailApi)
+    Call<AllResponseModel> getEditProfileDetails(@Header(Constants.Key.Authorization) String token);
+
+    @Multipart
+    @POST(Const.updateProfileApi)
+    Call<AllResponseModel> EditProfileImage(@Header(Constants.Key.Authorization) String token,
+                                            @PartMap HashMap<String, RequestBody> hm,
+                                            @Part MultipartBody.Part profilePic);
+
+    @FormUrlEncoded
+    @POST(Const.socialLoginApi)
+    Call<AllResponseModel> SocialLogin(@FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.forgotPasswordApi)
+    Call<AllResponseModel> ForgetPassword(@FieldMap HashMap<String, String> hm);
+
+    @GET(Const.getPrivacyPolicyApi)
+    Call<AllResponseModel> getPrivacyAndPolicy();
+
+    @GET(Const.getTermConditionApi)
+    Call<AllResponseModel> getTermAndCondition();
+
+    @GET(Const.getPackageListWithFilterApi)
+    Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token);
+
+//______________________________********************___________________________________________//
 
     @GET(Const.aboutUs)
     Call<AllResponseModel> getAboutUs(@Header(Constants.Key.Authorization) String token);
@@ -102,24 +131,6 @@ public interface ApiService {
     @GET(Const.getFaqsList)
     Call<AllResponseModel> getFaqsList(@Header(Constants.Key.Authorization) String token);
 
-    //EditProfile
-    @GET(Const.getProfileDetailApi)
-    Call<AllResponseModel> getEditProfileDetails(@Header(Constants.Key.Authorization) String token);
-
-    @Multipart
-    @POST(Const.updateProfileApi)
-    Call<AllResponseModel> EditProfileImage(@Header(Constants.Key.Authorization) String token,
-                                            @PartMap HashMap<String, RequestBody> hm,
-                                            @Part MultipartBody.Part profilePic);
-
-    @FormUrlEncoded
-    @POST(Const.socialLoginApi)
-    Call<AllResponseModel> SocialLogin(@FieldMap HashMap<String, String> hm);
-
-
-    @FormUrlEncoded
-    @POST(Const.forgotPasswordApi)
-    Call<AllResponseModel> ForgetPassword(@FieldMap HashMap<String, String> hm);
 
     //Packages Details
     @GET(Const.getPackageDetails)
@@ -131,8 +142,9 @@ public interface ApiService {
     @GET(Const.getPackageDetailsMockTestList)
     Call<AllResponseModel> getPackageDetailsMockTestList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getPackageDetailsMockTestListRatingNow)
-    Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token);
+    @GET(Const.getReviewRatingListApi)
+    Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
+                                                                  @Query(Constants.Key.countryId) String countryId );
 
 
     @GET(Const.AllResults)
@@ -140,10 +152,6 @@ public interface ApiService {
 
     @GET(Const.AuthorList)
     Call<AllResponseModel> AuthorList(@Header(Constants.Key.Authorization) String token);
-
-
-    @GET(Const.CategoriesList)
-    Call<AllResponseModel> CategoriesList(@Header(Constants.Key.Authorization) String token);
 
 
     @GET(Const.CategoriesAllBlogsList)
@@ -206,8 +214,10 @@ public interface ApiService {
     @GET(Const.get_cart)
     Call<AllResponseModel> getCartList(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.wish_list)
-    Call<AllResponseModel> getWishList(@FieldMap HashMap<String, String> hm);
+    @FormUrlEncoded
+    @POST(Const.addToWishListApi)
+    Call<AllResponseModel> addWishlist(@Header(Constants.Key.Authorization) String token,
+                                       @Query(Constants.Key.countryId) String countryId);
 
     @GET(Const.notification)
     Call<AllResponseModel> getNotification(@FieldMap HashMap<String, String> hm);
@@ -218,8 +228,6 @@ public interface ApiService {
     @GET(Const.get_banner)
     Call<AllResponseModel> getBanner(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.top_ten)
-    Call<AllResponseModel> getTopTen(@FieldMap HashMap<String, String> hm);
 
     @GET(Const.user)
     Call<AllResponseModel> getUser(@FieldMap HashMap<String, String> hm);
@@ -236,7 +244,11 @@ public interface ApiService {
     @GET(Const.transaction)
     Call<AllResponseModel> getTransactionHistory(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.getPrivacyPolicyApi)
-    Call<AllResponseModel> getPrivacyAndPolicy();
+
+
+    //Dashboard
+
+    @GET(Const.getExamListApi)
+    Call<AllResponseModel> Examlist(@Header(Constants.Key.Authorization) String token);
 
 }

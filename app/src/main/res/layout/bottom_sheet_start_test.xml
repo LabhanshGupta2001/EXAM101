@@ -10,7 +10,7 @@
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_5sdp"
         android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_8sdp"
         app:cardBackgroundColor="@color/lightgrey"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="1dp" />
@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_curve_background"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/_4sdp"
         android:gravity="center">
 
         <ImageView
@@ -27,7 +28,7 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:src="@drawable/ic_notepad"
-            android:layout_marginVertical="@dimen/_16ssp" />
+            android:layout_marginVertical="@dimen/_12ssp" />
 
         <TextView
             android:id="@+id/tvHeading"

@@ -34,11 +34,11 @@ public class Const {
     public static final String raise_complaint = "raise_complaint";
     public static final String login_history = "login_history";
     public static final String get_cart = "get_cart";
-    public static final String wish_list = "wish_list";
+    public static final String addToWishListApi = "addToWishListApi";
     public static final String order_history = "order_history";
     public static final String notification = "notification";
     public static final String filter = "filter";
-    public static final String top_ten = "top_ten";
+    public static final String getPackageListWithFilterApi = "getPackageListWithFilterApi";
     public static final String user = "user";
     public static final String lang = "lang";
     public static final String mock_test = "mock_test";
@@ -76,11 +76,11 @@ public class Const {
     public static final String getPackageDetails = "getPakageDetails";
     public static final String getPackageDetailsCourseMaterial = "getPackageDetailsCourseMaterial";
     public static final String getPackageDetailsMockTestList = "getPackageDetailsMockTestList";
-    public static final String getPackageDetailsMockTestListRatingNow = "getPackageDetailsMockTestListRatingNow";
+    public static final String getReviewRatingListApi = "getReviewRatingListApi";
     public static final String AllResults = "AllResults";
     public static final String AuthorList = "AuthorList";
-    public static final String CategoriesList = "CategoriesList";
+    public static final String getExamListApi = "getExamListApi";
     public static final String CategoriesAllBlogsList = "CategoriesAllBlogsList";
     public static final String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
-    public static final String updateUserProfileApi = "updateUserProfileApi";
+    public static final String getTermConditionApi = "getTermConditionApi";
 }

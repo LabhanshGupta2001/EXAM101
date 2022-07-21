@@ -93,6 +93,7 @@ public class Constants {
          String All_Validation_Pass = "All Validation Pass";
          String Google = "Google";
          String Massage = "massage";
+         String Activity = "Activity";
 
 
 
@@ -110,5 +111,4 @@ public class Constants {
          String Register = "Register";
 
     }
-    public static String blogCategoryId = "";
 }

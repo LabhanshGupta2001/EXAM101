@@ -12,8 +12,9 @@
         android:layout_marginTop="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="@dimen/_2sdp"
-        app:strokeColor="@color/stroke_color"
-        app:strokeWidth=".7dp">
+
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -142,15 +143,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin=".5dp"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
                 <LinearLayout
                     android:id="@+id/llPackageDuration"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight=".7"
                     android:background="@drawable/packege_duration"
                     android:gravity="center_vertical"
@@ -179,6 +179,7 @@
                         android:background="@color/grey" />
 
                     <ImageView
+                        android:id="@+id/ivStar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2sdp"
@@ -208,7 +209,7 @@
                 <LinearLayout
                     android:id="@+id/llDetails"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight=".3"
                     android:background="@drawable/invoice_bg"
                     android:gravity="center"

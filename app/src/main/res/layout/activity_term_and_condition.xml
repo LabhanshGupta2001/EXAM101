@@ -42,9 +42,10 @@
         android:layout_height="@dimen/_12sdp"
         android:background="@color/lineColor" />
 
-    <WebView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/_12sdp"
-        android:id="@+id/WebViewTermConditions"/>
+        android:padding="@dimen/_12sdp"
+        android:id="@+id/tvViewTermConditions"/>
+
 </LinearLayout>

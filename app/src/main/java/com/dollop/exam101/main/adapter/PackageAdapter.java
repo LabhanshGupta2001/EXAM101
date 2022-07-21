@@ -1,7 +1,6 @@
 package com.dollop.exam101.main.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemPackagesBinding;
 import com.dollop.exam101.main.activity.PackagesDetailActivity;
-import com.dollop.exam101.main.model.PackageModel;
+import com.dollop.exam101.main.model.Package;
 
 import java.util.ArrayList;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackageViewHolder> {
-    private ArrayList<PackageModel> packageModelsList;
+    private ArrayList<Package> packageModelsList;
     private Context context;
 
-    public PackageAdapter(Context context, ArrayList<PackageModel> packageModelsList) {
+    public PackageAdapter(Context context, ArrayList<Package> packageModelsList) {
         this.packageModelsList = packageModelsList;
         this.context = context;
     }
@@ -33,9 +34,22 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
 
     @Override
     public void onBindViewHolder(@NonNull PackageAdapter.MyPackageViewHolder holder, int position) {
-        PackageModel packageModel = packageModelsList.get(position);
-        holder.itemPackagesBinding.tvPackageHeading.setText(packageModel.packageHeading);
-        holder.itemPackagesBinding.tvPackageDescription.setText(packageModel.packageDescription);
+        Package packageModel = packageModelsList.get(position);
+        holder.itemPackagesBinding.tvPackageHeading.setText(packageModel.packageName);
+        holder.itemPackagesBinding.tvPackageDescription.setText(packageModel.shortDesc);
+        holder.itemPackagesBinding.tvRupees.setText(packageModel.discountedPrice);
+        holder.itemPackagesBinding.tvTotalRupees.setText(packageModel.actualPrice);
+        holder.itemPackagesBinding.tvDay.setText(packageModel.validity+context.getString(R.string.Days));
+        if (packageModel.rating.equals(Constants.Key.blank)){
+            holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);
+            holder.itemPackagesBinding.tvRatingNum.setVisibility(View.GONE);
+            holder.itemPackagesBinding.ivStar.setVisibility(View.GONE);
+        } else {
+            holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);
+            holder.itemPackagesBinding.tvRatingNum.setText(packageModel.rating);
+            holder.itemPackagesBinding.tvRatingNum.setVisibility(View.VISIBLE);
+            holder.itemPackagesBinding.ivStar.setVisibility(View.VISIBLE);
+        }
 
         holder.itemPackagesBinding.llDetails.setOnClickListener(new View.OnClickListener() {
             @Override

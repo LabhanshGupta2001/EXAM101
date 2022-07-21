@@ -2,6 +2,7 @@ package com.dollop.exam101.main.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,18 +17,31 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
+import com.dollop.exam101.Basics.Database.UserData;
+import com.dollop.exam101.Basics.Database.UserDataHelper;
+import com.dollop.exam101.Basics.Retrofit.APIError;
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
 import com.dollop.exam101.main.fragment.HomeFragment;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
@@ -37,6 +51,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     ActivityDashboardScreenBinding binding;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
     GoogleSignInClient mGoogleSignInClient;
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +59,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         binding = ActivityDashboardScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -51,6 +67,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         /*navHeaderDashboardBinding.tvName.setText(Utils.GetSession().stateName);
         navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);*/
         navigationSetup();
+        apiService= RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
         binding.ivProfile.setOnClickListener(this);
         binding.ivNotification.setOnClickListener(this);

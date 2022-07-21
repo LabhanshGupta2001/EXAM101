@@ -47,6 +47,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     ApiService apiService;
     BlogsListAdapter blogsListAdapter;
     FilterSearchAdapter filterSearchAdapter;
+    public int position;
     private ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
 
 
@@ -90,7 +91,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         bottomSheetDialog.setContentView(bottomSheetBlogShortBinding.getRoot());
         bottomSheetBlogShortBinding.mcvAtoZ.setOnClickListener(this);
         bottomSheetBlogShortBinding.mcvZtoA.setOnClickListener(this);
-        blogsListAdapter = new BlogsListAdapter(activity, blogsList,"");
+        blogsListAdapter = new BlogsListAdapter(activity, blogsList);
         binding.rvHorizontalHeading.setAdapter(blogsListAdapter);
         binding.rvHorizontalHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
 
@@ -222,7 +223,8 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-    public void DataChangeBlogListAdapter(){
+    public void DataChangeBlogListAdapter(int position){
+       // blogsListAdapter.pos = position;
         blogsListAdapter.notifyDataSetChanged();
     }
 

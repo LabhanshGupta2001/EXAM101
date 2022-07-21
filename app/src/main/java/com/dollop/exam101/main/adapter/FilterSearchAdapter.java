@@ -54,8 +54,8 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
             public void onClick(View view) {
                 ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUrlSlug);
               //  new BlogsListAdapter(context,blogListHeadingModelArrayList,blogListHeadingModel.blogCatId);
-                Constants.blogCategoryId = blogListHeadingModel.blogCatId;
-                ((BlogsListActivity)context).DataChangeBlogListAdapter();
+
+             //   ((BlogsListActivity)context).DataChangeBlogListAdapter(holder.getAdapterPosition());
                 ((BlogsListActivity)context).bottomSheetFilter.dismiss();
             }
         });
