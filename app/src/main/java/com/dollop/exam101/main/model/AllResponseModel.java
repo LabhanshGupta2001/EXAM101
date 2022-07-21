@@ -67,4 +67,12 @@ public class AllResponseModel {
     @Expose
     public List<Package> packages = null;
 
+
+    @SerializedName("exams")
+    @Expose
+    public List<CourseModel> examListModels = null;
+
+    @SerializedName("reviewRating")
+    @Expose
+    public List<ReviewRating> reviewRating = null;
 }

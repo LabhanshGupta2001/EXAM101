@@ -115,7 +115,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
 
         ArrayList<String> title = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
-        title.add("Exam");
+        title.add("ExamListModel");
         title.add("Price");
         title.add("Language");
 

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,20 +18,24 @@ import android.view.ViewGroup;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
-import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.databinding.FragmentPackageListBinding;
+import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.Package;
+import com.dollop.exam101.main.model.PackageModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,11 +50,11 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
     BottomsheetFilterBinding bottomsheetFilterBinding;
     ViewPagerFragmentAdapter adapter;
-    private String[] labels = new String[]{"Categories","Price","Language"};
+    private String[] labels = new String[]{"Exams","Price","Language"};
 
 
     BottomSheetDialog bottomSheetDialog;
-    ArrayList<Package> packageList = new ArrayList<>();
+    ArrayList<PackageModel> packageList = new ArrayList<>();
     PackageAdapter packageAdapter;
 
     @Override
@@ -66,46 +71,26 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
     private void init() {
         apiService = RetrofitClient.getClient();
-        token =Utils.GetSession().token;
+        token = Utils.GetSession().token;
         packageList();
-
-      /*  packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
-        packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
-        packageList.add(new PackageModel("Creative Express", "Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));
-        packageList.add(new PackageModel("Creative Art Design", "Banner Design, Logo design,Posters"));
-
-
-        packageList.add(new PackageModel("MS Power Point", "MS Office, Advance Power point, Animated Slides"));
-        packageList.add(new PackageModel("Digital Design Thinking", "Graphic Design, Adobe software, indesgin, figma, in... Slides"));
-        packageList.add(new PackageModel("Creative Express", "Adobe XD, Creative Suit, Adobe Premier, Phtoshop C...Power point, Animated Slides"));
-        packageList.add(new PackageModel("Creative Art Design", "Banner Design, Logo design,Posters"));
-
-        packageAdapter = new PackageAdapter(getActivity(), packageList);
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.rvPackagesone.setLayoutManager(linearLayoutManager2);
-        binding.rvPackagesone.setAdapter(packageAdapter);
-        binding.mcvFilterId.setOnClickListener(this);*/
     }
 
     @Override
     public void onClick(View view) {
         if (view == binding.mcvFilterId) {
-            bottomSheetTask();
+            bottomsheetTask();
         }
     }
 
-    private void bottomSheetTask() {
+    private void bottomsheetTask() {
         bottomSheetDialog = new BottomSheetDialog(getContext());
         bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomsheetFilterBinding.getRoot());
-        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomsheetFilterBinding.getRoot().getParent()));
-        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-       // bottomSheetBehavior.setHalfExpandedRatio(0.9f);
-        bottomSheetBehavior.setMaxHeight(binding.svParent.getHeight());
-        bottomSheetBehavior.setSkipCollapsed(true);
-        bottomSheetDialog.show();
 
+        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
+        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetDialog.show();
         ArrayList<Fragment>Fragment=new ArrayList<>();
         Fragment.add(new CategoriesFragment());
         Fragment.add(new PriceFragment());
@@ -129,45 +114,17 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
 
     }
-   private void packageList() {
-        Dialog progressDialog = Utils.initProgressDialog(requireActivity());
-        apiService.packageListItem(token).enqueue(new Callback<AllResponseModel>() {
+    void packageList() {
+        HashMap<String, String> hm = new HashMap<>();
+        apiService.packageList(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                progressDialog.dismiss();
-                try {
-                    if (response.code() == StatusCodeConstant.OK) {
-                        packageList.clear();
-                        // Bundle bundle = new Bundle();
-                        assert response.body() != null;
-                        packageList.addAll(response.body().packages);
+            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
 
-                        packageAdapter = new PackageAdapter(getActivity(), packageList);
-                        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-                        binding.rvPackagesone.setLayoutManager(linearLayoutManager2);
-                        binding.rvPackagesone.setAdapter(packageAdapter);
-                    } else {
-                        assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() != StatusCodeConstant.BAD_REQUEST) {
-                            if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                                Utils.T(requireActivity(), message.message);
-                                 Utils.UnAuthorizationToken(requireActivity());
-                            }
-                        } else {
-                             Utils.T(requireActivity(), message.message);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
+
             @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-                call.cancel();
-                t.printStackTrace();
-                progressDialog.dismiss();
-                Utils.E("getMessage::" + t.getMessage());
+            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+
             }
         });
     }

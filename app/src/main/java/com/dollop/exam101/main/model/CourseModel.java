@@ -1,16 +1,14 @@
 package com.dollop.exam101.main.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class CourseModel
 {
-    public int image;
-    public String name;
-
-
-    public CourseModel(int image, String name) {
-        this.image = image;
-        this.name = name;
-    }
-    public CourseModel(String name) {
-        this.name = name;
-    }
+    @SerializedName("examId")
+    @Expose
+    public String examId;
+    @SerializedName("examName")
+    @Expose
+    public String examName;
 }

@@ -142,8 +142,9 @@ public interface ApiService {
     @GET(Const.getPackageDetailsMockTestList)
     Call<AllResponseModel> getPackageDetailsMockTestList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getPackageDetailsMockTestListRatingNow)
-    Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token);
+    @GET(Const.getReviewRatingListApi)
+    Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
+                                                                  @Query(Constants.Key.countryId) String countryId );
 
 
     @GET(Const.AllResults)
@@ -151,10 +152,6 @@ public interface ApiService {
 
     @GET(Const.AuthorList)
     Call<AllResponseModel> AuthorList(@Header(Constants.Key.Authorization) String token);
-
-
-    @GET(Const.CategoriesList)
-    Call<AllResponseModel> CategoriesList(@Header(Constants.Key.Authorization) String token);
 
 
     @GET(Const.CategoriesAllBlogsList)
@@ -217,8 +214,10 @@ public interface ApiService {
     @GET(Const.get_cart)
     Call<AllResponseModel> getCartList(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.wish_list)
-    Call<AllResponseModel> getWishList(@FieldMap HashMap<String, String> hm);
+    @FormUrlEncoded
+    @POST(Const.addToWishListApi)
+    Call<AllResponseModel> addWishlist(@Header(Constants.Key.Authorization) String token,
+                                       @Query(Constants.Key.countryId) String countryId);
 
     @GET(Const.notification)
     Call<AllResponseModel> getNotification(@FieldMap HashMap<String, String> hm);
@@ -245,5 +244,11 @@ public interface ApiService {
     @GET(Const.transaction)
     Call<AllResponseModel> getTransactionHistory(@FieldMap HashMap<String, String> hm);
 
+
+
+    //Dashboard
+
+    @GET(Const.getExamListApi)
+    Call<AllResponseModel> Examlist(@Header(Constants.Key.Authorization) String token);
 
 }
