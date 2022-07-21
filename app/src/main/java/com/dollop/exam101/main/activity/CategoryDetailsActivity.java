@@ -101,9 +101,16 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
             bottomSheetFilter.cancel();
         });
 
-        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
+       /* BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
         behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+*/
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomsheetFilterBinding.getRoot().getParent()));
+        bottomSheetFilter.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        // bottomSheetBehavior.setHalfExpandedRatio(0.9f);
+        bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
+        bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetFilter.show();
 
         ArrayList<String> title = new ArrayList<>();

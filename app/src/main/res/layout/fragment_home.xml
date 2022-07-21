@@ -296,27 +296,27 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-                android:gravity="center_horizontal"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/_6sdp"
-                android:weightSum="6">
+                android:weightSum="3">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_90sdp"
-                    android:layout_height="@dimen/_110sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginVertical="@dimen/_6sdp"
                     android:layout_weight="1"
-                    android:elevation="@dimen/_4sdp"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:elevation="@dimen/_6sdp"
                     app:cardCornerRadius="@dimen/_2sdp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/_6sdp">
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/_4sdp">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardVoucher"
@@ -324,6 +324,7 @@
                             android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
                             android:elevation="0dp"
+                            android:layout_marginTop="@dimen/_4sdp"
                             app:cardBackgroundColor="@color/status_bar"
                             app:cardCornerRadius="@dimen/_2sdp">
 
@@ -336,11 +337,12 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            style="@style/SenaryPrimaryTextStyle"
+                            style="@style/SenaryTextStyle"
+                            android:fontFamily="@font/inter_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardVoucher"
-                            android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:gravity="center_horizontal"
                             android:padding="@dimen/_2sdp"
                             android:text="@string/send_affiliate_code_to_your_friend" />
@@ -350,24 +352,23 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/_minus6sdp"
                     android:src="@drawable/ic_longarrow" />
+
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_90sdp"
-                    android:layout_height="@dimen/_110sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginVertical="@dimen/_6sdp"
                     android:layout_weight="1"
-                    android:elevation="@dimen/_4sdp"
-                    android:padding="@dimen/_6sdp"
-                    app:cardCornerRadius="@dimen/_2sdp">
+                    android:elevation="@dimen/_6sdp"
+                    app:cardCornerRadius="@dimen/_4sdp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/_6sdp"
                         android:gravity="center"
-                        android:padding="@dimen/_6sdp">
+                        android:padding="@dimen/_4sdp">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardOffer"
@@ -375,6 +376,7 @@
                             android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
                             android:elevation="0dp"
+                            android:layout_marginTop="@dimen/_4sdp"
                             app:cardBackgroundColor="@color/status_bar"
                             app:cardCornerRadius="@dimen/_2sdp">
 
@@ -387,12 +389,13 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            style="@style/SenaryPrimaryTextStyle"
+                            style="@style/SenaryTextStyle"
+                            android:fontFamily="@font/inter_regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardOffer"
-                            android:layout_marginTop="@dimen/_6sdp"
-                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center_horizontal"
                             android:text="@string/friend_purchase" />
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -400,22 +403,23 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/_minus6sdp"
                     android:src="@drawable/ic_longarrow" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_90sdp"
-                    android:layout_height="@dimen/_110sdp"
-                    android:layout_marginVertical="@dimen/_3sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginVertical="@dimen/_6sdp"
                     android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/_6sdp"
                     android:elevation="@dimen/_6sdp"
-                    app:cardCornerRadius="@dimen/_2sdp">
+                    app:cardCornerRadius="@dimen/_4sdp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/_6sdp">
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/_4sdp">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardWallet"
@@ -423,6 +427,7 @@
                             android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
                             android:elevation="0dp"
+                            android:layout_marginTop="@dimen/_4sdp"
                             app:cardBackgroundColor="@color/status_bar"
                             app:cardCornerRadius="@dimen/_2sdp">
 
@@ -435,11 +440,12 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            style="@style/SenaryPrimaryTextStyle"
+                            style="@style/SenaryTextStyle"
+                            android:fontFamily="@font/inter_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardWallet"
-                            android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:gravity="center_horizontal"
                             android:text="@string/get_amount" />
                     </RelativeLayout>

@@ -9,7 +9,7 @@
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_5sdp"
         android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_8sdp"
         app:cardBackgroundColor="@color/lightgrey"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="1dp" />
@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_curve_background"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/_4sdp"
         android:gravity="center">
 
 
@@ -27,7 +28,7 @@
             style="@style/SecondaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16ssp"
+            android:layout_marginTop="@dimen/_12ssp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:fontFamily="@font/gothic_bold"
             android:text="@string/do_you_want_to_end_the_test" />

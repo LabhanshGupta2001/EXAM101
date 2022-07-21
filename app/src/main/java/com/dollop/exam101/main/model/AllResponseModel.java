@@ -58,4 +58,13 @@ public class AllResponseModel {
     @SerializedName("privacy")
     @Expose
     public Privacy privacy;
+
+    @SerializedName("term")
+    @Expose
+    public Term term;
+
+    @SerializedName("packages")
+    @Expose
+    public List<Package> packages = null;
+
 }

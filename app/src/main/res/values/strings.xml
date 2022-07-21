@@ -297,8 +297,7 @@
     <string name="yogendratiwari54_gmail_com">yogendratiwari54@gmail,com</string>
 
     //Guru String
-    <string name="friend_purchase">Friend purchase
-        the package
+    <string name="friend_purchase">Friend purchase the package
         with <font color="#00A651">5%</font>
         Discount</string>
     <string name="get_amount">You get  <font color="#00A651">5%</font>  amount in your wallet</string>
@@ -317,6 +316,7 @@
     <string name="purchased">Purchased on:</string>
     <string name="view_course">View Course</string>
     <string name="days_left">Days Left</string>
+    <string name="Days">DAYS</string>
     <string name="adobe_software">Adobe Software</string>
     <string name="expire_on">Expire on:</string>
     <string name="_30_may_2022">30 May,2022</string>

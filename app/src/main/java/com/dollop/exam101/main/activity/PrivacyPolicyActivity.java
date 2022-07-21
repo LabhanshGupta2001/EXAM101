@@ -2,20 +2,18 @@ package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 
-import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityPrivacyPolicyBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.gson.Gson;
@@ -38,8 +36,9 @@ public class PrivacyPolicyActivity extends BaseActivity implements View.OnClickL
         init();
     }
 
-    private void init(){
+    private void init() {
         apiService = RetrofitClient.getClient();
+        binding.ivBack.setOnClickListener(this);
         getPAndP();
     }
 
@@ -52,9 +51,8 @@ public class PrivacyPolicyActivity extends BaseActivity implements View.OnClickL
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.E("getPrivacyAndPolicy::::"+response.body());
-                        //UserDataHelper.getInstance().insertData(response.body().User);
-                        //Utils.I_clear(activity, DashboardScreenActivity.class,null);
+                        Utils.E("getPrivacyAndPolicy::::" + response.body());
+                        binding.tvViewPolicy.setText(HtmlCompat.fromHtml(response.body().privacy.content, 0));
 
                     } else {
                         assert response.errorBody() != null;
@@ -81,7 +79,9 @@ public class PrivacyPolicyActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(View view) {
+        if (view == binding.ivBack) {
+            finish();
+        }
     }
 }

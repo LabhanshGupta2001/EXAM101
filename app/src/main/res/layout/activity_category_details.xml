@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rlParent"
     android:background="@color/white"
     tools:context=".main.activity.CategoryDetailsActivity">
 
@@ -76,15 +78,20 @@
         android:paddingVertical="@dimen/_6sdp"
         android:text="@string/filter" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/tvFilter"
+        android:id="@+id/llChild">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPackages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvFilter"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_4sdp"
-        android:overScrollMode="never"
- />
+        android:overScrollMode="never" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -93,6 +100,6 @@
         android:layout_below="@id/rvPackages"
         android:layout_marginTop="@dimen/_10sdp"
         android:overScrollMode="never"
-
         />
+    </LinearLayout>
 </RelativeLayout>

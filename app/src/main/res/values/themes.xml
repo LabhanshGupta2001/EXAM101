@@ -23,6 +23,21 @@
         <item name="android:windowTranslucentStatus">false</item>
     </style>
 
+
+    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="contentPadding">@dimen/_minus12sdp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cornerSizeTopLeft">@dimen/_46sdp</item>
+
+    </style>
+
     <style name="Widget.MyTheme.ListView" parent="android:Widget.ListView">
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>

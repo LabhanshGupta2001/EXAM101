@@ -11,7 +11,7 @@
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_5sdp"
         android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_8sdp"
         app:cardBackgroundColor="@color/lightgrey"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="1dp" />
@@ -19,6 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
         android:background="@drawable/bottom_curve_background"
         android:orientation="vertical">
 
@@ -26,7 +27,7 @@
             style="@style/SecondaryTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:fontFamily="@font/gothic_bold"
             android:gravity="center"
             android:text="@string/complaint_id"

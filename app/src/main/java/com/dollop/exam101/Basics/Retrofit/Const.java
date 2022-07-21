@@ -38,7 +38,7 @@ public class Const {
     public static final String order_history = "order_history";
     public static final String notification = "notification";
     public static final String filter = "filter";
-    public static final String top_ten = "top_ten";
+    public static final String getPackageListWithFilterApi = "getPackageListWithFilterApi";
     public static final String user = "user";
     public static final String lang = "lang";
     public static final String mock_test = "mock_test";
@@ -82,5 +82,5 @@ public class Const {
     public static final String CategoriesList = "CategoriesList";
     public static final String CategoriesAllBlogsList = "CategoriesAllBlogsList";
     public static final String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
-    public static final String updateUserProfileApi = "updateUserProfileApi";
+    public static final String getTermConditionApi = "getTermConditionApi";
 }
