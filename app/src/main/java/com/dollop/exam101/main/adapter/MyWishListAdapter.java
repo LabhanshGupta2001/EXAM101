@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemWishlistBinding;
+import com.dollop.exam101.main.model.AllResponseModel;
 
 import java.util.List;
 
 public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.MyHolder> {
     Context context;
-    List<String> list;
+    List<AllResponseModel> list;
 
 
-    public MyWishListAdapter(Context context, List<String> list) {
+    public MyWishListAdapter(Context context, List<AllResponseModel> list) {
         this.context = context;
         this.list = list;
     }

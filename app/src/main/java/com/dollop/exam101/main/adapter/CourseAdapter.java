@@ -34,8 +34,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyPostView
     public void onBindViewHolder(@NonNull MyPostViewHolder holder, int position)
     {
         CourseModel courseModel=courseModelList.get(position);
-        holder.itemCourseBinding.tvCourseName.setText(String.valueOf(courseModel.name));
-        holder.itemCourseBinding.ivCourseImageView.setImageResource(courseModel.image);
+        holder.itemCourseBinding.tvCourseName.setText(courseModel.examName);
+        /*holder.itemCourseBinding.ivCourseImageView.setImageResource(courseModel.examId);*/
     }
 
     @Override

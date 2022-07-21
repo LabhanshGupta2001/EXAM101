@@ -9,17 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemPackageDetailBinding;
+import com.dollop.exam101.main.model.ReviewRating;
 
 import java.util.ArrayList;
 
 public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetailRatingAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list;
+    ArrayList<ReviewRating> list;
     int row_index=-1;
 
 
 
-    public PakageDetailRatingAdapter(Context context, ArrayList<String> list) {
+    public PakageDetailRatingAdapter(Context context, ArrayList<ReviewRating> list) {
         this.context = context;
         this.list = list;
     }
@@ -32,12 +33,12 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {/*
         list.clear();
         list.add("1");
         list.add("1");
         list.add("1");
-        list.add("1");
+        list.add("1");*/
     }
 
     @Override

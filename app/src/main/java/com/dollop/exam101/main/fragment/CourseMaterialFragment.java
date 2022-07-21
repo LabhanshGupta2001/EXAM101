@@ -2,8 +2,10 @@ package com.dollop.exam101.main.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -14,18 +16,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
+import com.dollop.exam101.main.adapter.MyWishListAdapter;
 import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.ReviewRating;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -37,8 +44,10 @@ import retrofit2.Response;
 public class CourseMaterialFragment extends Fragment implements View.OnClickListener {
     Activity activity;
     FragmentCourseMaterialBinding binding;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<ReviewRating> list = new ArrayList<>();
     private Boolean dropdown = true;
+    String Token;
+    ArrayList<ReviewRating> stateItemArrayList = new ArrayList<>();
 
     ApiService apiService;
     BottomSheetDialog bottomSheetDialog;
@@ -56,9 +65,10 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     private void init() {
 
         apiService= RetrofitClient.getClient();
+        Token = Utils.GetSession().token;
         binding.tvRateId.setOnClickListener(this);
 
-        list.clear();
+    /*    list.clear();
         list.add("1");
         list.add("1");
         list.add("1");
@@ -78,7 +88,7 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         binding.rvRatingId.setHasFixedSize(true);
         binding.rvRatingId.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(getContext(), list));
-
+*/
     }
 
     @Override
@@ -141,16 +151,40 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         });
     }
 
-    private void GetPackageDetailsMockTestListRatingNow(){
-        apiService.getPackageDetailsMockTestListRatingNow("").enqueue(new Callback<AllResponseModel>() {
+    private void GetPackageDetailsMockTestListRatingNow(String packageID){
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getPackageDetailsMockTestListRatingNow(Token,packageID).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        stateItemArrayList.clear();
+                        assert response.body() != null;
+                        stateItemArrayList.addAll(response.body().reviewRating);
+                        binding.rvRatingId.setLayoutManager(new LinearLayoutManager(activity));
+                        binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(activity,stateItemArrayList));
 
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
             }
         });
     }

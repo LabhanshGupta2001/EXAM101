@@ -58,4 +58,12 @@ public class AllResponseModel {
     @SerializedName("privacy")
     @Expose
     public Privacy privacy;
+
+    @SerializedName("exams")
+    @Expose
+    public List<CourseModel> examListModels = null;
+
+    @SerializedName("reviewRating")
+    @Expose
+    public List<ReviewRating> reviewRating = null;
 }

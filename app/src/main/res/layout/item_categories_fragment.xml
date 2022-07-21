@@ -42,11 +42,11 @@
                     android:text="@string/digiltal_marketing"
                     android:theme="@style/QuaternaryFullBlackTextStyle" />
 
-                <ImageView
-                    android:id="@+id/ivDropdown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_downarrow" />
+                   <CheckBox
+                       android:id="@+id/radioButton"
+                       android:layout_width="@dimen/_20sdp"
+                       android:layout_height="@dimen/_20sdp"
+                        />
 
             </LinearLayout>
 

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,18 +14,14 @@ import android.view.ViewGroup;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.databinding.FragmentPackageListBinding;
-import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.PackageModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
@@ -44,7 +39,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
     BottomsheetFilterBinding bottomsheetFilterBinding;
     ViewPagerFragmentAdapter adapter;
-    private String[] labels = new String[]{"Categories","Price","Language"};
+    private String[] labels = new String[]{"Exams","Price","Language"};
 
 
     BottomSheetDialog bottomSheetDialog;
@@ -125,6 +120,9 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
 
     }
+
+
+
     void packageList() {
         HashMap<String, String> hm = new HashMap<>();
         apiService.packageList(hm).enqueue(new Callback<AllResponseModel>() {
@@ -139,4 +137,5 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
             }
         });
     }
+
 }
