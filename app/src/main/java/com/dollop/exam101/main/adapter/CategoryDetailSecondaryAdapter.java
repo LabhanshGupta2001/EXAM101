@@ -12,18 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCategoryDetailsSecondaryBinding;
-import com.dollop.exam101.main.model.Package;
+import com.dollop.exam101.main.model.PackageModel;
 
 import java.util.ArrayList;
 
 public class CategoryDetailSecondaryAdapter extends RecyclerView.Adapter<CategoryDetailSecondaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<Package> packageList;
+    ArrayList<PackageModel> packageModelList;
     int row_index = -1;
 
-    public CategoryDetailSecondaryAdapter(Context context, ArrayList<Package> list) {
+    public CategoryDetailSecondaryAdapter(Context context, ArrayList<PackageModel> list) {
         this.context = context;
-        this.packageList = list;
+        this.packageModelList = list;
     }
 
     @NonNull
@@ -37,7 +37,7 @@ public class CategoryDetailSecondaryAdapter extends RecyclerView.Adapter<Categor
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        Package packageModel = packageList.get(position);
+        PackageModel packageModel = packageModelList.get(position);
         holder.binding.packageName.setText(packageModel.packageName);
         holder.binding.tvDescriptionId.setText(packageModel.shortDesc);
         holder.binding.tvRupees.setText(packageModel.discountedPrice);
@@ -58,7 +58,7 @@ public class CategoryDetailSecondaryAdapter extends RecyclerView.Adapter<Categor
 
     @Override
     public int getItemCount() {
-        return packageList.size();
+        return packageModelList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

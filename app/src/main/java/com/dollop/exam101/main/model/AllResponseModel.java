@@ -57,7 +57,7 @@ public class AllResponseModel {
 
     @SerializedName("privacy")
     @Expose
-    public Privacy privacy;
+    public PrivacyModel privacyModel;
 
     @SerializedName("term")
     @Expose
@@ -65,7 +65,7 @@ public class AllResponseModel {
 
     @SerializedName("packages")
     @Expose
-    public List<Package> packages = null;
+    public List<PackageModel> packageModels = null;
 
 
     @SerializedName("exams")

@@ -13,16 +13,16 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemPackagesBinding;
 import com.dollop.exam101.main.activity.PackagesDetailActivity;
-import com.dollop.exam101.main.model.Package;
+import com.dollop.exam101.main.model.PackageModel;
 
 import java.util.ArrayList;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackageViewHolder> {
-    private ArrayList<Package> packageModelsList;
+    private ArrayList<PackageModel> packageModelModelsList;
     private Context context;
 
-    public PackageAdapter(Context context, ArrayList<Package> packageModelsList) {
-        this.packageModelsList = packageModelsList;
+    public PackageAdapter(Context context, ArrayList<PackageModel> packageModelModelsList) {
+        this.packageModelModelsList = packageModelModelsList;
         this.context = context;
     }
 
@@ -34,7 +34,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
 
     @Override
     public void onBindViewHolder(@NonNull PackageAdapter.MyPackageViewHolder holder, int position) {
-        Package packageModel = packageModelsList.get(position);
+        PackageModel packageModel = packageModelModelsList.get(position);
         holder.itemPackagesBinding.tvPackageHeading.setText(packageModel.packageName);
         holder.itemPackagesBinding.tvPackageDescription.setText(packageModel.shortDesc);
         holder.itemPackagesBinding.tvRupees.setText(packageModel.discountedPrice);
@@ -61,7 +61,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
 
     @Override
     public int getItemCount() {
-        return packageModelsList.size();
+        return packageModelModelsList.size();
     }
 
     public static class MyPackageViewHolder extends RecyclerView.ViewHolder {

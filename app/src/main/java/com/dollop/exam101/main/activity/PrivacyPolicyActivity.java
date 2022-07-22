@@ -52,7 +52,7 @@ public class PrivacyPolicyActivity extends BaseActivity implements View.OnClickL
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         Utils.E("getPrivacyAndPolicy::::" + response.body());
-                        binding.tvViewPolicy.setText(HtmlCompat.fromHtml(response.body().privacy.content, 0));
+                        binding.tvViewPolicy.setText(HtmlCompat.fromHtml(response.body().privacyModel.content, 0));
 
                     } else {
                         assert response.errorBody() != null;

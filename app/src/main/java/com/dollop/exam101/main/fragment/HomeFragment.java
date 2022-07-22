@@ -34,12 +34,11 @@ import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
-import com.dollop.exam101.main.model.Package;
+import com.dollop.exam101.main.model.PackageModel;
 import com.google.gson.Gson;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,7 +52,7 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
-    ArrayList<Package> packageList = new ArrayList<>();
+    ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
     CountDownTimer countDownTimer = null;
     private final Runnable sliderRunnable = new Runnable() {
@@ -221,12 +220,12 @@ public class HomeFragment extends Fragment {
                 progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
-                        packageList.clear();
+                        packageModelList.clear();
                        // Bundle bundle = new Bundle();
                         assert response.body() != null;
-                        packageList.addAll(response.body().packages);
+                        packageModelList.addAll(response.body().packageModels);
 
-                        packageAdapter = new PackageAdapter(getActivity(), packageList);
+                        packageAdapter = new PackageAdapter(getActivity(), packageModelList);
                         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                         binding.rvPackages.setLayoutManager(linearLayoutManager2);
                         binding.rvPackages.setAdapter(packageAdapter);

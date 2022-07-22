@@ -22,7 +22,7 @@ import com.dollop.exam101.databinding.FragmentPackageListBinding;
 import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.Package;
+import com.dollop.exam101.main.model.PackageModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -44,7 +44,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     BottomsheetFilterBinding bottomsheetFilterBinding;
     private final String[] labels = new String[]{"Exams","Price","Language"};
     BottomSheetDialog bottomSheetDialog;
-    ArrayList<Package> packageList = new ArrayList<>();
+    ArrayList<PackageModel> packageModelList = new ArrayList<>();
     PackageAdapter packageAdapter;
 
     @Override
@@ -114,11 +114,11 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                 progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
-                        packageList.clear();
+                        packageModelList.clear();
                         assert response.body() != null;
-                        packageList.addAll(response.body().packages);
+                        packageModelList.addAll(response.body().packageModels);
 
-                        packageAdapter = new PackageAdapter(getActivity(), packageList);
+                        packageAdapter = new PackageAdapter(getActivity(), packageModelList);
                         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                         binding.rvPackagesone.setLayoutManager(linearLayoutManager2);
                         binding.rvPackagesone.setAdapter(packageAdapter);

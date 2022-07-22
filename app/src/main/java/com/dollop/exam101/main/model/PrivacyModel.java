@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Privacy {
+public class PrivacyModel {
 
 @SerializedName("content")
 @Expose

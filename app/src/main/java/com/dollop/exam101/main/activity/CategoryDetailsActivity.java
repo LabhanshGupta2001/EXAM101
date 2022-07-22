@@ -29,7 +29,7 @@ import com.dollop.exam101.main.fragment.LanguageFragment;
 import com.dollop.exam101.main.fragment.PriceFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseModel;
-import com.dollop.exam101.main.model.Package;
+import com.dollop.exam101.main.model.PackageModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -46,7 +46,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     public String examId = null;
     Activity activity = CategoryDetailsActivity.this;
     ActivityCategoryDetailsBinding binding;
-    ArrayList<Package> arrayList = new ArrayList<>();
+    ArrayList<PackageModel> arrayList = new ArrayList<>();
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ApiService apiService;
     BottomSheetDialog bottomSheetFilter;
@@ -126,9 +126,9 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
 
         ArrayList<String> title = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
-        title.add("Exams");
-        title.add("Price");
-        title.add("Language");
+        title.add(Constants.Key.Exams);
+        title.add(Constants.Key.Price);
+        title.add(Constants.Key.Language);
 
         fragments.add(new ExamFilterFragment());
         fragments.add(new PriceFragment());
@@ -198,7 +198,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                     if (response.code() == StatusCodeConstant.OK) {
                         arrayList.clear();
                         assert response.body() != null;
-                        arrayList.addAll(response.body().packages);
+                        arrayList.addAll(response.body().packageModels);
                         binding.rvPackagesSecondary.setAdapter(new CategoryDetailSecondaryAdapter(activity, arrayList));
                         binding.rvPackagesSecondary.setHasFixedSize(true);
                         binding.rvPackagesSecondary.setLayoutManager(new LinearLayoutManager(activity));

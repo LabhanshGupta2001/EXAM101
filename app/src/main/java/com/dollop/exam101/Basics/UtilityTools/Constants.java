@@ -97,8 +97,6 @@ public class Constants {
          String Activity = "Activity";
 
 
-
-
          String Man = "Man";
          String Woman = "Woman";
          String Transgender = "Transgender";
@@ -110,6 +108,10 @@ public class Constants {
          String userBio = "userBio";
          String LoginSignup = "LoginSignup";
          String Register = "Register";
+         String Exams = "Exams";
+         String Price = "Price";
+         String Language = "Language";
+
 
     }
 }
