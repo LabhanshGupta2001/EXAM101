@@ -77,6 +77,9 @@ public class Constants {
          String urlSlug = "urlSlug";
          String countryId = "countryId";
          String BlogId = "BlogId";
+         String packageId = "packageId";
+         String review = "review";
+         String rating = "rating";
 
          String Take_Photo = "Take Photo";
          String Choose_From_Gallery = "Choose from Gallery";
@@ -88,14 +91,13 @@ public class Constants {
          String Package = "package";
          String Cancel = "Cancel";
          String Data = "data";
+         String examId = "examId";
          String Image_png = "image.png";
          String Image = "image/*";
          String All_Validation_Pass = "All Validation Pass";
          String Google = "Google";
          String Massage = "massage";
          String Activity = "Activity";
-
-
 
 
          String Man = "Man";
@@ -109,6 +111,10 @@ public class Constants {
          String userBio = "userBio";
          String LoginSignup = "LoginSignup";
          String Register = "Register";
+         String Exams = "Exams";
+         String Price = "Price";
+         String Language = "Language";
+
 
     }
 }

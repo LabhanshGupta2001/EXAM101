@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
@@ -72,12 +73,12 @@ public class TestResultActivity extends BaseActivity implements View.OnClickList
         HashMap<String, String> hm = new HashMap<>();
         apiService.getResult(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });

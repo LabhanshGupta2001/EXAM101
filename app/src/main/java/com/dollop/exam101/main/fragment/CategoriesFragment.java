@@ -3,27 +3,25 @@ package com.dollop.exam101.main.fragment;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
+
 import com.dollop.exam101.databinding.FragmentCategoriesBinding;
-import com.dollop.exam101.databinding.FragmentExamFilterBinding;
+
 import com.dollop.exam101.main.adapter.CategoriesFragmentAdapter;
-import com.dollop.exam101.main.adapter.CourseAdapter;
-import com.dollop.exam101.main.adapter.ExamFragmentAdapter;
+
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.google.gson.Gson;
@@ -35,22 +33,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CategoriesFragment extends Fragment implements View.OnClickListener{
+public class CategoriesFragment extends Fragment implements View.OnClickListener {
     ApiService apiService;
     Activity activity;
-    Fragment fragment = CategoriesFragment.this;
-    FragmentCategoriesBinding binding;
-    ArrayList<String> list = new ArrayList<>();
+    private FragmentCategoriesBinding binding;
     String Token;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false);
 
         activity = requireActivity();
-        apiService= RetrofitClient.getClient();
+        apiService = RetrofitClient.getClient();
         init();
         getExamList();
         return binding.getRoot();
@@ -59,14 +55,13 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
     private void init() {
         Token = Utils.GetSession().token;
 
-
-
     }
 
     @Override
     public void onClick(View v) {
 
     }
+
     private void getExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
         apiService.Examlist(Token).enqueue(new Callback<AllResponseModel>() {
@@ -78,8 +73,8 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
                         assert response.body() != null;
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
-                        binding.rvCategoriesItem.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
-                        binding.rvCategoriesItem.setAdapter(new CategoriesFragmentAdapter(courseModelArrayList,getContext()));
+                        binding.rvCategoriesItem.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                        binding.rvCategoriesItem.setAdapter(new CategoriesFragmentAdapter(courseModelArrayList, getContext()));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

@@ -39,7 +39,7 @@ public class TransactionHistoryAdapter  extends RecyclerView.Adapter<Transaction
         return list.size();
     }
 
-    public class Myholder extends RecyclerView.ViewHolder {
+    public static class Myholder extends RecyclerView.ViewHolder {
         ItemTransactionHistoryBinding binding;
 
         public Myholder(@NonNull ItemTransactionHistoryBinding binding) {

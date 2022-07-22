@@ -86,7 +86,7 @@
         android:id="@+id/llChild">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPackages"
+        android:id="@+id/rvPackagesHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"

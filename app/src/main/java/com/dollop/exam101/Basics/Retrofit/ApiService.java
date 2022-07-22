@@ -59,6 +59,10 @@ public interface ApiService {
     @GET(Const.getPackageListWithFilterApi)
     Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token);
 
+    @GET(Const.getPackageListWithFilterApi)
+    Call<AllResponseModel> examPackageListItem(@Header(Constants.Key.Authorization) String token,
+                                               @Query(Constants.Key.examId) String examId);
+
 //______________________________********************___________________________________________//
 
     @GET(Const.aboutUs)
@@ -94,8 +98,8 @@ public interface ApiService {
     @GET(Const.getCategory)
     Call<AllResponseModel> getCategory(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getCategoryDetails)
-    Call<AllResponseModel> getCategoryDetails(@Header(Constants.Key.Authorization) String token);
+   /* @GET(Const.getCategoryDetails)
+    Call<AllResponseModel> getCategoryDetails(@Header(Constants.Key.Authorization) String token);*/
 
     @GET(Const.getCategoryFilter)
     Call<AllResponseModel> getCategoryFilter(@Header(Constants.Key.Authorization) String token);
@@ -144,7 +148,7 @@ public interface ApiService {
 
     @GET(Const.getReviewRatingListApi)
     Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
-                                                                  @Query(Constants.Key.countryId) String countryId );
+                                                                  @Query(Constants.Key.packageId) String packageId );
 
 
     @GET(Const.AllResults)
@@ -152,10 +156,6 @@ public interface ApiService {
 
     @GET(Const.AuthorList)
     Call<AllResponseModel> AuthorList(@Header(Constants.Key.Authorization) String token);
-
-
-    @GET(Const.CategoriesAllBlogsList)
-    Call<AllResponseModel> CategoriesAllBlogsList(@Header(Constants.Key.Authorization) String token);
 
 
     @GET(Const.CategoriesHomePhotographyList)
@@ -217,7 +217,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Const.addToWishListApi)
     Call<AllResponseModel> addWishlist(@Header(Constants.Key.Authorization) String token,
-                                       @Query(Constants.Key.countryId) String countryId);
+                                       @FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.addReviewRatingApi)
+    Call<AllResponseModel> addRatingReview(@Header(Constants.Key.Authorization) String token,
+                                       @FieldMap HashMap<String, String> hm);
 
     @GET(Const.notification)
     Call<AllResponseModel> getNotification(@FieldMap HashMap<String, String> hm);

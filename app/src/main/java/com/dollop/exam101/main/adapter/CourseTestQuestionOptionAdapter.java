@@ -12,8 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.ItemCourseMaterialChapterNameListBinding;
-import com.dollop.exam101.databinding.ItemCourseTestQuestionListBinding;
+
 import com.dollop.exam101.databinding.ItemCourseTestQuestionOptionListBinding;
 
 import java.util.ArrayList;
@@ -68,7 +67,7 @@ public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<Course
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCourseTestQuestionOptionListBinding binding;
 
         public MyViewHolder(@NonNull ItemCourseTestQuestionOptionListBinding binding) {

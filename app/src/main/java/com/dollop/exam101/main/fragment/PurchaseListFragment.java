@@ -28,7 +28,6 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
     ApiService apiService;
 
     public PurchaseListFragment() {
-        // Required empty public constructor
     }
 
     @Override

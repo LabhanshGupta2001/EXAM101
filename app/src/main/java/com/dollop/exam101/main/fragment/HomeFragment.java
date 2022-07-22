@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -7,14 +8,13 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
+
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
@@ -34,12 +34,12 @@ import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
-import com.dollop.exam101.main.model.Package;
+import com.dollop.exam101.main.model.PackageModel;
 import com.google.gson.Gson;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,10 +50,12 @@ public class HomeFragment extends Fragment {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
     String Token;
+    Package Package;
+    Activity activity;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
-    ArrayList<Package> packageList = new ArrayList<>();
+    ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
     CountDownTimer countDownTimer = null;
     private final Runnable sliderRunnable = new Runnable() {
@@ -78,10 +80,10 @@ public class HomeFragment extends Fragment {
     BannerAdapter bannerAdapter;
     PackageAdapter packageAdapter;
     NewsAdapter newsAdapter;
-    ViewPager viewPager;
-    LinearLayout sliderDotspanel;
-    private int dotscount;
-    private ImageView[] dots;
+
+
+
+
 
 
     public HomeFragment() {
@@ -107,21 +109,17 @@ public class HomeFragment extends Fragment {
     }
 
     private void init() {
+        activity=requireActivity();
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
-        //getOfferBannerByUser();
         getTopTen();
         courseModelArrayList.clear();
 
-        // Add the following lines to create RecyclerView
         CourseAdapter adapter = new CourseAdapter(getContext(), courseModelArrayList);
-        //adapter.notifyDataSetChanged();
-    /*    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        binding.recyclerViewCourse.setLayoutManager(linearLayoutManager);
-        binding.recyclerViewCourse.setAdapter(adapter);*/
 
 
-        // Banner Code
+
+
         banners1.clear();
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
@@ -221,12 +219,12 @@ public class HomeFragment extends Fragment {
                 progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
-                        packageList.clear();
+                        packageModelList.clear();
                        // Bundle bundle = new Bundle();
                         assert response.body() != null;
-                        packageList.addAll(response.body().packages);
+                        packageModelList.addAll(response.body().packageModels);
 
-                        packageAdapter = new PackageAdapter(getActivity(), packageList);
+                        packageAdapter = new PackageAdapter(getActivity(), packageModelList);
                         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                         binding.rvPackages.setLayoutManager(linearLayoutManager2);
                         binding.rvPackages.setAdapter(packageAdapter);

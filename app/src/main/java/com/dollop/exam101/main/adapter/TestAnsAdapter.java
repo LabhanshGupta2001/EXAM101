@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemTestAnsBinding;
-import com.dollop.exam101.main.adapter.TestAnsAdapter.MyHolder;
+
 
 import java.util.ArrayList;
 
@@ -36,6 +36,7 @@ public class TestAnsAdapter extends RecyclerView.Adapter<TestAnsAdapter.MyHolder
     @Override
     public void onBindViewHolder(@NonNull TestAnsAdapter.MyHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.radioBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 index = position;

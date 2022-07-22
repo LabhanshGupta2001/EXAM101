@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
@@ -39,12 +41,12 @@ public class BankDetailActivity extends BaseActivity implements View.OnClickList
     private void GetBankUserDetails() {
         apiService.GetBankUserDetails("").enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });

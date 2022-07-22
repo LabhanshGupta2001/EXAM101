@@ -8,19 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemPackageDetailBinding;
-import com.dollop.exam101.main.model.ReviewRating;
+
+import com.dollop.exam101.main.model.ReviewRatingModel;
 
 import java.util.ArrayList;
 
 public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetailRatingAdapter.MyViewHolder> {
     Context context;
-    ArrayList<ReviewRating> list;
-    int row_index=-1;
+    ArrayList<ReviewRatingModel> list;
 
 
-
-    public PakageDetailRatingAdapter(Context context, ArrayList<ReviewRating> list) {
+    public PakageDetailRatingAdapter(Context context, ArrayList<ReviewRatingModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -33,12 +34,15 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {/*
-        list.clear();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");*/
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
+        ReviewRatingModel reviewRatingModel=list.get(position);
+        holder.binding.tvTitleId.setText(reviewRatingModel.studentName);
+        holder.binding.tvrating.setText(reviewRatingModel.rating);
+        holder.binding.tvDesc.setText(reviewRatingModel.review);
+        holder.binding.tvday.setText(reviewRatingModel.createdDtm);
+        Utils.Picasso(reviewRatingModel.profilePic,holder.binding.ivProfileUSer, R.drawable.dummy);
+
     }
 
     @Override
@@ -46,7 +50,7 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemPackageDetailBinding binding;
         public MyViewHolder(@NonNull ItemPackageDetailBinding binding) {
             super(binding.getRoot());

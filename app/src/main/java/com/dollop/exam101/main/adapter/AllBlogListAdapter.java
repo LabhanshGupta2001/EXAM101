@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dollop.exam101.Basics.Retrofit.Const;
+
 import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.SavedData;
+
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemAllBlogsBinding;
 import com.dollop.exam101.main.activity.BlogDetailActivity;
 import com.dollop.exam101.main.model.AllBlogListModel;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ public class AllBlogListAdapter extends RecyclerView.Adapter<AllBlogListAdapter.
     @Override
     public AllBlogListAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemAllBlogsBinding binding = ItemAllBlogsBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new AllBlogListAdapter.MyHolder(binding);
+        return new MyHolder(binding);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class AllBlogListAdapter extends RecyclerView.Adapter<AllBlogListAdapter.
         return allBlogListModelArrayList.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemAllBlogsBinding binding;
 
         public MyHolder(@NonNull ItemAllBlogsBinding binding) {

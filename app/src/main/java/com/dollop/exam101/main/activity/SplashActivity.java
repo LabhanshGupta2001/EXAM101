@@ -1,8 +1,8 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
+
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -12,6 +12,7 @@ import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends BaseActivity {
     Activity activity = SplashActivity.this;
 

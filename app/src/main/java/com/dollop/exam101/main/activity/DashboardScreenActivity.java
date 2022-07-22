@@ -2,7 +2,7 @@ package com.dollop.exam101.main.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,31 +17,23 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
-import com.dollop.exam101.Basics.Database.UserData;
-import com.dollop.exam101.Basics.Database.UserDataHelper;
-import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
-import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
 import com.dollop.exam101.main.fragment.HomeFragment;
-import com.dollop.exam101.main.model.AllResponseModel;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.gson.Gson;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
@@ -73,7 +65,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         binding.ivNotification.setOnClickListener(this);
         binding.ivSearch.setOnClickListener(this);
 
-        navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
+        navHeaderDashboardBinding = NavHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
         navHeaderDashboardBinding.llLogout.setOnClickListener(this);
         navHeaderDashboardBinding.llAbout.setOnClickListener(this);
@@ -113,6 +105,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    @SuppressLint("RtlHardcoded")
     @Override
     public void onClick(View view) {
         if (view == binding.ivNavBar) {
@@ -160,8 +153,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == navHeaderDashboardBinding.llSettings) {
             binding.drawerLayout.close();
             Utils.I(activity, SettingActivity.class, null);
-        }
-        if (view == navHeaderDashboardBinding.llFaq) {
+        }if (view == navHeaderDashboardBinding.llFaq) {
 
         }
         if (view == navHeaderDashboardBinding.llContactUs) {

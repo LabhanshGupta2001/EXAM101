@@ -44,7 +44,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         return orderHistoryModelArrayList.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemOrderHistoryBinding binding;
 
         public MyHolder(@NonNull ItemOrderHistoryBinding binding) {

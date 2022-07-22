@@ -16,7 +16,6 @@ import java.util.List;
 public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapter.MyViewHolder> {
     Context context;
     List<String> list;
-    int row_index = -1;
     private Boolean dropdown = true;
 
 
@@ -55,7 +54,7 @@ public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapte
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemLoginHistoryBinding binding;
 
         public MyViewHolder(@NonNull ItemLoginHistoryBinding binding) {
