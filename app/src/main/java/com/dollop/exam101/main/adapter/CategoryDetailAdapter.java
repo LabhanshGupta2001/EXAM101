@@ -15,15 +15,12 @@ import com.dollop.exam101.databinding.ItemCategoryDetailBinding;
 import com.dollop.exam101.main.activity.CategoryDetailsActivity;
 import com.dollop.exam101.main.model.CourseModel;
 
-
 import java.util.List;
 
 public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAdapter.MyViewHolder> {
     Context context;
-    List<String> list;
     int pos = -1;
     List<CourseModel> ExamList;
-    int pos = 0;
 
     public CategoryDetailAdapter(Context context, List<CourseModel> list) {
         this.context = context;
@@ -32,13 +29,14 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategoryDetailAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCategoryDetailBinding binding = ItemCategoryDetailBinding.inflate(LayoutInflater.from(context), parent, false);
         return new MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        CourseModel courseModel = ExamList.get(position);
         holder.binding.tvBlogHeading.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -46,7 +44,8 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
                 pos = position;
                 notifyDataSetChanged();
             }
-        CourseModel courseModel = ExamList.get(position);
+        });
+
         holder.binding.tvBlogHeading.setText(courseModel.examName);
 
         holder.binding.tvBlogHeading.setOnClickListener(v -> {
@@ -62,6 +61,7 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
             holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.grey_stroke_background);
             holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context, R.color.sub_text));
         }
+
     }
 
     @Override
@@ -69,7 +69,7 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
         return ExamList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCategoryDetailBinding binding;
 
         public MyViewHolder(@NonNull ItemCategoryDetailBinding binding) {
@@ -77,4 +77,7 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
             this.binding = binding;
         }
     }
+
 }
+
+

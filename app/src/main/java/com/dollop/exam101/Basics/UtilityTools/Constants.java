@@ -116,8 +116,5 @@ public class Constants {
          String Language = "Language";
 
 
-        String Exams = "Exams";
-        String Price = "Price";
-        String Language = "Language";
     }
 }

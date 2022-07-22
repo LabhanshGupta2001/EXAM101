@@ -3,6 +3,7 @@ package com.dollop.exam101.main.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -42,8 +43,9 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
         holder.binding.tvItem.setText(courseModel.examName);
 
         holder.binding.materialCardView.setOnClickListener(v -> {
-            index = position;
-            notifyDataSetChanged();
+                    index = position;
+                    notifyDataSetChanged();
+                });
         holder.binding.materialCardView.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
