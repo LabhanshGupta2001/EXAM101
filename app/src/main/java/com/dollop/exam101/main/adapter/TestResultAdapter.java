@@ -35,6 +35,7 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder,  @SuppressLint("RecyclerView") int position) {
         holder.binding.llIn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 pos = position;
@@ -76,7 +77,7 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
         return list.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemResultQuestionBinding binding;
         public MyHolder(@NonNull ItemResultQuestionBinding binding) {
             super(binding.getRoot());

@@ -22,6 +22,7 @@
             app:cardCornerRadius="@dimen/_100sdp">
 
             <ImageView
+                android:id="@+id/ivProfileUSer"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:contentDescription="@string/image"
@@ -48,8 +49,8 @@
                 android:theme="@style/QuaternaryFullBlackTextStyle" />
 
 
-            <TextView
-                android:id="@+id/tvDescriptionId"
+                <TextView
+                android:id="@+id/tvday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_medium"
@@ -59,6 +60,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvrating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -73,6 +75,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"

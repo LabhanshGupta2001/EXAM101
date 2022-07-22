@@ -13,15 +13,15 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.SavedData;
+
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogDetailBinding;
-import com.dollop.exam101.main.adapter.AllBlogListAdapter;
+
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.BlogListHeadingModel;
+
 import com.google.gson.Gson;
 
 import retrofit2.Call;

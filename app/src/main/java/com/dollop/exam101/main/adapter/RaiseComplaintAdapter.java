@@ -18,7 +18,6 @@ import java.util.List;
 public class RaiseComplaintAdapter extends RecyclerView.Adapter<RaiseComplaintAdapter.MyViewHolder> {
     Context context;
     List<String> list;
-    int row_index = -1;
     BottomSheetDialog bottomSheetDialog;
     BottomsheetRaiseComplaintsBinding binding;
 
@@ -57,7 +56,7 @@ public class RaiseComplaintAdapter extends RecyclerView.Adapter<RaiseComplaintAd
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemRaiseComplaintBinding binding;
 
         public MyViewHolder(@NonNull ItemRaiseComplaintBinding binding) {

@@ -35,6 +35,7 @@ public class Const {
     public static final String login_history = "login_history";
     public static final String get_cart = "get_cart";
     public static final String addToWishListApi = "addToWishListApi";
+    public static final String addReviewRatingApi = "addReviewRatingApi";
     public static final String order_history = "order_history";
     public static final String notification = "notification";
     public static final String filter = "filter";

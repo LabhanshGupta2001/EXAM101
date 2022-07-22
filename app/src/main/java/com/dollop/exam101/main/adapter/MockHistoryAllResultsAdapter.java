@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MockHistoryAllResultsAdapter extends RecyclerView.Adapter<MockHistoryAllResultsAdapter.MyViewHolder> {
     Context context;
     ArrayList<String> list;
-    int row_index=-1;
+
 
     public MockHistoryAllResultsAdapter(Context context, ArrayList<String> list) {
         this.context = context;
@@ -40,7 +40,7 @@ public class MockHistoryAllResultsAdapter extends RecyclerView.Adapter<MockHisto
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemMockTestHistoryAllresultsBinding binding;
         public MyViewHolder(@NonNull ItemMockTestHistoryAllresultsBinding binding) {
             super(binding.getRoot());

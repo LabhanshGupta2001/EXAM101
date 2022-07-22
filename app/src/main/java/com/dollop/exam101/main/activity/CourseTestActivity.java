@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
@@ -69,12 +70,12 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
     private void getMyPakagesList() {
         apiService.getMyPakagesList("").enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });

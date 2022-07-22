@@ -39,7 +39,7 @@ public class FlexBoxAdapter extends RecyclerView.Adapter<FlexBoxAdapter.Myholder
         return arrayList.size();
     }
 
-    public class Myholder extends RecyclerView.ViewHolder {
+    public static class Myholder extends RecyclerView.ViewHolder {
 
         public Myholder(@NonNull View itemView) {
             super(itemView);

@@ -27,7 +27,7 @@ public class PakageDetailMockTestFragmentAdapter extends RecyclerView.Adapter<Pa
     @Override
     public PakageDetailMockTestFragmentAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemMockTestPackageBinding binding = ItemMockTestPackageBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new PakageDetailMockTestFragmentAdapter.MyViewHolder(binding);
+        return new MyViewHolder(binding);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class PakageDetailMockTestFragmentAdapter extends RecyclerView.Adapter<Pa
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemMockTestPackageBinding binding;
 
         public MyViewHolder(@NonNull ItemMockTestPackageBinding binding) {

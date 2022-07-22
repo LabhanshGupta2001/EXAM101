@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemCategoriesFragmentBinding;
+
 import com.dollop.exam101.main.model.CourseModel;
 
 import java.util.List;
@@ -42,6 +44,13 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
         holder.binding.materialCardView.setOnClickListener(v -> {
             index = position;
             notifyDataSetChanged();
+        holder.binding.materialCardView.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onClick(View v) {
+                index = position;
+                notifyDataSetChanged();
+            }
         });
 
         if (index == position) {

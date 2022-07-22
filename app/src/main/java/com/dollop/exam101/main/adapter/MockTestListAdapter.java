@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
+
 import com.dollop.exam101.databinding.BottomSheetStartTestBinding;
 import com.dollop.exam101.databinding.ItemMockTestListBinding;
 import com.dollop.exam101.main.activity.MockTestHistoryActivity;
-import com.dollop.exam101.main.activity.MockTestListActivity;
+
 import com.dollop.exam101.main.activity.MockTestQuestionsActivity;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
     Context context;
     ViewGroup viewGroup;
     ArrayList<String> list;
-    int row_index=-1;
+
     @NonNull
     BottomSheetStartTestBinding bottomSheetStartTestBinding;
     BottomSheetDialog bottomSheetDialog;
@@ -76,7 +76,7 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemMockTestListBinding binding;
         public MyViewHolder(@NonNull ItemMockTestListBinding binding) {
             super(binding.getRoot());

@@ -39,7 +39,7 @@ public class PakageDetailTernaryAdapter extends RecyclerView.Adapter<PakageDetai
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemPackagesDetailTernaryBinding binding;
         public MyViewHolder(@NonNull ItemPackagesDetailTernaryBinding binding) {
             super(binding.getRoot());

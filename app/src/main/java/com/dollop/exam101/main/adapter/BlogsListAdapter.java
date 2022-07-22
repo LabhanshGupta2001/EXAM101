@@ -2,7 +2,7 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dollop.exam101.Basics.UtilityTools.Constants;
+
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.activity.BlogsListActivity;
@@ -37,7 +37,7 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemBlogsHorizontalBinding binding = ItemBlogsHorizontalBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new BlogsListAdapter.MyHolder(binding);
+        return new MyHolder(binding);
     }
 
     @Override
@@ -47,6 +47,7 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
         holder.binding.tvBlogHeading.setText(blogListHeadingModel.blogCatName);
 
         holder.binding.tvBlogHeading.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 pos = position;
@@ -73,7 +74,7 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
         return blogListHeadingModelArrayList.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemBlogsHorizontalBinding binding;
 
         public MyHolder(@NonNull ItemBlogsHorizontalBinding binding) {

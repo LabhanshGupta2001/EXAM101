@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
@@ -58,12 +59,12 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         HashMap<String, String> hm = new HashMap<>();
         apiService.resetPassword(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });

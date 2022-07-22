@@ -1,6 +1,8 @@
 package com.dollop.exam101.main.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemPackagesBinding;
 import com.dollop.exam101.main.activity.PackagesDetailActivity;
 import com.dollop.exam101.main.model.PackageModel;
+
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         return new PackageAdapter.MyPackageViewHolder(ItemPackagesBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PackageAdapter.MyPackageViewHolder holder, int position) {
         PackageModel packageModel = packageModelModelsList.get(position);
@@ -54,7 +58,11 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.llDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.I(context,PackagesDetailActivity.class,null);
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.Key.packageId, packageModel.packageId);
+
+                Utils.I(context,PackagesDetailActivity.class,bundle);
+
             }
         });
     }

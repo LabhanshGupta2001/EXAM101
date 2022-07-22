@@ -112,7 +112,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
 
         binding.llLoginWithGoogle.setOnClickListener(v -> signIn());
     }

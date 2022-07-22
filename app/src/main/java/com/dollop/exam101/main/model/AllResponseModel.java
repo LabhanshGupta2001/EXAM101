@@ -74,5 +74,5 @@ public class AllResponseModel {
 
     @SerializedName("reviewRating")
     @Expose
-    public List<ReviewRating> reviewRating = null;
+    public List<ReviewRatingModel> reviewRatingModel = null;
 }

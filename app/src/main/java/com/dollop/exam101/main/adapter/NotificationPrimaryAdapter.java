@@ -17,7 +17,7 @@ public class NotificationPrimaryAdapter extends RecyclerView.Adapter<Notificatio
     Context context;
     List<String> list;
     List<String> stringList = new ArrayList<>();
-    int row_index = -1;
+
 
     public NotificationPrimaryAdapter(Context context, List<String> list) {
         this.context = context;
@@ -42,7 +42,7 @@ public class NotificationPrimaryAdapter extends RecyclerView.Adapter<Notificatio
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemNotificationPrimaryBinding binding;
 
         public MyViewHolder(@NonNull ItemNotificationPrimaryBinding binding) {

@@ -8,11 +8,9 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivityAboutUsBinding;
-import com.dollop.exam101.main.model.AllResponseModel;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
+
 
 public class AboutUsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -34,19 +32,6 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-    private void GetAboutUs() {
-        apiService.getAboutUs("").enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
-            }
-        });
-    }
 
     @Override
     public void onClick(View view) {

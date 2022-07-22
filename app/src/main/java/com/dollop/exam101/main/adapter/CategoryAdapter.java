@@ -36,6 +36,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
     public void onBindViewHolder(@NonNull CategoryAdapter.MyHolder holder, @SuppressLint("RecycleView") int position) {
 
         holder.binding.mcvCategoryItem.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 index = position;
@@ -59,7 +60,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
         return list.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemCategoryBinding binding;
 
         public MyHolder(@NonNull ItemCategoryBinding binding) {

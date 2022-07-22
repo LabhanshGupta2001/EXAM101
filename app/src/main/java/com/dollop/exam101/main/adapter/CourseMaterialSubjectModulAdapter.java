@@ -30,7 +30,7 @@ public class CourseMaterialSubjectModulAdapter extends RecyclerView.Adapter<Cour
     @Override
     public CourseMaterialSubjectModulAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCourseMaterialSubjectModuleListBinding binding = ItemCourseMaterialSubjectModuleListBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new CourseMaterialSubjectModulAdapter.MyViewHolder(binding);
+        return new MyViewHolder(binding);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class CourseMaterialSubjectModulAdapter extends RecyclerView.Adapter<Cour
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCourseMaterialSubjectModuleListBinding binding;
 
         public MyViewHolder(@NonNull ItemCourseMaterialSubjectModuleListBinding binding) {

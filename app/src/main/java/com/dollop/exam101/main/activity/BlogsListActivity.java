@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -48,11 +49,11 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     BlogsListAdapter blogsListAdapter;
     FilterSearchAdapter filterSearchAdapter;
     public int position;
-    private ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
+    private final ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
 
 
-    private ArrayList<BlogListHeadingModel> blogsList = new ArrayList<>();
-    private ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
+    private final ArrayList<BlogListHeadingModel> blogsList = new ArrayList<>();
+    private final ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
 
     ItemBlogsHorizontalBinding itemBlogsHorizontalBinding;
 
@@ -184,6 +185,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     private void getBlogsCategory(String from) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogsCategory().enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -223,8 +225,9 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-    public void DataChangeBlogListAdapter(int position){
-       // blogsListAdapter.pos = position;
+    @SuppressLint("NotifyDataSetChanged")
+    public void DataChangeBlogListAdapter(int position) {
+        // blogsListAdapter.pos = position;
         blogsListAdapter.notifyDataSetChanged();
     }
 
@@ -238,7 +241,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                     Blogarraylist.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-
                         Blogarraylist.addAll(response.body().blogs);
                         binding.rvBlogs.setHasFixedSize(true);
                         binding.rvBlogs.setAdapter(new AllBlogListAdapter(activity, Blogarraylist));
@@ -246,6 +248,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
                     } else {
                         // assert response.errorBody() != null;
+                        assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);

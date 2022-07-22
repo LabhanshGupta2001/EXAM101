@@ -41,7 +41,7 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.My
         return list.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemWishlistBinding binding;
         public MyHolder(@NonNull ItemWishlistBinding binding) {
             super(binding.getRoot());

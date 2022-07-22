@@ -60,7 +60,7 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemPakagesDetailsSecondryBinding binding;
         public MyViewHolder(@NonNull ItemPakagesDetailsSecondryBinding binding) {
             super(binding.getRoot());

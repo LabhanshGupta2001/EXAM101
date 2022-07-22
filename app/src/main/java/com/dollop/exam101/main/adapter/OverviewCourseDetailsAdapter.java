@@ -29,7 +29,7 @@ public class OverviewCourseDetailsAdapter  extends RecyclerView.Adapter<Overview
     @Override
     public OverviewCourseDetailsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemOverviewCourseDetailsBinding binding=ItemOverviewCourseDetailsBinding.inflate(LayoutInflater.from(context),parent,false);
-        return new OverviewCourseDetailsAdapter.MyViewHolder(binding);
+        return new MyViewHolder(binding);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class OverviewCourseDetailsAdapter  extends RecyclerView.Adapter<Overview
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemOverviewCourseDetailsBinding binding;
         public MyViewHolder(@NonNull ItemOverviewCourseDetailsBinding binding) {
             super(binding.getRoot());

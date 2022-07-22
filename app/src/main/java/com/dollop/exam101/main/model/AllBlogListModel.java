@@ -1,6 +1,6 @@
 package com.dollop.exam101.main.model;
 
-import android.widget.ImageView;
+
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
