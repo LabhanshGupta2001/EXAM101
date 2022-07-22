@@ -59,6 +59,10 @@ public interface ApiService {
     @GET(Const.getPackageListWithFilterApi)
     Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token);
 
+    @GET(Const.getPackageListWithFilterApi)
+    Call<AllResponseModel> examPackageListItem(@Header(Constants.Key.Authorization) String token,
+                                               @Query(Constants.Key.examId) String examId);
+
 //______________________________********************___________________________________________//
 
     @GET(Const.aboutUs)
@@ -94,8 +98,8 @@ public interface ApiService {
     @GET(Const.getCategory)
     Call<AllResponseModel> getCategory(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getCategoryDetails)
-    Call<AllResponseModel> getCategoryDetails(@Header(Constants.Key.Authorization) String token);
+   /* @GET(Const.getCategoryDetails)
+    Call<AllResponseModel> getCategoryDetails(@Header(Constants.Key.Authorization) String token);*/
 
     @GET(Const.getCategoryFilter)
     Call<AllResponseModel> getCategoryFilter(@Header(Constants.Key.Authorization) String token);
@@ -152,10 +156,6 @@ public interface ApiService {
 
     @GET(Const.AuthorList)
     Call<AllResponseModel> AuthorList(@Header(Constants.Key.Authorization) String token);
-
-
-    @GET(Const.CategoriesAllBlogsList)
-    Call<AllResponseModel> CategoriesAllBlogsList(@Header(Constants.Key.Authorization) String token);
 
 
     @GET(Const.CategoriesHomePhotographyList)

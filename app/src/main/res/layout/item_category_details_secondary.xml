@@ -31,13 +31,13 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_weight=".7"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/secondary"
+                        android:id="@+id/packageName"
                         style="@style/SecondaryTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -46,10 +46,12 @@
 
 
                     <TextView
+                        android:id="@+id/tvDescriptionId"
                         style="@style/QuinaryLightSubTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
+                        android:maxLines="2"
                         android:fontFamily="@font/inter_medium"
                         android:lineSpacingExtra="@dimen/_1sdp"
                         android:text="@string/ms_office_advance_power_point_animated_slides" />
@@ -58,37 +60,80 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
                     android:layout_width="0dp"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight=".3">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tvRpSym"
+                            style="@style/PrimaryGreenHeadingTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="₹" />
 
                         <TextView
                             android:id="@+id/tvRupees"
                             style="@style/PrimaryGreenHeadingTextStyle"
                             android:layout_width="wrap_content"
+                            android:layout_toEndOf="@+id/tvRpSym"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
-                            android:text="₹3000" />
+                            android:text="3000.00" />
 
-                        <TextView
+                        <RelativeLayout
+                            android:layout_below="@id/tvRupees"
+                            android:layout_width="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tvRpSym2"
+                                style="@style/QuinaryLightSubTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginVertical="@dimen/_2sdp"
+                                android:text="₹" />
+
+                            <TextView
+                                android:id="@+id/tvTotalRupees"
+                                style="@style/QuinaryLightSubTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="@dimen/_2sdp"
+                                android:layout_toRightOf="@id/tvRpSym2"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="4500.00" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_alignStart="@id/tvTotalRupees"
+                                android:layout_alignEnd="@id/tvTotalRupees"
+                                android:layout_centerVertical="true"
+                                android:background="@android:color/darker_gray" />
+                        </RelativeLayout>
+
+                     <!--   <TextView
                             android:id="@+id/tvTotalRupees"
                             style="@style/QuinaryLightSubTextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="@dimen/_2sdp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="₹4500" />
+                            android:text="₹4500" />-->
 
-                    </LinearLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
 
             </LinearLayout>
@@ -124,22 +169,37 @@
                         android:fontFamily="@font/inter_semibold"
                         android:text="20 DAYS " />
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="@dimen/_1sdp"
                         android:layout_height="match_parent"
-                        android:layout_marginVertical="@dimen/_1sdp"
-                        android:background="@color/HorizontallineColor"
-                        />
-                    <TextView
-                        style="@style/QuinaryBlackTextStyle"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:background="@color/grey" />
+
+                    <ImageView
+                        android:id="@+id/ivStar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:fontFamily="@font/inter_medium"
-                        android:drawableStart="@drawable/ic_star"
-                        android:drawablePadding="@dimen/_2sdp"
-                        android:singleLine="true"
-                        android:text="4.4 (1.2k Ratings)" />
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:src="@drawable/ic_star" />
 
+                    <TextView
+                        android:id="@+id/tvRatingNum"
+                        style="@style/QuinaryBlackTextStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/fourdotfour" />
+
+                    <TextView
+                        android:id="@+id/tvRatingCount"
+                        style="@style/QuinaryBlackTextStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:maxLines="1"
+                        android:text="@string/onedottwokrating" />
                 </LinearLayout>
 
 

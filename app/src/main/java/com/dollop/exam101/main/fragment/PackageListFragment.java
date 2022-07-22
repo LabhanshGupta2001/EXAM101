@@ -29,7 +29,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,8 +42,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     Activity activity;
 
     BottomsheetFilterBinding bottomsheetFilterBinding;
-    ViewPagerFragmentAdapter adapter;
-    private final String[] labels = new String[]{"Categories","Price","Language"};
+    private final String[] labels = new String[]{"Exams","Price","Language"};
     BottomSheetDialog bottomSheetDialog;
     ArrayList<Package> packageList = new ArrayList<>();
     PackageAdapter packageAdapter;
@@ -79,9 +77,14 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomsheetFilterBinding.getRoot());
-        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
-        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomsheetFilterBinding.getRoot().getParent()));
+        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        // bottomSheetBehavior.setHalfExpandedRatio(0.9f);
+        bottomSheetBehavior.setMaxHeight(binding.svParent.getHeight());
+        bottomSheetBehavior.setSkipCollapsed(true);
+
         bottomSheetDialog.show();
         ArrayList<Fragment>Fragment=new ArrayList<>();
         Fragment.add(new CategoriesFragment());
@@ -89,9 +92,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         Fragment.add(new LanguageFragment());
 
         bottomsheetFilterBinding.tvllSave.setOnClickListener(view ->
-        {
-            bottomSheetDialog.cancel();
-        });
+                bottomSheetDialog.cancel());
 
         bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getParentFragmentManager(),getLifecycle(),Fragment));
 
@@ -104,7 +105,6 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         p.setMargins(20, 0, 20, 0);
         tab1.requestLayout();
 
-
     }
     private void packageList() {
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
@@ -115,7 +115,6 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         packageList.clear();
-                        // Bundle bundle = new Bundle();
                         assert response.body() != null;
                         packageList.addAll(response.body().packages);
 
