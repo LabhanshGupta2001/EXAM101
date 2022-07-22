@@ -13,13 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCategoryDetailBinding;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAdapter.MyViewHolder> {
     Context context;
     List<String> list;
-    List<String> stringList = new ArrayList<>();
     int pos = -1;
 
     public CategoryDetailAdapter(Context context, List<String> list) {
@@ -37,6 +36,7 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.tvBlogHeading.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 pos = position;
@@ -58,7 +58,7 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCategoryDetailBinding binding;
 
         public MyViewHolder(@NonNull ItemCategoryDetailBinding binding) {

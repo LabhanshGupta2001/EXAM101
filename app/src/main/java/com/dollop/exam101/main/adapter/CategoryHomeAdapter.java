@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapter.MyViewHolder> {
     Context context;
     ArrayList<String> list;
-    int row_index=-1;
+
 
     public CategoryHomeAdapter(Context context, ArrayList<String> list) {
         this.context = context;
@@ -49,7 +49,7 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCategoryHomeBinding binding;
         public MyViewHolder(@NonNull ItemCategoryHomeBinding binding) {
             super(binding.getRoot());

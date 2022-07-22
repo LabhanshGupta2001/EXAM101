@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class CourseMaterialSubjectAdapter extends RecyclerView.Adapter<CourseMaterialSubjectAdapter.MyViewHolder> {
     Context context;
     ArrayList<String> list;
-    int row_index = -1;
+
     ArrayList<String> stringArrayList = new ArrayList<>();
 
     public CourseMaterialSubjectAdapter(Context context, ArrayList<String> list) {
@@ -50,7 +50,7 @@ public class CourseMaterialSubjectAdapter extends RecyclerView.Adapter<CourseMat
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCourseMaterialSubjectNameBinding binding;
 
         public MyViewHolder(@NonNull ItemCourseMaterialSubjectNameBinding binding) {

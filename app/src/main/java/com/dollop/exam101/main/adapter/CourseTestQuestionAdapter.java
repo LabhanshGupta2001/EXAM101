@@ -3,14 +3,14 @@ package com.dollop.exam101.main.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
+
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dollop.exam101.databinding.ItemCourseMaterialSubjectModuleListBinding;
+
 import com.dollop.exam101.databinding.ItemCourseTestQuestionListBinding;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
     @Override
     public CourseTestQuestionAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCourseTestQuestionListBinding binding = ItemCourseTestQuestionListBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new CourseTestQuestionAdapter.MyViewHolder(binding);
+        return new MyViewHolder(binding);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCourseTestQuestionListBinding binding;
 
         public MyViewHolder(@NonNull ItemCourseTestQuestionListBinding binding) {

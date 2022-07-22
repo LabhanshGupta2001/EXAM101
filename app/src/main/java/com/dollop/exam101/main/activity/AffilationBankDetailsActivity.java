@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
@@ -51,12 +53,12 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
     private void GetUserBankProfile() {
         apiService.getBankProfile("").enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });
@@ -66,12 +68,12 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
         HashMap<String, String> hashMap = new HashMap<>();
         apiService.UserBankDetails(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });

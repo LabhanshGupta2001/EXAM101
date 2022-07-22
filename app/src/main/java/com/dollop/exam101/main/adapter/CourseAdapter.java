@@ -35,8 +35,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyPostView
     {
         CourseModel courseModel=courseModelList.get(position);
         holder.itemCourseBinding.tvCourseName.setText(courseModel.examName);
-        /*holder.itemCourseBinding.ivCourseImageView.setImageResource(courseModel.examId);*/
-    }
+        }
 
     @Override
     public int getItemCount() {
@@ -44,7 +43,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyPostView
     }
 
     public static class MyPostViewHolder extends RecyclerView.ViewHolder {
-        private ItemCourseBinding itemCourseBinding;
+        private final ItemCourseBinding itemCourseBinding;
         public MyPostViewHolder(ItemCourseBinding itemCourseBinding)
         {
             super(itemCourseBinding.getRoot());

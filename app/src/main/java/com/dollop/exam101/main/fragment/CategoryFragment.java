@@ -3,6 +3,7 @@ package com.dollop.exam101.main.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.databinding.FragmentCategoryBinding;
-import com.dollop.exam101.main.adapter.AuthorHistoryAdapter;
+
 import com.dollop.exam101.main.adapter.CategoryAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 
@@ -66,12 +67,12 @@ public class CategoryFragment extends Fragment implements View.OnClickListener{
     private void CategoriesAllBlogsList(){
         apiService.CategoriesAllBlogsList("").enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });

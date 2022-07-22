@@ -47,7 +47,7 @@ public class CourseMaterialChapterAdapter extends RecyclerView.Adapter<CourseMat
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCourseMaterialChapterNameListBinding binding;
 
         public MyViewHolder(@NonNull ItemCourseMaterialChapterNameListBinding binding) {

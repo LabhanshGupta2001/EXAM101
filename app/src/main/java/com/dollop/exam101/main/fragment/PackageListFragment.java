@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
+
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
@@ -29,7 +31,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +46,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
     BottomsheetFilterBinding bottomsheetFilterBinding;
     ViewPagerFragmentAdapter adapter;
-    private final String[] labels = new String[]{"Categories","Price","Language"};
+    private final String[] labels = new String[]{Constants.Key.Exams,Constants.Key.Price,Constants.Key.Language};
     BottomSheetDialog bottomSheetDialog;
     ArrayList<Package> packageList = new ArrayList<>();
     PackageAdapter packageAdapter;
@@ -115,10 +117,8 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         packageList.clear();
-                        // Bundle bundle = new Bundle();
                         assert response.body() != null;
                         packageList.addAll(response.body().packages);
-
                         packageAdapter = new PackageAdapter(getActivity(), packageList);
                         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                         binding.rvPackagesone.setLayoutManager(linearLayoutManager2);

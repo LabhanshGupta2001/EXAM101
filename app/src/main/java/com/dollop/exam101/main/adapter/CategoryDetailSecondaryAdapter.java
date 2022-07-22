@@ -16,8 +16,7 @@ import java.util.List;
 public class CategoryDetailSecondaryAdapter extends RecyclerView.Adapter<CategoryDetailSecondaryAdapter.MyViewHolder> {
     Context context;
     List<String> list;
-    List<String> stringList = new ArrayList<>();
-    int row_index = -1;
+
 
     public CategoryDetailSecondaryAdapter(Context context, List<String> list) {
         this.context = context;
@@ -42,7 +41,7 @@ public class CategoryDetailSecondaryAdapter extends RecyclerView.Adapter<Categor
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCategoryDetailsSecondaryBinding binding;
 
         public MyViewHolder(@NonNull ItemCategoryDetailsSecondaryBinding binding) {

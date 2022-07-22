@@ -1,8 +1,9 @@
 package com.dollop.exam101.main.adapter;
 
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
+
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.databinding.ItemCategoryBinding;
 import com.dollop.exam101.main.activity.BlogsListActivity;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
@@ -29,7 +26,7 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
     List<BlogListHeadingModel> filterList;
 
-    int pos=0;
+
 
     public FilterSearchAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
         this.context = context;
@@ -41,7 +38,7 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCategoryBinding binding = ItemCategoryBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new FilterSearchAdapter.MyHolder(binding);
+        return new MyHolder(binding);
     }
 
     @Override
@@ -93,6 +90,7 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
             }
 
 
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 filterList = (List<BlogListHeadingModel>) results.values;
@@ -101,7 +99,7 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
         };
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemCategoryBinding binding;
 
         public MyHolder(@NonNull ItemCategoryBinding binding) {

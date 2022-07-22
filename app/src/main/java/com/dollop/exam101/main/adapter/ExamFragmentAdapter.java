@@ -37,6 +37,7 @@ public class ExamFragmentAdapter extends RecyclerView.Adapter<ExamFragmentAdapte
     @Override
     public void onBindViewHolder(@NonNull ExamFragmentAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.mcvExamName.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 index = position;
@@ -61,7 +62,7 @@ public class ExamFragmentAdapter extends RecyclerView.Adapter<ExamFragmentAdapte
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemExamFragmentBinding binding;
 
         public MyViewHolder(@NonNull ItemExamFragmentBinding binding) {

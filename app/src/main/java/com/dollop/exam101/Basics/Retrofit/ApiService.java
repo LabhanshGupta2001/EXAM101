@@ -144,7 +144,7 @@ public interface ApiService {
 
     @GET(Const.getReviewRatingListApi)
     Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
-                                                                  @Query(Constants.Key.countryId) String countryId );
+                                                                  @Query(Constants.Key.packageId) String packageId );
 
 
     @GET(Const.AllResults)
@@ -217,7 +217,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Const.addToWishListApi)
     Call<AllResponseModel> addWishlist(@Header(Constants.Key.Authorization) String token,
-                                       @Query(Constants.Key.countryId) String countryId);
+                                       @FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.addReviewRatingApi)
+    Call<AllResponseModel> addRatingReview(@Header(Constants.Key.Authorization) String token,
+                                       @FieldMap HashMap<String, String> hm);
 
     @GET(Const.notification)
     Call<AllResponseModel> getNotification(@FieldMap HashMap<String, String> hm);

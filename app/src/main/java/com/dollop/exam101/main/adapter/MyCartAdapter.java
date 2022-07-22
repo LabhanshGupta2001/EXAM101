@@ -43,7 +43,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
         return myCartModelArrayList.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemMyCartBinding binding;
         public MyHolder(@NonNull ItemMyCartBinding binding) {
             super(binding.getRoot());

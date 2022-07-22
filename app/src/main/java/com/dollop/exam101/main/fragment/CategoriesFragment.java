@@ -18,12 +18,11 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
+
 import com.dollop.exam101.databinding.FragmentCategoriesBinding;
-import com.dollop.exam101.databinding.FragmentExamFilterBinding;
+
 import com.dollop.exam101.main.adapter.CategoriesFragmentAdapter;
-import com.dollop.exam101.main.adapter.CourseAdapter;
-import com.dollop.exam101.main.adapter.ExamFragmentAdapter;
+
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.google.gson.Gson;

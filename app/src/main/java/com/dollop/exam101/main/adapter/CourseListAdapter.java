@@ -13,11 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dollop.exam101.Basics.UtilityTools.Utils;
+
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCourseListBinding;
 import com.dollop.exam101.main.activity.CoursesMaterial;
-import com.dollop.exam101.main.activity.ProfileActivity;
+
 import com.dollop.exam101.main.model.CourseListModel;
 
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
     }
 
     public static class MyCourseListViewHolder extends RecyclerView.ViewHolder {
-        private ItemCourseListBinding itemCourseListBinding;
+        private final ItemCourseListBinding itemCourseListBinding;
 
         public MyCourseListViewHolder(ItemCourseListBinding itemCourseListBinding) {
             super(itemCourseListBinding.getRoot());

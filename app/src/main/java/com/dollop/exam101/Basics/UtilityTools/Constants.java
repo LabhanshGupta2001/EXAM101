@@ -77,6 +77,9 @@ public class Constants {
          String urlSlug = "urlSlug";
          String countryId = "countryId";
          String BlogId = "BlogId";
+         String packageId = "packageId";
+         String review = "review";
+         String rating = "rating";
 
          String Take_Photo = "Take Photo";
          String Choose_From_Gallery = "Choose from Gallery";
@@ -110,5 +113,8 @@ public class Constants {
          String LoginSignup = "LoginSignup";
          String Register = "Register";
 
+        String Exams = "Exams";
+        String Price = "Price";
+        String Language = "Language";
     }
 }

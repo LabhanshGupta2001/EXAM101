@@ -35,6 +35,7 @@ public class AuthorHistoryAdapter extends RecyclerView.Adapter<AuthorHistoryAdap
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint({"RecycleView", "RecyclerView"}) int position) {
         holder.binding.mcvSearch.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 index = position;
@@ -59,7 +60,7 @@ public class AuthorHistoryAdapter extends RecyclerView.Adapter<AuthorHistoryAdap
         return list.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         ItemAuthoreSearchBinding binding;
 
         public MyHolder(@NonNull ItemAuthoreSearchBinding binding) {

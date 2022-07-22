@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
@@ -36,9 +37,8 @@ public class SearchHistoryActivity extends BaseActivity implements View.OnClickL
     ActivitySearchHistoryBinding binding;
     ArrayList<String> list = new ArrayList<>();
     ApiService apiService;
-    RecyclerView recyclerView;
     ArrayList<String> arrayList = new ArrayList<>();
-    FlexBoxAdapter adapter;
+
 
 
     @Override
@@ -94,12 +94,12 @@ public class SearchHistoryActivity extends BaseActivity implements View.OnClickL
         HashMap<String, String> hm = new HashMap();
         apiService.getSearchHistory(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });
@@ -109,12 +109,12 @@ public class SearchHistoryActivity extends BaseActivity implements View.OnClickL
         HashMap<String, String> hashMap = new HashMap();
         apiService.getFlexBox(hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
 
             }
         });

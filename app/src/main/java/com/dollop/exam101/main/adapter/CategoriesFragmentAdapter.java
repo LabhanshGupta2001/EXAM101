@@ -7,13 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
+
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCategoriesFragmentBinding;
-import com.dollop.exam101.databinding.ItemExamFragmentBinding;
-import com.dollop.exam101.main.fragment.ItemClickListener;
+
 import com.dollop.exam101.main.model.CourseModel;
 
 import java.util.List;
@@ -35,7 +33,7 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
     @Override
     public CategoriesFragmentAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemCategoriesFragmentBinding binding = ItemCategoriesFragmentBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new CategoriesFragmentAdapter.MyViewHolder(binding);
+        return new MyViewHolder(binding);
     }
 
     @Override
@@ -45,6 +43,7 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
         holder.binding.tvItem.setText(courseModel.examName);
 
         holder.binding.materialCardView.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 index = position;
@@ -73,7 +72,7 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ItemCategoriesFragmentBinding binding;
 
         public MyViewHolder(@NonNull ItemCategoriesFragmentBinding binding) {

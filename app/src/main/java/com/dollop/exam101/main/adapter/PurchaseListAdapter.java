@@ -55,7 +55,7 @@ public class PurchaseListAdapter extends RecyclerView.Adapter<PurchaseListAdapte
         return list.size();
     }
 
-    public class Myholder extends RecyclerView.ViewHolder {
+    public static class Myholder extends RecyclerView.ViewHolder {
         ItemPurchaseListBinding binding;
         public Myholder(@NonNull  ItemPurchaseListBinding binding) {
             super(binding.getRoot());
