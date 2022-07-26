@@ -54,7 +54,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/white"
                 android:overScrollMode="never"
-                />
+               tools:listitem="@layout/item_course_list" />
 
 
         </LinearLayout>

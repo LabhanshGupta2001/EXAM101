@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.FragmentExamFilterBinding;
@@ -31,7 +32,6 @@ import retrofit2.Response;
 public class ExamFilterFragment extends Fragment implements View.OnClickListener {
     FragmentExamFilterBinding binding;
     ArrayList<CourseModel> examArrayList = new ArrayList<>();
-
 
     ApiService apiService;
 
@@ -73,12 +73,20 @@ public class ExamFilterFragment extends Fragment implements View.OnClickListener
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    if (response.body().examListModels.isEmpty()) {
+                        binding.rvExam.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvExam.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }
                     examArrayList.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
+                        examArrayList.clear();
                         examArrayList.addAll(response.body().examListModels);
                         binding.rvExam.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        binding.rvExam.setAdapter(new CategoriesFragmentAdapter(examArrayList, getContext()));
+                      //  binding.rvExam.setAdapter(new CategoriesFragmentAdapter(examArrayList, getContext(), Constants.Key.ExamFilterFragment,onItemClicked));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

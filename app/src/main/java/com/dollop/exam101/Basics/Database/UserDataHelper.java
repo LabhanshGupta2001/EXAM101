@@ -119,6 +119,7 @@ public class UserDataHelper {
         values.put(UserData.Key_MobileVerified, userData.mobileVerified);
         values.put(UserData.Key_EmailVerified, userData.emailVerified);
         values.put(UserData.Key_RoleType, userData.roleType);
+        values.put(UserData.KEY_profilePic, userData.profilePic);
         values.put(UserData.KEY_Token,userData.token);
 
 
@@ -161,6 +162,7 @@ public class UserDataHelper {
                 userData.mobileVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_MobileVerified));
                 userData.emailVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_EmailVerified));
                 userData.roleType = cursor.getString(cursor.getColumnIndex(UserData.Key_RoleType));
+                userData.profilePic=cursor.getString(cursor.getColumnIndex(UserData.KEY_profilePic));
                 userData.token=cursor.getString(cursor.getColumnIndex(UserData.KEY_Token));
 
                 userItem.add(userData);

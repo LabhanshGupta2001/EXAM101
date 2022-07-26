@@ -62,8 +62,8 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         binding.mcvAddtoWishlist.setOnClickListener(this);
         fragments.add(new CourseMaterialFragment(PackageId));
         fragments.add(new MockTestFragment());
-        Tittle.add("Course Material");
-        Tittle.add("Mock Test");
+        Tittle.add(Constants.Key.Course_Material);
+        Tittle.add(Constants.Key.Course_Material);
         mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
 
@@ -79,7 +79,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         }
         else if(view==binding.mcvAddtoWishlist){
             getWishList();
-            Utils.T(activity,"Successfully added to Wishlist");
+            Utils.T(activity,Constants.Key.added_to_Wishlist);
         }
     }
 

@@ -40,7 +40,6 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         binding = ActivityBlogDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
         getBlogDetails();
     }
@@ -61,6 +60,13 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    if(response.body().blogs.isEmpty()){
+                        binding.llLaunch.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    }else {
+                        binding.llLaunch.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         AllBlogListModel allBlogListModel=response.body().blog;

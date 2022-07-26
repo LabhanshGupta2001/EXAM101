@@ -114,7 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                android:paddingBottom="@dimen/_12sdp" />
+                android:paddingBottom="@dimen/_12sdp"
+                tools:listitem="@layout/item_course_material_subject_name"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

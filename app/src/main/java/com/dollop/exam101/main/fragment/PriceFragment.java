@@ -1,25 +1,34 @@
 package com.dollop.exam101.main.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SeekBar;
 
+import androidx.fragment.app.Fragment;
 
+import com.dollop.exam101.Basics.UtilityTools.OnItemClicked;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-
 import com.dollop.exam101.databinding.FragmentPriceBinding;
+import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
-public class PriceFragment extends Fragment implements View.OnClickListener{
+public class PriceFragment extends Fragment implements View.OnClickListener {
     Fragment fragment;
     FragmentPriceBinding binding;
+    Activity  activity;
+    OnItemClicked onItemClicked;
+    private String From;
+
+    public PriceFragment(String Key, OnItemClicked onItemClicked) {
+        From = Key;
+        this.onItemClicked = onItemClicked;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentPriceBinding.inflate(inflater,container,false);
+        binding = FragmentPriceBinding.inflate(inflater, container, false);
+        activity = requireActivity();
         init();
         return binding.getRoot();
 
@@ -27,28 +36,35 @@ public class PriceFragment extends Fragment implements View.OnClickListener{
 
     private void init() {
 
-        binding.seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        binding.rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Utils.T(getActivity(),"seekbar progress "+progress );
-                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
-                binding.tvPricePopup.setVisibility(View.VISIBLE);
-                binding.tvPricePopup.setText("₹" + progress);
-                binding.tvPricePopup.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
-                //textView.setY(100); just added a value set this properly using screen with height aspect ratio , if you do not set it by default it will be there below seek bar
+            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
+                Utils.T(getActivity(), "seekbar progress " + minValue);
+                Utils.T(getActivity(), "seekbar progress " + maxValue);
+                //      int val = (minValue * (bar.getWidth() - 2 * bar.getThumbOffset())) / bar.getMax();
+                binding.tvStartReat.setVisibility(View.VISIBLE);
+                binding.tvStartReatTwo.setVisibility(View.VISIBLE);
 
-            }
+                binding.tvStartReat.setText("₹" + minValue);
+                binding.tvStartReatTwo.setText("₹" + maxValue);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                Utils.T(getActivity(),"seekbar touch started! ");
-            }
+                minValue = binding.tvStartReat.getText().toString().trim();
+                maxValue = binding.tvStartReatTwo.getText().toString().trim();
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                Utils.T(getActivity(),"seekbar touch stopped!! ");
             }
         });
+        RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(activity);
+        seekBar.setRangeValues(500, 5000);
+        seekBar.setSelectedMinValue(500);
+        seekBar.setSelectedMaxValue(5000);
+
+        seekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+
+            }
+        });
+        seekBar.setNotifyWhileDragging(true);
     }
 
     @Override

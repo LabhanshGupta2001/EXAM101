@@ -41,7 +41,7 @@ public class Const {
     public static final String filter = "filter";
     public static final String getPackageListWithFilterApi = "getPackageListWithFilterApi";
     public static final String user = "user";
-    public static final String lang = "lang";
+    public static final String getLanguageApi = "getLanguageApi";
     public static final String mock_test = "mock_test";
     public static final String package_list = "package_list";
     public static final String get_banner = "get_banner";

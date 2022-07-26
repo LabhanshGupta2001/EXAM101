@@ -13,4 +13,10 @@
             android:layout_width="match_parent"
             android:overScrollMode="never"
             android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/noResultFoundId"
+            layout="@layout/no_result_found"
+            android:visibility="gone"
+            />
 </LinearLayout>

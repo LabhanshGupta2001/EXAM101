@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lineColor"
+    android:background="@color/white"
     android:orientation="vertical"
     android:overScrollMode="never"
     android:id="@+id/svParent"
@@ -20,9 +20,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="UselessParent"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_12sdp"
-                >
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:background="@color/lineColor">
 
                 <TextView
                     android:id="@+id/tvAllPackage"
@@ -33,16 +35,14 @@
                     android:text="@string/all_packages"
                     android:theme="@style/TernaryBlackTextStyle"
                     tools:ignore="RelativeOverlap" />
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvFilter_Id"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_alignParentEnd="true"
-                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:cardCornerRadius="@dimen/_30sdp"
                     app:strokeColor="@color/HorizontallineColor"
                     app:strokeWidth="@dimen/_1sdp">
-
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -50,9 +50,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/_14sdp"
                         android:contentDescription="@string/image"
-                        android:src="@drawable/ic_filtericon"
-
-                        />
+                        android:src="@drawable/ic_filtericon" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -74,5 +72,8 @@
             android:overScrollMode="never"
             android:paddingBottom="@dimen/_12sdp" />
 
+        <include layout="@layout/no_result_found"
+            android:id="@+id/noResultFoundId"
+            android:visibility="gone"/>
     </LinearLayout>
 </ScrollView>

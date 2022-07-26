@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
-
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.OnItemClicked;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
@@ -31,35 +31,40 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PackageListFragment extends Fragment implements View.OnClickListener {
+public class PackageListFragment extends Fragment implements View.OnClickListener, OnItemClicked {
+    private final String[] labels = new String[]{Constants.Key.Exams, Constants.Key.Price, Constants.Key.Language};
+    public String LanguageId = "";
+    public String Price = "";
+    public String ExamId = "";
     FragmentPackageListBinding binding;
     ApiService apiService;
     String token;
     Activity activity;
-
     BottomsheetFilterBinding bottomsheetFilterBinding;
-    private final String[] labels = new String[]{"Exams","Price","Language"};
     BottomSheetDialog bottomSheetDialog;
     ArrayList<PackageModel> packageModelList = new ArrayList<>();
     PackageAdapter packageAdapter;
+    CategoriesFragment categoriesFragment;
+    PriceFragment priceFragment;
+    LanguageFragment languageFragment;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentPackageListBinding.inflate(inflater, container, false);
-        bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(inflater,container,false);
+        bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(inflater, container, false);
         activity = requireActivity();
         init();
-       return binding.getRoot();
+        return binding.getRoot();
     }
-
 
     private void init() {
         apiService = RetrofitClient.getClient();
@@ -88,15 +93,30 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         bottomSheetBehavior.setSkipCollapsed(true);
 
         bottomSheetDialog.show();
-        ArrayList<Fragment>Fragment=new ArrayList<>();
-        Fragment.add(new CategoriesFragment());
-        Fragment.add(new PriceFragment());
-        Fragment.add(new LanguageFragment());
+        ArrayList<Fragment> Fragment = new ArrayList<>();
+        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment, PackageListFragment.this);
+        priceFragment = new PriceFragment(Constants.Key.PackageFragment, PackageListFragment.this);
+        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, PackageListFragment.this);
+        Fragment.add(categoriesFragment);
+        Fragment.add(priceFragment);
+        Fragment.add(languageFragment);
 
-        bottomsheetFilterBinding.tvllSave.setOnClickListener(view ->
-                bottomSheetDialog.cancel());
-
-        bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getParentFragmentManager(),getLifecycle(),Fragment));
+        bottomsheetFilterBinding.tvllSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.index != -1) {
+                    ExamId = categoriesFragment.categoriesFragmentAdapter.examId;
+                    // Utils.E("ExamId:::"+ExamId);
+                }
+                if (languageFragment.languageAdapter != null && languageFragment.languageAdapter.index != -1) {
+                    LanguageId = languageFragment.languageAdapter.languageId;
+                    // Utils.E("LanguageId:::"+LanguageId);
+                }
+                packageList();
+                bottomSheetDialog.cancel();
+            }
+        });
+        bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getParentFragmentManager(), getLifecycle(), Fragment));
 
         new TabLayoutMediator(bottomsheetFilterBinding.tlTabLayoutId, bottomsheetFilterBinding.ViewPagerId, (tab, position) -> {
             tab.setText(labels[position]);
@@ -108,13 +128,26 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         tab1.requestLayout();
 
     }
+
     private void packageList() {
+        Utils.E("ID:::::" + ExamId + "LId::" + LanguageId);
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
-        apiService.packageListItem(token).enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put(Constants.Key.examId, ExamId);
+        hashMap.put(Constants.Key.languageId, LanguageId);
+        //hashMap.put(Constants.Key.priceId, Price);
+        apiService.packageListItem(token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    if (response.body().packageModels.isEmpty()) {
+                        binding.rvPackagesone.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvPackagesone.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }
                     if (response.code() == StatusCodeConstant.OK) {
                         packageModelList.clear();
                         assert response.body() != null;
@@ -140,6 +173,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
@@ -148,4 +182,21 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
-    }}
+    }
+
+
+    @Override
+    public void onClickedExamID(String s) {
+
+    }
+
+    @Override
+    public void onClickedLanguageID(String s) {
+
+    }
+
+    @Override
+    public void onClickedPrice(String s) {
+
+    }
+}

@@ -63,6 +63,13 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    if (response.body().examListModels.isEmpty()) {
+                        binding.rvCategories.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvCategories.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         courseModelArrayList.clear();

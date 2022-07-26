@@ -19,6 +19,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * Created by Anil on 9/4/2021.
@@ -57,11 +58,15 @@ public interface ApiService {
     Call<AllResponseModel> getTermAndCondition();
 
     @GET(Const.getPackageListWithFilterApi)
-    Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token);
+    Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token,
+                                           @QueryMap HashMap<String, String> hm);
 
-    @GET(Const.getPackageListWithFilterApi)
+   /* @GET(Const.getPackageListWithFilterApi)
     Call<AllResponseModel> examPackageListItem(@Header(Constants.Key.Authorization) String token,
-                                               @Query(Constants.Key.examId) String examId);
+                                               @Query(Constants.Key.examId) String examId)*/;
+    @GET(Const.getLanguageApi)
+    Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
+
 
 //______________________________********************___________________________________________//
 
@@ -190,9 +195,6 @@ public interface ApiService {
     @POST(Const.reset_password)
     Call<AllResponseModel> resetPassword(@FieldMap HashMap<String, String> hm);
 
-    @FormUrlEncoded
-    @POST(Const.lang)
-    Call<AllResponseModel> setLanguage(@FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
     @POST(Const.raise_complaint)

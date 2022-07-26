@@ -13,5 +13,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/rvExam"/>
 
+    <include layout="@layout/no_result_found"
+        android:id="@+id/noResultFoundId"
+        android:visibility="gone"/>
 
 </LinearLayout>
