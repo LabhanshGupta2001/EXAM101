@@ -67,7 +67,8 @@
                 android:overScrollMode="never"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:paddingBottom="@dimen/_12sdp" />
+                android:paddingBottom="@dimen/_12sdp"
+                tools:listitem="@layout/item_my_cart"/>
 
             <View
                 android:id="@+id/view"

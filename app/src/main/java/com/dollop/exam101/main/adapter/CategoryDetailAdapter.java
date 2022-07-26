@@ -2,6 +2,7 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.icu.text.Transliterator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +20,13 @@ import java.util.List;
 
 public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAdapter.MyViewHolder> {
     Context context;
-    int pos = -1;
+    int pos ;
     List<CourseModel> ExamList;
 
-    public CategoryDetailAdapter(Context context, List<CourseModel> list) {
+    public CategoryDetailAdapter(Context context, List<CourseModel> list, int position) {
         this.context = context;
         this.ExamList = list;
+        this.pos = position;
     }
 
     @NonNull

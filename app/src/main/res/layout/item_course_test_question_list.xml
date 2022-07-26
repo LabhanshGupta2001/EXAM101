@@ -53,7 +53,8 @@
         android:background="@color/lineColor"
         android:overScrollMode="never"
         android:paddingHorizontal="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_12sdp" />
+        android:paddingBottom="@dimen/_12sdp"
+        tools:listitem="@layout/item_course_test_question_option_list"/>
 
 </LinearLayout>
 

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.FragmentCategoryBinding;
@@ -49,21 +50,6 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init() {
-       /* list.clear();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-
-        binding.rvCategory.setHasFixedSize(true);
-        binding.rvCategory.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvCategory.setAdapter(new CategoryAdapter(getContext(),list));*/
         getExamList();
     }
 
@@ -71,19 +57,6 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
     }
-   /* private void CategoriesAllBlogsList(){
-        apiService.CategoriesAllBlogsList("").enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
-            }
-        });
-    }*/
 
     private void getExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
@@ -92,12 +65,19 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    if (response.body().blogs.isEmpty()) {
+                        binding.rvCategory.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvCategory.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         ExamList.clear();
                         ExamList.addAll(response.body().examListModels);
                         binding.rvCategory.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        binding.rvCategory.setAdapter(new CategoriesFragmentAdapter(ExamList, getContext()));
+                       // binding.rvCategory.setAdapter(new CategoriesFragmentAdapter(ExamList, getContext(), Constants.Key.FragmentCategory,onItemClicked));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

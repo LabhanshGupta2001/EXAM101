@@ -9,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
@@ -22,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -37,9 +36,8 @@ import com.dollop.exam101.main.model.NewsModel;
 import com.dollop.exam101.main.model.PackageModel;
 import com.google.gson.Gson;
 
-
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +45,9 @@ import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment {
+    public static String Price = "";
+    private static String ExamId = "";
+    private static String LanguageId = "";
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
     String Token;
@@ -82,10 +83,6 @@ public class HomeFragment extends Fragment {
     NewsAdapter newsAdapter;
 
 
-
-
-
-
     public HomeFragment() {
     }
 
@@ -109,15 +106,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void init() {
-        activity=requireActivity();
+        activity = requireActivity();
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
         getTopTen();
         courseModelArrayList.clear();
 
         CourseAdapter adapter = new CourseAdapter(getContext(), courseModelArrayList);
-
-
 
 
         banners1.clear();
@@ -185,8 +180,8 @@ public class HomeFragment extends Fragment {
                         assert response.body() != null;
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
-                        binding.recyclerViewCourse.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
-                        binding.recyclerViewCourse.setAdapter(new CourseAdapter(getContext(),courseModelArrayList));
+                        binding.recyclerViewCourse.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+                        binding.recyclerViewCourse.setAdapter(new CourseAdapter(getContext(), courseModelArrayList));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -213,14 +208,18 @@ public class HomeFragment extends Fragment {
 
     void getTopTen() {
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
-        apiService.packageListItem(Token).enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put(Constants.Key.examId, ExamId);
+        hashMap.put(Constants.Key.languageId, LanguageId);
+        //  hashMap.put(Constants.Key.price,Price);
+        apiService.packageListItem(Token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         packageModelList.clear();
-                       // Bundle bundle = new Bundle();
+                        // Bundle bundle = new Bundle();
                         assert response.body() != null;
                         packageModelList.addAll(response.body().packageModels);
 

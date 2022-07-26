@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -41,10 +40,12 @@
         android:background="@color/lineColor"
         android:overScrollMode="never"
         android:paddingVertical="@dimen/_10sdp"
-        android:paddingStart="@dimen/_12sdp">
+        android:paddingStart="@dimen/_12sdp"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
-
+    <include layout="@layout/no_result_found"
+        android:id="@+id/noResultFoundId"
+        android:visibility="gone"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBlogs"
         android:layout_width="match_parent"

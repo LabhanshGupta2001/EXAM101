@@ -17,6 +17,7 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.OnItemClicked;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCategoryDetailsBinding;
@@ -24,7 +25,7 @@ import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
 import com.dollop.exam101.main.adapter.CategoryDetailSecondaryAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
-import com.dollop.exam101.main.fragment.ExamFilterFragment;
+import com.dollop.exam101.main.fragment.CategoriesFragment;
 import com.dollop.exam101.main.fragment.LanguageFragment;
 import com.dollop.exam101.main.fragment.PriceFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
@@ -36,14 +37,18 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryDetailsActivity extends BaseActivity implements View.OnClickListener {
+public class CategoryDetailsActivity extends BaseActivity implements View.OnClickListener, OnItemClicked {
 
-    public String examId = null;
+    public String examId = "";
+    public String Price = "";
+    public String languageId = "";
+    int Positions;
     Activity activity = CategoryDetailsActivity.this;
     ActivityCategoryDetailsBinding binding;
     ArrayList<PackageModel> arrayList = new ArrayList<>();
@@ -51,6 +56,10 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     ApiService apiService;
     BottomSheetDialog bottomSheetFilter;
     BottomsheetFilterBinding bottomsheetFilterBinding;
+
+    CategoriesFragment categoriesFragment;
+    PriceFragment priceFragment;
+    LanguageFragment languageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +73,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             examId = bundle.getString(Constants.Key.examId);
+            Positions = bundle.getInt(Constants.Key.Position, 0);
         }
         apiService = RetrofitClient.getClient();
 
@@ -72,29 +82,6 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         getCategoryDetails(examId);
         getCategoriesItemHeading();
 
-      /*  list.clear();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-
-        binding.rvPackagesHeading.setAdapter(new CategoryDetailAdapter(activity, list));
-        binding.rvPackagesHeading.setHasFixedSize(true);
-        binding.rvPackagesHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));*/
-/*
-        arrayList.clear();
-        arrayList.add("1");
-        arrayList.add("1");
-        arrayList.add("1");
-        arrayList.add("1");
-        arrayList.add("1");
-        arrayList.add("1");
-
-        binding.rvPackagesSecondary.setAdapter(new CategoryDetailSecondaryAdapter(activity, arrayList));
-        binding.rvPackagesSecondary.setHasFixedSize(true);
-        binding.rvPackagesSecondary.setLayoutManager(new LinearLayoutManager(activity));*/
     }
 
     @Override
@@ -112,10 +99,6 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(getLayoutInflater());
         bottomSheetFilter.setContentView(bottomsheetFilterBinding.getRoot());
 
-       /* BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomsheetFilterBinding.getRoot().getParent()));
-        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-*/
         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomsheetFilterBinding.getRoot().getParent()));
         bottomSheetFilter.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -125,21 +108,36 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         bottomSheetFilter.show();
 
         ArrayList<String> title = new ArrayList<>();
-        ArrayList<Fragment> fragments = new ArrayList<>();
         title.add(Constants.Key.Exams);
         title.add(Constants.Key.Price);
         title.add(Constants.Key.Language);
 
-        fragments.add(new ExamFilterFragment());
-        fragments.add(new PriceFragment());
-        fragments.add(new LanguageFragment());
+        ArrayList<Fragment> Fragment = new ArrayList<>();
+        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this);
+        priceFragment = new PriceFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this);
+        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this);
+        Fragment.add(categoriesFragment);
+        Fragment.add(priceFragment);
+        Fragment.add(languageFragment);
 
-        bottomsheetFilterBinding.tvllSave.setOnClickListener(view ->
-                bottomSheetFilter.cancel());
 
-        /*TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
-        ViewPager2 viewPager2 = bottomSheetFilter.findViewById(R.id.vpLaunchId);*/
-        bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
+        bottomsheetFilterBinding.tvllSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.index != -1) {
+                    examId = categoriesFragment.categoriesFragmentAdapter.examId;
+                    // Utils.E("CategoryExamId:::" + examId);
+                }
+                if (languageFragment.languageAdapter != null && languageFragment.languageAdapter.index != -1) {
+                    languageId = languageFragment.languageAdapter.languageId;
+                    //Utils.E("CategoryLanguageId:::" + languageId);
+                }
+                getCategoryDetails(examId);
+                bottomSheetFilter.cancel();
+            }
+        });
+
+        bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), Fragment));
 
         new TabLayoutMediator(bottomsheetFilterBinding.tlTabLayoutId, bottomsheetFilterBinding.ViewPagerId, (tab, position) -> {
             tab.setText(title.get(position));
@@ -149,6 +147,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
         p.setMargins(20, 0, 20, 0);
         tab1.requestLayout();
+
     }
 
     private void getCategoriesItemHeading() {
@@ -163,7 +162,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
                         binding.rvPackagesHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-                        binding.rvPackagesHeading.setAdapter(new CategoryDetailAdapter(activity, courseModelArrayList));
+                        binding.rvPackagesHeading.setAdapter(new CategoryDetailAdapter(activity, courseModelArrayList, Positions));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -190,11 +189,22 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
 
     public void getCategoryDetails(String ExamId) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.examPackageListItem(Utils.GetSession().token, ExamId).enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put(Constants.Key.examId, ExamId);
+        hashMap.put(Constants.Key.languageId, languageId);
+        // hashMap.put(Constants.Key.price, Price);
+        apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    if (response.body().packageModels.isEmpty()) {
+                        binding.rvPackagesSecondary.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvPackagesSecondary.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }
                     if (response.code() == StatusCodeConstant.OK) {
                         arrayList.clear();
                         assert response.body() != null;
@@ -243,5 +253,20 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
 
             }
         });
+    }
+
+    @Override
+    public void onClickedExamID(String s) {
+
+    }
+
+    @Override
+    public void onClickedLanguageID(String s) {
+
+    }
+
+    @Override
+    public void onClickedPrice(String s) {
+
     }
 }

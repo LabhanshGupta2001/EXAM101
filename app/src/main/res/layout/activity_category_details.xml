@@ -85,21 +85,26 @@
         android:layout_below="@id/tvFilter"
         android:id="@+id/llChild">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPackagesHeading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:overScrollMode="never" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPackagesHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_category_detail"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rvPackagesSecondary"
         android:layout_below="@id/rvPackages"
         android:layout_marginTop="@dimen/_10sdp"
         android:overScrollMode="never"
-        />
+       tools:listitem="@layout/item_category_details_secondary" />
+
+        <include layout="@layout/no_result_found"
+            android:id="@+id/noResultFoundId"
+           android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

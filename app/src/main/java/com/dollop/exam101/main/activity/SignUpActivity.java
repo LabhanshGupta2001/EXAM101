@@ -166,9 +166,9 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             if(selectedCountryId.equals(Constants.Key.blank))
                 Utils.T(activity,Constants.Key.Pleas_Select_Country);
             else bottomSheetStateTask();
-        } else if (view == binding.llCountryCode) {
+        } /*else if (view == binding.llCountryCode) {
             bottomSheetCountryTask(Constants.Key.CountryId_Show);
-        } else if (view == binding.tvRegisterId) {
+        }*/ else if (view == binding.tvRegisterId) {
             CheckValidationTask();
         }
     }
@@ -355,7 +355,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         hm.put(Constants.Key.studentEmail, binding.etUserEmail.getText().toString().trim());
         hm.put(Constants.Key.password, binding.etPassword.getText().toString().trim());
         hm.put(Constants.Key.studentMobileNo, binding.etEnterMobile.getText().toString().trim());
-        hm.put(Constants.Key.countryCode, selectedCountryCode);
+        hm.put(Constants.Key.countryCode, Constants.Key.Default_Country_Code);
         hm.put(Constants.Key.countryName, selectedCountryName);
         hm.put(Constants.Key.stateName, selectedState);
         hm.put(Constants.Key.fcmId, fcmid);
@@ -397,15 +397,15 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         });
     }
 
-    public void onCountrySelected(String countryId, String countryCode, String CountryName, String flag) {
+    public void onCountrySelected(String countryId,String CountryName /* String countryCode, String flag*/) {
         this.selectedCountryId = countryId;
         this.selectedCountryName = CountryName;
-        this.selectedCountryCode = countryCode;
+       /* this.selectedCountryCode = countryCode;
         this.selectedCountryFlag = flag;
-        binding.tvCountryCodeId.setText(selectedCountryCode);
+        Picasso.get().load(Const.HOST_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
+        binding.tvCountryCodeId.setText(selectedCountryCode);*/
         binding.tvSelectCountry.setText(selectedCountryName);
         binding.tvSelectState.setText(Constants.Key.blank);
-        Picasso.get().load(Const.HOST_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
         bottomSheetDialog.dismiss();
     }
 

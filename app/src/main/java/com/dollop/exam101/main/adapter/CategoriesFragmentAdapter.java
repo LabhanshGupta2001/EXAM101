@@ -7,25 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemCategoriesFragmentBinding;
-
 import com.dollop.exam101.main.model.CourseModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFragmentAdapter.MyViewHolder> {
-
+    public int index = -1;
+    public String examId = "";
+    String From;
     Context context;
     List<CourseModel> examChecklist;
-    int index = -1;
 
 
-    public CategoriesFragmentAdapter(List<CourseModel> list, Context context) {
+    public CategoriesFragmentAdapter(ArrayList<CourseModel> list, FragmentActivity context, String from) {
         this.context = context;
         this.examChecklist = list;
+        From = from;
     }
 
     @NonNull
@@ -41,35 +43,16 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
 
         CourseModel courseModel = examChecklist.get(position);
         holder.binding.tvItem.setText(courseModel.examName);
-
-        holder.binding.materialCardView.setOnClickListener(v -> {
-                    index = position;
-                    notifyDataSetChanged();
-                });
+        holder.binding.radioButton.setChecked(index == position);
         holder.binding.materialCardView.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 index = position;
+                examId = examChecklist.get(position).examId;
                 notifyDataSetChanged();
             }
         });
-
-        if (index == position) {
-            holder.binding.radioButton.setChecked(true);
-
-        /*    holder.binding.tvItem.setTextColor(ContextCompat.getColor(context, R.color.theme));
-            holder.binding.ivDropdown.setRotation(180);
-            holder.binding.ivDropdown.setColorFilter(ContextCompat.getColor(context,R.color.theme));
-            holder.binding.llCheckBox.setVisibility(View.VISIBLE);*/
-
-        } else {
-            holder.binding.radioButton.setChecked(false);
-       /*     holder.binding.tvItem.setTextColor(ContextCompat.getColor(context, R.color.full_black));
-            holder.binding.ivDropdown.setRotation(0);
-            holder.binding.ivDropdown.setColorFilter(ContextCompat.getColor(context,R.color.sub_text));
-            holder.binding.llCheckBox.setVisibility(View.GONE);*/
-        }
     }
 
     @Override

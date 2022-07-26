@@ -86,4 +86,8 @@ dependencies {
 
     //Validation For Phone Number
     implementation 'io.michaelrocks:libphonenumber-android:8.12.49'
+
+    //Custom Seeke bar
+    implementation 'com.yahoo.mobile.client.android.util.rangeseekbar:rangeseekbar-library:0.1.0'
+
 }

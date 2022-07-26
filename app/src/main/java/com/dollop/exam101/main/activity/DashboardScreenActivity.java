@@ -56,8 +56,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
     @SuppressLint("ResourceAsColor")
     void init() {
-        /*navHeaderDashboardBinding.tvName.setText(Utils.GetSession().stateName);
-        navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);*/
         navigationSetup();
         apiService= RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
@@ -79,7 +77,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navHeaderDashboardBinding.llContactUs.setOnClickListener(this);
         navHeaderDashboardBinding.llTermCondition.setOnClickListener(this);
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
-
+        navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
+        navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
 
     }
 

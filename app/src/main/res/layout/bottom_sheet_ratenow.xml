@@ -1,132 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvLine"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_5sdp"
-            android:layout_gravity="center"
-            android:layout_marginVertical="@dimen/_8sdp"
-            app:cardBackgroundColor="@color/lightgrey"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="1dp" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvLine"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_5sdp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/_8sdp"
+        app:cardBackgroundColor="@color/lightgrey"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="1dp" />
 
-            <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="@drawable/bottom_curve_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:gravity="center_horizontal"
+            android:text="@string/rate_package"
+            android:theme="@style/SecondaryFullBlackHeadingTextStyle" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProfileOne"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_50sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/ivPhoto_Id"
+                android:layout_width="@dimen/_44sdp"
+                android:layout_height="@dimen/_44sdp"
+                android:contentDescription="@string/image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dummy" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/microsoft_power_point"
+            android:theme="@style/QuinaryThemeTextStyle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:gravity="center"
+            android:text="@string/best_way_learn_fundamentals_of_ndesign_thinking"
+            android:theme="@style/QuaternaryFullBlackTextStyle" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:numStars="5"
+            android:saveEnabled="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/review"
+            android:theme="@style/QuaternaryTextStyle" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvRateId"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="@color/stroke_color"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:strokeColor="@color/lineColor">
+
+            <EditText
+                android:id="@+id/etShareThoughts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:background="@drawable/bottom_curve_background"
-                android:orientation="vertical">
+                android:layout_margin="@dimen/_12sdp"
+                android:background="@color/stroke_color"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="start"
+                android:hint="@string/write_your_review"
+                android:inputType="textMultiLine"
+                android:textColor="@color/primaryColor"
+                android:textSize="@dimen/_11ssp"
+                tools:ignore="Autofill" />
+        </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:gravity="center_horizontal"
-                    android:text="@string/rate_package"
-                    android:theme="@style/SecondaryFullBlackHeadingTextStyle" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardProfileOne"
-                    android:layout_width="@dimen/_44sdp"
-                    android:layout_height="@dimen/_44sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:padding="@dimen/_50sdp"
-                    android:paddingBottom="@dimen/_5sdp"
-                    app:cardCornerRadius="@dimen/_5sdp">
-
-                    <ImageView
-                        android:id="@+id/ivPhoto_Id"
-                        android:layout_width="@dimen/_44sdp"
-                        android:layout_height="@dimen/_44sdp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/dummy"
-                        android:contentDescription="@string/image"
-                        />
-                </com.google.android.material.card.MaterialCardView>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="center"
-                    android:text="@string/microsoft_power_point"
-                    android:theme="@style/QuinaryThemeTextStyle" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:gravity="center"
-                    android:text="@string/best_way_learn_fundamentals_of_ndesign_thinking"
-                    android:theme="@style/QuaternaryFullBlackTextStyle" />
-
-                <RatingBar
-                    android:id="@+id/rating"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:saveEnabled="true"
-                    android:numStars="5"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="@string/review"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:theme="@style/QuaternaryTextStyle" />
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvRateId"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_110sdp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:elevation="0dp"
-                    app:cardBackgroundColor="@color/stroke_color"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    app:strokeColor="@color/lineColor">
-
-                    <EditText
-                        android:id="@+id/etShareThoughts"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="start"
-                        android:background="@color/stroke_color"
-                        android:fontFamily="@font/inter_medium"
-                        android:layout_margin="@dimen/_12sdp"
-                        android:hint="@string/write_your_review"
-                        android:theme="@style/QuaternaryLightSubTextStyle"
-                        android:inputType="textMultiLine"
-                        tools:ignore="Autofill" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <TextView
-                    android:id="@+id/tvRateNow"
-                    style="@style/TernaryWhiteTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:background="@drawable/theme_stroke_background"
-                    android:backgroundTint="@color/theme"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="center"
-                    android:padding="@dimen/_11sdp"
-                    android:text="@string/rate_now" />
-            </LinearLayout>
+        <TextView
+            android:id="@+id/tvRateNow"
+            style="@style/TernaryWhiteTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/theme_stroke_background"
+            android:backgroundTint="@color/theme"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:padding="@dimen/_11sdp"
+            android:text="@string/rate_now" />
+    </LinearLayout>
 
 </LinearLayout>
