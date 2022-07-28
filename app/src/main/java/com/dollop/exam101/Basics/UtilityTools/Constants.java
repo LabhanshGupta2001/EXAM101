@@ -74,9 +74,11 @@ public class Constants {
         String email = "email";
         String mobile = "mobile";
         String urlSlug = "urlSlug";
+        String uuid = "uuid";
         String countryId = "countryId";
         String BlogId = "BlogId";
         String packageId = "packageId";
+        String packageUuId = "packageUuId";
         String review = "review";
         String rating = "rating";
 
@@ -92,7 +94,8 @@ public class Constants {
         String Data = "data";
         String examId = "examId";
         String languageId = "languageId";
-        String price = "price";
+        String discountedPriceStart = "discountedPriceStart";
+        String discountedPriceEnd = "discountedPriceEnd";
         String Image_png = "image.png";
         String Image = "image/*";
         String All_Validation_Pass = "All Validation Pass";
@@ -123,6 +126,9 @@ public class Constants {
         String Mock_Test = "Mock Test";
         String Position = "position";
         String added_to_Wishlist = "Successfully added to Wishlist";
+        String  shared = "shared";
+        String  pending = "pending";
+        String  verified = "verified";
 
     }
 }

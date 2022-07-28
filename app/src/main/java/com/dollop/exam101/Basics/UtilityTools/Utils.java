@@ -13,24 +13,29 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.dollop.exam101.Basics.Database.UserData;
 import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.main.activity.LoginActivity;
 import com.dollop.exam101.main.model.CurrentCountryModel;
 import com.squareup.picasso.Callback;
@@ -73,6 +78,45 @@ public class Utils {
         I_clear(cx, LoginActivity.class, null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    public static void InternetDialog(Context context) {
+        Dialog dialog = new Dialog(context,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(R.layout.alertdialog);
+        dialog.findViewById(R.id.tvPermittManually).setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    public static Dialog logoutAlertDialog(Context c) {
+        Dialog dialog = new Dialog(c, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.logout);
+        dialog.findViewById(R.id.tvOK).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.UnAuthorizationToken(c);
+                dialog.dismiss();
+            }
+        });
+        dialog.findViewById(R.id.tvCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.show();
+        return dialog;
+    }
 
     public static void Picasso(String Url, ImageView imageView, int dummy) {
         Picasso.get().load(Const.HOST_URL + Url).fetch(new Callback() {

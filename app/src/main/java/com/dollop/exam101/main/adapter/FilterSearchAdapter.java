@@ -49,7 +49,7 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
         holder.binding.llParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUrlSlug);
+                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUuid);
               //  new BlogsListAdapter(context,blogListHeadingModelArrayList,blogListHeadingModel.blogCatId);
 
              //   ((BlogsListActivity)context).DataChangeBlogListAdapter(holder.getAdapterPosition());

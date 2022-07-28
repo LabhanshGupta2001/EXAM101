@@ -51,9 +51,9 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
             @Override
             public void onClick(View v) {
                 pos = position;
-                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUrlSlug);
+                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUuid);
                 notifyDataSetChanged();
-                Utils.E("categoryId...Heading.."+blogListHeadingModel.blogCatId);
+                Utils.E("categoryId...Heading.."+blogListHeadingModel.blogCatUuid);
             }
         });
         Utils.E("blogCategoryId::"+pos);

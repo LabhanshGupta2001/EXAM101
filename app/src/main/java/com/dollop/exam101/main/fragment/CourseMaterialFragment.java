@@ -3,21 +3,28 @@ package com.dollop.exam101.main.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
 import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
@@ -39,17 +46,18 @@ import retrofit2.Response;
 public class CourseMaterialFragment extends Fragment implements View.OnClickListener {
     Activity activity;
     FragmentCourseMaterialBinding binding;
-    String packageId;
+    String packageUuid;
     ArrayList<ReviewRatingModel> reviewRatingModels = new ArrayList<>();
     ArrayList<String> list = new ArrayList<>();
     ApiService apiService;
     BottomSheetDialog bottomSheetDialog;
 
-    public CourseMaterialFragment(String packageId) {
-        Utils.E("PackageId:::" + packageId);
-        this.packageId = packageId;
+    public CourseMaterialFragment(String packageUuid) {
+        Utils.E("PackageId:::" + packageUuid);
+        this.packageUuid = packageUuid;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCourseMaterialBinding.inflate(inflater, container, false);
@@ -59,6 +67,7 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         return binding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
         binding.tvRateId.setOnClickListener(this);
@@ -77,14 +86,25 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         binding.rvOverView.setHasFixedSize(true);
         binding.rvOverView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvOverView.setAdapter(new OverviewCourseDetailsAdapter(getContext(), list));
+        if (AppController.getInstance().isOnline()) {
 
-        GetPackageDetailsMockTestListRatingNow();
+            GetPackageDetailsMockTestListRatingNow();
+        } else {
+            InternetDialog();
+            //Utils.InternetDialog(activity);
+        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
         if (view == binding.tvRateId) {
-            rateNowBottomSheet();
+            if (AppController.getInstance().isOnline()) {
+                rateNowBottomSheet();
+            } else {
+                //Utils.InternetDialog(activity);
+                InternetDialog();
+            }
         }
     }
 
@@ -101,7 +121,7 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
 
     private void GetPackageDetailsMockTestListRatingNow() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.getPackageDetailsMockTestListRatingNow(Utils.GetSession().token, packageId).enqueue(new Callback<AllResponseModel>() {
+        apiService.getPackageDetailsMockTestListRatingNow(Utils.GetSession().token, packageUuid).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -141,7 +161,7 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     private void addRatingReview(Float rating, String review) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.packageId, packageId);
+        hm.put(Constants.Key.packageUuId, packageUuid);
         hm.put(Constants.Key.rating, String.valueOf(rating));
         hm.put(Constants.Key.review, review);
         apiService.addRatingReview(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
@@ -177,4 +197,22 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 }

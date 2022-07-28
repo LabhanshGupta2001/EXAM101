@@ -17,6 +17,7 @@
         android:fontFamily="@font/gothic_bold"
         android:text="@string/today" />
     <LinearLayout
+        android:id="@+id/llNotifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"

@@ -1,13 +1,16 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCoursesDetailBinding;
@@ -28,6 +31,7 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
     BottomSheetDialog bottomSheetDialog;
     ApiService apiService;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +41,13 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     void init() {
+        if (AppController.getInstance().isOnline()) {
 
+        } else {
+            Utils.InternetDialog(activity);
+        }
         apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
         binding.btnNext.setOnClickListener(this);

@@ -10,6 +10,9 @@ public class AllBlogListModel {
     @SerializedName("blogCatId")
     @Expose
     public String blogCatId;
+    @SerializedName("blogCatUuid")
+    @Expose
+    public String blogCatUuid;
     @SerializedName("blogCatUrlSlug")
     @Expose
     public String blogCatUrlSlug;
@@ -19,6 +22,9 @@ public class AllBlogListModel {
     @SerializedName("blogId")
     @Expose
     public String blogId;
+    @SerializedName("blogUuid")
+    @Expose
+    public String blogUuid;
     @SerializedName("blogUrlSlug")
     @Expose
     public String blogUrlSlug;

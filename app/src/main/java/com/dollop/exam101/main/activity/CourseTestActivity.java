@@ -1,15 +1,18 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCourseTestBinding;
@@ -28,6 +31,7 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
     ActivityCourseTestBinding binding;
     ApiService apiService;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +40,15 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         init();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     void init() {
         apiService = RetrofitClient.getClient();
+
+        if (AppController.getInstance().isOnline()) {
+
+        } else {
+            Utils.InternetDialog(activity);
+        }
         binding.ivBack.setOnClickListener(this);
         binding.ivAbout.setOnClickListener(this);
         binding.btnSubmit.setOnClickListener(this);

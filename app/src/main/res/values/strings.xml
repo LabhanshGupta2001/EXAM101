@@ -447,7 +447,13 @@
     <string name="please_select_the_state">Please select state</string>
     <string name="please_select_the_city">Please select city</string>
     <string name="select_city">Select City</string>
+    <string name="retry">Retry</string>
+    <string name="please_check_your_connection">Please Check Your Connection</string>
     <string name="needs_permission">This app needs permission to use this feature. You can grant them in app settings.</string>
+    <string name="are_you_sure_want_to_exit">Are you sure want to exit</string>
+    <string name="close">Close</string>
+
+
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

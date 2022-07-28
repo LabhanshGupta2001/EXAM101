@@ -50,7 +50,7 @@ public class AllBlogListAdapter extends RecyclerView.Adapter<AllBlogListAdapter.
             @Override
             public void onClick(View v) {
                 Bundle bundle=new Bundle();
-                bundle.putString(Constants.Key.urlSlug,allBlogListModel.authorName);
+                bundle.putString(Constants.Key.uuid,allBlogListModel.blogUuid);
                 Utils.I(context, BlogDetailActivity.class,bundle);
             }
         });

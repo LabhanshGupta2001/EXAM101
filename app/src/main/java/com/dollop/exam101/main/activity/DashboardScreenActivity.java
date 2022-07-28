@@ -79,6 +79,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
         navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
         navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
+        Utils.Picasso(Utils.GetSession().profilePic,navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
 
     }
 

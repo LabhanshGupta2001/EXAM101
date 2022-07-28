@@ -59,7 +59,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString(Constants.Key.packageId, packageModel.packageId);
+                bundle.putString(Constants.Key.packageUuId, packageModel.packageUuid);
 
                 Utils.I(context,PackagesDetailActivity.class,bundle);
 
