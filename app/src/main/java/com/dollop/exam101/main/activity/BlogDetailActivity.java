@@ -2,6 +2,7 @@ package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -121,7 +122,6 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
@@ -172,6 +172,7 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
             }
         });
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // remove focus from edit text on click outside

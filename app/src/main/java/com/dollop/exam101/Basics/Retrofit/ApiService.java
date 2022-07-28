@@ -3,6 +3,7 @@ package com.dollop.exam101.Basics.Retrofit;
 
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import java.util.HashMap;
 
@@ -14,6 +15,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
+import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -95,6 +97,12 @@ public interface ApiService {
 
     @GET(Const.getBlogsSortBy)
     Call<AllResponseModel> getBlogsSortBy(@Header(Constants.Key.Authorization) String token);
+
+    @FormUrlEncoded
+    @POST(Const.applyCouponCodeApi)
+    Call<AllResponseModel> ApplyCouponCode(@Header(Constants.Key.Authorization) String token,
+                                           @Field(Constants.Key.couponCode) String couponCode);
+
 
     @GET(Const.getBlogCategoryListApi)
     Call<AllResponseModel> getBlogsFilterBy();

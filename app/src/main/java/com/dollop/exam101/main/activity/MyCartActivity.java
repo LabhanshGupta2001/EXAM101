@@ -8,9 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityMyCartBinding;
 import com.dollop.exam101.databinding.BottomsheetApplycouponBinding;
@@ -19,6 +21,7 @@ import com.dollop.exam101.main.adapter.MyCartAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.MyCartModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,20 +92,28 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
         binding.ivBack.setOnClickListener(this);
     }
 
+    private void couponCodeBottomSheet() {
+        bottomSheetApplyCoupon = new BottomSheetDialog(activity);
+        bottomsheetApplycouponBinding = BottomsheetApplycouponBinding.inflate(getLayoutInflater());
+        bottomSheetApplyCoupon.setContentView(bottomsheetApplycouponBinding.getRoot());
+        bottomSheetApplyCoupon.show();
+        bottomsheetApplycouponBinding.tvApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().isEmpty()) {
+                    bottomsheetApplycouponBinding.etApplyCouponId.setError("Enter CouponCode");
+                } else {
+                    applyCouponCode();
+                }
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         if (view == binding.CardView) {
-            bottomSheetApplyCoupon = new BottomSheetDialog(activity);
-            bottomsheetApplycouponBinding = BottomsheetApplycouponBinding.inflate(getLayoutInflater());
-            bottomSheetApplyCoupon.setContentView(bottomsheetApplycouponBinding.getRoot());
-            bottomSheetApplyCoupon.show();
-
-            bottomsheetApplycouponBinding.tvApply.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    bottomSheetApplyCoupon.cancel();
-                }
-            });
+            couponCodeBottomSheet();
         } else if (view == binding.CardViewOne) {
             bottomSheetDialogReferralCode = new BottomSheetDialog(activity);
             bottomsheetReferralcodeBinding = BottomsheetReferralcodeBinding.inflate(getLayoutInflater());
@@ -122,6 +133,37 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
             onBackPressed();
         }
     }
+
+    private void applyCouponCode() {
+        apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString()).
+                enqueue(new Callback<AllResponseModel>() {
+                    @Override
+                    public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                        if (response.code() == StatusCodeConstant.OK) {
+                            assert response.body() != null;
+                            Utils.T(activity, response.body().message);
+                            bottomSheetApplyCoupon.dismiss();
+                        } else {
+                            assert response.errorBody() != null;
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                            if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                                Utils.T(activity, message.message);
+                            } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                                Utils.T(activity, message.message);
+                                Utils.UnAuthorizationToken(activity);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                        t.printStackTrace();
+
+                    }
+                });
+
+    }
+
 
     void getCartItem() {
         HashMap<String, String> hm = new HashMap<>();

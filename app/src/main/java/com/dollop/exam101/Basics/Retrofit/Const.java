@@ -84,4 +84,5 @@ public class Const {
     public static final String CategoriesAllBlogsList = "CategoriesAllBlogsList";
     public static final String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
     public static final String getTermConditionApi = "getTermConditionApi";
+    public static final String applyCouponCodeApi = "applyCouponCodeApi";
 }

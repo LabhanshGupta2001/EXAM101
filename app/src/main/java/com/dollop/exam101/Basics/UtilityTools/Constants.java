@@ -129,6 +129,7 @@ public class Constants {
         String  shared = "shared";
         String  pending = "pending";
         String  verified = "verified";
+        String couponCode = "couponCode";
 
     }
 }
