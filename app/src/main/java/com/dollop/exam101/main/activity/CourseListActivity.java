@@ -1,16 +1,20 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCourseListBinding;
 import com.dollop.exam101.main.adapter.CourseListAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
@@ -29,6 +33,7 @@ public class CourseListActivity extends BaseActivity implements View.OnClickList
     ApiService apiService;
     ArrayList<CourseListModel> courseListModels = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +45,15 @@ public class CourseListActivity extends BaseActivity implements View.OnClickList
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     void init() {
         apiService = RetrofitClient.getClient();
+
+        if (AppController.getInstance().isOnline()) {
+
+        } else {
+            Utils.InternetDialog(activity);
+        }
         binding.ivBack.setOnClickListener(this);
 
         courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "0", "30 DAYS"));

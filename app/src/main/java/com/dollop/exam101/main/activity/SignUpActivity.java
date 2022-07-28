@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,12 +31,14 @@ import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivitySignUpBinding;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetCountryBinding;
 import com.dollop.exam101.databinding.BottomSheetStateBinding;
 import com.dollop.exam101.main.adapter.CountryAdapter;
@@ -79,6 +85,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     private final ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
     private ApiService apiservice;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.status_bar_color));
@@ -91,8 +98,14 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         init();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
-        getCountryList();
+        if (AppController.getInstance().isOnline()) {
+            getCountryList();
+        } else {
+            //Utils.InternetDialog(activity);
+            InternetDialog();
+        }
         binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
         binding.SignUPId.setOnClickListener(this);
         binding.tvRegisterId.setOnClickListener(this);
@@ -131,6 +144,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -145,6 +159,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void handleSignInResult(@NonNull Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -154,7 +169,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                  personEmail = acct.getEmail();
                 //Uri personPhoto = acct.getPhotoUrl();
             }
-            SocialLogin();
+            if (AppController.getInstance().isOnline()) {
+
+                SocialLogin();
+            } else {
+               // Utils.InternetDialog(activity);
+                InternetDialog();
+            }
            // startActivity(new Intent(activity, DashboardScreenActivity.class));
             // Signed in successfully, show authenticated UI.
         } catch (ApiException e) {
@@ -165,6 +186,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
         if (view == binding.SignUPId) {
@@ -261,6 +283,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void CheckValidationTask() {
         errorValidationModels.clear();
         errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName));
@@ -273,7 +296,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, errorValidationModels);
         if (resultReturn.aBoolean) {
-            userSignup();
+            if (AppController.getInstance().isOnline()) {
+
+                userSignup();
+            } else {
+               // Utils.InternetDialog(activity);
+                InternetDialog();
+            }
         } else {
 
             if (resultReturn.type == Validation.Type.EmptyString) {
@@ -323,6 +352,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void bottomSheetStateTask() {
         bottomSheetStateDialog = new BottomSheetDialog(activity);
         bottomSheetStateBinding = BottomSheetStateBinding.inflate(getLayoutInflater());
@@ -335,8 +365,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         //bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
         bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setSkipCollapsed(true);
+        if (AppController.getInstance().isOnline()) {
 
-        getState(selectedCountryId);
+            getState(selectedCountryId);
+        } else {
+           // Utils.InternetDialog(activity);
+            InternetDialog();
+        }
 
         bottomSheetStateBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -482,5 +517,23 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

@@ -375,6 +375,7 @@
 
             </LinearLayout>
 
+            <!--pending Wala layout -->
             <LinearLayout
                 android:id="@+id/llRequestPendingCode"
                 android:layout_width="match_parent"
@@ -422,6 +423,7 @@
 
             </LinearLayout>
 
+            <!--Do Option wala layout -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -564,6 +566,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
+                        android:id="@+id/tvInviteFriends"
                         style="@style/QuaternaryLightTextStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

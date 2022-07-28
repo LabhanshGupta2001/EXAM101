@@ -3,23 +3,29 @@ package com.dollop.exam101.main.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogsListBinding;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogShortBinding;
 import com.dollop.exam101.databinding.ItemAllBlogsBinding;
@@ -50,7 +56,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     AllBlogListAdapter allBlogListAdapter;
     FilterSearchAdapter filterSearchAdapter;
     public int position;
-    private final ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
+    ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
 
 
     private final ArrayList<BlogListHeadingModel> blogsList = new ArrayList<>();
@@ -64,6 +70,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     BottomSheetBlogShortBinding bottomSheetBlogShortBinding;
     BottomSheetBlogFilterBinding bottomSheetBlogFilterBinding;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,14 +84,22 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
         setContentView(binding.getRoot());
         init();
-        getBlogsCategory(Constants.Key.blank);
 
-        getBlogsData(Constants.Key.blank);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
 
         apiService = RetrofitClient.getClient();
+
+        if (AppController.getInstance().isOnline()) {
+            getBlogsCategory(Constants.Key.blank);
+            getBlogsData(Constants.Key.blank);
+        } else {
+            //Utils.InternetDialog(activity);
+            InternetDialog();
+        }
+
         binding.ivBack.setOnClickListener(this);
         binding.llBtnShort.setOnClickListener(this);
         binding.llBtnFilter.setOnClickListener(this);
@@ -102,6 +117,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
@@ -131,6 +147,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void bottomSheetFilterTask() {
         bottomSheetFilter = new BottomSheetDialog(activity);
         bottomSheetBlogFilterBinding = BottomSheetBlogFilterBinding.inflate(getLayoutInflater());
@@ -160,7 +177,12 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                 return false;
             }
         });
-        getBlogsCategory(Constants.Key.From);
+        if (AppController.getInstance().isOnline()) {
+            getBlogsCategory(Constants.Key.From);
+        } else {
+           // Utils.InternetDialog(activity);
+            InternetDialog();
+        }
 
      /*   ArrayList<String> title = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
@@ -231,16 +253,15 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
 
 
-    public void getBlogsData(String urlSlug) {
+    public void getBlogsData(String uuid) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.getBlogsData(urlSlug).enqueue(new Callback<AllResponseModel>() {
+        apiService.getBlogsData(uuid).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
-
                 try {
                     if (response.body().blogs.isEmpty()) {
-                        binding.rvHorizontalHeading.setVisibility(View.GONE);
+                        binding.rvHorizontalHeading.setVisibility(View.VISIBLE);
                         binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
                     } else {
                         binding.rvHorizontalHeading.setVisibility(View.VISIBLE);
@@ -277,5 +298,23 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

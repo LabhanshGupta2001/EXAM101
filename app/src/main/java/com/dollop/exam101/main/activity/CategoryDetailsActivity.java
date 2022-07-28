@@ -4,23 +4,30 @@ import static com.dollop.exam101.Basics.UtilityTools.AppController.getContext;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.OnItemClicked;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCategoryDetailsBinding;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
 import com.dollop.exam101.main.adapter.CategoryDetailSecondaryAdapter;
@@ -61,6 +68,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     PriceFragment priceFragment;
     LanguageFragment languageFragment;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +76,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         setContentView(binding.getRoot());
         init();
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -79,9 +87,15 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
 
         binding.ivBack.setOnClickListener(this);
         binding.tvFilter.setOnClickListener(this);
-        getCategoryDetails(examId);
-        getCategoriesItemHeading();
 
+
+        if (AppController.getInstance().isOnline()) {
+            getCategoryDetails(examId);
+            getCategoriesItemHeading();
+        } else {
+            //Utils.InternetDialog(activity);
+            InternetDialog();
+        }
     }
 
     @Override
@@ -192,7 +206,8 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, ExamId);
         hashMap.put(Constants.Key.languageId, languageId);
-        // hashMap.put(Constants.Key.price, Price);
+   /*     hashMap.put(Constants.Key.discountedPriceStart, priceFragment.minValue);
+        hashMap.put(Constants.Key.discountedPriceEnd, priceFragment.maxValue);*/
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -259,14 +274,30 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     public void onClickedExamID(String s) {
 
     }
-
     @Override
     public void onClickedLanguageID(String s) {
 
     }
-
     @Override
     public void onClickedPrice(String s) {
 
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

@@ -13,4 +13,7 @@ public class BlogListHeadingModel {
     @SerializedName("blogCatName")
     @Expose
     public String blogCatName;
+    @SerializedName("blogCatUuid")
+    @Expose
+    public String blogCatUuid;
 }

@@ -40,7 +40,7 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
 
     private void init() {
         binding.ivBack.setOnClickListener(this);
-        binding.llToolbar.setOnClickListener(this);
+
         apiService = RetrofitClient.getClient();
 
 
@@ -57,8 +57,6 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View view) {
         if (view == binding.ivBack) {
             finish();
-        } else if (view == binding.llToolbar) {
-            Utils.I(activity, AffilationBankDetailsActivity.class, null);
         }
     }
 

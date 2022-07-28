@@ -8,8 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +40,7 @@ import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.AppHelper;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
@@ -44,6 +49,7 @@ import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityEditProfileBinding;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetCountryBinding;
 import com.dollop.exam101.databinding.BottomSheetStateBinding;
 import com.dollop.exam101.main.adapter.CountryAdapter;
@@ -86,6 +92,9 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     List<ValidationModel> allResponseModels = new ArrayList<>();
     boolean profile = false;
     Uri profileUri = null;
+    private CountryAdapter countryAdapter;
+    private StateAdapter stateAdapter;
+
     ActivityResultLauncher<String> openGallery = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
         if (uri != null) {
             profile = true;
@@ -103,8 +112,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             profileUri = Utils.getImageUri(activity, bitmap);
         }
     });
-    private CountryAdapter countryAdapter;
-    private StateAdapter stateAdapter;
+
 
     public static boolean checkAndRequestPermissions(final Activity context) {
         int WExtstorePermission = ContextCompat.checkSelfPermission(context,
@@ -137,11 +145,17 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
-        getEditProfileDetails();
-        getCountryList();
+        if (AppController.getInstance().isOnline()) {
+            SetDataWithDataBase();
+            getCountryList();
+        } else {
+            InternetDialog();
+            //Utils.InternetDialog(activity);
+        }
 
         binding.mcvProfileSelector.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
@@ -163,6 +177,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
         if (view == binding.mcvProfileSelector) {
@@ -307,6 +322,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         bottomSheetDialog.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void bottomSheetStateTask() {
         bottomSheetStateDialog = new BottomSheetDialog(activity);
         bottomSheetStateBinding = BottomSheetStateBinding.inflate(getLayoutInflater());
@@ -317,7 +333,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetBehavior.setMaxHeight(binding.rlChildParent.getHeight());
         bottomSheetBehavior.setSkipCollapsed(true);
-        getState();
+        if (AppController.getInstance().isOnline()) {
+            getState();
+        } else {
+            Utils.InternetDialog(activity);
+        }
 
         bottomSheetStateBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -436,6 +456,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             profilePic = AppHelper.prepareFilePart(Constants.Key.profilePic);
         }
         apiService.EditProfileImage(Token, hashMap, profilePic).enqueue(new Callback<AllResponseModel>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -443,7 +464,12 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         Utils.T(activity, "Updated Successfully");
-                        getEditProfileDetails();
+                        if (AppController.getInstance().isOnline()) {
+                          getEditProfileDetails();
+                        } else {
+                            InternetDialog();
+                            //Utils.InternetDialog(activity);
+                        }
 
                     } else {
                         assert response.errorBody() != null;
@@ -498,6 +524,24 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+    private  void SetDataWithDataBase(){
+        binding.etEnterMobile.setText(Utils.GetSession().studentMobileNo);
+        binding.etUserEmail.setText(Utils.GetSession().studentEmail);
+        binding.etUserName.setText(Utils.GetSession().studentName);
+        binding.tvSelectState.setText(Utils.GetSession().stateName);
+        Picasso.get().load(Const.HOST_URL + Utils.GetSession().profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
+        if (Utils.GetSession().countryName.equals(Constants.Key.blank)) {
+            binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
+        } else {
+            binding.tvSelectCountry.setText(Utils.GetSession().countryName);
+        }
+        if (Utils.GetSession().countryCode.equals(Constants.Key.blank)) {
+            //   binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
+            binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
+        } else {
+            binding.tvCountryCodeId.setText(Utils.GetSession().countryCode);
+        }
+    }
     //GetApiProfileData
     private void getEditProfileDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
@@ -509,31 +553,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         UserData userData = response.body().studentData;
-                        binding.etEnterMobile.setText(userData.studentMobileNo);
-                        binding.etUserEmail.setText(userData.studentEmail);
-                        binding.etUserName.setText(userData.studentName);
-                        binding.etUserName.setText(userData.studentName);
-                        binding.tvSelectState.setText(userData.stateName);
-                        Picasso.get().load(Const.HOST_URL + userData.profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
-                        // Picasso.get().load(Const.HOST_URL + userData.flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
-
-                        if (userData.countryName.equals(Constants.Key.blank)) {
-                            binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
-                        } else {
-                            binding.tvSelectCountry.setText(userData.countryName);
-                        }
-                        if (userData.countryCode.equals(Constants.Key.blank)) {
-                            //   binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
-                            binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
-                        } else {
-                            binding.tvCountryCodeId.setText(userData.countryCode);
-                        }
-                        //  Picasso.get().load(Const.FLAG_URL + userData.flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
                         UserData DatabaseData = Utils.GetSession();
                         userData.studentId = DatabaseData.studentId;
                         userData.token = DatabaseData.token;
                         UserDataHelper.getInstance().insertData(userData);
-
+                        SetDataWithDataBase();
 
                     } else {
                         assert response.errorBody() != null;
@@ -593,6 +617,24 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             }
         }
         return super.dispatchTouchEvent(event);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
 

@@ -45,12 +45,13 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
 
         BlogListHeadingModel blogListHeadingModel = blogListHeadingModelArrayList.get(position);
         holder.binding.tvBlogHeading.setText(blogListHeadingModel.blogCatName);
+
         holder.binding.tvBlogHeading.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 pos = position;
-                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUrlSlug);
+                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUuid);
                 notifyDataSetChanged();
             }
         });

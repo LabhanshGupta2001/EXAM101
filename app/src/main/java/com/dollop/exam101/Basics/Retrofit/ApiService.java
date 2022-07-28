@@ -80,7 +80,7 @@ public interface ApiService {
     Call<AllResponseModel> GetBankUserDetails(@Header(Constants.Key.Authorization) String token);
 
     @GET(Const.getBlogDetailApi)
-    Call<AllResponseModel> getBlogDetails(@Query(Constants.Key.urlSlug) String urlSlug);
+    Call<AllResponseModel> getBlogDetails(@Query(Constants.Key.uuid) String uuid);
 
     @FormUrlEncoded
     @POST(Const.getBankProfile)
@@ -91,7 +91,7 @@ public interface ApiService {
     Call<AllResponseModel> getBlogsCategory();
 
     @GET(Const.getBlogListApi)
-    Call<AllResponseModel> getBlogsData(@Query(Constants.Key.urlSlug) String urlSlug);
+    Call<AllResponseModel> getBlogsData(@Query(Constants.Key.uuid) String uuid);
 
     @GET(Const.getBlogsSortBy)
     Call<AllResponseModel> getBlogsSortBy(@Header(Constants.Key.Authorization) String token);
@@ -153,7 +153,7 @@ public interface ApiService {
 
     @GET(Const.getReviewRatingListApi)
     Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
-                                                                  @Query(Constants.Key.packageId) String packageId );
+                                                                  @Query(Constants.Key.packageUuId) String packageUuid );
 
 
     @GET(Const.AllResults)

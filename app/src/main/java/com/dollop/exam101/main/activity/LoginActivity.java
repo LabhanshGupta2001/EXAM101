@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.dollop.exam101.Basics.Database.UserData;
@@ -22,12 +26,14 @@ import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityLoginBinding;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.validation.ResultReturn;
 import com.dollop.exam101.main.validation.Validation;
@@ -95,6 +101,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -109,6 +116,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -122,7 +130,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Uri personPhoto = acct.getPhotoUrl();
                 Log.e(String.valueOf(activity), "handleSignInResult: " + personName);*/
             }
-            SocialLogin();
+            if (AppController.getInstance().isOnline()) {
+
+                SocialLogin();
+            } else {
+                //Utils.InternetDialog(activity);
+                InternetDialog();
+            }
             // startActivity(new Intent(activity, DashboardScreenActivity.class));
         } catch (ApiException e) {
             Log.e("massage", e.toString());
@@ -130,12 +144,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
         if (view == binding.tvForgetPasswordId) {
             Utils.I(activity, ForgotPasswordActivity.class, null);
         } else if (view == binding.SignInId) {
-            CheckValidationTask();
+            if (AppController.getInstance().isOnline()) {
+                CheckValidationTask();
+            } else {
+               // Utils.InternetDialog(activity);
+                InternetDialog();
+            }
         } else if (view == binding.tvSignUp) {
             Utils.I(activity, SignUpActivity.class, null);
         }
@@ -267,5 +287,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

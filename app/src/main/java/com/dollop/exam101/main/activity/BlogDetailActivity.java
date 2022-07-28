@@ -2,8 +2,10 @@ package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,11 +13,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.text.HtmlCompat;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 
@@ -24,6 +28,7 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogDetailBinding;
 
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
@@ -39,11 +44,13 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
     Activity activity = BlogDetailActivity.this;
     ActivityBlogDetailBinding binding;
     ApiService apiService;
+    String uuid;
     String urlSlug;
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,31 +60,39 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
         getBlogDetails();
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null) {
-            urlSlug = bundle.getString(Constants.Key.urlSlug, Constants.Key.blank);
+            uuid = bundle.getString(Constants.Key.uuid, Constants.Key.blank);
         }
         binding.ivBack.setOnClickListener(this);
+
+        if (AppController.getInstance().isOnline()) {
+            getBlogDetails();
+        } else {
+            //Utils.InternetDialog(activity);
+            InternetDialog();
+        }
         binding.flotingBtn.setOnClickListener(this);
     }
 
     private void getBlogDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.getBlogDetails(urlSlug).enqueue(new Callback<AllResponseModel>() {
+        apiService.getBlogDetails(uuid).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                    if(response.body().blogs.isEmpty()){
+                  /*  if(response.body().blogs.isEmpty()){
                         binding.llLaunch.setVisibility(View.GONE);
                         binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
                     }else {
                         binding.llLaunch.setVisibility(View.VISIBLE);
                         binding.noResultFoundId.llParent.setVisibility(View.GONE);
-                    }
+                    }*/
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         AllBlogListModel allBlogListModel=response.body().blog;
@@ -124,6 +139,24 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
         } else if (view == binding.flotingBtn) {
             bottomSheetTask();
         }
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     private void bottomSheetTask() {

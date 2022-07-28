@@ -1,12 +1,17 @@
 package com.dollop.exam101.main.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentExamFilterBinding;
 import com.dollop.exam101.main.adapter.CategoriesFragmentAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
@@ -32,33 +40,30 @@ import retrofit2.Response;
 public class ExamFilterFragment extends Fragment implements View.OnClickListener {
     FragmentExamFilterBinding binding;
     ArrayList<CourseModel> examArrayList = new ArrayList<>();
-
+    Activity activity;
     ApiService apiService;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentExamFilterBinding.inflate(inflater, container, false);
+        activity = requireActivity();
         init();
         return binding.getRoot();
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-        getFilter();
-       /* list.clear();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
+        if (AppController.getInstance().isOnline()) {
+            getFilter();
+        } else {
+           // Utils.InternetDialog(activity);
+            InternetDialog();
 
-        binding.rvExam.setHasFixedSize(true);
-        binding.rvExam.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvExam.setAdapter(new ExamFragmentAdapter(getContext(), list));
-*/
+        }
+
     }
 
     @Override
@@ -86,7 +91,7 @@ public class ExamFilterFragment extends Fragment implements View.OnClickListener
                         examArrayList.clear();
                         examArrayList.addAll(response.body().examListModels);
                         binding.rvExam.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                      //  binding.rvExam.setAdapter(new CategoriesFragmentAdapter(examArrayList, getContext(), Constants.Key.ExamFilterFragment,onItemClicked));
+                        //  binding.rvExam.setAdapter(new CategoriesFragmentAdapter(examArrayList, getContext(), Constants.Key.ExamFilterFragment,onItemClicked));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -110,5 +115,22 @@ public class ExamFilterFragment extends Fragment implements View.OnClickListener
             }
         });
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 }

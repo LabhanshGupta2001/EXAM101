@@ -1,12 +1,16 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityAffiliatePurchaseListBinding;
 import com.dollop.exam101.databinding.BottomSheetAffiliatePurchaseListBinding;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
@@ -23,6 +27,7 @@ public class AffiliatePurchaseListActivity extends BaseActivity implements View.
     BottomSheetDialog bottomSheetDialog;
     BottomSheetAffiliatePurchaseListBinding bottomSheetAffiliatePurchaseListBinding;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,14 @@ public class AffiliatePurchaseListActivity extends BaseActivity implements View.
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
+
+        if (AppController.getInstance().isOnline()) {
+
+        } else {
+            Utils.InternetDialog(activity);
+        }
         binding.ivBack.setOnClickListener(this);
         binding.tvFilter.setOnClickListener(this);
 
@@ -46,8 +58,7 @@ public class AffiliatePurchaseListActivity extends BaseActivity implements View.
         fragments.add(new TransactionHistoryFragment());
 
 
-        /* TabLayout tabLayout = binding.tabLayout;
-          ViewPager2 viewPager2 = binding.vpLaunchId;*/
+
         binding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
 
         new TabLayoutMediator(binding.tabLayout, binding.vpLaunchId, (tab, position) -> {

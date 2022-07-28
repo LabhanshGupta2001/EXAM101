@@ -15,6 +15,7 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.databinding.ActivityProfileBinding;
 import com.dollop.exam101.databinding.ActivityUpdateBankDetailsBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 
@@ -29,11 +30,14 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
     Activity activity = UpdateBankDetailsActivity.this;
     ActivityUpdateBankDetailsBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityUpdateBankDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
         init();
     }
 
@@ -46,7 +50,8 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         if (view == binding.llSave) {
-            Utils.I(activity, ContactUsActivity.class, null);
+           finish();
+
         } else if (view == binding.ivBack) {
             onBackPressed();
         }
