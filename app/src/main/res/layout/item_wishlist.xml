@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
@@ -31,7 +31,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".8"
+                    android:layout_weight=".7"
                     android:orientation="vertical">
 
 
@@ -59,8 +59,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight=".2">
+                    android:layout_weight=".3"
+                    android:orientation="vertical">
 
 
                     <TextView
@@ -68,82 +68,131 @@
                         style="@style/QunaryYellowTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4.4"
                         android:layout_gravity="end"
-                        android:drawablePadding="@dimen/_2sdp"
                         android:drawableLeft="@drawable/ic_yello_star"
+                        android:drawablePadding="@dimen/_2sdp"
                         android:fontFamily="@font/inter_medium"
-                        />
+                        android:text="4.4" />
+
+                        <TextView
+                            android:id="@+id/tvRupees"
+                            style="@style/TernaryThemeTextStyle"
+                            android:fontFamily="@font/inter_semibold"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:gravity="end"
+                            android:text="₹140000.0" />
 
 
-                    <TextView
-                        android:id="@+id/tvRupees"
-                        style="@style/TernaryThemeTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="₹500" />
+
                 </LinearLayout>
 
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/_minus6sdp"
+                android:layout_marginEnd="@dimen/_6sdp">
+
+                <TextView
+                    android:id="@+id/tvRupeesSing"
+                    style="@style/QuinarySubTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="₹" />
+
+
+                <TextView
+                    android:id="@+id/tvActhualPrise"
+                    style="@style/QuinarySubTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tvRupeesSing"
+                    android:fontFamily="@font/inter_medium"
+                    android:singleLine="true"
+                    android:text="190000.0" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_alignStart="@id/tvActhualPrise"
+                    android:layout_alignEnd="@id/tvActhualPrise"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/darker_gray" />
+
+            </RelativeLayout>
+
             <View
+                android:id="@+id/viewLine"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:background="@color/HorizontallineColor" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_8sdp"
+                android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:baselineAligned="false">
+                android:weightSum="1">
 
 
                 <LinearLayout
                     android:id="@+id/llRemove"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_weight=".1"
+                    android:gravity="start"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvRemove_Id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:drawablePadding="@dimen/_2sdp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/remove"
-                        android:theme="@style/QuinaryLightTextStyle"
-                        app:drawableStartCompat="@drawable/ic_removesvg" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/mcvRemove_Id"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_margin="@dimen/_6sdp"
+                        android:background="@color/status_bar_color"
+                        app:cardCornerRadius="@dimen/_11sdp"
+                        app:strokeColor="@color/HorizontallineColor"
+                        app:strokeWidth="@dimen/_1sdp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_removesvg" />
+                    </com.google.android.material.card.MaterialCardView>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llAdToCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight=".9"
                     android:gravity="end"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp">
 
                     <TextView
-                        android:id="@+id/tvWishList_Id"
+                        android:id="@+id/tvAddCard_Id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/bg_theme_curve"
                         android:drawablePadding="@dimen/_2sdp"
-                        android:paddingEnd="@dimen/_6sdp"
                         android:fontFamily="@font/inter_regular"
+                        android:paddingHorizontal="@dimen/_6sdp"
+                        android:paddingVertical="@dimen/_4sdp"
                         android:text="@string/add_to_cart"
-                        android:theme="@style/QuinaryTheemTextStyle"
+                        android:theme="@style/QuinaryWhiteTextStyle"
                         app:drawableStartCompat="@drawable/ic_shopping_cart_trolly" />
 
                 </LinearLayout>

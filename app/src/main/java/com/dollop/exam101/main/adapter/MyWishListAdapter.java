@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.databinding.ItemWishlistBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.MyHolder> {
     Context context;
-    List<AllResponseModel> list;
+    List<String> list;
 
 
-    public MyWishListAdapter(Context context, List<AllResponseModel> list) {
+    public MyWishListAdapter(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
     }

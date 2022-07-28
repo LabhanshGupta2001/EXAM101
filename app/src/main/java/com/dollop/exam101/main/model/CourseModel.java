@@ -11,4 +11,7 @@ public class CourseModel
     @SerializedName("examName")
     @Expose
     public String examName;
+    @SerializedName("uuid")
+    @Expose
+    public String uuid;
 }

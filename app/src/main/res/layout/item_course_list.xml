@@ -46,7 +46,7 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_8sdp"
         app:cardCornerRadius="@dimen/_8sdp"
-        app:cardElevation="@dimen/_1sdp"
+        app:cardElevation="@dimen/_8sdp"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth=".8dp">
 
@@ -97,9 +97,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/black_transparent"
+                            app:cardCornerRadius="@dimen/_8sdp">
+                            <TextView
+                                android:id="@+id/tvCurrentAffairs"
+                                style="@style/QuinaryThemeNewsTextStyle"
+                                android:layout_marginHorizontal="@dimen/_4sdp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/current_affairs"/>
+                        </com.google.android.material.card.MaterialCardView>
+
                         <TextView
                             android:id="@+id/tvExpireOn"
                             style="@style/SenaryTextStyle"
+                            android:layout_marginStart="@dimen/_2sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_medium"
@@ -224,11 +240,22 @@
                     android:padding="@dimen/_9sdp">
 
                     <TextView
+                        android:id="@+id/tvViewCourse"
                         style="@style/QuinaryLightTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_semibold"
                         android:text="@string/view_course"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/tvRepurchase"
+                        style="@style/QuinaryLightTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/repurchase"
                         android:textColor="@color/white" />
 
                     <ImageView

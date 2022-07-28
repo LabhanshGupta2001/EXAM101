@@ -3,6 +3,7 @@ package com.dollop.exam101.Basics.Retrofit;
 
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import java.util.HashMap;
 
@@ -14,6 +15,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
+import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -80,7 +82,7 @@ public interface ApiService {
     Call<AllResponseModel> GetBankUserDetails(@Header(Constants.Key.Authorization) String token);
 
     @GET(Const.getBlogDetailApi)
-    Call<AllResponseModel> getBlogDetails(@Query(Constants.Key.urlSlug) String urlSlug);
+    Call<AllResponseModel> getBlogDetails(@Query(Constants.Key.uuid) String uuid);
 
     @FormUrlEncoded
     @POST(Const.getBankProfile)
@@ -91,10 +93,16 @@ public interface ApiService {
     Call<AllResponseModel> getBlogsCategory();
 
     @GET(Const.getBlogListApi)
-    Call<AllResponseModel> getBlogsData(@Query(Constants.Key.urlSlug) String urlSlug);
+    Call<AllResponseModel> getBlogsData(@Query(Constants.Key.uuid) String uuid);
 
     @GET(Const.getBlogsSortBy)
     Call<AllResponseModel> getBlogsSortBy(@Header(Constants.Key.Authorization) String token);
+
+    @FormUrlEncoded
+    @POST(Const.applyCouponCodeApi)
+    Call<AllResponseModel> ApplyCouponCode(@Header(Constants.Key.Authorization) String token,
+                                           @Field(Constants.Key.couponCode) String couponCode);
+
 
     @GET(Const.getBlogCategoryListApi)
     Call<AllResponseModel> getBlogsFilterBy();
@@ -153,7 +161,7 @@ public interface ApiService {
 
     @GET(Const.getReviewRatingListApi)
     Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
-                                                                  @Query(Constants.Key.packageId) String packageId );
+                                                                  @Query(Constants.Key.packageUuId) String packageUuid );
 
 
     @GET(Const.AllResults)

@@ -34,13 +34,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHorizontalHeading"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/llToolbar"
         android:background="@color/lineColor"
         android:overScrollMode="never"
         android:paddingVertical="@dimen/_10sdp"
-        android:paddingStart="@dimen/_12sdp"/>
+        android:paddingStart="@dimen/_12sdp" />
 
     <include layout="@layout/no_result_found"
         android:id="@+id/noResultFoundId"

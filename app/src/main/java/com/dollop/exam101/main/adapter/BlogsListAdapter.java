@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder>{
     Context context;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
-    int pos=0;
+    public int pos=0;
 
 
     public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
@@ -51,23 +51,20 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
             @Override
             public void onClick(View v) {
                 pos = position;
-                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUrlSlug);
+                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUuid);
                 notifyDataSetChanged();
-                Utils.E("categoryId...Heading.."+blogListHeadingModel.blogCatId);
             }
         });
-        Utils.E("blogCategoryId::"+pos);
-        Utils.E("blogListHeadingModel.blogCatId::"+blogListHeadingModel.blogCatId);
         if (pos == position){
-                holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
-                holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.white));
-                holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.theme));
+            holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
+            holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.white));
+            holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.theme));
         } else{
-                holder.binding.tvBlogHeading.setBackgroundResource(R.color.light_red);
-                holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.sub_text));
-                holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.HorizontallineColor));
-            }
-       }
+            holder.binding.tvBlogHeading.setBackgroundResource(R.color.light_red);
+            holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.sub_text));
+            holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.HorizontallineColor));
+        }
+    }
 
     @Override
     public int getItemCount() {

@@ -54,7 +54,7 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/QuaternaryThemeHeadingTextStyle"
+            style="@style/QuaternaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_medium"

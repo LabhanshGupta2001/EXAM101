@@ -2,12 +2,16 @@ package com.dollop.exam101.main.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.OnItemClicked;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.databinding.FragmentPackageListBinding;
 import com.dollop.exam101.main.adapter.PackageAdapter;
@@ -55,6 +62,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     PriceFragment priceFragment;
     LanguageFragment languageFragment;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,11 +74,17 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         return binding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
         token = Utils.GetSession().token;
         binding.mcvFilterId.setOnClickListener(this);
-        packageList();
+        if (AppController.getInstance().isOnline()) {
+            packageList();
+        } else {
+            //Utils.InternetDialog(activity);
+            InternetDialog();
+        }
     }
 
     @Override
@@ -102,6 +116,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         Fragment.add(languageFragment);
 
         bottomsheetFilterBinding.tvllSave.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
             @Override
             public void onClick(View v) {
                 if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.index != -1) {
@@ -112,7 +127,14 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                     LanguageId = languageFragment.languageAdapter.languageId;
                     // Utils.E("LanguageId:::"+LanguageId);
                 }
-                packageList();
+                if (AppController.getInstance().isOnline()) {
+                    packageList();
+                } else {
+                    //Utils.InternetDialog(activity);
+                    InternetDialog();
+                }
+                Utils.T(activity, "MinValue" + priceFragment.minValue + "MaxValue" + priceFragment.maxValue);
+
                 bottomSheetDialog.cancel();
             }
         });
@@ -135,6 +157,8 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, ExamId);
         hashMap.put(Constants.Key.languageId, LanguageId);
+       /* hashMap.put(Constants.Key.discountedPriceStart, priceFragment.minValue);
+        hashMap.put(Constants.Key.discountedPriceEnd, priceFragment.maxValue);*/
         //hashMap.put(Constants.Key.priceId, Price);
         apiService.packageListItem(token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
@@ -198,5 +222,23 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClickedPrice(String s) {
 
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

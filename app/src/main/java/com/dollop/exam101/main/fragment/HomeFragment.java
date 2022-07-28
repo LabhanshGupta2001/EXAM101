@@ -2,6 +2,9 @@ package com.dollop.exam101.main.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,10 +24,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
@@ -81,6 +87,7 @@ public class HomeFragment extends Fragment {
     BannerAdapter bannerAdapter;
     PackageAdapter packageAdapter;
     NewsAdapter newsAdapter;
+    CourseAdapter courseAdapter;
 
 
     public HomeFragment() {
@@ -93,27 +100,40 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-
         init();
-
-        getExamList();
         return binding.getRoot();
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         activity = requireActivity();
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
-        getTopTen();
+        if (AppController.getInstance().isOnline()) {
+
+            getExamList();
+            getTopTen();
+        } else {
+            //Utils.InternetDialog(activity);
+            InternetDialog();
+        }
         courseModelArrayList.clear();
 
-        CourseAdapter adapter = new CourseAdapter(getContext(), courseModelArrayList);
+        courseAdapter = new CourseAdapter(getContext(), courseModelArrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL, false);
+        binding.recyclerViewCourse.setLayoutManager(linearLayoutManager);
+        binding.recyclerViewCourse.setAdapter(courseAdapter);
 
+        packageAdapter = new PackageAdapter(getActivity(), packageModelList);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        binding.rvPackages.setLayoutManager(linearLayoutManager2);
+        binding.rvPackages.setAdapter(packageAdapter);
 
         banners1.clear();
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
@@ -180,8 +200,7 @@ public class HomeFragment extends Fragment {
                         assert response.body() != null;
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
-                        binding.recyclerViewCourse.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-                        binding.recyclerViewCourse.setAdapter(new CourseAdapter(getContext(), courseModelArrayList));
+                        courseAdapter.notifyDataSetChanged();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -207,27 +226,29 @@ public class HomeFragment extends Fragment {
     }
 
     void getTopTen() {
+        Utils.E("ID:::::" + ExamId + "LId::" + LanguageId);
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, ExamId);
         hashMap.put(Constants.Key.languageId, LanguageId);
-        //  hashMap.put(Constants.Key.price,Price);
-        apiService.packageListItem(Token, hashMap).enqueue(new Callback<AllResponseModel>() {
+        //hashMap.put(Constants.Key.priceId, Price);
+        apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                   /* if (response.body().packageModels.isEmpty()) {
+                        binding.rvPackages.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvPackagesone.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }*/
                     if (response.code() == StatusCodeConstant.OK) {
                         packageModelList.clear();
-                        // Bundle bundle = new Bundle();
                         assert response.body() != null;
                         packageModelList.addAll(response.body().packageModels);
-
-                        packageAdapter = new PackageAdapter(getActivity(), packageModelList);
-                        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-                        binding.rvPackages.setLayoutManager(linearLayoutManager2);
-                        binding.rvPackages.setAdapter(packageAdapter);
-
+                        packageAdapter.notifyDataSetChanged();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -243,7 +264,6 @@ public class HomeFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -254,5 +274,23 @@ public class HomeFragment extends Fragment {
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
+    }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void InternetDialog() {
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                init();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

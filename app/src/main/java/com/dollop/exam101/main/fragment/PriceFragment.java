@@ -17,6 +17,7 @@ public class PriceFragment extends Fragment implements View.OnClickListener {
     Fragment fragment;
     FragmentPriceBinding binding;
     Activity  activity;
+    public String minValue = "", maxValue = "";
     OnItemClicked onItemClicked;
     private String From;
 
@@ -38,18 +39,21 @@ public class PriceFragment extends Fragment implements View.OnClickListener {
 
         binding.rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
             @Override
-            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
-                Utils.T(getActivity(), "seekbar progress " + minValue);
-                Utils.T(getActivity(), "seekbar progress " + maxValue);
-                //      int val = (minValue * (bar.getWidth() - 2 * bar.getThumbOffset())) / bar.getMax();
+            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object MinValue, Object MaxValue) {
+                Utils.T(getActivity(), "seekbar progress " + MinValue);
+                Utils.T(getActivity(), "seekbar progress " + MaxValue);
+
                 binding.tvStartReat.setVisibility(View.VISIBLE);
                 binding.tvStartReatTwo.setVisibility(View.VISIBLE);
 
-                binding.tvStartReat.setText("₹" + minValue);
-                binding.tvStartReatTwo.setText("₹" + maxValue);
+                binding.tvStartReat.setText("₹" + MinValue);
+                binding.tvStartReatTwo.setText("₹" + MaxValue);
 
                 minValue = binding.tvStartReat.getText().toString().trim();
                 maxValue = binding.tvStartReatTwo.getText().toString().trim();
+
+                Utils.E("minvalue;;"+minValue);
+                Utils.E("maxValue;;"+maxValue);
 
             }
         });

@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/_12sdp" />
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/tvBrowseCategory"
         style="@style/TernaryBlackTextStyle"
         android:layout_width="match_parent"
@@ -126,7 +126,7 @@
         android:paddingStart="@dimen/_12sdp"
         android:paddingTop="@dimen/_4sdp"
         android:paddingEnd="@dimen/_6sdp"
-        android:paddingBottom="@dimen/_12sdp" />
+        android:paddingBottom="@dimen/_12sdp" />-->
 
 
 </LinearLayout>

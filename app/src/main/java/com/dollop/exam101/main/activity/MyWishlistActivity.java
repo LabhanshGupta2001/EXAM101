@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityMyWishlistBinding;
+import com.dollop.exam101.main.adapter.MyWishListAdapter;
+
+import java.util.ArrayList;
 
 
 public class MyWishlistActivity extends BaseActivity implements View.OnClickListener {
@@ -19,6 +24,7 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
     ActivityMyWishlistBinding binding;
     ApiService apiService;
     String Token;
+    ArrayList<String> list = new ArrayList<>();
 
 
     @Override
@@ -45,16 +51,17 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
     }
 
     void getWishlist() {
-     /*   list.clear();
+       list.clear();
         list.add("1");
         list.add("1");
         list.add("1");
         list.add("1");
         list.add("1");
         list.add("1");
-        MyWishListAdapter myWishListAdapter = new MyWishListAdapter(activity, list);
+        MyWishListAdapter myWishListAdapter = new MyWishListAdapter(activity,list);
         binding.rvWishList.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvWishList.setAdapter(myWishListAdapter);*/
+        binding.rvWishList.setAdapter(myWishListAdapter);
+
     }
 
 }

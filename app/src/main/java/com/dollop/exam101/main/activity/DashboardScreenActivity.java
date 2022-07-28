@@ -59,7 +59,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navigationSetup();
         apiService= RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
-        binding.ivProfile.setOnClickListener(this);
+        //binding.ivProfile.setOnClickListener(this);
         binding.ivNotification.setOnClickListener(this);
         binding.ivSearch.setOnClickListener(this);
 
@@ -72,13 +72,14 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navHeaderDashboardBinding.llPrivacyPolicy.setOnClickListener(this);
         navHeaderDashboardBinding.llHome.setOnClickListener(this);
         navHeaderDashboardBinding.llMyPackage.setOnClickListener(this);
-        navHeaderDashboardBinding.llMyWishlist.setOnClickListener(this);
+       // navHeaderDashboardBinding.llMyWishlist.setOnClickListener(this);
         navHeaderDashboardBinding.llFaq.setOnClickListener(this);
         navHeaderDashboardBinding.llContactUs.setOnClickListener(this);
         navHeaderDashboardBinding.llTermCondition.setOnClickListener(this);
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
         navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
         navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
+        Utils.Picasso(Utils.GetSession().profilePic,navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
 
     }
 
@@ -100,7 +101,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (acct != null) {
             Uri personPhoto = acct.getPhotoUrl();
 
-            Glide.with(this).load(String.valueOf(personPhoto)).into(binding.ivProfile);
+            //Glide.with(this).load(String.valueOf(personPhoto)).into(binding.ivProfile);
         }
     }
 
@@ -109,9 +110,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     public void onClick(View view) {
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
-        }
-        if (view == binding.ivProfile) {
-            Utils.I(activity, ProfileActivity.class, null);
         }
         if (view == binding.ivNotification) {
             Utils.I(activity, NotificationActivity.class, null);
@@ -126,7 +124,9 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == binding.navigationView.getHeaderView(0)) {
             Utils.I(activity, ProfileActivity.class, null);
             binding.drawerLayout.close();
-        }
+        }/*if (view == binding.ivProfile) {
+            Utils.I(activity, ProfileActivity.class, null);
+        }*/
 
         // Navigatin Drawer Click
 
@@ -141,10 +141,10 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             binding.drawerLayout.close();
         }
 
-        if (view == navHeaderDashboardBinding.llMyWishlist) {
+       /* if (view == navHeaderDashboardBinding.llMyWishlist) {
             Utils.I(activity, MyWishlistActivity.class, null);
             binding.drawerLayout.close();
-        }
+        }*/
         if (view == navHeaderDashboardBinding.llBlogs) {
             binding.drawerLayout.close();
             Utils.I(activity, BlogsListActivity.class, null);

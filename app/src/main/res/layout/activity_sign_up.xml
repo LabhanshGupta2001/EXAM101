@@ -91,11 +91,10 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
-                    android:hint="User Name"
+                    android:hint="@string/full_name"
                     android:inputType="textPersonName"
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true"
@@ -106,7 +105,6 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
@@ -116,82 +114,91 @@
                     android:singleLine="true"
                     tools:ignore="Autofill" />
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    app:cardCornerRadius="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_14sdp"
-                    android:background="@drawable/input_custom"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_8sdp">
+                    app:cardBackgroundColor="@color/white"
+                    android:elevation="0dp"
+                    app:strokeColor="@color/HorizontallineColor"
+                    app:strokeWidth="@dimen/_1sdp">
 
                     <LinearLayout
-                        android:id="@+id/llCountryCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="@dimen/_19sdp"
-                            android:layout_height="@dimen/_19sdp"
-                            android:layout_marginVertical="@dimen/_5sdp"
-                            android:layout_marginStart="@dimen/_5sdp"
-                            android:layout_marginEnd="@dimen/_3sdp"
-                            app:cardCornerRadius="@dimen/_30sdp">
-
-                            <ImageView
-                                android:id="@+id/iv_flag_india_id"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:contentDescription="@string/image"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_india" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <TextView
-                            android:id="@+id/tvCountryCodeId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="@dimen/_3sdp"
-                            android:hint="+91"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp"
-                            tools:ignore="SpUsage" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_downspinner" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="@dimen/_1sdp"
-                        android:layout_height="@dimen/_24sdp"
-                        android:layout_marginStart="@dimen/_4sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:background="@color/HorizontallineColor" />
-
-                    <EditText
-                        android:id="@+id/etEnterMobile"
-                        style="@style/TernaryLightTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_4sdp"
-                        android:layout_weight=".7"
-                        android:background="@null"
-                        android:fontFamily="@font/inter_regular"
-                        android:hint="@string/enter_mobile_no"
-                        android:inputType="number"
-                        android:maxLength="16"
-                        android:paddingVertical="@dimen/_4sdp"
-                        android:singleLine="true"
-                        tools:ignore="Autofill,InefficientWeight" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_8sdp">
 
-                </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/llCountryCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="@dimen/_19sdp"
+                                android:layout_height="@dimen/_19sdp"
+                                android:layout_marginVertical="@dimen/_5sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_3sdp"
+                                app:cardCornerRadius="@dimen/_30sdp">
+
+                                <ImageView
+                                    android:id="@+id/iv_flag_india_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:contentDescription="@string/image"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/ic_india" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/tvCountryCodeId"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="@dimen/_3sdp"
+                                android:text="@string/_91"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                tools:ignore="SpUsage" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_downspinner" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="@dimen/_1sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:background="@color/HorizontallineColor" />
+
+                        <EditText
+                            android:id="@+id/etEnterMobile"
+                            style="@style/TernaryLightTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_weight=".7"
+                            android:background="@null"
+                            android:fontFamily="@font/inter_regular"
+                            android:hint="@string/enter_mobile_no"
+                            android:inputType="number"
+                            android:maxLength="16"
+                            android:paddingVertical="@dimen/_4sdp"
+                            android:singleLine="true"
+                            tools:ignore="Autofill,InefficientWeight" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <EditText
                     android:id="@+id/etPassword"
@@ -213,7 +220,6 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
@@ -228,7 +234,6 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_regular"
@@ -241,7 +246,6 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
@@ -276,22 +280,23 @@
                     android:id="@+id/llLoginWithGoogle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:background="@drawable/red_stroke_background"
+                    android:background="@drawable/gray_strock_bg"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_11sdp">
+                    android:padding="@dimen/_10sdp">
 
                     <TextView
-                        style="@style/QuaternaryRedTextStyle"
+                        style="@style/QuaternaryFullBlackTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawablePadding="@dimen/_4sdp"
+                        android:drawablePadding="@dimen/_6sdp"
                         android:fontFamily="@font/inter_semibold"
+                        android:gravity="center_vertical"
                         android:text="@string/login_with_google"
                         app:drawableStartCompat="@drawable/ic_googleicon" />
+
                 </LinearLayout>
 
                 <TextView

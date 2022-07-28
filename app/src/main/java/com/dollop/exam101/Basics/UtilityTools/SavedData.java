@@ -23,6 +23,7 @@ public class SavedData {
     private static final String longitude = "longitude";
     private static final String CountryKey = "CountryKey";
     private static final String CountryId = "CountryId";
+    private static final String Shared = "Shared";
     public static SharedPreferences getInstance() {
         if (prefs == null) {
             prefs = PreferenceManager.getDefaultSharedPreferences(AppController.getInstance());
@@ -77,6 +78,16 @@ public class SavedData {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(CountryId, Id);
         editor.apply();
+    }
+
+    public static String getBankStatus() {
+        return getInstance().getString(Shared,Constants.Key.blank);
+    }
+    public static void SaveBankStatus(String Id) {
+        SharedPreferences.Editor editor = getInstance().edit();
+        editor.putString(Shared, Id);
+        editor.apply();
+
     }
 
     @NonNull

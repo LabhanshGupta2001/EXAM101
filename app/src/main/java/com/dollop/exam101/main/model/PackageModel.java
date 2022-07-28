@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class PackageModel {
 
+
     @SerializedName("packageId")
     @Expose
     public String packageId;
@@ -17,6 +18,9 @@ public class PackageModel {
     @SerializedName("mainImg")
     @Expose
     public String mainImg;
+    @SerializedName("packageUuid")
+    @Expose
+    public String packageUuid;
     @SerializedName("isPaid")
     @Expose
     public String isPaid;
@@ -32,11 +36,13 @@ public class PackageModel {
     @SerializedName("shortDesc")
     @Expose
     public String shortDesc;
+    @SerializedName("packageDetail")
+    @Expose
+    public String packageDetail;
     @SerializedName("studentCnt")
     @Expose
     public String studentCnt;
     @SerializedName("rating")
     @Expose
     public String rating;
-
 }

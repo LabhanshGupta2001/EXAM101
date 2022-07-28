@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/gothic_bold"
-            android:text="@string/course_list" />
+            android:text="@string/my_packages" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView

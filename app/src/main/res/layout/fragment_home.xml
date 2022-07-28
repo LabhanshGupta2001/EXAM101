@@ -14,11 +14,12 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/HomeHeadingTextStyle"
+            style="@style/QuaternaryHeadingFullBlackTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginVertical="@dimen/_10sdp"
+            android:fontFamily="@font/gothic_bold"
             android:text="@string/find_best_course" />
 
         <LinearLayout
@@ -92,10 +93,27 @@
             android:layout_marginVertical="@dimen/_10sdp">
 
             <TextView
+                android:id="@+id/tvTop"
                 style="@style/HomeHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/top_ten_packages" />
+                android:text="@string/top" />
+
+            <TextView
+                android:id="@+id/tvPackagesItem"
+                style="@style/HomeHeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:layout_toRightOf="@id/tvTop"
+                android:text="10" />
+
+            <TextView
+                style="@style/HomeHeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvPackagesItem"
+                android:text="@string/packages" />
 
             <TextView
                 style="@style/QuaternaryThemeHeadingTextStyle"
@@ -127,7 +145,7 @@
                 android:overScrollMode="never" />
         </LinearLayout>
 
-        <Space
+        <View
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_12sdp" />
 
@@ -171,7 +189,7 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_12sdp" />
 
@@ -307,8 +325,8 @@
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginVertical="@dimen/_6sdp"
-                    android:layout_weight="1"
                     android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_weight="1"
                     android:elevation="@dimen/_6sdp"
                     app:cardCornerRadius="@dimen/_2sdp">
 
@@ -323,8 +341,8 @@
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
-                            android:elevation="0dp"
                             android:layout_marginTop="@dimen/_4sdp"
+                            android:elevation="0dp"
                             app:cardBackgroundColor="@color/status_bar"
                             app:cardCornerRadius="@dimen/_2sdp">
 
@@ -338,11 +356,11 @@
 
                         <TextView
                             style="@style/SenaryTextStyle"
-                            android:fontFamily="@font/inter_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardVoucher"
                             android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/inter_regular"
                             android:gravity="center_horizontal"
                             android:padding="@dimen/_2sdp"
                             android:text="@string/send_affiliate_code_to_your_friend" />
@@ -375,8 +393,8 @@
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
-                            android:elevation="0dp"
                             android:layout_marginTop="@dimen/_4sdp"
+                            android:elevation="0dp"
                             app:cardBackgroundColor="@color/status_bar"
                             app:cardCornerRadius="@dimen/_2sdp">
 
@@ -390,11 +408,11 @@
 
                         <TextView
                             style="@style/SenaryTextStyle"
-                            android:fontFamily="@font/inter_regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardOffer"
                             android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/inter_regular"
                             android:gravity="center_horizontal"
                             android:text="@string/friend_purchase" />
                     </RelativeLayout>
@@ -410,8 +428,8 @@
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginVertical="@dimen/_6sdp"
-                    android:layout_weight="1"
                     android:layout_marginEnd="@dimen/_6sdp"
+                    android:layout_weight="1"
                     android:elevation="@dimen/_6sdp"
                     app:cardCornerRadius="@dimen/_4sdp">
 
@@ -426,8 +444,8 @@
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_centerHorizontal="true"
-                            android:elevation="0dp"
                             android:layout_marginTop="@dimen/_4sdp"
+                            android:elevation="0dp"
                             app:cardBackgroundColor="@color/status_bar"
                             app:cardCornerRadius="@dimen/_2sdp">
 
@@ -441,11 +459,11 @@
 
                         <TextView
                             style="@style/SenaryTextStyle"
-                            android:fontFamily="@font/inter_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cardWallet"
                             android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/inter_regular"
                             android:gravity="center_horizontal"
                             android:text="@string/get_amount" />
                     </RelativeLayout>
@@ -455,7 +473,7 @@
 
         </LinearLayout>
 
-        <Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_12sdp" />
 
@@ -504,7 +522,7 @@
 
         </LinearLayout>
 
-        <Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_12sdp" />
 
