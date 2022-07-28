@@ -76,7 +76,8 @@
                         android:layout_width="wrap_content"
                         android:text="@string/author_name"
                         android:layout_height="wrap_content"
-                        android:theme="@style/TernaryHeadingTextStyle" />
+                        android:fontFamily="@font/gothic_bold"
+                        android:theme="@style/QuaternaryFullBlackTextStyle" />
 
                     <TextView
                         android:id="@+id/tvEmail"
@@ -84,7 +85,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:theme="@style/QuinaryLightSubTextStyle" />
+                        android:fontFamily="@font/inter_regular"
+                        android:theme="@style/QuinaryLightTextStyle" />
 
 
                 </LinearLayout>
@@ -154,13 +156,14 @@
                 android:background="@color/HorizontallineColor" />
 
 
-            <TextView
+          <!--  <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/general"
+                android:fontFamily="@font/inter_regular"
                 android:theme="@style/QuinaryLightTextStyle" />
-
+-->
 
             <LinearLayout
                 android:id="@+id/llHome"
@@ -170,21 +173,16 @@
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_16sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_home_icon" />
 
-                </LinearLayout>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/home"
@@ -199,27 +197,21 @@
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_16sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_resource_package" />
-                </LinearLayout>
-
+                        android:src="@drawable/ic_packages_icon" />
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/my_exam"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:text="@string/my_packages"
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
-            <LinearLayout
+          <!--  <LinearLayout
                 android:id="@+id/llMyWishlist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -227,28 +219,20 @@
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
-
-                <LinearLayout
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_hart" />
 
-                </LinearLayout>
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/my_wishlist"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
-            </LinearLayout>
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
+            </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/llBlogs"
@@ -257,25 +241,19 @@
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_blog_icon"
                         app:tint="@color/black" />
-                </LinearLayout>
-
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/blogs"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
             <LinearLayout
@@ -286,28 +264,21 @@
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
-
-                <LinearLayout
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_setting" />
 
-
-                </LinearLayout>
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:gravity="center_vertical"
                     android:text="@string/setting"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
+<!--
 
             <View
                 android:layout_width="match_parent"
@@ -319,36 +290,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/other"
+                android:fontFamily="@font/inter_regular"
                 android:theme="@style/QuinaryLightTextStyle" />
-
+-->
 
             <LinearLayout
                 android:id="@+id/llFaq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
-
-                <LinearLayout
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_faq" />
 
-                </LinearLayout>
-
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/faq"
-                    android:theme="@style/QuinaryLightTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
             <LinearLayout
@@ -359,25 +323,19 @@
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_music" />
 
-                </LinearLayout>
-
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/contact_us"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle"/>
             </LinearLayout>
 
             <LinearLayout
@@ -388,25 +346,17 @@
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_about" />
-
-                </LinearLayout>
-
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/about_us"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
             <LinearLayout
@@ -417,24 +367,18 @@
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_term" />
-                </LinearLayout>
-
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/term_and_conditions"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
             <LinearLayout
@@ -446,24 +390,17 @@
                 android:layout_marginStart="2dp"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_13sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_privacy" />
-                </LinearLayout>
-
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/privacy_policy"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
             <LinearLayout
@@ -475,24 +412,17 @@
                 android:layout_marginStart="2dp"
                 android:paddingVertical="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="@dimen/_13sdp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_complaint" />
-                </LinearLayout>
-
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/raise_a_complaint"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:fontFamily="@font/inter_regular"
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llLogout"
@@ -505,15 +435,14 @@
 
 
                 <TextView
-                    android:textColor="@color/red_logout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:drawableLeft="@drawable/ic_logout"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:drawablePadding="@dimen/_10sdp"
                     android:text="@string/logout"
-                    android:theme="@style/QuaternaryLightSubTextStyle" />
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
             <View
@@ -522,8 +451,9 @@
                 android:layout_marginVertical="@dimen/_8sdp"
                 android:background="@color/HorizontallineColor" />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:theme="@style/QuaternaryLightSubTextStyle"
                 android:text="@string/app_version"/>
 <!--

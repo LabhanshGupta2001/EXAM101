@@ -75,7 +75,7 @@
                     android:layout_marginTop="@dimen/_6sdp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
-                    android:text="Create your new account" />
+                    android:text="@string/login_to_your_account" />
 
 
                 <EditText
@@ -131,7 +131,7 @@
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="center"
                     android:padding="@dimen/_11sdp"
-                    android:text="@string/sign_in" />
+                    android:text="@string/login" />
 
                 <TextView
                     style="@style/TernarySubTextStyle"
@@ -148,13 +148,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_14sdp"
-                    android:background="@drawable/red_stroke_background"
+                    android:background="@drawable/gray_strock_bg"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_11sdp">
+                    android:padding="@dimen/_10sdp">
 
                     <TextView
-                        style="@style/QuaternaryRedTextStyle"
+                        style="@style/QuaternaryFullBlackTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

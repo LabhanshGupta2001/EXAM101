@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rlParent"
     tools:context=".main.activity.EditProfileActivity">
 
     <LinearLayout
@@ -35,30 +35,31 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rlChildParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rlChildParent"
         android:layout_below="@id/llToolbar">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_above="@id/llSave"
-        android:overScrollMode="never">
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_above="@id/llSave"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:overScrollMode="never">
 
-            <View
-                android:id="@+id/view"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_12sdp"
-                android:background="@color/lineColor"
-                android:orientation="vertical" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_12sdp"
+                    android:background="@color/lineColor"
+                    android:orientation="vertical" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,6 +100,7 @@
                             android:src="@drawable/ic_camera" />
                     </com.google.android.material.card.MaterialCardView>
                 </RelativeLayout>
+
                 <EditText
                     android:id="@+id/etUserName"
                     style="@style/QuaternaryTextStyle"
@@ -112,6 +114,7 @@
                     android:inputType="text"
                     android:paddingHorizontal="@dimen/_12sdp"
                     android:paddingVertical="@dimen/_12sdp" />
+
                 <EditText
                     android:id="@+id/etUserEmail"
                     style="@style/QuaternaryTextStyle"
@@ -125,121 +128,135 @@
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="@dimen/_12sdp"
                     android:paddingVertical="@dimen/_12sdp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:background="@drawable/input_custom"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/_8sdp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_30sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/HorizontallineColor"
+                    app:strokeWidth="@dimen/_1sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp">
 
                 <LinearLayout
-                    android:id="@+id/llCountryCode"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:padding="@dimen/_8sdp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="@dimen/_19sdp"
-                        android:layout_height="@dimen/_19sdp"
-                        android:layout_marginVertical="@dimen/_5sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        app:cardCornerRadius="@dimen/_30sdp">
+                    <LinearLayout
+                        android:id="@+id/llCountryCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="@dimen/_19sdp"
+                            android:layout_height="@dimen/_19sdp"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            app:cardCornerRadius="@dimen/_30sdp">
+
+                            <ImageView
+                                android:id="@+id/iv_flag_india_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/image"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_india" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvCountryCodeId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:text="@string/_91"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="SpUsage" />
 
                         <ImageView
-                            android:id="@+id/iv_flag_india_id"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="@string/image"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_india" />
-                    </com.google.android.material.card.MaterialCardView>
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_downspinner" />
 
-                    <TextView
-                        android:id="@+id/tvCountryCodeId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:text="@string/_91"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
-                        tools:ignore="SpUsage" />
+                    </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:background="@color/HorizontallineColor" />
+
+                    <EditText
+                        android:id="@+id/etEnterMobile"
+                        style="@style/TernaryLightTextStyle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_downspinner" />
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_weight=".7"
+                        android:background="@null"
+                        android:fontFamily="@font/inter_regular"
+                        android:hint="@string/enter_mobile_no"
+                        android:inputType="number"
+                        android:maxLength="16"
+                        android:paddingVertical="@dimen/_4sdp"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,InefficientWeight" />
 
                 </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                <View
-                    android:layout_width="@dimen/_1sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_marginStart="@dimen/_4sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:background="@color/HorizontallineColor" />
-
-                <EditText
-                    android:id="@+id/etEnterMobile"
+                <TextView
+                    android:id="@+id/tvSelectCountry"
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_4sdp"
-                    android:layout_weight=".7"
-                    android:background="@null"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_regular"
-                    android:hint="@string/enter_mobile_no"
-                    android:inputType="number"
-                    android:maxLength="16"
-                    android:paddingVertical="@dimen/_4sdp"
+                    android:hint="@string/select_country"
+                    android:padding="@dimen/_12sdp"
+                    tools:ignore="Autofill,TextViewEdits" />
+
+                <TextView
+                    android:id="@+id/tvSelectState"
+                    style="@style/TernaryLightTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:background="@drawable/input_custom"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/select_state"
+                    android:padding="@dimen/_12sdp"
+                    tools:ignore="Autofill" />
+
+                <EditText
+                    android:id="@+id/etSelectCity"
+                    style="@style/TernaryLightTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:background="@drawable/input_custom"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="@string/select_city"
+                    android:inputType="text"
+                    android:padding="@dimen/_12sdp"
                     android:singleLine="true"
-                    tools:ignore="Autofill,InefficientWeight" />
-
+                    tools:ignore="Autofill" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/tvSelectCountry"
-                style="@style/TernaryLightTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/grey_stroke_background"
-                android:fontFamily="@font/inter_regular"
-                android:hint="@string/select_country"
-                android:padding="@dimen/_12sdp"
-                tools:ignore="Autofill,TextViewEdits" />
-
-            <TextView
-                android:id="@+id/tvSelectState"
-                style="@style/TernaryLightTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/input_custom"
-                android:fontFamily="@font/inter_regular"
-                android:hint="@string/select_state"
-                android:padding="@dimen/_12sdp"
-                tools:ignore="Autofill" />
-
-            <TextView
-                android:id="@+id/tvSelectCity"
-                style="@style/TernaryLightTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/input_custom"
-                android:fontFamily="@font/inter_regular"
-                android:hint="@string/select_city"
-                android:padding="@dimen/_12sdp"
-                tools:ignore="Autofill" />
-            </LinearLayout>
-    </ScrollView>
+        </ScrollView>
 
         <LinearLayout
             android:id="@+id/llSave"

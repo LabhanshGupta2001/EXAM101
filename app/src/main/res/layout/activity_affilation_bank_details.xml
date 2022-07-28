@@ -241,6 +241,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/input_custom"
                             android:inputType="text"
+                            android:hint="@string/enter_bank_account_type"
                             android:padding="@dimen/_12sdp"
                             android:imeOptions="actionNext"
                             android:singleLine="true" />

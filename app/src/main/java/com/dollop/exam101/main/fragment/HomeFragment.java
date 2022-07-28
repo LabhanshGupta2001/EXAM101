@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment {
     BannerAdapter bannerAdapter;
     PackageAdapter packageAdapter;
     NewsAdapter newsAdapter;
+    CourseAdapter courseAdapter;
 
 
     public HomeFragment() {
@@ -112,8 +113,15 @@ public class HomeFragment extends Fragment {
         getTopTen();
         courseModelArrayList.clear();
 
-        CourseAdapter adapter = new CourseAdapter(getContext(), courseModelArrayList);
+        courseAdapter = new CourseAdapter(getContext(), courseModelArrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL, false);
+        binding.recyclerViewCourse.setLayoutManager(linearLayoutManager);
+        binding.recyclerViewCourse.setAdapter(courseAdapter);
 
+        packageAdapter = new PackageAdapter(getActivity(), packageModelList);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        binding.rvPackages.setLayoutManager(linearLayoutManager2);
+        binding.rvPackages.setAdapter(packageAdapter);
 
         banners1.clear();
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
@@ -180,8 +188,7 @@ public class HomeFragment extends Fragment {
                         assert response.body() != null;
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
-                        binding.recyclerViewCourse.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-                        binding.recyclerViewCourse.setAdapter(new CourseAdapter(getContext(), courseModelArrayList));
+                        courseAdapter.notifyDataSetChanged();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -207,27 +214,29 @@ public class HomeFragment extends Fragment {
     }
 
     void getTopTen() {
+        Utils.E("ID:::::" + ExamId + "LId::" + LanguageId);
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, ExamId);
         hashMap.put(Constants.Key.languageId, LanguageId);
-        //  hashMap.put(Constants.Key.price,Price);
-        apiService.packageListItem(Token, hashMap).enqueue(new Callback<AllResponseModel>() {
+        //hashMap.put(Constants.Key.priceId, Price);
+        apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                   /* if (response.body().packageModels.isEmpty()) {
+                        binding.rvPackages.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvPackagesone.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }*/
                     if (response.code() == StatusCodeConstant.OK) {
                         packageModelList.clear();
-                        // Bundle bundle = new Bundle();
                         assert response.body() != null;
                         packageModelList.addAll(response.body().packageModels);
-
-                        packageAdapter = new PackageAdapter(getActivity(), packageModelList);
-                        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-                        binding.rvPackages.setLayoutManager(linearLayoutManager2);
-                        binding.rvPackages.setAdapter(packageAdapter);
-
+                        packageAdapter.notifyDataSetChanged();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -243,7 +252,6 @@ public class HomeFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override

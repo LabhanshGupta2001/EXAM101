@@ -86,9 +86,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     List<ValidationModel> allResponseModels = new ArrayList<>();
     boolean profile = false;
     Uri profileUri = null;
-    private CountryAdapter countryAdapter;
-    private StateAdapter stateAdapter;
-
     ActivityResultLauncher<String> openGallery = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
         if (uri != null) {
             profile = true;
@@ -106,7 +103,8 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             profileUri = Utils.getImageUri(activity, bitmap);
         }
     });
-
+    private CountryAdapter countryAdapter;
+    private StateAdapter stateAdapter;
 
     public static boolean checkAndRequestPermissions(final Activity context) {
         int WExtstorePermission = ContextCompat.checkSelfPermission(context,
@@ -152,7 +150,17 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.etEnterMobile.setOnClickListener(this);
         binding.tvSelectCountry.setOnClickListener(this);
         binding.tvSelectState.setOnClickListener(this);
-        binding.tvSelectCity.setOnClickListener(this);
+        binding.etSelectCity.setOnClickListener(this);
+
+
+        binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity, R.color.theme));
+                }else binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity, R.color.HorizontallineColor));
+            }
+        });
     }
 
     @Override
@@ -167,17 +175,18 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             finish();
         } else {
             if (view != binding.etEnterMobile) {
-                if (view == binding.tvSelectCountry) {
-                    bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
-                } else if (view == binding.tvSelectState) {
-                    if (selectedCountryId.equals(Constants.Key.blank))
+               if (view == binding.tvSelectState) {
+                    if (binding.tvSelectCountry.equals(Constants.Key.blank))
                         Utils.T(activity, Constants.Key.Pleas_Select_Country);
                     else bottomSheetStateTask();
-                } /*else if (view == binding.llCountryCode) {
+                }/*else if (view == binding.llCountryCode) {
                     bottomSheetCountryTask(Constants.Key.CountryId_Show);
-                }*/
+                }  if (view == binding.tvSelectCountry) {
+                    bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
+                } */
             }
         }
+
 
     }
 
@@ -208,8 +217,8 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             if (ContextCompat.checkSelfPermission(activity,
                     Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getApplicationContext(),
-                                Constants.Key.FlagUp_Requires_Access_To_Camara, Toast.LENGTH_SHORT)
-                        .show();
+                        Constants.Key.FlagUp_Requires_Access_To_Camara, Toast.LENGTH_SHORT).show();
+                showSettingsDialog();
             } else if (ContextCompat.checkSelfPermission(activity,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 showSettingsDialog();
@@ -366,6 +375,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getState() {
+        Utils.E("getCountryId::" + SavedData.getCountryId());
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getStateList(SavedData.getCountryId()).enqueue(new Callback<AllResponseModel>() {
             @Override
@@ -505,7 +515,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         binding.etUserName.setText(userData.studentName);
                         binding.tvSelectState.setText(userData.stateName);
                         Picasso.get().load(Const.HOST_URL + userData.profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
-                       // Picasso.get().load(Const.HOST_URL + userData.flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
+                        // Picasso.get().load(Const.HOST_URL + userData.flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
 
                         if (userData.countryName.equals(Constants.Key.blank)) {
                             binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
@@ -549,7 +559,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         });
     }
 
-    public void onCountrySelectedE(String countryId,String CountryName /*String countryCode, String flag*/) {
+    public void onCountrySelectedE(String countryId, String CountryName /*String countryCode, String flag*/) {
         this.selectedCountryId = countryId;
         this.selectedCountryName = CountryName;
       /*  this.selectedCountryCode = countryCode;

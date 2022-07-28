@@ -2,8 +2,13 @@ package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
@@ -19,9 +24,11 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogDetailBinding;
 
+import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -33,6 +40,8 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
     ActivityBlogDetailBinding binding;
     ApiService apiService;
     String urlSlug;
+    BottomSheetDialog bottomSheetDialog;
+    BottomSheetRatenowBinding bottomSheetRatenowBinding;
 
 
     @Override
@@ -41,16 +50,18 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
         binding = ActivityBlogDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-        getBlogDetails();
+
     }
 
     private void init() {
         apiService = RetrofitClient.getClient();
+        getBlogDetails();
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null) {
             urlSlug = bundle.getString(Constants.Key.urlSlug, Constants.Key.blank);
         }
         binding.ivBack.setOnClickListener(this);
+        binding.flotingBtn.setOnClickListener(this);
     }
 
     private void getBlogDetails() {
@@ -110,6 +121,39 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         if (view == binding.ivBack) {
             onBackPressed();
+        } else if (view == binding.flotingBtn) {
+            bottomSheetTask();
         }
+    }
+
+    private void bottomSheetTask() {
+        bottomSheetDialog = new BottomSheetDialog(activity);
+        bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+        bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+        bottomSheetDialog.show();
+
+        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.cancel();
+            }
+        });
+    }
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            // remove focus from edit text on click outside
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+               /* final boolean globalVisibleRect;
+                globalVisibleRect = v.getGlobalVisibleRect(outRect);*/
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
     }
 }

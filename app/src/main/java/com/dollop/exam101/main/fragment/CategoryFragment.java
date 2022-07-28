@@ -65,6 +65,7 @@ public class CategoryFragment extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    assert response.body() != null;
                     if (response.body().blogs.isEmpty()) {
                         binding.rvCategory.setVisibility(View.GONE);
                         binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);

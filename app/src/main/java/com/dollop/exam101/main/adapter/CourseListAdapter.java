@@ -18,6 +18,7 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCourseListBinding;
 import com.dollop.exam101.main.activity.CoursesMaterial;
 
+import com.dollop.exam101.main.activity.PackagesDetailActivity;
 import com.dollop.exam101.main.model.CourseListModel;
 
 import java.util.ArrayList;
@@ -42,24 +43,28 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
     public void onBindViewHolder(@NonNull MyCourseListViewHolder holder, int position) {
         CourseListModel courseModel = courseModelList.get(position);
 
-        holder.itemCourseListBinding.llViewCourse.setOnClickListener(view ->
-        {
-            Toast.makeText(context, "Click On View Course ", Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(context, CoursesMaterial.class);
-            context.startActivity(intent);
-        });
+
         //holder.itemCourseListBinding.tvCourseName.setText(String.valueOf(courseModel.name));
         //holder.itemCourseListBinding.ivCourseImageView.setImageResource(courseModel.image);
 
         if (courseModel.LeftDate.equalsIgnoreCase("0"))
         {
-           holder.itemCourseListBinding.cardCourse.setForeground(new ColorDrawable(ContextCompat.getColor(context,Integer.valueOf(R.color.dark_gray))));
+         //  holder.itemCourseListBinding.cardCourse.setForeground(new ColorDrawable(ContextCompat.getColor(context,Integer.valueOf(R.color.dark_gray))));
             holder.itemCourseListBinding.tvTopicName.setText(String.valueOf(courseModel.TopicName));
             holder.itemCourseListBinding.tvCourseName.setText(String.valueOf(courseModel.CourseName));
             holder.itemCourseListBinding.tvExpireDate.setText(String.valueOf(courseModel.ExpireDate));
             holder.itemCourseListBinding.tvPackageDurationDay.setText(String.valueOf(courseModel.PackageDurationDay));
             holder.itemCourseListBinding.llDaysLeft.setVisibility(View.GONE);
             holder.itemCourseListBinding.tvExpired.setVisibility(View.VISIBLE);
+            holder.itemCourseListBinding.tvViewCourse.setVisibility(View.GONE);
+            holder.itemCourseListBinding.tvRepurchase.setVisibility(View.VISIBLE);
+
+            holder.itemCourseListBinding.llViewCourse.setOnClickListener(view ->
+            {
+                // Toast.makeText(context, "Click On View Course ", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context, PackagesDetailActivity.class);
+                context.startActivity(intent);
+            });
         }
         else
         {
@@ -70,6 +75,12 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
             holder.itemCourseListBinding.tvPackageDurationDay.setText(String.valueOf(courseModel.PackageDurationDay));
             holder.itemCourseListBinding.llDaysLeft.setVisibility(View.VISIBLE);
             holder.itemCourseListBinding.tvExpired.setVisibility(View.GONE);
+            holder.itemCourseListBinding.llViewCourse.setOnClickListener(view ->
+            {
+                // Toast.makeText(context, "Click On View Course ", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context, CoursesMaterial.class);
+                context.startActivity(intent);
+            });
         }
     }
 

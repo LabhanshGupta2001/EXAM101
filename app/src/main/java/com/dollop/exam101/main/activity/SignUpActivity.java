@@ -103,8 +103,17 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         binding.llCountryCode.setOnClickListener(this);
         binding.tvRegisterId.setOnClickListener(this);
         binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
-        // countryAdapter = new CountryAdapter(activity, contryItemArrayList);
 
+        binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity,R.color.theme));
+                }else binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity,R.color.HorizontallineColor));
+            }
+        });
+
+        // countryAdapter = new CountryAdapter(activity, contryItemArrayList);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -160,17 +169,17 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View view) {
         if (view == binding.SignUPId) {
             Utils.I(SignUpActivity.this, LoginActivity.class, null);
-        } else if (view == binding.tvSelectCountry) {
-            bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
         } else if (view == binding.tvSelectState) {
-            if(selectedCountryId.equals(Constants.Key.blank))
+            if(binding.tvSelectCountry.equals(Constants.Key.blank))
                 Utils.T(activity,Constants.Key.Pleas_Select_Country);
             else bottomSheetStateTask();
-        } /*else if (view == binding.llCountryCode) {
-            bottomSheetCountryTask(Constants.Key.CountryId_Show);
-        }*/ else if (view == binding.tvRegisterId) {
+        } else if (view == binding.tvRegisterId) {
             CheckValidationTask();
-        }
+        }/*else if (view == binding.llCountryCode) {
+            bottomSheetCountryTask(Constants.Key.CountryId_Show);
+        } else if (view == binding.tvSelectCountry) {
+            bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
+        } */
     }
 
     private void getState(String countryId) {

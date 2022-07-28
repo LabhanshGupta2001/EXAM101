@@ -44,10 +44,11 @@ public class CourseListActivity extends BaseActivity implements View.OnClickList
         apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
 
-        courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "20", "30 DAYS"));
+        courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "0", "30 DAYS"));
         courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "20", "30 DAYS"));
         courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "20", "30 DAYS"));
         courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "0", "30 DAYS"));
+        courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "24", "30 DAYS"));
 
         CourseListAdapter adapter = new CourseListAdapter(activity, courseListModels);
         LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);

@@ -40,16 +40,16 @@
 
         <TextView
             android:id="@+id/tvLogOut"
-            style="@style/QuaternaryRedLightTextStyle"
+            style="@style/QuaternaryFullBlackTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:padding="@dimen/_6sdp"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/_5sdp"
+            android:drawableRight="@drawable/ic_logout"
             android:drawablePadding="@dimen/_6sdp"
             android:fontFamily="@font/inter_medium"
-            android:drawableRight="@drawable/ic_logout"
+            android:padding="@dimen/_6sdp"
             android:text="@string/logout" />
 
 

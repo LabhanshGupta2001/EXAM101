@@ -46,7 +46,8 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     BottomSheetDialog bottomSheetDialog;
     public BottomSheetDialog bottomSheetFilter;
     ApiService apiService;
-    BlogsListAdapter blogsListAdapter;
+    public BlogsListAdapter blogsListAdapter;
+    AllBlogListAdapter allBlogListAdapter;
     FilterSearchAdapter filterSearchAdapter;
     public int position;
     private final ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
@@ -92,6 +93,9 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         bottomSheetDialog.setContentView(bottomSheetBlogShortBinding.getRoot());
         bottomSheetBlogShortBinding.mcvAtoZ.setOnClickListener(this);
         bottomSheetBlogShortBinding.mcvZtoA.setOnClickListener(this);
+        allBlogListAdapter = new AllBlogListAdapter(activity, Blogarraylist);
+        binding.rvBlogs.setAdapter(allBlogListAdapter);
+        binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity));
         blogsListAdapter = new BlogsListAdapter(activity, blogsList);
         binding.rvHorizontalHeading.setAdapter(blogsListAdapter);
         binding.rvHorizontalHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
@@ -225,11 +229,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    public void DataChangeBlogListAdapter(int position) {
-        // blogsListAdapter.pos = position;
-        blogsListAdapter.notifyDataSetChanged();
-    }
+
 
     public void getBlogsData(String urlSlug) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
@@ -251,8 +251,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                         assert response.body() != null;
                         Blogarraylist.addAll(response.body().blogs);
                         binding.rvBlogs.setHasFixedSize(true);
-                        binding.rvBlogs.setAdapter(new AllBlogListAdapter(activity, Blogarraylist));
-                        binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity));
+                        allBlogListAdapter.notifyDataSetChanged();
 
                     } else {
                         // assert response.errorBody() != null;

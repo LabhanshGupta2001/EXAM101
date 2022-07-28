@@ -12,18 +12,12 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.databinding.ActivitySearchHistoryBinding;
-import com.dollop.exam101.main.adapter.FlexBoxAdapter;
 import com.dollop.exam101.main.adapter.ResentSearchHistoryAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.google.android.flexbox.AlignItems;
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,7 +54,7 @@ public class SearchHistoryActivity extends BaseActivity implements View.OnClickL
         binding.rvSearchHistory.setLayoutManager(new LinearLayoutManager(activity));
 
 
-        arrayList.clear();
+     /*   arrayList.clear();
         arrayList.add("1");
         arrayList.add("1");
         arrayList.add("1");
@@ -74,7 +68,7 @@ public class SearchHistoryActivity extends BaseActivity implements View.OnClickL
         layoutManager.setAlignItems(AlignItems.CENTER);
         binding.rvFlexBox.setHasFixedSize(true);
         binding.rvFlexBox.setLayoutManager(layoutManager);
-        binding.rvFlexBox.setAdapter(new FlexBoxAdapter(activity, arrayList));
+        binding.rvFlexBox.setAdapter(new FlexBoxAdapter(activity, arrayList));*/
 
     }
 

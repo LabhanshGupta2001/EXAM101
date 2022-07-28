@@ -16,7 +16,7 @@ import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 public class PriceFragment extends Fragment implements View.OnClickListener {
     Fragment fragment;
     FragmentPriceBinding binding;
-    Activity  activity;
+    Activity activity;
     OnItemClicked onItemClicked;
     private String From;
 
