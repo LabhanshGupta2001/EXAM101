@@ -41,6 +41,7 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
     FragmentCategoryHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

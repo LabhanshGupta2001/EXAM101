@@ -251,8 +251,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-
-
     public void getBlogsData(String uuid) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogsData(uuid).enqueue(new Callback<AllResponseModel>() {

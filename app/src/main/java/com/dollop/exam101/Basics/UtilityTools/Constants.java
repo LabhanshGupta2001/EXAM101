@@ -93,6 +93,7 @@ public class Constants {
         String Cancel = "Cancel";
         String Data = "data";
         String examId = "examId";
+        String examName = "examName";
         String languageId = "languageId";
         String discountedPriceStart = "discountedPriceStart";
         String discountedPriceEnd = "discountedPriceEnd";

@@ -25,7 +25,6 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
     public int pos=0;
 
-
     public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
         this.context = context;
         this.blogListHeadingModelArrayList = blogListHeadingModelArrayList;

@@ -44,6 +44,7 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.Key.Position,position);
             bundle.putString(Constants.Key.examId, courseModel.examId);
+            bundle.putString(Constants.Key.examName, courseModel.examName);
             Utils.I(context, CategoryDetailsActivity.class, bundle);
         });
 
