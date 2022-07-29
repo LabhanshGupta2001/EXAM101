@@ -109,7 +109,6 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
             }
         });
     }
-
     @Override
     public void onClick(View view) {
         if (view == binding.CardView) {

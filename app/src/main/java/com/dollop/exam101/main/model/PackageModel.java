@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class PackageModel {
 
-
     @SerializedName("packageId")
     @Expose
     public String packageId;

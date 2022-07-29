@@ -48,7 +48,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityDashboardScreenBinding.inflate(getLayoutInflater());
+        binding  = ActivityDashboardScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
 

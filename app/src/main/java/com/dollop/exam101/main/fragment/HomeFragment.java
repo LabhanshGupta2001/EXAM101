@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
     String Token;
-    Package Package;
+    PriceFragment priceFragment;
     Activity activity;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
@@ -226,12 +226,8 @@ public class HomeFragment extends Fragment {
     }
 
     void getTopTen() {
-        Utils.E("ID:::::" + ExamId + "LId::" + LanguageId);
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put(Constants.Key.examId, ExamId);
-        hashMap.put(Constants.Key.languageId, LanguageId);
-        //hashMap.put(Constants.Key.priceId, Price);
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {

@@ -52,7 +52,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     public String ExamId = "";
     FragmentPackageListBinding binding;
     ApiService apiService;
-    String token;
+    String token,MinValue = "",MaxValue = "";
     Activity activity;
     BottomsheetFilterBinding bottomsheetFilterBinding;
     BottomSheetDialog bottomSheetDialog;
@@ -125,15 +125,19 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                 }
                 if (languageFragment.languageAdapter != null && languageFragment.languageAdapter.index != -1) {
                     LanguageId = languageFragment.languageAdapter.languageId;
-                    // Utils.E("LanguageId:::"+LanguageId);
                 }
+                if (priceFragment != null) {
+                    MinValue = priceFragment.minValue;
+                    MaxValue = priceFragment.maxValue;
+                }
+
                 if (AppController.getInstance().isOnline()) {
                     packageList();
                 } else {
-                    //Utils.InternetDialog(activity);
                     InternetDialog();
                 }
-                Utils.T(activity, "MinValue" + priceFragment.minValue + "MaxValue" + priceFragment.maxValue);
+               // Utils.T(activity, "MinValue" + priceFragment.minValue + "MaxValue" + priceFragment.maxValue);
+                Utils.E("ID:::::" + ExamId + "LId::" + LanguageId+"MValue::"+ priceFragment.minValue+"MaxValue::"+ priceFragment.maxValue);
 
                 bottomSheetDialog.cancel();
             }
@@ -148,18 +152,14 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
         p.setMargins(20, 0, 20, 0);
         tab1.requestLayout();
-
     }
-
     private void packageList() {
-        Utils.E("ID:::::" + ExamId + "LId::" + LanguageId);
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, ExamId);
         hashMap.put(Constants.Key.languageId, LanguageId);
-       /* hashMap.put(Constants.Key.discountedPriceStart, priceFragment.minValue);
-        hashMap.put(Constants.Key.discountedPriceEnd, priceFragment.maxValue);*/
-        //hashMap.put(Constants.Key.priceId, Price);
+        hashMap.put(Constants.Key.discountedPriceStart, MinValue);
+        hashMap.put(Constants.Key.discountedPriceEnd, MaxValue);
         apiService.packageListItem(token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {

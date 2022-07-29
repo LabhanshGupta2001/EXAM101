@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
@@ -31,6 +32,7 @@ import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
 import com.dollop.exam101.main.adapter.CategoryDetailSecondaryAdapter;
+import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.fragment.CategoriesFragment;
 import com.dollop.exam101.main.fragment.LanguageFragment;
@@ -55,6 +57,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     public String examId = "";
     public String Price = "";
     public String languageId = "";
+    String ExamName = "",MinValue = "",MaxValue = "";
     int Positions;
     Activity activity = CategoryDetailsActivity.this;
     ActivityCategoryDetailsBinding binding;
@@ -63,7 +66,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     ApiService apiService;
     BottomSheetDialog bottomSheetFilter;
     BottomsheetFilterBinding bottomsheetFilterBinding;
-
+    PackageAdapter packageAdapter;
     CategoriesFragment categoriesFragment;
     PriceFragment priceFragment;
     LanguageFragment languageFragment;
@@ -82,12 +85,12 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         if (bundle != null) {
             examId = bundle.getString(Constants.Key.examId);
             Positions = bundle.getInt(Constants.Key.Position, 0);
+            ExamName = bundle.getString(Constants.Key.examName);
         }
         apiService = RetrofitClient.getClient();
-
+        binding.tvToolbarName.setText(ExamName);
         binding.ivBack.setOnClickListener(this);
         binding.tvFilter.setOnClickListener(this);
-
 
         if (AppController.getInstance().isOnline()) {
             getCategoryDetails(examId);
@@ -96,6 +99,11 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
             //Utils.InternetDialog(activity);
             InternetDialog();
         }
+
+        packageAdapter = new PackageAdapter(activity, arrayList);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        binding.rvPackagesSecondary.setLayoutManager(linearLayoutManager2);
+        binding.rvPackagesSecondary.setAdapter(packageAdapter);
     }
 
     @Override
@@ -140,13 +148,17 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
             public void onClick(View v) {
                 if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.index != -1) {
                     examId = categoriesFragment.categoriesFragmentAdapter.examId;
-                    // Utils.E("CategoryExamId:::" + examId);
                 }
                 if (languageFragment.languageAdapter != null && languageFragment.languageAdapter.index != -1) {
                     languageId = languageFragment.languageAdapter.languageId;
-                    //Utils.E("CategoryLanguageId:::" + languageId);
+                }
+                if (priceFragment != null) {
+                    MinValue = priceFragment.minValue;
+                    MaxValue = priceFragment.maxValue;
                 }
                 getCategoryDetails(examId);
+                Utils.E("ID:::::" + examId + "LId::" + languageId+"MValue::"+ priceFragment.minValue+"MaxValue::"+ priceFragment.maxValue);
+
                 bottomSheetFilter.cancel();
             }
         });
@@ -206,8 +218,8 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, ExamId);
         hashMap.put(Constants.Key.languageId, languageId);
-   /*     hashMap.put(Constants.Key.discountedPriceStart, priceFragment.minValue);
-        hashMap.put(Constants.Key.discountedPriceEnd, priceFragment.maxValue);*/
+        hashMap.put(Constants.Key.discountedPriceStart, MinValue);
+        hashMap.put(Constants.Key.discountedPriceEnd, MaxValue);
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -224,9 +236,10 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         arrayList.clear();
                         assert response.body() != null;
                         arrayList.addAll(response.body().packageModels);
-                        binding.rvPackagesSecondary.setAdapter(new CategoryDetailSecondaryAdapter(activity, arrayList));
+                        packageAdapter.notifyDataSetChanged();
+                     /*   binding.rvPackagesSecondary.setAdapter(new CategoryDetailSecondaryAdapter(activity, arrayList));
                         binding.rvPackagesSecondary.setHasFixedSize(true);
-                        binding.rvPackagesSecondary.setLayoutManager(new LinearLayoutManager(activity));
+                        binding.rvPackagesSecondary.setLayoutManager(new LinearLayoutManager(activity));*/
 
                     } else {
                         assert response.errorBody() != null;
