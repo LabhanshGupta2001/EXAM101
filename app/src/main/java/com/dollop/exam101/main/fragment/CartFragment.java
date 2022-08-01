@@ -1,22 +1,26 @@
-package com.dollop.exam101.main.activity;
+package com.dollop.exam101.main.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
-import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.databinding.ActivityMyCartBinding;
 import com.dollop.exam101.databinding.BottomsheetApplycouponBinding;
 import com.dollop.exam101.databinding.BottomsheetReferralcodeBinding;
+import com.dollop.exam101.databinding.FragmentCartBinding;
+import com.dollop.exam101.main.activity.DashboardScreenActivity;
+import com.dollop.exam101.main.activity.PaymentFailedActivity;
 import com.dollop.exam101.main.adapter.MyCartAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CartDatumModel;
@@ -30,32 +34,33 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyCartActivity extends BaseActivity implements View.OnClickListener {
+
+public class CartFragment extends Fragment implements View.OnClickListener {
+    FragmentCartBinding binding;
     Activity activity;
-    ActivityMyCartBinding binding;
     BottomSheetDialog bottomSheetApplyCoupon, bottomSheetDialogReferralCode;
     List<CartDatumModel> myCartModelArrayList = new ArrayList<>();
     ApiService apiService;
     BottomsheetApplycouponBinding bottomsheetApplycouponBinding;
     BottomsheetReferralcodeBinding bottomsheetReferralcodeBinding;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMyCartBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        init();
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentCartBinding.inflate(inflater, container, false);
+        activity = requireActivity();
+        init();
+        return binding.getRoot();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         getCartItem();
     }
 
     private void init() {
-        activity = MyCartActivity.this;
         apiService = RetrofitClient.getClient();
         binding.CardView.setOnClickListener(this);
         binding.CardViewOne.setOnClickListener(this);
@@ -99,7 +104,7 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
         } else if (view == binding.tvButtonCheckoutId) {
             Utils.I(activity, PaymentFailedActivity.class, null);
         } else if (view == binding.ivBack) {
-            onBackPressed();
+            ((DashboardScreenActivity) activity).navController.popBackStack();
         }
     }
 
@@ -141,13 +146,24 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
                 progressDialog.dismiss();
                 if (response.code() == StatusCodeConstant.OK) {
                     assert response.body() != null;
-                    binding.tvSubTotalId.setText(response.body().gstPercentage);
-                    binding.tvSgst.setText(response.body().subTotalAmt);
-                    binding.tvGrandtotal.setText(String.valueOf(response.body().grandTotalAmt));
-                    binding.tvGrandTotalBottom.setText(String.valueOf(response.body().grandTotalAmt));
-                    myCartModelArrayList.addAll(response.body().cartData);
-                    binding.rvPackageListId.setLayoutManager(new LinearLayoutManager(activity));
-                   // binding.rvPackageListId.setAdapter(new MyCartAdapter(activity, myCartModelArrayList,));
+                    if (!response.body().cartData.isEmpty()) {
+                        binding.rlBottom.setVisibility(View.VISIBLE);
+                        binding.scrollCartItem.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                        binding.tvSubTotalId.setText(response.body().gstPercentage);
+                        binding.tvSgst.setText(response.body().subTotalAmt);
+                        binding.tvGrandtotal.setText(String.valueOf(response.body().grandTotalAmt));
+                        binding.tvGrandTotalBottom.setText(String.valueOf(response.body().grandTotalAmt));
+                        myCartModelArrayList.addAll(response.body().cartData);
+                        binding.rvPackageListId.setLayoutManager(new LinearLayoutManager(activity));
+                        binding.rvPackageListId.setAdapter(new MyCartAdapter(activity, myCartModelArrayList, CartFragment.this));
+                    } else {
+                        binding.rlBottom.setVisibility(View.GONE);
+                        binding.scrollCartItem.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    }
+
+
                 } else {
                     assert response.errorBody() != null;
                     APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -175,7 +191,7 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.removeFromCart(Utils.GetSession().token, cartUuId).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 if (response.code() == StatusCodeConstant.OK) {
                     assert response.body() != null;
@@ -205,6 +221,4 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
         });
 
     }
-
-
 }

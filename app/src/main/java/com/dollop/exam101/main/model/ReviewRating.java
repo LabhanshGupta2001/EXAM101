@@ -4,7 +4,7 @@ package com.dollop.exam101.main.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ReviewRatingModel {
+public class ReviewRating {
     @SerializedName("reviewRatingId")
     @Expose
     public String reviewRatingId;

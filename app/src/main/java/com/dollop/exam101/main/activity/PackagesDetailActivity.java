@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,6 @@ import androidx.annotation.RequiresApi;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
@@ -29,7 +27,6 @@ import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
-
 import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
@@ -38,7 +35,7 @@ import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.LanguageModel;
 import com.dollop.exam101.main.model.MockTestModel;
 import com.dollop.exam101.main.model.PackageDetailModel;
-import com.dollop.exam101.main.model.ReviewRatingModel;
+import com.dollop.exam101.main.model.ReviewRating;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
@@ -61,10 +58,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     ArrayList<String> Tittle = new ArrayList<>();
     ArrayList<Fragment> fragments = new ArrayList<>();
     List<MockTestModel> mockTestModels = new ArrayList<>();
-    ArrayList<ReviewRatingModel> reviewRatingModels = new ArrayList<>();
+    ArrayList<ReviewRating> reviewRatingModels = new ArrayList<>();
     ArrayList<String> list = new ArrayList<>();
     BottomSheetDialog bottomSheetDialog;
-    ArrayList<LanguageModel>languageModels=new ArrayList<>();
+    ArrayList<LanguageModel> languageModels = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -82,7 +79,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            packageUuid = bundle.getString(Constants.Key.packageUuid);
+            packageUuid = bundle.getString(Constants.Key.packageUuId);
             Utils.E("packageUuid;;;;;;" + packageUuid);
             Utils.E("Bundle;;;;;;" + bundle);
         }
@@ -130,9 +127,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 InternetDialog();
             }
             Utils.T(activity, Constants.Key.added_to_Wishlist);
-        }else if (view == binding.AddtoCart) {
+        } else if (view == binding.AddtoCart) {
             if (AppController.getInstance().isOnline()) {
-                getCart();
+                addCart();
             } else {
                 InternetDialog();
             }
@@ -143,7 +140,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     private void getWishList() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.packageUuid, packageUuid);
+        hm.put(Constants.Key.packageUuId, packageUuid);
         apiService.addWishlist(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -177,11 +174,13 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         });
     }
 
-    private void getCart() {
+    private void addCart() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.packageUuid, packageUuid);
+        hm.put(Constants.Key.packageUuId, packageUuid);
         hm.put(Constants.Key.languageUuId, languageUuId);
+        Utils.E("packageUuid:::::::" + packageUuid);
+        Utils.E("languageUuId:::::::" + languageUuId);
         apiService.addCart(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -189,6 +188,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
+                        Utils.T(activity, "Added");
 
                     } else {
                         assert response.errorBody() != null;
@@ -217,46 +217,42 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
     private void getPackageDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
+        Utils.E("packageUid:::::" + packageUuid);
         apiService.getPackageDetailApi(Utils.GetSession().token, packageUuid).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
-                try {
-                    if (response.code() == StatusCodeConstant.OK) {
-                        assert response.body() != null;
-                        PackageDetailModel packageDetailModels = response.body().packageDetail;
+                if (response.code() == StatusCodeConstant.OK) {
+                    assert response.body() != null;
+                    PackageDetailModel packageDetailModels = response.body().packageDetail;
 
-                        binding.tvHeadings.setText(packageDetailModels.packageName);
-                        binding.tvPriceGreat.setText(packageDetailModels.actualPrice);
-                        binding.tvPriceSmall.setText(packageDetailModels.discountedPrice);
-                        binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
-                        binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
+                    binding.tvHeadings.setText(packageDetailModels.packageName);
+                    binding.tvPriceGreat.setText(packageDetailModels.actualPrice);
+                    binding.tvPriceSmall.setText(packageDetailModels.discountedPrice);
+                    binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
+                    binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
+                    languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
+                    Utils.E("languageUuId::" + languageUuId);
+                    mockTestModels = packageDetailModels.mockTests;
+                    fragments.add(new CourseMaterialFragment(packageUuid));
+                    fragments.add(new MockTestFragment(mockTestModels));
+                    Tittle.add(Constants.Key.Course_Material);
+                    Tittle.add(Constants.Key.Mock_Test);
+                    mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
+                    binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
+                    new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
+                        tab.setText(Tittle.get(position));
+                    }).attach();
 
-                        languageUuId = response.body().languageModels.get(0).languageUuid;
-                        Utils.E("languageUuId::"+languageUuId);
-                        mockTestModels = packageDetailModels.mockTests;
-                        fragments.add(new CourseMaterialFragment(packageUuid));
-                        fragments.add(new MockTestFragment(mockTestModels));
-                        Tittle.add(Constants.Key.Course_Material);
-                        Tittle.add(Constants.Key.Mock_Test);
-                        mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
-                        binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
-                        new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
-                            tab.setText(Tittle.get(position));
-                        }).attach();
-
-                    } else {
-                        assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            Utils.T(activity, message.message);
-                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
-                            Utils.UnAuthorizationToken(activity);
-                        }
+                } else {
+                    assert response.errorBody() != null;
+                    APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                    if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                        Utils.T(activity, message.message);
+                    } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                        Utils.T(activity, message.message);
+                        Utils.UnAuthorizationToken(activity);
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
 
@@ -280,7 +276,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     if (response.code() == StatusCodeConstant.OK) {
                         reviewRatingModels.clear();
                         assert response.body() != null;
-                        reviewRatingModels.addAll(response.body().reviewRatingModel);
+                        reviewRatingModels.addAll(response.body().reviewRating);
                         binding.rvRatingId.setLayoutManager(new LinearLayoutManager(activity));
                         binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(activity, reviewRatingModels));
 
@@ -311,7 +307,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     private void addRatingReview(Float rating, String review) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.packageUuid, packageUuid);
+        hm.put(Constants.Key.packageUuId, packageUuid);
         hm.put(Constants.Key.rating, String.valueOf(rating));
         hm.put(Constants.Key.review, review);
         apiService.addRatingReview(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
