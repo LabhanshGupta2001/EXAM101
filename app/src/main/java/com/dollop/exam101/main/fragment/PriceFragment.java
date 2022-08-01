@@ -47,8 +47,6 @@ public class PriceFragment extends Fragment implements View.OnClickListener {
 
         rangeSlider();
 
-
-
       /*  binding.rangeSeekbar.setTrackHeight(20);
         binding.rangeSeekbar.setCustomThumbDrawable(R.drawable.bottom_curve_background);
         binding.rangeSeekbar.setCustomThumbDrawablesForValues(R.drawable.bottom_curve_background);
@@ -88,7 +86,6 @@ public class PriceFragment extends Fragment implements View.OnClickListener {
         });
         seekBar.setNotifyWhileDragging(true);*/
     }
-
     private void rangeSlider() {
         binding.rangeSeekbar.setValues(500.0f, 5000.0f);
         binding.rangeSeekbar.setMinSeparation(50.0f);
@@ -122,9 +119,7 @@ public class PriceFragment extends Fragment implements View.OnClickListener {
                 binding.tvStartReatTwo.setText("₹" + String.format("%.0f", values.get(1)));
             }
         });
-
     }
-
     @Override
     public void onClick(View v) {
 

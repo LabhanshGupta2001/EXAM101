@@ -12,16 +12,16 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemPackageDetailBinding;
 
-import com.dollop.exam101.main.model.ReviewRatingModel;
+import com.dollop.exam101.main.model.ReviewRating;
 
 import java.util.ArrayList;
 
 public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetailRatingAdapter.MyViewHolder> {
     Context context;
-    ArrayList<ReviewRatingModel> list;
+    ArrayList<ReviewRating> list;
 
 
-    public PakageDetailRatingAdapter(Context context, ArrayList<ReviewRatingModel> list) {
+    public PakageDetailRatingAdapter(Context context, ArrayList<ReviewRating> list) {
         this.context = context;
         this.list = list;
     }
@@ -36,7 +36,7 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        ReviewRatingModel reviewRatingModel=list.get(position);
+        ReviewRating reviewRatingModel=list.get(position);
         holder.binding.tvTitleId.setText(reviewRatingModel.studentName);
         holder.binding.tvrating.setText(reviewRatingModel.rating);
         holder.binding.tvDesc.setText(reviewRatingModel.review);

@@ -5,22 +5,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class CartDatumModel {
 
-@SerializedName("packageId")
-@Expose
-public String packageId;
-@SerializedName("packageName")
-@Expose
-public String packageName;
-@SerializedName("cartUuid")
-@Expose
-public String cartUuid;
-@SerializedName("discountedPrice")
-@Expose
-public String discountedPrice;
-@SerializedName("isWishListed")
-@Expose
-public String isWishListed;
 
-
-
+    @SerializedName("packageId")
+    @Expose
+    public String packageId;
+    @SerializedName("packageName")
+    @Expose
+    public String packageName;
+    @SerializedName("cartUuid")
+    @Expose
+    public String cartUuid;
+    @SerializedName("discountedPrice")
+    @Expose
+    public String discountedPrice;
+    @SerializedName("isWishListed")
+    @Expose
+    public String isWishListed;
 }

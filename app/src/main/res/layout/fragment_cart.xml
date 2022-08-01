@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    android:weightSum="1"
-    tools:context=".main.activity.MyCartActivity">
+    tools:context=".main.fragment.CartFragment">
+
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
@@ -36,16 +35,18 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/scrollCartItem"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rlBottom"
+        android:layout_below="@+id/llToolbar"
         android:overScrollMode="never"
-        android:layout_weight=".88">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
 
             <TextView
@@ -62,11 +63,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPackageList_Id"
                 android:layout_width="match_parent"
-                android:overScrollMode="never"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:paddingBottom="@dimen/_12sdp"
-            />
+                android:overScrollMode="never"
+                android:paddingBottom="@dimen/_12sdp" />
 
             <View
                 android:id="@+id/view"
@@ -76,16 +76,16 @@
                 android:orientation="vertical" />
 
             <TextView
+                style="@style/TernaryTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/lineColor"
+                android:fontFamily="@font/gothic_bold"
+                android:paddingHorizontal="@dimen/_12sdp"
                 android:paddingTop="@dimen/_12sdp"
                 android:paddingBottom="@dimen/_8sdp"
                 android:text="@string/coupon"
-                android:visibility="gone"
-                android:paddingHorizontal="@dimen/_12sdp"
-                style="@style/TernaryTextStyle"
-                android:fontFamily="@font/gothic_bold"/>
+                android:visibility="gone" />
 
 
             <com.google.android.material.card.MaterialCardView
@@ -207,13 +207,13 @@
                 android:id="@+id/CardViewCoupon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_12sdp"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/LightGreenBgColor"
                 app:cardCornerRadius="@dimen/_5sdp"
-                app:strokeWidth="@dimen/_1sdp"
-                app:strokeColor="@color/theme">
+                app:strokeColor="@color/theme"
+                app:strokeWidth="@dimen/_1sdp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -226,9 +226,10 @@
                         android:id="@+id/ivClick"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_right_click_up"
                         android:layout_marginVertical="@dimen/_16sdp"
-                        android:layout_marginStart="@dimen/_12sdp"/>
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:src="@drawable/ic_right_click_up" />
+
                     <TextView
                         android:id="@+id/tvCoupon"
                         android:layout_width="match_parent"
@@ -243,14 +244,14 @@
                     <TextView
                         android:id="@+id/tvRemoveCoupon"
                         style="@style/QuinaryRedTextStyle"
-                        android:fontFamily="@font/inter_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
                         android:layout_marginEnd="@dimen/_8sdp"
                         android:contentDescription="@string/image"
-                        android:text="Remove"/>
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Remove" />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -273,9 +274,8 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginVertical="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_5sdp"
-                app:strokeWidth="@dimen/_1sdp"
                 app:strokeColor="@color/HorizontallineColor"
-                >
+                app:strokeWidth="@dimen/_1sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -393,10 +393,12 @@
     </ScrollView>
 
     <RelativeLayout
+        android:id="@+id/rlBottom"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".12"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -451,6 +453,11 @@
                 android:theme="@style/QuaternarySecondaryTextStyle" />
         </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
-</LinearLayout>
+
+    <include
+        android:id="@+id/noResultFoundId"
+        layout="@layout/no_result_found"
+        android:visibility="visible" />
 
 
+</RelativeLayout>
