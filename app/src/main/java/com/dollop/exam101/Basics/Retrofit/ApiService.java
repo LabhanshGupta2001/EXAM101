@@ -70,6 +70,9 @@ public interface ApiService {
     Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
 
 
+    @GET(Const.getStudentWishListApi)
+    Call<AllResponseModel> getWishList(@Header(Constants.Key.Authorization) String token);
+
 //______________________________********************___________________________________________//
 
     @GET(Const.aboutUs)

@@ -47,16 +47,17 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_2sdp"
                         android:layout_toRightOf="@id/ivNavBar"
-                        android:src="@drawable/ic_examicon"
-
-                        />
+                        android:src="@drawable/ic_examicon" />
 
                     <LinearLayout
+                        android:id="@+id/llNotifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
                         android:gravity="center_vertical"
+                        android:padding="@dimen/_2sdp"
+                        android:layout_marginHorizontal="@dimen/_14sdp"
                         android:orientation="horizontal">
 
                         <RelativeLayout
@@ -79,12 +80,12 @@
                                 android:visibility="visible" />
                         </RelativeLayout>
 
-                        <ImageView
+                     <!--   <ImageView
                             android:id="@+id/ivSearch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/_14sdp"
-                            android:src="@drawable/ic_searchicon" />
+                            android:src="@drawable/ic_searchicon" />-->
 
                       <!--  <androidx.cardview.widget.CardView
                             android:layout_width="@dimen/_28sdp"
@@ -112,19 +113,21 @@
 
             tools:ignore="MissingConstraints,NotSibling">
 -->
+        <!-- </FrameLayout>
+ -->
         <fragment
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/appBarLayout"
+            android:layout_marginTop="0dp"
             android:layout_marginBottom="@dimen/_45sdp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             app:navGraph="@navigation/nav_graph" />
-        <!-- </FrameLayout>
- -->
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             style="@style/BottomNavigationView"

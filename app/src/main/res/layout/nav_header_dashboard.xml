@@ -181,12 +181,13 @@
 
 
                 <TextView
+                    android:id="@+id/tvHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="@string/home"
-                    android:theme="@style/QuaternaryNormalTextStyle" />
+                    android:theme="@style/QuaternaryTextStyle" />
             </LinearLayout>
 
             <LinearLayout

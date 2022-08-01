@@ -527,4 +527,16 @@
         <item name="android:textColor">@color/full_black</item>
         <item name="android:textSize">@dimen/_12ssp</item>
     </style>
+
+
+    //calendar
+    <style name="CalendarDataTextStyle" parent="android:TextAppearance.DeviceDefault">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+    </style>
+
+    <style name="CalendarWeeksTextStyle" parent="android:TextAppearance.DeviceDefault">
+        <item name="android:textColor">@color/sub_text</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+    </style>
 </resources>

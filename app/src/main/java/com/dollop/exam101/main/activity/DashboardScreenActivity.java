@@ -2,7 +2,6 @@ package com.dollop.exam101.main.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,22 +10,20 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.bumptech.glide.Glide;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
-
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
 import com.dollop.exam101.main.fragment.HomeFragment;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -36,9 +33,8 @@ import com.google.android.gms.tasks.Task;
 
 
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
-
+    public NavController navController;
     AppBarConfiguration appBarConfiguration;
-    NavController navController;
     Activity activity = DashboardScreenActivity.this;
     ActivityDashboardScreenBinding binding;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
@@ -48,20 +44,19 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding  = ActivityDashboardScreenBinding.inflate(getLayoutInflater());
+        binding = ActivityDashboardScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-
     }
 
     @SuppressLint("ResourceAsColor")
     void init() {
         navigationSetup();
-        apiService= RetrofitClient.getClient();
+        apiService = RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
         //binding.ivProfile.setOnClickListener(this);
-        binding.ivNotification.setOnClickListener(this);
-        binding.ivSearch.setOnClickListener(this);
+        binding.llNotifications.setOnClickListener(this);
+        // binding.ivSearch.setOnClickListener(this);
 
         navHeaderDashboardBinding = NavHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
@@ -72,14 +67,14 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navHeaderDashboardBinding.llPrivacyPolicy.setOnClickListener(this);
         navHeaderDashboardBinding.llHome.setOnClickListener(this);
         navHeaderDashboardBinding.llMyPackage.setOnClickListener(this);
-       // navHeaderDashboardBinding.llMyWishlist.setOnClickListener(this);
+        // navHeaderDashboardBinding.llMyWishlist.setOnClickListener(this);
         navHeaderDashboardBinding.llFaq.setOnClickListener(this);
         navHeaderDashboardBinding.llContactUs.setOnClickListener(this);
         navHeaderDashboardBinding.llTermCondition.setOnClickListener(this);
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
         navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
         navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
-        Utils.Picasso(Utils.GetSession().profilePic,navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
+        Utils.Picasso(Utils.GetSession().profilePic, navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
 
     }
 
@@ -91,7 +86,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
         //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -111,15 +105,15 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.ivNotification) {
+        if (view == binding.llNotifications) {
             Utils.I(activity, NotificationActivity.class, null);
         }
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.ivSearch) {
+       /* if (view == binding.ivSearch) {
             Utils.I(activity, SearchHistoryActivity.class, null);
-        }
+        }*/
 
         if (view == binding.navigationView.getHeaderView(0)) {
             Utils.I(activity, ProfileActivity.class, null);
@@ -152,7 +146,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == navHeaderDashboardBinding.llSettings) {
             binding.drawerLayout.close();
             Utils.I(activity, SettingActivity.class, null);
-        }if (view == navHeaderDashboardBinding.llFaq) {
+        }
+        if (view == navHeaderDashboardBinding.llFaq) {
 
         }
         if (view == navHeaderDashboardBinding.llContactUs) {
@@ -184,6 +179,9 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == navHeaderDashboardBinding.llFaq) {
             Utils.I(activity, FaqsActivity.class, null);
         }
+       /* if(HOME.equals("home")){
+            navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.theme));
+        }*/
 
     }
 

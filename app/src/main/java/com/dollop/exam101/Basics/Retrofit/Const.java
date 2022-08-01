@@ -74,6 +74,7 @@ public class Const {
     public static final String getProfileDetailApi = "getProfileDetailApi";
     public static final String updateProfileApi = "updateProfileApi";
     public static final String socialLoginApi = "socialLoginApi";
+    public static final String getStudentWishListApi = "getStudentWishListApi";
 
     public static final String forgotPasswordApi = "forgotPasswordApi";
     public static final String getPackageDetails = "getPakageDetails";

@@ -87,14 +87,19 @@ public class AllResponseModel {
     @Expose
     public List<CartDatumModel> cartData = null;
 
-    
     @SerializedName("subTotalAmt")
     @Expose
     public String subTotalAmt;
+
     @SerializedName("gstPercentage")
     @Expose
     public String gstPercentage;
+
     @SerializedName("grandTotalAmt")
     @Expose
     public Integer grandTotalAmt;
+
+    @SerializedName("wishList")
+    @Expose
+    public List<WishListModel> wishList = null;
 }
