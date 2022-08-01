@@ -2,6 +2,7 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.OnItemClicked;
 import com.dollop.exam101.databinding.ItemLanguageBinding;
 import com.dollop.exam101.main.model.LanguageModel;
@@ -41,6 +43,9 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyHold
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
         LanguageModel languageModel = languageModels.get(position);
         holder.binding.tvLanguage.setText(languageModel.languageName);
+
+
+
         holder.binding.checkBox.setChecked(index == position);
         holder.binding.llLanguage.setOnClickListener(v -> {
             index = position;

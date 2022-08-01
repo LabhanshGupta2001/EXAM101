@@ -33,8 +33,10 @@ public class Const {
     public static final String otp_verification = "otp_verification";
     public static final String raise_complaint = "raise_complaint";
     public static final String login_history = "login_history";
-    public static final String get_cart = "get_cart";
+    public static final String getCartDetailApi = "getCartDetailApi";
+    public static final String getPackageDetailApi = "getPackageDetailApi";
     public static final String addToWishListApi = "addToWishListApi";
+    public static final String addToCartApi = "addToCartApi";
     public static final String addReviewRatingApi = "addReviewRatingApi";
     public static final String order_history = "order_history";
     public static final String notification = "notification";

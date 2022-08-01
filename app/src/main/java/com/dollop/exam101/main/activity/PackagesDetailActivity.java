@@ -6,11 +6,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
@@ -24,16 +27,25 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
+import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
 
+import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
+import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.LanguageModel;
+import com.dollop.exam101.main.model.MockTestModel;
+import com.dollop.exam101.main.model.PackageDetailModel;
+import com.dollop.exam101.main.model.ReviewRatingModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,60 +56,94 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     ActivityPackagesDetailBinding binding;
     ApiService apiService;
     String packageUuid;
+    String languageUuId;
     MockTestViewPagerAdapter mockTestViewPagerAdapter;
     ArrayList<String> Tittle = new ArrayList<>();
     ArrayList<Fragment> fragments = new ArrayList<>();
+    List<MockTestModel> mockTestModels = new ArrayList<>();
+    ArrayList<ReviewRatingModel> reviewRatingModels = new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
+    BottomSheetDialog bottomSheetDialog;
+    ArrayList<LanguageModel>languageModels=new ArrayList<>();
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPackagesDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
+
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            packageUuid = bundle.getString(Constants.Key.packageUuId);
+            packageUuid = bundle.getString(Constants.Key.packageUuid);
+            Utils.E("packageUuid;;;;;;" + packageUuid);
+            Utils.E("Bundle;;;;;;" + bundle);
         }
+        getPackageDetails();
+
         binding.ivBack.setOnClickListener(this);
         binding.mcvAddtoWishlist.setOnClickListener(this);
-        fragments.add(new CourseMaterialFragment(packageUuid));
-        fragments.add(new MockTestFragment());
-        Tittle.add(Constants.Key.Course_Material);
-        Tittle.add(Constants.Key.Course_Material);
-        mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
-        binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
+        binding.tvRateId.setOnClickListener(this);
+        binding.AddtoCart.setOnClickListener(this);
 
-        new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
-            tab.setText(Tittle.get(position));
-        }).attach();
+
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        binding.rvOverView.setNestedScrollingEnabled(false);
+        binding.rvOverView.setHasFixedSize(true);
+        binding.rvOverView.setLayoutManager(new LinearLayoutManager(activity));
+        binding.rvOverView.setAdapter(new OverviewCourseDetailsAdapter(activity, list));
+        if (AppController.getInstance().isOnline()) {
+
+            GetPackageDetailsMockTestListRatingNow();
+        } else {
+            InternetDialog();
+            //Utils.InternetDialog(activity);
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack) {
+        if (view == binding.tvRateId) {
+            if (AppController.getInstance().isOnline()) {
+                rateNowBottomSheet();
+            } else {
+                //Utils.InternetDialog(activity);
+                InternetDialog();
+            }
+        } else if (view == binding.ivBack) {
             onBackPressed();
         } else if (view == binding.mcvAddtoWishlist) {
             if (AppController.getInstance().isOnline()) {
                 getWishList();
             } else {
-                //Utils.InternetDialog(activity);
                 InternetDialog();
             }
             Utils.T(activity, Constants.Key.added_to_Wishlist);
+        }else if (view == binding.AddtoCart) {
+            if (AppController.getInstance().isOnline()) {
+                getCart();
+            } else {
+                InternetDialog();
+            }
+
         }
     }
 
     private void getWishList() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.packageUuId, packageUuid);
+        hm.put(Constants.Key.packageUuid, packageUuid);
         apiService.addWishlist(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -106,6 +152,176 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
 
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
+    private void getCart() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.packageUuid, packageUuid);
+        hm.put(Constants.Key.languageUuId, languageUuId);
+        apiService.addCart(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
+    private void getPackageDetails() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getPackageDetailApi(Utils.GetSession().token, packageUuid).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        PackageDetailModel packageDetailModels = response.body().packageDetail;
+
+                        binding.tvHeadings.setText(packageDetailModels.packageName);
+                        binding.tvPriceGreat.setText(packageDetailModels.actualPrice);
+                        binding.tvPriceSmall.setText(packageDetailModels.discountedPrice);
+                        binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
+                        binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
+
+                        languageUuId = response.body().languageModels.get(0).languageUuid;
+                        Utils.E("languageUuId::"+languageUuId);
+                        mockTestModels = packageDetailModels.mockTests;
+                        fragments.add(new CourseMaterialFragment(packageUuid));
+                        fragments.add(new MockTestFragment(mockTestModels));
+                        Tittle.add(Constants.Key.Course_Material);
+                        Tittle.add(Constants.Key.Mock_Test);
+                        mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
+                        binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
+                        new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
+                            tab.setText(Tittle.get(position));
+                        }).attach();
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
+    private void GetPackageDetailsMockTestListRatingNow() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getPackageDetailsMockTestListRatingNow(Utils.GetSession().token, packageUuid).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        reviewRatingModels.clear();
+                        assert response.body() != null;
+                        reviewRatingModels.addAll(response.body().reviewRatingModel);
+                        binding.rvRatingId.setLayoutManager(new LinearLayoutManager(activity));
+                        binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(activity, reviewRatingModels));
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void addRatingReview(Float rating, String review) {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.packageUuid, packageUuid);
+        hm.put(Constants.Key.rating, String.valueOf(rating));
+        hm.put(Constants.Key.review, review);
+        apiService.addRatingReview(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        bottomSheetDialog.dismiss();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -149,4 +365,15 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         });
         dialog.show();
     }
+
+    private void rateNowBottomSheet() {
+
+        bottomSheetDialog = new BottomSheetDialog(activity);
+        BottomSheetRatenowBinding bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+        bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+        bottomSheetDialog.show();
+        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view ->
+                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString()));
+    }
+
 }

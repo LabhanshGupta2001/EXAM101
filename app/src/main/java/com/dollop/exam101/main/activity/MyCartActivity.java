@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,12 +20,12 @@ import com.dollop.exam101.databinding.BottomsheetApplycouponBinding;
 import com.dollop.exam101.databinding.BottomsheetReferralcodeBinding;
 import com.dollop.exam101.main.adapter.MyCartAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.MyCartModel;
+import com.dollop.exam101.main.model.CartDatumModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,11 +35,12 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
     Activity activity;
     ActivityMyCartBinding binding;
     BottomSheetDialog bottomSheetApplyCoupon, bottomSheetDialogReferralCode;
-    ArrayList<MyCartModel> myCartModelArrayList = new ArrayList<>();
-    RecyclerView recyclerView;
+    List<CartDatumModel> myCartModelArrayList = new ArrayList<>();
     ApiService apiService;
     BottomsheetApplycouponBinding bottomsheetApplycouponBinding;
     BottomsheetReferralcodeBinding bottomsheetReferralcodeBinding;
+    String subTotal,SGST;
+    Integer GrandTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,40 +48,7 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
         binding = ActivityMyCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-
-        MyCartModel myCartModel = new MyCartModel();
-        MyCartModel myCartModel1 = new MyCartModel();
-        MyCartModel myCartModel2 = new MyCartModel();
-
-
-        myCartModel.Point = "Microsoft power Point";
-        myCartModel.FundamentalsDesign = "Best way learn fundamentals of\ndesign thinking.";
-        myCartModel.Rupees = "₹500";
-        myCartModel.Wishlist = "Add to Wishlist";
-        myCartModel.Remove = "Remove";
-
-
-        myCartModel1.Point = "Microsoft power Point";
-        myCartModel1.FundamentalsDesign = "Best way learn fundamentals of\ndesign thinking.";
-        myCartModel1.Rupees = "₹500";
-        myCartModel1.Wishlist = "Add to Wishlist";
-        myCartModel1.Remove = "Remove";
-
-
-        myCartModel2.Point = "Microsoft power Point";
-        myCartModel2.FundamentalsDesign = "Best way learn fundamentals of\ndesign thinking.";
-        myCartModel2.Rupees = "₹500";
-        myCartModel2.Wishlist = "Add to Wishlist";
-        myCartModel2.Remove = "Remove";
-
-        myCartModelArrayList.clear();
-        myCartModelArrayList.add(myCartModel);
-        myCartModelArrayList.add(myCartModel1);
-        myCartModelArrayList.add(myCartModel2);
-
-        binding.rvPackageListId.setHasFixedSize(true);
-        binding.rvPackageListId.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvPackageListId.setAdapter(new MyCartAdapter(activity, myCartModelArrayList));
+        getCartItem();
     }
 
 
@@ -164,17 +133,54 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
     }
 
 
-    void getCartItem() {
-        HashMap<String, String> hm = new HashMap<>();
-        apiService.getCartList(hm).enqueue(new Callback<AllResponseModel>() {
+     private  void getCartItem() {
+         Dialog progressDialog=Utils.initProgressDialog(activity);
+        apiService.getCartList("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTA5MDE4Nn0.QCvlCA6xQdHknPfcTHC5tmXZo6j60bhtJb2uvg5R6pU").enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        SGST=response.body().subTotalAmt;
+                        subTotal=response.body().gstPercentage;
+                        GrandTotal=response.body().grandTotalAmt;
 
+                        Utils.E("subTotal;;;;;;;;;"+subTotal);
+                        Utils.E("SGST;;;;;;;"+SGST);
+                        Utils.E("GrandTotal;;;;;"+GrandTotal);
+                        binding.tvSubTotalId.setText(subTotal);
+                        binding.tvSgst.setText(SGST);
+                        binding.tvGrandtotal.setText(GrandTotal);
+                        binding.tvGrandTotalBottom.setText(GrandTotal);
+
+                        Utils.E("Cartdata;;;;;"+response.body().cartData);
+                        myCartModelArrayList.addAll(response.body().cartData);
+                        Utils.E("Cartdata;;;;;"+response.body().cartData);
+                        binding.rvPackageListId.setHasFixedSize(true);
+                        binding.rvPackageListId.setLayoutManager(new LinearLayoutManager(activity));
+                        binding.rvPackageListId.setAdapter(new MyCartAdapter(activity, myCartModelArrayList));
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }

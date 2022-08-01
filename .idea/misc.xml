@@ -222,7 +222,9 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable-hdpi/tabselector.xml" value="0.254" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/custom_course_progress_bar.xml" value="0.1895" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_aboutus.xml" value="0.255" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_china.xml" value="0.151" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_faq.xml" value="0.255" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/packege_duration.xml" value="0.254" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_about_us.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.2" />
@@ -243,14 +245,15 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_faqs.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_my_wishlist.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_notification.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.25" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.4" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_raise_complaint.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_search_history.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/alertdialog.xml" value="0.264" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/alertdialog.xml" value="0.4" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_affiliate_purchase_list.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_blog_filter.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_blog_short.xml" value="0.24583333333333332" />
@@ -272,7 +275,8 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_course_material.xml" value="0.264" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_date.xml" value="0.6" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_language.xml" value="0.4" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_language.xml" value="0.2" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_mock_test.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.4" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_authore_search.xml" value="0.8" />
@@ -291,10 +295,11 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_editprofile.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_exam_fragment.xml" value="0.6" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_flex_box.xml" value="0.25" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_language.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_login_history.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_history_allresults.xml" value="0.536" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_list.xml" value="1.6" />
-        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_package.xml" value="0.25" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_package.xml" value="0.536" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_mock_test_question.xml" value="0.72" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_notification_primary.xml" value="0.25" />
@@ -302,7 +307,9 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_overview_course_details.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_package_detail.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.4" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_packages_detail_ternary.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_pakages_details_primary.xml" value="0.25" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_pakages_details_secondry.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_purchase_list.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_result_question.xml" value="0.25" />
@@ -320,6 +327,7 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/picker_popup_layout.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/progress_dialog.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/welcome_layout.xml" value="0.25" />
+        <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/menu/main_menu.xml" value="0.536" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/bottom_sheet_back.xml" value="0.1515" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
       </map>

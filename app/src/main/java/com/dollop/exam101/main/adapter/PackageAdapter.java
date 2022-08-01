@@ -44,6 +44,8 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.tvRupees.setText(packageModel.discountedPrice);
         holder.itemPackagesBinding.tvTotalRupees.setText(packageModel.actualPrice);
         holder.itemPackagesBinding.tvDay.setText(packageModel.validity+context.getString(R.string.Days));
+
+
         if (packageModel.rating.equals(Constants.Key.blank)){
             holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);
             holder.itemPackagesBinding.tvRatingNum.setVisibility(View.GONE);
@@ -58,10 +60,12 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.llDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString(Constants.Key.packageUuId, packageModel.packageUuid);
-                Utils.I(context,PackagesDetailActivity.class,bundle);
 
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.Key.packageUuid, packageModel.packageUuid);
+
+                Utils.I(context,PackagesDetailActivity.class,bundle);
+                Utils.E("Bundle :::::: "+bundle);
             }
         });
     }

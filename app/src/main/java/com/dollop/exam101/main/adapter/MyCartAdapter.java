@@ -5,18 +5,20 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemMyCartBinding;
-import com.dollop.exam101.main.model.MyCartModel;
+import com.dollop.exam101.main.model.CartDatumModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> {
     Context context;
-    ArrayList<MyCartModel> myCartModelArrayList;
+    List<CartDatumModel> myCartModelArrayList;
 
-    public MyCartAdapter(Context context, ArrayList<MyCartModel> myCartModelArrayList) {
+    public MyCartAdapter(Context context, List<CartDatumModel> myCartModelArrayList) {
         this.context = context;
         this.myCartModelArrayList =myCartModelArrayList;
     }
@@ -29,13 +31,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        MyCartModel myCartModel= myCartModelArrayList.get(position);
-       /* holder.binding.ivPhotoId.setImageResource(myCartModel.Photo);*/
-        holder.binding.tvPowerPointId.setText(myCartModel.Point);
-        holder.binding.tvFundamentalDesignId.setText(myCartModel.FundamentalsDesign);
-        holder.binding.tvRupees.setText(myCartModel.Rupees);
-        holder.binding.tvWishListId.setText(myCartModel.Wishlist);
-        holder.binding.tvRemoveId.setText(myCartModel.Remove);
+        CartDatumModel myCartModel= myCartModelArrayList.get(position);
+        holder.binding.tvFundamentalDesignId.setText(myCartModel.packageName);
+        holder.binding.tvRupees.setText(myCartModel.discountedPrice);
+        holder.binding.tvWishListId.setText(myCartModel.isWishListed);
     }
 
     @Override

@@ -78,4 +78,23 @@ public class AllResponseModel {
     @SerializedName("languages")
     @Expose
     public List<LanguageModel> languageModels = null;
+
+    @SerializedName("packageDetail")
+    @Expose
+    public PackageDetailModel packageDetail;
+
+    @SerializedName("cartData")
+    @Expose
+    public List<CartDatumModel> cartData = null;
+
+    
+    @SerializedName("subTotalAmt")
+    @Expose
+    public String subTotalAmt;
+    @SerializedName("gstPercentage")
+    @Expose
+    public String gstPercentage;
+    @SerializedName("grandTotalAmt")
+    @Expose
+    public Integer grandTotalAmt;
 }
