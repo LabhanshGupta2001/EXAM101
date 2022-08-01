@@ -135,7 +135,7 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
 
      private  void getCartItem() {
          Dialog progressDialog=Utils.initProgressDialog(activity);
-        apiService.getCartList("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTA5MDE4Nn0.QCvlCA6xQdHknPfcTHC5tmXZo6j60bhtJb2uvg5R6pU").enqueue(new Callback<AllResponseModel>() {
+        apiService.getCartList(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -145,18 +145,11 @@ public class MyCartActivity extends BaseActivity implements View.OnClickListener
                         SGST=response.body().subTotalAmt;
                         subTotal=response.body().gstPercentage;
                         GrandTotal=response.body().grandTotalAmt;
-
-                        Utils.E("subTotal;;;;;;;;;"+subTotal);
-                        Utils.E("SGST;;;;;;;"+SGST);
-                        Utils.E("GrandTotal;;;;;"+GrandTotal);
                         binding.tvSubTotalId.setText(subTotal);
                         binding.tvSgst.setText(SGST);
                         binding.tvGrandtotal.setText(GrandTotal);
                         binding.tvGrandTotalBottom.setText(GrandTotal);
-
-                        Utils.E("Cartdata;;;;;"+response.body().cartData);
                         myCartModelArrayList.addAll(response.body().cartData);
-                        Utils.E("Cartdata;;;;;"+response.body().cartData);
                         binding.rvPackageListId.setHasFixedSize(true);
                         binding.rvPackageListId.setLayoutManager(new LinearLayoutManager(activity));
                         binding.rvPackageListId.setAdapter(new MyCartAdapter(activity, myCartModelArrayList));

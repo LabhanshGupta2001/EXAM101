@@ -136,6 +136,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
