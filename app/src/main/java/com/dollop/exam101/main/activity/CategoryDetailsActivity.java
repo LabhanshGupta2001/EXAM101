@@ -31,7 +31,6 @@ import com.dollop.exam101.databinding.ActivityCategoryDetailsBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
-import com.dollop.exam101.main.adapter.CategoryDetailSecondaryAdapter;
 import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.fragment.CategoriesFragment;
@@ -57,7 +56,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     public String examId = "";
     public String Price = "";
     public String languageId = "";
-    String ExamName = "",MinValue = "",MaxValue = "";
+    String ExamName = "", MinValue = "", MaxValue = "";
     int Positions;
     Activity activity = CategoryDetailsActivity.this;
     ActivityCategoryDetailsBinding binding;
@@ -79,6 +78,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         setContentView(binding.getRoot());
         init();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         Bundle bundle = getIntent().getExtras();
@@ -96,7 +96,6 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
             getCategoryDetails(examId);
             getCategoriesItemHeading();
         } else {
-            //Utils.InternetDialog(activity);
             InternetDialog();
         }
 
@@ -157,7 +156,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                     MaxValue = priceFragment.maxValue;
                 }
                 getCategoryDetails(examId);
-                Utils.E("ID:::::" + examId + "LId::" + languageId+"MValue::"+ priceFragment.minValue+"MaxValue::"+ priceFragment.maxValue);
+                Utils.E("ID:::::" + examId + "LId::" + languageId + "MValue::" + priceFragment.minValue + "MaxValue::" + priceFragment.maxValue);
 
                 bottomSheetFilter.cancel();
             }
@@ -287,17 +286,20 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     public void onClickedExamID(String s) {
 
     }
+
     @Override
     public void onClickedLanguageID(String s) {
 
     }
+
     @Override
     public void onClickedPrice(String s) {
 
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

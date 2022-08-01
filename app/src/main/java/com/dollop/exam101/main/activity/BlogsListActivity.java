@@ -57,16 +57,8 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     FilterSearchAdapter filterSearchAdapter;
     public int position;
     ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
-
-
     private final ArrayList<BlogListHeadingModel> blogsList = new ArrayList<>();
     private final ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
-
-    ItemBlogsHorizontalBinding itemBlogsHorizontalBinding;
-
-    ItemAllBlogsBinding itemAllBlogsBinding;
-    ArrayList<AllBlogListModel> allBlogListArrayList = new ArrayList<>();
-
     BottomSheetBlogShortBinding bottomSheetBlogShortBinding;
     BottomSheetBlogFilterBinding bottomSheetBlogFilterBinding;
 
@@ -75,13 +67,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityBlogsListBinding.inflate(getLayoutInflater());
-
-        itemAllBlogsBinding = ItemAllBlogsBinding.inflate(getLayoutInflater());
-        setContentView(itemAllBlogsBinding.getRoot());
-
-        itemBlogsHorizontalBinding = ItemBlogsHorizontalBinding.inflate(getLayoutInflater());
-        setContentView(itemBlogsHorizontalBinding.getRoot());
-
         setContentView(binding.getRoot());
         init();
 
@@ -89,14 +74,11 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
-
         apiService = RetrofitClient.getClient();
-
         if (AppController.getInstance().isOnline()) {
             getBlogsCategory(Constants.Key.blank);
             getBlogsData(Constants.Key.blank);
         } else {
-            //Utils.InternetDialog(activity);
             InternetDialog();
         }
 

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCategoryBinding;
 import com.dollop.exam101.main.activity.BlogsListActivity;
 import com.dollop.exam101.main.model.BlogListHeadingModel;
@@ -49,8 +50,9 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
         holder.binding.llParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUrlSlug);
+                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUuid);
                 ((BlogsListActivity)context).blogsListAdapter.pos = holder.getAdapterPosition();
+                Utils.E("FilterSearchAdapter::"+((BlogsListActivity)context).blogsListAdapter.pos);
                 ((BlogsListActivity)context).blogsListAdapter.notifyDataSetChanged();
                 ((BlogsListActivity)context).bottomSheetFilter.dismiss();
             }
