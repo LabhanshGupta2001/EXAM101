@@ -57,13 +57,13 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         Picasso.get().load(Const.HOST_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivStartCountryFlags);
         holder.binding.llItem.setOnClickListener(view -> {
             Position = holder.getAdapterPosition();
-            SavedData.saveCountryId(itemCountry.countryId);
+            SavedData.saveCountryUuId(itemCountry.uuid);
             SavedData.saveCountryKey(itemCountry.sortName);
             notifyDataSetChanged();
             if (Constants.Key.Login.equals(Where)){
-                ((SignUpActivity) context).onCountrySelected(itemCountry.countryId , itemCountry.countryName /*itemCountry.phoneCode, itemCountry.flag*/);
+                ((SignUpActivity) context).onCountrySelected(itemCountry.uuid , itemCountry.countryName /*itemCountry.phoneCode, itemCountry.flag*/);
             } else if (Constants.Key.EditProfile.equals(Where)){
-                ((EditProfileActivity) context).onCountrySelectedE(itemCountry.countryId , itemCountry.countryName /*itemCountry.phoneCode, itemCountry.flag*/);
+                ((EditProfileActivity) context).onCountrySelectedE(itemCountry.uuid , itemCountry.countryName /*itemCountry.phoneCode, itemCountry.flag*/);
             }
         });
         if (Constants.Key.Country_Code_Nan.equals(countryKey)){

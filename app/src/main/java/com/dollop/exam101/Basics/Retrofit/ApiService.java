@@ -33,7 +33,7 @@ public interface ApiService {
     Call<AllResponseModel> getCountryList();
 
     @GET(Const.getStateListApi)
-    Call<AllResponseModel> getStateList(@Query(Constants.Key.countryId) String countryId);
+    Call<AllResponseModel> getStateList(@Query(Constants.Key.countryUuId) String countryId);
 
     //EditProfile
     @GET(Const.getProfileDetailApi)

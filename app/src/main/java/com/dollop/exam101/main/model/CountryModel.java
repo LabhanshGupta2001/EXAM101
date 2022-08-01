@@ -19,6 +19,9 @@ public class CountryModel {
     @SerializedName("sortName")
     @Expose
     public String sortName;
+    @SerializedName("uuid")
+    @Expose
+    public String uuid;
     @SerializedName("currencySymbol")
     @Expose
     public String currencySymbol;
@@ -37,21 +40,4 @@ public class CountryModel {
     @SerializedName("unit")
     @Expose
     public String unit;
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "CountryModel{" +
-                "countryId='" + countryId + '\'' +
-                ", countryName='" + countryName + '\'' +
-                ", currencyCode='" + currencyCode + '\'' +
-                ", sortName='" + sortName + '\'' +
-                ", currencySymbol='" + currencySymbol + '\'' +
-                ", currencyName='" + currencyName + '\'' +
-                ", phoneCode='" + phoneCode + '\'' +
-                ", capital='" + capital + '\'' +
-                ", flag='" + flag + '\'' +
-                ", unit='" + unit + '\'' +
-                '}';
-    }
 }

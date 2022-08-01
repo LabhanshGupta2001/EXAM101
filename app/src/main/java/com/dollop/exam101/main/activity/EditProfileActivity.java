@@ -81,7 +81,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
     private final ArrayList<CountryModel> contryItemArrayList = new ArrayList<>();
     private final ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
-    String selectedCountryId = "", selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
+    String selectedCountryUuId = "", selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
     Activity activity = EditProfileActivity.this;
     ActivityEditProfileBinding binding;
     ApiService apiService;
@@ -165,7 +165,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.etEnterMobile.setOnClickListener(this);
         binding.tvSelectCountry.setOnClickListener(this);
         binding.tvSelectState.setOnClickListener(this);
-        binding.etSelectCity.setOnClickListener(this);
 
 
         binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -396,9 +395,9 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getState() {
-        Utils.E("getCountryId::" + SavedData.getCountryId());
+        Utils.E("getCountryUuId::" + SavedData.getCountryUuId());
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.getStateList(SavedData.getCountryId()).enqueue(new Callback<AllResponseModel>() {
+        apiService.getStateList(SavedData.getCountryUuId()).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -532,13 +531,14 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.tvSelectState.setText(Utils.GetSession().stateName);
         Picasso.get().load(Const.HOST_URL + Utils.GetSession().profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
         if (Utils.GetSession().countryName.equals(Constants.Key.blank)) {
-            binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
+          //  binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
+            binding.tvSelectCountry.setText(Constants.Key.India);
         } else {
             binding.tvSelectCountry.setText(Utils.GetSession().countryName);
         }
         if (Utils.GetSession().countryCode.equals(Constants.Key.blank)) {
-            //   binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
-            binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
+               binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
+            //binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
         } else {
             binding.tvCountryCodeId.setText(Utils.GetSession().countryCode);
         }
@@ -584,14 +584,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         });
     }
 
-    public void onCountrySelectedE(String countryId, String CountryName /*String countryCode, String flag*/) {
-        this.selectedCountryId = countryId;
+    public void onCountrySelectedE(String countryUuId, String CountryName /*String countryCode, String flag*/) {
+        this.selectedCountryUuId = countryUuId;
         this.selectedCountryName = CountryName;
-      /*  this.selectedCountryCode = countryCode;
-        this.selectedCountryFlag = flag;
-        binding.tvCountryCodeId.setText(selectedCountryCode);
-        Picasso.get().load(Const.HOST_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);*/
-        binding.tvSelectCountry.setText(selectedCountryName);
+        binding.tvSelectCountry.setText(Constants.Key.India);
         binding.tvSelectState.setText(Constants.Key.blank);
         bottomSheetDialog.dismiss();
     }

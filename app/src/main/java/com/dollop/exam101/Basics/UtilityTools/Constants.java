@@ -132,6 +132,8 @@ public class Constants {
         String  pending = "pending";
         String  verified = "verified";
         String couponCode = "couponCode";
-
+        String India = "India";
+        String DefaultCountryUuId = "d428a700-0bf7-11ed-9481-000c291151eb";
+        String countryUuId = "countryUuId";
     }
 }
