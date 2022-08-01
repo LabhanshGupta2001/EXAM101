@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:rsb="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".main.fragment.PriceFragment">
 
@@ -18,17 +18,15 @@
         android:theme="@style/QuaternaryLightSubTextStyle" />
 
 
-    <com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar
+    <com.google.android.material.slider.RangeSlider
         android:id="@+id/rangeSeekbar"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvPriceRange"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:indeterminate="false"
-        android:max="5000"
-        android:progress="500"/>
+        android:valueFrom="500"
+        android:valueTo="5000"
+        app:labelBehavior="withinBounds"
+        app:tickColor="@color/black" />
 
 
     <TextView
@@ -45,7 +43,6 @@
 
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tvPricePopup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,22 +53,23 @@
         android:fontFamily="@font/inter_regular"
         android:gravity="center"
         android:text="@string/_2500"
-        android:theme="@style/QuinaryWhiteTextStyle" />
+        android:theme="@style/QuinaryWhiteTextStyle"
+        android:visibility="gone" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tvPricePopuptwo"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rangeSeekbar"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_alignParentRight="true"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:fontFamily="@font/inter_regular"
+        android:layout_marginTop="@dimen/_4sdp"
         android:background="@drawable/ic_twofivezerozero"
-        android:text="@string/_2500"
+        android:fontFamily="@font/inter_regular"
         android:gravity="center"
-        android:theme="@style/QuinaryWhiteTextStyle" />
+        android:text="@string/_2500"
+        android:theme="@style/QuinaryWhiteTextStyle"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tvStartReatTwo"
@@ -86,10 +84,6 @@
         android:fontFamily="@font/inter_regular"
         android:text="@string/_5000"
         android:theme="@style/QuinaryTextStyle" />
-
-
-
-
 
 
 </RelativeLayout>
