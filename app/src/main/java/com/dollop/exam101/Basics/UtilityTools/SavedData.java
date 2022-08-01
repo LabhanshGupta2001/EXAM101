@@ -23,6 +23,7 @@ public class SavedData {
     private static final String longitude = "longitude";
     private static final String CountryKey = "CountryKey";
     private static final String CountryId = "CountryId";
+    private static final String CountryUuId = "CountryUuId";
     private static final String Shared = "Shared";
     public static SharedPreferences getInstance() {
         if (prefs == null) {
@@ -54,7 +55,7 @@ public class SavedData {
         editor.apply();
     }
     public static String getCountryKey(Context context) {
-        return getInstance().getString(CountryKey, Utils.getDefaultCountryCode(context).Region);
+        return getInstance().getString(CountryKey, Constants.Key.Default_Country_Code);
     }
 
     public static void saveCountryKey(String key) {
@@ -71,12 +72,12 @@ public class SavedData {
         editor.putString(ReferralCode, token);
         editor.apply();
     }
-    public static String getCountryId() {
-        return getInstance().getString(CountryId, Constants.Key.Country_Id);
+    public static String getCountryUuId() {
+        return getInstance().getString(CountryUuId, Constants.Key.DefaultCountryUuId);
     }
-    public static void saveCountryId(String Id) {
+    public static void saveCountryUuId(String Id) {
         SharedPreferences.Editor editor = getInstance().edit();
-        editor.putString(CountryId, Id);
+        editor.putString(CountryUuId, Id);
         editor.apply();
     }
 

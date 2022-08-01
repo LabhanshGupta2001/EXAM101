@@ -108,7 +108,7 @@
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
-                    android:hint="@string/email_gmail_com"
+                    android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true"
@@ -121,7 +121,7 @@
                     app:cardCornerRadius="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_14sdp"
                     app:cardBackgroundColor="@color/white"
-                    android:elevation="0dp"
+                    app:cardElevation="0dp"
                     app:strokeColor="@color/HorizontallineColor"
                     app:strokeWidth="@dimen/_1sdp">
 
@@ -190,7 +190,7 @@
                             android:layout_weight=".7"
                             android:background="@null"
                             android:fontFamily="@font/inter_regular"
-                            android:hint="@string/enter_mobile_no"
+                            android:hint="@string/mobile_no"
                             android:inputType="number"
                             android:maxLength="16"
                             android:paddingVertical="@dimen/_4sdp"
@@ -205,7 +205,6 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
@@ -237,7 +236,7 @@
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_regular"
-                    android:hint="@string/select_country"
+                    android:hint="@string/country"
                     android:padding="@dimen/_12sdp"
                     tools:ignore="Autofill,TextViewEdits" />
 
@@ -249,7 +248,7 @@
                     android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
-                    android:hint="@string/select_state"
+                    android:hint="@string/state"
                     android:padding="@dimen/_12sdp"
                     tools:ignore="Autofill" />
 

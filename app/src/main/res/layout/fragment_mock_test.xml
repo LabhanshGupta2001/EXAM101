@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".main.fragment.MockTestFragment">
 
@@ -12,5 +12,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/rvMockTestList"
         android:overScrollMode="never"
-        android:paddingBottom="@dimen/_12sdp"/>
+        android:layout_marginTop="@dimen/_6sdp"
+        />
 </LinearLayout>

@@ -460,6 +460,10 @@
     <string name="my_packages">My Packages</string>
     <string name="enter_bank_account_type">Enter Bank account type</string>
     <string name="repurchase">Repurchase</string>
+    <string name="email_address">Email address..</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="mobile_no">Mobile No..</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

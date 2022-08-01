@@ -204,7 +204,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/llInvoice"
+                    android:id="@+id/llDetails"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".4"

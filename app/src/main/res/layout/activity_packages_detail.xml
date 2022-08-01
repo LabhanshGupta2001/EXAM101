@@ -29,6 +29,7 @@
 
 
         <TextView
+            android:id="@+id/tvTilttle"
             style="@style/TernaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,6 +93,8 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tvFirst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
@@ -99,6 +102,7 @@
                     android:theme="@style/QuinaryThemeTextStyle" />
 
                 <TextView
+                    android:id="@+id/tvHeadings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
@@ -120,6 +124,7 @@
                         android:text="₹" />
 
                     <TextView
+                        android:id="@+id/tvPriceGreat"
                         style="@style/TertialThemeHeadingTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,6 +133,7 @@
                         android:text="@string/_3000" />
 
                     <TextView
+                        android:id="@+id/tvPriceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -146,6 +152,8 @@
                     android:background="@color/HorizontallineColor" />
 
                 <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tvDates"
                     style="@style/QuinarySubTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -155,6 +163,7 @@
                     app:drawableStartCompat="@drawable/ic_calender" />
 
                 <TextView
+                    android:id="@+id/tvDescription"
                     style="@style/QuinarySubTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -176,6 +185,7 @@
                         android:src="@drawable/ic_staricon" />
 
                     <TextView
+                        android:id="@+id/tvRatingCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/_2sdp"
@@ -185,6 +195,7 @@
                         android:theme="@style/QuaternaryThemeHeadingTextStyle" />
 
                     <TextView
+                        android:id="@+id/tvratingDescprition"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/_2sdp"
@@ -229,8 +240,82 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/ViewPagerPackageDetailId"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        style="@style/TernaryTextStyle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tlPackageDetailTabLayoutId" />
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/lineColor"
+                        android:fontFamily="@font/gothic_bold"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_8sdp"
+                        android:text="@string/overview" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvOverView"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/_4sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        />
+                    <TextView
+                        android:id="@+id/tvDetail"
+                        style="@style/QuinarySubTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/lineColor"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_12sdp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/gothic_bold"
+                            android:text="@string/rating_and_reviews"
+                            android:theme="@style/TernaryBlackTextStyle"
+                            tools:ignore="InefficientWeight" />
+
+
+                        <TextView
+                            android:id="@+id/tvRateId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="@string/rate_now"
+                            android:theme="@style/QuinaryThemeTextStyle" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:contentDescription="@string/image"
+                            android:src="@drawable/ic_theemrightarrow"
+
+                            />
+
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvRatingId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never" />
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>
@@ -248,8 +333,8 @@
         android:weightSum="1">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
             android:id="@+id/mcvAddtoWishlist"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_12sdp"
@@ -272,6 +357,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
+            android:id="@+id/AddtoCart"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_7sdp"

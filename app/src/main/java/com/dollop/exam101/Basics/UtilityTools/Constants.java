@@ -78,7 +78,8 @@ public class Constants {
         String countryId = "countryId";
         String BlogId = "BlogId";
         String packageId = "packageId";
-        String packageUuId = "packageUuId";
+        String packageUuid = "packageUuid";
+        String languageUuId = "languageUuId";
         String review = "review";
         String rating = "rating";
 
@@ -93,6 +94,7 @@ public class Constants {
         String Cancel = "Cancel";
         String Data = "data";
         String examId = "examId";
+        String examName = "examName";
         String languageId = "languageId";
         String discountedPriceStart = "discountedPriceStart";
         String discountedPriceEnd = "discountedPriceEnd";
@@ -130,6 +132,8 @@ public class Constants {
         String  pending = "pending";
         String  verified = "verified";
         String couponCode = "couponCode";
-
+        String India = "India";
+        String DefaultCountryUuId = "d428a700-0bf7-11ed-9481-000c291151eb";
+        String countryUuId = "countryUuId";
     }
 }

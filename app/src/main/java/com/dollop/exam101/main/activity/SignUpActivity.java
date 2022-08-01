@@ -106,7 +106,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             //Utils.InternetDialog(activity);
             InternetDialog();
         }
-        binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
+        //binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
+        binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
         binding.SignUPId.setOnClickListener(this);
         binding.tvRegisterId.setOnClickListener(this);
         binding.llLoginWithGoogle.setOnClickListener(this);
@@ -115,7 +116,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         binding.tvSelectState.setOnClickListener(this);
         binding.llCountryCode.setOnClickListener(this);
         binding.tvRegisterId.setOnClickListener(this);
-        binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
+        binding.tvSelectCountry.setText(Constants.Key.India);
 
         binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -366,8 +367,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setSkipCollapsed(true);
         if (AppController.getInstance().isOnline()) {
-
-            getState(selectedCountryId);
+            getState(Constants.Key.DefaultCountryUuId);
         } else {
            // Utils.InternetDialog(activity);
             InternetDialog();
@@ -399,8 +399,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         hm.put(Constants.Key.studentEmail, binding.etUserEmail.getText().toString().trim());
         hm.put(Constants.Key.password, binding.etPassword.getText().toString().trim());
         hm.put(Constants.Key.studentMobileNo, binding.etEnterMobile.getText().toString().trim());
-        hm.put(Constants.Key.countryCode, Constants.Key.Default_Country_Code);
-        hm.put(Constants.Key.countryName, selectedCountryName);
+        hm.put(Constants.Key.countryCode, binding.tvCountryCodeId.getText().toString().trim());
+        hm.put(Constants.Key.countryName, binding.tvSelectCountry.getText().toString().trim());
         hm.put(Constants.Key.stateName, selectedState);
         hm.put(Constants.Key.fcmId, fcmid);
 
