@@ -41,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BlogDetailActivity extends BaseActivity implements View.OnClickListener {
+public class    BlogDetailActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = BlogDetailActivity.this;
     ActivityBlogDetailBinding binding;
     ApiService apiService;

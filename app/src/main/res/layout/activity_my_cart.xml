@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:paddingBottom="@dimen/_12sdp"
-                tools:listitem="@layout/item_my_cart"/>
+            />
 
             <View
                 android:id="@+id/view"
@@ -275,7 +275,9 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginVertical="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_5sdp"
-                app:strokeColor="@color/HorizontallineColor">
+                app:strokeWidth="@dimen/_1sdp"
+                app:strokeColor="@color/HorizontallineColor"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -290,7 +292,6 @@
                         android:layout_marginTop="@dimen/_8sdp">
 
                         <TextView
-                            android:id="@+id/tvSubTotal_Id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_medium"
@@ -298,6 +299,7 @@
                             android:theme="@style/QuaternaryLightSubTextStyle" />
 
                         <TextView
+                            android:id="@+id/tvSubTotal_Id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -322,6 +324,7 @@
                             android:theme="@style/QuaternaryLightSubTextStyle" />
 
                         <TextView
+                            android:id="@+id/tvSgst"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -376,6 +379,7 @@
                             android:theme="@style/QuaternaryLightTextStyle" />
 
                         <TextView
+                            android:id="@+id/tvGrandtotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -404,6 +408,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvGrandTotalBottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

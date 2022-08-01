@@ -161,7 +161,7 @@ public interface ApiService {
 
     @GET(Const.getReviewRatingListApi)
     Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
-                                                                  @Query(Constants.Key.packageUuId) String packageUuid );
+                                                                  @Query(Constants.Key.packageUuid) String packageUuid );//
 
 
     @GET(Const.AllResults)
@@ -221,12 +221,21 @@ public interface ApiService {
     @GET(Const.login_history)
     Call<AllResponseModel> getloginHistory(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.get_cart)
-    Call<AllResponseModel> getCartList(@FieldMap HashMap<String, String> hm);
+    @GET(Const.getCartDetailApi)
+    Call<AllResponseModel> getCartList(@Header(Constants.Key.Authorization) String token);
+
+    @GET(Const.getPackageDetailApi)
+    Call<AllResponseModel> getPackageDetailApi(@Header(Constants.Key.Authorization) String token,
+                                               @Query(Constants.Key.packageUuid) String packageUuid);
 
     @FormUrlEncoded
     @POST(Const.addToWishListApi)
     Call<AllResponseModel> addWishlist(@Header(Constants.Key.Authorization) String token,
+                                       @FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.addToCartApi)
+    Call<AllResponseModel> addCart(@Header(Constants.Key.Authorization) String token,
                                        @FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded

@@ -78,7 +78,8 @@ public class Constants {
         String countryId = "countryId";
         String BlogId = "BlogId";
         String packageId = "packageId";
-        String packageUuId = "packageUuId";
+        String packageUuid = "packageUuid";
+        String languageUuId = "languageUuId";
         String review = "review";
         String rating = "rating";
 

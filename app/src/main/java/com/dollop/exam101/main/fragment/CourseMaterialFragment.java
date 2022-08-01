@@ -47,10 +47,9 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     Activity activity;
     FragmentCourseMaterialBinding binding;
     String packageUuid;
-    ArrayList<ReviewRatingModel> reviewRatingModels = new ArrayList<>();
     ArrayList<String> list = new ArrayList<>();
     ApiService apiService;
-    BottomSheetDialog bottomSheetDialog;
+
 
     public CourseMaterialFragment(String packageUuid) {
         Utils.E("PackageId:::" + packageUuid);
@@ -70,7 +69,6 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-        binding.tvRateId.setOnClickListener(this);
         list.clear();
         list.add("1");
         list.add("1");
@@ -82,119 +80,12 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         binding.rvFirst.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvFirst.setAdapter(new PakageDetailPrimaryAdapter(getContext(), list));
 
-        binding.rvOverView.setNestedScrollingEnabled(false);
-        binding.rvOverView.setHasFixedSize(true);
-        binding.rvOverView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvOverView.setAdapter(new OverviewCourseDetailsAdapter(getContext(), list));
-        if (AppController.getInstance().isOnline()) {
-
-            GetPackageDetailsMockTestListRatingNow();
-        } else {
-            InternetDialog();
-            //Utils.InternetDialog(activity);
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
-        if (view == binding.tvRateId) {
-            if (AppController.getInstance().isOnline()) {
-                rateNowBottomSheet();
-            } else {
-                //Utils.InternetDialog(activity);
-                InternetDialog();
-            }
-        }
-    }
 
-    private void rateNowBottomSheet() {
-
-        bottomSheetDialog = new BottomSheetDialog(activity);
-        BottomSheetRatenowBinding bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
-        bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
-        bottomSheetDialog.show();
-        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view ->
-                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString()));
-    }
-
-
-    private void GetPackageDetailsMockTestListRatingNow() {
-        Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.getPackageDetailsMockTestListRatingNow(Utils.GetSession().token, packageUuid).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                progressDialog.dismiss();
-                try {
-                    if (response.code() == StatusCodeConstant.OK) {
-                        reviewRatingModels.clear();
-                        assert response.body() != null;
-                        reviewRatingModels.addAll(response.body().reviewRatingModel);
-                        binding.rvRatingId.setLayoutManager(new LinearLayoutManager(activity));
-                        binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(activity, reviewRatingModels));
-
-                    } else {
-                        assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            Utils.T(activity, message.message);
-                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
-                            Utils.UnAuthorizationToken(activity);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-                call.cancel();
-                t.printStackTrace();
-                progressDialog.dismiss();
-            }
-        });
-    }
-
-
-    private void addRatingReview(Float rating, String review) {
-        Dialog progressDialog = Utils.initProgressDialog(activity);
-        HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.packageUuId, packageUuid);
-        hm.put(Constants.Key.rating, String.valueOf(rating));
-        hm.put(Constants.Key.review, review);
-        apiService.addRatingReview(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                progressDialog.dismiss();
-                try {
-                    if (response.code() == StatusCodeConstant.OK) {
-                        assert response.body() != null;
-                        bottomSheetDialog.dismiss();
-                    } else {
-                        assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            Utils.T(activity, message.message);
-                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
-                            Utils.UnAuthorizationToken(activity);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-                call.cancel();
-                t.printStackTrace();
-                progressDialog.dismiss();
-                Utils.E("getMessage::" + t.getMessage());
-            }
-        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
