@@ -31,7 +31,7 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
     Activity activity = MyWishlistActivity.this;
     ActivityMyWishlistBinding binding;
     ApiService apiService;
-    ArrayList<WishListModel> wishList = new ArrayList<>();
+    ArrayList<WishListModel> wishLists = new ArrayList<>();
     MyWishListAdapter myWishListAdapter;
 
     @Override
@@ -46,7 +46,7 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
     private void init() {
         apiService = RetrofitClient.getClient();
 
-        myWishListAdapter = new MyWishListAdapter(activity, wishList);
+        myWishListAdapter = new MyWishListAdapter(activity, wishLists);
         binding.rvWishList.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvWishList.setAdapter(myWishListAdapter);
 
@@ -83,10 +83,17 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    if (response.body().wishList.isEmpty()) {
+                        binding.rvWishList.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.rvWishList.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        wishList.clear();
-                        wishList.addAll(response.body().wishList);
+                        wishLists.clear();
+                        wishLists.addAll(response.body().wishList);
                         myWishListAdapter.notifyDataSetChanged();
                     } else {
                         assert response.errorBody() != null;

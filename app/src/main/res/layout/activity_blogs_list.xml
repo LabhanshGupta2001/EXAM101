@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/white"
+        android:orientation="horizontal"
         android:elevation="@dimen/_3sdp"
+        android:weightSum="1"
         android:gravity="center_vertical"
         android:padding="@dimen/_4sdp">
 
@@ -25,11 +27,26 @@
 
         <TextView
             style="@style/TernaryTextStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/gothic_bold"
             android:text="@string/blogs" />
+
+        <TextView
+            android:id="@+id/llBtnFilter"
+            style="@style/SenaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:background="@drawable/grey_stroke_background"
+            android:drawableStart="@drawable/ic_filtericon"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/inter_medium"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_6sdp"
+            android:text="@string/filter" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -100,7 +117,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+      <!--  <LinearLayout
             android:id="@+id/llBtnFilter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -123,7 +140,7 @@
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/filter" />
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
 </RelativeLayout>

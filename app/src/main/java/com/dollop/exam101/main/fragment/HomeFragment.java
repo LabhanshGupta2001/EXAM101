@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -57,8 +58,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
     String Token;
-    PriceFragment priceFragment;
-    DashboardScreenActivity dashboardScreenActivity;
     Activity activity;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();

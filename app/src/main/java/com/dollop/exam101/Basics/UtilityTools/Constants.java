@@ -43,6 +43,7 @@ public class Constants {
         String blank = "";
         String Country_Id = "101";
         String Default_Country_Code = "+91";
+        String Default_Country_Region = "IN";
         String english = "en";
         String Pleas_Select_Country = "Pleas Select Country";
 

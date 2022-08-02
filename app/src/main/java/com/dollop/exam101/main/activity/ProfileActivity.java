@@ -37,6 +37,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+        setData();
         if (SavedData.getBankStatus().equals(Constants.Key.pending)) {
             binding.llRequestAffilation.setVisibility(View.GONE);
             binding.llRequestPendingCode.setVisibility(View.VISIBLE);
@@ -55,9 +56,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void init() {
-        binding.tvUserName.setText(Utils.GetSession().studentName);
-        binding.tvUserEmail.setText(Utils.GetSession().studentEmail);
-        Utils.Picasso(Utils.GetSession().profilePic,binding.ivProfile, R.drawable.dummy);
+        setData();
         binding.ivBack.setOnClickListener(this);
         binding.llOderHistory.setOnClickListener(this);
         binding.llEditProfile.setOnClickListener(this);
@@ -74,6 +73,11 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         binding.tvInviteFriends.setOnClickListener(this);
 
 
+    }
+    private void setData(){
+        binding.tvUserName.setText(Utils.GetSession().studentName);
+        binding.tvUserEmail.setText(Utils.GetSession().studentEmail);
+        Utils.Picasso(Utils.GetSession().profilePic,binding.ivProfile, R.drawable.dummy);
     }
 
     @Override
