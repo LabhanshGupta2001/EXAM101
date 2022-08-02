@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/range_thumb.xml" value="0.187" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20364583333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18020833333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.18802083333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_price.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.22" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.20364583333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/no_result_found.xml" value="0.18020833333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_login_history.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_mock_test_history.xml" value="0.20416666666666666" />
@@ -122,6 +134,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_back.xml" value="0.1775" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_examicon.xml" value="0.1775" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_googleicon.xml" value="0.1395" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_home_icon.xml" value="0.208" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_logout.xml" value="0.142" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_packages_icon.xml" value="0.208" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_shopping_cart_trolly.xml" value="0.208" />
@@ -142,7 +155,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_course_test.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_courses_detail.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_courses_material.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.4" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.2" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_faqs.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
@@ -192,7 +205,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.4" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_category_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_exam_filter.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.3973288814691152" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_language.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_price.xml" value="0.25416666666666665" />

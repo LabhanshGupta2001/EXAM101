@@ -333,8 +333,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         countryAdapter = new CountryAdapter(activity, contryItemArrayList, countryKey, Constants.Key.Login);
         bottomSheetCountryBinding.rvCountryListId.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
         bottomSheetCountryBinding.rvCountryListId.setAdapter(countryAdapter);
-
-
         bottomSheetCountryBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -348,7 +346,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 return false;
             }
         });
-
         bottomSheetDialog.show();
 
     }
@@ -358,7 +355,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         bottomSheetStateDialog = new BottomSheetDialog(activity);
         bottomSheetStateBinding = BottomSheetStateBinding.inflate(getLayoutInflater());
         bottomSheetStateDialog.setContentView(bottomSheetStateBinding.getRoot());
-
 
         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetStateBinding.getRoot().getParent()));
         bottomSheetStateDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -372,14 +368,12 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
            // Utils.InternetDialog(activity);
             InternetDialog();
         }
-
         bottomSheetStateBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 stateAdapter.getFilter().filter(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 stateAdapter.getFilter().filter(newText);

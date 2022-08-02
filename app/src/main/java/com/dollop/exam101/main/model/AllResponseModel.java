@@ -73,7 +73,8 @@ public class AllResponseModel {
 
     @SerializedName("reviewRating")
     @Expose
-    public List<ReviewRatingModel> reviewRatingModel = null;
+    public List<ReviewRating> reviewRating = null;
+
 
     @SerializedName("languages")
     @Expose
@@ -87,14 +88,19 @@ public class AllResponseModel {
     @Expose
     public List<CartDatumModel> cartData = null;
 
-    
     @SerializedName("subTotalAmt")
     @Expose
     public String subTotalAmt;
+
     @SerializedName("gstPercentage")
     @Expose
     public String gstPercentage;
+
     @SerializedName("grandTotalAmt")
     @Expose
-    public Integer grandTotalAmt;
+    public Double grandTotalAmt;
+
+    @SerializedName("wishList")
+    @Expose
+    public List<WishListModel> wishList = null;
 }

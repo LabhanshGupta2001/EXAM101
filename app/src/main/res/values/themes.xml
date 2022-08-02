@@ -16,6 +16,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:windowDisablePreview">true</item>
+        <item name="sliderStyle">@style/Widget.App.Slider</item>
         <item name="android:autofilledHighlight" tools:targetApi="o">@android:color/transparent
         </item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
@@ -526,5 +527,47 @@
     <style name="QuaternaryHeadingFullBlackTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/full_black</item>
         <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <!-- Customize rangeSlider.~Ak -->
+    <style name="Widget.App.Slider" parent="Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Slider</item>
+        <item name="labelStyle">@style/Widget.App.Tooltip</item>
+    </style>
+
+    <style name="ThemeOverlay.Slider" parent="">
+        <item name="colorPrimary">@color/theme</item>
+        <item name="colorOnPrimary">@color/theme</item>
+        <item name="colorOnSurface">@color/theme</item>
+    </style>
+
+    <style name="Widget.App.Tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="android:textAppearance">@style/TextAppearance.App.Tooltip</item>
+        <item name="backgroundTint">@color/theme</item>
+        <item name="android:visibility">visible</item>
+        <item name="shapeAppearanceOverlay">@style/tooltipShOverylay</item>
+    </style>
+
+    <style name="TextAppearance.App.Tooltip" parent="TextAppearance.MaterialComponents.Tooltip">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="tooltipShOverylay">
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+
+    //calendar
+    <style name="CalendarDataTextStyle" parent="android:TextAppearance.DeviceDefault">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+    </style>
+
+    <style name="CalendarWeeksTextStyle" parent="android:TextAppearance.DeviceDefault">
+        <item name="android:textColor">@color/sub_text</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
     </style>
 </resources>

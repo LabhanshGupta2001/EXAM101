@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -31,6 +33,7 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
+import com.dollop.exam101.main.activity.DashboardScreenActivity;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
 import com.dollop.exam101.main.adapter.NewsAdapter;
@@ -50,14 +53,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HomeFragment extends Fragment {
-    public static String Price = "";
-    private static String ExamId = "";
-    private static String LanguageId = "";
+public class HomeFragment extends Fragment implements View.OnClickListener {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
     String Token;
     PriceFragment priceFragment;
+    DashboardScreenActivity dashboardScreenActivity;
     Activity activity;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
@@ -65,6 +66,12 @@ public class HomeFragment extends Fragment {
     ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
     CountDownTimer countDownTimer = null;
+
+    BannerAdapter bannerAdapter;
+    PackageAdapter packageAdapter;
+    NewsAdapter newsAdapter;
+    CourseAdapter courseAdapter;
+
     private final Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
@@ -84,11 +91,6 @@ public class HomeFragment extends Fragment {
             }
         }
     };
-    BannerAdapter bannerAdapter;
-    PackageAdapter packageAdapter;
-    NewsAdapter newsAdapter;
-    CourseAdapter courseAdapter;
-
 
     public HomeFragment() {
     }
@@ -102,8 +104,7 @@ public class HomeFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         init();
         return binding.getRoot();
@@ -116,9 +117,10 @@ public class HomeFragment extends Fragment {
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
         if (AppController.getInstance().isOnline()) {
-
             getExamList();
             getTopTen();
+
+            binding.tvViewAll.setOnClickListener(this);
         } else {
             //Utils.InternetDialog(activity);
             InternetDialog();
@@ -288,5 +290,12 @@ public class HomeFragment extends Fragment {
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == binding.tvViewAll){
+            ((DashboardScreenActivity)activity).navController.navigate(R.id.bottom_packages);
+        }
     }
 }

@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemWishlistBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.WishListModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.MyHolder> {
     Context context;
-    List<String> list;
+    List<WishListModel> Wishlist;
 
 
-    public MyWishListAdapter(Context context, ArrayList<String> list) {
+    public MyWishListAdapter(Context context, ArrayList<WishListModel> list) {
         this.context = context;
-        this.list = list;
+        this.Wishlist = list;
     }
 
     @NonNull
@@ -32,14 +33,20 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.My
         return new MyHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
-
+        WishListModel wishListModel = Wishlist.get(position);
+        holder.binding.tvActhualPrise.setText(wishListModel.actualPrice);
+        holder.binding.tvRupees.setText("₹"+wishListModel.discountedPrice);
+        holder.binding.tvPowerPointId.setText(wishListModel.packageName);
+        holder.binding.tvFundamentalDesignId.setText(wishListModel.shortDesc);
+        holder.binding.tvRating.setText(wishListModel.rating);
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return Wishlist.size();
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {

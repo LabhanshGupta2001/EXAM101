@@ -39,6 +39,7 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
     ApiService apiService;
     Activity activity;
     FragmentCategoryHomeBinding binding;
+    CategoryHomeAdapter categoryHomeAdapter;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -55,6 +56,9 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
+        binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
+        categoryHomeAdapter = new CategoryHomeAdapter(getContext(), courseModelArrayList);
+        binding.rvCategories.setAdapter(categoryHomeAdapter);
         if (AppController.getInstance().isOnline()) {
             CategoriesHomeAllExamList();
         } else {
@@ -87,8 +91,7 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
                         assert response.body() != null;
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
-                        binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
-                        binding.rvCategories.setAdapter(new CategoryHomeAdapter(getContext(), courseModelArrayList));
+                        categoryHomeAdapter.notifyDataSetChanged();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

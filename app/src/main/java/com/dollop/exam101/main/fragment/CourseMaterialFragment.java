@@ -29,18 +29,9 @@ import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
 import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
-import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
-import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.ReviewRatingModel;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class CourseMaterialFragment extends Fragment implements View.OnClickListener {

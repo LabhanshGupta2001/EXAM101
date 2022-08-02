@@ -74,6 +74,7 @@ public class Const {
     public static final String getProfileDetailApi = "getProfileDetailApi";
     public static final String updateProfileApi = "updateProfileApi";
     public static final String socialLoginApi = "socialLoginApi";
+    public static final String getStudentWishListApi = "getStudentWishListApi";
 
     public static final String forgotPasswordApi = "forgotPasswordApi";
     public static final String getPackageDetails = "getPakageDetails";
@@ -87,4 +88,5 @@ public class Const {
     public static final String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
     public static final String getTermConditionApi = "getTermConditionApi";
     public static final String applyCouponCodeApi = "applyCouponCodeApi";
+    public static final String removeFromCartApi = "removeFromCartApi";
 }

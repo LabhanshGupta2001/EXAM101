@@ -3,19 +3,18 @@ package com.dollop.exam101.Basics.Retrofit;
 
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import java.util.HashMap;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
-import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -28,7 +27,7 @@ import retrofit2.http.QueryMap;
  */
 public interface ApiService {
 
-// Nilesh..
+    // Nilesh..
     @GET(Const.getCountryListApi)
     Call<AllResponseModel> getCountryList();
 
@@ -66,9 +65,13 @@ public interface ApiService {
    /* @GET(Const.getPackageListWithFilterApi)
     Call<AllResponseModel> examPackageListItem(@Header(Constants.Key.Authorization) String token,
                                                @Query(Constants.Key.examId) String examId)*/;
+
     @GET(Const.getLanguageApi)
     Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
 
+
+    @GET(Const.getStudentWishListApi)
+    Call<AllResponseModel> getWishList(@Header(Constants.Key.Authorization) String token);
 
 //______________________________********************___________________________________________//
 
@@ -161,7 +164,7 @@ public interface ApiService {
 
     @GET(Const.getReviewRatingListApi)
     Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
-                                                                  @Query(Constants.Key.packageUuid) String packageUuid );//
+                                                                  @Query(Constants.Key.packageUuId) String packageUuid);//
 
 
     @GET(Const.AllResults)
@@ -226,7 +229,7 @@ public interface ApiService {
 
     @GET(Const.getPackageDetailApi)
     Call<AllResponseModel> getPackageDetailApi(@Header(Constants.Key.Authorization) String token,
-                                               @Query(Constants.Key.packageUuid) String packageUuid);
+                                               @Query(Constants.Key.packageUuId) String packageUuid);
 
     @FormUrlEncoded
     @POST(Const.addToWishListApi)
@@ -236,12 +239,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Const.addToCartApi)
     Call<AllResponseModel> addCart(@Header(Constants.Key.Authorization) String token,
-                                       @FieldMap HashMap<String, String> hm);
+                                   @FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
     @POST(Const.addReviewRatingApi)
     Call<AllResponseModel> addRatingReview(@Header(Constants.Key.Authorization) String token,
-                                       @FieldMap HashMap<String, String> hm);
+                                           @FieldMap HashMap<String, String> hm);
 
     @GET(Const.notification)
     Call<AllResponseModel> getNotification(@FieldMap HashMap<String, String> hm);
@@ -268,11 +271,13 @@ public interface ApiService {
     @GET(Const.transaction)
     Call<AllResponseModel> getTransactionHistory(@FieldMap HashMap<String, String> hm);
 
-
-
     //Dashboard
 
     @GET(Const.getExamListApi)
     Call<AllResponseModel> Examlist(@Header(Constants.Key.Authorization) String token);
+
+
+    @GET(Const.removeFromCartApi)
+    Call<AllResponseModel> removeFromCart(@Header(Constants.Key.Authorization) String token, @Query(Constants.Key.cartUuId) String cartUuId);
 
 }

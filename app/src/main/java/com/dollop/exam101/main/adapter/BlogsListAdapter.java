@@ -23,15 +23,12 @@ import java.util.ArrayList;
 public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder>{
     Context context;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
-    public int pos=0;
+    public int pos=-1;
 
     public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
         this.context = context;
         this.blogListHeadingModelArrayList = blogListHeadingModelArrayList;
     }
-
-
-
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,7 +41,6 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
 
         BlogListHeadingModel blogListHeadingModel = blogListHeadingModelArrayList.get(position);
         holder.binding.tvBlogHeading.setText(blogListHeadingModel.blogCatName);
-
         holder.binding.tvBlogHeading.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

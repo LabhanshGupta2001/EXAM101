@@ -90,13 +90,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_10sdp">
+            android:layout_marginVertical="@dimen/_6sdp">
 
             <TextView
                 android:id="@+id/tvTop"
                 style="@style/HomeHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="@string/top" />
 
             <TextView
@@ -104,6 +105,7 @@
                 style="@style/HomeHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginHorizontal="@dimen/_3sdp"
                 android:layout_toRightOf="@id/tvTop"
                 android:text="10" />
@@ -112,24 +114,21 @@
                 style="@style/HomeHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/tvPackagesItem"
                 android:text="@string/packages" />
 
             <TextView
+                android:id="@+id/tvViewAll"
                 style="@style/QuaternaryThemeHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/ivArrow"
-                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_alignParentEnd="true"
+                android:drawableRight="@drawable/ic_arrowicon"
+                android:drawablePadding="@dimen/_6sdp"
+                android:paddingVertical="@dimen/_4sdp"
                 android:text="@string/view_all" />
 
-            <ImageView
-                android:id="@+id/ivArrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_arrowicon" />
         </RelativeLayout>
 
         <LinearLayout
@@ -515,11 +514,19 @@
             android:layout_height="wrap_content"
             android:background="@color/white">
 
+            <!--  <CalendarView
+                  android:id="@+id/cvCalendar"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent" /> -->
             <CalendarView
-                android:id="@+id/cvCalendar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:dateTextAppearance="@style/CalendarDataTextStyle"
+                android:weekDayTextAppearance="@style/CalendarWeeksTextStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
         <View
