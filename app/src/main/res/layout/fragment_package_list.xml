@@ -64,6 +64,10 @@
             </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
 
+        <include
+            android:id="@+id/dataNoFoundId"
+            layout="@layout/no_result_found"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPackagesone"
@@ -74,11 +78,6 @@
             android:paddingBottom="@dimen/_12sdp"
             android:visibility="visible" />
 
-
-        <include
-            android:id="@+id/noResultFoundId"
-            layout="@layout/no_result_found"
-            android:visibility="gone" />
     </LinearLayout>
 
 

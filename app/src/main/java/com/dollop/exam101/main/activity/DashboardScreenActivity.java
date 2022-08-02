@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -39,9 +40,10 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     AppBarConfiguration appBarConfiguration;
     Activity activity = DashboardScreenActivity.this;
     ActivityDashboardScreenBinding binding;
-    NavHeaderDashboardBinding navHeaderDashboardBinding;
+    public NavHeaderDashboardBinding navHeaderDashboardBinding;
     GoogleSignInClient mGoogleSignInClient;
     ApiService apiService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +56,14 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
     @SuppressLint("ResourceAsColor")
     void init() {
+        navHeaderDashboardBinding = NavHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
         navigationSetup();
         apiService = RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
         //binding.ivProfile.setOnClickListener(this);
-        binding.ivNotification.setOnClickListener(this);
-        binding.ivSearch.setOnClickListener(this);
+        binding.llNotification.setOnClickListener(this);
+       // binding.ivSearch.setOnClickListener(this);
 
-        navHeaderDashboardBinding = NavHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
         navHeaderDashboardBinding.llLogout.setOnClickListener(this);
         navHeaderDashboardBinding.llAbout.setOnClickListener(this);
@@ -96,12 +98,24 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                                              @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
                 switch (navDestination.getId()) {
                     case R.id.bottom_home:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.theme));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.theme));
+                        binding.bottomNavigationView.setVisibility(View.VISIBLE);
+                        binding.appBarLayout.setVisibility(View.VISIBLE);
+                        break;
                     case R.id.bottom_category:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
+                        break;
                     case R.id.bottom_packages:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
                         binding.bottomNavigationView.setVisibility(View.VISIBLE);
                         binding.appBarLayout.setVisibility(View.VISIBLE);
                         break;
                     case R.id.bottom_cart:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
                         binding.bottomNavigationView.setVisibility(View.GONE);
                         binding.appBarLayout.setVisibility(View.GONE);
                         break;
@@ -133,15 +147,15 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.ivNotification) {
+        if (view == binding.llNotification) {
             Utils.I(activity, NotificationActivity.class, null);
         }
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.ivSearch) {
+       /* if (view == binding.ivSearch) {
             Utils.I(activity, SearchHistoryActivity.class, null);
-        }
+        }*/
 
         if (view == binding.navigationView.getHeaderView(0)) {
             Utils.I(activity, ProfileActivity.class, null);
@@ -207,7 +221,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == navHeaderDashboardBinding.llFaq) {
             Utils.I(activity, FaqsActivity.class, null);
         }
-
     }
 
     private void signOut() {

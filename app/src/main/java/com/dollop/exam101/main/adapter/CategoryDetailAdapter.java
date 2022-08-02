@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCategoryDetailBinding;
 import com.dollop.exam101.main.activity.CategoryDetailsActivity;
@@ -58,11 +59,12 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
         if (pos == position) {
             holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
             holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context, R.color.white));
-
+            ((CategoryDetailsActivity)context).binding.tvToolbarName.setText(courseModel.examName);
         } else {
             holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.grey_stroke_background);
             holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context, R.color.sub_text));
         }
+
 
     }
 

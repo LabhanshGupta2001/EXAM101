@@ -141,7 +141,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         {
             bottomSheetFilter.cancel();
         });
-
         BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetBlogFilterBinding.getRoot().getParent()));
         behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -152,7 +151,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                 filterSearchAdapter.getFilter().filter(s.trim());
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 filterSearchAdapter.getFilter().filter(s.trim());

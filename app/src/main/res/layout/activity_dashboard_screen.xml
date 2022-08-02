@@ -52,10 +52,13 @@
                         />
 
                     <LinearLayout
+                        android:id="@+id/llNotification"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_alignParentEnd="true"
+                        android:padding="@dimen/_6sdp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -79,12 +82,12 @@
                                 android:visibility="visible" />
                         </RelativeLayout>
 
-                        <ImageView
+                       <!-- <ImageView
                             android:id="@+id/ivSearch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/_14sdp"
-                            android:src="@drawable/ic_searchicon" />
+                            android:src="@drawable/ic_searchicon" />-->
 
                       <!--  <androidx.cardview.widget.CardView
                             android:layout_width="@dimen/_28sdp"

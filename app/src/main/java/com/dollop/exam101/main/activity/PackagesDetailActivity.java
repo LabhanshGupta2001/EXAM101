@@ -245,8 +245,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
+
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
+
                     fragments.add(new CourseMaterialFragment(packageUuid));
                     fragments.add(new MockTestFragment(mockTestModels));
                     Tittle.clear();
