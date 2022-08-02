@@ -294,7 +294,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == binding.tvViewAll){
-            ((DashboardScreenActivity)activity).navController.navigate(R.id.bottom_packages);
+            ((DashboardScreenActivity)activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
     }
 }

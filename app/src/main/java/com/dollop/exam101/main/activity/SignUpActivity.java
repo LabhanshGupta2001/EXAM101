@@ -440,7 +440,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         this.selectedCountryName = CountryName;
        /* this.selectedCountryCode = countryCode;
         this.selectedCountryFlag = flag;
-        Picasso.get().load(Const.HOST_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
+        Picasso.get().load(Const.Url.HOST_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);
         binding.tvCountryCodeId.setText(selectedCountryCode);*/
         binding.tvSelectCountry.setText(selectedCountryName);
         binding.tvSelectState.setText(Constants.Key.blank);

@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    >
         <item
             android:id="@+id/bottom_home"
             android:title="@string/home"
             android:icon="@drawable/ic_home_icon"
-            android:enabled="true"
             />
         <item
             android:id="@+id/bottom_category"
             android:title="@string/exams"
             android:icon="@drawable/ic_category_icon"
-            android:enabled="true"
-            app:showAsAction="ifRoom"/>
+           />
         <item
             android:id="@+id/bottom_packages"
             android:title="@string/packages"
             android:icon="@drawable/ic_packages_icon"
-            android:enabled="true"
-            app:showAsAction="ifRoom"/>
+          />
         <item
             android:id="@+id/bottom_cart"
             android:title="@string/cart"
             android:icon="@drawable/ic_shopping_cart_icon"
-            android:enabled="true"
-            app:showAsAction="ifRoom"/>
+           />
 
 
 </menu>

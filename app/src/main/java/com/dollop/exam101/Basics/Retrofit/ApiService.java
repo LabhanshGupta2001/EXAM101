@@ -28,259 +28,259 @@ import retrofit2.http.QueryMap;
 public interface ApiService {
 
     // Nilesh..
-    @GET(Const.getCountryListApi)
+    @GET(Const.Url.getCountryListApi)
     Call<AllResponseModel> getCountryList();
 
-    @GET(Const.getStateListApi)
+    @GET(Const.Url.getStateListApi)
     Call<AllResponseModel> getStateList(@Query(Constants.Key.countryUuId) String countryId);
 
     //EditProfile
-    @GET(Const.getProfileDetailApi)
+    @GET(Const.Url.getProfileDetailApi)
     Call<AllResponseModel> getEditProfileDetails(@Header(Constants.Key.Authorization) String token);
 
     @Multipart
-    @POST(Const.updateProfileApi)
+    @POST(Const.Url.updateProfileApi)
     Call<AllResponseModel> EditProfileImage(@Header(Constants.Key.Authorization) String token,
                                             @PartMap HashMap<String, RequestBody> hm,
                                             @Part MultipartBody.Part profilePic);
 
     @FormUrlEncoded
-    @POST(Const.socialLoginApi)
+    @POST(Const.Url.socialLoginApi)
     Call<AllResponseModel> SocialLogin(@FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.forgotPasswordApi)
+    @POST(Const.Url.forgotPasswordApi)
     Call<AllResponseModel> ForgetPassword(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.getPrivacyPolicyApi)
+    @GET(Const.Url.getPrivacyPolicyApi)
     Call<AllResponseModel> getPrivacyAndPolicy();
 
-    @GET(Const.getTermConditionApi)
+    @GET(Const.Url.getTermConditionApi)
     Call<AllResponseModel> getTermAndCondition();
 
-    @GET(Const.getPackageListWithFilterApi)
+    @GET(Const.Url.getPackageListWithFilterApi)
     Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hm);
 
-   /* @GET(Const.getPackageListWithFilterApi)
+   /* @GET(Const.Url.getPackageListWithFilterApi)
     Call<AllResponseModel> examPackageListItem(@Header(Constants.Key.Authorization) String token,
                                                @Query(Constants.Key.examId) String examId)*/;
 
-    @GET(Const.getLanguageApi)
+    @GET(Const.Url.getLanguageApi)
     Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
 
 
-    @GET(Const.getStudentWishListApi)
+    @GET(Const.Url.getStudentWishListApi)
     Call<AllResponseModel> getWishList(@Header(Constants.Key.Authorization) String token);
 
 //______________________________********************___________________________________________//
 
-    @GET(Const.aboutUs)
+    @GET(Const.Url.aboutUs)
     Call<AllResponseModel> getAboutUs(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getBankProfile)
+    @GET(Const.Url.getBankProfile)
     Call<AllResponseModel> getBankProfile(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getBankUserDetails)
+    @GET(Const.Url.getBankUserDetails)
     Call<AllResponseModel> GetBankUserDetails(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getBlogDetailApi)
+    @GET(Const.Url.getBlogDetailApi)
     Call<AllResponseModel> getBlogDetails(@Query(Constants.Key.uuid) String uuid);
 
     @FormUrlEncoded
-    @POST(Const.getBankProfile)
+    @POST(Const.Url.getBankProfile)
     Call<AllResponseModel> UserBankDetails(@FieldMap HashMap<String, String> hm);
 
     //Blogs
-    @GET(Const.getBlogCategoryListApi)
+    @GET(Const.Url.getBlogCategoryListApi)
     Call<AllResponseModel> getBlogsCategory();
 
-    @GET(Const.getBlogListApi)
+    @GET(Const.Url.getBlogListApi)
     Call<AllResponseModel> getBlogsData(@Query(Constants.Key.uuid) String uuid);
 
-    @GET(Const.getBlogsSortBy)
+    @GET(Const.Url.getBlogsSortBy)
     Call<AllResponseModel> getBlogsSortBy(@Header(Constants.Key.Authorization) String token);
 
     @FormUrlEncoded
-    @POST(Const.applyCouponCodeApi)
+    @POST(Const.Url.applyCouponCodeApi)
     Call<AllResponseModel> ApplyCouponCode(@Header(Constants.Key.Authorization) String token,
                                            @Field(Constants.Key.couponCode) String couponCode);
 
 
-    @GET(Const.getBlogCategoryListApi)
+    @GET(Const.Url.getBlogCategoryListApi)
     Call<AllResponseModel> getBlogsFilterBy();
 
     //CategoryDetails
-    @GET(Const.getCategory)
+    @GET(Const.Url.getCategory)
     Call<AllResponseModel> getCategory(@Header(Constants.Key.Authorization) String token);
 
-   /* @GET(Const.getCategoryDetails)
+   /* @GET(Const.Url.getCategoryDetails)
     Call<AllResponseModel> getCategoryDetails(@Header(Constants.Key.Authorization) String token);*/
 
-    @GET(Const.getCategoryFilter)
+    @GET(Const.Url.getCategoryFilter)
     Call<AllResponseModel> getCategoryFilter(@Header(Constants.Key.Authorization) String token);
 
 
     @FormUrlEncoded
-    @PUT(Const.changePasswordApi)
+    @PUT(Const.Url.changePasswordApi)
     Call<AllResponseModel> ChangePassword(@Header(Constants.Key.Authorization) String token,
                                           @FieldMap HashMap<String, String> hm);
 
 
     @FormUrlEncoded
-    @POST(Const.contactUsApi)
+    @POST(Const.Url.contactUsApi)
     Call<AllResponseModel> ContactUs(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.getCourseList)
+    @GET(Const.Url.getCourseList)
     Call<AllResponseModel> getCourseList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getCourseDetails)
+    @GET(Const.Url.getCourseDetails)
     Call<AllResponseModel> getCourseDetails(@Header(Constants.Key.Authorization) String token);
 
 
-    @GET(Const.getCourseMaterialProgressBar)
+    @GET(Const.Url.getCourseMaterialProgressBar)
     Call<AllResponseModel> getCourseMaterialProgressBar(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getCourseMaterialList)
+    @GET(Const.Url.getCourseMaterialList)
     Call<AllResponseModel> getCourseMaterialList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getMyPackagesList)
+    @GET(Const.Url.getMyPackagesList)
     Call<AllResponseModel> getMyPakagesList(@Header(Constants.Key.Authorization) String token);
 
 
-    @GET(Const.getFaqsList)
+    @GET(Const.Url.getFaqsList)
     Call<AllResponseModel> getFaqsList(@Header(Constants.Key.Authorization) String token);
 
 
     //Packages Details
-    @GET(Const.getPackageDetails)
+    @GET(Const.Url.getPackageDetails)
     Call<AllResponseModel> getPakageDetails(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getPackageDetailsCourseMaterial)
+    @GET(Const.Url.getPackageDetailsCourseMaterial)
     Call<AllResponseModel> getPackageDetailsCourseMaterial(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getPackageDetailsMockTestList)
+    @GET(Const.Url.getPackageDetailsMockTestList)
     Call<AllResponseModel> getPackageDetailsMockTestList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getReviewRatingListApi)
+    @GET(Const.Url.getReviewRatingListApi)
     Call<AllResponseModel> getPackageDetailsMockTestListRatingNow(@Header(Constants.Key.Authorization) String token,
                                                                   @Query(Constants.Key.packageUuId) String packageUuid);//
 
 
-    @GET(Const.AllResults)
+    @GET(Const.Url.AllResults)
     Call<AllResponseModel> AllResults(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.AuthorList)
+    @GET(Const.Url.AuthorList)
     Call<AllResponseModel> AuthorList(@Header(Constants.Key.Authorization) String token);
 
 
-    @GET(Const.CategoriesHomePhotographyList)
+    @GET(Const.Url.CategoriesHomePhotographyList)
     Call<AllResponseModel> CategoriesHomePhotographyList(@Header(Constants.Key.Authorization) String token);
 
 
     //labhansh
 
     @FormUrlEncoded
-    @POST(Const.registrationApi)
+    @POST(Const.Url.registrationApi)
     Call<AllResponseModel> userSignup(@FieldMap HashMap<String, String> hm);
 
 
     @FormUrlEncoded
-    @POST(Const.loginApi)
+    @POST(Const.Url.loginApi)
     Call<AllResponseModel> userLogin(@FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.update_details)
+    @POST(Const.Url.update_details)
     Call<AllResponseModel> updateBankDetails(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.get_result)
+    @GET(Const.Url.get_result)
     Call<AllResponseModel> getResult(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.get_search_history)
+    @GET(Const.Url.get_search_history)
     Call<AllResponseModel> getSearchHistory(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.get_flex_box)
+    @GET(Const.Url.get_flex_box)
     Call<AllResponseModel> getFlexBox(@FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.reset_password)
+    @POST(Const.Url.reset_password)
     Call<AllResponseModel> resetPassword(@FieldMap HashMap<String, String> hm);
 
 
     @FormUrlEncoded
-    @POST(Const.raise_complaint)
+    @POST(Const.Url.raise_complaint)
     Call<AllResponseModel> raiseComplaint(@FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.otp_verification)
+    @POST(Const.Url.otp_verification)
     Call<AllResponseModel> otpVerification(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.get_complaint)
+    @GET(Const.Url.get_complaint)
     Call<AllResponseModel> getComplaintList(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.order_history)
+    @GET(Const.Url.order_history)
     Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.login_history)
+    @GET(Const.Url.login_history)
     Call<AllResponseModel> getloginHistory(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.getCartDetailApi)
+    @GET(Const.Url.getCartDetailApi)
     Call<AllResponseModel> getCartList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.getPackageDetailApi)
+    @GET(Const.Url.getPackageDetailApi)
     Call<AllResponseModel> getPackageDetailApi(@Header(Constants.Key.Authorization) String token,
                                                @Query(Constants.Key.packageUuId) String packageUuid);
 
     @FormUrlEncoded
-    @POST(Const.addToWishListApi)
+    @POST(Const.Url.addToWishListApi)
     Call<AllResponseModel> addWishlist(@Header(Constants.Key.Authorization) String token,
                                        @FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.addToCartApi)
+    @POST(Const.Url.addToCartApi)
     Call<AllResponseModel> addCart(@Header(Constants.Key.Authorization) String token,
                                    @FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.addReviewRatingApi)
+    @POST(Const.Url.addReviewRatingApi)
     Call<AllResponseModel> addRatingReview(@Header(Constants.Key.Authorization) String token,
                                            @FieldMap HashMap<String, String> hm);
 
-    @GET(Const.notification)
+    @GET(Const.Url.notification)
     Call<AllResponseModel> getNotification(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.filter)
+    @GET(Const.Url.filter)
     Call<AllResponseModel> getFilter(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.get_banner)
+    @GET(Const.Url.get_banner)
     Call<AllResponseModel> getBanner(@FieldMap HashMap<String, String> hm);
 
 
-    @GET(Const.user)
+    @GET(Const.Url.user)
     Call<AllResponseModel> getUser(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.mock_test)
+    @GET(Const.Url.mock_test)
     Call<AllResponseModel> getMockTest(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.package_list)
+    @GET(Const.Url.package_list)
     Call<AllResponseModel> packageList(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.purchase)
+    @GET(Const.Url.purchase)
     Call<AllResponseModel> getPurchaseList(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.transaction)
+    @GET(Const.Url.transaction)
     Call<AllResponseModel> getTransactionHistory(@FieldMap HashMap<String, String> hm);
 
     //Dashboard
 
-    @GET(Const.getExamListApi)
+    @GET(Const.Url.getExamListApi)
     Call<AllResponseModel> Examlist(@Header(Constants.Key.Authorization) String token);
 
 
-    @GET(Const.removeFromCartApi)
+    @GET(Const.Url.removeFromCartApi)
     Call<AllResponseModel> removeFromCart(@Header(Constants.Key.Authorization) String token, @Query(Constants.Key.cartUuId) String cartUuId);
 
-    @GET(Const.purchasePackageApi)
+    @GET(Const.Url.purchasePackageApi)
     Call<AllResponseModel> purchasePackage(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hashMap);
 

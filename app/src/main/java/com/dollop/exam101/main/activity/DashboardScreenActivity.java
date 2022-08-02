@@ -37,13 +37,12 @@ import com.google.android.gms.tasks.Task;
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
     public NavController navController;
-    AppBarConfiguration appBarConfiguration;
+     AppBarConfiguration appBarConfiguration;
     Activity activity = DashboardScreenActivity.this;
-    ActivityDashboardScreenBinding binding;
-    public NavHeaderDashboardBinding navHeaderDashboardBinding;
+    public ActivityDashboardScreenBinding binding;
+    NavHeaderDashboardBinding navHeaderDashboardBinding;
     GoogleSignInClient mGoogleSignInClient;
     ApiService apiService;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +60,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         apiService = RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
         //binding.ivProfile.setOnClickListener(this);
-        binding.llNotification.setOnClickListener(this);
-       // binding.ivSearch.setOnClickListener(this);
+        binding.ivNotification.setOnClickListener(this);
+        // binding.ivSearch.setOnClickListener(this);
 
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
         navHeaderDashboardBinding.llLogout.setOnClickListener(this);
@@ -128,17 +127,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             }
         });
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            Uri personPhoto = acct.getPhotoUrl();
-
-            //Glide.with(this).load(String.valueOf(personPhoto)).into(binding.ivProfile);
-        }
     }
 
     @SuppressLint("RtlHardcoded")
@@ -147,13 +135,13 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.llNotification) {
+        if (view == binding.ivNotification) {
             Utils.I(activity, NotificationActivity.class, null);
         }
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-       /* if (view == binding.ivSearch) {
+     /*   if (view == binding.ivSearch) {
             Utils.I(activity, SearchHistoryActivity.class, null);
         }*/
 
@@ -167,14 +155,11 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         // Navigatin Drawer Click
 
         if (view == navHeaderDashboardBinding.llHome) {
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragmentContainerView, new HomeFragment(), "Home").
-                    commit();
+          navController.navigate(R.id.bottom_home);
             binding.drawerLayout.close();
         }
         if (view == navHeaderDashboardBinding.llMyPackage) {
             Utils.I(activity, CourseListActivity.class, null);
-            binding.drawerLayout.close();
         }
 
        /* if (view == navHeaderDashboardBinding.llMyWishlist) {
@@ -207,32 +192,19 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         }
         if (view == navHeaderDashboardBinding.llHeader) {
             Utils.I(activity, ProfileActivity.class, null);
-            binding.drawerLayout.closeDrawers();
         }
         if (view == navHeaderDashboardBinding.llRaiseAComplant) {
             Utils.I(activity, RaiseComplaintActivity.class, null);
-            binding.drawerLayout.closeDrawers();
         }
         if (view == navHeaderDashboardBinding.llLogout) {
-            signOut();
-            Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(activity, LoginActivity.class));
+           Utils.logoutAlertDialog(activity);
         }
         if (view == navHeaderDashboardBinding.llFaq) {
             Utils.I(activity, FaqsActivity.class, null);
         }
+
     }
 
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(activity, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                        finish();
-                    }
-                });
-    }
 
 
 }

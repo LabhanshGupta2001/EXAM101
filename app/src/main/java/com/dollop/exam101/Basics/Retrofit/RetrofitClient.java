@@ -31,12 +31,12 @@ public class RetrofitClient {
                 .connectTimeout(2, TimeUnit.MINUTES)
                 .readTimeout(2, TimeUnit.MINUTES);
 
-        if (Const.Development.equals(Constants.Key.Debug)) {
+        if (Const.Url.Development.equals(Constants.Key.Debug)) {
             client.addInterceptor(interceptor);
         }
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(Const.HOST_URL)
+                .baseUrl(Const.Url.HOST_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client.build())
                 .build();

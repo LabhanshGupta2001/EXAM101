@@ -198,8 +198,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity, response.body().message);
-
+                        Utils.T(activity,"Added to cart Successfully");
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -386,7 +385,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         bottomSheetDialog.show();
         bottomSheetRatenowBinding.tvHeading.setText(packageName);
         bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
-        Picasso.get().load(Const.HOST_URL + imgPath).error(R.drawable.dummy).
+        Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
                 into(bottomSheetRatenowBinding.ivPhotoId);
 
         bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view ->

@@ -53,8 +53,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         CountryModel itemCountry = filterList.get(position);
         holder.binding.etCodeId.setText(itemCountry.phoneCode);
         holder.binding.tvNameId.setText(itemCountry.countryName);
-        Picasso.get().load(Const.HOST_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivCountryFlags);
-        Picasso.get().load(Const.HOST_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivStartCountryFlags);
+        Picasso.get().load(Const.Url.HOST_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivCountryFlags);
+        Picasso.get().load(Const.Url.HOST_URL + itemCountry.flag).error(R.drawable.ic_india).into(holder.binding.ivStartCountryFlags);
         holder.binding.llItem.setOnClickListener(view -> {
             Position = holder.getAdapterPosition();
             SavedData.saveCountryUuId(itemCountry.uuid);
