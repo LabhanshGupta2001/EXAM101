@@ -388,8 +388,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
                 into(bottomSheetRatenowBinding.ivPhotoId);
 
-        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view ->
-                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString()));
+        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view ->{
+                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+        });
     }
 
 }

@@ -46,7 +46,6 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
     ActivityBlogDetailBinding binding;
     ApiService apiService;
     String uuid;
-    String urlSlug;
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
 
@@ -64,7 +63,6 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-        getBlogDetails();
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null) {
             uuid = bundle.getString(Constants.Key.uuid, Constants.Key.blank);

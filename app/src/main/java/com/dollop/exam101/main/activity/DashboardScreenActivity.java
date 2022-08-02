@@ -41,7 +41,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     Activity activity = DashboardScreenActivity.this;
     public ActivityDashboardScreenBinding binding;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
-    GoogleSignInClient mGoogleSignInClient;
     ApiService apiService;
 
     @Override
