@@ -79,6 +79,7 @@ public class Constants {
         String BlogId = "BlogId";
         String packageId = "packageId";
         String packageUuId = "packageUuId";
+        String packageUuid = "packageUuid";
         String languageUuId = "languageUuId";
         String review = "review";
         String rating = "rating";
@@ -136,5 +137,8 @@ public class Constants {
         String DefaultCountryUuId = "d428a700-0bf7-11ed-9481-000c291151eb";
         String countryUuId = "countryUuId";
         String cartUuId = "cartUuId";
+        String transactionId = "transactionId";
+        String paymentMode = "paymentMode";
+        String Online = "Online";
     }
 }

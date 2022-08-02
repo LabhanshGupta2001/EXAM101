@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemMyCartBinding;
 import com.dollop.exam101.main.fragment.CartFragment;
 import com.dollop.exam101.main.model.CartDatumModel;
@@ -36,9 +38,18 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
         CartDatumModel myCartModel = myCartModelArrayList.get(position);
         holder.binding.tvFundamentalDesignId.setText(myCartModel.packageName);
         holder.binding.tvRupees.setText(myCartModel.discountedPrice);
-        holder.binding.tvWishListId.setText(myCartModel.isWishListed);
-        holder.binding.llRemoveCart.setOnClickListener(view -> {
+        if (myCartModel.isWishListed.equals("1")) {
+            holder.binding.tvWishListId.setText(R.string.remove_from_wishlist);
+            holder.binding.ivHeart.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_heart_red));
+        } else {
+            holder.binding.ivHeart.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_hart));
+            holder.binding.tvWishListId.setText(R.string.add_to_wishlist);
+            holder.binding.llAddToWishList.setOnClickListener(view -> {
+                cartFragment.addToWishList(myCartModel.packageUuid);
+            });
+        }
 
+        holder.binding.llRemoveCart.setOnClickListener(view -> {
             cartFragment.removeFromCart(myCartModel.cartUuid);
         });
     }

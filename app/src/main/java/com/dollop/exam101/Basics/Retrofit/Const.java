@@ -89,4 +89,5 @@ public class Const {
     public static final String getTermConditionApi = "getTermConditionApi";
     public static final String applyCouponCodeApi = "applyCouponCodeApi";
     public static final String removeFromCartApi = "removeFromCartApi";
+    public static final String purchasePackageApi = "purchasePackageApi";
 }

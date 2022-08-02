@@ -280,4 +280,8 @@ public interface ApiService {
     @GET(Const.removeFromCartApi)
     Call<AllResponseModel> removeFromCart(@Header(Constants.Key.Authorization) String token, @Query(Constants.Key.cartUuId) String cartUuId);
 
+    @GET(Const.purchasePackageApi)
+    Call<AllResponseModel> purchasePackage(@Header(Constants.Key.Authorization) String token,
+                                           @QueryMap HashMap<String, String> hashMap);
+
 }

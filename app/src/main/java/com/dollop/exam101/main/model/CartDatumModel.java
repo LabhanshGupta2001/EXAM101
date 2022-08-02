@@ -18,6 +18,9 @@ public class CartDatumModel {
     @SerializedName("discountedPrice")
     @Expose
     public String discountedPrice;
+    @SerializedName("packageUuid")
+    @Expose
+    public String packageUuid;
     @SerializedName("isWishListed")
     @Expose
     public String isWishListed;
