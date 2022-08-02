@@ -99,9 +99,9 @@
             android:layout_height="@dimen/_110sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:elevation="0dp"
             app:cardBackgroundColor="@color/stroke_color"
             app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="0dp"
             app:strokeColor="@color/lineColor">
 
             <EditText

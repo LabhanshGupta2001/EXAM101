@@ -75,9 +75,6 @@
             android:name=".main.activity.MockTestListActivity"
             android:exported="false" />
         <activity
-            android:name=".main.activity.MyCartActivity"
-            android:exported="false" />
-        <activity
             android:name=".main.activity.ProfileActivity"
             android:exported="false" />
         <activity
