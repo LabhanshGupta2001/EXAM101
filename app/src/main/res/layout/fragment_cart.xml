@@ -41,7 +41,7 @@
         android:layout_above="@+id/rlBottom"
         android:layout_below="@+id/llToolbar"
         android:overScrollMode="never"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +89,7 @@
 
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/CardView"
+                android:id="@+id/cvApplyCoupon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
@@ -145,7 +145,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/CardViewOne"
+                android:id="@+id/cvReferralCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
@@ -398,7 +398,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -430,6 +430,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvProceedToCheckOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -457,7 +458,7 @@
     <include
         android:id="@+id/noResultFoundId"
         layout="@layout/no_result_found"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 
 </RelativeLayout>

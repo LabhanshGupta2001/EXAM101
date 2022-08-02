@@ -238,6 +238,7 @@
     <string name="skills_covered_in_this_course">Skills covered in this course</string>
     <string name="rating_and_reviews">Rating and Reviews</string>
     <string name="add_to_wishlist">Add to Wishlist</string>
+    <string name="remove_from_wishlist">Remove from Wishlist</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="payment_failed">Payment Failed</string>
     <string name="oops_something_went_wrong_please_ntry_again_to_purchse_the_package">Oops! something went wrong! please\ntry again to purchse the package.</string>

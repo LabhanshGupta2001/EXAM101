@@ -52,14 +52,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CategoryDetailsActivity extends BaseActivity implements View.OnClickListener, OnItemClicked {
-
     public String examId = "";
     public String Price = "";
     public String languageId = "";
     String ExamName = "", MinValue = "", MaxValue = "";
     int Positions;
     Activity activity = CategoryDetailsActivity.this;
-    ActivityCategoryDetailsBinding binding;
+    public  ActivityCategoryDetailsBinding binding;
     ArrayList<PackageModel> arrayList = new ArrayList<>();
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ApiService apiService;

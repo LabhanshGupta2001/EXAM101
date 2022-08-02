@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
@@ -39,6 +40,7 @@ import com.dollop.exam101.main.model.ReviewRating;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,6 +63,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     ArrayList<ReviewRating> reviewRatingModels = new ArrayList<>();
     ArrayList<String> list = new ArrayList<>();
     BottomSheetDialog bottomSheetDialog;
+    BottomSheetRatenowBinding bottomSheetRatenowBinding;
+    String packageName, packageDetail, imgPath;
+
     ArrayList<LanguageModel> languageModels = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -74,16 +79,25 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (AppController.getInstance().isOnline()) {
+            getPackageDetails();
+        } else {
+            InternetDialog();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             packageUuid = bundle.getString(Constants.Key.packageUuId);
             Utils.E("packageUuid;;;;;;" + packageUuid);
             Utils.E("Bundle;;;;;;" + bundle);
         }
-        getPackageDetails();
 
         binding.ivBack.setOnClickListener(this);
         binding.mcvAddtoWishlist.setOnClickListener(this);
@@ -99,11 +113,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         binding.rvOverView.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvOverView.setAdapter(new OverviewCourseDetailsAdapter(activity, list));
         if (AppController.getInstance().isOnline()) {
-
             GetPackageDetailsMockTestListRatingNow();
         } else {
             InternetDialog();
-            //Utils.InternetDialog(activity);
         }
 
     }
@@ -115,18 +127,16 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
             if (AppController.getInstance().isOnline()) {
                 rateNowBottomSheet();
             } else {
-                //Utils.InternetDialog(activity);
                 InternetDialog();
             }
         } else if (view == binding.ivBack) {
             onBackPressed();
         } else if (view == binding.mcvAddtoWishlist) {
             if (AppController.getInstance().isOnline()) {
-                getWishList();
+                addToWishList();
             } else {
                 InternetDialog();
             }
-            Utils.T(activity, Constants.Key.added_to_Wishlist);
         } else if (view == binding.AddtoCart) {
             if (AppController.getInstance().isOnline()) {
                 addCart();
@@ -137,10 +147,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         }
     }
 
-    private void getWishList() {
+    private void addToWishList() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.packageUuId, packageUuid);
+        hm.put(Constants.Key.packageUuid, packageUuid);
         apiService.addWishlist(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -148,7 +158,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-
+                        Utils.T(activity, response.body().message);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -188,8 +198,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity, "Added");
-
+                        Utils.T(activity,"Added to cart Successfully");
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -226,16 +235,22 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     assert response.body() != null;
                     PackageDetailModel packageDetailModels = response.body().packageDetail;
 
-                    binding.tvHeadings.setText(packageDetailModels.packageName);
-                    binding.tvPriceGreat.setText(packageDetailModels.actualPrice);
-                    binding.tvPriceSmall.setText(packageDetailModels.discountedPrice);
+                    packageName = packageDetailModels.packageName;
+                    packageDetail = String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
+                    imgPath = packageDetailModels.featureImg;
+                    binding.tvHeadings.setText(packageName);
+                    binding.tvPriceGreat.setText(packageDetailModels.discountedPrice);
+                    binding.tvPriceSmall.setText(packageDetailModels.actualPrice);
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
+
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
+
                     fragments.add(new CourseMaterialFragment(packageUuid));
                     fragments.add(new MockTestFragment(mockTestModels));
+                    Tittle.clear();
                     Tittle.add(Constants.Key.Course_Material);
                     Tittle.add(Constants.Key.Mock_Test);
                     mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
@@ -318,6 +333,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         bottomSheetDialog.dismiss();
+                        GetPackageDetailsMockTestListRatingNow();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -363,11 +379,15 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     }
 
     private void rateNowBottomSheet() {
-
         bottomSheetDialog = new BottomSheetDialog(activity);
-        BottomSheetRatenowBinding bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+        bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
         bottomSheetDialog.show();
+        bottomSheetRatenowBinding.tvHeading.setText(packageName);
+        bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
+        Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
+                into(bottomSheetRatenowBinding.ivPhotoId);
+
         bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view ->
                 addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString()));
     }

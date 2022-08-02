@@ -21,6 +21,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_4sdp"
+        android:id="@+id/llBlank"
         android:background="@drawable/bottom_curve_background"
         android:orientation="vertical">
 

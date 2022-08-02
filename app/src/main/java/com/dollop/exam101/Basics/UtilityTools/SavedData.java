@@ -55,7 +55,7 @@ public class SavedData {
         editor.apply();
     }
     public static String getCountryKey(Context context) {
-        return getInstance().getString(CountryKey, Constants.Key.Default_Country_Code);
+        return getInstance().getString(CountryKey, Constants.Key.Default_Country_Region);
     }
 
     public static void saveCountryKey(String key) {

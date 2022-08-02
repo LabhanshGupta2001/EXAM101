@@ -11,6 +11,7 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
         app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="0dp"
         app:strokeColor="@color/HorizontallineColor"
         app:strokeWidth="@dimen/_1sdp">
 
@@ -147,10 +148,9 @@
 
                 <LinearLayout
                     android:id="@+id/llRemove"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_4sdp"
-                    android:layout_weight=".1"
                     android:gravity="start"
                     android:orientation="horizontal">
 
@@ -159,10 +159,10 @@
                         android:layout_width="@dimen/_22sdp"
                         android:layout_height="@dimen/_22sdp"
                         android:layout_margin="@dimen/_6sdp"
-                        android:background="@color/status_bar_color"
                         app:cardCornerRadius="@dimen/_11sdp"
+                        app:cardElevation="0dp"
                         app:strokeColor="@color/HorizontallineColor"
-                        app:strokeWidth="@dimen/_1sdp">
+                        app:strokeWidth="1dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                     android:id="@+id/llAdToCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".9"
+                    android:layout_weight="1"
                     android:gravity="end"
                     android:orientation="horizontal"
                     android:padding="@dimen/_8sdp">

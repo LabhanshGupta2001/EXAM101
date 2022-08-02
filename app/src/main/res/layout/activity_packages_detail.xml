@@ -93,13 +93,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/tvFirst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="@string/microsoft_power_point"
-                    android:theme="@style/QuinaryThemeTextStyle" />
+                    android:theme="@style/QuinaryThemeTextStyle"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvHeadings"
@@ -111,7 +111,7 @@
                     android:theme="@style/TernaryBlackTextStyle" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_6sdp"
                     android:orientation="horizontal">
@@ -132,16 +132,42 @@
                         android:fontFamily="@font/inter_bold"
                         android:text="@string/_3000" />
 
-                    <TextView
-                        android:id="@+id/tvPriceSmall"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/_6sdp"
-                        android:layout_marginTop="1dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/_4500"
-                        android:theme="@style/QuaternaryLightSubTextStyle" />
+                        android:layout_marginStart="@dimen/_6sdp">
+
+                        <TextView
+                            android:id="@+id/tvRpSym2"
+                            style="@style/QuinaryLightSubTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginVertical="@dimen/_2sdp"
+                            android:text="₹" />
+
+
+                        <TextView
+                            android:id="@+id/tvPriceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_toRightOf="@id/tvRpSym2"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/_4500"
+                            android:theme="@style/QuaternaryLightSubTextStyle" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="2dp"
+                            android:layout_alignStart="@id/tvPriceSmall"
+                            android:layout_alignEnd="@id/tvPriceSmall"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/darker_gray" />
+
+
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <View
@@ -152,7 +178,6 @@
                     android:background="@color/HorizontallineColor" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/tvDates"
                     style="@style/QuinarySubTextStyle"
                     android:layout_width="match_parent"
@@ -160,6 +185,7 @@
                     android:drawablePadding="@dimen/_4sdp"
                     android:fontFamily="@font/inter_semibold"
                     android:text="Published on 1 jan 2022"
+                    android:visibility="gone"
                     app:drawableStartCompat="@drawable/ic_calender" />
 
                 <TextView
@@ -240,7 +266,7 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/ViewPagerPackageDetailId"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         style="@style/TernaryTextStyle"
@@ -256,17 +282,18 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvOverView"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_4sdp"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        />
+                        android:paddingVertical="@dimen/_4sdp"
+                        android:visibility="gone" />
+
                     <TextView
                         android:id="@+id/tvDetail"
                         style="@style/QuinarySubTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_7sdp"
                         android:fontFamily="@font/inter_regular"
                         android:text="@string/learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games" />
@@ -356,8 +383,8 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
             android:id="@+id/AddtoCart"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_7sdp"

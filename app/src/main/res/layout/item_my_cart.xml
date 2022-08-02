@@ -11,6 +11,7 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
         app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="0dp"
         app:strokeColor="@color/HorizontallineColor"
         app:strokeWidth="@dimen/_1sdp">
 
@@ -36,14 +37,14 @@
 
 
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/tvPowerPoint_Id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:fontFamily="@font/inter_medium"
                         android:text="@string/microsoft_power_point"
-                        android:theme="@style/QuinaryThemeTextStyle" />
+                        android:theme="@style/QuinaryThemeTextStyle"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tvFundamentalDesign_Id"
@@ -81,26 +82,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_marginBottom="@dimen/_6sdp"
+                android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:baselineAligned="false">
+                android:weightSum="2">
 
                 <LinearLayout
+                    android:id="@+id/llAddToWishList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/ivHeart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_hart"/>
+
                     <TextView
                         android:id="@+id/tvWishList_Id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/_2sdp"
                         android:fontFamily="@font/inter_medium"
+                        android:layout_marginStart="@dimen/_3sdp"
                         android:text="@string/add_to_wishlist"
-                        android:theme="@style/QuinaryLightSubTextStyle"
-                        app:drawableStartCompat="@drawable/ic_hart" />
+                        android:theme="@style/QuinaryLightSubTextStyle" />
+
 
                 </LinearLayout>
 

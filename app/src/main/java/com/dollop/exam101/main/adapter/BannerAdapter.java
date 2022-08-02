@@ -33,7 +33,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.MyViewHold
 
         HomeBannerOfferModel offer = banners.get(position);
         holder.binding.banner.setImageResource(offer.bannerImage);
-      /*  Picasso.get().load(Const.HOST_URL + offer.bannerImage)
+      /*  Picasso.get().load(Const.Url.HOST_URL + offer.bannerImage)
                 .placeholder(R.drawable.image_default_one).error(R.drawable.image_default_one).into(holder.binding.banner);*/
 
     }

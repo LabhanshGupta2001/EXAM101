@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,7 +34,6 @@ import com.dollop.exam101.Basics.Database.UserData;
 import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.main.activity.LoginActivity;
 import com.dollop.exam101.main.model.CurrentCountryModel;
 import com.squareup.picasso.Callback;
@@ -119,17 +117,17 @@ public class Utils {
     }
 
     public static void Picasso(String Url, ImageView imageView, int dummy) {
-        Picasso.get().load(Const.HOST_URL + Url).fetch(new Callback() {
+        Picasso.get().load(Const.Url.HOST_URL + Url).fetch(new Callback() {
             @Override
             public void onSuccess() {
                 if (dummy == 0)
                     Picasso.get()
-                            .load(Const.HOST_URL + Url)
+                            .load(Const.Url.HOST_URL + Url)
                             .networkPolicy(NetworkPolicy.OFFLINE)
                             .into(imageView);
                 else
                     Picasso.get()
-                            .load(Const.HOST_URL + Url)
+                            .load(Const.Url.HOST_URL + Url)
                             .error(dummy)
                             .networkPolicy(NetworkPolicy.OFFLINE)
                             .into(imageView);
@@ -139,11 +137,11 @@ public class Utils {
             public void onError(Exception e) {
                 if (dummy == 0)
                     Picasso.get()
-                            .load(Const.HOST_URL + Url)
+                            .load(Const.Url.HOST_URL + Url)
                             .into(imageView);
                 else
                     Picasso.get()
-                            .load(Const.HOST_URL + Url)
+                            .load(Const.Url.HOST_URL + Url)
                             .error(dummy)
                             .into(imageView);
             }
@@ -290,7 +288,7 @@ public class Utils {
     }
 
     public static void E(String msg) {
-        if (Const.Development.equals(Constants.Key.Debug))
+        if (Const.Url.Development.equals(Constants.Key.Debug))
             Log.e("Log.E", msg);
     }
     public static int DetectUIMode(Activity activity) {

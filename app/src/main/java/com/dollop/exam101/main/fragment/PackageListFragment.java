@@ -67,7 +67,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentPackageListBinding.inflate(inflater, container, false);
+        binding = FragmentPackageListBinding.inflate(inflater,container,false);
         bottomsheetFilterBinding = BottomsheetFilterBinding.inflate(inflater, container, false);
         activity = requireActivity();
         init();
@@ -167,10 +167,10 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                 try {
                     if (response.body().packageModels.isEmpty()) {
                         binding.rvPackagesone.setVisibility(View.GONE);
-                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                        binding.dataNoFoundId.llParent.setVisibility(View.VISIBLE);
                     } else {
                         binding.rvPackagesone.setVisibility(View.VISIBLE);
-                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                        binding.dataNoFoundId.llParent.setVisibility(View.GONE);
                     }
                     if (response.code() == StatusCodeConstant.OK) {
                         packageModelList.clear();

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -36,9 +37,9 @@ import com.google.android.gms.tasks.Task;
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
     public NavController navController;
-    AppBarConfiguration appBarConfiguration;
+     AppBarConfiguration appBarConfiguration;
     Activity activity = DashboardScreenActivity.this;
-    ActivityDashboardScreenBinding binding;
+    public ActivityDashboardScreenBinding binding;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
     GoogleSignInClient mGoogleSignInClient;
     ApiService apiService;
@@ -54,14 +55,14 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
     @SuppressLint("ResourceAsColor")
     void init() {
+        navHeaderDashboardBinding = NavHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
         navigationSetup();
         apiService = RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
         //binding.ivProfile.setOnClickListener(this);
         binding.ivNotification.setOnClickListener(this);
-        binding.ivSearch.setOnClickListener(this);
+        // binding.ivSearch.setOnClickListener(this);
 
-        navHeaderDashboardBinding = NavHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
         navHeaderDashboardBinding.llLogout.setOnClickListener(this);
         navHeaderDashboardBinding.llAbout.setOnClickListener(this);
@@ -96,12 +97,24 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                                              @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
                 switch (navDestination.getId()) {
                     case R.id.bottom_home:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.theme));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.theme));
+                        binding.bottomNavigationView.setVisibility(View.VISIBLE);
+                        binding.appBarLayout.setVisibility(View.VISIBLE);
+                        break;
                     case R.id.bottom_category:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
+                        break;
                     case R.id.bottom_packages:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
                         binding.bottomNavigationView.setVisibility(View.VISIBLE);
                         binding.appBarLayout.setVisibility(View.VISIBLE);
                         break;
                     case R.id.bottom_cart:
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
                         binding.bottomNavigationView.setVisibility(View.GONE);
                         binding.appBarLayout.setVisibility(View.GONE);
                         break;
@@ -114,17 +127,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             }
         });
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            Uri personPhoto = acct.getPhotoUrl();
-
-            //Glide.with(this).load(String.valueOf(personPhoto)).into(binding.ivProfile);
-        }
     }
 
     @SuppressLint("RtlHardcoded")
@@ -139,9 +141,9 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.ivSearch) {
+     /*   if (view == binding.ivSearch) {
             Utils.I(activity, SearchHistoryActivity.class, null);
-        }
+        }*/
 
         if (view == binding.navigationView.getHeaderView(0)) {
             Utils.I(activity, ProfileActivity.class, null);
@@ -153,14 +155,11 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         // Navigatin Drawer Click
 
         if (view == navHeaderDashboardBinding.llHome) {
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragmentContainerView, new HomeFragment(), "Home").
-                    commit();
+          navController.navigate(R.id.bottom_home);
             binding.drawerLayout.close();
         }
         if (view == navHeaderDashboardBinding.llMyPackage) {
             Utils.I(activity, CourseListActivity.class, null);
-            binding.drawerLayout.close();
         }
 
        /* if (view == navHeaderDashboardBinding.llMyWishlist) {
@@ -193,16 +192,12 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         }
         if (view == navHeaderDashboardBinding.llHeader) {
             Utils.I(activity, ProfileActivity.class, null);
-            binding.drawerLayout.closeDrawers();
         }
         if (view == navHeaderDashboardBinding.llRaiseAComplant) {
             Utils.I(activity, RaiseComplaintActivity.class, null);
-            binding.drawerLayout.closeDrawers();
         }
         if (view == navHeaderDashboardBinding.llLogout) {
-            signOut();
-            Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(activity, LoginActivity.class));
+           Utils.logoutAlertDialog(activity);
         }
         if (view == navHeaderDashboardBinding.llFaq) {
             Utils.I(activity, FaqsActivity.class, null);
@@ -210,16 +205,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
     }
 
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(activity, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                        finish();
-                    }
-                });
-    }
 
 
 }

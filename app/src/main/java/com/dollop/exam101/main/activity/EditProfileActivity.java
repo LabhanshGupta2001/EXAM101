@@ -529,7 +529,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.etUserEmail.setText(Utils.GetSession().studentEmail);
         binding.etUserName.setText(Utils.GetSession().studentName);
         binding.tvSelectState.setText(Utils.GetSession().stateName);
-        Picasso.get().load(Const.HOST_URL + Utils.GetSession().profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
+        Picasso.get().load(Const.Url.HOST_URL + Utils.GetSession().profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
         if (Utils.GetSession().countryName.equals(Constants.Key.blank)) {
           //  binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
             binding.tvSelectCountry.setText(Constants.Key.India);
