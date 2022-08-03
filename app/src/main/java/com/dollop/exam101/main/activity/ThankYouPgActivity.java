@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityThankYouPgBinding;
 
 public class ThankYouPgActivity extends BaseActivity implements View.OnClickListener {
@@ -22,11 +23,14 @@ public class ThankYouPgActivity extends BaseActivity implements View.OnClickList
     }
 
     private void init() {
+
         binding.tvBtnBackToHome.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
+        if (v == binding.tvBtnBackToHome) {
+            ((DashboardScreenActivity) activity).navController.navigate(R.id.bottom_home);
+        }
     }
 }

@@ -141,5 +141,6 @@ public class Constants {
         String transactionId = "transactionId";
         String paymentMode = "paymentMode";
         String Online = "Online";
+        String wishListUuid = "wishListUuid";
     }
 }

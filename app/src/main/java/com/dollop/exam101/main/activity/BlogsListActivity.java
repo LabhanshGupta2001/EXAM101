@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -28,8 +30,6 @@ import com.dollop.exam101.databinding.ActivityBlogsListBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogFilterBinding;
 import com.dollop.exam101.databinding.BottomSheetBlogShortBinding;
-import com.dollop.exam101.databinding.ItemAllBlogsBinding;
-import com.dollop.exam101.databinding.ItemBlogsHorizontalBinding;
 import com.dollop.exam101.main.adapter.AllBlogListAdapter;
 import com.dollop.exam101.main.adapter.BlogsListAdapter;
 import com.dollop.exam101.main.adapter.FilterSearchAdapter;
@@ -47,18 +47,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BlogsListActivity extends BaseActivity implements View.OnClickListener {
+    private final ArrayList<BlogListHeadingModel> blogsList = new ArrayList<>();
+    private final ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
+    public BottomSheetDialog bottomSheetFilter;
+    public BlogsListAdapter blogsListAdapter;
+    public int position;
     Activity activity = BlogsListActivity.this;
     ActivityBlogsListBinding binding;
     BottomSheetDialog bottomSheetDialog;
-    public BottomSheetDialog bottomSheetFilter;
     ApiService apiService;
-    public BlogsListAdapter blogsListAdapter;
     AllBlogListAdapter allBlogListAdapter;
     FilterSearchAdapter filterSearchAdapter;
-    public int position;
     ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
-    private final ArrayList<BlogListHeadingModel> blogsList = new ArrayList<>();
-    private final ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
     BottomSheetBlogShortBinding bottomSheetBlogShortBinding;
     BottomSheetBlogFilterBinding bottomSheetBlogFilterBinding;
 
@@ -141,9 +141,13 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         {
             bottomSheetFilter.cancel();
         });
-        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetBlogFilterBinding.getRoot().getParent()));
-        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetBlogFilterBinding.getRoot().getParent()));
+        bottomSheetFilter.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+        bottomSheetBehavior.setHalfExpandedRatio(((float) binding.rlParentMain.getHeight()) / ((float) binding.rlParent.getHeight()));
+        bottomSheetBehavior.setMaxHeight(binding.rlParentMain.getHeight());
+        bottomSheetBlogFilterBinding.rlParent.setOnClickListener(KeyboardUtils::hideKeyboard);
+        bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetFilter.show();
         bottomSheetBlogFilterBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -151,6 +155,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                 filterSearchAdapter.getFilter().filter(s.trim());
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String s) {
                 filterSearchAdapter.getFilter().filter(s.trim());
@@ -160,7 +165,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         if (AppController.getInstance().isOnline()) {
             getBlogsCategory(Constants.Key.From);
         } else {
-           // Utils.InternetDialog(activity);
+            // Utils.InternetDialog(activity);
             InternetDialog();
         }
 
@@ -277,9 +282,10 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
             }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -37,6 +38,7 @@ import com.dollop.exam101.main.model.LanguageModel;
 import com.dollop.exam101.main.model.MockTestModel;
 import com.dollop.exam101.main.model.PackageDetailModel;
 import com.dollop.exam101.main.model.ReviewRating;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
@@ -198,7 +200,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity,"Added to cart Successfully");
+                        Utils.T(activity, "Added to Cart Successfully");
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -382,14 +384,17 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
+        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetDialog.show();
         bottomSheetRatenowBinding.tvHeading.setText(packageName);
         bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
         Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
                 into(bottomSheetRatenowBinding.ivPhotoId);
-
-        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view ->{
-                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
+            addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
         });
     }
 

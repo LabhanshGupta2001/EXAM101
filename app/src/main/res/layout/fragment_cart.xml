@@ -95,7 +95,9 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginVertical="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_5sdp"
-                app:strokeColor="@color/HorizontallineColor">
+                app:cardElevation="0dp"
+                app:strokeColor="@color/HorizontallineColor"
+                app:strokeWidth="1dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -151,7 +153,9 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_5sdp"
-                app:strokeColor="@color/HorizontallineColor">
+                app:cardElevation="0dp"
+                app:strokeColor="@color/HorizontallineColor"
+                app:strokeWidth="1dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -274,8 +278,9 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginVertical="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="0dp"
                 app:strokeColor="@color/HorizontallineColor"
-                app:strokeWidth="@dimen/_1sdp">
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -457,7 +462,7 @@
 
     <include
         android:id="@+id/noResultFoundId"
-        layout="@layout/no_result_found"
+        layout="@layout/empty_card"
         android:visibility="gone" />
 
 

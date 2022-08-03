@@ -91,5 +91,6 @@ public class Const {
         String applyCouponCodeApi = "applyCouponCodeApi";
         String removeFromCartApi = "removeFromCartApi";
         String purchasePackageApi = "purchasePackageApi";
+        String removeFromWishListApi = "removeFromWishListApi";
     }
 }
