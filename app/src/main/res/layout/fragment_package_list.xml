@@ -43,6 +43,7 @@
                 android:layout_alignParentEnd="true"
                 app:cardCornerRadius="@dimen/_30sdp"
                 app:strokeColor="@color/HorizontallineColor"
+                app:cardElevation="0dp"
                 app:strokeWidth="@dimen/_1sdp">
 
                 <ImageView
@@ -67,7 +68,7 @@
         <include
             android:id="@+id/dataNoFoundId"
             layout="@layout/no_result_found"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPackagesone"

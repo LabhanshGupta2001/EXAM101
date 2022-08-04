@@ -153,7 +153,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             if (AppController.getInstance().isOnline()) {
                 CheckValidationTask();
             } else {
-               // Utils.InternetDialog(activity);
                 InternetDialog();
             }
         } else if (view == binding.tvSignUp) {
@@ -173,7 +172,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else {
             // resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
-
                 //  resultReturn.errorTextView.setText(resultReturn.errorMessage);
                 Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
             } else {
@@ -288,9 +286,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

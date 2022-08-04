@@ -21,15 +21,17 @@ import java.util.List;
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyHolder> {
     public String languageId = "";
+    public int pos = -1;
     Context context;
     String From;
     List<LanguageModel> languageModels;
     public int index = -1;
 
-    public LanguageAdapter(List<LanguageModel> list, Context context, String from) {
+    public LanguageAdapter(List<LanguageModel> list, Context context, String from,int position) {
         this.context = context;
         this.languageModels =  list;
         From = from;
+        index = position;
     }
 
     @NonNull
@@ -43,8 +45,6 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyHold
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
         LanguageModel languageModel = languageModels.get(position);
         holder.binding.tvLanguage.setText(languageModel.languageName);
-
-
 
         holder.binding.checkBox.setChecked(index == position);
         holder.binding.llLanguage.setOnClickListener(v -> {

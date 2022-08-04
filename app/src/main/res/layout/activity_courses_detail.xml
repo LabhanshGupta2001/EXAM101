@@ -71,47 +71,26 @@
                 android:background="@color/lineColor" />
 
             <TextView
+                android:id="@+id/tvTopicSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gothic_bold"
                 android:paddingVertical="@dimen/_10ssp"
                 android:paddingHorizontal="@dimen/_12sdp"
                 android:theme="@style/TernaryDarkTextStyle"
-                android:text="Best way learn fundamentals of design thinking."
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
             <TextView
+                android:id="@+id/tvTopicDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_regular"
                 android:paddingVertical="@dimen/_10ssp"
                 android:paddingHorizontal="@dimen/_12sdp"
-                android:text="Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standar dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specime book.\n
-        \nLorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standar dummy text ever since the 1500s."
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gothic_bold"
-                android:paddingVertical="@dimen/_10ssp"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:text="Best way learn fundamentals of design thinking."
-                android:textColor="@color/black"
-                android:theme="@style/TernaryDarkTextStyle"
-                android:textSize="@dimen/_14ssp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
-                android:paddingVertical="@dimen/_10ssp"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:text="Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standar dummy text ever since the 1500s."
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp" />
 
             <TextView
                 android:layout_width="match_parent"

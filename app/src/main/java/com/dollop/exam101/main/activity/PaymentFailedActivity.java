@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
-import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityPaymentFailedBinding;
 
 public class PaymentFailedActivity extends BaseActivity implements View.OnClickListener {
@@ -26,7 +25,8 @@ public class PaymentFailedActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        Utils.I(activity, OrderConfirmedActivity.class, null);
+        if (view == binding.tvProceedToCheckoutId) {
 
+        }
     }
 }

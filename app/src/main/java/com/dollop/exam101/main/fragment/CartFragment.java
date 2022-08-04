@@ -28,6 +28,8 @@ import com.dollop.exam101.databinding.BottomsheetApplycouponBinding;
 import com.dollop.exam101.databinding.BottomsheetReferralcodeBinding;
 import com.dollop.exam101.databinding.FragmentCartBinding;
 import com.dollop.exam101.main.activity.DashboardScreenActivity;
+import com.dollop.exam101.main.activity.PaymentFailedActivity;
+import com.dollop.exam101.main.activity.ThankYouPgActivity;
 import com.dollop.exam101.main.adapter.MyCartAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.CartDatumModel;
@@ -177,7 +179,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     if (!response.body().cartData.isEmpty()) {
                         binding.rlBottom.setVisibility(View.VISIBLE);
                         binding.scrollCartItem.setVisibility(View.VISIBLE);
-                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParentEmpty.setVisibility(View.GONE);
                         binding.tvSubTotalId.setText(response.body().gstPercentage);
                         binding.tvSgst.setText(response.body().subTotalAmt);
                         binding.tvGrandtotal.setText(String.valueOf(response.body().grandTotalAmt));
@@ -189,10 +191,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     } else {
                         binding.rlBottom.setVisibility(View.GONE);
                         binding.scrollCartItem.setVisibility(View.GONE);
-                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParentEmpty.setVisibility(View.VISIBLE);
                     }
-
-
                 } else {
                     assert response.errorBody() != null;
                     APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -280,7 +280,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity, response.body().message);
+                        Utils.T(activity, "Added to WishList Successfully");
                         getCartItem();
                     } else {
                         assert response.errorBody() != null;
@@ -321,12 +321,13 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         Utils.T(activity, response.body().message);
-                        ((DashboardScreenActivity) activity).navController.navigate(R.id.bottom_home);
+                        Utils.I(activity, ThankYouPgActivity.class, null);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
+                            Utils.I(activity, PaymentFailedActivity.class, null);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
                             Utils.T(activity, message.message);
                             Utils.UnAuthorizationToken(activity);

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -19,6 +20,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -62,16 +64,16 @@ public interface ApiService {
     Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hm);
 
-   /* @GET(Const.Url.getPackageListWithFilterApi)
-    Call<AllResponseModel> examPackageListItem(@Header(Constants.Key.Authorization) String token,
-                                               @Query(Constants.Key.examId) String examId)*/;
-
     @GET(Const.Url.getLanguageApi)
     Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
 
 
     @GET(Const.Url.getStudentWishListApi)
     Call<AllResponseModel> getWishList(@Header(Constants.Key.Authorization) String token);
+
+    @GET(Const.Url.getTopicDetailApi)
+    Call<AllResponseModel> getTopicDetails(@Header(Constants.Key.Authorization) String token,
+                                           @QueryMap HashMap<String, String> hm);
 
 //______________________________********************___________________________________________//
 
@@ -134,8 +136,7 @@ public interface ApiService {
     @GET(Const.Url.getCourseList)
     Call<AllResponseModel> getCourseList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.Url.getCourseDetails)
-    Call<AllResponseModel> getCourseDetails(@Header(Constants.Key.Authorization) String token);
+
 
 
     @GET(Const.Url.getCourseMaterialProgressBar)
@@ -284,4 +285,7 @@ public interface ApiService {
     Call<AllResponseModel> purchasePackage(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hashMap);
 
+    @DELETE(Const.Url.removeFromWishListApi + "/{" + Constants.Key.wishListUuid + "}")
+    Call<AllResponseModel> removeFromWishList(@Header(Constants.Key.Authorization) String token,
+                                              @Path(Constants.Key.wishListUuid) String wishListUuid);
 }

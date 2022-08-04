@@ -42,15 +42,16 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
     public CategoriesFragmentAdapter categoriesFragmentAdapter;
     ApiService apiService;
     Activity activity;
-    String Token;
+    public int pos = -1;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     OnItemClicked onItemClicked;
     private FragmentCategoriesBinding binding;
     private String From;
 
-    public CategoriesFragment(String key, OnItemClicked onItemClicked) {
+    public CategoriesFragment(String key, OnItemClicked onItemClicked,int position) {
         From = key;
         this.onItemClicked = onItemClicked;
+        pos = position;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -91,7 +92,7 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
                         binding.rvCategoriesItem.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        categoriesFragmentAdapter = new CategoriesFragmentAdapter(courseModelArrayList, requireActivity(), From);
+                        categoriesFragmentAdapter = new CategoriesFragmentAdapter(courseModelArrayList, requireActivity(), From,pos);
                         binding.rvCategoriesItem.setAdapter(categoriesFragmentAdapter);
                     } else {
                         assert response.errorBody() != null;

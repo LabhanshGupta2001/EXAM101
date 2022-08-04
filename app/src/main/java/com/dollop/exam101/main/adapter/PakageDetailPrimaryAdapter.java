@@ -17,20 +17,16 @@ public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetai
     Context context;
     ArrayList<String> list;
     ArrayList<String> stringArrayList=new ArrayList<>();
-
-
     public PakageDetailPrimaryAdapter(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
     }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemPakagesDetailsPrimaryBinding binding= ItemPakagesDetailsPrimaryBinding.inflate(LayoutInflater.from(context),parent,false);
         return new MyViewHolder(binding);
     }
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         stringArrayList.clear();
@@ -38,10 +34,7 @@ public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetai
 
         holder.binding.rvSecond.setAdapter(new PakageDetailSecondaryAdapter(context,stringArrayList));
         holder.binding.rvSecond.setLayoutManager(new LinearLayoutManager(context));
-
-
     }
-
     @Override
     public int getItemCount() {
         return list.size();

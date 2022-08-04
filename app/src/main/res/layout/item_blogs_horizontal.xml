@@ -13,6 +13,7 @@
         app:cardBackgroundColor="@color/light_red"
         app:cardCornerRadius="@dimen/_20sdp"
         app:strokeColor="@color/HorizontallineColor"
+        app:cardElevation="0dp"
         app:strokeWidth="1dp">
 
         <TextView

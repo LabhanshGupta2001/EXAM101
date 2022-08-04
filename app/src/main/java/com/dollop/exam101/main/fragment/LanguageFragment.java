@@ -41,6 +41,7 @@ import retrofit2.Response;
 public class LanguageFragment extends Fragment implements View.OnClickListener{
     FragmentLanguageBinding binding;
     ApiService apiService;
+    int pos = -1;
     Activity activity;
     private  String From;
     ArrayList<LanguageModel> LanguageList = new ArrayList<>();
@@ -48,9 +49,10 @@ public class LanguageFragment extends Fragment implements View.OnClickListener{
     OnItemClicked onItemClicked;
     public LanguageFragment languageFragment;
 
-    public LanguageFragment(String Key, OnItemClicked onItemClicked) {
+    public LanguageFragment(String Key, OnItemClicked onItemClicked,int position) {
         From = Key;
         this.onItemClicked= onItemClicked;
+        pos = position;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -86,7 +88,7 @@ public class LanguageFragment extends Fragment implements View.OnClickListener{
                         LanguageList.clear();
                         LanguageList.addAll(response.body().languageModels);
                         binding.rvLanguage.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        languageAdapter=new LanguageAdapter(LanguageList, getContext(),From);
+                        languageAdapter=new LanguageAdapter(LanguageList, getContext(),From,pos);
                         binding.rvLanguage.setAdapter(languageAdapter);
                     } else {
                         assert response.errorBody() != null;

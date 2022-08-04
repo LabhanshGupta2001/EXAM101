@@ -110,6 +110,7 @@ public class Constants {
         String CategoryDetails = "CategoryDetails";
         String FragmentCategory = "FragmentCategory";
         String ExamFilterFragment = "ExamFilterFragment";
+        String write_a_review = "Pleas give a review";
 
 
         String Man = "Man";
@@ -141,5 +142,8 @@ public class Constants {
         String transactionId = "transactionId";
         String paymentMode = "paymentMode";
         String Online = "Online";
+        String orderExamUuid = "orderExamUuid";
+        String topicUuid = "topicUuid";
+        String wishListUuid = "wishListUuid";
     }
 }

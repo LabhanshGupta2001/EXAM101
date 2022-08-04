@@ -107,7 +107,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:fontFamily="@font/gothic_bold"
-                    android:text="@string/best_way_learn_fundamentals_of_design_nthinking"
                     android:theme="@style/TernaryBlackTextStyle" />
 
                 <LinearLayout
@@ -130,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_1sdp"
                         android:fontFamily="@font/inter_bold"
-                        android:text="@string/_3000" />
+                        />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -155,7 +154,6 @@
                             android:layout_gravity="center_vertical"
                             android:layout_toRightOf="@id/tvRpSym2"
                             android:fontFamily="@font/inter_medium"
-                            android:text="@string/_4500"
                             android:theme="@style/QuaternaryLightSubTextStyle" />
 
                         <View
@@ -194,8 +192,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_7sdp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="@string/learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games" />
+                    android:fontFamily="@font/inter_regular"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -295,8 +292,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:layout_marginTop="@dimen/_7sdp"
-                        android:fontFamily="@font/inter_regular"
-                        android:text="@string/learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games" />
+                        android:fontFamily="@font/inter_regular"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"

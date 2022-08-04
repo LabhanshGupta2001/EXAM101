@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -23,17 +24,15 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
-
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogDetailBinding;
-
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
-
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
@@ -94,7 +93,7 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
                     }*/
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        AllBlogListModel allBlogListModel=response.body().blog;
+                        AllBlogListModel allBlogListModel = response.body().blog;
                         binding.tvMainHeading.setText(allBlogListModel.blogSortDesc);
                         binding.tvBlogLine.setText(allBlogListModel.blogDetail);
                         binding.tvDate.setText(allBlogListModel.blogDate);
@@ -161,15 +160,24 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
+        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetDialog.show();
 
-        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetDialog.cancel();
-            }
-        });
+            bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
+                        Utils.T(activity,"Pleas write a review ");
+                    }else
+                      bottomSheetDialog.cancel();
+                }
+            });
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
