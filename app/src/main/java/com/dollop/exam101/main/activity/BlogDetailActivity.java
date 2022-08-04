@@ -40,7 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BlogDetailActivity extends BaseActivity implements View.OnClickListener {
+public class    BlogDetailActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = BlogDetailActivity.this;
     ActivityBlogDetailBinding binding;
     ApiService apiService;
@@ -63,7 +63,7 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
     private void init() {
         apiService = RetrofitClient.getClient();
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
+        if (bundle!=null) {
             uuid = bundle.getString(Constants.Key.uuid, Constants.Key.blank);
         }
         binding.ivBack.setOnClickListener(this);
@@ -104,8 +104,8 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
                         Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
 
 
-                        binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail, 0));
-                        // Utils.T(activity, "" + response.body().message);
+                        binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail,0));
+                       // Utils.T(activity, "" + response.body().message);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -119,7 +119,6 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
@@ -138,10 +137,9 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
             bottomSheetTask();
         }
     }
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -167,13 +165,18 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetDialog.show();
-        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetDialog.cancel();
-            }
-        });
+
+            bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
+                        Utils.T(activity,"Pleas write a review ");
+                    }else
+                      bottomSheetDialog.cancel();
+                }
+            });
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public boolean dispatchTouchEvent(MotionEvent event) {

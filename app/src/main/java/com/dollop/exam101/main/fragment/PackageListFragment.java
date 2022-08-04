@@ -50,6 +50,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     public String LanguageId = "";
     public String Price = "";
     public String ExamId = "";
+    public int Positions = -1,LanguagePos = -1;
     FragmentPackageListBinding binding;
     ApiService apiService;
     String token,MinValue = "",MaxValue = "";
@@ -108,9 +109,9 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
 
         bottomSheetDialog.show();
         ArrayList<Fragment> Fragment = new ArrayList<>();
-        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment, PackageListFragment.this);
+        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment, PackageListFragment.this,Positions);
         priceFragment = new PriceFragment(Constants.Key.PackageFragment, PackageListFragment.this);
-        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, PackageListFragment.this);
+        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, PackageListFragment.this,LanguagePos);
         Fragment.add(categoriesFragment);
         Fragment.add(priceFragment);
         Fragment.add(languageFragment);
@@ -119,12 +120,14 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
             @Override
             public void onClick(View v) {
-                if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.index != -1) {
+                if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.newPos != -1) {
                     ExamId = categoriesFragment.categoriesFragmentAdapter.examId;
+                    Positions = categoriesFragment.categoriesFragmentAdapter.newPos;
                     // Utils.E("ExamId:::"+ExamId);
                 }
                 if (languageFragment.languageAdapter != null && languageFragment.languageAdapter.index != -1) {
                     LanguageId = languageFragment.languageAdapter.languageId;
+                    LanguagePos = languageFragment.languageAdapter.index;
                 }
                 if (priceFragment != null) {
                     MinValue = priceFragment.minValue;
@@ -137,7 +140,8 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                     InternetDialog();
                 }
                // Utils.T(activity, "MinValue" + priceFragment.minValue + "MaxValue" + priceFragment.maxValue);
-                Utils.E("ID:::::" + ExamId + "LId::" + LanguageId+"MValue::"+ priceFragment.minValue+"MaxValue::"+ priceFragment.maxValue);
+                Utils.E("ID:::::" + ExamId + "LId::" + LanguageId+"MValue::"+ priceFragment.minValue+"MaxValue::"+ priceFragment.maxValue+
+                        "Positions:"+Positions);
 
                 bottomSheetDialog.cancel();
             }

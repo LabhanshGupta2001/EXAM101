@@ -56,8 +56,7 @@
                     android:id="@+id/imBlogDetail"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_147sdp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_image" />
+                    android:scaleType="centerInside" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvDArticle"
@@ -76,8 +75,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_semibold"
                         android:paddingHorizontal="@dimen/_7sdp"
-                        android:paddingVertical="@dimen/_3sdp"
-                        android:text="@string/development_article" />
+                        android:paddingVertical="@dimen/_3sdp" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -94,8 +92,7 @@
                     android:background="@drawable/black_transprent_bg"
                     android:fontFamily="@font/inter_medium"
                     android:paddingHorizontal="@dimen/_6sdp"
-                    android:paddingVertical="@dimen/_3sdp"
-                    android:text="02 June, 2021" />
+                    android:paddingVertical="@dimen/_3sdp"/>
             </RelativeLayout>
 
             <View
@@ -140,7 +137,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_toRightOf="@+id/mcvAuthorImg"
                         android:fontFamily="@font/inter_medium"
-                        android:text="@string/author_name" />
+                         />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/mcvShare"
@@ -190,8 +187,7 @@
                 android:fontFamily="@font/gothic_bold"
                 android:maxLines="2"
                 android:paddingEnd="@dimen/_10sdp"
-                android:text="5 Ways Google Cloud Platform Unlocks
-Deep Data Insights" />
+                />
 
             <TextView
                 android:id="@+id/tvBlogLine"

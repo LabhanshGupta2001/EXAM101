@@ -50,16 +50,14 @@
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:fontFamily="@font/gothic_bold"
-                    android:singleLine="true"
-                    android:text="5 Ways Google Cloud..." />
+                    android:singleLine="true" />
 
                 <TextView
                     android:id="@+id/tvDate"
                     style="@style/QuinaryHeadingTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="09 June, 2021" />
+                    android:fontFamily="@font/inter_medium" />
 
             </LinearLayout>
 
@@ -71,8 +69,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/inter_regular"
                 android:maxLines="2"
-                android:paddingEnd="@dimen/_10sdp"
-                android:text="Guide to Using the Right sit amet, elit. Velitsit ornare tortor arcu, euismod..." />
+                android:paddingEnd="@dimen/_10sdp"/>
 
 
             <RelativeLayout

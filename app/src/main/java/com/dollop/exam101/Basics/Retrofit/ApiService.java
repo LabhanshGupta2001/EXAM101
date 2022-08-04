@@ -64,16 +64,16 @@ public interface ApiService {
     Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hm);
 
-   /* @GET(Const.Url.getPackageListWithFilterApi)
-    Call<AllResponseModel> examPackageListItem(@Header(Constants.Key.Authorization) String token,
-                                               @Query(Constants.Key.examId) String examId)*/;
-
     @GET(Const.Url.getLanguageApi)
     Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
 
 
     @GET(Const.Url.getStudentWishListApi)
     Call<AllResponseModel> getWishList(@Header(Constants.Key.Authorization) String token);
+
+    @GET(Const.Url.getTopicDetailApi)
+    Call<AllResponseModel> getTopicDetails(@Header(Constants.Key.Authorization) String token,
+                                           @QueryMap HashMap<String, String> hm);
 
 //______________________________********************___________________________________________//
 
@@ -136,8 +136,7 @@ public interface ApiService {
     @GET(Const.Url.getCourseList)
     Call<AllResponseModel> getCourseList(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.Url.getCourseDetails)
-    Call<AllResponseModel> getCourseDetails(@Header(Constants.Key.Authorization) String token);
+
 
 
     @GET(Const.Url.getCourseMaterialProgressBar)

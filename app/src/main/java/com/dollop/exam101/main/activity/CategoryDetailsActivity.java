@@ -56,7 +56,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     public String Price = "";
     public String languageId = "";
     String ExamName = "", MinValue = "", MaxValue = "";
-    int Positions;
+    public int Positions = -1,LanguagePos = -1;
     Activity activity = CategoryDetailsActivity.this;
     public  ActivityCategoryDetailsBinding binding;
     ArrayList<PackageModel> arrayList = new ArrayList<>();
@@ -122,7 +122,6 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomsheetFilterBinding.getRoot().getParent()));
         bottomSheetFilter.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        // bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
         bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetFilter.show();
@@ -133,35 +132,43 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         title.add(Constants.Key.Language);
 
         ArrayList<Fragment> Fragment = new ArrayList<>();
-        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this);
+        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment ,CategoryDetailsActivity.this,Positions);
         priceFragment = new PriceFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this);
-        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this);
+        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this,LanguagePos);
         Fragment.add(categoriesFragment);
         Fragment.add(priceFragment);
         Fragment.add(languageFragment);
 
-
+        ViewPagerFragmentAdapter viewPagerFragmentAdapter=  new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), Fragment);
+        bottomsheetFilterBinding.ViewPagerId.setAdapter(viewPagerFragmentAdapter);
         bottomsheetFilterBinding.tvllSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.index != -1) {
+                if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.newPos != -1) {
                     examId = categoriesFragment.categoriesFragmentAdapter.examId;
+                     binding.tvToolbarName.setText(categoriesFragment.categoriesFragmentAdapter.examName);
+                     Positions = categoriesFragment.categoriesFragmentAdapter.newPos;
+                    getCategoriesItemHeading();
+                    //viewPagerFragmentAdapter.notifyDataSetChanged();
                 }
                 if (languageFragment.languageAdapter != null && languageFragment.languageAdapter.index != -1) {
                     languageId = languageFragment.languageAdapter.languageId;
+                    LanguagePos = languageFragment.languageAdapter.index;
                 }
                 if (priceFragment != null) {
                     MinValue = priceFragment.minValue;
                     MaxValue = priceFragment.maxValue;
                 }
+
                 getCategoryDetails(examId);
-                Utils.E("ID:::::" + examId + "LId::" + languageId + "MValue::" + priceFragment.minValue + "MaxValue::" + priceFragment.maxValue);
+                Utils.E("ID:::::" + examId + "LId::" + languageId + "MValue::" + priceFragment.minValue + "MaxValue::"
+                        + priceFragment.maxValue+"Position::"+Positions);
 
                 bottomSheetFilter.cancel();
+
             }
         });
 
-        bottomsheetFilterBinding.ViewPagerId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), Fragment));
 
         new TabLayoutMediator(bottomsheetFilterBinding.tlTabLayoutId, bottomsheetFilterBinding.ViewPagerId, (tab, position) -> {
             tab.setText(title.get(position));

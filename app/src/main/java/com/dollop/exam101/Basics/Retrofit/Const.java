@@ -67,7 +67,7 @@ public class Const {
         String changePasswordApi = "changePasswordApi";
         String contactUsApi = "contactUsApi";
         String getCourseList = "getCourseList";
-        String getCourseDetails = "getCourseDetails";
+        String getTopicDetailApi = "getTopicDetailApi";
         String getCourseMaterialProgressBar = "getCourseMaterialProgressBar";
         String getCourseMaterialList = "getCourseMaterialList";
         String getMyPackagesList = "getMyPakagesList";
