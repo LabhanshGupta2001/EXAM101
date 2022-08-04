@@ -103,4 +103,9 @@ public class AllResponseModel {
     @SerializedName("wishList")
     @Expose
     public List<WishListModel> wishList = null;
+
+    @SerializedName("topicDetail")
+    @Expose
+    public TopicDetailModel topicDetailModel;
+
 }

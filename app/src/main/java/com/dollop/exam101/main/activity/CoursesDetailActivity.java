@@ -1,23 +1,34 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.text.HtmlCompat;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCoursesDetailBinding;
 import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.TopicDetailModel;
+import com.dollop.exam101.main.model.WishListModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +41,7 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
     BottomSheetPracticeTestBinding bottomSheetPracticeTestBinding;
     BottomSheetDialog bottomSheetDialog;
     ApiService apiService;
+    //ArrayList<TopicDetailModel> topicList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -43,14 +55,15 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     void init() {
-        if (AppController.getInstance().isOnline()) {
-
-        } else {
-            Utils.InternetDialog(activity);
-        }
         apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
         binding.btnNext.setOnClickListener(this);
+
+        if (AppController.getInstance().isOnline()) {
+            getCourseDetails();
+        } else {
+            Utils.InternetDialog(activity);
+        }
 
     }
 
@@ -65,15 +78,46 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
     }
 
     private void getCourseDetails() {
-        apiService.getCourseDetails("").enqueue(new Callback<AllResponseModel>() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTU5MTU5MX0.vZTbRy2Y-8j5M-jKioJ_vHrZjXil2PUswqA_ALB7XLk";
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.orderExamUuid, "fe2d148e-0f0c-11ed-9754-000c291151eb");
+        hm.put(Constants.Key.topicUuid, "d4c9f70d-1257-11ed-967e-000c291151eb");
+        apiService.getTopicDetails(token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                      // Utils.E("TopicDetail"+response.body());
+                        binding.tvChapterName.setText(response.body().topicDetailModel.topicName);
+                        binding.tvTopicSummary.setText(response.body().topicDetailModel.topicSummary);
+                        binding.tvTopicDetail.setText(HtmlCompat.fromHtml(response.body().topicDetailModel.topicDetail,0));
+                        if (response.body().topicDetailModel.video != null || response.body().topicDetailModel.video != Constants.Key.blank ){
+                            binding.vvVideoView.setVideoPath(response.body().topicDetailModel.video);
+                        }
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }

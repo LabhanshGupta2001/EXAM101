@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -34,6 +35,7 @@ import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
@@ -157,19 +159,45 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
         dialog.show();
     }
 
-    private void bottomSheetTask() {
+   /* private void bottomSheetTask() {
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
         bottomSheetDialog.show();
 
-        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
+                        Utils.T(activity,"Pleas write a review ");
+                    }else
+                      bottomSheetDialog.cancel();
+                }
+            });
+    }*/
+
+    private void bottomSheetTask() {
+        bottomSheetDialog = new BottomSheetDialog(activity);
+        bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+        bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
+        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setSkipCollapsed(true);
+        bottomSheetDialog.show();
+        /*bottomSheetRatenowBinding.tvHeading.setText(packageName);
+        bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
+        Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
+                into(bottomSheetRatenowBinding.ivPhotoId);*/
+        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
+            //addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+            if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
+                Utils.T(activity,Constants.Key.write_a_review);
+            }else
                 bottomSheetDialog.cancel();
-            }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
