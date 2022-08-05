@@ -57,9 +57,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvMain"
-        android:overScrollMode="never"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,8 +75,8 @@
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:background="@color/background"
                 android:orientation="horizontal"
-                android:paddingVertical="@dimen/_8sdp"
-                android:paddingHorizontal="@dimen/_12sdp">
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingVertical="@dimen/_8sdp">
 
                 <com.google.android.material.card.MaterialCardView
 
@@ -84,7 +84,8 @@
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_gravity="center"
-                    app:cardCornerRadius="@dimen/_25sdp">
+                    app:cardCornerRadius="@dimen/_25sdp"
+                    app:cardElevation="0dp">
 
                     <ImageView
                         android:id="@+id/ivProfile"
@@ -146,12 +147,13 @@
                     android:id="@+id/llEditProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         app:cardBackgroundColor="@color/light_gray"
                         app:cardCornerRadius="@dimen/_4sdp"
                         app:cardElevation="0dp">
@@ -159,8 +161,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/_4sdp"
-                            android:paddingVertical="@dimen/_3sdp"
+                            android:layout_gravity="center"
                             android:src="@drawable/ic_contact" />
                     </com.google.android.material.card.MaterialCardView>
 
@@ -193,12 +194,13 @@
                     android:id="@+id/llOderHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         app:cardBackgroundColor="@color/light_gray"
                         app:cardCornerRadius="@dimen/_4sdp"
                         app:cardElevation="0dp">
@@ -206,7 +208,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_4sdp"
+                            android:layout_gravity="center"
                             android:src="@drawable/ic_back_history" />
                     </com.google.android.material.card.MaterialCardView>
 
@@ -238,12 +240,13 @@
                     android:id="@+id/llMockTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         app:cardBackgroundColor="@color/light_gray"
                         app:cardCornerRadius="@dimen/_4sdp"
                         app:cardElevation="0dp">
@@ -251,7 +254,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_4sdp"
+                            android:layout_gravity="center"
                             android:src="@drawable/ic_mock_test" />
                     </com.google.android.material.card.MaterialCardView>
 
@@ -283,12 +286,13 @@
                     android:id="@+id/llWishList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         app:cardBackgroundColor="@color/light_gray"
                         app:cardCornerRadius="@dimen/_4sdp"
                         app:cardElevation="0dp">
@@ -296,7 +300,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_4sdp"
+                            android:layout_gravity="center"
                             android:src="@drawable/ic_heart" />
                     </com.google.android.material.card.MaterialCardView>
 
@@ -385,8 +389,8 @@
                 android:background="@color/background"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="gone"
                 android:padding="@dimen/_12sdp"
+                android:visibility="gone"
                 android:weightSum="1">
 
                 <LinearLayout
@@ -418,21 +422,22 @@
                     android:id="@+id/ivGlassTimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_3sdp"
                     android:layout_marginTop="@dimen/_2sdp"
+                    android:paddingHorizontal="@dimen/_3sdp"
                     android:src="@drawable/ic_glass_timer" />
 
             </LinearLayout>
 
             <!--Do Option wala layout -->
             <LinearLayout
+                android:id="@+id/llBankDetailsAndAffiliation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginVertical="@dimen/_8sdp"
                 android:background="@color/background"
-                android:visibility="gone"
-                android:id="@+id/llBankDetailsAndAffiliation">
+                android:orientation="vertical"
+                android:visibility="gone">
+
                 <LinearLayout
                     android:id="@+id/llBankDetails"
                     android:layout_width="match_parent"
@@ -476,10 +481,12 @@
                         android:src="@drawable/ic_arrow_right" />
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
                     android:background="@color/HorizontallineColor" />
+
                 <LinearLayout
                     android:id="@+id/llAffiliatePurchaseList"
                     android:layout_width="match_parent"
@@ -549,12 +556,13 @@
                     android:id="@+id/llInviteFriend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         app:cardBackgroundColor="@color/light_gray"
                         app:cardCornerRadius="@dimen/_4sdp"
                         app:cardElevation="0dp">
@@ -562,7 +570,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_4sdp"
+                            android:layout_gravity="center"
                             android:src="@drawable/ic_invite_friend" />
                     </com.google.android.material.card.MaterialCardView>
 
@@ -597,12 +605,13 @@
                     android:id="@+id/llNotifications"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         app:cardBackgroundColor="@color/light_gray"
                         app:cardCornerRadius="@dimen/_4sdp"
                         app:cardElevation="0dp">
@@ -610,7 +619,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_4sdp"
+                            android:layout_gravity="center"
                             android:src="@drawable/ic_balle" />
                     </com.google.android.material.card.MaterialCardView>
 

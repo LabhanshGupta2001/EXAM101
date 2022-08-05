@@ -62,6 +62,7 @@
             android:layout_marginTop="@dimen/_6sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
+            android:layout_marginHorizontal="@dimen/_12sdp"
             android:text="@string/microsoft_power_point"
             android:theme="@style/QuinaryThemeTextStyle" />
 
@@ -72,6 +73,8 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:fontFamily="@font/gothic_bold"
             android:gravity="center"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+
             android:text="@string/best_way_learn_fundamentals_of_ndesign_thinking"
             android:theme="@style/QuaternaryFullBlackTextStyle" />
 
