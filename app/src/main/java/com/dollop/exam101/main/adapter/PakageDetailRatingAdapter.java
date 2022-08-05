@@ -14,7 +14,10 @@ import com.dollop.exam101.databinding.ItemPackageDetailBinding;
 
 import com.dollop.exam101.main.model.ReviewRating;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetailRatingAdapter.MyViewHolder> {
     Context context;
@@ -40,9 +43,8 @@ public class PakageDetailRatingAdapter extends RecyclerView.Adapter<PakageDetail
         holder.binding.tvTitleId.setText(reviewRatingModel.studentName);
         holder.binding.tvrating.setText(reviewRatingModel.rating);
         holder.binding.tvDesc.setText(reviewRatingModel.review);
-        holder.binding.tvday.setText(reviewRatingModel.createdDtm);
+        holder.binding.tvDateTime.setText(reviewRatingModel.createdDtm);
         Utils.Picasso(reviewRatingModel.profilePic,holder.binding.ivProfileUSer, R.drawable.dummy);
-
     }
 
     @Override

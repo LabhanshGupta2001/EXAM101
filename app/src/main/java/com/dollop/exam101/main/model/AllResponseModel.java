@@ -108,4 +108,8 @@ public class AllResponseModel {
     @Expose
     public TopicDetailModel topicDetailModel;
 
+    @SerializedName("QuestionList")
+    @Expose
+    public QuestionListModel questionListModel;
+
 }

@@ -70,7 +70,7 @@ public class Const {
         String getTopicDetailApi = "getTopicDetailApi";
         String getCourseMaterialProgressBar = "getCourseMaterialProgressBar";
         String getCourseMaterialList = "getCourseMaterialList";
-        String getMyPackagesList = "getMyPakagesList";
+        String getPracticeQuestionListApi = "getPracticeQuestionListApi";
         String getFaqsList = "getFaqsList";
         String getProfileDetailApi = "getProfileDetailApi";
         String updateProfileApi = "updateProfileApi";

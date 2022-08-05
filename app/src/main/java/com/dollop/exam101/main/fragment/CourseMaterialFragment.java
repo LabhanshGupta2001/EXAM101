@@ -16,35 +16,31 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
-import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.AlertdialogBinding;
-import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
-import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
+import com.dollop.exam101.main.model.ExamModel;
+import com.dollop.exam101.main.model.ModuleModel;
+import com.dollop.exam101.main.model.SubjectModel;
 
 import java.util.ArrayList;
-
 
 
 public class CourseMaterialFragment extends Fragment implements View.OnClickListener {
     Activity activity;
     FragmentCourseMaterialBinding binding;
-    String packageUuid;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<ExamModel> examModelArrayList;
+    ArrayList<SubjectModel> subjectModelArrayList = new ArrayList<>();
     ApiService apiService;
+    ArrayList<ModuleModel> stringArrayList = new ArrayList<>();
 
-
-    public CourseMaterialFragment(String packageUuid) {
-        Utils.E("PackageId:::" + packageUuid);
-        this.packageUuid = packageUuid;
+    public CourseMaterialFragment(ArrayList<ExamModel> ArrayList) {
+        this.examModelArrayList = ArrayList;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -60,16 +56,21 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-        list.clear();
+       /* subjectModelArrayList.clear();
         list.add("1");
         list.add("1");
         list.add("1");
-        list.add("1");
-
+        list.add("1");*/
+        // subjectModelArrayList.clear();
+        for (int i = 0; i < examModelArrayList.size(); i++) {
+            subjectModelArrayList.addAll(examModelArrayList.get(i).subjects);
+            stringArrayList.addAll(subjectModelArrayList.get(i).modules);
+        }
+        Utils.E("subjectModelArrayList::" + subjectModelArrayList);
         binding.rvFirst.setNestedScrollingEnabled(false);
         binding.rvFirst.setHasFixedSize(true);
         binding.rvFirst.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvFirst.setAdapter(new PakageDetailPrimaryAdapter(getContext(), list));
+        binding.rvFirst.setAdapter(new PakageDetailPrimaryAdapter(getContext(), subjectModelArrayList));
 
     }
 
@@ -81,7 +82,7 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

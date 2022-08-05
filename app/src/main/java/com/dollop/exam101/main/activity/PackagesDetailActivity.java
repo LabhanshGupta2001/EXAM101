@@ -34,6 +34,7 @@ import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.ExamModel;
 import com.dollop.exam101.main.model.LanguageModel;
 import com.dollop.exam101.main.model.MockTestModel;
 import com.dollop.exam101.main.model.PackageDetailModel;
@@ -44,9 +45,12 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,12 +67,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     ArrayList<Fragment> fragments = new ArrayList<>();
     List<MockTestModel> mockTestModels = new ArrayList<>();
     ArrayList<ReviewRating> reviewRatingModels = new ArrayList<>();
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<ExamModel> examModelArrayList = new ArrayList<>();
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
     String packageName, packageDetail, imgPath;
-
-    ArrayList<LanguageModel> languageModels = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -107,13 +109,13 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         binding.AddtoCart.setOnClickListener(this);
 
 
-        list.add("1");
+      /*  list.add("1");
         list.add("1");
         list.add("1");
         binding.rvOverView.setNestedScrollingEnabled(false);
         binding.rvOverView.setHasFixedSize(true);
         binding.rvOverView.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvOverView.setAdapter(new OverviewCourseDetailsAdapter(activity, list));
+        binding.rvOverView.setAdapter(new OverviewCourseDetailsAdapter(activity, list));*/
         if (AppController.getInstance().isOnline()) {
             GetPackageDetailsMockTestListRatingNow();
         } else {
@@ -249,8 +251,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
-
-                    fragments.add(new CourseMaterialFragment(packageUuid));
+                    examModelArrayList = (ArrayList<ExamModel>) packageDetailModels.examModels;
+                    Utils.E("examModels::"+examModelArrayList);
+                    fragments.add(new CourseMaterialFragment(examModelArrayList));
                     fragments.add(new MockTestFragment(mockTestModels));
                     Tittle.clear();
                     Tittle.add(Constants.Key.Course_Material);
@@ -413,7 +416,11 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
            if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)){
                Utils.T(activity,Constants.Key.write_a_review);
            } else {
+               String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+               String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+               Utils.E("SimpleDateFormat::::"+currentDate+currentTime);
                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+               GetPackageDetailsMockTestListRatingNow();
                bottomSheetDialog.cancel();
            }
        });

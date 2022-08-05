@@ -7,23 +7,27 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCourseTestQuestionListBinding;
+import com.dollop.exam101.main.model.QuestionListModel;
+import com.dollop.exam101.main.model.QuestionModel;
 
 import java.util.ArrayList;
 
 public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQuestionAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<String> list;
-    ArrayList<String> stringArrayList = new ArrayList<>();
+    ArrayList<QuestionModel> questionModelArrayList;
+    //ArrayList<QuestionModel> questionModelArrayList = new ArrayList<>();
 
-    public CourseTestQuestionAdapter(Context context, ArrayList<String> list) {
+    public CourseTestQuestionAdapter(Context context, ArrayList<QuestionModel> list) {
         this.context = context;
-        this.list = list;
+        this.questionModelArrayList = list;
     }
 
     @NonNull
@@ -36,13 +40,16 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
     @Override
     public void onBindViewHolder(@NonNull CourseTestQuestionAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position)
     {
-        holder.binding.tvQuestion.setText(list.get(position));
+        Utils.E("questionModelArrayList::"+questionModelArrayList);
+        QuestionModel questionListModel = questionModelArrayList.get(position);
+        holder.binding.tvQuestion.setText(HtmlCompat.fromHtml(questionListModel.question,0));
+       /* holder.binding.tvQuestion.setText(questionListModelArrayList.get(position));
         stringArrayList.clear();
         stringArrayList.add("1");
         stringArrayList.add("2");
         stringArrayList.add("3");
-        stringArrayList.add("4");
-        holder.binding.rvOption.setAdapter(new CourseTestQuestionOptionAdapter(context, stringArrayList));
+        stringArrayList.add("4");*/
+        holder.binding.rvOption.setAdapter(new CourseTestQuestionOptionAdapter(context, questionModelArrayList));
         holder.binding.rvOption.setLayoutManager(new LinearLayoutManager(context));
 
      //   holder.binding.rvOption.notifyAll();
@@ -50,7 +57,7 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return questionModelArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
