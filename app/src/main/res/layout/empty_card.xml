@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_20sdp"
-        android:src="@drawable/ic_not_result_found" />
+        android:src="@drawable/empty_cart" />
 
     <TextView
         android:id="@+id/tvThankYou"

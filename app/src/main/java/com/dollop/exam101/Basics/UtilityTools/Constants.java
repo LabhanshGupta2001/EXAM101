@@ -110,7 +110,7 @@ public class Constants {
         String CategoryDetails = "CategoryDetails";
         String FragmentCategory = "FragmentCategory";
         String ExamFilterFragment = "ExamFilterFragment";
-        String write_a_review = "Pleas give a review";
+        String write_a_review = "Please give a review";
 
 
         String Man = "Man";
