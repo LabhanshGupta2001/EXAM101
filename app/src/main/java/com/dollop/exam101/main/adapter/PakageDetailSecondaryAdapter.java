@@ -10,17 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemPakagesDetailsSecondryBinding;
+import com.dollop.exam101.main.model.ModuleModel;
+import com.dollop.exam101.main.model.TopicDetailModel;
 
 import java.util.ArrayList;
 
 public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDetailSecondaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list;
-    ArrayList<String> stringArrayList=new ArrayList<>();
+    ArrayList<ModuleModel> list;
+    ArrayList<TopicDetailModel> stringArrayList=new ArrayList<>();
     private Boolean dropdown = true;
 
-    public PakageDetailSecondaryAdapter(Context context, ArrayList<String> list) {
+    public PakageDetailSecondaryAdapter(Context context, ArrayList<ModuleModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -34,8 +37,13 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        stringArrayList.clear();
-        stringArrayList.add("1");
+        ModuleModel moduleModel = list.get(position);
+       /* stringArrayList.clear();
+        stringArrayList.add("1");*/
+        holder.binding.tvModule.setText(moduleModel.moduleName);
+
+        stringArrayList.addAll(stringArrayList);
+        Utils.E("stringArrayListTopic::"+stringArrayList);
         holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,stringArrayList));
         holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
 

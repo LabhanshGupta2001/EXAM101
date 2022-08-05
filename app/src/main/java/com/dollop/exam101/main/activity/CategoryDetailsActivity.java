@@ -193,6 +193,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
                         binding.rvPackagesHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+                        binding.rvPackagesHeading.getLayoutManager().scrollToPosition(Positions);
                         binding.rvPackagesHeading.setAdapter(new CategoryDetailAdapter(activity, courseModelArrayList, Positions));
                     } else {
                         assert response.errorBody() != null;

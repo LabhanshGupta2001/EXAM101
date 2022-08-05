@@ -135,7 +135,10 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
 
         bottomSheetPracticeTestBinding.tvBtnPracticeTest.setOnClickListener(view ->
         {
-            Utils.I(activity, CourseTestActivity.class, null);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.Key.orderExamUuid, "fe2d148e-0f0c-11ed-9754-000c291151eb");
+            bundle.putString(Constants.Key.topicUuid, "d4c9f70d-1257-11ed-967e-000c291151eb");
+            Utils.I(activity, CourseTestActivity.class, bundle);
         });
 
     }

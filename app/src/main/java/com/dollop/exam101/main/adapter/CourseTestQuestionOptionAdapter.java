@@ -11,20 +11,22 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 
 import com.dollop.exam101.databinding.ItemCourseTestQuestionOptionListBinding;
+import com.dollop.exam101.main.model.QuestionModel;
 
 import java.util.ArrayList;
 
 public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<CourseTestQuestionOptionAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<QuestionModel> questionModelArrayList = new ArrayList<>();
     int row_index = -1;
 
-    public CourseTestQuestionOptionAdapter(Context context, ArrayList<String> list) {
+    public CourseTestQuestionOptionAdapter(Context context, ArrayList<QuestionModel> list) {
         this.context = context;
-        this.list = list;
+        this.questionModelArrayList = list;
     }
 
     @NonNull
@@ -37,7 +39,10 @@ public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<Course
     @SuppressLint({"ResourceAsColor", "NotifyDataSetChanged"})
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.binding.tvOption.setText(list.get(position));
+        Utils.E("questionModelArrayListOPPPPPPP:::++"+questionModelArrayList);
+        QuestionModel questionModel = questionModelArrayList.get(position);
+
+        holder.binding.tvOption.setText(questionModel.options);
 /*
         holder.binding.cardOption.setStrokeColor(R.color.green);
         holder.binding.tvOption.setBackgroundColor(R.color.white);
@@ -57,14 +62,14 @@ public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<Course
         } else {
             holder.binding.cardOption.setStrokeColor(ContextCompat.getColor(context,R.color.color_gray3));
             holder.binding.cardOption.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
-            Log.d("Position On Click", " " + position);
-            Toast.makeText(context, "Postion On Click " + position, Toast.LENGTH_SHORT).show();
+           /* Log.d("Position On Click", " " + position);
+            Toast.makeText(context, "Postion On Click " + position, Toast.LENGTH_SHORT).show();*/
         }
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return questionModelArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

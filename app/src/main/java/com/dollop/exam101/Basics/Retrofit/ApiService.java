@@ -29,7 +29,7 @@ import retrofit2.http.QueryMap;
  */
 public interface ApiService {
 
-    // Nilesh..
+    // Nilesh..Patidar
     @GET(Const.Url.getCountryListApi)
     Call<AllResponseModel> getCountryList();
 
@@ -74,6 +74,11 @@ public interface ApiService {
     @GET(Const.Url.getTopicDetailApi)
     Call<AllResponseModel> getTopicDetails(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hm);
+
+    @GET(Const.Url.getPracticeQuestionListApi)
+    Call<AllResponseModel> getMyQuestionList(@Header(Constants.Key.Authorization) String token,
+                                            @QueryMap HashMap<String,String>hm);
+
 
 //______________________________********************___________________________________________//
 
@@ -144,9 +149,6 @@ public interface ApiService {
 
     @GET(Const.Url.getCourseMaterialList)
     Call<AllResponseModel> getCourseMaterialList(@Header(Constants.Key.Authorization) String token);
-
-    @GET(Const.Url.getMyPackagesList)
-    Call<AllResponseModel> getMyPakagesList(@Header(Constants.Key.Authorization) String token);
 
 
     @GET(Const.Url.getFaqsList)

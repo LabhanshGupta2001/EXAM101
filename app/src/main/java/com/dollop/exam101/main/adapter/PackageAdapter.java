@@ -60,10 +60,8 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.llDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.Key.packageUuId, packageModel.packageUuid);
-
                 Utils.I(context,PackagesDetailActivity.class,bundle);
                 Utils.E("Bundle :::::: "+bundle);
             }

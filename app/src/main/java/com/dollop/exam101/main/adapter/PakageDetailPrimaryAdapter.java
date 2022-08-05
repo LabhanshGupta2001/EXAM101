@@ -9,17 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemPakagesDetailsPrimaryBinding;
+import com.dollop.exam101.main.model.ModuleModel;
+import com.dollop.exam101.main.model.SubjectModel;
 
 import java.util.ArrayList;
 
 public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetailPrimaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list;
-    ArrayList<String> stringArrayList=new ArrayList<>();
-    public PakageDetailPrimaryAdapter(Context context, ArrayList<String> list) {
+    ArrayList<SubjectModel> list;
+    ArrayList<ModuleModel> stringArrayList=new ArrayList<>();
+    public PakageDetailPrimaryAdapter(Context context, ArrayList<SubjectModel> arrayList) {
         this.context = context;
-        this.list = list;
+        this.list = arrayList;
     }
     @NonNull
     @Override
@@ -29,9 +32,12 @@ public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetai
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        stringArrayList.clear();
-        stringArrayList.add("1");
-
+        SubjectModel subjectModel =  list.get(position);
+       /* stringArrayList.clear();
+        stringArrayList.add("1");*/
+        stringArrayList.addAll(stringArrayList);
+        Utils.E("stringArrayList::"+stringArrayList);
+        holder.binding.tvSubject1.setText(subjectModel.subjectName);
         holder.binding.rvSecond.setAdapter(new PakageDetailSecondaryAdapter(context,stringArrayList));
         holder.binding.rvSecond.setLayoutManager(new LinearLayoutManager(context));
     }
