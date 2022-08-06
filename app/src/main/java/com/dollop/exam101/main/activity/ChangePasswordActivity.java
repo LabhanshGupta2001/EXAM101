@@ -1,12 +1,23 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +56,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     List<ValidationModel> allResponseModels = new ArrayList<>();
     String Token;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +65,34 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         init();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void init() {
         Token = Utils.GetSession().token;
         apiService = RetrofitClient.getClient();
 
         binding.ivBack.setOnClickListener(this);
         binding.llSavePassword.setOnClickListener(this);
+        binding.etConfirmNewPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode actionMode) {
+
+            }
+        });
     }
 
     private void ChangePassword() {
@@ -109,7 +143,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             if (AppController.getInstance().isOnline()) {
                 CheckValidationTask();
             } else {
-               // Utils.InternetDialog(activity);
                 InternetDialog();
             }
         }
@@ -117,26 +150,45 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
     private void CheckValidationTask() {
         allResponseModels.clear();
-        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etCurrentPassword, binding.etNewPassword, binding.etConfirmNewPassword));
-        allResponseModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etNewPassword));
-        allResponseModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etNewPassword, binding.etConfirmNewPassword));
+        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etCurrentPassword,binding.tvErrorCurrentPass));
+        allResponseModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etNewPassword,binding.tvErrorNewPass));
+        allResponseModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etNewPassword, binding.etConfirmNewPassword,binding.tvErrorConfirmPass));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
             ChangePassword();
         } else {
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
-                //  resultReturn.errorTextView.setText(resultReturn.errorMessage);
-                Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
             } else {
-                //resultReturn.errorTextView.setText(validation.errorMessage);
-                validation.EditTextPointer.setError(validation.errorMessage);
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
             }
 
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            // remove focus from edit text on click outside
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                final boolean globalVisibleRect;
+                globalVisibleRect = v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
+    @SuppressLint("NewApi")
     private void InternetDialog() {
         Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());

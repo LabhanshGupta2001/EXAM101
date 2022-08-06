@@ -8,11 +8,14 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -61,11 +64,79 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         apiService = RetrofitClient.getClient();
         binding.llSave.setOnClickListener(this);
         binding.ivBack.setOnClickListener(this);
+        edittextValidation();
 
     }
 
+    private void edittextValidation() {
+        binding.etHolderName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorName.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etAccountEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorEmail.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etAccountMobileNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorMobile.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorMessage.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
     private void ContactUs() {
-        Dialog progressDialog=Utils.initProgressDialog(activity);
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hashMap = new HashMap<>();
 
         hashMap.put(Constants.Key.name, (binding.etHolderName.getText().toString().trim()));
@@ -80,7 +151,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity,""+response.body().message);
+                        Utils.T(activity, "" + response.body().message);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -112,7 +183,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
             if (AppController.getInstance().isOnline()) {
                 CheckValidationTask();
             } else {
-               // Utils.InternetDialog(activity);
+                // Utils.InternetDialog(activity);
                 InternetDialog();
             }
 
@@ -120,6 +191,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
             finish();
         }
     }
+
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // remove focus from edit text on click outside
@@ -140,29 +212,32 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
     private void CheckValidationTask() {
         allResponseModels.clear();
-        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etHolderName));
-        allResponseModels.add(new ValidationModel(Validation.Type.Email, binding.etAccountEmail));
-        allResponseModels.add(new ValidationModel(Validation.Type.Phone, binding.etAccountMobileNo));
-        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etMessage));
+        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etHolderName, binding.tvErrorName));
+        allResponseModels.add(new ValidationModel(Validation.Type.Email, binding.etAccountEmail, binding.tvErrorEmail));
+        allResponseModels.add(new ValidationModel(Validation.Type.Phone, binding.etAccountMobileNo, binding.tvErrorMobile));
+        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etMessage, binding.tvErrorMessage));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
             ContactUs();
         } else {
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
-                //  resultReturn.errorTextView.setText(resultReturn.errorMessage);
-                Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
             } else {
-                //resultReturn.errorTextView.setText(validation.errorMessage);
-                validation.EditTextPointer.setError(validation.errorMessage);
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
             }
 
+
         }
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -9,6 +10,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -104,6 +107,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             //Utils.InternetDialog(activity);
             InternetDialog();
         }
+        edittextValidation();
         //binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
         binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
         binding.SignUPId.setOnClickListener(this);
@@ -137,6 +141,89 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
 
         binding.llLoginWithGoogle.setOnClickListener(v -> signIn());
+    }
+
+    private void edittextValidation() {
+        binding.etUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorName.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etUserEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorEmail.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etEnterMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorMobile.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorPass.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etConfirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorConfirmPass.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     private void signIn() {
@@ -192,14 +279,14 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         if (view == binding.SignUPId) {
             Utils.I(SignUpActivity.this, LoginActivity.class, null);
         } else if (view == binding.tvSelectState) {
-            if (binding.tvSelectCountry.equals(Constants.Key.blank))
-                Utils.T(activity, Constants.Key.Pleas_Select_Country);
-            else bottomSheetStateTask();
+            binding.tvErrorState.setVisibility(View.GONE);
+            bottomSheetStateTask();
         } else if (view == binding.tvRegisterId) {
             CheckValidationTask();
         }/*else if (view == binding.llCountryCode) {
             bottomSheetCountryTask(Constants.Key.CountryId_Show);
         } else if (view == binding.tvSelectCountry) {
+            binding.tvErrorCountry.setVisibility(View.GONE);
             bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
         } */
     }
@@ -289,8 +376,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName, binding.tvErrorName));
         errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail, binding.tvErrorEmail));
         errorValidationModels.add(new ValidationModel(Validation.Type.Phone, binding.etEnterMobile, binding.tvErrorMobile));
-        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etPassword, binding.etConformPassword, binding.tvErrorPass));
-        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etPassword, binding.etConformPassword, binding.tvErrorConfirmPass));
+        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etPassword, binding.etConfirmPassword, binding.tvErrorPass));
+        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etPassword, binding.etConfirmPassword, binding.tvErrorConfirmPass));
         errorValidationModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCountry.getText().toString(), getString(R.string.please_select_the_country), binding.tvErrorCountry));
         errorValidationModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectState.getText().toString(), getString(R.string.please_select_the_state), binding.tvErrorState));
         Validation validation = Validation.getInstance();
