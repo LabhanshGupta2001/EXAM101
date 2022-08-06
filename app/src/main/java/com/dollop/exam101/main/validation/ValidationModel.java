@@ -3,6 +3,9 @@ package com.dollop.exam101.main.validation;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Anil on 6/july/2022.
  */

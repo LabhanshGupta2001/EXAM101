@@ -22,8 +22,8 @@ public class UserData {
     public static final String Key_EmailVerified = "emailVerified";
     public static final String Key_RoleType = "roleType";
     public static final String KEY_userPin = "userPin";
-    public static final String KEY_Token = "token";
     public static final String KEY_profilePic = "profilePic";
+    public static final String KEY_Token = "token";
 
 
     @SerializedName("user_id")
@@ -63,12 +63,13 @@ public class UserData {
     @SerializedName("roleType")
     @Expose
     public String roleType;
-    @SerializedName("token")
-    @Expose
-    public String token;
     @SerializedName("profilePic")
     @Expose
     public String profilePic;
+    @SerializedName("token")
+    @Expose
+    public String token;
+
 
 
     /**

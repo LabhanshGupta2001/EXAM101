@@ -107,13 +107,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginVertical="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/full_name"
                     android:inputType="text"
                     android:paddingHorizontal="@dimen/_12sdp"
                     android:paddingVertical="@dimen/_12sdp" />
+                <TextView
+                    android:id="@+id/tvErrorName"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <EditText
                     android:id="@+id/etUserEmail"
@@ -121,13 +131,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginBottom="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="@dimen/_12sdp"
                     android:paddingVertical="@dimen/_12sdp" />
+                <TextView
+                    android:id="@+id/tvErrorEmail"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvMobile"
@@ -136,6 +156,7 @@
                     app:cardCornerRadius="@dimen/_30sdp"
                     app:cardBackgroundColor="@color/white"
                     app:cardElevation="0dp"
+                    android:layout_marginTop="@dimen/_14sdp"
                     app:strokeColor="@color/HorizontallineColor"
                     app:strokeWidth="@dimen/_1sdp"
                     android:layout_marginHorizontal="@dimen/_12sdp">
@@ -214,6 +235,18 @@
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/tvErrorMoblie"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
+
+
 
                 <TextView
                     android:id="@+id/tvSelectCountry"
@@ -227,6 +260,17 @@
                     android:hint="@string/country"
                     android:padding="@dimen/_12sdp"
                     tools:ignore="Autofill,TextViewEdits" />
+                <TextView
+                    android:id="@+id/tvErrorCountry"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
+
 
                 <TextView
                     android:id="@+id/tvSelectState"
@@ -240,6 +284,16 @@
                     android:hint="@string/state"
                     android:padding="@dimen/_12sdp"
                     tools:ignore="Autofill" />
+                <TextView
+                    android:id="@+id/tvErrorState"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <!-- <EditText
                      android:id="@+id/etSelectCity"

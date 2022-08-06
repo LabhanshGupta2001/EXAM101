@@ -1,31 +1,16 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.bumptech.glide.Glide;
-import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.SavedData;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityProfileBinding;
-import com.dollop.exam101.databinding.BottomsheetNotificationBinding;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class ProfileActivity extends BaseActivity implements View.OnClickListener {
 
@@ -74,10 +59,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
 
     }
-    private void setData(){
+
+    private void setData() {
+
         binding.tvUserName.setText(Utils.GetSession().studentName);
         binding.tvUserEmail.setText(Utils.GetSession().studentEmail);
-        Utils.Picasso(Utils.GetSession().profilePic,binding.ivProfile, R.drawable.dummy);
+        Utils.Picasso(Utils.GetSession().profilePic, binding.ivProfile, R.drawable.dummy);
     }
 
     @Override
@@ -96,7 +83,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         } else if (view == binding.llRequestAffilation) {
             Utils.I(activity, AffilationBankDetailsActivity.class, null);
         } else if (view == binding.tvInviteFriends) {
-
         } else if (view == binding.llBankDetails) {
             Utils.I(activity, BankDetailActivity.class, null);
         } else if (view == binding.llAffiliatePurchaseList) {

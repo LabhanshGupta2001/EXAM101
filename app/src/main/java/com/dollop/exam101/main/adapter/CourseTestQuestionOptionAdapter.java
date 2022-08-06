@@ -15,18 +15,20 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 
 import com.dollop.exam101.databinding.ItemCourseTestQuestionOptionListBinding;
+import com.dollop.exam101.main.model.OptionModel;
 import com.dollop.exam101.main.model.QuestionModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<CourseTestQuestionOptionAdapter.MyViewHolder> {
     Context context;
-    ArrayList<QuestionModel> questionModelArrayList = new ArrayList<>();
+    List<OptionModel> optionModelArrayList ;
     int row_index = -1;
 
-    public CourseTestQuestionOptionAdapter(Context context, ArrayList<QuestionModel> list) {
+    public  CourseTestQuestionOptionAdapter(Context context, List<OptionModel> list) {
         this.context = context;
-        this.questionModelArrayList = list;
+        this.optionModelArrayList = list;
     }
 
     @NonNull
@@ -39,10 +41,10 @@ public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<Course
     @SuppressLint({"ResourceAsColor", "NotifyDataSetChanged"})
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Utils.E("questionModelArrayListOPPPPPPP:::++"+questionModelArrayList);
-        QuestionModel questionModel = questionModelArrayList.get(position);
+        Utils.E("optionModelArrayListOPPPPPPP:::++"+optionModelArrayList);
+        OptionModel optionModel = optionModelArrayList.get(position);
 
-        holder.binding.tvOption.setText(questionModel.options);
+        holder.binding.tvOption.setText(optionModel.options0);
 /*
         holder.binding.cardOption.setStrokeColor(R.color.green);
         holder.binding.tvOption.setBackgroundColor(R.color.white);
@@ -69,7 +71,7 @@ public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<Course
 
     @Override
     public int getItemCount() {
-        return questionModelArrayList.size();
+        return optionModelArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".main.activity.UpdateBankDetailsActivity">
+
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
@@ -41,11 +41,12 @@
         android:layout_below="@id/llToolbar"
         android:background="@color/lineColor"
         android:orientation="vertical" />
+
     <LinearLayout
-        android:layout_below="@id/view"
         android:id="@+id/llMiddle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/view"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:background="@color/white"
@@ -72,6 +73,16 @@
             android:singleLine="true" />
 
         <TextView
+            android:id="@+id/tvErrorName"
+            style="@style/ErrorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:elevation="@dimen/_minus2sdp"
+            android:visibility="gone" />
+
+
+        <TextView
             style="@style/QuaternaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,6 +102,15 @@
             android:padding="@dimen/_12sdp"
             android:singleLine="true" />
 
+        <TextView
+            android:id="@+id/tvErrorAccNumber"
+            style="@style/ErrorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:elevation="@dimen/_minus2sdp"
+            android:visibility="gone" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,7 +122,7 @@
                 style="@style/QuaternaryTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_medium"
@@ -112,7 +132,7 @@
                 style="@style/QuaternaryTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/type" />
@@ -125,31 +145,64 @@
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <EditText
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="@dimen/_8sdp"
+                >
+                <EditText
                 android:id="@+id/etIfscCode"
                 style="@style/QuinaryTextStyle"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_weight="1"
                 android:background="@drawable/input_custom"
                 android:hint="@string/enter_your_ifsc_code"
-                android:inputType="number"
                 android:padding="@dimen/_12sdp"
                 android:singleLine="true" />
+                <TextView
+                    android:id="@+id/tvErrorIFSC"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
-            <EditText
-                style="@style/QuinaryTextStyle"
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+            <TextView
+                style="@style/QuinaryTextStyle"
+                android:layout_width="match_parent"
+                android:id="@+id/tvSelectType"
+                android:layout_height="wrap_content"
                 android:background="@drawable/input_custom"
-                android:inputType="number"
+                android:hint="@string/select_type"
                 android:padding="@dimen/_12sdp"
                 android:singleLine="true" />
+                <TextView
+                    android:id="@+id/tvErrorType"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
-
         <TextView
             style="@style/QuaternaryTextStyle"
             android:layout_width="wrap_content"
@@ -164,21 +217,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
             android:background="@drawable/input_custom"
             android:hint="@string/enter_your_bank_branch"
-            android:inputType="textPersonName"
             android:padding="@dimen/_12sdp"
             android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/tvErrorBranch"
+            android:visibility="gone"
+            style="@style/ErrorTextStyle"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_width="wrap_content"
+            android:elevation="@dimen/_minus2sdp"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llSave"
-        android:layout_marginBottom="@dimen/_15sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
         android:background="@drawable/theme_backround"
         android:gravity="center"
         android:padding="@dimen/_10sdp">

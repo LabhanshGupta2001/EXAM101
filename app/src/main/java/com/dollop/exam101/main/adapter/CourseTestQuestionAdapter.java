@@ -14,16 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCourseTestQuestionListBinding;
+import com.dollop.exam101.main.model.OptionModel;
 import com.dollop.exam101.main.model.QuestionListModel;
 import com.dollop.exam101.main.model.QuestionModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQuestionAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<QuestionModel> questionModelArrayList;
-    //ArrayList<QuestionModel> questionModelArrayList = new ArrayList<>();
+    List<QuestionModel> questionModelArrayList;
+    List<OptionModel> optionModelArrayList = new ArrayList<>();
 
     public CourseTestQuestionAdapter(Context context, ArrayList<QuestionModel> list) {
         this.context = context;
@@ -43,13 +45,9 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
         Utils.E("questionModelArrayList::"+questionModelArrayList);
         QuestionModel questionListModel = questionModelArrayList.get(position);
         holder.binding.tvQuestion.setText(HtmlCompat.fromHtml(questionListModel.question,0));
-       /* holder.binding.tvQuestion.setText(questionListModelArrayList.get(position));
-        stringArrayList.clear();
-        stringArrayList.add("1");
-        stringArrayList.add("2");
-        stringArrayList.add("3");
-        stringArrayList.add("4");*/
-        holder.binding.rvOption.setAdapter(new CourseTestQuestionOptionAdapter(context, questionModelArrayList));
+
+        optionModelArrayList.addAll(questionListModel.options);
+        holder.binding.rvOption.setAdapter(new CourseTestQuestionOptionAdapter(context, optionModelArrayList));
         holder.binding.rvOption.setLayoutManager(new LinearLayoutManager(context));
 
      //   holder.binding.rvOption.notifyAll();

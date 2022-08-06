@@ -112,4 +112,8 @@ public class AllResponseModel {
     @Expose
     public QuestionListModel questionListModel;
 
+    @SerializedName("testAttemptId")
+    @Expose
+    public Integer testAttemptId;
+
 }

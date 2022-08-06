@@ -34,11 +34,10 @@ import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.ExamModel;
-import com.dollop.exam101.main.model.LanguageModel;
 import com.dollop.exam101.main.model.MockTestModel;
 import com.dollop.exam101.main.model.PackageDetailModel;
 import com.dollop.exam101.main.model.ReviewRating;
+import com.dollop.exam101.main.model.SubjectModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -64,10 +63,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     String languageUuId;
     MockTestViewPagerAdapter mockTestViewPagerAdapter;
     ArrayList<String> Tittle = new ArrayList<>();
-    ArrayList<Fragment> fragments = new ArrayList<>();
+    List<Fragment> fragments = new ArrayList<>();
     List<MockTestModel> mockTestModels = new ArrayList<>();
     ArrayList<ReviewRating> reviewRatingModels = new ArrayList<>();
-    ArrayList<ExamModel> examModelArrayList = new ArrayList<>();
+    List<SubjectModel> subjectModelArrayList = new ArrayList<>();
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
     String packageName, packageDetail, imgPath;
@@ -251,9 +250,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
-                    examModelArrayList = (ArrayList<ExamModel>) packageDetailModels.examModels;
-                    Utils.E("examModels::"+examModelArrayList);
-                    fragments.add(new CourseMaterialFragment(examModelArrayList));
+                    subjectModelArrayList = (ArrayList<SubjectModel>) packageDetailModels.subjectModels;
+                    Utils.E("subjectModelArrayList::"+subjectModelArrayList);
+                    fragments.add(new CourseMaterialFragment(subjectModelArrayList));
                     fragments.add(new MockTestFragment(mockTestModels));
                     Tittle.clear();
                     Tittle.add(Constants.Key.Course_Material);

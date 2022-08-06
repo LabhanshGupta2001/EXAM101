@@ -79,7 +79,7 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
 
     private void getCourseDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTU5MTU5MX0.vZTbRy2Y-8j5M-jKioJ_vHrZjXil2PUswqA_ALB7XLk";
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTY3MjgwMX0.BBr3FZ9vob8SC5Q5cj20h-vRHFiX4dDeej2eZoF_grk";
         HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.orderExamUuid, "fe2d148e-0f0c-11ed-9754-000c291151eb");
         hm.put(Constants.Key.topicUuid, "d4c9f70d-1257-11ed-967e-000c291151eb");
@@ -94,9 +94,9 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
                         binding.tvChapterName.setText(response.body().topicDetailModel.topicName);
                         binding.tvTopicSummary.setText(response.body().topicDetailModel.topicSummary);
                         binding.tvTopicDetail.setText(HtmlCompat.fromHtml(response.body().topicDetailModel.topicDetail,0));
-                        if (response.body().topicDetailModel.video != null || response.body().topicDetailModel.video != Constants.Key.blank ){
+                       /* if (response.body().topicDetailModel.video != null || response.body().topicDetailModel.video != Constants.Key.blank ){
                             binding.vvVideoView.setVideoPath(response.body().topicDetailModel.video);
-                        }
+                        }*/
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -135,6 +135,7 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
 
         bottomSheetPracticeTestBinding.tvBtnPracticeTest.setOnClickListener(view ->
         {
+            bottomSheetDialog.dismiss();
             Bundle bundle = new Bundle();
             bundle.putString(Constants.Key.orderExamUuid, "fe2d148e-0f0c-11ed-9754-000c291151eb");
             bundle.putString(Constants.Key.topicUuid, "d4c9f70d-1257-11ed-967e-000c291151eb");

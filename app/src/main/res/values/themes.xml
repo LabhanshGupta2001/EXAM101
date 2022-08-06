@@ -188,6 +188,12 @@
         <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
+    <style name="ErrorTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
     <style name="TernaryLightTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">@dimen/_13ssp</item>

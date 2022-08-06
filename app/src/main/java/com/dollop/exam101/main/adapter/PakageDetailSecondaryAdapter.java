@@ -16,16 +16,17 @@ import com.dollop.exam101.main.model.ModuleModel;
 import com.dollop.exam101.main.model.TopicDetailModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDetailSecondaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<ModuleModel> list;
-    ArrayList<TopicDetailModel> stringArrayList=new ArrayList<>();
+    List<ModuleModel> moduleModelArrayList;
+    List<TopicDetailModel> stringArrayList=new ArrayList<>();
     private Boolean dropdown = true;
 
-    public PakageDetailSecondaryAdapter(Context context, ArrayList<ModuleModel> list) {
+    public PakageDetailSecondaryAdapter(Context context, List<ModuleModel> list) {
         this.context = context;
-        this.list = list;
+        this.moduleModelArrayList = list;
     }
 
     @NonNull
@@ -37,12 +38,12 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        ModuleModel moduleModel = list.get(position);
+        ModuleModel moduleModel = moduleModelArrayList.get(position);
        /* stringArrayList.clear();
         stringArrayList.add("1");*/
         holder.binding.tvModule.setText(moduleModel.moduleName);
 
-        stringArrayList.addAll(stringArrayList);
+        stringArrayList = (ArrayList<TopicDetailModel>) moduleModel.topics;
         Utils.E("stringArrayListTopic::"+stringArrayList);
         holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,stringArrayList));
         holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
@@ -65,7 +66,7 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return stringArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

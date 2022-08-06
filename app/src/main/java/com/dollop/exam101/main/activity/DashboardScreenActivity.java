@@ -2,12 +2,9 @@ package com.dollop.exam101.main.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,21 +22,14 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
-import com.dollop.exam101.main.fragment.HomeFragment;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
     public NavController navController;
-     AppBarConfiguration appBarConfiguration;
-    Activity activity = DashboardScreenActivity.this;
     public ActivityDashboardScreenBinding binding;
+    AppBarConfiguration appBarConfiguration;
+    Activity activity = DashboardScreenActivity.this;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
     ApiService apiService;
 
@@ -61,7 +51,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         //binding.ivProfile.setOnClickListener(this);
         binding.ivNotification.setOnClickListener(this);
         // binding.ivSearch.setOnClickListener(this);
-
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
         navHeaderDashboardBinding.llLogout.setOnClickListener(this);
         navHeaderDashboardBinding.llAbout.setOnClickListener(this);
@@ -77,6 +66,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
         navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
         navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
+
         Utils.Picasso(Utils.GetSession().profilePic, navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
 
     }
@@ -96,24 +86,24 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                                              @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
                 switch (navDestination.getId()) {
                     case R.id.bottom_home:
-                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.theme));
-                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.theme));
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.theme));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.theme));
                         binding.bottomNavigationView.setVisibility(View.VISIBLE);
                         binding.appBarLayout.setVisibility(View.VISIBLE);
                         break;
                     case R.id.bottom_category:
-                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
-                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
                         break;
                     case R.id.bottom_packages:
-                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
-                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
                         binding.bottomNavigationView.setVisibility(View.VISIBLE);
                         binding.appBarLayout.setVisibility(View.VISIBLE);
                         break;
                     case R.id.bottom_cart:
-                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity,R.color.black));
-                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity,R.color.black));
+                        navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
+                        navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
                         binding.bottomNavigationView.setVisibility(View.GONE);
                         binding.appBarLayout.setVisibility(View.GONE);
                         break;
@@ -154,7 +144,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         // Navigatin Drawer Click
 
         if (view == navHeaderDashboardBinding.llHome) {
-          navController.navigate(R.id.bottom_home);
+            navController.navigate(R.id.bottom_home);
             binding.drawerLayout.close();
         }
         if (view == navHeaderDashboardBinding.llMyPackage) {
@@ -196,14 +186,13 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             Utils.I(activity, RaiseComplaintActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llLogout) {
-           Utils.logoutAlertDialog(activity);
+            Utils.logoutAlertDialog(activity);
         }
         if (view == navHeaderDashboardBinding.llFaq) {
             Utils.I(activity, FaqsActivity.class, null);
         }
 
     }
-
 
 
 }

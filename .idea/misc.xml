@@ -3,15 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/input_custom.xml" value="0.1925" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/range_thumb.xml" value="0.187" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20364583333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.16979166666666667" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18020833333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_update_bank_details.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottom_sheet_ratenow.xml" value="0.21" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_applycoupon.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_referralcode.xml" value="0.2" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.18802083333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_price.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.1671875" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course.xml" value="1.0" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_list.xml" value="0.1671875" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.22" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_overview_course_details.xml" value="0.67" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_package_detail.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_purchase_list.xml" value="0.67" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.1671875" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_search_history.xml" value="0.1671875" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.1671875" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.20364583333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/no_result_found.xml" value="0.18020833333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20364583333333333" />
@@ -152,7 +171,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_check_email.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_contact_us.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_course_list.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_course_test.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_course_test.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_courses_detail.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_courses_material.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.2" />
@@ -218,6 +237,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_category_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_list.xml" value="0.264" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_material_chapter_name_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_material_subject_module_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_material_subject_name.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_test_question_list.xml" value="0.25416666666666665" />
@@ -227,6 +247,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.4" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.536" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_pakages_details_secondry.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_state.xml" value="0.253125" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.4" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.4" />
