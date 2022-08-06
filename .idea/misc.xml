@@ -3,20 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/custom_switch_thumb.xml" value="0.1855" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/custom_track.xml" value="0.2115" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_balle.xml" value="0.2115" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_lock.xml" value="0.2115" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_vector_log.xml" value="0.2115" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/input_custom.xml" value="0.1925" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/range_thumb.xml" value="0.187" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_contact_us.xml" value="0.2" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20364583333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_forgot_password.xml" value="0.20416666666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.16979166666666667" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_setting.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_update_bank_details.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottom_sheet_ratenow.xml" value="0.21" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottom_sheet_ratenow.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_applycoupon.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_referralcode.xml" value="0.2" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_referralcode.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.18802083333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25" />

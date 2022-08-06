@@ -1,11 +1,14 @@
 package com.dollop.exam101.main.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +93,23 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         bottomsheetApplycouponBinding = BottomsheetApplycouponBinding.inflate(getLayoutInflater());
         bottomSheetApplyCoupon.setContentView(bottomsheetApplycouponBinding.getRoot());
         bottomSheetApplyCoupon.show();
+        bottomsheetApplycouponBinding.etApplyCouponId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                bottomsheetApplycouponBinding.tvErrorCoupon.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         bottomsheetApplycouponBinding.tvApply.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
             @Override
@@ -134,7 +154,24 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         bottomsheetReferralcodeBinding = BottomsheetReferralcodeBinding.inflate(getLayoutInflater());
         bottomSheetDialogReferralCode.setContentView(bottomsheetReferralcodeBinding.getRoot());
         bottomSheetDialogReferralCode.show();
+        bottomsheetReferralcodeBinding.etReferralCodeId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                bottomsheetReferralcodeBinding.tvErrorReferral.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         bottomsheetReferralcodeBinding.tvApply.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
                 if (bottomsheetReferralcodeBinding.etReferralCodeId.getText().toString().isEmpty()) {
@@ -143,12 +180,17 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.top_to_bottom);
                     bottomsheetReferralcodeBinding.tvErrorReferral.startAnimation(animation);
                 } else {
-                    bottomSheetDialogReferralCode.cancel();
+                    if (AppController.getInstance().isOnline()) {
+                        applyCouponCode();
+                    } else {
+                        InternetDialog();
+                    }
                 }
             }
 
-    });
-}
+        });
+    }
+
     private void applyCouponCode() {
         apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString()).
                 enqueue(new Callback<AllResponseModel>() {

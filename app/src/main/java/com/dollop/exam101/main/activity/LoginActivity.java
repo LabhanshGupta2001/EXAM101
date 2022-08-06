@@ -9,6 +9,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +19,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -79,6 +80,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void init() {
+        edittextValidation();
         apiservice = RetrofitClient.getClient();
         binding.tvForgetPasswordId.setOnClickListener(this);
         binding.SignInId.setOnClickListener(this);
@@ -96,6 +98,37 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         binding.llLoginWithGoogle.setOnClickListener(v -> signIn());
+    }
+
+    private void edittextValidation() {
+        binding.etUserEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorEmail.setVisibility(View.GONE);
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etUserPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorPass.setVisibility(View.GONE);
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     private void signIn() {
@@ -156,8 +189,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void CheckValidationTask() {
         errorValidationModels.clear();
-        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail,binding.tvErrorEmail));
-        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etUserPassword,binding.tvErrorPass));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail, binding.tvErrorEmail));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserPassword, binding.tvErrorPass));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, errorValidationModels);
         if (resultReturn.aBoolean) {

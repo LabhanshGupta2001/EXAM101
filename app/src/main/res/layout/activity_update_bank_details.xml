@@ -181,13 +181,13 @@
                 android:orientation="vertical"
                 >
 
-            <TextView
+            <EditText
                 style="@style/QuinaryTextStyle"
                 android:layout_width="match_parent"
-                android:id="@+id/tvSelectType"
+                android:id="@+id/etSelectType"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_custom"
-                android:hint="@string/select_type"
+                android:hint="@string/enter_bank_account_type"
                 android:padding="@dimen/_12sdp"
                 android:singleLine="true" />
                 <TextView

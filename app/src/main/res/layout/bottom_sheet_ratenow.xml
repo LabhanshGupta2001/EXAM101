@@ -17,11 +17,11 @@
         app:cardElevation="1dp" />
 
     <LinearLayout
+        android:id="@+id/llBlank"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_4sdp"
-        android:id="@+id/llBlank"
         android:background="@drawable/bottom_curve_background"
         android:orientation="vertical">
 
@@ -59,10 +59,11 @@
             android:id="@+id/tvHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
-            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:maxLines="2"
             android:text="@string/microsoft_power_point"
             android:theme="@style/QuinaryThemeTextStyle" />
 
@@ -70,11 +71,12 @@
             android:id="@+id/tvSubHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_2sdp"
             android:fontFamily="@font/gothic_bold"
             android:gravity="center"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-
+            android:maxLines="3"
+            android:textAlignment="center"
             android:text="@string/best_way_learn_fundamentals_of_ndesign_thinking"
             android:theme="@style/QuaternaryFullBlackTextStyle" />
 
@@ -122,16 +124,16 @@
                 android:textSize="@dimen/_11ssp"
                 tools:ignore="Autofill" />
         </com.google.android.material.card.MaterialCardView>
+
         <TextView
             android:id="@+id/tvErrorReview"
-            android:visibility="gone"
-            android:layout_marginHorizontal="@dimen/_12sdp"
             style="@style/ErrorTextStyle"
-            android:layout_marginTop="@dimen/_4sdp"
             android:layout_width="wrap_content"
-            android:elevation="@dimen/_minus2sdp"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:elevation="@dimen/_minus2sdp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvRateNow"

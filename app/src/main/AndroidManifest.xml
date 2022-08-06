@@ -91,7 +91,8 @@
             android:exported="false" />
         <activity
             android:name=".main.activity.ContactUsActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".main.activity.UpdateBankDetailsActivity"
             android:exported="false" />

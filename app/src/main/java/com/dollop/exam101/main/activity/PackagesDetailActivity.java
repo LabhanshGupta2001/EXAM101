@@ -6,8 +6,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -68,10 +72,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     List<MockTestModel> mockTestModels = new ArrayList<>();
     ArrayList<ReviewRating> reviewRatingModels = new ArrayList<>();
     List<ExamModel> examModelArrayList = new ArrayList<>();
-    List<SubjectModel> subjectModelArrayList = new ArrayList<>() ;
+    List<SubjectModel> subjectModelArrayList = new ArrayList<>();
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
-    String packageName, packageDetail, imgPath;
+    String packageName, packageDetail, imgPath,shortDesc;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -242,6 +246,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
                     packageName = packageDetailModels.packageName;
                     packageDetail = String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
+                    shortDesc=String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     imgPath = packageDetailModels.featureImg;
                     binding.tvHeadings.setText(packageName);
                     binding.tvPriceGreat.setText(packageDetailModels.discountedPrice);
@@ -392,30 +397,67 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         dialog.show();
     }
 
-   private void rateNowBottomSheet() {
-       bottomSheetDialog = new BottomSheetDialog(activity);
-       bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
-       bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
-       BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
-       bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-       bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-       bottomSheetBehavior.setSkipCollapsed(true);
-       bottomSheetDialog.show();
-       bottomSheetRatenowBinding.tvHeading.setText(packageName);
-       bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
-       Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
-               into(bottomSheetRatenowBinding.ivPhotoId);
-       bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
-           if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)){
-               Utils.T(activity,Constants.Key.write_a_review);
-           } else {
-               String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-               String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-               Utils.E("SimpleDateFormat::::"+currentDate+currentTime);
-               addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
-               GetPackageDetailsMockTestListRatingNow();
-               bottomSheetDialog.cancel();
-           }
-       });
-   }
+    /* private void rateNowBottomSheet() {
+         bottomSheetDialog = new BottomSheetDialog(activity);
+         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
+         bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+         bottomSheetBehavior.setSkipCollapsed(true);
+         bottomSheetDialog.show();
+         bottomSheetRatenowBinding.tvHeading.setText(packageName);
+         bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
+         Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
+                 into(bottomSheetRatenowBinding.ivPhotoId);
+         bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
+             addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+         });
+     }*/
+    private void rateNowBottomSheet() {
+        bottomSheetDialog = new BottomSheetDialog(activity);
+        bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+        bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
+        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setSkipCollapsed(true);
+        bottomSheetDialog.show();
+
+        bottomSheetRatenowBinding.etShareThoughts.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+         bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        bottomSheetRatenowBinding.tvHeading.setText(packageName);
+        bottomSheetRatenowBinding.tvSubHeading.setText(shortDesc);
+        Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
+                into(bottomSheetRatenowBinding.ivPhotoId);
+        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
+            if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
+                bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.VISIBLE);
+                bottomSheetRatenowBinding.tvErrorReview.setText(R.string.empty_error);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                bottomSheetRatenowBinding.tvErrorReview.startAnimation(animation);
+            } else {
+                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                Utils.E("SimpleDateFormat::::" + currentDate + currentTime);
+                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+                GetPackageDetailsMockTestListRatingNow();
+                bottomSheetDialog.cancel();
+            }
+        });
+    }
 }

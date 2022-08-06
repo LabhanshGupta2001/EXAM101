@@ -49,7 +49,7 @@
             android:fontFamily="@font/inter_semibold"
             android:paddingVertical="@dimen/_12sdp"
             android:paddingHorizontal="@dimen/_6sdp"
-            android:hint="@string/yog4500erz"
+            android:hint="@string/enter_referral_code"
             android:theme="@style/QuaternaryTextStyle" />
         <TextView
             android:id="@+id/tvErrorReferral"
