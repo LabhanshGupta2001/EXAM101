@@ -80,6 +80,7 @@
             android:layout_marginVertical="@dimen/_12sdp"
             android:background="@color/white"
             android:fontFamily="@font/inter_regular"
+            android:lineSpacingExtra="@dimen/_2sdp"
             android:text="@string/edufie_offers_professional_training_classes_nand_special_features_to_help_you_improve_nyour_skills" />
 
         <TextView
@@ -89,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Classes_Id"
             android:layout_marginHorizontal="@dimen/_12sdp"
-           android:layout_marginVertical="@dimen/_10ssp"
+            android:layout_marginVertical="@dimen/_18sdp"
             android:background="@drawable/theme_stroke_background"
             android:backgroundTint="@color/theme"
             android:fontFamily="@font/inter_semibold"

@@ -100,7 +100,7 @@
     <string name="creative_art_design">Creative Art Design</string>
     <string name="expiry_date_8_may_2022">Expiry Date: 8 May, 2022</string>
     <string name="attempt_40">Attempt : 40</string>
-    <string name="youremail_gmail_com">youremail@gmail.com</string>
+    <string name="youremail_gmail_com">Enter your email address...</string>
     <string name="forget_password">Forgot Password?</string>
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account">Don’t have an account?</string>
@@ -130,7 +130,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="up">Up</string>
     <string name="enter_your_email">Enter your email</string>
-    <string name="enter_password">Enter password</string>
+    <string name="enter_password">Enter your password...</string>
     <string name="new_password">New password</string>
     <string name="conform_password">Confirm Password</string>
     <string name="enter_mobile_no">Enter mobile No..</string>
@@ -275,7 +275,7 @@
     <string name="subject_1">Subject 1</string>
     <string name="module_1">Module 1</string>
     <string name="remove">Remove</string>
-    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_google">Continue with Google</string>
 
     <string name="or">OR</string>
     <string name="sign_up">Sign Up</string>
@@ -299,9 +299,7 @@
     <string name="yogendratiwari54_gmail_com">yogendratiwari54@gmail,com</string>
 
     //Guru String
-    <string name="friend_purchase">Friend purchase the package
-        with <font color="#00A651">5%</font>
-        Discount</string>
+    <string name="friend_purchase">Friend purchase the package with <font color="#00A651">5%</font> Discount</string>
     <string name="get_amount">You get  <font color="#00A651">5%</font>  amount in your wallet</string>
     <string name="get_syllabus_in_hindi">Get <font color="#FFFFFF">Syllabus</font> in Hindi</string>
     <string name="get_your_personalised_calender">Get your Personalised Calendar</string>
@@ -470,6 +468,8 @@
     <string name="select_type">Select Bank type</string>
     <string name="enter_referral_code">Enter Referral Code</string>
     <string name="enter_coupon_code">Enter Coupon Code</string>
+    <string name="log">Log</string>
+    <string name="top_10_packages">Top 10 Packages</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

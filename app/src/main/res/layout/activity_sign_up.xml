@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:id="@+id/llSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -91,12 +91,13 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_18sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/full_name"
                     android:inputType="textPersonName"
-                    android:padding="@dimen/_12sdp"
+                    android:padding="@dimen/_11sdp"
+                    android:textColorHint="@color/sub_text"
                     android:singleLine="true"
                     tools:ignore="Autofill" />
                 <TextView
@@ -114,13 +115,15 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
-                    android:padding="@dimen/_12sdp"
+                    android:padding="@dimen/_11sdp"
+                    android:textColorHint="@color/sub_text"
                     android:singleLine="true"
+
                     tools:ignore="Autofill" />
                 <TextView
                     android:id="@+id/tvErrorEmail"
@@ -138,7 +141,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="@dimen/_30sdp"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     app:cardBackgroundColor="@color/white"
                     app:cardElevation="0dp"
                     app:strokeColor="@color/HorizontallineColor"
@@ -149,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:padding="@dimen/_8sdp">
+                        android:padding="@dimen/_6sdp">
 
                         <LinearLayout
                             android:id="@+id/llCountryCode"
@@ -164,6 +167,7 @@
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
+                                app:cardElevation="0dp"
                                 app:cardCornerRadius="@dimen/_30sdp">
 
                                 <ImageView
@@ -213,6 +217,7 @@
                             android:inputType="number"
                             android:maxLength="10"
                             android:paddingVertical="@dimen/_4sdp"
+                            android:textColorHint="@color/sub_text"
                             android:singleLine="true"
                             tools:ignore="Autofill,InefficientWeight" />
 
@@ -235,13 +240,14 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/password"
                     android:inputType="textPersonName"
-                    android:padding="@dimen/_12sdp"
+                    android:padding="@dimen/_11sdp"
                     android:singleLine="true"
+                    android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
                 <TextView
                     android:id="@+id/tvErrorPass"
@@ -258,12 +264,13 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/conform_password"
                     android:inputType="textPersonName"
-                    android:padding="@dimen/_12sdp"
+                    android:padding="@dimen/_11sdp"
+                    android:textColorHint="@color/sub_text"
                     android:singleLine="true"
                     tools:ignore="Autofill" />
                 <TextView
@@ -281,11 +288,12 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/country"
-                    android:padding="@dimen/_12sdp"
+                    android:padding="@dimen/_11sdp"
+                    android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill,TextViewEdits" />
                 <TextView
                     android:id="@+id/tvErrorCountry"
@@ -302,11 +310,12 @@
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/state"
-                    android:padding="@dimen/_12sdp"
+                    android:textColorHint="@color/sub_text"
+                    android:padding="@dimen/_11sdp"
                     tools:ignore="Autofill" />
                 <TextView
                     android:id="@+id/tvErrorState"
@@ -346,22 +355,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:background="@drawable/gray_strock_bg"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_10sdp">
+                   >
 
-                    <TextView
-                        style="@style/QuaternaryFullBlackTextStyle"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawablePadding="@dimen/_6sdp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:gravity="center_vertical"
-                        android:text="@string/login_with_google"
-                        app:drawableStartCompat="@drawable/ic_googleicon" />
+                        app:strokeWidth="@dimen/_1sdp"
+                        app:strokeColor="@color/DarkBlackBlue"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="@dimen/_30sdp"
+                        >
 
+                        <TextView
+                            style="@style/QuaternaryFullBlackTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawablePadding="@dimen/_7sdp"
+                            android:fontFamily="@font/inter_semibold"
+                            android:gravity="center_vertical"
+                            android:text="@string/login_with_google"
+                            android:padding="@dimen/_12sdp"
+                            app:drawableStartCompat="@drawable/ic_googleicon" />
+
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <TextView
@@ -370,8 +389,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                  android:layout_margin="@dimen/_20sdp"
                     android:fontFamily="@font/inter_semibold"
                     android:padding="@dimen/_8sdp"
                     android:text="@string/sign_in" />
