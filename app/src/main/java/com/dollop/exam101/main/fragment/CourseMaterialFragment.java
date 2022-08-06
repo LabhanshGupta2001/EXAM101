@@ -24,23 +24,24 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
-import com.dollop.exam101.main.model.ExamModel;
+
 import com.dollop.exam101.main.model.ModuleModel;
 import com.dollop.exam101.main.model.SubjectModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class CourseMaterialFragment extends Fragment implements View.OnClickListener {
     Activity activity;
     FragmentCourseMaterialBinding binding;
-    ArrayList<ExamModel> examModelArrayList;
-    ArrayList<SubjectModel> subjectModelArrayList = new ArrayList<>();
+    //ArrayList<ExamModel> examModelArrayList;
+    List<SubjectModel> subjectModelArrayList ;
     ApiService apiService;
-    ArrayList<ModuleModel> stringArrayList = new ArrayList<>();
+    List<ModuleModel> stringArrayList = new ArrayList<>();
 
-    public CourseMaterialFragment(ArrayList<ExamModel> ArrayList) {
-        this.examModelArrayList = ArrayList;
+    public CourseMaterialFragment(List<SubjectModel> ArrayList) {
+        this.subjectModelArrayList = ArrayList;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -62,11 +63,12 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         list.add("1");
         list.add("1");*/
         // subjectModelArrayList.clear();
-        for (int i = 0; i < examModelArrayList.size(); i++) {
-            subjectModelArrayList.addAll(examModelArrayList.get(i).subjects);
+       /* for (int i = 0; i < examModelArrayList.size(); i++) {
+            subjectModelArrayList.addAll(examModelArrayList.get(i));
             stringArrayList.addAll(subjectModelArrayList.get(i).modules);
-        }
-        Utils.E("subjectModelArrayList::" + subjectModelArrayList);
+        }*/
+        //subjectModelArrayList.addAll(subjectModelArrayList);
+        Utils.E("subjectModelArrayList222::" + subjectModelArrayList);
         binding.rvFirst.setNestedScrollingEnabled(false);
         binding.rvFirst.setHasFixedSize(true);
         binding.rvFirst.setLayoutManager(new LinearLayoutManager(getContext()));

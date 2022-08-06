@@ -12,12 +12,13 @@ import com.dollop.exam101.databinding.ItemPackagesDetailTernaryBinding;
 import com.dollop.exam101.main.model.TopicDetailModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PakageDetailTernaryAdapter extends RecyclerView.Adapter<PakageDetailTernaryAdapter.MyViewHolder> {
     Context context;
-    ArrayList<TopicDetailModel> topicDetailModels;
+    List<TopicDetailModel> topicDetailModels;
 
-    public PakageDetailTernaryAdapter(Context context, ArrayList<TopicDetailModel> list) {
+    public PakageDetailTernaryAdapter(Context context, List<TopicDetailModel> list) {
         this.context = context;
         this.topicDetailModels = list;
     }

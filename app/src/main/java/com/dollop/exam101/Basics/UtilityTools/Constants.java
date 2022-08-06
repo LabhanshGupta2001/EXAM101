@@ -145,5 +145,8 @@ public class Constants {
         String orderExamUuid = "orderExamUuid";
         String topicUuid = "topicUuid";
         String wishListUuid = "wishListUuid";
+        String questionIds = "questionIds";
+        String options = "options";
+        String testAttemptUuid = "testAttemptUuid";
     }
 }

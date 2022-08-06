@@ -79,6 +79,10 @@ public interface ApiService {
     Call<AllResponseModel> getMyQuestionList(@Header(Constants.Key.Authorization) String token,
                                             @QueryMap HashMap<String,String>hm);
 
+    @FormUrlEncoded
+    @POST(Const.Url.submitPracticeTestApi)
+    Call<AllResponseModel> practiceTestSubmit(@Header(Constants.Key.Authorization) String token,
+                                            @FieldMap HashMap<String, String> hm);
 
 //______________________________********************___________________________________________//
 
