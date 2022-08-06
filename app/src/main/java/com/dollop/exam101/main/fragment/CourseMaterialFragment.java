@@ -25,8 +25,10 @@ import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
 
+import com.dollop.exam101.main.model.ExamModel;
 import com.dollop.exam101.main.model.ModuleModel;
 import com.dollop.exam101.main.model.SubjectModel;
+import com.dollop.exam101.main.model.TopicDetailModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +38,15 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     Activity activity;
     FragmentCourseMaterialBinding binding;
     //ArrayList<ExamModel> examModelArrayList;
-    List<SubjectModel> subjectModelArrayList ;
+    List<SubjectModel> subjectModelArrayList = new ArrayList<>() ;
+    List<ExamModel> examModelList = new ArrayList<>();
     ApiService apiService;
     List<ModuleModel> stringArrayList = new ArrayList<>();
+    List<TopicDetailModel> topicDetailModelArrayList = new ArrayList<>();
 
     public CourseMaterialFragment(List<SubjectModel> ArrayList) {
         this.subjectModelArrayList = ArrayList;
+        Utils.E("subjectModelArrayList::" + subjectModelArrayList);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -63,11 +68,11 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
         list.add("1");
         list.add("1");*/
         // subjectModelArrayList.clear();
-       /* for (int i = 0; i < examModelArrayList.size(); i++) {
-            subjectModelArrayList.addAll(examModelArrayList.get(i));
-            stringArrayList.addAll(subjectModelArrayList.get(i).modules);
+       /* for (int i = 0; i < examModelList.size(); i++) {
+            subjectModelArrayList.addAll(examModelList.get(i).subjects);
+            //stringArrayList.addAll(subjectModelArrayList.get(i).modules);
+           // topicDetailModelArrayList.addAll(stringArrayList.get(i).topics);
         }*/
-        //subjectModelArrayList.addAll(subjectModelArrayList);
         Utils.E("subjectModelArrayList222::" + subjectModelArrayList);
         binding.rvFirst.setNestedScrollingEnabled(false);
         binding.rvFirst.setHasFixedSize(true);

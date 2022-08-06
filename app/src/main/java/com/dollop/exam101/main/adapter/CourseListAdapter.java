@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCourseListBinding;
 import com.dollop.exam101.main.activity.CoursesMaterial;
@@ -42,8 +45,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyCourseListViewHolder holder, int position) {
         CourseListModel courseModel = courseModelList.get(position);
-
-
         //holder.itemCourseListBinding.tvCourseName.setText(String.valueOf(courseModel.name));
         //holder.itemCourseListBinding.ivCourseImageView.setImageResource(courseModel.image);
 
@@ -62,8 +63,9 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
             holder.itemCourseListBinding.llViewCourse.setOnClickListener(view ->
             {
                 // Toast.makeText(context, "Click On View Course ", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(context, PackagesDetailActivity.class);
-                context.startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.Key.packageUuid,"3cfd38ef-0e23-11ed-9754-000c291151eb");
+                Utils.I(context,PackagesDetailActivity.class,bundle);
             });
         }
         else

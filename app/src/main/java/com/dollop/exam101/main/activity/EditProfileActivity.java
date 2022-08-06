@@ -16,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,9 +96,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     List<ValidationModel> allResponseModels = new ArrayList<>();
     boolean profile = false;
     Uri profileUri = null;
-    private CountryAdapter countryAdapter;
-    private StateAdapter stateAdapter;
-
     ActivityResultLauncher<String> openGallery = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
         if (uri != null) {
             profile = true;
@@ -114,7 +113,8 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             profileUri = Utils.getImageUri(activity, bitmap);
         }
     });
-
+    private CountryAdapter countryAdapter;
+    private StateAdapter stateAdapter;
 
     public static boolean checkAndRequestPermissions(final Activity context) {
         int WExtstorePermission = ContextCompat.checkSelfPermission(context,
@@ -160,6 +160,8 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             //Utils.InternetDialog(activity);
         }
 
+        edittextValidation();
+
         binding.mcvProfileSelector.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
         binding.llCountryCode.setOnClickListener(this);
@@ -172,9 +174,61 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
+                if (hasFocus) {
                     binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity, R.color.theme));
-                }else binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity, R.color.HorizontallineColor));
+                } else
+                    binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity, R.color.HorizontallineColor));
+            }
+        });
+    }
+
+    private void edittextValidation() {
+        binding.etUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorName.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etUserEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorEmail.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etEnterMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorMoblie.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
     }
@@ -192,13 +246,13 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
             finish();
         } else {
             if (view != binding.etEnterMobile) {
-               if (view == binding.tvSelectState) {
-                    if (binding.tvSelectCountry.equals(Constants.Key.blank))
-                        Utils.T(activity, Constants.Key.Pleas_Select_Country);
-                    else bottomSheetStateTask();
+                if (view == binding.tvSelectState) {
+                    binding.tvErrorState.setVisibility(View.GONE);
+                    bottomSheetStateTask();
                 }/*else if (view == binding.llCountryCode) {
                     bottomSheetCountryTask(Constants.Key.CountryId_Show);
                 }  if (view == binding.tvSelectCountry) {
+                    binding.tvErrorCountry.setVisibility(View.GONE);
                     bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
                 } */
             }
@@ -467,7 +521,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         assert response.body() != null;
                         Utils.T(activity, "Updated Successfully");
                         if (AppController.getInstance().isOnline()) {
-                          getEditProfileDetails();
+                            getEditProfileDetails();
                         } else {
                             InternetDialog();
                             //Utils.InternetDialog(activity);
@@ -499,11 +553,11 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     private void CheckValidationTask() {
         allResponseModels.clear();
-        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName,binding.tvErrorName));
-        allResponseModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail,binding.tvErrorEmail));
-        allResponseModels.add(new ValidationModel(Validation.Type.Phone, binding.etEnterMobile,binding.tvErrorMoblie));
-        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCountry.getText().toString(), getString(R.string.please_select_the_country),binding.tvErrorCountry));
-        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectState.getText().toString(), getString(R.string.please_select_the_state),binding.tvErrorState));
+        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName, binding.tvErrorName));
+        allResponseModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail, binding.tvErrorEmail));
+        allResponseModels.add(new ValidationModel(Validation.Type.Phone, binding.etEnterMobile, binding.tvErrorMoblie));
+        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCountry.getText().toString(), getString(R.string.please_select_the_country), binding.tvErrorCountry));
+        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectState.getText().toString(), getString(R.string.please_select_the_state), binding.tvErrorState));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
@@ -521,25 +575,26 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
-    private  void SetDataWithDataBase(){
+    private void SetDataWithDataBase() {
         binding.etEnterMobile.setText(Utils.GetSession().studentMobileNo);
         binding.etUserEmail.setText(Utils.GetSession().studentEmail);
         binding.etUserName.setText(Utils.GetSession().studentName);
         binding.tvSelectState.setText(Utils.GetSession().stateName);
         Picasso.get().load(Const.Url.HOST_URL + Utils.GetSession().profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
         if (Utils.GetSession().countryName.equals(Constants.Key.blank)) {
-          //  binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
+            //  binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
             binding.tvSelectCountry.setText(Constants.Key.India);
         } else {
             binding.tvSelectCountry.setText(Utils.GetSession().countryName);
         }
         if (Utils.GetSession().countryCode.equals(Constants.Key.blank)) {
-               binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
+            binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
             //binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
         } else {
             binding.tvCountryCodeId.setText(Utils.GetSession().countryCode);
         }
     }
+
     //GetApiProfileData
     private void getEditProfileDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
@@ -555,7 +610,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         userData.studentId = DatabaseData.studentId;
                         userData.token = DatabaseData.token;
                         UserDataHelper.getInstance().insertData(userData);
-                        SetDataWithDataBase();
+                       // SetDataWithDataBase();
 
                     } else {
                         assert response.errorBody() != null;
@@ -612,9 +667,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         }
         return super.dispatchTouchEvent(event);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

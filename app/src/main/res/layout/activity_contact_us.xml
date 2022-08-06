@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_15sdp"
     android:background="@color/white"
     android:elevation="0dp"
     android:orientation="vertical"
-    android:layout_marginBottom="@dimen/_15sdp"
     tools:context=".main.activity.ContactUsActivity">
 
     <LinearLayout
@@ -46,120 +45,164 @@
         android:background="@color/lineColor"
         android:orientation="vertical" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:orientation="vertical">
+        android:layout_marginBottom="@dimen/_50sdp">
 
-        <TextView
-            style="@style/PrimaryHeadingTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:fontFamily="@font/gothic_bold"
-            android:text="@string/get_in_touch"
-            android:textFontWeight="600" />
-
-        <TextView
-            style="@style/QuinaryTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/i_have_worls_class_flexible_support_via_live_chat_email_and_nhone_i_guarantee_that_you_ll_be_able_to_have_any_issue_nresolved_within_24_hours" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:background="@color/HorizontallineColor" />
-
-        <TextView
-            style="@style/QuaternaryTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/full_name" />
-
-
-        <EditText
-            android:id="@+id/etHolderName"
-            style="@style/QuaternarySpinnerLightTextStyle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:background="@drawable/input_custom"
-            android:hint="@string/enter_your_full_name"
-            android:inputType="textPersonName"
-            android:padding="@dimen/_12sdp"
-            android:singleLine="true" />
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:orientation="vertical">
 
-        <TextView
-            style="@style/QuaternaryTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/email_id" />
+            <TextView
+                style="@style/PrimaryHeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/gothic_bold"
+                android:text="@string/get_in_touch"
+                android:textFontWeight="600" />
 
-        <EditText
-            android:id="@+id/etAccountEmail"
-            style="@style/QuaternarySpinnerLightTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:background="@drawable/input_custom"
-            android:hint="@string/enter_your_mail_id"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_12sdp"
-            android:singleLine="true" />
+            <TextView
+                style="@style/QuinaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/i_have_worls_class_flexible_support_via_live_chat_email_and_nhone_i_guarantee_that_you_ll_be_able_to_have_any_issue_nresolved_within_24_hours" />
 
-        <TextView
-            style="@style/QuaternaryTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/mobile_number" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@color/HorizontallineColor" />
 
-        <EditText
-            android:id="@+id/etAccountMobileNo"
-            style="@style/QuaternarySpinnerLightTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:background="@drawable/input_custom"
-            android:hint="@string/enter_mobile_no"
-            android:inputType="number"
-            android:padding="@dimen/_12sdp"
-            android:singleLine="true" />
+            <TextView
+                style="@style/QuaternaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/full_name" />
 
-        <TextView
-            style="@style/QuaternaryTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/message" />
 
-        <EditText
-            android:id="@+id/etMessage"
-            style="@style/QuaternarySpinnerLightTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:autofillHints="enter complaint"
-            android:background="@drawable/grey_stroke_half_curve"
-            android:gravity="start"
-            android:imeOptions="actionDone"
-            android:hint="@string/enter_your_message"
-            android:inputType="textMultiLine"
-            android:padding="@dimen/_12sdp" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/etHolderName"
+                style="@style/QuaternarySpinnerLightTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/input_custom"
+                android:hint="@string/enter_your_full_name"
+                android:inputType="textPersonName"
+                android:padding="@dimen/_12sdp"
+                android:singleLine="true" />
 
+            <TextView
+                android:id="@+id/tvErrorName"
+                style="@style/ErrorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:elevation="@dimen/_minus2sdp"
+                android:visibility="gone" />
+
+
+            <TextView
+                style="@style/QuaternaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/email_id" />
+
+            <EditText
+                android:id="@+id/etAccountEmail"
+                style="@style/QuaternarySpinnerLightTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/input_custom"
+                android:hint="@string/enter_your_mail_id"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_12sdp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tvErrorEmail"
+                style="@style/ErrorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:elevation="@dimen/_minus2sdp"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/QuaternaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/mobile_number" />
+
+            <EditText
+                android:id="@+id/etAccountMobileNo"
+                style="@style/QuaternarySpinnerLightTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/input_custom"
+                android:hint="@string/enter_mobile_no"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:padding="@dimen/_12sdp"
+                android:singleLine="true"
+                tools:ignore="Autofill,InefficientWeight" />
+
+            <TextView
+                android:id="@+id/tvErrorMobile"
+                style="@style/ErrorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:elevation="@dimen/_minus2sdp"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/QuaternaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/message" />
+
+            <EditText
+                android:id="@+id/etMessage"
+                style="@style/QuaternarySpinnerLightTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:autofillHints="enter complaint"
+                android:background="@drawable/grey_stroke_half_curve"
+                android:gravity="start"
+                android:hint="@string/enter_your_message"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tvErrorMessage"
+                style="@style/ErrorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:elevation="@dimen/_minus2sdp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/llSave"

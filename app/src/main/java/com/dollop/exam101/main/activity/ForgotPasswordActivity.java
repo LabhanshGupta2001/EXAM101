@@ -8,12 +8,15 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -65,6 +68,23 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
     private void init() {
         apiService = RetrofitClient.getClient();
         binding.tvBtnSubmit.setOnClickListener(this);
+
+        binding.etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorEmail.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
 
@@ -76,7 +96,6 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
 
                 CheckValidationTask();
             } else {
-              //  Utils.InternetDialog(activity);
                 InternetDialog();
             }
         }
@@ -84,21 +103,19 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
 
     private void CheckValidationTask() {
         errorValidationModels.clear();
-        errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etEmail));
-        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etEmail));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etEmail, binding.tvErrorEmail));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, errorValidationModels);
         if (resultReturn.aBoolean) {
             ForgetPassword();
         } else {
-            // resultReturn.errorTextView.setVisibility(View.VISIBLE);
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
-
-                //  resultReturn.errorTextView.setText(resultReturn.errorMessage);
-                Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
             } else {
-                //   resultReturn.errorTextView.setText(validation.errorMessage);
-                validation.EditTextPointer.setError(validation.errorMessage);
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
             }
 
@@ -112,7 +129,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
         apiService.ForgetPassword(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                    progressDialog.dismiss();
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
@@ -160,9 +177,10 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
         }
         return super.dispatchTouchEvent(event);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

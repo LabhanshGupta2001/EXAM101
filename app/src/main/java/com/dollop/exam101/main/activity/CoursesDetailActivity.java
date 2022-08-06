@@ -50,7 +50,6 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
         binding = ActivityCoursesDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)

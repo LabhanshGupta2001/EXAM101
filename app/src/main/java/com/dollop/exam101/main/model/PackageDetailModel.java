@@ -48,7 +48,7 @@ public class PackageDetailModel {
     public String languageIds;
     @SerializedName("exams")
     @Expose
-    public List<SubjectModel> subjectModels= null;
+    public List<ExamModel> examModels = null;
     @SerializedName("mockTests")
     @Expose
     public List<MockTestModel> mockTests = null;

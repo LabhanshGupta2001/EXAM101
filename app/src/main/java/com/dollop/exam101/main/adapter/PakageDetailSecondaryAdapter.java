@@ -21,12 +21,14 @@ import java.util.List;
 public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDetailSecondaryAdapter.MyViewHolder> {
     Context context;
     List<ModuleModel> moduleModelArrayList;
-    List<TopicDetailModel> stringArrayList=new ArrayList<>();
+    List<TopicDetailModel> topicDetailModelArrayList=new ArrayList<>();
     private Boolean dropdown = true;
 
     public PakageDetailSecondaryAdapter(Context context, List<ModuleModel> list) {
         this.context = context;
         this.moduleModelArrayList = list;
+        Utils.E("moduleModelArrayList::"+moduleModelArrayList);
+
     }
 
     @NonNull
@@ -38,14 +40,14 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
         ModuleModel moduleModel = moduleModelArrayList.get(position);
        /* stringArrayList.clear();
         stringArrayList.add("1");*/
         holder.binding.tvModule.setText(moduleModel.moduleName);
+        topicDetailModelArrayList.addAll(moduleModel.topics);
 
-        stringArrayList = (ArrayList<TopicDetailModel>) moduleModel.topics;
-        Utils.E("stringArrayListTopic::"+stringArrayList);
-        holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,stringArrayList));
+        holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,topicDetailModelArrayList));
         holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
 
         holder.binding.mcvZtoA.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +68,7 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
 
     @Override
     public int getItemCount() {
-        return stringArrayList.size();
+        return moduleModelArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

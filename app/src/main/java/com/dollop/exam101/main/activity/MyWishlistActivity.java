@@ -59,6 +59,7 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
         binding.rvWishList.setAdapter(myWishListAdapter);
         getWishlist();
         binding.ivBack.setOnClickListener(this);
+
     }
 
     @Override

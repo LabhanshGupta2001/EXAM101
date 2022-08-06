@@ -51,7 +51,7 @@
                 android:fontFamily="@font/inter_semibold"
                 android:paddingVertical="@dimen/_12sdp"
                 android:paddingHorizontal="@dimen/_6sdp"
-                android:hint="@string/savepackage50"
+                android:hint="@string/enter_coupon_code"
                 android:theme="@style/QuaternaryTextStyle" />
 
         <TextView
