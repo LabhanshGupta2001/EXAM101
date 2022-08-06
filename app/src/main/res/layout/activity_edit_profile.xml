@@ -111,6 +111,7 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/full_name"
+
                     android:inputType="text"
                     android:paddingHorizontal="@dimen/_12sdp"
                     android:paddingVertical="@dimen/_12sdp" />

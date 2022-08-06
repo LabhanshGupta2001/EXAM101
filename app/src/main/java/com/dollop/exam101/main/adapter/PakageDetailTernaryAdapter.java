@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemPackagesDetailTernaryBinding;
 import com.dollop.exam101.main.model.TopicDetailModel;
 
@@ -21,6 +22,7 @@ public class PakageDetailTernaryAdapter extends RecyclerView.Adapter<PakageDetai
     public PakageDetailTernaryAdapter(Context context, List<TopicDetailModel> list) {
         this.context = context;
         this.topicDetailModels = list;
+        Utils.E("topicDetailModels::"+topicDetailModels);
     }
 
     @NonNull

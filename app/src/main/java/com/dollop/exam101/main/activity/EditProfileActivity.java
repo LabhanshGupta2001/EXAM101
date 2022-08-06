@@ -555,7 +555,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         userData.studentId = DatabaseData.studentId;
                         userData.token = DatabaseData.token;
                         UserDataHelper.getInstance().insertData(userData);
-                        SetDataWithDataBase();
+                       // SetDataWithDataBase();
 
                     } else {
                         assert response.errorBody() != null;

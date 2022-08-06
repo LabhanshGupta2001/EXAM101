@@ -19,8 +19,8 @@ import java.util.List;
 
 public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetailPrimaryAdapter.MyViewHolder> {
     Context context;
-    List<SubjectModel> subjectModelArrayList;
-    List<ModuleModel> stringArrayList=new ArrayList<>();
+    List<SubjectModel> subjectModelArrayList = new ArrayList<>();
+    List<ModuleModel> moduleModelArrayList=new ArrayList<>();
     public PakageDetailPrimaryAdapter(Context context, List<SubjectModel> arrayList) {
         this.context = context;
         this.subjectModelArrayList = arrayList;
@@ -33,14 +33,15 @@ public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetai
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Utils.E("subjectModelArrayList::"+subjectModelArrayList);
         SubjectModel subjectModel =  subjectModelArrayList.get(position);
        /* stringArrayList.clear();
         stringArrayList.add("1");*/
         holder.binding.tvSubject1.setText(subjectModel.subjectName);
-      //  stringArrayList.addAll(subjectModel.modules);
-        Utils.E("stringArrayListModule::"+stringArrayList);
+        //  stringArrayList.addAll(subjectModel.modules);
+        moduleModelArrayList.addAll(subjectModel.modules);
 
-        holder.binding.rvSecond.setAdapter(new PakageDetailSecondaryAdapter(context,stringArrayList));
+        holder.binding.rvSecond.setAdapter(new PakageDetailSecondaryAdapter(context,moduleModelArrayList));
         holder.binding.rvSecond.setLayoutManager(new LinearLayoutManager(context));
     }
     @Override

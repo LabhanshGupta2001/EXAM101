@@ -109,6 +109,7 @@
                         style="@style/QuaternaryLightTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:fontFamily="@font/gothic_bold"
                         android:text="@string/yogendra_tiwari" />
 
@@ -118,6 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_1sdp"
+                        android:singleLine="true"
                         android:fontFamily="@font/inter_regular"
                         android:text="@string/yogendratiwari54_gmail_com" />
 

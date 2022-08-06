@@ -34,6 +34,7 @@ import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.ExamModel;
 import com.dollop.exam101.main.model.MockTestModel;
 import com.dollop.exam101.main.model.PackageDetailModel;
 import com.dollop.exam101.main.model.ReviewRating;
@@ -66,7 +67,8 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     List<Fragment> fragments = new ArrayList<>();
     List<MockTestModel> mockTestModels = new ArrayList<>();
     ArrayList<ReviewRating> reviewRatingModels = new ArrayList<>();
-    List<SubjectModel> subjectModelArrayList = new ArrayList<>();
+    List<ExamModel> examModelArrayList = new ArrayList<>();
+    List<SubjectModel> subjectModelArrayList = new ArrayList<>() ;
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
     String packageName, packageDetail, imgPath;
@@ -250,13 +252,22 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
-                    subjectModelArrayList = (ArrayList<SubjectModel>) packageDetailModels.subjectModels;
-                    Utils.E("subjectModelArrayList::"+subjectModelArrayList);
+                    Utils.E("mockTestModels::"+mockTestModels);
+                    examModelArrayList.addAll(packageDetailModels.examModels);
+                    Utils.E("examModelArrayList::"+examModelArrayList);
+                    for (int i = 0; i < examModelArrayList.size(); i++) {
+                        subjectModelArrayList.addAll(examModelArrayList.get(i).subjects);
+                    }
                     fragments.add(new CourseMaterialFragment(subjectModelArrayList));
-                    fragments.add(new MockTestFragment(mockTestModels));
                     Tittle.clear();
                     Tittle.add(Constants.Key.Course_Material);
-                    Tittle.add(Constants.Key.Mock_Test);
+
+                    if (mockTestModels.isEmpty() || mockTestModels.equals(Constants.Key.blank)){
+                    }else {
+                        Tittle.add(Constants.Key.Mock_Test);
+                        fragments.add(new MockTestFragment(mockTestModels));
+                    }
+
                     mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
                     binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
                     new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
@@ -381,23 +392,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         dialog.show();
     }
 
-   /* private void rateNowBottomSheet() {
-        bottomSheetDialog = new BottomSheetDialog(activity);
-        bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
-        bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
-        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
-        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        bottomSheetBehavior.setSkipCollapsed(true);
-        bottomSheetDialog.show();
-        bottomSheetRatenowBinding.tvHeading.setText(packageName);
-        bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
-        Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
-                into(bottomSheetRatenowBinding.ivPhotoId);
-        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
-            addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
-        });
-    }*/
    private void rateNowBottomSheet() {
        bottomSheetDialog = new BottomSheetDialog(activity);
        bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
