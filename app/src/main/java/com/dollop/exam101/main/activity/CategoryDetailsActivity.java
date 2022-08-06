@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
@@ -55,10 +56,10 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     public String examId = "";
     public String Price = "";
     public String languageId = "";
+    public int Positions = -1, LanguagePos = -1;
+    public ActivityCategoryDetailsBinding binding;
     String ExamName = "", MinValue = "", MaxValue = "";
-    public int Positions = -1,LanguagePos = -1;
     Activity activity = CategoryDetailsActivity.this;
-    public  ActivityCategoryDetailsBinding binding;
     ArrayList<PackageModel> arrayList = new ArrayList<>();
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ApiService apiService;
@@ -67,6 +68,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     PackageAdapter packageAdapter;
     CategoriesFragment categoriesFragment;
     PriceFragment priceFragment;
+    RecyclerView.SmoothScroller smoothScroller;
     LanguageFragment languageFragment;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -81,6 +83,13 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         Bundle bundle = getIntent().getExtras();
+        smoothScroller = new
+                LinearSmoothScroller(activity) {
+                    @Override
+                    protected int getVerticalSnapPreference() {
+                        return LinearSmoothScroller.SNAP_TO_START;
+                    }
+                };
         if (bundle != null) {
             examId = bundle.getString(Constants.Key.examId);
             Positions = bundle.getInt(Constants.Key.Position, 0);
@@ -132,22 +141,22 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         title.add(Constants.Key.Language);
 
         ArrayList<Fragment> Fragment = new ArrayList<>();
-        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment ,CategoryDetailsActivity.this,Positions);
+        categoriesFragment = new CategoriesFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this, Positions);
         priceFragment = new PriceFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this);
-        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this,LanguagePos);
+        languageFragment = new LanguageFragment(Constants.Key.PackageFragment, CategoryDetailsActivity.this, LanguagePos);
         Fragment.add(categoriesFragment);
         Fragment.add(priceFragment);
         Fragment.add(languageFragment);
 
-        ViewPagerFragmentAdapter viewPagerFragmentAdapter=  new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), Fragment);
+        ViewPagerFragmentAdapter viewPagerFragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), Fragment);
         bottomsheetFilterBinding.ViewPagerId.setAdapter(viewPagerFragmentAdapter);
         bottomsheetFilterBinding.tvllSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (categoriesFragment.categoriesFragmentAdapter != null && categoriesFragment.categoriesFragmentAdapter.newPos != -1) {
                     examId = categoriesFragment.categoriesFragmentAdapter.examId;
-                     binding.tvToolbarName.setText(categoriesFragment.categoriesFragmentAdapter.examName);
-                     Positions = categoriesFragment.categoriesFragmentAdapter.newPos;
+                    binding.tvToolbarName.setText(categoriesFragment.categoriesFragmentAdapter.examName);
+                    Positions = categoriesFragment.categoriesFragmentAdapter.newPos;
                     getCategoriesItemHeading();
                     //viewPagerFragmentAdapter.notifyDataSetChanged();
                 }
@@ -162,7 +171,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
 
                 getCategoryDetails(examId);
                 Utils.E("ID:::::" + examId + "LId::" + languageId + "MValue::" + priceFragment.minValue + "MaxValue::"
-                        + priceFragment.maxValue+"Position::"+Positions);
+                        + priceFragment.maxValue + "Position::" + Positions);
 
                 bottomSheetFilter.cancel();
 
@@ -192,7 +201,11 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         assert response.body() != null;
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
-                        binding.rvPackagesHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+                        smoothScroller.setTargetPosition(Positions);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
+                        binding.rvPackagesHeading.setLayoutManager(linearLayoutManager);
+                       // linearLayoutManager.startSmoothScroll(smoothScroller);
+                        binding.rvPackagesHeading.getLayoutManager().scrollToPosition(Positions);
                         binding.rvPackagesHeading.getLayoutManager().scrollToPosition(Positions);
                         binding.rvPackagesHeading.setAdapter(new CategoryDetailAdapter(activity, courseModelArrayList, Positions));
                     } else {

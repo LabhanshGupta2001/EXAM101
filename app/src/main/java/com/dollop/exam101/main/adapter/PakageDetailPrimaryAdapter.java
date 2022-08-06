@@ -37,7 +37,7 @@ public class PakageDetailPrimaryAdapter extends RecyclerView.Adapter<PakageDetai
        /* stringArrayList.clear();
         stringArrayList.add("1");*/
         holder.binding.tvSubject1.setText(subjectModel.subjectName);
-        stringArrayList.addAll(subjectModel.modules);
+      //  stringArrayList.addAll(subjectModel.modules);
         Utils.E("stringArrayListModule::"+stringArrayList);
 
         holder.binding.rvSecond.setAdapter(new PakageDetailSecondaryAdapter(context,stringArrayList));

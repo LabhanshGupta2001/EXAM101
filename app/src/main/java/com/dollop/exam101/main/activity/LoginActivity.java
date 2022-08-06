@@ -126,20 +126,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             if (acct != null) {
                 personName = acct.getDisplayName();
                 personEmail = acct.getEmail();
-              /*  String personGivenName = acct.getGivenName();
-                String personFamilyName = acct.getFamilyName();
-                String personId = acct.getId();
-                Uri personPhoto = acct.getPhotoUrl();
-                Log.e(String.valueOf(activity), "handleSignInResult: " + personName);*/
             }
             if (AppController.getInstance().isOnline()) {
-
                 SocialLogin();
             } else {
-                //Utils.InternetDialog(activity);
                 InternetDialog();
             }
-            // startActivity(new Intent(activity, DashboardScreenActivity.class));
         } catch (ApiException e) {
             Log.e("massage", e.toString());
         }
