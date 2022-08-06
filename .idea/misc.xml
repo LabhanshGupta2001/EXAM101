@@ -3,15 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/grey_stroke_background.xml" value="0.2115" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_googleicon.xml" value="0.2115" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/range_thumb.xml" value="0.187" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20364583333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18020833333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_welcome.xml" value="0.22" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.18802083333333333" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_price.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course.xml" value="0.5" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_current_affairs_news.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.22" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.20364583333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/no_result_found.xml" value="0.18020833333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20364583333333333" />

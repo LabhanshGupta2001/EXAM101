@@ -14,12 +14,11 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/QuaternaryHeadingFullBlackTextStyle"
+            style="@style/HomeHeadingTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginVertical="@dimen/_10sdp"
-            android:fontFamily="@font/gothic_bold"
             android:text="@string/find_best_course" />
 
         <LinearLayout
@@ -74,7 +73,7 @@
                         android:id="@+id/dot2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_6ssp"
+                        android:layout_marginVertical="@dimen/_8sdp"
                         app:dotsSize="@dimen/_8sdp"
                         app:dotsSpacing="@dimen/_2sdp"
                         app:dotsStrokeColor="#E8EEF6"
@@ -98,25 +97,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/top" />
+                android:text="@string/top_10_packages" />
 
-            <TextView
-                android:id="@+id/tvPackagesItem"
-                style="@style/HomeHeadingTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginHorizontal="@dimen/_3sdp"
-                android:layout_toRightOf="@id/tvTop"
-                android:text="10" />
-
-            <TextView
-                style="@style/HomeHeadingTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/tvPackagesItem"
-                android:text="@string/packages" />
 
             <TextView
                 android:id="@+id/tvViewAll"
@@ -135,12 +117,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingBottom="@dimen/_12sdp">
+            android:paddingBottom="@dimen/_6sdp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPackages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:overScrollMode="never" />
         </LinearLayout>
 
@@ -176,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
@@ -209,6 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ivBharat"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:text="@string/get_syllabus_in_hindi"
                 android:textAlignment="center" />
 
@@ -288,12 +272,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:paddingBottom="@dimen/_6sdp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:background="@color/white"
                 android:overScrollMode="never" />
         </LinearLayout>
@@ -318,6 +304,7 @@
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:layout_marginVertical="@dimen/_6sdp"
                 android:weightSum="3">
 
                 <com.google.android.material.card.MaterialCardView
@@ -325,9 +312,10 @@
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginVertical="@dimen/_6sdp"
                     android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_weight="1"
-                    android:elevation="@dimen/_6sdp"
-                    app:cardCornerRadius="@dimen/_2sdp">
+                    app:cardCornerRadius="@dimen/_2sdp"
+                    app:cardElevation="2dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -376,10 +364,11 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_100sdp"
+                    android:layout_marginHorizontal="@dimen/_2sdp"
                     android:layout_marginVertical="@dimen/_6sdp"
                     android:layout_weight="1"
-                    android:elevation="@dimen/_6sdp"
-                    app:cardCornerRadius="@dimen/_4sdp">
+                    app:cardCornerRadius="@dimen/_4sdp"
+                    app:cardElevation="2dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -413,7 +402,8 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/inter_regular"
                             android:gravity="center_horizontal"
-                            android:text="@string/friend_purchase" />
+                            android:text="@string/friend_purchase"
+                            android:textAlignment="center" />
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -427,10 +417,11 @@
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginVertical="@dimen/_6sdp"
+                    android:layout_marginStart="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_6sdp"
                     android:layout_weight="1"
-                    android:elevation="@dimen/_6sdp"
-                    app:cardCornerRadius="@dimen/_4sdp">
+                    app:cardCornerRadius="@dimen/_4sdp"
+                    app:cardElevation="2dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"

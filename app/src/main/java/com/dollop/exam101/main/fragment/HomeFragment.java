@@ -140,7 +140,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
-        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         bannerAdapter = new BannerAdapter(getActivity(), banners1);
         binding.vpBanner.setAdapter(bannerAdapter);
         binding.dot2.setViewPager2(binding.vpBanner);
