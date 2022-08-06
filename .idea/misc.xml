@@ -3,44 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/custom_switch_thumb.xml" value="0.1855" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/custom_track.xml" value="0.2115" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_balle.xml" value="0.2115" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_lock.xml" value="0.2115" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_vector_log.xml" value="0.2115" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/input_custom.xml" value="0.1925" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/range_thumb.xml" value="0.187" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_contact_us.xml" value="0.2" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20364583333333333" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_forgot_password.xml" value="0.20416666666666666" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.16979166666666667" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_setting.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_update_bank_details.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottom_sheet_ratenow.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_applycoupon.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/bottomsheet_referralcode.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18020833333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.18802083333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_price.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.1671875" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course.xml" value="1.0" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_list.xml" value="0.1671875" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.22" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_overview_course_details.xml" value="0.67" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_package_detail.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_purchase_list.xml" value="0.67" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.1671875" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_search_history.xml" value="0.1671875" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.1671875" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.20364583333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/no_result_found.xml" value="0.18020833333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20364583333333333" />
@@ -158,7 +129,6 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/bottom_sheet_back.xml" value="0.2595" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/custom_seek_thumb.xml" value="0.1735" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/custom_seekbar.xml" value="0.1735" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/custom_track.xml" value="0.2595" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/gray_strock_bg.xml" value="0.1395" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/grey_stroke_background.xml" value="0.1735" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/drawable/ic_back.xml" value="0.1775" />
@@ -257,9 +227,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_language.xml" value="0.253125" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.4" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_package_detail.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.4323308270676692" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_packages_detail_ternary.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.536" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_pakages_details_secondry.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_state.xml" value="0.253125" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.4" />
@@ -368,6 +336,7 @@
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/progress_dialog.xml" value="0.25" />
         <entry key="..\:/Users/aryan/AndroidStudioProjects/exam101-android/app/src/main/res/layout/welcome_layout.xml" value="0.25" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/bottom_sheet_back.xml" value="0.1515" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/custom_switch_thumb.xml" value="0.134" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_hart.xml" value="0.134" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_mock_test.xml" value="0.1575" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.22" />
@@ -377,6 +346,7 @@
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_setting.xml" value="0.1" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/alertdialog.xml" value="0.33" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_ratenow.xml" value="0.20416666666666666" />

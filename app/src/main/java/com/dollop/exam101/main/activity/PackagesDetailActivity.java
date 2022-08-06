@@ -272,7 +272,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         Tittle.add(Constants.Key.Mock_Test);
                         fragments.add(new MockTestFragment(mockTestModels));
                     }
-
                     mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
                     binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
                     new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
@@ -397,23 +396,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         dialog.show();
     }
 
-    /* private void rateNowBottomSheet() {
-         bottomSheetDialog = new BottomSheetDialog(activity);
-         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
-         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
-         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
-         bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-         bottomSheetBehavior.setSkipCollapsed(true);
-         bottomSheetDialog.show();
-         bottomSheetRatenowBinding.tvHeading.setText(packageName);
-         bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
-         Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
-                 into(bottomSheetRatenowBinding.ivPhotoId);
-         bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
-             addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
-         });
-     }*/
     private void rateNowBottomSheet() {
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
