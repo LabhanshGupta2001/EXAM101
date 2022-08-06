@@ -44,7 +44,7 @@
             android:background="@drawable/click_change_bg"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             android:singleLine="true"
             android:fontFamily="@font/inter_semibold"
             android:paddingVertical="@dimen/_12sdp"
@@ -52,12 +52,26 @@
             android:hint="@string/yog4500erz"
             android:theme="@style/QuaternaryTextStyle" />
         <TextView
+            android:id="@+id/tvErrorReferral"
+            android:visibility="gone"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            style="@style/ErrorTextStyle"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_width="wrap_content"
+            android:elevation="@dimen/_minus2sdp"
+            android:layout_height="wrap_content"
+            />
+
+
+
+        <TextView
             android:id="@+id/tvApply"
             style="@style/TernaryWhiteTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             android:background="@drawable/theme_stroke_background"
             android:backgroundTint="@color/theme"
             android:fontFamily="@font/inter_semibold"

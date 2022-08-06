@@ -91,6 +91,16 @@
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true" />
+                <TextView
+                    android:id="@+id/tvErrorEmail"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <EditText
                     android:id="@+id/etUserPassword"
@@ -106,6 +116,16 @@
                     android:inputType="textPassword"
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true" />
+                <TextView
+                    android:id="@+id/tvErrorPass"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
 
                 <TextView

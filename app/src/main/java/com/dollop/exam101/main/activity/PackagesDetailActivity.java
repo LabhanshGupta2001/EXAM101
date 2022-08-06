@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -29,13 +31,11 @@ import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
-import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.ExamModel;
-import com.dollop.exam101.main.model.LanguageModel;
 import com.dollop.exam101.main.model.MockTestModel;
 import com.dollop.exam101.main.model.PackageDetailModel;
 import com.dollop.exam101.main.model.ReviewRating;
@@ -252,7 +252,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
                     examModelArrayList = (ArrayList<ExamModel>) packageDetailModels.examModels;
-                    Utils.E("examModels::"+examModelArrayList);
+                    Utils.E("examModels::" + examModelArrayList);
                     fragments.add(new CourseMaterialFragment(examModelArrayList));
                     fragments.add(new MockTestFragment(mockTestModels));
                     Tittle.clear();
@@ -337,6 +337,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
+                        getPackageDetails();
 
                     } else {
                         assert response.errorBody() != null;
@@ -382,7 +383,24 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         dialog.show();
     }
 
-   /* private void rateNowBottomSheet() {
+    /* private void rateNowBottomSheet() {
+         bottomSheetDialog = new BottomSheetDialog(activity);
+         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
+         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
+         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
+         bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+         bottomSheetBehavior.setSkipCollapsed(true);
+         bottomSheetDialog.show();
+         bottomSheetRatenowBinding.tvHeading.setText(packageName);
+         bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
+         Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
+                 into(bottomSheetRatenowBinding.ivPhotoId);
+         bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
+             addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+         });
+     }*/
+    private void rateNowBottomSheet() {
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
@@ -396,33 +414,19 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
                 into(bottomSheetRatenowBinding.ivPhotoId);
         bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
-            addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+            if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
+                bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.VISIBLE);
+                bottomSheetRatenowBinding.tvErrorReview.setText(R.string.empty_error);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                bottomSheetRatenowBinding.tvErrorReview.startAnimation(animation);
+            } else {
+                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                Utils.E("SimpleDateFormat::::" + currentDate + currentTime);
+                addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
+                GetPackageDetailsMockTestListRatingNow();
+                bottomSheetDialog.cancel();
+            }
         });
-    }*/
-   private void rateNowBottomSheet() {
-       bottomSheetDialog = new BottomSheetDialog(activity);
-       bottomSheetRatenowBinding = BottomSheetRatenowBinding.inflate(getLayoutInflater());
-       bottomSheetDialog.setContentView(bottomSheetRatenowBinding.getRoot());
-       BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetRatenowBinding.getRoot().getParent()));
-       bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-       bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-       bottomSheetBehavior.setSkipCollapsed(true);
-       bottomSheetDialog.show();
-       bottomSheetRatenowBinding.tvHeading.setText(packageName);
-       bottomSheetRatenowBinding.tvSubHeading.setText(packageDetail);
-       Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
-               into(bottomSheetRatenowBinding.ivPhotoId);
-       bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
-           if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)){
-               Utils.T(activity,Constants.Key.write_a_review);
-           } else {
-               String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-               String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-               Utils.E("SimpleDateFormat::::"+currentDate+currentTime);
-               addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
-               GetPackageDetailsMockTestListRatingNow();
-               bottomSheetDialog.cancel();
-           }
-       });
-   }
+    }
 }

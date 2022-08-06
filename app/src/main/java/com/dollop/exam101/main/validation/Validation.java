@@ -3,6 +3,7 @@ package com.dollop.exam101.main.validation;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,11 +28,11 @@ import io.michaelrocks.libphonenumber.android.Phonenumber;
 
 public class Validation {
 
+    @SuppressLint("StaticFieldLeak")
+    private static Validation validation;
     public EditText EditTextPointer;
     public String errorMessage;
     PhoneNumberUtil phoneNumberUtil;
-    @SuppressLint("StaticFieldLeak")
-    private static Validation validation;
 
     /**
      * Singleton Object of the Class to access
@@ -43,86 +44,73 @@ public class Validation {
     }
 
     /**
-     * Enum of the Type of error we have
-     */
-    public enum Type {
-        Email(""),
-        Phone(""),
-        EmptyString(""),
-        Amount(""),
-        AadhaarNumber(""),
-        PasswordMatch(""),
-        PasswordStrong(""),
-        PAN(""),
-        IFSC(""),
-        Empty("");
-        public String label ;
-
-        Type(String label) {
-            this.label = label;
-        }
-    }
-
-    /**
      * Check Validation
-     * @param context  Page Reference
+     *
+     * @param context               Page Reference
      * @param errorValidationModels List of the Field On which we have to check the error
      * @return ResultReturn  return the Data of the Validation
      */
-    public ResultReturn CheckValidation(Context context, @NonNull List<ValidationModel> errorValidationModels){
-        boolean validationCheck=false;
+    public ResultReturn CheckValidation(Context context, @NonNull List<ValidationModel> errorValidationModels) {
+        boolean validationCheck = false;
         phoneNumberUtil = PhoneNumberUtil.createInstance(context);
         Type type = null;
         String errorMessage = null;
         String parameter = null;
         TextView errorTextView = null;
 
-        for (ValidationModel validationModel : errorValidationModels){
-            type= validationModel.type;
-            errorMessage= validationModel.errorMessage;
-            parameter= validationModel.Parameter;
-            errorTextView= validationModel.errorTextView;
-            switch (validationModel.type){
-                case Phone :
-                    validationCheck=  isValidPhoneNumber(context, validationModel.editText);
+        for (ValidationModel validationModel : errorValidationModels) {
+            type = validationModel.type;
+            errorMessage = validationModel.errorMessage;
+            parameter = validationModel.Parameter;
+            errorTextView = validationModel.errorTextView;
+            if (errorTextView != null) {
+                errorTextView.setVisibility(View.GONE);
+            }
+            switch (validationModel.type) {
+                case Phone:
+                    validationCheck = isValidPhoneNumber(context, validationModel.editText);
                     break;
-                case Email :
-                    validationCheck= isEmailValid(context, validationModel.editText);
+                case Email:
+                    validationCheck = isEmailValid(context, validationModel.editText);
                     break;
                 case EmptyString:
-                    validationCheck= isEmptyString(context, validationModel.field);
+                    validationCheck = isEmptyString(context, validationModel.field);
                     break;
                 case Amount:
-                    validationCheck= isValidAmount(context, validationModel.editText);
+                    validationCheck = isValidAmount(context, validationModel.editText);
                     break;
                 case AadhaarNumber:
-                    validationCheck= isValidAadhaarNumber(context, validationModel.editText);
+                    validationCheck = isValidAadhaarNumber(context, validationModel.editText);
                     break;
                 case PasswordMatch:
-                    validationCheck= isPasswordMatch(context, validationModel.editText, validationModel.editText1);
+                    validationCheck = isPasswordMatch(context, validationModel.editText, validationModel.editText1);
                     break;
                 case PasswordStrong:
-                    validationCheck= isPasswordStrong(context, validationModel.editText);
+                    validationCheck = isPasswordStrong(context, validationModel.editText);
                     break;
                 case PAN:
-                    validationCheck= isValidPAN(context, validationModel.editText);
+                    validationCheck = isValidPAN(context, validationModel.editText);
                     break;
                 case IFSC:
-                    validationCheck= isValidIFSC(context, validationModel.editText);
+                    validationCheck = isValidIFSC(context, validationModel.editText);
                     break;
                 case Empty:
-                    validationCheck= isEmpty(context, validationModel.editText);
+                    validationCheck = isEmpty(context, validationModel.editText);
+                    break;
+                case AccountNumber:
+                    validationCheck = isValidAccountNumber(context, validationModel.editText);
                     break;
             }
-            if(!validationCheck){
+            if (!validationCheck) {
                 break;
             }
         }
-        return new ResultReturn(type,validationCheck,errorMessage,parameter,errorTextView);
+        return new ResultReturn(type, validationCheck, errorMessage, parameter, errorTextView);
     }
 
     /**
      * Password Strong Validation Method
+     *
      * @param context  Page Reference
      * @param editText Edit Text To Check
      * @return true/false
@@ -174,11 +162,11 @@ public class Validation {
     /**
      * is String Empty
      *
-     * @param context  Page Reference
-     * @param string string To Check
+     * @param context Page Reference
+     * @param string  string To Check
      * @return true/false
      */
-    private boolean isEmptyString(@NotNull Context context,String string) {
+    private boolean isEmptyString(@NotNull Context context, String string) {
         //add your own logic
 
         if (string == null || TextUtils.isEmpty(string.trim())) {
@@ -202,9 +190,9 @@ public class Validation {
             EditTextPointer = editText;
             return false;
         } else {
-            if (validateMobileNumber(editText.getText().toString().trim(),context)){
+            if (validateMobileNumber(editText.getText().toString().trim(), context)) {
                 return true;
-            }else {
+            } else {
                 EditTextPointer = editText;
                 errorMessage = context.getString(R.string.enter_a_valid_number);
                 return false;
@@ -273,7 +261,6 @@ public class Validation {
         }
     }
 
-
     /**
      * is Valid Aadhaar Number
      *
@@ -324,10 +311,8 @@ public class Validation {
                 errorMessage = context.getString(R.string.aadhaar_valid);
                 return false;
             }
-
         }
     }
-
 
     /**
      * is Valid PAN Number
@@ -381,10 +366,36 @@ public class Validation {
         }
     }
 
-    public boolean validateMobileNumber(String phoneNo,Context context) {
+    /**
+     * is Valid Account Number
+     *
+     * @param context  Page Reference
+     * @param editText Edit Text To Check
+     * @return true/false
+     */
+    private boolean isValidAccountNumber(@NotNull Context context, @NotNull EditText editText) {
+        if (editText.getText() == null || TextUtils.isEmpty(editText.getText())) {
+            errorMessage = context.getString(R.string.empty_error);
+            EditTextPointer = editText;
+            return false;
+        } else {
+            Pattern p = Pattern.compile("[0-9]{9,18}");
+            Matcher m = p.matcher(editText.getText().toString());
+            if (m.matches()) {
+                return true;
+            } else {
+                EditTextPointer = editText;
+                errorMessage = context.getString(R.string.account_valid);
+                return false;
+            }
+
+        }
+    }
+
+    public boolean validateMobileNumber(String phoneNo, Context context) {
         Phonenumber.PhoneNumber phonenumber = null;
         String regionalCode = SavedData.getCountryKey(context);
-        Utils.E("regionalCode::"+regionalCode);
+        Utils.E("regionalCode::" + regionalCode);
         String NationalPhoneNumber;
         try {
             phonenumber = phoneNumberUtil.parse(phoneNo, regionalCode);
@@ -402,4 +413,25 @@ public class Validation {
 
     }
 
+    /**
+     * Enum of the Type of error we have
+     */
+    public enum Type {
+        Email(""),
+        Phone(""),
+        EmptyString(""),
+        Amount(""),
+        AadhaarNumber(""),
+        PasswordMatch(""),
+        PasswordStrong(""),
+        PAN(""),
+        IFSC(""),
+        Empty(""),
+        AccountNumber("");
+        public String label;
+
+        Type(String label) {
+            this.label = label;
+        }
+    }
 }
