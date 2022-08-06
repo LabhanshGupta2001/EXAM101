@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/_12sdp"
-    android:layout_marginTop="@dimen/_12sdp"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:paddingVertical="@dimen/_4sdp"
     android:orientation="horizontal"
+    android:id="@+id/llSearchHistoryItem"
     android:gravity="center_vertical"
     android:weightSum="1">
 

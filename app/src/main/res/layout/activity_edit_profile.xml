@@ -111,7 +111,6 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/full_name"
-
                     android:inputType="text"
                     android:paddingHorizontal="@dimen/_12sdp"
                     android:paddingVertical="@dimen/_12sdp" />
@@ -132,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/email_address"
@@ -157,7 +156,7 @@
                     app:cardCornerRadius="@dimen/_30sdp"
                     app:cardBackgroundColor="@color/white"
                     app:cardElevation="0dp"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     app:strokeColor="@color/HorizontallineColor"
                     app:strokeWidth="@dimen/_1sdp"
                     android:layout_marginHorizontal="@dimen/_12sdp">
@@ -255,7 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/country"
@@ -279,7 +278,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/state"

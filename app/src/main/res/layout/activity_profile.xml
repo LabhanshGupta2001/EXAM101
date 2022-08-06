@@ -76,7 +76,7 @@
                 android:background="@color/background"
                 android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingVertical="@dimen/_8sdp">
+                android:paddingVertical="@dimen/_10sdp">
 
                 <com.google.android.material.card.MaterialCardView
 
@@ -362,7 +362,7 @@
                         android:text="@string/request_for_affiliation_code" />
 
                     <TextView
-                        style="@style/QuinaryLightSubTextStyle"
+                        style="@style/QuinaryDarkSubTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_2sdp"
@@ -464,7 +464,7 @@
                             android:text="@string/your_bank_details" />
 
                         <TextView
-                            style="@style/QuinaryLightSubTextStyle"
+                            style="@style/QuinaryDarkSubTextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
@@ -513,7 +513,7 @@
                             android:text="@string/affiliate_purchase_list" />
 
                         <TextView
-                            style="@style/QuinaryLightSubTextStyle"
+                            style="@style/QuinaryDarkSubTextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
