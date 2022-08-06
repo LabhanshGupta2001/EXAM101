@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -162,21 +164,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void CheckValidationTask() {
         errorValidationModels.clear();
-        errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserEmail, binding.etUserPassword));
-        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail));
-        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etUserPassword));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail,binding.tvErrorEmail));
+        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etUserPassword,binding.tvErrorPass));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, errorValidationModels);
         if (resultReturn.aBoolean) {
             userLogin();
         } else {
-            // resultReturn.errorTextView.setVisibility(View.VISIBLE);
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
-                //  resultReturn.errorTextView.setText(resultReturn.errorMessage);
-                Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
             } else {
-                //   resultReturn.errorTextView.setText(validation.errorMessage);
-                validation.EditTextPointer.setError(validation.errorMessage);
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
             }
 

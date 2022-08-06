@@ -20,6 +20,7 @@
     <string name="aadhaar_valid">Please enter valid Aadhaar number!!</string>
     <string name="pan_card_valid">Please enter valid PAN number!!</string>
     <string name="ifsc_valid">Please enter valid IFSC!!</string>
+    <string name="account_valid">Please enter valid Account Number!!</string>
     <string name="enable_permission">Enable permission Manually</string>
     <string name="permit_manually">Permit Manually</string>
     <string name="amount_valid">Please enter valid amount</string>
@@ -447,6 +448,7 @@
     <string name="please_select_the_country">Please select country</string>
     <string name="please_select_the_state">Please select state</string>
     <string name="please_select_the_city">Please select city</string>
+    <string name="please_select_bank_type">Please select bank type</string>
     <string name="retry">Retry</string>
     <string name="please_check_your_connection">Please Check Your Connection</string>
     <string name="select_city">Enter city</string>
@@ -465,6 +467,7 @@
     <string name="country">Country</string>
     <string name="state">State</string>
     <string name="mobile_no">Mobile No..</string>
+    <string name="select_type">Select type</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

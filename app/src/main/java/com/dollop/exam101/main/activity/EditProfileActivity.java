@@ -19,6 +19,8 @@ import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -497,30 +499,25 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     private void CheckValidationTask() {
         allResponseModels.clear();
-        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName, binding.etUserEmail, binding.etEnterMobile));
-        allResponseModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail));
-        allResponseModels.add(new ValidationModel(Validation.Type.Phone, binding.etEnterMobile));
-        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCountry.getText().toString(), getString(R.string.please_select_the_country)));
-        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectState.getText().toString(), getString(R.string.please_select_the_state)));
-        // allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCity.getText().toString(), getString(R.string.please_select_the_city)));
-
+        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName,binding.tvErrorName));
+        allResponseModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail,binding.tvErrorEmail));
+        allResponseModels.add(new ValidationModel(Validation.Type.Phone, binding.etEnterMobile,binding.tvErrorMoblie));
+        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCountry.getText().toString(), getString(R.string.please_select_the_country),binding.tvErrorCountry));
+        allResponseModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectState.getText().toString(), getString(R.string.please_select_the_state),binding.tvErrorState));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
             UpdateProfile();
-            // Toast.makeText(this, Constants.Key.All_Validation_Pass, Toast.LENGTH_SHORT).show();
-
         } else {
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
-
-                //  resultReturn.errorTextView.setText(resultReturn.errorMessage);
-                Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
             } else {
-                //   resultReturn.errorTextView.setText(validation.errorMessage);
-                validation.EditTextPointer.setError(validation.errorMessage);
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
             }
-
         }
     }
 

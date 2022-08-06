@@ -99,6 +99,15 @@
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true"
                     tools:ignore="Autofill" />
+                <TextView
+                    android:id="@+id/tvErrorName"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <EditText
                     android:id="@+id/etUserEmail"
@@ -113,6 +122,16 @@
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true"
                     tools:ignore="Autofill" />
+                <TextView
+                    android:id="@+id/tvErrorEmail"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
+
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvMobile"
@@ -200,6 +219,17 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    android:id="@+id/tvErrorMobile"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
+
+
                 <EditText
                     android:id="@+id/etPassword"
                     style="@style/TernaryLightTextStyle"
@@ -213,6 +243,15 @@
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true"
                     tools:ignore="Autofill" />
+                <TextView
+                    android:id="@+id/tvErrorPass"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <EditText
                     android:id="@+id/etConformPassword"
@@ -227,6 +266,15 @@
                     android:padding="@dimen/_12sdp"
                     android:singleLine="true"
                     tools:ignore="Autofill" />
+                <TextView
+                    android:id="@+id/tvErrorConfirmPass"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <TextView
                     android:id="@+id/tvSelectCountry"
@@ -239,6 +287,15 @@
                     android:hint="@string/country"
                     android:padding="@dimen/_12sdp"
                     tools:ignore="Autofill,TextViewEdits" />
+                <TextView
+                    android:id="@+id/tvErrorCountry"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <TextView
                     android:id="@+id/tvSelectState"
@@ -251,6 +308,15 @@
                     android:hint="@string/state"
                     android:padding="@dimen/_12sdp"
                     tools:ignore="Autofill" />
+                <TextView
+                    android:id="@+id/tvErrorState"
+                    android:visibility="gone"
+                    style="@style/ErrorTextStyle"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_width="wrap_content"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:layout_height="wrap_content"
+                    />
 
                 <TextView
                     android:id="@+id/tv_Register_Id"

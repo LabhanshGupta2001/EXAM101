@@ -3,23 +3,32 @@ package com.dollop.exam101.main.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
-import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.databinding.ActivityProfileBinding;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityUpdateBankDetailsBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.validation.ResultReturn;
+import com.dollop.exam101.main.validation.Validation;
+import com.dollop.exam101.main.validation.ValidationModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +38,7 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
     ApiService apiService;
     Activity activity = UpdateBankDetailsActivity.this;
     ActivityUpdateBankDetailsBinding binding;
+    List<ValidationModel> validationModels = new ArrayList<>();
 
 
     @Override
@@ -47,10 +57,11 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
         binding.llSave.setOnClickListener(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
         if (view == binding.llSave) {
-           finish();
+            CheckValidationTask();
 
         } else if (view == binding.ivBack) {
             onBackPressed();
@@ -71,6 +82,7 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
             }
         });
     }
+
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // remove focus from edit text on click outside
@@ -87,6 +99,37 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
             }
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void CheckValidationTask() {
+        validationModels.clear();
+        validationModels.add(new ValidationModel(Validation.Type.Empty, binding.etHolderName, binding.tvErrorName));
+        validationModels.add(new ValidationModel(Validation.Type.AccountNumber, binding.etAccountNumber, binding.tvErrorAccNumber));
+        validationModels.add(new ValidationModel(Validation.Type.IFSC, binding.etIfscCode, binding.tvErrorIFSC));
+        validationModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectType.getText().toString(), getString(R.string.please_select_bank_type), binding.tvErrorType));
+        validationModels.add(new ValidationModel(Validation.Type.Empty, binding.etBranch, binding.tvErrorBranch));
+        Validation validation = Validation.getInstance();
+        ResultReturn resultReturn = validation.CheckValidation(activity, validationModels);
+        if (resultReturn.aBoolean) {
+            if (AppController.getInstance().isOnline()) {
+
+            } else {
+
+            }
+        } else {
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
+            if (resultReturn.type == Validation.Type.EmptyString) {
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
+            } else {
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
+                validation.EditTextPointer.requestFocus();
+            }
+
+        }
+
     }
 
 }

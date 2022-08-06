@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -94,9 +96,11 @@ public class CartFragment extends Fragment implements View.OnClickListener {
             public void onClick(View v) {
 
                 if (bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().isEmpty()) {
-                    bottomsheetApplycouponBinding.etApplyCouponId.setError("Enter CouponCode");
+                    bottomsheetApplycouponBinding.tvErrorCoupon.setVisibility(View.VISIBLE);
+                    bottomsheetApplycouponBinding.tvErrorCoupon.setText(R.string.empty_error);
+                    Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.top_to_bottom);
+                    bottomsheetApplycouponBinding.tvErrorCoupon.startAnimation(animation);
                 } else {
-
                     if (AppController.getInstance().isOnline()) {
                         applyCouponCode();
                     } else {
@@ -133,11 +137,18 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         bottomsheetReferralcodeBinding.tvApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetDialogReferralCode.cancel();
+                if (bottomsheetReferralcodeBinding.etReferralCodeId.getText().toString().isEmpty()) {
+                    bottomsheetReferralcodeBinding.tvErrorReferral.setVisibility(View.VISIBLE);
+                    bottomsheetReferralcodeBinding.tvErrorReferral.setText(R.string.empty_error);
+                    Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.top_to_bottom);
+                    bottomsheetReferralcodeBinding.tvErrorReferral.startAnimation(animation);
+                } else {
+                    bottomSheetDialogReferralCode.cancel();
+                }
             }
-        });
-    }
 
+    });
+}
     private void applyCouponCode() {
         apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString()).
                 enqueue(new Callback<AllResponseModel>() {

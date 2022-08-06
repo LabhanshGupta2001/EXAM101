@@ -14,13 +14,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
-import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
@@ -58,7 +57,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,8 +68,10 @@ import retrofit2.Response;
 
 public class SignUpActivity extends BaseActivity implements View.OnClickListener {
     private static final int RC_SIGN_IN = 100;
-    String selectedCountryId="", selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
-    String personName,personEmail;
+    private final ArrayList<CountryModel> contryItemArrayList = new ArrayList<>();
+    private final ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
+    String selectedCountryId = "", selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
+    String personName, personEmail;
     Activity activity = SignUpActivity.this;
     ActivitySignUpBinding binding;
     GoogleSignInClient mGoogleSignInClient;
@@ -81,15 +81,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     List<ValidationModel> errorValidationModels = new ArrayList<>();
     private CountryAdapter countryAdapter;
     private StateAdapter stateAdapter;
-    private final ArrayList<CountryModel> contryItemArrayList = new ArrayList<>();
-    private final ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
     private ApiService apiservice;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.status_bar_color));
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
@@ -121,9 +119,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
-                    binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity,R.color.theme));
-                }else binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity,R.color.HorizontallineColor));
+                if (hasFocus) {
+                    binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity, R.color.theme));
+                } else
+                    binding.mcvMobile.setStrokeColor(ContextCompat.getColor(activity, R.color.HorizontallineColor));
             }
         });
 
@@ -166,18 +165,18 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
-                 personName = acct.getDisplayName();
-                 personEmail = acct.getEmail();
+                personName = acct.getDisplayName();
+                personEmail = acct.getEmail();
                 //Uri personPhoto = acct.getPhotoUrl();
             }
             if (AppController.getInstance().isOnline()) {
 
                 SocialLogin();
             } else {
-               // Utils.InternetDialog(activity);
+                // Utils.InternetDialog(activity);
                 InternetDialog();
             }
-           // startActivity(new Intent(activity, DashboardScreenActivity.class));
+            // startActivity(new Intent(activity, DashboardScreenActivity.class));
             // Signed in successfully, show authenticated UI.
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -193,8 +192,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         if (view == binding.SignUPId) {
             Utils.I(SignUpActivity.this, LoginActivity.class, null);
         } else if (view == binding.tvSelectState) {
-            if(binding.tvSelectCountry.equals(Constants.Key.blank))
-                Utils.T(activity,Constants.Key.Pleas_Select_Country);
+            if (binding.tvSelectCountry.equals(Constants.Key.blank))
+                Utils.T(activity, Constants.Key.Pleas_Select_Country);
             else bottomSheetStateTask();
         } else if (view == binding.tvRegisterId) {
             CheckValidationTask();
@@ -210,29 +209,29 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         apiservice.getStateList(countryId).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-              progressDialog.dismiss();
-               try {
+                progressDialog.dismiss();
+                try {
 
-                if (response.code() == StatusCodeConstant.OK) {
-                    stateItemArrayList.clear();
-                    assert response.body() != null;
-                    stateItemArrayList.addAll(response.body().state);
-                    stateAdapter = new StateAdapter(activity, stateItemArrayList,Constants.Key.ClickSign);
-                    bottomSheetStateBinding.rvStateListId.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
-                    bottomSheetStateBinding.rvStateListId.setAdapter(stateAdapter);
-                } else {
-                    assert response.errorBody() != null;
-                    APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                    if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                        Utils.T(activity, message.message);
-                    } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                        Utils.T(activity, message.message);
-                        Utils.UnAuthorizationToken(activity);
+                    if (response.code() == StatusCodeConstant.OK) {
+                        stateItemArrayList.clear();
+                        assert response.body() != null;
+                        stateItemArrayList.addAll(response.body().state);
+                        stateAdapter = new StateAdapter(activity, stateItemArrayList, Constants.Key.ClickSign);
+                        bottomSheetStateBinding.rvStateListId.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
+                        bottomSheetStateBinding.rvStateListId.setAdapter(stateAdapter);
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
+                        }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
             }
 
             @Override
@@ -251,7 +250,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         apiservice.getCountryList().enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-               progressDialog.dismiss();
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -287,30 +286,29 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void CheckValidationTask() {
         errorValidationModels.clear();
-        errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName));
-        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail));
-        errorValidationModels.add(new ValidationModel(Validation.Type.Phone, binding.etEnterMobile));
-        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etPassword, binding.etConformPassword));
-        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etPassword, binding.etConformPassword));
-        errorValidationModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCountry.getText().toString(), getString(R.string.please_select_the_country)));
-        errorValidationModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectState.getText().toString(), getString(R.string.please_select_the_state)));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName, binding.tvErrorName));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Email, binding.etUserEmail, binding.tvErrorEmail));
+        errorValidationModels.add(new ValidationModel(Validation.Type.Phone, binding.etEnterMobile, binding.tvErrorMobile));
+        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etPassword, binding.etConformPassword, binding.tvErrorPass));
+        errorValidationModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etPassword, binding.etConformPassword, binding.tvErrorConfirmPass));
+        errorValidationModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectCountry.getText().toString(), getString(R.string.please_select_the_country), binding.tvErrorCountry));
+        errorValidationModels.add(new ValidationModel(Validation.Type.EmptyString, binding.tvSelectState.getText().toString(), getString(R.string.please_select_the_state), binding.tvErrorState));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, errorValidationModels);
         if (resultReturn.aBoolean) {
             if (AppController.getInstance().isOnline()) {
-
                 userSignup();
             } else {
-               // Utils.InternetDialog(activity);
                 InternetDialog();
             }
         } else {
-
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
-                Toast.makeText(this, resultReturn.errorMessage, Toast.LENGTH_SHORT).show();
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
             } else {
-                //   resultReturn.errorTextView.setText(validation.errorMessage);
-                validation.EditTextPointer.setError(validation.errorMessage);
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
             }
 
@@ -326,7 +324,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetCountryBinding.getRoot().getParent()));
         bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-       // bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
+        // bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
         bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setSkipCollapsed(true);
 
@@ -359,13 +357,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetStateBinding.getRoot().getParent()));
         bottomSheetStateDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        //bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
+        bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
         bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setSkipCollapsed(true);
         if (AppController.getInstance().isOnline()) {
             getState(Constants.Key.DefaultCountryUuId);
         } else {
-           // Utils.InternetDialog(activity);
+            // Utils.InternetDialog(activity);
             InternetDialog();
         }
         bottomSheetStateBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -374,6 +372,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 stateAdapter.getFilter().filter(query);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 stateAdapter.getFilter().filter(newText);
@@ -401,7 +400,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         apiservice.userSignup(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-             progressDialog.dismiss();
+                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
@@ -435,7 +434,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         });
     }
 
-    public void onCountrySelected(String countryId,String CountryName /* String countryCode, String flag*/) {
+    public void onCountrySelected(String countryId, String CountryName /* String countryCode, String flag*/) {
         this.selectedCountryId = countryId;
         this.selectedCountryName = CountryName;
        /* this.selectedCountryCode = countryCode;
@@ -452,6 +451,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         binding.tvSelectState.setText(selectedState);
         bottomSheetStateDialog.dismiss();
     }
+
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // remove focus from edit text on click outside
@@ -487,7 +487,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         UserDataHelper.getInstance().insertData(response.body().User);
-                        Utils.I_clear(activity, DashboardScreenActivity.class,null);
+                        Utils.I_clear(activity, DashboardScreenActivity.class, null);
 
                     } else {
                         assert response.errorBody() != null;
@@ -512,9 +512,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
