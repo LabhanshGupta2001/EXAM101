@@ -91,7 +91,7 @@
     </LinearLayout>
     </LinearLayout>
     <View
-        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_1sdp"
         android:background="@color/grey"/>

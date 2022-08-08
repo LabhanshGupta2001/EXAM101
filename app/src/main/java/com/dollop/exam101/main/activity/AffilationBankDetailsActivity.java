@@ -59,6 +59,7 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
+        edittextValidation();
         apiService = RetrofitClient.getClient();
         binding.llSubmit.setOnClickListener(this);
         binding.etHolderName.setOnClickListener(this);
@@ -225,6 +226,7 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
             }
         }
     }
+
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // remove focus from edit text on click outside
