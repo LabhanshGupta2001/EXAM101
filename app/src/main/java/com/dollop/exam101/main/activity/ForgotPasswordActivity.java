@@ -134,7 +134,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
                         assert response.body() != null;
-                        Utils.I(activity, CheckEmailActivity.class, bundle);
+                        Utils.I_clear(activity, CheckEmailActivity.class, bundle);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

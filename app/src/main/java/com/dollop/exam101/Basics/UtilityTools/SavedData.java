@@ -25,35 +25,54 @@ public class SavedData {
     private static final String CountryId = "CountryId";
     private static final String CountryUuId = "CountryUuId";
     private static final String Shared = "Shared";
+    private static final String GetStartClick = "GetStartClick";
+
     public static SharedPreferences getInstance() {
         if (prefs == null) {
             prefs = PreferenceManager.getDefaultSharedPreferences(AppController.getInstance());
         }
         return prefs;
     }
+
     public static String getLanguage() {
         return getInstance().getString(Language, Constants.Key.english);
     }
+
     public static void saveLanguage(String role) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(Language, role);
         editor.apply();
-    }   public static boolean getPopUp() {
+    }
+
+    public static boolean getPopUp() {
         return getInstance().getBoolean(popUp, false);
     }
+
     public static void savePopUp(boolean role) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putBoolean(popUp, role);
         editor.apply();
     }
+
+    public static boolean getStartClick() {
+        return getInstance().getBoolean(GetStartClick, false);
+    }
+    public static void saveGetStartClick(boolean role) {
+        SharedPreferences.Editor editor = getInstance().edit();
+        editor.putBoolean(GetStartClick, role);
+        editor.apply();
+    }
+
     public static String getFirebaseToken() {
         return getInstance().getString(FirebaseToken, Constants.Key.blank);
     }
+
     public static void saveFirebaseToken(String token) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(FirebaseToken, token);
         editor.apply();
     }
+
     public static String getCountryKey(Context context) {
         return getInstance().getString(CountryKey, Constants.Key.Default_Country_Region);
     }
@@ -67,14 +86,17 @@ public class SavedData {
     public static String getReferralCode() {
         return getInstance().getString(ReferralCode, Constants.Key.blank);
     }
+
     public static void saveReferralCode(String token) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(ReferralCode, token);
         editor.apply();
     }
+
     public static String getCountryUuId() {
         return getInstance().getString(CountryUuId, Constants.Key.DefaultCountryUuId);
     }
+
     public static void saveCountryUuId(String Id) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(CountryUuId, Id);
@@ -82,8 +104,9 @@ public class SavedData {
     }
 
     public static String getBankStatus() {
-        return getInstance().getString(Shared,Constants.Key.blank);
+        return getInstance().getString(Shared, Constants.Key.blank);
     }
+
     public static void SaveBankStatus(String Id) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(Shared, Id);
@@ -94,9 +117,10 @@ public class SavedData {
     @NonNull
     public static LatLng getCurrentLocation() {
         double lat = Double.parseDouble(getInstance().getString(latitude, "0.0"));
-        double longi = Double.parseDouble(getInstance().getString(longitude,"0.0"));
-        return new LatLng(lat,longi);
+        double longi = Double.parseDouble(getInstance().getString(longitude, "0.0"));
+        return new LatLng(lat, longi);
     }
+
     public static void saveCurrentLocation(Location location) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putString(latitude, String.valueOf(location.getLatitude()));

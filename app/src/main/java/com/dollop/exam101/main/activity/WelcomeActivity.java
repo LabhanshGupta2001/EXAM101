@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.SavedData;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityWelcomeBinding;
@@ -91,8 +92,10 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view == binding.GetStartId) {
-            Utils.I(WelcomeActivity.this, LoginActivity.class, null);
-            finish();
+            SavedData.saveGetStartClick(true);
+            Utils.I_clear(WelcomeActivity.this, LoginActivity.class, null);
+
+
         }
     }
 }

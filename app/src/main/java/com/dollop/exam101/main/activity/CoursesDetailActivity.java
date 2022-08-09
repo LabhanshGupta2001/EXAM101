@@ -78,11 +78,11 @@ public class CoursesDetailActivity extends BaseActivity implements View.OnClickL
 
     private void getCourseDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTY3MjgwMX0.BBr3FZ9vob8SC5Q5cj20h-vRHFiX4dDeej2eZoF_grk";
-        HashMap<String, String> hm = new HashMap<>();
+       /* String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTY3MjgwMX0.BBr3FZ9vob8SC5Q5cj20h-vRHFiX4dDeej2eZoF_grk";
+       */ HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.orderExamUuid, "fe2d148e-0f0c-11ed-9754-000c291151eb");
         hm.put(Constants.Key.topicUuid, "d4c9f70d-1257-11ed-967e-000c291151eb");
-        apiService.getTopicDetails(token, hm).enqueue(new Callback<AllResponseModel>() {
+        apiService.getTopicDetails(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
