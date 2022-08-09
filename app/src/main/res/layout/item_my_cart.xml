@@ -98,7 +98,7 @@
                         android:id="@+id/ivHeart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_hart"/>
+                        android:src="@drawable/ic_plain_heart"/>
 
                     <TextView
                         android:id="@+id/tvWishList_Id"
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_medium"
                         android:layout_marginStart="@dimen/_3sdp"
-                        android:text="@string/add_to_wishlist"
+                        android:text="@string/save_for_later"
                         android:theme="@style/QuinaryLightSubTextStyle" />
 
 

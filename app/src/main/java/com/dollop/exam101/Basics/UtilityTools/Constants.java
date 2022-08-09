@@ -79,7 +79,7 @@ public class Constants {
         String countryId = "countryId";
         String BlogId = "BlogId";
         String packageId = "packageId";
-        String packageUuId = "packageUuId";
+        String packageUuId = "packageUuid";
         String packageUuid = "packageUuid";
         String languageUuId = "languageUuId";
         String review = "review";
@@ -98,6 +98,7 @@ public class Constants {
         String examId = "examId";
         String examName = "examName";
         String languageId = "languageId";
+        String languageIds = "languageIds";
         String discountedPriceStart = "discountedPriceStart";
         String discountedPriceEnd = "discountedPriceEnd";
         String Image_png = "image.png";

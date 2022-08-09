@@ -39,9 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rlBottom"
+
         android:layout_below="@+id/llToolbar"
         android:overScrollMode="never"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:overScrollMode="never"
+                android:clipToPadding="false"
                 android:paddingBottom="@dimen/_12sdp" />
 
             <View
@@ -403,7 +405,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"

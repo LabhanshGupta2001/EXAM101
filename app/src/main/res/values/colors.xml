@@ -105,6 +105,10 @@
     <color name="LightGrayishColor">#F3FFF3</color>
     <color name="status_bar_color">#0D00984A</color>
 
+    <color name="ShadowColor">#0D121614</color>
+    <color name="ambientColor">#66000000</color>
+
+
 
 
 </resources>

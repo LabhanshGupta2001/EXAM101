@@ -470,6 +470,7 @@
     <string name="enter_coupon_code">Enter Coupon Code</string>
     <string name="log">Log</string>
     <string name="top_10_packages">Top 10 Packages</string>
+    <string name="save_for_later">Save for later</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

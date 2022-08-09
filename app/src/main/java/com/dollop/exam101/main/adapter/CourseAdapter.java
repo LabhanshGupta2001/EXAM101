@@ -41,8 +41,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyPostView
     {
         CourseModel courseModel=courseModelList.get(position);
         holder.itemCourseBinding.tvCourseName.setText(courseModel.examName);
-
-        holder.itemCourseBinding.llExam.setOnClickListener(new View.OnClickListener() {
+        holder.itemCourseBinding.cvImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();

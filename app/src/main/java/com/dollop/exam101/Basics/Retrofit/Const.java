@@ -93,5 +93,6 @@ public class Const {
         String purchasePackageApi = "purchasePackageApi";
         String removeFromWishListApi = "removeFromWishListApi";
         String submitPracticeTestApi = "submitPracticeTestApi";
+        String packageUuid = "packageUuid";
     }
 }

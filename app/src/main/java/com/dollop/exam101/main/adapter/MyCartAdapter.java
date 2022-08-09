@@ -42,8 +42,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
             holder.binding.tvWishListId.setText(R.string.remove_from_wishlist);
             holder.binding.ivHeart.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_heart_red));
         } else {
-            holder.binding.ivHeart.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_hart));
-            holder.binding.tvWishListId.setText(R.string.add_to_wishlist);
+            holder.binding.ivHeart.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_plain_heart));
+            holder.binding.tvWishListId.setText(R.string.save_for_later);
             holder.binding.llAddToWishList.setOnClickListener(view -> {
                 cartFragment.addToWishList(myCartModel.packageUuid);
             });

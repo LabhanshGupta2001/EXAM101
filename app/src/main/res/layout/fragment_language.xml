@@ -11,6 +11,8 @@
        android:layout_height="match_parent"
        android:id="@+id/rvLanguage"
        android:overScrollMode="never"
+       android:clipToPadding="false"
+       android:paddingTop="@dimen/_8sdp"
        tools:listitem="@layout/item_language"/>
 
     <include layout="@layout/no_result_found"
