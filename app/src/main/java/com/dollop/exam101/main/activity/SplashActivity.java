@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import androidx.core.content.ContextCompat;
 
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.SavedData;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 
@@ -20,7 +21,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.status_bar_color));
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
@@ -34,15 +35,14 @@ public class SplashActivity extends BaseActivity {
                     e.printStackTrace();
 
                 } finally {
-                    if(Utils.IS_LOGIN()){
-                        Utils.I_clear(activity,DashboardScreenActivity.class,null);
-                    }else {
-                        Utils.I_clear(activity,WelcomeActivity.class,null);
-
+                    if (Utils.IS_LOGIN()) {
+                        Utils.I_clear(activity, DashboardScreenActivity.class, null);
+                    } else {
+                        if (SavedData.getStartClick())
+                            Utils.I_clear(activity, LoginActivity.class, null);
+                        else
+                            Utils.I_clear(activity, WelcomeActivity.class, null);
                     }
-
-
-
                 }
             }
 
