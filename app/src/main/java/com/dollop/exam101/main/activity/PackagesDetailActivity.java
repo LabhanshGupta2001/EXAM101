@@ -115,14 +115,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         binding.tvRateId.setOnClickListener(this);
         binding.AddtoCart.setOnClickListener(this);
 
-
-      /*  list.add("1");
-        list.add("1");
-        list.add("1");
-        binding.rvOverView.setNestedScrollingEnabled(false);
-        binding.rvOverView.setHasFixedSize(true);
-        binding.rvOverView.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvOverView.setAdapter(new OverviewCourseDetailsAdapter(activity, list));*/
         if (AppController.getInstance().isOnline()) {
             GetPackageDetailsMockTestListRatingNow();
         } else {
@@ -169,7 +161,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity, response.body().message);
+                        Utils.T(activity, getString(R.string.added_to_wishlist));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -245,7 +237,8 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 if (response.code() == StatusCodeConstant.OK) {
                     assert response.body() != null;
                     PackageDetailModel packageDetailModels = response.body().packageDetail;
-
+                    binding.scrollView.setVisibility(View.VISIBLE);
+                    binding.llBtn.setVisibility(View.VISIBLE);
                     packageName = packageDetailModels.packageName;
                     packageDetail = String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
                     shortDesc=String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
@@ -381,7 +374,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

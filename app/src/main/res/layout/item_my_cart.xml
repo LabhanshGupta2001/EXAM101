@@ -59,6 +59,14 @@
                 </LinearLayout>
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rupee_symbol"
+                    android:fontFamily="@font/inter_semibold"
+                    android:layout_gravity="center_vertical"
+                    style="@style/TernaryThemeTextStyle"/>
+
+                <TextView
                     android:id="@+id/tvRupees"
                     style="@style/TernaryThemeTextStyle"
                     android:layout_width="0dp"
@@ -98,14 +106,14 @@
                         android:id="@+id/ivHeart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_plain_heart"/>
+                        android:src="@drawable/ic_plain_heart" />
 
                     <TextView
                         android:id="@+id/tvWishList_Id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_medium"
                         android:layout_marginStart="@dimen/_3sdp"
+                        android:fontFamily="@font/inter_medium"
                         android:text="@string/save_for_later"
                         android:theme="@style/QuinaryLightSubTextStyle" />
 

@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
@@ -7,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -52,12 +54,18 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
 
     }
 
+    @SuppressLint("NewApi")
     private void init() {
         apiService = RetrofitClient.getClient();
         myWishListAdapter = new MyWishListAdapter(activity, wishLists);
         binding.rvWishList.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvWishList.setAdapter(myWishListAdapter);
-        getWishlist();
+        if (AppController.getInstance().isOnline()) {
+            getWishlist();
+        } else {
+            InternetDialog();
+        }
+
         binding.ivBack.setOnClickListener(this);
 
     }
@@ -120,15 +128,15 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
                 progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
-                        Utils.T(activity, response.message());
+                        Utils.T(activity, getString(R.string.removed_from_wishlist_successfully));
                         getWishlist();
                     } else {
                         assert response.errorBody() != null;
-                       // APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                           // Utils.T(activity, message.message);
+                            Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            //Utils.T(activity, message.message);
+                            Utils.T(activity, message.message);
                         }
                     }
                 } catch (Exception e) {
@@ -151,8 +159,6 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
         HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.packageUuId, packageUuid);
         hm.put(Constants.Key.languageUuId, languageUuId);
-        Utils.E("packageUuid:::::::" + packageUuid);
-        Utils.E("languageUuId:::::::" + languageUuId);
         apiService.addCart(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -189,7 +195,7 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

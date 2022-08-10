@@ -47,49 +47,11 @@ public class PriceFragment extends Fragment implements View.OnClickListener {
 
         rangeSlider();
 
-      /*  binding.rangeSeekbar.setTrackHeight(20);
-        binding.rangeSeekbar.setCustomThumbDrawable(R.drawable.bottom_curve_background);
-        binding.rangeSeekbar.setCustomThumbDrawablesForValues(R.drawable.bottom_curve_background);
-        binding.rangeSeekbar.setTickVisible(false);*/
-
-
-       /* binding.rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
-            @Override
-            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object MinValue, Object MaxValue) {
-                Utils.T(getActivity(), "seekbar progress " + MinValue);
-                Utils.T(getActivity(), "seekbar progress " + MaxValue);
-
-                binding.tvStartReat.setVisibility(View.VISIBLE);
-                binding.tvStartReatTwo.setVisibility(View.VISIBLE);
-
-                binding.tvStartReat.setText("₹" + MinValue);
-                binding.tvStartReatTwo.setText("₹" + MaxValue);
-
-                minValue = binding.tvStartReat.getText().toString().trim();
-                maxValue = binding.tvStartReatTwo.getText().toString().trim();
-
-                Utils.E("minvalue;;"+minValue);
-                Utils.E("maxValue;;"+maxValue);
-
-            }
-        });
-        RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(activity);
-        seekBar.setRangeValues(500, 5000);
-        seekBar.setSelectedMinValue(500);
-        seekBar.setSelectedMaxValue(5000);
-
-        seekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
-            @Override
-            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
-
-            }
-        });
-        seekBar.setNotifyWhileDragging(true);*/
     }
     private void rangeSlider() {
         binding.rangeSeekbar.setValues(500.0f, 5000.0f);
         binding.rangeSeekbar.setMinSeparation(50.0f);
-        binding.rangeSeekbar.setTrackHeight(18);
+        binding.rangeSeekbar.setTrackHeight(14);
         binding.rangeSeekbar.setCustomThumbDrawable(R.drawable.range_thumb);
         binding.rangeSeekbar.setThumbRadius(20);
         binding.rangeSeekbar.setLabelFormatter(new LabelFormatter() {

@@ -80,8 +80,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.My
             holder.itemCourseListBinding.llViewCourse.setOnClickListener(view ->
             {
                 // Toast.makeText(context, "Click On View Course ", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(context, CoursesMaterial.class);
-                context.startActivity(intent);
+                Utils.I(context,CoursesMaterial.class,null);
             });
         }
     }

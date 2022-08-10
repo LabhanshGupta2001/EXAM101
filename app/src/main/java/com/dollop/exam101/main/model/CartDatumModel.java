@@ -24,4 +24,7 @@ public class CartDatumModel {
     @SerializedName("isWishListed")
     @Expose
     public String isWishListed;
+    @SerializedName("wishListUuid")
+    @Expose
+    public String wishListUuid;
 }

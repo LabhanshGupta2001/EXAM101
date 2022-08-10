@@ -4,19 +4,19 @@
         <shape android:shape="oval">
             <solid android:color="@color/theme" />
             <size
-                android:width="@dimen/_10sdp"
-                android:height="@dimen/_10sdp" />
+                android:width="@dimen/_6sdp"
+                android:height="@dimen/_6sdp" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
             <stroke
-                android:width="@dimen/_5sdp"
+                android:width="@dimen/_4sdp"
                 android:color="@android:color/transparent" />
             <solid android:color="@color/white" />
             <size
-                android:width="@dimen/_4sdp"
-                android:height="@dimen/_4sdp" />
+                android:width="@dimen/_3sdp"
+                android:height="@dimen/_3sdp" />
         </shape>
     </item>
 </layer-list>

@@ -58,6 +58,10 @@
         android:layout_height="wrap_content"
         android:overScrollMode="never"
         android:layout_marginTop="@dimen/_minus4sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:clipToPadding="false"
+        android:background="@drawable/stroke_curve_bottom"
 
         />
 
