@@ -227,7 +227,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         assert response.body() != null;
                         UserData userModel = response.body().userData;
                         UserDataHelper.getInstance().insertData(userModel);
-                        Utils.I(activity, DashboardScreenActivity.class, bundle);
+                        Utils.I_clear(activity, DashboardScreenActivity.class, bundle);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

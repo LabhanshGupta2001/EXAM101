@@ -83,7 +83,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         binding = ActivityPackagesDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         init();
+        Utils.E("MY Data -> "+Utils.GetSession().token+" Package UUID"+packageUuid);
 
     }
 

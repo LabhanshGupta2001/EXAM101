@@ -39,6 +39,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
+                    android:clipToPadding="false"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_6sdp"
                     android:scrollbars="none" />
             </LinearLayout>
 

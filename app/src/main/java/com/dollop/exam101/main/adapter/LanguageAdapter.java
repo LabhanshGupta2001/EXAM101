@@ -44,7 +44,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.MyHold
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
         LanguageModel languageModel = languageModels.get(position);
-        holder.binding.tvLanguage.setText(languageModel.languageName);
+        holder.binding.tvLanguage.setText(languageModel.languageName.trim());
 
         holder.binding.checkBox.setChecked(index == position);
         holder.binding.llLanguage.setOnClickListener(v -> {

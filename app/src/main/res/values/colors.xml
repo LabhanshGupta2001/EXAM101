@@ -50,6 +50,7 @@
     <color name="stroke_color">#E9FDF3</color>
     <color name="full_black">#000000</color>
     <color name="theme_light">#F1FFF8</color>
+    <color name="cardStroke">#FDF0E9</color>
 
 
 
@@ -104,6 +105,10 @@
     <color name="DarkGreenBgColor">#26A564</color>
     <color name="LightGrayishColor">#F3FFF3</color>
     <color name="status_bar_color">#0D00984A</color>
+
+    <color name="ShadowColor">#0D121614</color>
+    <color name="ambientColor">#66000000</color>
+
 
 
 

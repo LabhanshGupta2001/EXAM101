@@ -277,7 +277,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if (view == binding.SignUPId) {
-            Utils.I(SignUpActivity.this, LoginActivity.class, null);
+            Utils.I_clear(SignUpActivity.this, LoginActivity.class, null);
         } else if (view == binding.tvSelectState) {
             binding.tvErrorState.setVisibility(View.GONE);
             bottomSheetStateTask();
@@ -492,7 +492,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
                         assert response.body() != null;
-                        Utils.I(activity, LoginActivity.class, bundle);
+                        Utils.I_clear(activity, LoginActivity.class, bundle);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -617,5 +617,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 }

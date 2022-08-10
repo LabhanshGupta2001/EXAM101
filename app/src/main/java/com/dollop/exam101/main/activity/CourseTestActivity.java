@@ -101,7 +101,7 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         hm.put(Constants.Key.topicUuid, topicUuids);
         hm.put(Constants.Key.questionIds, "87||97");
         hm.put(Constants.Key.options, "options_1||options_2");
-        apiService.practiceTestSubmit(token, hm).enqueue(new Callback<AllResponseModel>() {
+        apiService.practiceTestSubmit(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -144,7 +144,7 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
             HashMap<String, String> hm = new HashMap<>();
             hm.put(Constants.Key.orderExamUuid,orderExamUuids);
             hm.put(Constants.Key.topicUuid, topicUuids);
-            apiService.getMyQuestionList(token, hm).enqueue(new Callback<AllResponseModel>() {
+            apiService.getMyQuestionList(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
                 @Override
                 public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                     progressDialog.dismiss();

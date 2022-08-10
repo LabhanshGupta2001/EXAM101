@@ -18,7 +18,12 @@ public class CheckEmailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCheckEmailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.tvReturnToSignIn.setOnClickListener(v -> Utils.I_clear(activity, LoginActivity.class, null));
+    }
 
-        binding.tvReturnToSignIn.setOnClickListener(v -> Utils.I(activity, LoginActivity.class, null));
+    @Override
+    public void onBackPressed() {
+        Utils.I_clear(activity, LoginActivity.class, null);
+        super.onBackPressed();
     }
 }

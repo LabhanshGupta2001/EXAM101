@@ -233,8 +233,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                         binding.rlBottom.setVisibility(View.VISIBLE);
                         binding.scrollCartItem.setVisibility(View.VISIBLE);
                         binding.noResultFoundId.llParentEmpty.setVisibility(View.GONE);
-                        binding.tvSubTotalId.setText(response.body().gstPercentage);
-                        binding.tvSgst.setText(response.body().subTotalAmt);
+                        binding.tvSubTotalId.setText(String.valueOf(response.body().grandTotalAmt));
+                        binding.tvSgst.setText(response.body().gstPercentage);
                         binding.tvGrandtotal.setText(String.valueOf(response.body().grandTotalAmt));
                         binding.tvGrandTotalBottom.setText(String.valueOf(response.body().grandTotalAmt));
                         myCartModelArrayList.clear();
