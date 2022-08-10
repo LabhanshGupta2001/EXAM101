@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -61,10 +62,12 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_8sdp"
-        android:paddingBottom="@dimen/_2sdp"
         app:cardCornerRadius="@dimen/_8sdp"
-        app:cardElevation="@dimen/_1sdp"
-        app:strokeColor="@color/stroke_color"
+        app:strokeColor="@color/cardStroke"
+        app:cardElevation="8dp"
+        android:outlineAmbientShadowColor="@color/ShadowColor"
+        android:outlineSpotShadowColor="@color/ambientColor"
+        tools:ignore="UnusedAttribute"
         app:strokeWidth=".8dp">
 
         <LinearLayout

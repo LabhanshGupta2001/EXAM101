@@ -15,6 +15,7 @@
         app:cardElevation="6dp"
         android:outlineAmbientShadowColor="@color/ShadowColor"
         android:outlineSpotShadowColor="@color/ambientColor"
+        app:strokeColor="@color/cardStroke"
         tools:ignore="UnusedAttribute">
 
         <LinearLayout

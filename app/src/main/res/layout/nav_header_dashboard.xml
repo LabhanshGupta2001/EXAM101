@@ -16,9 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="vertical"
-            android:padding="@dimen/_12sdp">
+            android:layout_marginTop="@dimen/_20sdp">
 
             <LinearLayout
                 android:id="@+id/llHeader"
@@ -37,9 +36,13 @@
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
                         app:cardCornerRadius="@dimen/_30sdp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="8dp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         app:strokeColor="@color/transparent"
-                        app:strokeWidth="@dimen/_1sdp">
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:outlineAmbientShadowColor="@color/ShadowColor"
+                        android:outlineSpotShadowColor="@color/ambientColor">
 
                         <ImageView
                             android:id="@+id/ivProfile"
@@ -66,9 +69,9 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
                     <TextView
@@ -97,6 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
                     android:src="@drawable/ic_arrow_right" />
 
             </LinearLayout>
@@ -104,7 +108,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
                 android:background="@color/HorizontallineColor" />
             <!--
 
@@ -173,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
                 android:paddingVertical="@dimen/_10sdp">
 
 
@@ -206,6 +211,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:paddingVertical="@dimen/_10sdp">
 
                 <LinearLayout
@@ -257,6 +264,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:paddingVertical="@dimen/_10sdp">
 
                 <LinearLayout
@@ -287,6 +296,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
@@ -332,6 +343,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:paddingVertical="@dimen/_10sdp">
 
                 <LinearLayout
@@ -360,6 +373,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
@@ -391,6 +406,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:paddingVertical="@dimen/_10sdp">
 
                 <LinearLayout
@@ -419,6 +436,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:paddingVertical="@dimen/_10sdp">
 
                 <LinearLayout
@@ -448,6 +467,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
@@ -477,6 +498,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/_10sdp">
 
@@ -505,9 +528,10 @@
                 android:id="@+id/llLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_14sdp"
                 android:paddingVertical="@dimen/_10sdp">
 
                 <LinearLayout
@@ -535,6 +559,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
                 android:layout_marginVertical="@dimen/_8sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:background="@color/HorizontallineColor" />
 
             <TextView
@@ -542,6 +568,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:text="@string/app_version"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+
                 android:theme="@style/QuaternaryLightSubTextStyle" />
             <!--
                         <ImageView

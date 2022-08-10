@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -46,9 +47,12 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_8sdp"
         app:cardCornerRadius="@dimen/_8sdp"
-        app:cardElevation="@dimen/_8sdp"
-        app:strokeColor="@color/stroke_color"
-        app:strokeWidth=".8dp">
+        app:cardElevation="8dp"
+        app:strokeColor="@color/cardStroke"
+        android:outlineAmbientShadowColor="@color/ShadowColor"
+        android:outlineSpotShadowColor="@color/ambientColor"
+        app:strokeWidth=".8dp"
+        tools:ignore="UnusedAttribute">
 
         <LinearLayout
             android:id="@+id/cardCourse"
