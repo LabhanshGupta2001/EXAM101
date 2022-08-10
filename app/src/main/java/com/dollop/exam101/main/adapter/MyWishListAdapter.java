@@ -45,7 +45,7 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.My
             ((MyWishlistActivity) context).removeFromWishList(wishListModel.wishListUuid);
         });
         holder.binding.tvAddCardId.setOnClickListener(view -> {
-          //  ((MyWishlistActivity) context).addCart(wishListModel.packageUuid,wishListModel.packageUuid);
+          ((MyWishlistActivity) context).addCart(wishListModel.packageUuid,wishListModel.languageUuid);
         });
     }
 

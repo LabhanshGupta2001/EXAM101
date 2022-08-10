@@ -305,7 +305,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(activity);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
         dialog.setContentView(alertDialogBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -384,6 +384,40 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
                             Utils.T(activity, message.message);
                             Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
+    public void removeFromWishList(String wishListUuid) {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.removeFromWishList(Utils.GetSession().token, wishListUuid).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        Utils.T(activity, getString(R.string.removed_from_wishlist_successfully));
+                        getCartItem();
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
                         }
                     }
                 } catch (Exception e) {

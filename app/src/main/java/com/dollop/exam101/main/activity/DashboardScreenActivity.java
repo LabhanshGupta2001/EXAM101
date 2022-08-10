@@ -40,6 +40,15 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         setContentView(binding.getRoot());
         init();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
+        navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
+        Utils.Picasso(Utils.GetSession().profilePic, navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
     }
 
     @SuppressLint("ResourceAsColor")
@@ -64,10 +73,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         navHeaderDashboardBinding.llContactUs.setOnClickListener(this);
         navHeaderDashboardBinding.llTermCondition.setOnClickListener(this);
         navHeaderDashboardBinding.llRaiseAComplant.setOnClickListener(this);
-        navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
-        navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
 
-        Utils.Picasso(Utils.GetSession().profilePic, navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
 
     }
 

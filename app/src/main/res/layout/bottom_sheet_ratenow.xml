@@ -118,6 +118,7 @@
                 android:background="@color/stroke_color"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="start"
+                android:textColorHint="@color/sub_text"
                 android:hint="@string/write_your_review"
                 android:inputType="textMultiLine"
                 android:textColor="@color/primaryColor"

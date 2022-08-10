@@ -55,7 +55,7 @@ public class CourseListActivity extends BaseActivity implements View.OnClickList
             Utils.InternetDialog(activity);
         }
         binding.ivBack.setOnClickListener(this);
-
+        courseListModels.clear();
         courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "0", "30 DAYS"));
         courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "20", "30 DAYS"));
         courseListModels.add(new CourseListModel("Adobe Software", "Digital Design Thinking", "04 Jul,2022", "20", "30 DAYS"));

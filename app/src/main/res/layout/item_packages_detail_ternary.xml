@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/_12sdp"
-    android:background="@drawable/stroke_curve_bottom"
+
     android:orientation="vertical">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

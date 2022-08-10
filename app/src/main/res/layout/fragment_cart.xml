@@ -39,7 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rlBottom"
-
         android:layout_below="@+id/llToolbar"
         android:overScrollMode="never"
         android:visibility="gone">
@@ -114,7 +113,8 @@
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:backgroundTint="@color/lineColor"
-                        app:cardCornerRadius="@dimen/_4sdp">
+                        app:cardCornerRadius="@dimen/_4sdp"
+                        app:cardElevation="0dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -172,9 +172,10 @@
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:backgroundTint="@color/lineColor"
+                        app:cardCornerRadius="@dimen/_4sdp"
 
 
-                        app:cardCornerRadius="@dimen/_4sdp">
+                        app:cardElevation="0dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
