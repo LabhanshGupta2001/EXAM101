@@ -89,10 +89,11 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="@dimen/_12sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
+                    android:text=""
                     android:background="@drawable/black_transprent_bg"
                     android:fontFamily="@font/inter_medium"
                     android:paddingHorizontal="@dimen/_6sdp"
-                    android:paddingVertical="@dimen/_3sdp"/>
+                    android:paddingVertical="@dimen/_3sdp" />
             </RelativeLayout>
 
             <View

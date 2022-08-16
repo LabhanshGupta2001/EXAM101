@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/theme</item>
         <item name="colorPrimaryDark">@color/theme</item>
-        <item name="colorPrimaryVariant">@color/theme</item>
+        <item name="colorPrimaryVariant">@color/status_bar</item>
         <item name="colorOnPrimary">@color/secondaryColor</item>
         <item name="colorAccent">@color/theme</item>
         <!-- Secondary brand color. -->
@@ -14,6 +14,8 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
         <!-- Customize your theme here. -->
         <item name="android:windowDisablePreview">true</item>
         <item name="sliderStyle">@style/Widget.App.Slider</item>

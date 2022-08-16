@@ -3,7 +3,6 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
@@ -26,7 +24,6 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
     Context context;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
     List<BlogListHeadingModel> filterList;
-
 
 
     public FilterSearchAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
@@ -50,15 +47,14 @@ public class FilterSearchAdapter extends RecyclerView.Adapter<FilterSearchAdapte
         holder.binding.llParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((BlogsListActivity)context).getBlogsData(blogListHeadingModel.blogCatUuid);
-                ((BlogsListActivity)context).blogsListAdapter.pos = holder.getAdapterPosition();
-                Utils.E("FilterSearchAdapter::"+((BlogsListActivity)context).blogsListAdapter.pos);
-                ((BlogsListActivity)context).blogsListAdapter.notifyDataSetChanged();
-                ((BlogsListActivity)context).bottomSheetFilter.dismiss();
+                ((BlogsListActivity) context).getBlogsData(blogListHeadingModel.blogCatUuid);
+                ((BlogsListActivity) context).blogsListAdapter.pos = holder.getAdapterPosition();
+                Utils.E("FilterSearchAdapter::" + ((BlogsListActivity) context).blogsListAdapter.pos);
+                ((BlogsListActivity) context).blogsListAdapter.notifyDataSetChanged();
+                ((BlogsListActivity) context).bottomSheetFilter.dismiss();
             }
         });
     }
-
 
 
     @Override

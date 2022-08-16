@@ -40,7 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class    BlogDetailActivity extends BaseActivity implements View.OnClickListener {
+public class   BlogDetailActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = BlogDetailActivity.this;
     ActivityBlogDetailBinding binding;
     ApiService apiService;
@@ -67,7 +67,6 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
             uuid = bundle.getString(Constants.Key.uuid, Constants.Key.blank);
         }
         binding.ivBack.setOnClickListener(this);
-
         if (AppController.getInstance().isOnline()) {
             getBlogDetails();
         } else {
@@ -76,7 +75,6 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
         }
         binding.flotingBtn.setOnClickListener(this);
     }
-
     private void getBlogDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogDetails(uuid).enqueue(new Callback<AllResponseModel>() {
@@ -102,8 +100,6 @@ public class    BlogDetailActivity extends BaseActivity implements View.OnClickL
                         binding.tvTitle.setText(allBlogListModel.blogTitle);
                         Utils.Picasso(allBlogListModel.mainImg, binding.imBlogDetail, R.drawable.dummy);
                         Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
-
-
                         binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail,0));
                        // Utils.T(activity, "" + response.body().message);
                     } else {

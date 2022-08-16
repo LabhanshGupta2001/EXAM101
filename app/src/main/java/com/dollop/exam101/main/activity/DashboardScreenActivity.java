@@ -48,7 +48,10 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         super.onResume();
         navHeaderDashboardBinding.tvName.setText(Utils.GetSession().studentName);
         navHeaderDashboardBinding.tvEmail.setText(Utils.GetSession().studentEmail);
-        Utils.Picasso(Utils.GetSession().profilePic, navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
+
+        if (Utils.GetSession().profilePic != null && (!Utils.GetSession().profilePic.equals(""))) {
+            Utils.Picasso(Utils.GetSession().profilePic, navHeaderDashboardBinding.ivProfile, R.drawable.dummy);
+        }
     }
 
     @SuppressLint("ResourceAsColor")

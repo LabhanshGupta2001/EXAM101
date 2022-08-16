@@ -64,7 +64,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
         binding.tvUserName.setText(Utils.GetSession().studentName);
         binding.tvUserEmail.setText(Utils.GetSession().studentEmail);
-        Utils.Picasso(Utils.GetSession().profilePic, binding.ivProfile, R.drawable.dummy);
+        if (Utils.GetSession().profilePic != null && (!Utils.GetSession().profilePic.equals(""))) {
+            Utils.Picasso(Utils.GetSession().profilePic, binding.ivProfile, R.drawable.dummy);
+        }
     }
 
     @Override

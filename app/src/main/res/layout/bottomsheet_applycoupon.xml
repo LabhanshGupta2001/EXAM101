@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
+        android:id="@+id/llParent"
         android:background="@drawable/bottom_curve_background"
         android:orientation="vertical">
 

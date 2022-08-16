@@ -42,7 +42,6 @@ import com.dollop.exam101.Basics.Database.UserData;
 import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
-import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.AppHelper;
@@ -67,7 +66,6 @@ import com.dollop.exam101.main.validation.ValidationModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -580,7 +578,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.etUserEmail.setText(Utils.GetSession().studentEmail);
         binding.etUserName.setText(Utils.GetSession().studentName);
         binding.tvSelectState.setText(Utils.GetSession().stateName);
-        Picasso.get().load(Const.Url.HOST_URL + Utils.GetSession().profilePic).error(R.drawable.user_profile).into(binding.ivProfile);
+
+        if (Utils.GetSession().profilePic != null && (!Utils.GetSession().profilePic.equals(""))) {
+            Utils.Picasso(Utils.GetSession().profilePic, binding.ivProfile, R.drawable.dummy);
+        }
         if (Utils.GetSession().countryName.equals(Constants.Key.blank)) {
             //  binding.tvSelectCountry.setText(Utils.getDefaultCountryCode(activity).countryName);
             binding.tvSelectCountry.setText(Constants.Key.India);
@@ -610,7 +611,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         userData.studentId = DatabaseData.studentId;
                         userData.token = DatabaseData.token;
                         UserDataHelper.getInstance().insertData(userData);
-                       // SetDataWithDataBase();
+                        // SetDataWithDataBase();
 
                     } else {
                         assert response.errorBody() != null;

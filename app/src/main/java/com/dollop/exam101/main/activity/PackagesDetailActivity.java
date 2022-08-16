@@ -26,6 +26,7 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -400,6 +401,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetDialog.show();
+        bottomSheetRatenowBinding.llParent.setOnClickListener(KeyboardUtils::hideKeyboard);
 
         bottomSheetRatenowBinding.etShareThoughts.addTextChangedListener(new TextWatcher() {
             @Override

@@ -51,6 +51,7 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
             }
         });
         if (pos == position){
+            ((BlogsListActivity)context).position= pos;
             holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
             holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.white));
             holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.theme));

@@ -36,6 +36,7 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -440,7 +441,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         bottomSheetStateDialog = new BottomSheetDialog(activity);
         bottomSheetStateBinding = BottomSheetStateBinding.inflate(getLayoutInflater());
         bottomSheetStateDialog.setContentView(bottomSheetStateBinding.getRoot());
-
+        bottomSheetStateBinding.llParent.setOnClickListener(KeyboardUtils::hideKeyboard);
         BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomSheetStateBinding.getRoot().getParent()));
         bottomSheetStateDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
