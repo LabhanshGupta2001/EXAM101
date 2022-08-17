@@ -29,5 +29,6 @@
         android:layout_height="@dimen/_14sdp"
         android:src="@drawable/ic_backarrowtwo"
         android:rotation="-135"
+        android:layout_gravity="center_vertical"
         android:layout_marginEnd="@dimen/_8sdp"/>
 </LinearLayout>

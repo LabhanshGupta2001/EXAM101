@@ -208,7 +208,7 @@
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginVertical="@dimen/_10sdp">
 
-            <LinearLayout
+           <!-- <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -253,26 +253,49 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@string/results" />
-            </LinearLayout>
 
-            <TextView
-                style="@style/QuaternaryThemeHeadingTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@id/ivArrow2"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:text="@string/view_all" />
 
-            <ImageView
-                android:id="@+id/ivArrow2"
-                android:layout_width="wrap_content"
+            </LinearLayout>-->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_arrowicon" />
+                android:textAlignment="center"
+                app:tabIndicatorHeight="2dp"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/theme"
+                app:tabTextAppearance="@style/HomeHeadingTextStyle"
+                app:tabTextColor="@color/black" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerHome"
+                style="@style/HomeHeadingTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tabLayout"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:nestedScrollingEnabled="true" />
+
+
+            <!--   <TextView
+                   style="@style/QuaternaryThemeHeadingTextStyle"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignRight="@id/ivArrow2"
+                   android:layout_marginRight="@dimen/_12sdp"
+                   android:text="@string/view_all" />
+
+               <ImageView
+                   android:id="@+id/ivArrow2"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"
+                   android:src="@drawable/ic_arrowicon" />-->
+
         </RelativeLayout>
 
-        <LinearLayout
+      <!--  <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -285,7 +308,7 @@
                 android:layout_marginTop="@dimen/_6sdp"
                 android:background="@color/white"
                 android:overScrollMode="never" />
-        </LinearLayout>
+        </LinearLayout>-->
 
         <TextView
             style="@style/HomeHeadingTextStyle"
@@ -494,7 +517,7 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-
+<!--
         <TextView
             style="@style/HomeHeadingTextStyle"
             android:layout_width="wrap_content"
@@ -508,10 +531,10 @@
             android:layout_height="wrap_content"
             android:background="@color/white">
 
-            <!--  <CalendarView
+            &lt;!&ndash;  <CalendarView
                   android:id="@+id/cvCalendar"
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent" /> -->
+                  android:layout_height="match_parent" /> &ndash;&gt;
             <CalendarView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -549,7 +572,7 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/vpbannerimage" />
             </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
 
 

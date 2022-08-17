@@ -50,12 +50,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         binding.llNotifications.setOnClickListener(this);
         binding.llInviteFriend.setOnClickListener(this);
         binding.llWishList.setOnClickListener(this);
-        binding.llMockTest.setOnClickListener(this);
         binding.tvLogOut.setOnClickListener(this);
         binding.llRequestPendingCode.setOnClickListener(this);
         binding.llBankDetails.setOnClickListener(this);
         binding.llAffiliatePurchaseList.setOnClickListener(this);
         binding.tvInviteFriends.setOnClickListener(this);
+        // binding.llMockTest.setOnClickListener(this);
 
 
     }
@@ -80,8 +80,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             Utils.I(activity, EditProfileActivity.class, null);
         } else if (view == binding.llNotifications) {
             Utils.I(activity, NotificationActivity.class, null);
-        } else if (view == binding.llMockTest) {
-            Utils.I(activity, MockTestListActivity.class, null);
         } else if (view == binding.llRequestAffilation) {
             Utils.I(activity, AffilationBankDetailsActivity.class, null);
         } else if (view == binding.tvInviteFriends) {
@@ -93,7 +91,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             Utils.I(activity, MyWishlistActivity.class, null);
         } else if (view == binding.tvLogOut) {
             Utils.logoutAlertDialog(activity);
-        }
+        }/*else if (view == binding.llMockTest) {
+            Utils.I(activity, MockTestListActivity.class, null);
+        }*/
     }
 
 

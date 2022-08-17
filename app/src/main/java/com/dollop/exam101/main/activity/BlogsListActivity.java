@@ -90,9 +90,11 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         bottomSheetDialog.setContentView(bottomSheetBlogShortBinding.getRoot());
         bottomSheetBlogShortBinding.mcvAtoZ.setOnClickListener(this);
         bottomSheetBlogShortBinding.mcvZtoA.setOnClickListener(this);
+
         allBlogListAdapter = new AllBlogListAdapter(activity, Blogarraylist);
         binding.rvBlogs.setAdapter(allBlogListAdapter);
         binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity));
+
         blogsListAdapter = new BlogsListAdapter(activity, blogsList);
         binding.rvHorizontalHeading.setAdapter(blogsListAdapter);
         binding.rvHorizontalHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));

@@ -197,7 +197,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     }
 
     private void applyCouponCode() {
-        apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString()).
+        apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().trim()).
                 enqueue(new Callback<AllResponseModel>() {
                     @Override
                     public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
