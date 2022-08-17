@@ -17,7 +17,7 @@
         app:cardElevation="1dp" />
 
     <LinearLayout
-        android:id="@+id/llBlank"
+        android:id="@+id/llParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"

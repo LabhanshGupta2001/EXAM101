@@ -3,6 +3,7 @@ package com.dollop.exam101.main.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -25,6 +27,7 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -93,6 +96,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         bottomsheetApplycouponBinding = BottomsheetApplycouponBinding.inflate(getLayoutInflater());
         bottomSheetApplyCoupon.setContentView(bottomsheetApplycouponBinding.getRoot());
         bottomSheetApplyCoupon.show();
+        bottomsheetApplycouponBinding.llParent.setOnClickListener(KeyboardUtils::hideKeyboard);
         bottomsheetApplycouponBinding.etApplyCouponId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -154,17 +158,18 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         bottomsheetReferralcodeBinding = BottomsheetReferralcodeBinding.inflate(getLayoutInflater());
         bottomSheetDialogReferralCode.setContentView(bottomsheetReferralcodeBinding.getRoot());
         bottomSheetDialogReferralCode.show();
+        bottomsheetReferralcodeBinding.llParent.setOnClickListener(KeyboardUtils::hideKeyboard);
+
+
         bottomsheetReferralcodeBinding.etReferralCodeId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 bottomsheetReferralcodeBinding.tvErrorReferral.setVisibility(View.GONE);
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
 

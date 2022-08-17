@@ -21,7 +21,8 @@
         android:theme="@style/Theme.examoneOone">
         <activity
             android:name=".main.activity.CheckEmailActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
           <activity
             android:name=".main.activity.OrderConfirmedActivity"
             android:exported="false" />
