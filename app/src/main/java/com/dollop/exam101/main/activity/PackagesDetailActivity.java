@@ -245,6 +245,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     shortDesc=String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     imgPath = packageDetailModels.featureImg;
                     binding.tvHeadings.setText(packageName);
+                 //   binding.tvLanguage.setText(packageDetailModels.languageIds);
                     binding.tvPriceGreat.setText(packageDetailModels.discountedPrice);
                     binding.tvPriceSmall.setText(packageDetailModels.actualPrice);
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
@@ -375,21 +376,19 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity);
-        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
-        dialog.setContentView(alertDialogBinding.getRoot());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        alertDialogBinding.tvPermittManually.setText(R.string.retry);
-        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
-        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+       binding.scrollView.setVisibility(View.GONE);
+       binding.llBtn.setVisibility(View.GONE);
+       binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                dialog.dismiss();
+                getPackageDetails();
+                binding.scrollView.setVisibility(View.VISIBLE);
+                binding.llBtn.setVisibility(View.VISIBLE);
+                binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
             }
         });
-        dialog.show();
+
     }
 
     private void rateNowBottomSheet() {

@@ -2,8 +2,6 @@ package com.dollop.exam101.main.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,8 +19,6 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentCategoryHomeBinding;
 import com.dollop.exam101.main.adapter.CategoryHomeAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
@@ -63,7 +59,6 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
             CategoriesHomeAllExamList();
         } else {
             InternetDialog();
-            //  Utils.InternetDialog(activity);
         }
     }
 
@@ -115,22 +110,17 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
             }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity);
-        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
-        dialog.setContentView(alertDialogBinding.getRoot());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        alertDialogBinding.tvPermittManually.setText(R.string.retry);
-        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
-        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+        binding.llParent.setVisibility(View.GONE);
+        binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                dialog.dismiss();
+                binding.llParent.setVisibility(View.VISIBLE);
+                binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
             }
         });
-        dialog.show();
     }
 }

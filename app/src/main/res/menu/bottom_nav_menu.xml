@@ -9,7 +9,7 @@
         <item
             android:id="@+id/bottom_category"
             android:title="@string/exams"
-            android:icon="@drawable/ic_category_icon"
+            android:icon="@drawable/ic_exam_"
            />
         <item
             android:id="@+id/bottom_packages"

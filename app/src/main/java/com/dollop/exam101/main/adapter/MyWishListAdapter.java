@@ -36,7 +36,7 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
         WishListModel wishListModel = Wishlist.get(position);
-        holder.binding.tvActhualPrise.setText(wishListModel.actualPrice);
+        holder.binding.tvActualPrice.setText(wishListModel.actualPrice);
         holder.binding.tvRupees.setText("₹" + wishListModel.discountedPrice);
         holder.binding.tvPowerPointId.setText(wishListModel.packageName);
         holder.binding.tvFundamentalDesignId.setText(wishListModel.shortDesc);

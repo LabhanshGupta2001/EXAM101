@@ -96,7 +96,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/full_name"
                     android:inputType="textPersonName"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
@@ -120,7 +121,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
 
@@ -244,7 +246,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/password"
                     android:importantForAutofill="no"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
@@ -268,7 +271,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/conform_password"
                     android:importantForAutofill="no"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
@@ -291,7 +295,8 @@
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/country"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill,TextViewEdits" />
 
@@ -313,7 +318,8 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/state"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
 
@@ -360,7 +366,7 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="@dimen/_30sdp"
+                        app:cardCornerRadius="@dimen/_20sdp"
                         app:cardElevation="0dp"
                         app:strokeColor="@color/DarkBlackBlue"
                         app:strokeWidth="@dimen/_1sdp">

@@ -54,6 +54,7 @@
         android:id="@+id/rlParentMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         android:layout_below="@+id/llToolbar">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -150,4 +151,9 @@
 
         </LinearLayout>
     </RelativeLayout>
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/no_internet_connection"
+        android:visibility="gone" />
+
 </RelativeLayout>
