@@ -37,6 +37,7 @@
         android:id="@+id/svMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         android:layout_below="@+id/llToolbar">
 
         <LinearLayout
@@ -220,4 +221,10 @@
         android:id="@+id/noResultFoundId"
         layout="@layout/no_result_found"
         android:visibility="gone" />
+
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/no_internet_connection"
+        android:visibility="gone" />
+
 </RelativeLayout>

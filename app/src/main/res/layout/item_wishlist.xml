@@ -31,7 +31,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".7"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
 
@@ -58,11 +58,11 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".3"
-                    android:orientation="vertical">
-
+                    android:orientation="vertical"
+                    android:weightSum="1"
+                    >
 
                     <TextView
                         android:id="@+id/tvRating"
@@ -75,67 +75,78 @@
                         android:fontFamily="@font/inter_medium"
                         android:text="4.4" />
 
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        >
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            >
+
+                            <TextView
+                                android:id="@+id/tvRupeesSign"
+                                style="@style/QuinarySubTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="₹" />
+
+
+                            <TextView
+                                android:id="@+id/tvActualPrice"
+                                style="@style/QuinarySubTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/tvRupeesSign"
+                                android:fontFamily="@font/inter_medium"
+                                android:singleLine="true"
+                                android:text="1200000" />
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="2dp"
+                                android:layout_alignStart="@id/tvActualPrice"
+                                android:layout_alignEnd="@id/tvActualPrice"
+                                android:layout_centerVertical="true"
+                                android:background="@android:color/darker_gray" />
+
+                        </RelativeLayout>
                         <TextView
                             android:id="@+id/tvRupees"
                             style="@style/TernaryThemeTextStyle"
                             android:fontFamily="@font/inter_semibold"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:gravity="end"
-                            android:text="₹140000.0" />
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:singleLine="true"
+                            android:text="₹500000" />
+                    </LinearLayout>
+                </LinearLayout>
 
 
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/_minus4sdp"
-                android:layout_marginEnd="@dimen/_6sdp">
-
-                <TextView
-                    android:id="@+id/tvRupeesSing"
-                    style="@style/QuinarySubTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="₹" />
 
 
-                <TextView
-                    android:id="@+id/tvActhualPrise"
-                    style="@style/QuinarySubTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/tvRupeesSing"
-                    android:fontFamily="@font/inter_medium"
-                    android:singleLine="true"
-                    android:text="190000.0" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_alignStart="@id/tvActhualPrise"
-                    android:layout_alignEnd="@id/tvActhualPrise"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/darker_gray" />
-
-            </RelativeLayout>
 
             <View
                 android:id="@+id/viewLine"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:background="@color/HorizontallineColor" />
 
             <LinearLayout
@@ -189,11 +200,11 @@
                         android:background="@drawable/bg_theme_curve"
                         android:drawablePadding="@dimen/_2sdp"
                         android:fontFamily="@font/inter_regular"
-                        android:paddingHorizontal="@dimen/_6sdp"
+                        android:paddingHorizontal="@dimen/_12sdp"
                         android:paddingVertical="@dimen/_4sdp"
-                        android:text="@string/add_to_cart"
+                        android:text="@string/enroll_now"
                         android:theme="@style/QuinaryWhiteTextStyle"
-                        app:drawableStartCompat="@drawable/ic_shopping_cart_trolly" />
+                      />
 
                 </LinearLayout>
 

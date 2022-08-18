@@ -508,5 +508,10 @@
         layout="@layout/empty_card"
         android:visibility="gone" />
 
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/no_internet_connection"
+        android:visibility="gone" />
+
 
 </RelativeLayout>

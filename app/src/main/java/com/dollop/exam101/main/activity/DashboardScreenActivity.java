@@ -61,8 +61,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         apiService = RetrofitClient.getClient();
         binding.ivNavBar.setOnClickListener(this);
         //binding.ivProfile.setOnClickListener(this);
-        binding.ivNotification.setOnClickListener(this);
-        // binding.ivSearch.setOnClickListener(this);
+        binding.rvNotification.setOnClickListener(this);
+         binding.ivSearch.setOnClickListener(this);
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
         navHeaderDashboardBinding.llLogout.setOnClickListener(this);
         navHeaderDashboardBinding.llAbout.setOnClickListener(this);
@@ -133,15 +133,15 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-        if (view == binding.ivNotification) {
+        if (view == binding.rvNotification) {
             Utils.I(activity, NotificationActivity.class, null);
         }
         if (view == binding.ivNavBar) {
             binding.drawerLayout.openDrawer(Gravity.LEFT);
         }
-     /*   if (view == binding.ivSearch) {
+        if (view == binding.ivSearch) {
             Utils.I(activity, SearchHistoryActivity.class, null);
-        }*/
+        }
 
         if (view == binding.navigationView.getHeaderView(0)) {
             Utils.I(activity, ProfileActivity.class, null);

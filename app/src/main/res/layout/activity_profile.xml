@@ -231,7 +231,7 @@
                         android:paddingVertical="@dimen/_2sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
-
+<!--
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
@@ -276,7 +276,7 @@
                         android:paddingHorizontal="@dimen/_3sdp"
                         android:paddingVertical="@dimen/_2sdp"
                         android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </LinearLayout>-->
 
                 <View
                     android:layout_width="match_parent"
@@ -432,7 +432,7 @@
 
             <!--Do Option wala layout -->
             <LinearLayout
-                        android:id="@+id/llBankDetailsAndAffiliation"
+                android:id="@+id/llBankDetailsAndAffiliation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_8sdp"
@@ -487,6 +487,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
                     android:background="@color/HorizontallineColor" />
 
                 <LinearLayout

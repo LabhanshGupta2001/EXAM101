@@ -149,5 +149,7 @@ public class Constants {
         String questionIds = "questionIds";
         String options = "options";
         String testAttemptUuid = "testAttemptUuid";
+        String CurrentAffairs = "Current Affairs";
+        String Blogs = "Blogs";
     }
 }

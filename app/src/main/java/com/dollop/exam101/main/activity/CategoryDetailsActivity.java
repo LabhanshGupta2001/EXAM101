@@ -4,8 +4,6 @@ import static com.dollop.exam101.Basics.UtilityTools.AppController.getContext;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -27,9 +25,7 @@ import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.OnItemClicked;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCategoryDetailsBinding;
-import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomsheetFilterBinding;
 import com.dollop.exam101.main.adapter.CategoryDetailAdapter;
 import com.dollop.exam101.main.adapter.PackageAdapter;
@@ -204,7 +200,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         smoothScroller.setTargetPosition(Positions);
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
                         binding.rvPackagesHeading.setLayoutManager(linearLayoutManager);
-                       // linearLayoutManager.startSmoothScroll(smoothScroller);
+                        // linearLayoutManager.startSmoothScroll(smoothScroller);
                         binding.rvPackagesHeading.getLayoutManager().scrollToPosition(Positions);
                         binding.rvPackagesHeading.getLayoutManager().scrollToPosition(Positions);
                         binding.rvPackagesHeading.setAdapter(new CategoryDetailAdapter(activity, courseModelArrayList, Positions));
@@ -319,20 +315,15 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity);
-        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
-        dialog.setContentView(alertDialogBinding.getRoot());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        alertDialogBinding.tvPermittManually.setText(R.string.retry);
-        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
-        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+        binding.llChild.setVisibility(View.GONE);
+        binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                dialog.dismiss();
+                binding.llChild.setVisibility(View.VISIBLE);
+                binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
             }
         });
-        dialog.show();
+
     }
 }

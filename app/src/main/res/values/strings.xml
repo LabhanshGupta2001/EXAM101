@@ -39,8 +39,8 @@
     <string name="code_sent_to">code sent to</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="register_your_details">Register your details</string>
-    <string name="enter_your_full_name">Enter Your Full Name</string>
-    <string name="enter_your_mail_id">Enter your email</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+    <string name="enter_your_mail_id">Enter your email id</string>
     <string name="field_empty">Field can\'t be empty!</string>
     <string name="home">Home</string>
     <string name="yourRides">Your Rides</string>
@@ -93,14 +93,14 @@
     <string name="package_duration">Package Duration:</string>
     <string name="invoice">Invoice</string>
     <string name="save">Save</string>
-    <string name="my_exam">My Exam</string>
+    <string name="my_exam">My Exams</string>
     <string name="learn_responsive_web_design_nessentials">Learn Responsive Web Design\nEssentials</string>
     <string name="last_activity_on_6_jan_2022">Last activity on 6 Jan, 2022</string>
     <string name="purchase_date_1_jan_2022">Purchase Date: 1 Jan, 2022</string>
     <string name="creative_art_design">Creative Art Design</string>
     <string name="expiry_date_8_may_2022">Expiry Date: 8 May, 2022</string>
     <string name="attempt_40">Attempt : 40</string>
-    <string name="youremail_gmail_com">Enter your email address...</string>
+    <string name="youremail_gmail_com">Enter address...</string>
     <string name="forget_password">Forgot Password?</string>
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account">Don’t have an account?</string>
@@ -130,10 +130,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="up">Up</string>
     <string name="enter_your_email">Enter your email</string>
-    <string name="enter_password">Enter your password...</string>
+    <string name="enter_password">Password</string>
     <string name="new_password">New password</string>
     <string name="conform_password">Confirm Password</string>
-    <string name="enter_mobile_no">Enter mobile No..</string>
+    <string name="enter_mobile_no">Enter your mobile number</string>
     <string name="enter_user_name">Enter user name</string>
     <string name="notification">Notification</string>
     <string name="your_exam101_purchase_plan">Your exam101 purchase plan</string>
@@ -475,6 +475,7 @@
     <string name="removed_from_wishlist_successfully">Removed from wishlist successfully</string>
     <string name="added_to_wishlist">Added to wishlist successfully</string>
     <string name="dots">••••••••••</string>
+    <string name="enroll_now">Enroll Now</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

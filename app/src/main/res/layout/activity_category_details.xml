@@ -110,4 +110,9 @@
             android:id="@+id/noResultFoundId"
            android:visibility="gone" />
     </LinearLayout>
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/no_internet_connection"
+        android:visibility="gone" />
+
 </RelativeLayout>

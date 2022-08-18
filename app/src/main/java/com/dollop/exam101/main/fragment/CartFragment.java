@@ -197,7 +197,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     }
 
     private void applyCouponCode() {
-        apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString()).
+        apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().trim()).
                 enqueue(new Callback<AllResponseModel>() {
                     @Override
                     public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -310,21 +310,19 @@ public class CartFragment extends Fragment implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity);
-        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
-        dialog.setContentView(alertDialogBinding.getRoot());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        alertDialogBinding.tvPermittManually.setText(R.string.retry);
-        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
-        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+        binding.rlBottom.setVisibility(View.GONE);
+        binding.scrollCartItem.setVisibility(View.GONE);
+        binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                dialog.dismiss();
+                getCartItem();
+                binding.rlBottom.setVisibility(View.VISIBLE);
+                binding.scrollCartItem.setVisibility(View.VISIBLE);
+                binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
+
             }
         });
-        dialog.show();
     }
 
     public void addToWishList(String packageUuid) {

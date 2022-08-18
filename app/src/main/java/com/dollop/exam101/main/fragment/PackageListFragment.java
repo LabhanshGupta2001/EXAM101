@@ -83,7 +83,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
         if (AppController.getInstance().isOnline()) {
             packageList();
         } else {
-            //Utils.InternetDialog(activity);
+
             InternetDialog();
         }
     }
@@ -229,20 +229,15 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity);
-        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
-        dialog.setContentView(alertDialogBinding.getRoot());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        alertDialogBinding.tvPermittManually.setText(R.string.retry);
-        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
-        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+       binding.llChild.setVisibility(View.GONE);
+       binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                dialog.dismiss();
+                binding.llChild.setVisibility(View.VISIBLE);
+                binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
             }
         });
-        dialog.show();
+
     }
 }
