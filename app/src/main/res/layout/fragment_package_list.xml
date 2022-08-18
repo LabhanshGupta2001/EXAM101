@@ -84,6 +84,7 @@
             android:visibility="visible" />
 
     </LinearLayout>
+
     <include
         android:id="@+id/noInternetConnection"
         layout="@layout/no_internet_connection"

@@ -120,7 +120,7 @@
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/full_name"
                     android:inputType="text"
-                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:paddingVertical="@dimen/_12sdp"
                     android:textColorHint="@color/sub_text" />
 
@@ -145,7 +145,7 @@
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
-                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:paddingVertical="@dimen/_12sdp"
                     android:textColorHint="@color/sub_text" />
 
@@ -268,7 +268,8 @@
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/country"
-                    android:padding="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill,TextViewEdits" />
 
@@ -293,7 +294,8 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/state"
-                    android:padding="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
 

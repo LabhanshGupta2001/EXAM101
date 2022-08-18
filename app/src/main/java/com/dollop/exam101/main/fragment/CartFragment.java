@@ -3,9 +3,6 @@ package com.dollop.exam101.main.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -31,7 +27,6 @@ import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomsheetApplycouponBinding;
 import com.dollop.exam101.databinding.BottomsheetReferralcodeBinding;
 import com.dollop.exam101.databinding.FragmentCartBinding;
@@ -124,6 +119,9 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     bottomsheetApplycouponBinding.tvErrorCoupon.setText(R.string.empty_error);
                     Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.top_to_bottom);
                     bottomsheetApplycouponBinding.tvErrorCoupon.startAnimation(animation);
+                    KeyboardUtils.showKeyboard(activity);
+                    bottomsheetApplycouponBinding.etApplyCouponId.requestFocus();
+
                 } else {
                     if (AppController.getInstance().isOnline()) {
                         applyCouponCode();
@@ -166,10 +164,12 @@ public class CartFragment extends Fragment implements View.OnClickListener {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 bottomsheetReferralcodeBinding.tvErrorReferral.setVisibility(View.GONE);
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -184,6 +184,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     bottomsheetReferralcodeBinding.tvErrorReferral.setText(R.string.empty_error);
                     Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.top_to_bottom);
                     bottomsheetReferralcodeBinding.tvErrorReferral.startAnimation(animation);
+                    KeyboardUtils.showKeyboard(activity);
+                    bottomsheetReferralcodeBinding.etReferralCodeId.requestFocus();
                 } else {
                     if (AppController.getInstance().isOnline()) {
                         applyCouponCode();

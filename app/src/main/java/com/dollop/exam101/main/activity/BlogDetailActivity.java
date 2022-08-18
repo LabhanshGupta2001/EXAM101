@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -35,6 +37,10 @@ import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -149,17 +155,22 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
         bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetBehavior.setSkipCollapsed(true);
+        bottomSheetRatenowBinding.tvMainName.setText(R.string.rate_blog);
         bottomSheetDialog.show();
 
-            bottomSheetRatenowBinding.tvRateNow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
-                        Utils.T(activity,"Pleas write a review ");
-                    }else
-                      bottomSheetDialog.cancel();
-                }
-            });
+        bottomSheetRatenowBinding.tvRateNow.setOnClickListener(view -> {
+            if (bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim().equals(Constants.Key.blank)) {
+                bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.VISIBLE);
+                bottomSheetRatenowBinding.tvErrorReview.setText(R.string.empty_error);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                bottomSheetRatenowBinding.tvErrorReview.startAnimation(animation);
+                bottomSheetRatenowBinding.etShareThoughts.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(bottomSheetRatenowBinding.etShareThoughts, InputMethodManager.SHOW_IMPLICIT);
+            } else {
+                bottomSheetDialog.cancel();
+            }
+        });
     }
 
 

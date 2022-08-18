@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/inbox_or_spam_folder_for_otp" />
 
@@ -138,7 +138,7 @@
             android:elevation="@dimen/_2sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
-            android:padding="@dimen/_12sdp"
+            android:padding="@dimen/_11sdp"
             android:text="@string/verify_otp" />
 
     </LinearLayout>
