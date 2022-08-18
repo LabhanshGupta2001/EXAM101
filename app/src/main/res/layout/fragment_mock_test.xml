@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/rvMockTestList"
         android:overScrollMode="never"
+        tools:listitem="@layout/item_mock_test_list"
         android:layout_marginTop="@dimen/_6sdp"
         />
 </LinearLayout>
