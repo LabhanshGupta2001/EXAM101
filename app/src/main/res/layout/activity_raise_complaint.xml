@@ -77,6 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        tools:listitem="@layout/item_raise_complaint"
         android:overScrollMode="never" />
 
 </LinearLayout>

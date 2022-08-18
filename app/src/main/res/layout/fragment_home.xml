@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lineColor"
-    android:overScrollMode="never"
+    android:orientation="vertical"
     tools:context=".main.fragment.HomeFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:background="@color/lineColor">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +21,8 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/HomeHeadingTextStyle"
+            style="@style/QuaternaryHeadingFullBlackTextStyle"
+            android:fontFamily="@font/gothic_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
@@ -92,7 +100,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_6sdp">
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp">
 
             <TextView
                 android:id="@+id/tvTop"
@@ -126,18 +135,19 @@
                 android:id="@+id/rvPackages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:overScrollMode="never" />
         </LinearLayout>
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_12sdp" />
+            android:layout_height="@dimen/_16sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:padding="@dimen/_12sdp"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
@@ -145,8 +155,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_12sdp"
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
@@ -161,8 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginBottom="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
@@ -205,8 +212,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_10sdp">
+            android:layout_marginTop="@dimen/_12sdp">
 
            <!-- <LinearLayout
                 android:layout_width="wrap_content"
@@ -263,17 +269,27 @@
                 android:textAlignment="center"
                 app:tabIndicatorHeight="2dp"
                 app:tabMode="scrollable"
+                android:paddingHorizontal="@dimen/_12sdp"
                 app:tabSelectedTextColor="@color/theme"
                 app:tabTextAppearance="@style/HomeHeadingTextStyle"
                 app:tabTextColor="@color/black" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/HorizontallineColor"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_below="@id/tabLayout"
+                android:id="@+id/viewTab"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerHome"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:paddingHorizontal="@dimen/_12sdp"
                 style="@style/HomeHeadingTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:layout_below="@+id/tabLayout"
-                android:layout_marginTop="@dimen/_6sdp"
                 android:nestedScrollingEnabled="true" />
 
 
@@ -315,7 +331,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:text="@string/reffer_a_friend" />
 
         <LinearLayout
@@ -497,6 +514,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:layout_marginBottom="@dimen/_6sdp"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
@@ -575,5 +593,14 @@
         </LinearLayout>-->
     </LinearLayout>
 
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.core.widget.NestedScrollView>
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/no_internet_connection"
+        android:visibility="gone" />
+
+
+
+
+</LinearLayout>

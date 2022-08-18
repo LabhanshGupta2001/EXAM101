@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/white"
-        android:elevation="@dimen/_3sdp"
         android:gravity="center_vertical"
         android:padding="@dimen/_4sdp">
 
@@ -128,5 +127,8 @@
         android:paddingEnd="@dimen/_6sdp"
         android:paddingBottom="@dimen/_12sdp" />-->
 
+    <include layout="@layout/no_result_found"
+        android:id="@+id/noResultFoundId"
+        android:visibility="gone"/>
 
 </LinearLayout>

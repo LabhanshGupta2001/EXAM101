@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:fontFamily="@font/gothic_bold"
         android:gravity="center"
         android:text="@string/order_confirmed"
@@ -45,7 +45,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center"
         android:text="@string/your_package_is_confirmed_please_proceed_nto_my_packages_option"
         android:theme="@style/QuaternaryLightSubTextStyle" />
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_26sdp"
         android:background="@drawable/theme_stroke_background"
         android:backgroundTint="@color/theme"
         android:fontFamily="@font/inter_semibold"

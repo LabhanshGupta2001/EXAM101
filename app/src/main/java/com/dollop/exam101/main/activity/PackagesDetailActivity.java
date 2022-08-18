@@ -2,8 +2,7 @@ package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -31,15 +31,14 @@ import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
-import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
-import com.dollop.exam101.main.adapter.OverviewCourseDetailsAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.ExamModel;
+import com.dollop.exam101.main.model.LanguageModel;
 import com.dollop.exam101.main.model.MockTestModel;
 import com.dollop.exam101.main.model.PackageDetailModel;
 import com.dollop.exam101.main.model.ReviewRating;
@@ -238,6 +237,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 if (response.code() == StatusCodeConstant.OK) {
                     assert response.body() != null;
                     PackageDetailModel packageDetailModels = response.body().packageDetail;
+                    List<LanguageModel> languageModels = response.body().packageDetail.languageModels;
                     binding.scrollView.setVisibility(View.VISIBLE);
                     binding.llBtn.setVisibility(View.VISIBLE);
                     packageName = packageDetailModels.packageName;
@@ -245,12 +245,18 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     shortDesc=String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     imgPath = packageDetailModels.featureImg;
                     binding.tvHeadings.setText(packageName);
-                 //   binding.tvLanguage.setText(packageDetailModels.languageIds);
+                    binding.tvLanguage.setText(languageModels.get(0).languageName);
                     binding.tvPriceGreat.setText(packageDetailModels.discountedPrice);
                     binding.tvPriceSmall.setText(packageDetailModels.actualPrice);
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
-                    binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
+
+                    if (packageDetail.isEmpty()){
+                        binding.tvDetail.setVisibility(View.GONE);
+                        binding.tvOverView.setVisibility(View.GONE);
+                    }else {
+                        binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
+                    }
 
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
@@ -264,8 +270,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     Tittle.clear();
                     Tittle.add(Constants.Key.Course_Material);
 
-                    if (mockTestModels.isEmpty() || mockTestModels.equals(Constants.Key.blank)){
-                    }else {
+                    if (!mockTestModels.isEmpty() || !mockTestModels.equals(Constants.Key.blank)){
                         Tittle.add(Constants.Key.Mock_Test);
                         fragments.add(new MockTestFragment(mockTestModels));
                     }
@@ -376,9 +381,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-       binding.scrollView.setVisibility(View.GONE);
-       binding.llBtn.setVisibility(View.GONE);
-       binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.scrollView.setVisibility(View.GONE);
+        binding.llBtn.setVisibility(View.GONE);
+        binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
@@ -428,6 +433,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 bottomSheetRatenowBinding.tvErrorReview.setText(R.string.empty_error);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
                 bottomSheetRatenowBinding.tvErrorReview.startAnimation(animation);
+                bottomSheetRatenowBinding.etShareThoughts.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(bottomSheetRatenowBinding.etShareThoughts, InputMethodManager.SHOW_IMPLICIT);
             } else {
                 String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());

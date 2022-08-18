@@ -57,6 +57,7 @@
                     android:id="@+id/imBlogDetail"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_147sdp"
+                    android:foreground="@drawable/gradient_blog"
                     android:scaleType="centerInside" />
 
                 <com.google.android.material.card.MaterialCardView

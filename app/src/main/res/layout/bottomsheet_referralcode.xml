@@ -37,7 +37,7 @@
             android:layout_height="@dimen/_1sdp"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/lineColor" />
+            android:background="@color/HorizontallineColor" />
 
         <EditText
             android:id="@+id/etReferralCode_Id"

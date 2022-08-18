@@ -32,6 +32,7 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -106,10 +107,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 binding.tvErrorEmail.setVisibility(View.GONE);
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -120,10 +123,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 binding.tvErrorPass.setVisibility(View.GONE);
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -204,6 +209,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
                 resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(validation.EditTextPointer, InputMethodManager.SHOW_IMPLICIT);
             }
 
         }
