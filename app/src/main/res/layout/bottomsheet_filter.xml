@@ -37,13 +37,12 @@
             android:background="@color/HorizontallineColor" />
 
 
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tlTabLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
-           android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textAlignment="center"
             app:tabBackground="@drawable/tabselector"
             app:tabIndicatorHeight="0dp"

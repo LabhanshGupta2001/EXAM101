@@ -211,6 +211,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/_12sdp"
 
                 android:paddingVertical="@dimen/_10sdp">
@@ -560,7 +561,6 @@
                 android:layout_height="0.3dp"
                 android:layout_marginVertical="@dimen/_8sdp"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-
                 android:background="@color/HorizontallineColor" />
 
             <TextView

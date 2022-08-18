@@ -70,7 +70,7 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
         if (AppController.getInstance().isOnline()) {
             getBlogDetails();
         } else {
-            //Utils.InternetDialog(activity);
+
             InternetDialog();
         }
         binding.flotingBtn.setOnClickListener(this);
@@ -82,13 +82,7 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                  /*  if(response.body().blogs.isEmpty()){
-                        binding.llLaunch.setVisibility(View.GONE);
-                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
-                    }else {
-                        binding.llLaunch.setVisibility(View.VISIBLE);
-                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
-                    }*/
+
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         AllBlogListModel allBlogListModel = response.body().blog;
@@ -101,7 +95,6 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
                         Utils.Picasso(allBlogListModel.mainImg, binding.imBlogDetail, R.drawable.dummy);
                         Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
                         binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail,0));
-                       // Utils.T(activity, "" + response.body().message);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -135,21 +128,17 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        Dialog dialog = new Dialog(activity);
-        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
-        dialog.setContentView(alertDialogBinding.getRoot());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        alertDialogBinding.tvPermittManually.setText(R.string.retry);
-        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
-        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+        binding.svMain.setVisibility(View.GONE);
+        binding.flotingBtn.setVisibility(View.GONE);
+        binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                dialog.dismiss();
+                binding.svMain.setVisibility(View.VISIBLE);
+                binding.flotingBtn.setVisibility(View.VISIBLE);
+                binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
             }
         });
-        dialog.show();
     }
 
     private void bottomSheetTask() {

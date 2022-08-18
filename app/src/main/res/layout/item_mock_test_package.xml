@@ -11,8 +11,8 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_6sdp"
         app:cardCornerRadius="@dimen/_8sdp"
-        app:cardElevation="2dp"
-        app:strokeColor="@color/stroke_color"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/HorizontallineColor"
         app:strokeWidth="1dp">
 
 
@@ -29,6 +29,7 @@
                     android:layout_margin="@dimen/_10sdp"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:strokeColor="@color/HorizontallineColor"
+                    app:cardElevation="0dp"
                     app:strokeWidth="@dimen/_1sdp">
 
                     <ImageView

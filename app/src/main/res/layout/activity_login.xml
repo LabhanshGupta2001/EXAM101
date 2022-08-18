@@ -90,7 +90,9 @@
                     android:hint="@string/youremail_gmail_com"
                     android:inputType="textEmailAddress"
                     android:textColorHint="@color/sub_text"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
+
                     android:singleLine="true" />
                 <TextView
                     android:id="@+id/tvErrorEmail"
@@ -115,7 +117,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/enter_password"
                     android:inputType="textPassword"
-                    android:padding="@dimen/_11sdp"
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:textColorHint="@color/sub_text"
                     android:singleLine="true" />
                 <TextView

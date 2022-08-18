@@ -35,6 +35,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:id="@+id/scroll"
+        android:visibility="visible"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -58,6 +60,11 @@
     </androidx.core.widget.NestedScrollView>
 
     <include layout="@layout/no_result_found"
-        android:id="@+id/noResultFoundId" />
+        android:id="@+id/noResultFoundId"
+        android:visibility="gone"/>
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/no_internet_connection"
+        android:visibility="gone" />
 
 </LinearLayout>
