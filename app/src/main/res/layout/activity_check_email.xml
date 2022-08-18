@@ -40,7 +40,7 @@
         android:layout_gravity="center"
         android:layout_marginVertical="@dimen/_24sdp"
         android:fontFamily="@font/inter_semibold"
-        android:paddingVertical="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_11sdp"
         android:paddingHorizontal="@dimen/_38sdp"
         android:background="@drawable/theme_backround"
         android:text="@string/return_to_sign_in"

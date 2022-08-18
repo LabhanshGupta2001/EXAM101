@@ -53,7 +53,7 @@
                     android:id="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
-                    android:background="@color/grey" />
+                    android:background="@color/HorizontallineColor" />
 
 
                 <com.google.android.material.tabs.TabLayout
@@ -94,15 +94,27 @@
                 android:fontFamily="@font/inter_medium"
                 android:iconifiedByDefault="false"
                 android:queryBackground="@null"
+                android:visibility="gone"
                 android:queryHint="Search Blogs Category"
                 android:singleLine="true"
                 android:textColorHint="@color/sub_text" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                style="@style/TernaryDarkTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llFilter"
+               android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/category" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAuthorSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/searchViewId"
+                android:layout_below="@+id/tvCategory"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:overScrollMode="never" />
 

@@ -223,6 +223,8 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
                 resultReturn.errorTextView.startAnimation(animation);
                 validation.EditTextPointer.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(validation.EditTextPointer, InputMethodManager.SHOW_IMPLICIT);
             }
         }
     }

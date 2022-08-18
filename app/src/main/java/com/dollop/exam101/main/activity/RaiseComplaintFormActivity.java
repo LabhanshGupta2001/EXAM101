@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -17,6 +19,12 @@ import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityRaiseComplaintFormBinding;
+import com.dollop.exam101.main.validation.ResultReturn;
+import com.dollop.exam101.main.validation.Validation;
+import com.dollop.exam101.main.validation.ValidationModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RaiseComplaintFormActivity extends BaseActivity implements View.OnClickListener {
 
@@ -24,6 +32,8 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
     Activity activity = RaiseComplaintFormActivity.this;
     ActivityRaiseComplaintFormBinding binding;
     Intent intent = new Intent();
+    List<ValidationModel> validationModels = new ArrayList<>();
+
 
     public static String getFileName(String path) {
         return path.substring(path.lastIndexOf("/") + 1);
@@ -52,7 +62,7 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
         if (view == binding.ivBack) {
             finish();
         } else if (view == binding.llSave) {
-            finish();
+            CheckValidationTask();
         } else if (view == binding.llNormal) {
             binding.tvNormal.setTextColor(ContextCompat.getColor(activity, R.color.full_black));
             binding.Image.setVisibility(View.VISIBLE);
@@ -161,6 +171,31 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
                 break;
         }
     }
+
+    private void CheckValidationTask() {
+        validationModels.clear();
+        validationModels.add(new ValidationModel(Validation.Type.Empty, binding.etSubject, binding.tvErrorSubject));
+        validationModels.add(new ValidationModel(Validation.Type.Empty, binding.etDescription, binding.tvErrorDescription));
+        Validation validation = Validation.getInstance();
+        ResultReturn resultReturn = validation.CheckValidation(activity, validationModels);
+        if (resultReturn.aBoolean) {
+            finish();
+        } else {
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
+            if (resultReturn.type == Validation.Type.EmptyString) {
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
+            } else {
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
+                validation.EditTextPointer.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(validation.EditTextPointer, InputMethodManager.SHOW_IMPLICIT);
+            }
+
+        }
+    }
+
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // remove focus from edit text on click outside

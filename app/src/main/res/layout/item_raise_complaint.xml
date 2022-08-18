@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -33,7 +34,10 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
                     app:cardCornerRadius="@dimen/_8sdp"
-                    app:cardElevation="@dimen/_2sdp">
+                    android:outlineAmbientShadowColor="@color/ShadowColor"
+                    android:outlineSpotShadowColor="@color/ambientColor"
+                    app:cardElevation="8dp"
+                    tools:ignore="UnusedAttribute">
 
                     <ImageView
                         android:layout_width="wrap_content"

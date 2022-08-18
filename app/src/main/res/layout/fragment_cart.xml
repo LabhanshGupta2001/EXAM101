@@ -34,7 +34,7 @@
             android:text="@string/cart" />
     </LinearLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollCartItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -422,7 +422,7 @@
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/rlBottom"
