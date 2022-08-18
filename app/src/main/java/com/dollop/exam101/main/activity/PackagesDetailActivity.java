@@ -75,7 +75,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     List<SubjectModel> subjectModelArrayList = new ArrayList<>();
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
-    String packageName, packageDetail, imgPath, shortDesc;
+    String packageName, packageDetail, imgPath,shortDesc;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -85,7 +85,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         setContentView(binding.getRoot());
 
         init();
-        Utils.E("MY Data -> " + Utils.GetSession().token + " Package UUID" + packageUuid);
+        Utils.E("MY Data -> "+Utils.GetSession().token+" Package UUID"+packageUuid);
 
     }
 
@@ -242,7 +242,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     binding.llBtn.setVisibility(View.VISIBLE);
                     packageName = packageDetailModels.packageName;
                     packageDetail = String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
-                    shortDesc = String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
+                    shortDesc=String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     imgPath = packageDetailModels.featureImg;
                     binding.tvHeadings.setText(packageName);
                     binding.tvLanguage.setText(languageModels.get(0).languageName);
@@ -251,7 +251,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
 
-                    if (packageDetail.isEmpty() || packageDetail.equals(Constants.Key.blank)){
+                    if (packageDetail.isEmpty()){
                         binding.tvDetail.setVisibility(View.GONE);
                         binding.tvOverView.setVisibility(View.GONE);
                     }else {
@@ -260,9 +260,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
-                    Utils.E("mockTestModels::" + mockTestModels);
+                    Utils.E("mockTestModels::"+mockTestModels);
                     examModelArrayList.addAll(packageDetailModels.examModels);
-                    Utils.E("examModelArrayList::" + examModelArrayList);
+                    Utils.E("examModelArrayList::"+examModelArrayList);
                     for (int i = 0; i < examModelArrayList.size(); i++) {
                         subjectModelArrayList.addAll(examModelArrayList.get(i).subjects);
                     }
@@ -270,8 +270,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     Tittle.clear();
                     Tittle.add(Constants.Key.Course_Material);
 
-                    if (mockTestModels.isEmpty() || mockTestModels.equals(Constants.Key.blank)) {
-                    } else {
+                    if (!mockTestModels.isEmpty() || !mockTestModels.equals(Constants.Key.blank)){
                         Tittle.add(Constants.Key.Mock_Test);
                         fragments.add(new MockTestFragment(mockTestModels));
                     }
@@ -416,7 +415,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.GONE);
+         bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.GONE);
             }
 
             @Override
@@ -424,7 +423,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
             }
         });
-
         bottomSheetRatenowBinding.tvHeading.setText(packageName);
         bottomSheetRatenowBinding.tvSubHeading.setText(shortDesc);
         Picasso.get().load(Const.Url.HOST_URL + imgPath).error(R.drawable.dummy).
