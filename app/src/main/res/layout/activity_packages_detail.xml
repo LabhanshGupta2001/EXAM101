@@ -48,8 +48,8 @@
             app:cardElevation="0dp"
             app:cardBackgroundColor="@color/lineColor"
             app:cardCornerRadius="@dimen/_20sdp"
-            app:strokeWidth="0dp"
-            >
+            app:strokeWidth="0dp">
+
             <TextView
                 android:id="@+id/tvLanguage"
                 android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
                 android:background="@color/white"
                 android:orientation="vertical">
 
@@ -138,7 +138,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -185,7 +185,7 @@
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="2dp"
-                            android:layout_alignStart="@id/tvPriceSmall"
+                            android:layout_alignStart="@id/tvRpSym2"
                             android:layout_alignEnd="@id/tvPriceSmall"
                             android:layout_centerVertical="true"
                             android:background="@android:color/darker_gray" />
@@ -197,8 +197,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@color/HorizontallineColor" />
 
                 <TextView
@@ -223,7 +223,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -283,8 +283,15 @@
                         app:tabMode="scrollable"
                         app:tabRippleColor="@color/transparent"
                         app:tabSelectedTextColor="@color/theme"
-                        app:tabTextAppearance="@style/TabTextStyle"
+                        app:tabTextAppearance="@style/HomeHeadingTextStyle"
                         app:tabTextColor="@color/black" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/HorizontallineColor"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:id="@+id/viewTab"/>
+
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/ViewPagerPackageDetailId"
@@ -292,6 +299,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tvOverView"
                         style="@style/TernaryTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -325,7 +333,9 @@
                         android:layout_height="wrap_content"
                         android:background="@color/lineColor"
                         android:orientation="horizontal"
-                        android:padding="@dimen/_12sdp"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_8sdp"
                         android:weightSum="1">
 
                         <TextView
@@ -353,9 +363,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="@dimen/_2sdp"
                             android:contentDescription="@string/image"
-                            android:src="@drawable/ic_theemrightarrow"
-
-                            />
+                            android:src="@drawable/ic_theemrightarrow" />
 
 
                     </LinearLayout>

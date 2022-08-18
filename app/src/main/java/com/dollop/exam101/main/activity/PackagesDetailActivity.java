@@ -249,8 +249,14 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     binding.tvPriceGreat.setText(packageDetailModels.discountedPrice);
                     binding.tvPriceSmall.setText(packageDetailModels.actualPrice);
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
-                    binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
+
+                    if (packageDetail.isEmpty() || packageDetail.equals(Constants.Key.blank)){
+                        binding.tvDetail.setVisibility(View.GONE);
+                        binding.tvOverView.setVisibility(View.GONE);
+                    }else {
+                        binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
+                    }
 
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;

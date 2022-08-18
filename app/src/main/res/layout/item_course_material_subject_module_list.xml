@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_6sdp"
         app:cardElevation="0dp"
@@ -62,7 +62,8 @@
         android:background="@color/lineColor"
         android:overScrollMode="never"
         android:paddingHorizontal="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_12sdp" />
+        android:paddingBottom="@dimen/_12sdp"
+        tools:listitem="@layout/item_course_material_chapter_name_list"/>
 
 </LinearLayout>
 

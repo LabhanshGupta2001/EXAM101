@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:fontFamily="@font/gothic_bold"
         android:gravity="center"
         android:text="@string/payment_failed"
@@ -47,7 +47,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center"
         android:text="@string/oops_something_went_wrong_please_ntry_again_to_purchse_the_package"
         android:theme="@style/QuaternaryLightSubTextStyle" />
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_26sdp"
         android:background="@drawable/theme_stroke_background"
         android:backgroundTint="@color/theme"
         android:fontFamily="@font/inter_semibold"
