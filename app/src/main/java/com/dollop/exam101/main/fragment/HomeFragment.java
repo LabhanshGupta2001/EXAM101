@@ -110,30 +110,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         init();
-        binding.tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-               /* CurrentAffairsFragment currentAffairsFragment = new CurrentAffairsFragment();
-                if (tab.getText().equals(Constants.Key.CurrentAffairs)){
-                    Utils.E("rvCurrentAffairs");
-                    currentAffairsFragment.binding.rvCurrentAffairs.setVisibility(View.VISIBLE);
-                    currentAffairsFragment.binding.rvBlogs.setVisibility(View.GONE);
-                }else {
-                    Utils.E("rvBlogs");
-                    currentAffairsFragment.binding.rvCurrentAffairs.setVisibility(View.GONE);
-                    currentAffairsFragment.binding.rvBlogs.setVisibility(View.VISIBLE);
-                }*/
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
         return binding.getRoot();
 
     }
@@ -323,7 +299,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         if (Blogarraylist.isEmpty() || Blogarraylist.equals(Constants.Key.blank)) {
                         } else {
                             title.add(Constants.Key.Blogs);
-                            fragments.add(new CurrentAffairsFragment(Blogarraylist));
+                            fragments.add(new BlogsFragment(Blogarraylist));
                         }
 
                         binding.viewPagerHome.setAdapter(new ViewPagerFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments));
@@ -361,7 +337,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
 
-        binding.scrollView.setVisibility(View.GONE);
+      /*  binding.scrollView.setVisibility(View.GONE);
         binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
 
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
@@ -371,7 +347,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
 
             }
-        });
+        });*/
 
     }
 

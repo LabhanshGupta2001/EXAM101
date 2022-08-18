@@ -35,7 +35,7 @@ public class CurrentAffairsFragment extends Fragment implements View.OnClickList
 
     public CurrentAffairsFragment(ArrayList<AllBlogListModel> blogListModels) {
         this.Blogarraylist.addAll(blogListModels);
-        binding.rvCurrentAffairs.setVisibility(View.GONE);
+      //  binding.rvCurrentAffairs.setVisibility(View.GONE);
     }
 
     public CurrentAffairsFragment() {
