@@ -161,7 +161,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="@dimen/_2sdp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="@string/attempt" />
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Attempt Remaining" />
 
                     </LinearLayout>
                 </RelativeLayout>

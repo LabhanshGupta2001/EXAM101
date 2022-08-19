@@ -59,10 +59,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_minus4sdp"
-        android:background="@color/lineColor"
+        android:background="@drawable/stroke_curve_bottom"
         android:overScrollMode="never"
-        android:paddingHorizontal="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_6sdp"
         tools:listitem="@layout/item_course_material_chapter_name_list"/>
 
 </LinearLayout>

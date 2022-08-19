@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
@@ -173,9 +174,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         // News Recyclerview code....
 
-
-
-
      /*   newsModelArrayList.clear();
         newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
                 String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
@@ -288,12 +286,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         Blogarraylist.addAll(response.body().blogs);
-
+                        title.clear();
                         title.add(Constants.Key.CurrentAffairs);
                         fragments.add(new CurrentAffairsFragment());
 
                         if (Blogarraylist.isEmpty() || Blogarraylist.equals(Constants.Key.blank)) {
                         } else {
+
                             title.add(Constants.Key.Blogs);
                             fragments.add(new BlogsFragment(Blogarraylist));
                         }
@@ -303,6 +302,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         new TabLayoutMediator(binding.tabLayout, binding.viewPagerHome, (tab, position) -> {
                             tab.setText(title.get(position));
                         }).attach();
+
 
                     } else {
                         // assert response.errorBody() != null;
@@ -330,9 +330,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
 
+        binding.llMain.setBackgroundColor(getResources().getColor(R.color.white));
         binding.scrollView.setVisibility(View.GONE);
         binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {

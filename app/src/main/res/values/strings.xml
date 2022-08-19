@@ -478,6 +478,9 @@
     <string name="enroll_now">Enroll Now</string>
     <string name="rate_blog">Rate Blog</string>
     <string name="faq_s">FAQ’s</string>
+    <string name="all_results">All Results</string>
+    <string name="performance">Performance</string>
+    <string name="landing_page">Landing Page</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

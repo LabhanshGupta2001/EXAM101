@@ -48,7 +48,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     private final ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
     public BottomSheetDialog bottomSheetFilter;
     public BlogsListAdapter blogsListAdapter;
-    public int position;
+    public int position = -1;
     Activity activity = BlogsListActivity.this;
     ActivityBlogsListBinding binding;
     BottomSheetDialog bottomSheetDialog;
@@ -66,7 +66,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         binding = ActivityBlogsListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -78,7 +77,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         } else {
             InternetDialog();
         }
-
         binding.ivBack.setOnClickListener(this);
         binding.llBtnShort.setOnClickListener(this);
         binding.llBtnFilter.setOnClickListener(this);
@@ -91,7 +89,6 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         allBlogListAdapter = new AllBlogListAdapter(activity, Blogarraylist);
         binding.rvBlogs.setAdapter(allBlogListAdapter);
         binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity));
-
         blogsListAdapter = new BlogsListAdapter(activity, blogsList);
         binding.rvHorizontalHeading.setAdapter(blogsListAdapter);
         binding.rvHorizontalHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
@@ -192,7 +189,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         tab1.requestLayout();*/
     }
 
-    private void getBlogsCategory(String from) {
+    public void getBlogsCategory(String from) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogsCategory().enqueue(new Callback<AllResponseModel>() {
             @SuppressLint("NotifyDataSetChanged")
@@ -211,6 +208,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                             blogsList.addAll(response.body().blogsCat);
                             blogsListAdapter.notifyDataSetChanged();
                         }
+                        binding.rvHorizontalHeading.getLayoutManager().scrollToPosition(position);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
