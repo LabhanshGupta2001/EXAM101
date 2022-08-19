@@ -151,5 +151,7 @@ public class Constants {
         String testAttemptUuid = "testAttemptUuid";
         String CurrentAffairs = "Current Affairs";
         String Blogs = "Blogs";
+        String PurchaseList = "Purchase List";
+        String TransactionHistory = "Transaction History";
     }
 }

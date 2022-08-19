@@ -51,8 +51,7 @@
         android:layout_width="match_parent"
         android:id="@+id/mcvCard"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_margin="@dimen/_12sdp"
         app:cardBackgroundColor="@color/theme"
         app:cardCornerRadius="@dimen/_10sdp">
 
@@ -69,7 +68,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_14sdp"
+            android:layout_marginHorizontal="@dimen/_13sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -81,6 +80,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvAccountHolderName"
                     style="@style/TernaryWhiteTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,23 +89,27 @@
                     android:text="@string/annirudh_bhati" />
 
                 <TextView
+                    android:id="@+id/tvAccountType"
                     style="@style/QuinaryWhiteTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
                     android:fontFamily="@font/inter_regular"
                     android:text="@string/saving_account" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_38sdp"/>
 
                 <TextView
                     style="@style/QuinaryWhiteTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_30sdp"
                     android:fontFamily="@font/inter_regular"
                     android:text="@string/account_number" />
 
                 <TextView
+                    android:id="@+id/tvAccountNumber"
                     style="@style/MediumTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,6 +135,7 @@
 
 
                     <TextView
+                        android:id="@+id/tvIfscCode"
                         style="@style/QuinaryWhiteTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -158,14 +163,15 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:background="@drawable/theme_backround"
         android:gravity="center"
-        android:padding="@dimen/_10sdp">
+        >
 
         <TextView
             style="@style/TernaryWhiteTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
-            android:text="@string/update_bank_details" />
+            android:text="@string/update_bank_details"
+            android:padding="@dimen/_12sdp"/>
     </LinearLayout>
 
 </RelativeLayout>

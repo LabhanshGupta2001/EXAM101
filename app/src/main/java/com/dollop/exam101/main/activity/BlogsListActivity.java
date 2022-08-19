@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
@@ -48,7 +50,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     private final ArrayList<BlogListHeadingModel> blogsListFilter = new ArrayList<>();
     public BottomSheetDialog bottomSheetFilter;
     public BlogsListAdapter blogsListAdapter;
-    public int position;
+    public int position = -1;
     Activity activity = BlogsListActivity.this;
     ActivityBlogsListBinding binding;
     BottomSheetDialog bottomSheetDialog;
@@ -58,6 +60,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
     ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
     BottomSheetBlogShortBinding bottomSheetBlogShortBinding;
     BottomSheetBlogFilterBinding bottomSheetBlogFilterBinding;
+    RecyclerView.SmoothScroller smoothScroller;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -66,12 +69,19 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         binding = ActivityBlogsListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
+        smoothScroller = new
+                LinearSmoothScroller(activity) {
+                    @Override
+                    protected int getVerticalSnapPreference() {
+                        return LinearSmoothScroller.SNAP_TO_START;
+                    }
+                };
+
         if (AppController.getInstance().isOnline()) {
             getBlogsCategory(Constants.Key.blank);
             getBlogsData(Constants.Key.blank);
@@ -92,9 +102,13 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
         binding.rvBlogs.setAdapter(allBlogListAdapter);
         binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity));
 
-        blogsListAdapter = new BlogsListAdapter(activity, blogsList);
-        binding.rvHorizontalHeading.setAdapter(blogsListAdapter);
+
+        blogsListAdapter = new BlogsListAdapter(activity, blogsList,position);
         binding.rvHorizontalHeading.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+       // smoothScroller.setTargetPosition(position);
+        Utils.E("Positions22:::"+position);
+        binding.rvHorizontalHeading.getLayoutManager().scrollToPosition(position);
+        binding.rvHorizontalHeading.setAdapter(blogsListAdapter);
 
     }
 
@@ -168,7 +182,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
             InternetDialog();
         }
 
-     /*   ArrayList<String> title = new ArrayList<>();
+      /*  ArrayList<String> title = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
         title.add("Category");
         title.add("Date");
@@ -176,20 +190,20 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
 
         fragments.add(new CategoryFragment());
         fragments.add(new DateFragment());
-        fragments.add(new AuthorFragment());*/
+        fragments.add(new AuthorFragment());
 
-     /*   TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
+        TabLayout tabLayout = bottomSheetFilter.findViewById(R.id.tlFilter);
         ViewPager2 viewPager2 = bottomSheetFilter.findViewById(R.id.vpLaunchId);
         bottomSheetBlogFilterBinding.vpLaunchId.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager(), getLifecycle(), fragments));
 
         new TabLayoutMediator(bottomSheetBlogFilterBinding.tlFilter, bottomSheetBlogFilterBinding.vpLaunchId, (tab, position) -> {
             tab.setText(title.get(position));
-        }).attach();*/
-/*
+        }).attach();
         View tab1 = ((ViewGroup) bottomSheetBlogFilterBinding.tlFilter.getChildAt(0)).getChildAt(1);
         ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab1.getLayoutParams();
         p.setMargins(20, 0, 20, 0);
         tab1.requestLayout();*/
+
     }
 
     private void getBlogsCategory(String from) {
@@ -205,6 +219,7 @@ public class BlogsListActivity extends BaseActivity implements View.OnClickListe
                         if (from.equals(Constants.Key.From)) {
                             blogsListFilter.clear();
                             blogsListFilter.addAll(response.body().blogsCat);
+                            Utils.E("Positions:::"+position);
                             filterSearchAdapter.notifyDataSetChanged();
                         } else {
                             blogsList.clear();

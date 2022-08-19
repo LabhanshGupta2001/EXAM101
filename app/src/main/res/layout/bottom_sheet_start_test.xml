@@ -28,11 +28,11 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:src="@drawable/ic_notepad"
-            android:layout_marginVertical="@dimen/_12ssp" />
+            android:layout_marginVertical="@dimen/_16ssp" />
 
         <TextView
             android:id="@+id/tvHeading"
-            style="@style/SecondaryTextStyle"
+            style="@style/PrimaryHeadingTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_minus4sdp"
@@ -52,7 +52,6 @@
             style="@style/QuaternarySubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:fontFamily="@font/inter_medium"
           android:text="@string/design_and_know_where_you_stand"/>
@@ -66,15 +65,15 @@
             android:background="@drawable/theme_backround"
             android:gravity="center"
             android:layout_marginTop="@dimen/_32sdp"
-            android:layout_marginBottom="@dimen/_18ssp"
-            android:padding="@dimen/_10sdp">
+            android:layout_marginBottom="@dimen/_18ssp">
 
             <TextView
                 style="@style/TernaryWhiteTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/start_test" />
+                android:text="@string/start_test"
+                android:padding="@dimen/_13sdp"/>
         </LinearLayout>
 
     </LinearLayout>

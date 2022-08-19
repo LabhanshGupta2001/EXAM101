@@ -28,7 +28,7 @@
             style="@style/SecondaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_13ssp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:fontFamily="@font/gothic_bold"
             android:text="@string/do_you_want_to_end_the_test" />
@@ -100,7 +100,7 @@
             android:background="@color/white"
             android:baselineAligned="false"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_26sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:gravity="center_horizontal"
-                    android:paddingVertical="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_12sdp"
                     android:text="@string/cancel"
                     android:theme="@style/QuaternaryThemeHeadingTextStyle" />
             </com.google.android.material.card.MaterialCardView>
@@ -144,7 +144,7 @@
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="center_horizontal"
                     android:paddingHorizontal="@dimen/_20sdp"
-                    android:paddingVertical="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_12sdp"
                     android:text="@string/quit_test"
                     android:theme="@style/QuaternarySecondaryTextStyle" />
             </com.google.android.material.card.MaterialCardView>

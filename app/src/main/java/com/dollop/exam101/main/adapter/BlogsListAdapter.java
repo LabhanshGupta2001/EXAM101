@@ -23,11 +23,12 @@ import java.util.ArrayList;
 public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder>{
     Context context;
     ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList;
-    public int pos=-1;
+     int pos = -1;
 
-    public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList) {
+    public BlogsListAdapter(Context context, ArrayList<BlogListHeadingModel> blogListHeadingModelArrayList,int position) {
         this.context = context;
         this.blogListHeadingModelArrayList = blogListHeadingModelArrayList;
+        this.pos = position;
     }
     @NonNull
     @Override
@@ -41,6 +42,18 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
 
         BlogListHeadingModel blogListHeadingModel = blogListHeadingModelArrayList.get(position);
         holder.binding.tvBlogHeading.setText(blogListHeadingModel.blogCatName);
+
+        if (pos == position){
+            Utils.E("filterPos::"+pos);
+            holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
+            holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.white));
+            holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.theme));
+            ((BlogsListActivity)context).position = position;
+        } else{
+            holder.binding.tvBlogHeading.setBackgroundResource(R.color.light_red);
+            holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.sub_text));
+            holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.HorizontallineColor));
+        }
         holder.binding.tvBlogHeading.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -50,16 +63,7 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHo
                 notifyDataSetChanged();
             }
         });
-        if (pos == position){
-            ((BlogsListActivity)context).position= pos;
-            holder.binding.tvBlogHeading.setBackgroundResource(R.drawable.theme_backround);
-            holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.white));
-            holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.theme));
-        } else{
-            holder.binding.tvBlogHeading.setBackgroundResource(R.color.light_red);
-            holder.binding.tvBlogHeading.setTextColor(ContextCompat.getColor(context,R.color.sub_text));
-            holder.binding.cvCategories.setStrokeColor(ContextCompat.getColor(context,R.color.HorizontallineColor));
-        }
+
     }
 
     @Override

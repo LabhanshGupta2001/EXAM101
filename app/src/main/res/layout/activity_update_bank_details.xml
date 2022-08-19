@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/view"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_16sdp"
         android:background="@color/white"
         android:orientation="vertical">
 
@@ -86,7 +86,7 @@
             style="@style/QuaternaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:fontFamily="@font/inter_medium"
             android:text="@string/account_number" />
 
@@ -116,13 +116,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_12sdp"
             android:weightSum="2">
 
             <TextView
                 style="@style/QuaternaryTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_medium"
@@ -132,7 +132,6 @@
                 style="@style/QuaternaryTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/type" />
@@ -207,7 +206,7 @@
             style="@style/QuaternaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:fontFamily="@font/inter_medium"
             android:text="@string/branch" />
 
@@ -241,14 +240,14 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_15sdp"
         android:background="@drawable/theme_backround"
-        android:gravity="center"
-        android:padding="@dimen/_10sdp">
+        android:gravity="center">
 
         <TextView
             style="@style/TernaryWhiteTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
-            android:text="@string/save_details" />
+            android:text="@string/save_details"
+            android:padding="@dimen/_13sdp"/>
     </LinearLayout>
 </RelativeLayout>

@@ -118,7 +118,7 @@
             android:layout_marginHorizontal="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/_16sdp"
             android:background="@drawable/bottom_bg_card"
-            android:elevation="@dimen/_6sdp"
+            android:elevation="@dimen/_7sdp"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -130,7 +130,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
-                android:paddingVertical="@dimen/_5sdp"
+                android:paddingVertical="@dimen/_6sdp"
                 android:text="@string/paid_amount" />
 
             <View
@@ -163,9 +163,7 @@
         android:textAlignment="center"
         app:tabIndicatorHeight="2dp"
         app:tabMode="scrollable"
-        app:tabTextAppearance="@style/QuinaryTabTextStyle"
-
-        />
+        app:tabTextAppearance="@style/QuinaryTabTextStyle" />
     <TextView
         android:id="@+id/tvFilter"
         style="@style/SenaryTextStyle"

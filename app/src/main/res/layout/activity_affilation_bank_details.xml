@@ -47,8 +47,7 @@
             android:id="@+id/nsvMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            >
+            android:layout_marginBottom="@dimen/_20sdp">
 
             <LinearLayout
                 android:id="@+id/llMain"
@@ -99,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/mcvProfile"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:fontFamily="@font/gothic_bold"
                         android:text="@string/annirudh_bhati" />
 
@@ -110,10 +109,12 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvName"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="@dimen/_4sdp"
                         android:fontFamily="@font/inter_medium"
                         android:text="@string/yogendra54_gmail_com" />
 
                     <TextView
+                        android:id="@+id/tvMobileNo"
                         style="@style/QuinaryLightSubTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -141,8 +142,7 @@
                     android:layout_marginBottom="@dimen/_24sdp"
                     android:background="@color/white"
                     android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/_12sdp"
-                    android:paddingVertical="@dimen/_12sdp">
+                    android:padding="@dimen/_12sdp">
 
                     <TextView
                         style="@style/QuaternaryTextStyle"
@@ -177,7 +177,7 @@
                         style="@style/QuaternaryTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:fontFamily="@font/inter_medium"
                         android:text="@string/account_number" />
 
@@ -208,13 +208,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:weightSum="2">
 
                         <TextView
                             style="@style/QuaternaryTextStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_marginEnd="@dimen/_8sdp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
@@ -224,7 +224,6 @@
                             style="@style/QuaternaryTextStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
                             android:text="@string/type" />
@@ -270,8 +269,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            >
+                            android:orientation="vertical">
 
                             <EditText
                                 style="@style/QuinaryTextStyle"
@@ -300,7 +298,7 @@
                         style="@style/QuaternaryTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:fontFamily="@font/inter_medium"
                         android:text="@string/branch" />
 

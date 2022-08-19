@@ -63,7 +63,7 @@
                     android:id="@+id/mcvFromDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
                     app:cardBackgroundColor="@color/background"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:strokeColor="@color/HorizontallineColor"
@@ -126,7 +126,7 @@
                     android:id="@+id/mcvToDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
                     app:cardBackgroundColor="@color/background"
                     app:cardCornerRadius="@dimen/_8sdp"
                     app:strokeColor="@color/HorizontallineColor"
@@ -185,7 +185,7 @@
             android:background="@drawable/theme_backround"
             android:fontFamily="@font/inter_bold"
             android:gravity="center"
-            android:paddingVertical="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_13sdp"
             android:text="@string/apply" />
     </LinearLayout>
 
