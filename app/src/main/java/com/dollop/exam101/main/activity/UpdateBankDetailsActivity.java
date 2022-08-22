@@ -1,6 +1,7 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
@@ -17,16 +18,20 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
-import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityUpdateBankDetailsBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.validation.ResultReturn;
 import com.dollop.exam101.main.validation.Validation;
 import com.dollop.exam101.main.validation.ValidationModel;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -154,20 +159,6 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
         }
     }
 
-    void userLogin() {
-        HashMap<String, String> hm = new HashMap<>();
-        apiService.updateBankDetails(hm).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
-            }
-        });
-    }
 
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -198,11 +189,7 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, validationModels);
         if (resultReturn.aBoolean) {
-            if (AppController.getInstance().isOnline()) {
-
-            } else {
-
-            }
+            updateBankDetail();
         } else {
             resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
@@ -218,6 +205,46 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
 
         }
 
+    }
+
+    private void updateBankDetail() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.accPayeeName, binding.etHolderName.getText().toString());
+        hm.put(Constants.Key.accNumber, binding.etAccountNumber.getText().toString());
+        hm.put(Constants.Key.ifscCode, binding.etIfscCode.getText().toString());
+        hm.put(Constants.Key.acBranchName, binding.etBranch.getText().toString());
+        hm.put(Constants.Key.accType, binding.etSelectType.getText().toString());
+        apiService.updateBankDetail(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        Utils.T(activity, getString(R.string.bank_detail_update_successfully));
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
     }
 
 }

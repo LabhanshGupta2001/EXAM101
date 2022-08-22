@@ -158,7 +158,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {

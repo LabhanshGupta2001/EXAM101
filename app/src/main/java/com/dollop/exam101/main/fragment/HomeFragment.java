@@ -253,7 +253,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                                Utils.T(requireActivity(), message.message);
+
                                 Utils.UnAuthorizationToken(requireActivity());
                             }
                         } else {
@@ -311,7 +311,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
                             Utils.UnAuthorizationToken(activity);
                         }
                     }

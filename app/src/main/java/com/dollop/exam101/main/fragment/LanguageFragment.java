@@ -96,7 +96,7 @@ public class LanguageFragment extends Fragment implements View.OnClickListener{
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(getContext(), message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(getContext(), message.message);
+                            Utils.UnAuthorizationToken(requireActivity());
                         }
                     }
                 } catch (Exception e) {

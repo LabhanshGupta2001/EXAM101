@@ -190,7 +190,7 @@ public class PackageListFragment extends Fragment implements View.OnClickListene
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                                Utils.T(requireActivity(), message.message);
+
                                 Utils.UnAuthorizationToken(requireActivity());
                             }
                         } else {
