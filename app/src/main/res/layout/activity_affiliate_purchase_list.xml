@@ -164,6 +164,7 @@
         app:tabIndicatorHeight="2dp"
         app:tabMode="scrollable"
         app:tabTextAppearance="@style/QuinaryTabTextStyle" />
+
     <TextView
         android:id="@+id/tvFilter"
         style="@style/SenaryTextStyle"

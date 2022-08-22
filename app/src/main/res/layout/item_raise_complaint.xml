@@ -120,7 +120,7 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
                         app:cardBackgroundColor="@color/theme"
-                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardCornerRadius="@dimen/_6sdp"
                         app:strokeColor="@color/HorizontallineColor"
                         app:strokeWidth="@dimen/_3sdp">
 
@@ -154,7 +154,7 @@
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_4sdp"
                     app:cardBackgroundColor="@color/lightYellow"
-                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:cardCornerRadius="@dimen/_11sdp"
                     app:cardElevation="0dp"
                     app:strokeColor="@color/yellow"
                     app:strokeWidth="1dp">

@@ -13,7 +13,7 @@
             android:layout_height="@dimen/_5sdp"
             android:layout_marginVertical="@dimen/_8sdp"
             app:cardBackgroundColor="@color/lightgrey"
-            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_2sdp"
             android:layout_gravity="center_horizontal"
             app:cardElevation="1dp" />
 

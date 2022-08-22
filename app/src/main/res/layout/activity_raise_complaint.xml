@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/theme_light"
-                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_14sdp"
                 app:cardElevation="0dp"
                 app:strokeColor="@color/theme"
                 app:strokeWidth="1dp">
