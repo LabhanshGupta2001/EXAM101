@@ -108,7 +108,7 @@
                 android:layout_gravity="end"
                 android:fontFamily="@font/gothic_bold"
                 android:paddingEnd="@dimen/_4sdp"
-                android:text="₹3000.0" />
+                android:text="₹300183.00" />
 
             <TextView
                 android:id="@+id/tvBankTransfer"

@@ -13,7 +13,7 @@
         android:orientation="horizontal"
         android:background="@drawable/ll_bg_corner"
         android:weightSum="1"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         tools:ignore="UseCompoundDrawables">
 
         <LinearLayout
@@ -98,16 +98,21 @@
 
                 <TextView
                     android:id="@+id/tvSubTotal_Id"
-                    android:layout_width="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_regular"
                     android:text="@string/pakage_name"
+                    android:layout_marginEnd="@dimen/_8sdp"
                     android:theme="@style/QuinaryLightSubTextStyle" />
 
                 <TextView
+                    android:id="@+id/tvPackageName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tvSubTotal_Id"
                     android:layout_alignParentEnd="true"
+                    android:gravity="end"
                     android:fontFamily="@font/inter_semibold"
                     android:text="@string/pakage_name"
                     android:theme="@style/QuinaryLightTextStyle" />

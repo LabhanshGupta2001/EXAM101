@@ -9,7 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTransactionHistory"
-        android:paddingTop="@dimen/_2sdp"
+        android:paddingTop="@dimen/_6sdp"
         android:layout_width="match_parent"
         android:paddingBottom="@dimen/_12sdp"
         android:overScrollMode="never"

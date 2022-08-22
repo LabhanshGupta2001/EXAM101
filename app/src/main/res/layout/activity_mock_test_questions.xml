@@ -201,10 +201,10 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpQuestion"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_height="match_parent"
         android:layout_above="@+id/llPageCount"
-        android:layout_below="@id/llHorizontal">
+        android:layout_below="@id/llHorizontal"
+        android:layout_marginHorizontal="@dimen/_12sdp">
 
     </androidx.viewpager2.widget.ViewPager2>
 

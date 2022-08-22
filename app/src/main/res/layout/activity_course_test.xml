@@ -48,7 +48,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomView"
+        android:layout_above="@+id/llNextBtn"
         android:layout_below="@id/llToolbar">
 
         <LinearLayout
@@ -72,12 +72,12 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <View
+   <!-- <View
         android:id="@+id/bottomView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_4sdp"
+        android:layout_height="@dimen/_12sdp"
         android:layout_above="@id/llNextBtn"
-        android:background="@color/lineColor" />
+        android:background="@color/lineColor" />-->
     <LinearLayout
         android:id="@+id/llNextBtn"
         android:layout_width="match_parent"

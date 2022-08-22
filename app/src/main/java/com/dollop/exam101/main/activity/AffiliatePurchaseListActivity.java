@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityAffiliatePurchaseListBinding;
 import com.dollop.exam101.databinding.BottomSheetAffiliatePurchaseListBinding;
@@ -51,8 +52,8 @@ public class AffiliatePurchaseListActivity extends BaseActivity implements View.
 
         ArrayList<String> title = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
-        title.add("Purchase List");
-        title.add("Transaction History");
+        title.add(Constants.Key.PurchaseList);
+        title.add(Constants.Key.TransactionHistory);
 
         fragments.add(new PurchaseListFragment());
         fragments.add(new TransactionHistoryFragment());

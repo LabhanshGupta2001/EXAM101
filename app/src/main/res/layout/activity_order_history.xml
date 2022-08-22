@@ -54,6 +54,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_order_history"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:overScrollMode="never">
 
             </androidx.recyclerview.widget.RecyclerView>

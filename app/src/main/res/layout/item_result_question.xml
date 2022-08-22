@@ -4,176 +4,179 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="@dimen/_12sdp"
-    android:orientation="vertical">
-
-  <!--  <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvAns"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_6sdp"
-        app:cardElevation="@dimen/_2sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        app:strokeColor="@color/lineColor">
--->
-        <LinearLayout
-            android:id="@+id/llMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_test_question"
-            android:weightSum="1"
-            android:layout_marginTop="@dimen/_12sdp"
-            tools:ignore="UseCompoundDrawables">
-
-            <LinearLayout
-                android:id="@+id/llIn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:paddingVertical="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/SenaryPrimaryTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="Questions 1"
-                    tools:ignore="InefficientWeight" />
-
-                <TextView
-                    style="@style/QuinaryTheemTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="@string/correct_answer"
-                    tools:ignore="InefficientWeight" />
-                <TextView
-                    android:id="@+id/tvWrongAnwar"
-                    style="@style/QuinaryRedTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="@string/wrong_answer"
-                    tools:ignore="InefficientWeight" />
-            </LinearLayout>
-
-
-            <ImageView
-                android:id="@+id/ivDropdown"
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:contentDescription="@string/image"
-                android:rotation="90"
-                android:src="@drawable/ic_arrow_right" />
-        </LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="@dimen/_minus2sdp"
-    android:visibility="gone"
-    android:background="@drawable/stroke_curve_bottom"
-    android:id="@+id/llBelow">
+    android:paddingHorizontal="@dimen/_12sdp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvWrong"
+    <!--  <com.google.android.material.card.MaterialCardView
+          android:id="@+id/mcvAns"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:cardCornerRadius="@dimen/_6sdp"
+          app:cardElevation="@dimen/_2sdp"
+          android:layout_marginTop="@dimen/_12sdp"
+          app:strokeColor="@color/lineColor">
+  -->
+    <LinearLayout
+        android:id="@+id/llMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        app:cardCornerRadius="@dimen/_6sdp"
-        app:cardElevation="@dimen/_2sdp"
-        app:strokeColor="@color/lineColor">
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/bg_test_question"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        tools:ignore="UseCompoundDrawables">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/llIn"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="@dimen/_10sdp"
-            android:weightSum="1"
-            tools:ignore="UseCompoundDrawables">
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_10sdp">
 
             <TextView
-                android:id="@+id/tvWrongAns"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/inter_regular"
-                android:text="HighText Machine Language"
-                android:theme="@style/QuinaryLightTextStyle"
-                tools:ignore="InefficientWeight" />
-
-            <TextView
-                android:id="@+id/tvWrongRed"
-                style="@style/QuinaryRedTextStyle"
+                style="@style/SenaryPrimaryTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/wrong"
-                tools:ignore="InefficientWeight" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvCorrect"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        app:cardCornerRadius="@dimen/_6sdp"
-        app:cardElevation="@dimen/_2sdp"
-        app:strokeColor="@color/lineColor">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="@dimen/_10sdp"
-            android:weightSum="1"
-            tools:ignore="UseCompoundDrawables">
-
-            <TextView
-                android:id="@+id/tvCorrectAns"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/inter_regular"
-                android:text="Hyper Text Markup Language"
-                android:theme="@style/QuinaryLightTextStyle"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Questions 1"
                 tools:ignore="InefficientWeight" />
 
             <TextView
-                android:id="@+id/tvCorrectGreen"
                 style="@style/QuinaryTheemTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:fontFamily="@font/inter_medium"
-                android:text="@string/correct"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/correct_answer"
+                tools:ignore="InefficientWeight" />
+
+            <TextView
+                android:id="@+id/tvWrongAnwar"
+                style="@style/QuinaryRedTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/wrong_answer"
+                android:visibility="gone"
                 tools:ignore="InefficientWeight" />
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivDropdown"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:contentDescription="@string/image"
+            android:rotation="90"
+            android:src="@drawable/ic_arrow_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBelow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_minus4sdp"
+        android:background="@drawable/stroke_curve_bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvWrong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:cardElevation="@dimen/_2sdp"
+            app:strokeColor="@color/lineColor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_10sdp"
+                android:weightSum="1"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/tvWrongAns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="HighText Machine Language"
+                    android:theme="@style/QuinaryLightTextStyle"
+                    tools:ignore="InefficientWeight" />
+
+                <TextView
+                    android:id="@+id/tvWrongRed"
+                    style="@style/QuinaryRedTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/wrong"
+                    tools:ignore="InefficientWeight" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvCorrect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:cardElevation="@dimen/_2sdp"
+            app:strokeColor="@color/lineColor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_10sdp"
+                android:weightSum="1"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/tvCorrectAns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="Hyper Text Markup Language"
+                    android:theme="@style/QuinaryLightTextStyle"
+                    tools:ignore="InefficientWeight" />
+
+                <TextView
+                    android:id="@+id/tvCorrectGreen"
+                    style="@style/QuinaryTheemTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/correct"
+                    tools:ignore="InefficientWeight" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 
 </LinearLayout>

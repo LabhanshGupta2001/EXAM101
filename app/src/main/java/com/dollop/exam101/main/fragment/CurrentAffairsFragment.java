@@ -2,21 +2,17 @@ package com.dollop.exam101.main.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.dollop.exam101.Basics.Retrofit.ApiService;
-import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.R;
-import com.dollop.exam101.databinding.FragmentCartBinding;
 import com.dollop.exam101.databinding.FragmentCurrentAffairsBinding;
-import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.adapter.BlogsHomeAdapter;
 import com.dollop.exam101.main.adapter.NewsAdapter;
 import com.dollop.exam101.main.model.AllBlogListModel;
@@ -53,6 +49,8 @@ public class CurrentAffairsFragment extends Fragment implements View.OnClickList
 
     private void init() {
         newsModelArrayList.clear();
+        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
+                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
         newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
                 String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
         newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),

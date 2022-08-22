@@ -143,7 +143,7 @@
     <string name="annirudh_bhati">Annirudh Bhati</string>
     <string name="saving_account">Saving Account</string>
     <string name="account_number">Account Number</string>
-    <string name="ifsc_code">IFSC CODE -&#160;</string>
+    <string name="ifsc_code">IFSC CODE</string>
     <string name="sbin0001707">SBIN0001707</string>
     <string name="update_bank_details">Update Bank Details</string>
     <string name="bank_details">Bank Details</string>
@@ -299,9 +299,6 @@
     <string name="yogendratiwari54_gmail_com">yogendratiwari54@gmail,com</string>
 
     //Guru String
-    <string name="friend_purchase">Friend purchase the package with <font color="#00A651">5%</font> Discount</string>
-    <string name="get_amount">You get  <font color="#00A651">5%</font>  amount in your wallet</string>
-    <string name="get_syllabus_in_hindi">Get <font color="#FFFFFF">Syllabus</font> in Hindi</string>
     <string name="get_your_personalised_calender">Get your Personalised Calendar</string>
     <string name="my_package">My Package</string>
     <string name="faq">FAQs</string>
@@ -478,6 +475,13 @@
     <string name="enroll_now">Enroll Now</string>
     <string name="rate_blog">Rate Blog</string>
     <string name="faq_s">FAQ’s</string>
+    <string name="friend_purchase">Friend purchase the package with <font color="#00A651">5%</font> Discount</string>
+    <string name="get_amount">You get  <font color="#00A651">5%</font>  amount in your wallet</string>
+    <string name="get_syllabus_in_hindi">Get <font color="#FFFFFF">Syllabus</font> in Hindi</string>
+
+    <string name="all_results">All Results</string>
+    <string name="performance">Performance</string>
+    <string name="landing_page">Landing Page</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/llMain"
     tools:context=".main.fragment.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -266,10 +267,10 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_12sdp"
                 android:textAlignment="center"
                 app:tabIndicatorHeight="2dp"
                 app:tabMode="scrollable"
-                android:paddingHorizontal="@dimen/_12sdp"
                 app:tabSelectedTextColor="@color/theme"
                 app:tabTextAppearance="@style/HomeHeadingTextStyle"
                 app:tabTextColor="@color/black" />

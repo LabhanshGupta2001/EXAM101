@@ -84,7 +84,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.bottom_home, R.id.bottom_category, R.id.bottom_packages, R.id.bottom_cart)
                 .build();
-
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
         //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));

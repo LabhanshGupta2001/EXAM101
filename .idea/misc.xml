@@ -8,14 +8,13 @@
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/grey_stroke_background.xml" value="0.2075" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_exam_.xml" value="0.179" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_heart_red.xml" value="0.1455" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_logout.xml" value="0.2075" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/ic_plain_heart.xml" value="0.1455" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/range_thumb.xml" value="0.187" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/stroke_bottom_test_material.xml" value="0.156" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/stroke_curve_bottom.xml" value="0.156" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/theme_stroke_background.xml" value="0.1965" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_blogs_list.xml" value="0.20416666666666666" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_category_details.xml" value="0.18854166666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_blogs_list.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_category_details.xml" value="0.22" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
@@ -23,21 +22,20 @@
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_contact_us.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_course_list.xml" value="0.1828125" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_course_test.xml" value="0.2" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20364583333333333" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_courses_detail.xml" value="0.2" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_courses_material.xml" value="0.1" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_courses_detail.xml" value="0.18854166666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.22" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_faqs.xml" value="0.21" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_forgot_password.xml" value="0.18854166666666666" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_forgot_password.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.5" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login_history.xml" value="0.2" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_mock_test_history.xml" value="0.2" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_mock_test_list.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_my_wishlist.xml" value="0.20416666666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_order_history.xml" value="0.20416666666666666" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.18020833333333333" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_reset_password.xml" value="0.18854166666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_otp_verification.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.22" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.33" />
@@ -67,9 +65,9 @@
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_language.xml" value="0.20416666666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.5" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_performance.xml" value="0.2" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_price.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_transaction_history.xml" value="0.20416666666666666" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/internet_connection.xml" value="0.18854166666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_authore_search.xml" value="0.33" />
@@ -80,26 +78,27 @@
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_category_home.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course.xml" value="0.67" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_list.xml" value="0.5" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_material_chapter_name_list.xml" value="0.2" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_material_subject_module_list.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_material_chapter_name_list.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_material_subject_module_list.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_material_subject_name.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_course_test_question_list.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_exam_fragment.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_language.xml" value="0.25" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_login_history.xml" value="0.22" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_mock_test_history_allresults.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_mock_test_list.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_mock_test_package.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.5" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.5" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.4749498997995992" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_packages_detail_ternary.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_pakages_details_primary.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_pakages_details_secondry.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_purchase_list.xml" value="0.20416666666666666" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.33" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.25" />
-        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/no_internet_connection.xml" value="0.22" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.22" />
+        <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/no_internet_connection.xml" value="0.22" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/no_result_found.xml" value="0.18020833333333333" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.22" />
@@ -462,6 +461,7 @@
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_categories_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_category_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_current_affairs_news.xml" value="0.25" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_purchase_list.xml" value="0.25" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.2810126582278481" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.33" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
