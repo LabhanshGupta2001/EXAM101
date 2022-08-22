@@ -282,6 +282,7 @@
 
     <string name="_5305">5305</string>
     <string name="enter_your_new_password_and_confirm_nto_login_into_your_account">Enter your new password and confirm\nto login into your account</string>
+
     <string name="email_gmail_com">Email@gmail.com</string>
     <string name="register">Register</string>
     <string name="take_your">Take Your</string>
@@ -358,6 +359,7 @@
     <string name="remaining">Remaining</string>
     <string name="start_test">Start Test</string>
     <string name="course_video">Course Video</string>
+    <string name="favorite_class">Favorite <Font Color="#FF00A651"> Class</Font></string>
 
     \\ nilesh patidar
     <string name="answer_these_simple_questions_on_digital">Answer these simple questions On Digital</string>
@@ -426,6 +428,7 @@
     <string name="other">Other</string>
     <!--Guru-->
     <string name="note">Note</string>
+    <string name="note_text">All questions have multiple choice answers. Select the answer closest to your understanding. Individuals who generate a score below 100% need to try the test again. \n<b>Good luck!</b></string>
     <string name="practice_test">Practice Test</string>
     <string name="you_will_get_a_code_when_admin_approved_your_request">You will get a code when admin approved your request</string>
     <string name="request_pending_for_affiliation_code">Request pending for affiliation code</string>
@@ -472,12 +475,13 @@
     <string name="enroll_now">Enroll Now</string>
     <string name="rate_blog">Rate Blog</string>
     <string name="faq_s">FAQ’s</string>
-    <string name="note_text">All questions have multiple choice answers. Select the answer closest to your understanding. Individuals who generate a score below 100% need to try the test again. \n<Font Color="#01170C"> Good luck!</Font></string>
-    <string name="favorite_class">Favorite <Font Color="#FF00A651"> Class</Font></string>
     <string name="friend_purchase">Friend purchase the package with <font color="#00A651">5%</font> Discount</string>
     <string name="get_amount">You get  <font color="#00A651">5%</font>  amount in your wallet</string>
     <string name="get_syllabus_in_hindi">Get <font color="#FFFFFF">Syllabus</font> in Hindi</string>
 
+    <string name="all_results">All Results</string>
+    <string name="performance">Performance</string>
+    <string name="landing_page">Landing Page</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

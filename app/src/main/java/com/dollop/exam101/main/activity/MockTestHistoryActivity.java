@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityMockTestHistoryBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
 import com.dollop.exam101.main.fragment.AllResultsFragment;
@@ -33,8 +34,8 @@ public class MockTestHistoryActivity extends BaseActivity implements View.OnClic
 
     private void init() {
         binding.ivBack.setOnClickListener(this);
-        Tittle.add("All Results");
-        Tittle.add("Performance");
+        Tittle.add(getString(R.string.all_results));
+        Tittle.add(getString(R.string.performance));
 
         fragments.add(new AllResultsFragment());
         fragments.add(new PerformanceFragment());

@@ -40,15 +40,15 @@ import retrofit2.Response;
 
 public class CategoriesFragment extends Fragment implements View.OnClickListener {
     public CategoriesFragmentAdapter categoriesFragmentAdapter;
+    public int pos = -1;
     ApiService apiService;
     Activity activity;
-    public int pos = -1;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     OnItemClicked onItemClicked;
     private FragmentCategoriesBinding binding;
     private String From;
 
-    public CategoriesFragment(String key, OnItemClicked onItemClicked,int position) {
+    public CategoriesFragment(String key, OnItemClicked onItemClicked, int position) {
         From = key;
         this.onItemClicked = onItemClicked;
         pos = position;
@@ -92,7 +92,7 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
                         courseModelArrayList.clear();
                         courseModelArrayList.addAll(response.body().examListModels);
                         binding.rvCategoriesItem.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        categoriesFragmentAdapter = new CategoriesFragmentAdapter(courseModelArrayList, requireActivity(), From,pos);
+                        categoriesFragmentAdapter = new CategoriesFragmentAdapter(courseModelArrayList, requireActivity(), From, pos);
                         binding.rvCategoriesItem.setAdapter(categoriesFragmentAdapter);
                     } else {
                         assert response.errorBody() != null;

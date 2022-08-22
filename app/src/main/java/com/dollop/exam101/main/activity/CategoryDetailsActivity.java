@@ -202,7 +202,6 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         binding.rvPackagesHeading.setLayoutManager(linearLayoutManager);
                         // linearLayoutManager.startSmoothScroll(smoothScroller);
                         binding.rvPackagesHeading.getLayoutManager().scrollToPosition(Positions);
-                        binding.rvPackagesHeading.getLayoutManager().scrollToPosition(Positions);
                         binding.rvPackagesHeading.setAdapter(new CategoryDetailAdapter(activity, courseModelArrayList, Positions));
                     } else {
                         assert response.errorBody() != null;

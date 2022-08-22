@@ -40,6 +40,8 @@
         android:id="@+id/rvLoginHistory"
         android:background="@color/white"
         android:overScrollMode="never"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_login_history"
         android:layout_marginTop="@dimen/_12sdp"
         />
 

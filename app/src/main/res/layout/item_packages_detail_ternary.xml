@@ -12,9 +12,12 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_12sdp"
+        android:outlineAmbientShadowColor="@color/ShadowColor"
+        android:outlineSpotShadowColor="@color/ambientColor"
         app:cardCornerRadius="@dimen/_6sdp"
-        app:cardElevation="@dimen/_2sdp"
-        app:strokeColor="@color/lineColor">
+        app:cardElevation="6dp"
+        app:strokeColor="@color/lineColor"
+        tools:ignore="UnusedAttribute">
 
         <LinearLayout
             android:layout_width="match_parent"

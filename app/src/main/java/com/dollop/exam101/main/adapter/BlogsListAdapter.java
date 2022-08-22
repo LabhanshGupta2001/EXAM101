@@ -19,6 +19,7 @@ import com.dollop.exam101.main.model.BlogListHeadingModel;
 import com.dollop.exam101.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.MyHolder>{
     Context context;
