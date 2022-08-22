@@ -148,7 +148,6 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
         fileName = getFileName(Fpath);
         Utils.E("file name:: " + fileName);
         Utils.T(activity, fileName);
-
         if (resultCode != RESULT_CANCELED) {
             binding.llUpload.setVisibility(View.GONE);
             binding.llUploadPdfDone.setVisibility(View.VISIBLE);

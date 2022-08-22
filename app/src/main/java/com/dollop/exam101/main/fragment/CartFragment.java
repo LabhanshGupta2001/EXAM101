@@ -213,7 +213,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                             if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                                 Utils.T(activity, message.message);
                             } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                                Utils.T(activity, message.message);
+
                                 Utils.UnAuthorizationToken(activity);
                             }
                         }
@@ -255,11 +255,10 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     }
                 } else {
                     assert response.errorBody() != null;
-                    APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                     if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         Utils.T(activity, message.message);
                     } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                        Utils.T(activity, message.message);
                         Utils.UnAuthorizationToken(activity);
                     }
                 }
@@ -346,7 +345,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -387,7 +386,6 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                             Utils.T(activity, message.message);
                             Utils.I(activity, PaymentFailedActivity.class, null);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
                             Utils.UnAuthorizationToken(activity);
                         }
                     }

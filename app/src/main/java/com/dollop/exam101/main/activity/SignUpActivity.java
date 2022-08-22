@@ -313,7 +313,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -351,7 +351,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -495,13 +495,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
                         assert response.body() != null;
+                        Utils.T(activity,response.body().message);
                         Utils.I_clear(activity, LoginActivity.class, bundle);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                                Utils.T(activity, message.message);
                                 Utils.UnAuthorizationToken(activity);
                             }
                         } else {

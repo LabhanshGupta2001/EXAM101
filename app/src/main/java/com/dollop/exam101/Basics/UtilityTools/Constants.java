@@ -153,5 +153,10 @@ public class Constants {
         String Blogs = "Blogs";
         String PurchaseList = "Purchase List";
         String TransactionHistory = "Transaction History";
+        String accPayeeName = "accPayeeName";
+        String accNumber = "accNumber";
+        String ifscCode = "ifscCode";
+        String acBranchName = "acBranchName";
+        String accType = "accType";
     }
 }

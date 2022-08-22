@@ -482,6 +482,8 @@
     <string name="all_results">All Results</string>
     <string name="performance">Performance</string>
     <string name="landing_page">Landing Page</string>
+    <string name="bank_detail_update_successfully">\"Bank details updated successfully \"</string>
+    <string name="invalid_token">Invalid Token</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>
