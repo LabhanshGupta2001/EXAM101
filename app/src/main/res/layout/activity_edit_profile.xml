@@ -144,6 +144,8 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/email_address"
+                    android:enabled="true"
+                    android:focusable="false"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="@dimen/_16sdp"
                     android:paddingVertical="@dimen/_12sdp"
@@ -166,7 +168,7 @@
                     android:layout_marginHorizontal="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_12sdp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_30sdp"
+                    app:cardCornerRadius="@dimen/_18sdp"
                     app:cardElevation="0dp"
                     app:strokeColor="@color/HorizontallineColor"
                     app:strokeWidth="@dimen/_1sdp">
@@ -191,7 +193,7 @@
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
-                                app:cardCornerRadius="@dimen/_30sdp">
+                                app:cardCornerRadius="@dimen/_10sdp">
 
                                 <ImageView
                                     android:id="@+id/iv_flag_india_id"

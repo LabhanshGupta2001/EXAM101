@@ -77,12 +77,25 @@ public interface ApiService {
 
     @GET(Const.Url.getPracticeQuestionListApi)
     Call<AllResponseModel> getMyQuestionList(@Header(Constants.Key.Authorization) String token,
-                                            @QueryMap HashMap<String,String>hm);
+                                             @QueryMap HashMap<String, String> hm);
 
     @FormUrlEncoded
     @POST(Const.Url.submitPracticeTestApi)
     Call<AllResponseModel> practiceTestSubmit(@Header(Constants.Key.Authorization) String token,
-                                            @FieldMap HashMap<String, String> hm);
+                                              @FieldMap HashMap<String, String> hm);
+
+    @Multipart
+    @POST(Const.Url.raiseComplaintApi)
+    Call<AllResponseModel> addRaiseComplaint(@Header(Constants.Key.Authorization) String token,
+                                             @PartMap HashMap<String, RequestBody> hm,
+                                             @Part MultipartBody.Part attachment);
+
+    @GET(Const.Url.getRaisedComplaintListApi)
+    Call<AllResponseModel> getComplaintList(@Header(Constants.Key.Authorization) String token);
+
+   /* @GET(Const.Url.getRaisedComplaintDetailApi)
+    Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,
+                                              @FieldMap HashMap<String, String> hm);*/
 
 //______________________________********************___________________________________________//
 
@@ -146,8 +159,6 @@ public interface ApiService {
     Call<AllResponseModel> getCourseList(@Header(Constants.Key.Authorization) String token);
 
 
-
-
     @GET(Const.Url.getCourseMaterialProgressBar)
     Call<AllResponseModel> getCourseMaterialProgressBar(@Header(Constants.Key.Authorization) String token);
 
@@ -196,10 +207,6 @@ public interface ApiService {
     @POST(Const.Url.loginApi)
     Call<AllResponseModel> userLogin(@FieldMap HashMap<String, String> hm);
 
-    @FormUrlEncoded
-    @POST(Const.Url.update_details)
-    Call<AllResponseModel> updateBankDetails(@FieldMap HashMap<String, String> hm);
-
     @GET(Const.Url.get_result)
     Call<AllResponseModel> getResult(@FieldMap HashMap<String, String> hm);
 
@@ -222,8 +229,6 @@ public interface ApiService {
     @POST(Const.Url.otp_verification)
     Call<AllResponseModel> otpVerification(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.Url.get_complaint)
-    Call<AllResponseModel> getComplaintList(@FieldMap HashMap<String, String> hm);
 
     @GET(Const.Url.order_history)
     Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);
@@ -294,4 +299,13 @@ public interface ApiService {
     @DELETE(Const.Url.removeFromWishListApi + "/{" + Constants.Key.wishListUuid + "}")
     Call<AllResponseModel> removeFromWishList(@Header(Constants.Key.Authorization) String token,
                                               @Path(Constants.Key.wishListUuid) String wishListUuid);
+
+    @FormUrlEncoded
+    @PUT(Const.Url.updateBankDetailApi)
+    Call<AllResponseModel> updateBankDetail(@Header(Constants.Key.Authorization) String token,
+                                            @FieldMap HashMap<String, String> hashMap);
+
+    @GET(Const.Url.getStudentOrderListApi)
+    Call<AllResponseModel> getStudentOrderListApi(@Header(Constants.Key.Authorization) String token);
+
 }

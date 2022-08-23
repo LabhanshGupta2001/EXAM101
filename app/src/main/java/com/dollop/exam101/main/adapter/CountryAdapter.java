@@ -58,7 +58,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         holder.binding.llItem.setOnClickListener(view -> {
             Position = holder.getAdapterPosition();
             SavedData.saveCountryUuId(itemCountry.uuid);
-            SavedData.saveCountryKey(itemCountry.sortName);
+           // SavedData.saveCountryKey(itemCountry.sortName);
             notifyDataSetChanged();
             if (Constants.Key.Login.equals(Where)){
                 ((SignUpActivity) context).onCountrySelected(itemCountry.uuid , itemCountry.countryName /*itemCountry.phoneCode, itemCountry.flag*/);

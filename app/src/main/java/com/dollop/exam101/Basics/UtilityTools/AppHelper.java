@@ -70,6 +70,27 @@ public class AppHelper {
     }
 
 
+    public static byte[] getBytes(Context context, Uri uri)  {
+        InputStream iStream;
+        ByteArrayOutputStream byteBuffer = null;
+        try {
+            iStream = context.getContentResolver().openInputStream(uri);
+            byteBuffer = new ByteArrayOutputStream();
+            int bufferSize = 1024;
+            byte[] buffer = new byte[bufferSize];
+            int len = 0;
+            while ((len = iStream.read(buffer)) != -1) {
+                byteBuffer.write(buffer, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert byteBuffer != null;
+        return byteBuffer.toByteArray();
+    }
+
+
     public static MultipartBody.Part prepareFilePart(Context context, String partName, Uri fileUri) {
         RequestBody requestBody =
                 RequestBody.create( getFileDataFromDrawable(context, fileUri), MediaType.parse(Constants.Key.CONTENT_IMAGE));
@@ -92,6 +113,13 @@ public class AppHelper {
         RequestBody requestBody = RequestBody.create("", MediaType.parse(Constants.Key.CONTENT_IMAGE));
 
         return MultipartBody.Part.createFormData(partName, "", requestBody);
+    }
+
+
+    public static MultipartBody.Part prepareFilePartPDF(Context context, String partName, Uri fileUri) {
+        RequestBody requestBody =
+                RequestBody.create(getBytes(context, fileUri), MediaType.parse(Constants.Key.CONTENT_ALL_DOC));
+        return MultipartBody.Part.createFormData(partName, partName+Constants.Key.PDF, requestBody);
     }
 
 }

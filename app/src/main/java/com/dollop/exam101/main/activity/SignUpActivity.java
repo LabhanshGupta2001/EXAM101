@@ -37,6 +37,7 @@ import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
+import com.dollop.exam101.Basics.UtilityTools.SavedData;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -284,17 +285,17 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             bottomSheetStateTask();
         } else if (view == binding.tvRegisterId) {
             CheckValidationTask();
-        }/*else if (view == binding.llCountryCode) {
-            bottomSheetCountryTask(Constants.Key.CountryId_Show);
+        }else if (view == binding.llCountryCode) {
+          //  bottomSheetCountryTask(Constants.Key.CountryId_Show);
         } else if (view == binding.tvSelectCountry) {
             binding.tvErrorCountry.setVisibility(View.GONE);
             bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
-        } */
+        }
     }
 
-    private void getState(String countryId) {
+    private void getState() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiservice.getStateList(countryId).enqueue(new Callback<AllResponseModel>() {
+        apiservice.getStateList(SavedData.getCountryUuId()).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -313,7 +314,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -351,7 +352,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -417,7 +418,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         // bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
         bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setSkipCollapsed(true);
-
         countryAdapter = new CountryAdapter(activity, contryItemArrayList, countryKey, Constants.Key.Login);
         bottomSheetCountryBinding.rvCountryListId.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
         bottomSheetCountryBinding.rvCountryListId.setAdapter(countryAdapter);
@@ -451,7 +451,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setSkipCollapsed(true);
         if (AppController.getInstance().isOnline()) {
-            getState(Constants.Key.DefaultCountryUuId);
+            getState();
         } else {
             // Utils.InternetDialog(activity);
             InternetDialog();
@@ -484,7 +484,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         hm.put(Constants.Key.studentMobileNo, binding.etEnterMobile.getText().toString().trim());
         hm.put(Constants.Key.countryCode, binding.tvCountryCodeId.getText().toString().trim());
         hm.put(Constants.Key.countryName, binding.tvSelectCountry.getText().toString().trim());
-        hm.put(Constants.Key.stateName, selectedState);
+        hm.put(Constants.Key.stateName, binding.tvSelectState.getText().toString().trim());
         hm.put(Constants.Key.fcmId, fcmid);
 
         apiservice.userSignup(hm).enqueue(new Callback<AllResponseModel>() {
@@ -495,13 +495,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
                         assert response.body() != null;
+                        Utils.T(activity,response.body().message);
                         Utils.I_clear(activity, LoginActivity.class, bundle);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                                Utils.T(activity, message.message);
                                 Utils.UnAuthorizationToken(activity);
                             }
                         } else {

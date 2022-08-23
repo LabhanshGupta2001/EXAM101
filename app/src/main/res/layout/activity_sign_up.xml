@@ -96,8 +96,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/full_name"
                     android:inputType="textPersonName"
-                    android:paddingVertical="@dimen/_11sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_11sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
@@ -121,8 +121,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
-                    android:paddingVertical="@dimen/_11sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_11sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
 
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_30sdp"
+                    app:cardCornerRadius="@dimen/_20sdp"
                     app:cardElevation="0dp"
                     app:strokeColor="@color/HorizontallineColor"
                     app:strokeWidth="@dimen/_1sdp">
@@ -169,7 +169,7 @@
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
-                                app:cardCornerRadius="@dimen/_30sdp"
+                                app:cardCornerRadius="@dimen/_10sdp"
                                 app:cardElevation="0dp">
 
                                 <ImageView
@@ -243,11 +243,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/input_custom"
+
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/password"
                     android:importantForAutofill="no"
-                    android:paddingVertical="@dimen/_11sdp"
+                    android:inputType="textPassword"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_11sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
@@ -265,14 +267,15 @@
                     android:id="@+id/etConfirmPassword"
                     style="@style/TernaryLightTextStyle"
                     android:layout_width="match_parent"
+                    android:inputType="textPassword"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/conform_password"
                     android:importantForAutofill="no"
-                    android:paddingVertical="@dimen/_11sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_11sdp"
                     android:singleLine="true"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
@@ -295,8 +298,8 @@
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/country"
-                    android:paddingVertical="@dimen/_11sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_11sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill,TextViewEdits" />
 
@@ -318,8 +321,8 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/state"
-                    android:paddingVertical="@dimen/_11sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_11sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
 

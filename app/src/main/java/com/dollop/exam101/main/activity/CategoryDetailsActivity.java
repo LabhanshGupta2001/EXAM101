@@ -209,7 +209,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(getContext(), message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(getContext(), message.message);
+                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {
@@ -260,7 +260,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                                Utils.T(activity, message.message);
+
                                 Utils.UnAuthorizationToken(activity);
                             }
                         } else {

@@ -1,5 +1,6 @@
 package com.dollop.exam101.Basics.UtilityTools;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -20,10 +21,12 @@ import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,13 +59,14 @@ import io.michaelrocks.libphonenumber.android.PhoneNumberUtil;
 
 public class Utils {
 
-      public static UserData GetSession() {
-          return UserDataHelper.getInstance().getList().get(0);
-      }
+    public static UserData GetSession() {
+        return UserDataHelper.getInstance().getList().get(0);
+    }
 
-      public static boolean IS_LOGIN() {
-          return UserDataHelper.getInstance().getList().size() > 0;
-      }
+    public static boolean IS_LOGIN() {
+        return UserDataHelper.getInstance().getList().size() > 0;
+    }
+
     public static void I(Context cx, Class<?> startActivity, Bundle data) {
         Intent i = new Intent(cx, startActivity);
         if (data != null)
@@ -73,12 +77,13 @@ public class Utils {
 
     public static void UnAuthorizationToken(Context cx) {
         UserDataHelper.getInstance().deleteAll();
+      //  Utils.T(cx,cx.getString(R.string.invalid_token));
         I_clear(cx, LoginActivity.class, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static void InternetDialog(Context context) {
-        Dialog dialog = new Dialog(context,android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        Dialog dialog = new Dialog(context, android.R.style.Theme_DeviceDefault_Dialog_Alert);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
@@ -96,19 +101,11 @@ public class Utils {
         dialog.setCanceledOnTouchOutside(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.logout);
-        dialog.findViewById(R.id.tvOK).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.UnAuthorizationToken(c);
-                dialog.dismiss();
-            }
+        dialog.findViewById(R.id.tvOK).setOnClickListener(view -> {
+            Utils.UnAuthorizationToken(c);
+            dialog.dismiss();
         });
-        dialog.findViewById(R.id.tvCancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
+        dialog.findViewById(R.id.tvCancel).setOnClickListener(view -> dialog.cancel());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
@@ -268,7 +265,7 @@ public class Utils {
         String countryCodeValue = tm.getNetworkCountryIso();
         Locale locale = new Locale("en", countryCodeValue);
         String countryName = locale.getDisplayCountry();
-        return new CurrentCountryModel(countryCodeValue.toUpperCase(),"+"+phoneNumberUtil.getCountryCodeForRegion(countryCodeValue.toUpperCase()),countryName);
+        return new CurrentCountryModel(countryCodeValue.toUpperCase(), "+" + phoneNumberUtil.getCountryCodeForRegion(countryCodeValue.toUpperCase()), countryName);
     }
 
     public static void I_finish(Context cx, Class<?> startActivity, Bundle data) {
@@ -291,6 +288,7 @@ public class Utils {
         if (Const.Url.Development.equals(Constants.Key.Debug))
             Log.e("Log.E", msg);
     }
+
     public static int DetectUIMode(Activity activity) {
         return activity.getResources().getConfiguration().uiMode &
                 Configuration.UI_MODE_NIGHT_MASK;
@@ -315,7 +313,6 @@ public class Utils {
             return DateFormat.format("MMM dd yyyy | h:mm aa", smsTime).toString();
         }
     }
-
 
 
     public static String getDateAfterYear() {
@@ -350,7 +347,7 @@ public class Utils {
         Dialog dialog = new Dialog(c);
         dialog.setCanceledOnTouchOutside(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-         dialog.setContentView(R.layout.progress_dialog);
+        dialog.setContentView(R.layout.progress_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
@@ -358,7 +355,13 @@ public class Utils {
     }
 
     public static void T(Context c, String msg) {
-        Toast.makeText(c, msg, Toast.LENGTH_SHORT).show();
+        Toast toast = new Toast(c);
+        View view = LayoutInflater.from(c).inflate(R.layout.custom_toast, null);
+        TextView textView = (TextView) view.findViewById(R.id.tvText);
+        textView.setText(msg);
+        toast.setView(view);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     public static void share(@NonNull Context c, String subject, String shareBody) {

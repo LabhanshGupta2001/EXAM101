@@ -12,7 +12,7 @@
         android:layout_marginVertical="@dimen/_8sdp"
         android:layout_gravity="center"
         app:cardBackgroundColor="@color/lightgrey"
-        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_2sdp"
         app:cardElevation="1dp" />
 
     <LinearLayout

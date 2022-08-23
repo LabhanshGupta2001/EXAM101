@@ -471,6 +471,7 @@
     <string name="rupee_symbol">₹</string>
     <string name="removed_from_wishlist_successfully">Removed from wishlist successfully</string>
     <string name="added_to_wishlist">Added to wishlist successfully</string>
+    <string name="Complaint_Raised_Successfully">Complaint Raised Successfully</string>
     <string name="dots">••••••••••</string>
     <string name="enroll_now">Enroll Now</string>
     <string name="rate_blog">Rate Blog</string>
@@ -482,6 +483,8 @@
     <string name="all_results">All Results</string>
     <string name="performance">Performance</string>
     <string name="landing_page">Landing Page</string>
+    <string name="bank_detail_update_successfully">\"Bank details updated successfully \"</string>
+    <string name="invalid_token">Invalid Token</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

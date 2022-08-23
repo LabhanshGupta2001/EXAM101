@@ -101,10 +101,9 @@
             android:autofillHints="enter complaint"
             android:background="@drawable/grey_stroke_half_curve"
             android:gravity="start"
+
             android:hint="@string/enter_complaint_descripyion"
-            android:imeOptions="actionDone"
             android:inputType="textMultiLine"
-            android:maxLines="5"
             android:padding="@dimen/_14sdp"
             android:textColorHint="@color/sub_text" />
 

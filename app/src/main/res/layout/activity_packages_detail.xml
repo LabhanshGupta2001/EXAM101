@@ -47,17 +47,17 @@
             android:layout_centerVertical="true"
             app:cardElevation="0dp"
             app:cardBackgroundColor="@color/lineColor"
-            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_14sdp"
             app:strokeWidth="0dp">
 
             <TextView
                 android:id="@+id/tvLanguage"
+                style="@style/SenaryThemeTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginVertical="@dimen/_6sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                style="@style/SenaryThemeTextStyle"/>
+                android:layout_marginVertical="@dimen/_6sdp"
+                android:gravity="center" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -387,7 +387,6 @@
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:visibility="gone"
-
         android:weightSum="1">
 
         <com.google.android.material.card.MaterialCardView

@@ -106,7 +106,7 @@
                             android:layout_height="wrap_content"
                             app:cardElevation="0dp"
                             app:cardBackgroundColor="@color/black_transparent"
-                            app:cardCornerRadius="@dimen/_8sdp">
+                            app:cardCornerRadius="@dimen/_4sdp">
                             <TextView
                                 android:id="@+id/tvCurrentAffairs"
                                 style="@style/QuinaryThemeNewsTextStyle"

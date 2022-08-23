@@ -247,12 +247,12 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                 if (view == binding.tvSelectState) {
                     binding.tvErrorState.setVisibility(View.GONE);
                     bottomSheetStateTask();
-                }/*else if (view == binding.llCountryCode) {
-                    bottomSheetCountryTask(Constants.Key.CountryId_Show);
+                }else if (view == binding.llCountryCode) {
+                  //  bottomSheetCountryTask(Constants.Key.CountryId_Show);
                 }  if (view == binding.tvSelectCountry) {
                     binding.tvErrorCountry.setVisibility(View.GONE);
                     bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
-                } */
+                }
             }
         }
 
@@ -428,7 +428,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -470,7 +470,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -642,7 +642,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     public void onCountrySelectedE(String countryUuId, String CountryName /*String countryCode, String flag*/) {
         this.selectedCountryUuId = countryUuId;
         this.selectedCountryName = CountryName;
-        binding.tvSelectCountry.setText(Constants.Key.India);
+        binding.tvSelectCountry.setText(CountryName);
         binding.tvSelectState.setText(Constants.Key.blank);
         bottomSheetDialog.dismiss();
     }

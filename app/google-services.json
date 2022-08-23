@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "157026039832",
+    "project_id": "exam101-cd8ec",
+    "storage_bucket": "exam101-cd8ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157026039832:android:d6b68df168fd0434d9eb6d",
+        "android_client_info": {
+          "package_name": "com.dollop.exam101"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157026039832-fhnh5rne31j5h1b6qps0ho9ae2i151ga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dollop.exam101",
+            "certificate_hash": "97761f87f84dc1f9e68c3ebc3063ece6c24daf42"
+          }
+        },
+        {
+          "client_id": "157026039832-a7gb84o3vaeol8oivgceck01mrrjeg9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsUrtFNoGM0PHeim37GEYhrpVaQcJL1WQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157026039832-a7gb84o3vaeol8oivgceck01mrrjeg9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -168,7 +168,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -208,7 +208,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -250,11 +250,11 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     binding.tvPriceSmall.setText(packageDetailModels.actualPrice);
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
-
                     if (packageDetail.isEmpty()){
                         binding.tvDetail.setVisibility(View.GONE);
                         binding.tvOverView.setVisibility(View.GONE);
                     }else {
+                        binding.tvDetail.setVisibility(View.VISIBLE);
                         binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
                     }
 
@@ -286,7 +286,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                         Utils.T(activity, message.message);
                     } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                        Utils.T(activity, message.message);
                         Utils.UnAuthorizationToken(activity);
                     }
                 }
@@ -322,7 +321,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
@@ -360,7 +359,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.T(activity, message.message);
+
                             Utils.UnAuthorizationToken(activity);
                         }
                     }
