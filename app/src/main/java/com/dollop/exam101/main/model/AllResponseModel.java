@@ -116,4 +116,8 @@ public class AllResponseModel {
     @Expose
     public Integer testAttemptId;
 
+    @SerializedName("complaintList")
+    @Expose
+    public List<ComplaintModel> complaintList = null;
+
 }

@@ -78,7 +78,15 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         tools:listitem="@layout/item_raise_complaint"
-        android:overScrollMode="never" />
+        android:overScrollMode="never"
+        android:visibility="gone"
+        android:paddingBottom="@dimen/_16sdp"/>
+
+    <include
+        layout="@layout/no_result_found"
+        android:id="@+id/layoutDataNotFound"
+        android:visibility="gone"/>
+
 
 </LinearLayout>
 

@@ -12,8 +12,18 @@ public class Constants {
         String CONTENT_IMAGE = "image/jpeg";
         String CONTENT_ALL_IMAGE = "image/*";
         String IMAGE_JPEG = ".jpeg";
+        String PDF = ".pdf";
+        String pdf = "pdf";
+         String CONTENT_ALL_DOC = "application/pdf";
         int Unauthorized = 401;
         String currency = "₹";
+        String doc = "doc";
+        String docx = "docx";
+        String jpg = "jpg";
+        String png = "png";
+        String jpeg = "jpeg";
+        String Document = "Document";
+
 
         //Environment
         String Debug = "Debug";
@@ -49,6 +59,8 @@ public class Constants {
 
 
         String Normal = "Normal";
+        String High = "High";
+        String Critical = "Critical";
         String socialLogin = "socialLogin";
         String Android = "Android";
         String studentMobileNo = "studentMobileNo";
@@ -119,6 +131,7 @@ public class Constants {
         String Transgender = "Transgender";
         String Nonbinary = "Non-binary / Non-Conforming";
         String Prefer_not_to_respond = "Prefer not to respond";
+        String select_priority = "Pleas select priority";
         String dob = "dob";
         String profilePic = "profilePic";
         String gender = "gender";
@@ -153,6 +166,15 @@ public class Constants {
         String Blogs = "Blogs";
         String PurchaseList = "Purchase List";
         String TransactionHistory = "Transaction History";
+        String complaintSubject = "complaintSubject";
+        String complaintDescription = "complaintDescription";
+        String complaintPriority = "complaintPriority";
+        String complaintRemark = "complaintRemark";
+        String ComplaintID = "Complaint ID: ";
+        String complaintUuid   = "complaintUuid";
+        String Active   = "Active";
+        String attachment   = "attachment";
+
         String accPayeeName = "accPayeeName";
         String accNumber = "accNumber";
         String ifscCode = "ifscCode";

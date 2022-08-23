@@ -387,7 +387,6 @@
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:visibility="gone"
-
         android:weightSum="1">
 
         <com.google.android.material.card.MaterialCardView
