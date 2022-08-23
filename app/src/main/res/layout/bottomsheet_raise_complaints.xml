@@ -24,6 +24,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tvComplainId"
             style="@style/SecondaryTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,29 +41,45 @@
             android:background="@color/HorizontallineColor" />
 
         <TextView
+            android:id="@+id/tvDetails"
             style="@style/QuinaryTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:fontFamily="@font/inter_regular"
-            android:lineSpacingExtra="@dimen/_2sdp"
-            android:text="@string/lorem_ipsum_is_simply_dummy_text_of_the_printing_and_type_n_industry_lorem_ipsum_has_been_the_industry_s_standard_n_dummy_text_ever_since_the_1500s_when_an_unknown_printer_n_took_a_galley_of_type_and_scrambled_it_to_make_a_type_n_specimen_book_it_has_survived_not_only_five_centuries_but_n_the_leap_into_electronic_typesetting_remaining_essentially_n_unchanged" />
+            android:lineSpacingExtra="@dimen/_2sdp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_12sdp">
             <ImageView
+                android:visibility="gone"
+                android:src="@drawable/ic_image"
+                android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.github.barteksc.pdfviewer.PDFView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                android:gravity="center"
+                app:layout_constraintDimensionRatio="16:9"
+                android:id="@+id/pvImagePdf"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

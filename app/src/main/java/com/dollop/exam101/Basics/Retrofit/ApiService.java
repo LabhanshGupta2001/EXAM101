@@ -84,6 +84,19 @@ public interface ApiService {
     Call<AllResponseModel> practiceTestSubmit(@Header(Constants.Key.Authorization) String token,
                                             @FieldMap HashMap<String, String> hm);
 
+    @Multipart
+    @POST(Const.Url.raiseComplaintApi)
+    Call<AllResponseModel> addRaiseComplaint(@Header(Constants.Key.Authorization) String token,
+                                             @PartMap HashMap<String, RequestBody> hm,
+                                             @Part MultipartBody.Part attachment);
+
+    @GET(Const.Url.getRaisedComplaintListApi)
+    Call<AllResponseModel> getComplaintList(@Header(Constants.Key.Authorization) String token);
+
+   /* @GET(Const.Url.getRaisedComplaintDetailApi)
+    Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,
+                                              @FieldMap HashMap<String, String> hm);*/
+
 //______________________________********************___________________________________________//
 
     @GET(Const.Url.aboutUs)
@@ -222,8 +235,6 @@ public interface ApiService {
     @POST(Const.Url.otp_verification)
     Call<AllResponseModel> otpVerification(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.Url.get_complaint)
-    Call<AllResponseModel> getComplaintList(@FieldMap HashMap<String, String> hm);
 
     @GET(Const.Url.order_history)
     Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);
