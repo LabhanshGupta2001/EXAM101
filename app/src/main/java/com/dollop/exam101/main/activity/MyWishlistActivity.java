@@ -80,15 +80,16 @@ public class MyWishlistActivity extends BaseActivity implements View.OnClickList
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                    if (response.body().wishList.isEmpty()) {
-                        binding.rvWishList.setVisibility(View.GONE);
-                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
-                    } else {
-                        binding.rvWishList.setVisibility(View.VISIBLE);
-                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
-                    }
+
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
+                        if (response.body().wishList.isEmpty()) {
+                            binding.rvWishList.setVisibility(View.GONE);
+                            binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.rvWishList.setVisibility(View.VISIBLE);
+                            binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                        }
                         wishLists.clear();
                         wishLists.addAll(response.body().wishList);
                         myWishListAdapter.notifyDataSetChanged();

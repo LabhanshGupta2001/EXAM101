@@ -120,4 +120,8 @@ public class AllResponseModel {
     @Expose
     public List<ComplaintModel> complaintList = null;
 
+    @SerializedName("studentOrders")
+    @Expose
+    public List<StudentOrder> studentOrders = null;
+
 }

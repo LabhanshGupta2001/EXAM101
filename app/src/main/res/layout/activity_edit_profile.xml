@@ -144,6 +144,8 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/email_address"
+                    android:enabled="true"
+                    android:focusable="false"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="@dimen/_16sdp"
                     android:paddingVertical="@dimen/_12sdp"

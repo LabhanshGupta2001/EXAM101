@@ -97,5 +97,6 @@ public class Const {
         String getRaisedComplaintListApi = "getRaisedComplaintListApi";
         String getRaisedComplaintDetailApi = "getRaisedComplaintDetailApi";
         String updateBankDetailApi = "updateBankDetailApi";
+        String getStudentOrderListApi = "getStudentOrderListApi";
     }
 }

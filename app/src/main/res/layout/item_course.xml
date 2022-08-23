@@ -15,7 +15,7 @@
         android:layout_marginStart="@dimen/_2sdp"
         android:outlineAmbientShadowColor="@color/ShadowColor"
         android:outlineSpotShadowColor="@color/ambientColor"
-        app:cardElevation="10dp"
+        app:cardElevation="3dp"
         app:cardCornerRadius="@dimen/_8sdp"
         tools:ignore="UnusedAttribute">
 

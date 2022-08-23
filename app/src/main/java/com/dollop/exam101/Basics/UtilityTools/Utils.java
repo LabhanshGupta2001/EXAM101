@@ -77,7 +77,7 @@ public class Utils {
 
     public static void UnAuthorizationToken(Context cx) {
         UserDataHelper.getInstance().deleteAll();
-        Utils.T(cx,cx.getString(R.string.invalid_token));
+      //  Utils.T(cx,cx.getString(R.string.invalid_token));
         I_clear(cx, LoginActivity.class, null);
     }
 

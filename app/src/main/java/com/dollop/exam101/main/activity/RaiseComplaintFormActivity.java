@@ -231,36 +231,6 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
         return (extension != null) ? extension : Constants.Key.blank;
     }
 
-/*    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        String Fpath = data.getDataString();
-        // Utils.T(activity,Fpath);
-        // Utils.E("path:: "+Fpath);
-        fileName = getFileName(Fpath);
-        Utils.E("file name:: " + fileName);
-        Utils.T(activity, fileName);
-        if (resultCode != RESULT_CANCELED) {
-            binding.llUpload.setVisibility(View.GONE);
-            binding.llUploadPdfDone.setVisibility(View.VISIBLE);
-            binding.tvUploadFilename.setText(fileName);
-        }
-
-        switch (requestCode) {
-            case 0:
-                if (resultCode == RESULT_OK && data != null) {
-                    binding.llUpload.setVisibility(View.GONE);
-                    binding.llUploadPdfDone.setVisibility(View.VISIBLE);
-                    binding.tvUploadFilename.setText(fileName);
-                }
-                break;
-            case 1:
-                if (resultCode == RESULT_OK && data != null) {
-                    binding.llUpload.setVisibility(View.VISIBLE);
-                    binding.llUploadPdfDone.setVisibility(View.GONE);
-                }
-                break;
-        }
-    }*/
 
     ActivityResultLauncher<Intent> openGallery = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
@@ -272,16 +242,7 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
             binding.llUploadPdfDone.setVisibility(View.VISIBLE);
             getFileName();
             binding.tvUploadFilename.setText(fileName);
-            /*if (getMimeType(activity, uri).equals(Constants.Key.PDF) || getMimeType(activity, uri).equals(Constants.Key.doc) || getMimeType(activity, uri).equals(Constants.Key.docx)
-            || getMimeType(activity, uri).equals(Constants.Key.jpg) || getMimeType(activity, uri).equals(Constants.Key.png) || getMimeType(activity, uri).equals(Constants.Key.jpeg)) {
-                binding.llUpload.setVisibility(View.GONE);
-                binding.llUploadPdfDone.setVisibility(View.VISIBLE);
-                getFileName();
-                binding.tvUploadFilename.setText(fileName);
 
-            } else {
-                Utils.alert(activity, "Please upload only pdf and Image");
-            }*/
         }
 
     });
@@ -350,7 +311,7 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         Utils.T(activity, getString(R.string.Complaint_Raised_Successfully));
-                        Utils.I(activity, RaiseComplaintActivity.class,null);
+                        finish();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

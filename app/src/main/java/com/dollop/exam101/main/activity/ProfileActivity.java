@@ -82,7 +82,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             Utils.I(activity, NotificationActivity.class, null);
         } else if (view == binding.llRequestAffilation) {
           //  Utils.I(activity, AffilationBankDetailsActivity.class, null);
-           Utils.I(activity, UpdateBankDetailsActivity.class, null);
+          // Utils.I(activity, UpdateBankDetailsActivity.class, null);
         } else if (view == binding.tvInviteFriends) {
         } else if (view == binding.llBankDetails) {
             Utils.I(activity, BankDetailActivity.class, null);

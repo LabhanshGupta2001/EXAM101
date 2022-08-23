@@ -1,22 +1,26 @@
 package com.dollop.exam101.main.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.TimeFormatter;
 import com.dollop.exam101.databinding.ItemOrderHistoryBinding;
 import com.dollop.exam101.main.model.OrderHistoryModel;
+import com.dollop.exam101.main.model.StudentOrder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.MyHolder> {
     Context context;
-    ArrayList<OrderHistoryModel> orderHistoryModelArrayList;
+    List<StudentOrder> orderHistoryModelArrayList;
 
-    public OrderHistoryAdapter(Context context, ArrayList<OrderHistoryModel> orderHistoryModelArrayList) {
+    public OrderHistoryAdapter(Context context, List<StudentOrder> orderHistoryModelArrayList) {
         this.context = context;
         this.orderHistoryModelArrayList = orderHistoryModelArrayList;
     }
@@ -30,13 +34,15 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        OrderHistoryModel historyModel= orderHistoryModelArrayList.get(position);
-        holder.binding.tvDate.setText(historyModel.Data);
-        holder.binding.tvTransactionId.setText(historyModel.TransactionId);
-        holder.binding.orderId.setText(historyModel.OrderId);
-        holder.binding.tvRupees.setText(historyModel.Rupees);
-        holder.binding.tvTotalRupees.setText(historyModel.TotalRupees);
-        holder.binding.tvDay.setText(historyModel.Day);
+        StudentOrder historyModel= orderHistoryModelArrayList.get(position);
+
+        holder.binding.tvDate.setText(TimeFormatter.changeDateFormat(historyModel.createdDtm));
+        holder.binding.tvTransactionId.setText(historyModel.transactionId);
+        holder.binding.orderId.setText(historyModel.orderId);
+        holder.binding.tvRupees.setText(historyModel.finalPackageAmt);
+        holder.binding.tvTotalRupees.setText(historyModel.finalPackageAmt);
+        holder.binding.tvTotalRupees.setPaintFlags(holder.binding.tvTotalRupees.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+       // holder.binding.tvDay.setText(historyModel.Day);
     }
 
     @Override

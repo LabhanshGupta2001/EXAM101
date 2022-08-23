@@ -305,4 +305,7 @@ public interface ApiService {
     Call<AllResponseModel> updateBankDetail(@Header(Constants.Key.Authorization) String token,
                                             @FieldMap HashMap<String, String> hashMap);
 
+    @GET(Const.Url.getStudentOrderListApi)
+    Call<AllResponseModel> getStudentOrderListApi(@Header(Constants.Key.Authorization) String token);
+
 }

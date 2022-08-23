@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.ComplaintModel;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -48,28 +50,14 @@ public class RaiseComplaintActivity extends BaseActivity implements View.OnClick
     Activity activity = RaiseComplaintActivity.this;
     ActivityRaiseComplaintBinding binding;
     ArrayList<ComplaintModel> complaintModelArrayList = new ArrayList<>();
-    //ArrayList<ComplaintListModel> complaintListModels = new ArrayList<>();
     RaiseComplaintAdapter raiseComplaintAdapter;
     BottomSheetDialog bottomSheetDialog;
     BottomsheetRaiseComplaintsBinding bottomsheetRaiseComplaintsBinding;
-    Uri uri;
 
-    public static String getMimeType(Context context, Uri uri) {
-        String extension;
-        //Check uri format to avoid null
-        Utils.E("AttachmentUri1234::" + uri.getScheme());
-
-
-        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
-            //If scheme is a content
-            final MimeTypeMap mime = MimeTypeMap.getSingleton();
-            extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));
-        } else {
-            //If scheme is a File
-            //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
-            extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(uri.getPath())).toString());
-        }
-        return (extension != null) ? extension : Constants.Key.blank;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getComplaintList();
     }
 
     @Override
@@ -82,10 +70,8 @@ public class RaiseComplaintActivity extends BaseActivity implements View.OnClick
 
     private void init() {
         apiService = RetrofitClient.getClient();
-        getComplaintList();
         binding.ivBack.setOnClickListener(this);
         binding.mcvAdd.setOnClickListener(this);
-
         raiseComplaintAdapter = new RaiseComplaintAdapter(activity, complaintModelArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         binding.rvRaiseComplaint.setLayoutManager(linearLayoutManager);
@@ -175,11 +161,13 @@ public class RaiseComplaintActivity extends BaseActivity implements View.OnClick
                         }
 
                     } else {
-                        assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            assert response.errorBody() != null;
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            assert response.errorBody() != null;
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(activity, message.message);
                             Utils.UnAuthorizationToken(activity);
                         }
@@ -204,6 +192,10 @@ public class RaiseComplaintActivity extends BaseActivity implements View.OnClick
         bottomSheetDialog = new BottomSheetDialog(activity);
         bottomsheetRaiseComplaintsBinding = BottomsheetRaiseComplaintsBinding.inflate(getLayoutInflater());
         bottomSheetDialog.setContentView(bottomsheetRaiseComplaintsBinding.getRoot());
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) bottomsheetRaiseComplaintsBinding.getRoot().getParent()));
+        bottomSheetDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setSkipCollapsed(true);
         bottomsheetRaiseComplaintsBinding.tvDetails.setText(model.complaintDescription);
         bottomsheetRaiseComplaintsBinding.tvComplainId.setText(Constants.Key.ComplaintID + model.complaintId);
         if (!model.attachment.equals(Constants.Key.blank)) {

@@ -222,7 +222,7 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity, getString(R.string.bank_detail_update_successfully));
+                        Utils.T(activity,response.body().message);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

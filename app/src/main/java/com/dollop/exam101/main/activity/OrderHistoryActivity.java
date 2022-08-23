@@ -1,24 +1,35 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityOrderHistoryBinding;
 import com.dollop.exam101.databinding.ItemOrderHistoryBinding;
 import com.dollop.exam101.main.adapter.OrderHistoryAdapter;
+import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.OrderHistoryModel;
+import com.dollop.exam101.main.model.StudentOrder;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,91 +38,25 @@ import retrofit2.Response;
 public class OrderHistoryActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = OrderHistoryActivity.this;
     ActivityOrderHistoryBinding binding;
-    ItemOrderHistoryBinding itemOrderHistoryBinding;
-    ArrayList<OrderHistoryModel> orderHistoryModelArrayList = new ArrayList<>();
+    List<StudentOrder> orderHistoryModelArrayList = new ArrayList<>();
+    OrderHistoryAdapter orderHistoryAdapter;
     ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityOrderHistoryBinding.inflate(getLayoutInflater());
-        itemOrderHistoryBinding = ItemOrderHistoryBinding.inflate(getLayoutInflater());
-        setContentView(itemOrderHistoryBinding.getRoot());
         setContentView(binding.getRoot());
-
-        // itemOrderHistoryBinding.tvTotalRupees.setPaintFlags(itemOrderHistoryBinding.tvTotalRupees.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
         init();
-
-        OrderHistoryModel orderHistoryModel = new OrderHistoryModel();
-        OrderHistoryModel orderHistoryModel1 = new OrderHistoryModel();
-        OrderHistoryModel orderHistoryModel2 = new OrderHistoryModel();
-        OrderHistoryModel orderHistoryModel3 = new OrderHistoryModel();
-        OrderHistoryModel orderHistoryModel4 = new OrderHistoryModel();
-        OrderHistoryModel orderHistoryModel5 = new OrderHistoryModel();
-
-        orderHistoryModel.Data = "02 Jun, 2022";
-        orderHistoryModel.TransactionId = "1234567475474155";
-        orderHistoryModel.OrderId = "001";
-        orderHistoryModel.Day = "20 DAYS";
-        orderHistoryModel.TotalRupees = "4500";
-        orderHistoryModel.Rupees = "3000";
-
-        orderHistoryModel1.Data = "10 Jun, 2022";
-        orderHistoryModel1.TransactionId = "1234567475474166";
-        orderHistoryModel1.OrderId = "101";
-        orderHistoryModel1.Day = "21 DAYS";
-        orderHistoryModel1.TotalRupees = "4000";
-        orderHistoryModel1.Rupees = "2700";
-
-        orderHistoryModel2.Data = "14 Jun, 2022";
-        orderHistoryModel2.TransactionId = "1234567475474177";
-        orderHistoryModel2.OrderId = "202";
-        orderHistoryModel2.Day = "30 DAYS";
-        orderHistoryModel2.TotalRupees = "5000";
-        orderHistoryModel2.Rupees = "3500";
-
-        orderHistoryModel3.Data = "02 Jun, 2022";
-        orderHistoryModel3.TransactionId = "1234567475474155";
-        orderHistoryModel3.OrderId = "001";
-        orderHistoryModel3.Day = "20 DAYS";
-        orderHistoryModel3.TotalRupees = "4500";
-        orderHistoryModel3.Rupees = "3000";
-
-        orderHistoryModel4.Data = "02 Jun, 2022";
-        orderHistoryModel4.TransactionId = "1234567475474155";
-        orderHistoryModel4.OrderId = "001";
-        orderHistoryModel4.Day = "20 DAYS";
-        orderHistoryModel4.TotalRupees = "4500";
-        orderHistoryModel4.Rupees = "3000";
-
-        orderHistoryModel5.Data = "02 Jun, 2022";
-        orderHistoryModel5.TransactionId = "1234567475474155";
-        orderHistoryModel5.OrderId = "001";
-        orderHistoryModel5.Day = "20 DAYS";
-        orderHistoryModel5.TotalRupees = "4500";
-        orderHistoryModel5.Rupees = "3000";
-
-
-        orderHistoryModelArrayList.clear();
-        orderHistoryModelArrayList.add(orderHistoryModel);
-        orderHistoryModelArrayList.add(orderHistoryModel1);
-        orderHistoryModelArrayList.add(orderHistoryModel2);
-        orderHistoryModelArrayList.add(orderHistoryModel3);
-        orderHistoryModelArrayList.add(orderHistoryModel4);
-        orderHistoryModelArrayList.add(orderHistoryModel5);
-
-        binding.rvOderHistory.setHasFixedSize(true);
-        binding.rvOderHistory.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvOderHistory.setAdapter(new OrderHistoryAdapter(activity, orderHistoryModelArrayList));
-
     }
 
     private void init() {
         apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
-
-        itemOrderHistoryBinding.tvTotalRupees.setPaintFlags(itemOrderHistoryBinding.tvTotalRupees.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        binding.rvOderHistory.setLayoutManager(new LinearLayoutManager(activity));
+        orderHistoryAdapter = new OrderHistoryAdapter(activity, orderHistoryModelArrayList);
+        binding.rvOderHistory.setAdapter(orderHistoryAdapter);
+        getOrderHisrory();
 
     }
 
@@ -124,16 +69,39 @@ public class OrderHistoryActivity extends BaseActivity implements View.OnClickLi
     }
 
     void getOrderHisrory() {
-        HashMap<String, String> hashMap = new HashMap<>();
-        apiService.getorderHistory(hashMap).enqueue(new Callback<AllResponseModel>() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getStudentOrderListApi(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
 
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        orderHistoryModelArrayList.clear();
+                        orderHistoryModelArrayList.addAll(response.body().studentOrders);
+                        orderHistoryAdapter.notifyDataSetChanged();
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }
