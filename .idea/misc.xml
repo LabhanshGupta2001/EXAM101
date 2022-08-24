@@ -221,6 +221,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_about_us.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_affiliate_purchase_list.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_all_package.xml" value="0.4" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_blogs_list.xml" value="0.25052083333333336" />
@@ -239,7 +240,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_login_history.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_main.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_mock_test_list.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_mock_test_list.xml" value="0.4" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_mock_test_questions.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_my_wishlist.xml" value="0.25416666666666665" />
@@ -281,6 +282,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/data_not_found.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_author.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_bottom_country.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_categories.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.4" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_category_home.xml" value="0.25416666666666665" />
@@ -289,6 +291,8 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_exam_filter.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.536" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_language.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_mock_test.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_mock_test_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/fragment_price.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.25416666666666665" />
@@ -307,11 +311,12 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_course_test_question_option_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_flex_box.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_language.xml" value="0.253125" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_mock_test_list.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_my_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.4" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_overview_course_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_package_detail.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.536" />
+        <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.264" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_packages_detail_ternary.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_pakages_details_primary.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/item_pakages_details_secondry.xml" value="0.25416666666666665" />

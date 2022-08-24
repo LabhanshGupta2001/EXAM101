@@ -64,8 +64,8 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
     PackageAdapter packageAdapter;
     CategoriesFragment categoriesFragment;
     PriceFragment priceFragment;
-    RecyclerView.SmoothScroller smoothScroller;
     LanguageFragment languageFragment;
+    RecyclerView.SmoothScroller smoothScroller;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override

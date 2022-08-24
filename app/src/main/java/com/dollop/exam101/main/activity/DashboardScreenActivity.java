@@ -120,14 +120,14 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                     case R.id.bottom_packages:
                         navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
                         navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
+                        binding.appBarLayout.setVisibility(View.GONE);
                         binding.bottomNavigationView.setVisibility(View.VISIBLE);
-                        binding.appBarLayout.setVisibility(View.VISIBLE);
                         break;
                     case R.id.bottom_cart:
                         navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
                         navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
-                        binding.bottomNavigationView.setVisibility(View.GONE);
                         binding.appBarLayout.setVisibility(View.GONE);
+                        binding.bottomNavigationView.setVisibility(View.GONE);
                         break;
                     default:
                         binding.appBarLayout.setVisibility(View.GONE);
