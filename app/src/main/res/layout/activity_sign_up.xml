@@ -170,6 +170,7 @@
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
                                 app:cardCornerRadius="@dimen/_10sdp"
+                                android:visibility="gone"
                                 app:cardElevation="0dp">
 
                                 <ImageView
@@ -188,6 +189,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginEnd="@dimen/_3sdp"
                                 android:text="@string/_91"
+                                android:layout_marginStart="@dimen/_10sdp"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
                                 tools:ignore="SpUsage" />

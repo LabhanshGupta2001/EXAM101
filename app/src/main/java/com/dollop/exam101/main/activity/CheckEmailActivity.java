@@ -20,12 +20,11 @@ public class CheckEmailActivity extends BaseActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(binding.getRoot());
-        binding.tvReturnToSignIn.setOnClickListener(v -> Utils.I_clear(activity, LoginActivity.class, null));
+        binding.tvReturnToSignIn.setOnClickListener(v -> onBackPressed());
     }
 
     @Override
     public void onBackPressed() {
-        Utils.I_clear(activity, LoginActivity.class, null);
         super.onBackPressed();
     }
 }

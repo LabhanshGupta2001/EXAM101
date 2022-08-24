@@ -41,9 +41,7 @@ public class MockTestListActivity extends BaseActivity implements View.OnClickLi
         apiService = RetrofitClient.getClient();
         getTestList();
         binding.ivBack.setOnClickListener(this);
-
     }
-
 
     @Override
     public void onClick(View view) {

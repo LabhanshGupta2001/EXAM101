@@ -29,6 +29,7 @@ import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
+import com.dollop.exam101.main.activity.AllPackageActivity;
 import com.dollop.exam101.main.activity.DashboardScreenActivity;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.BlogsHomeAdapter;
@@ -350,7 +351,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == binding.tvViewAll) {
-            ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
+            Utils.I(activity, AllPackageActivity.class,null);
+           // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
     }
 }

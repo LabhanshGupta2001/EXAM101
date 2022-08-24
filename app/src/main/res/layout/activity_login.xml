@@ -87,7 +87,7 @@
                     android:layout_marginTop="@dimen/_18sdp"
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_regular"
-                    android:hint="@string/youremail_gmail_com"
+                    android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
                     android:textColorHint="@color/sub_text"
                     android:paddingVertical="@dimen/_11sdp"

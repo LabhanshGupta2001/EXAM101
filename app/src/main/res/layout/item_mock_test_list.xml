@@ -63,12 +63,12 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_8sdp"
         app:cardCornerRadius="@dimen/_8sdp"
-        app:strokeColor="@color/cardStroke"
+        app:strokeColor="@color/stroke_color"
         app:cardElevation="8dp"
         android:outlineAmbientShadowColor="@color/ShadowColor"
         android:outlineSpotShadowColor="@color/ambientColor"
         tools:ignore="UnusedAttribute"
-        app:strokeWidth=".8dp">
+        app:strokeWidth="1dp">
 
         <LinearLayout
             android:id="@+id/cardCourse"

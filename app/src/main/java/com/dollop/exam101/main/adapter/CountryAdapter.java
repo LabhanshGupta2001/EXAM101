@@ -47,6 +47,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         return new ViewHolder(binding);
     }
 
+
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {

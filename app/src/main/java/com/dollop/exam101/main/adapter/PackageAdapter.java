@@ -50,11 +50,13 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
             holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);
             holder.itemPackagesBinding.tvRatingNum.setVisibility(View.GONE);
             holder.itemPackagesBinding.ivStar.setVisibility(View.GONE);
+            holder.itemPackagesBinding.verticalView.setVisibility(View.GONE);
         } else {
             holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);
             holder.itemPackagesBinding.tvRatingNum.setText(packageModel.rating);
             holder.itemPackagesBinding.tvRatingNum.setVisibility(View.VISIBLE);
             holder.itemPackagesBinding.ivStar.setVisibility(View.VISIBLE);
+            holder.itemPackagesBinding.verticalView.setVisibility(View.VISIBLE);
         }
 
         holder.itemPackagesBinding.llDetails.setOnClickListener(new View.OnClickListener() {
