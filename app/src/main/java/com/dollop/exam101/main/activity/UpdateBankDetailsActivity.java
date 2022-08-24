@@ -28,6 +28,7 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityUpdateBankDetailsBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.BankDetailsModel;
 import com.dollop.exam101.main.validation.ResultReturn;
 import com.dollop.exam101.main.validation.Validation;
 import com.dollop.exam101.main.validation.ValidationModel;
@@ -46,6 +47,7 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
     Activity activity = UpdateBankDetailsActivity.this;
     ActivityUpdateBankDetailsBinding binding;
     List<ValidationModel> validationModels = new ArrayList<>();
+    List<BankDetailsModel> bankDetailsModels = new ArrayList<>();
 
 
     @Override
@@ -63,6 +65,7 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
         binding.ivBack.setOnClickListener(this);
         binding.llSave.setOnClickListener(this);
         edittextValidation();
+        GetBankDetail();
 
     }
 
@@ -246,5 +249,49 @@ public class UpdateBankDetailsActivity extends BaseActivity implements View.OnCl
             }
         });
     }
+
+    private void GetBankDetail() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+
+        apiService.getBankDetails(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        bankDetailsModels.clear();
+                        assert response.body() != null;
+                        BankDetailsModel bankDetailsModel = response.body().bankDetailsModel;
+                        bankDetailsModels.add(response.body().bankDetailsModel);
+                        binding.etAccountNumber.setText(bankDetailsModel.accNumber);
+                        binding.etBranch.setText(bankDetailsModel.acBranchName);
+                        binding.etHolderName.setText(bankDetailsModel.accPayeeName);
+                        binding.etIfscCode.setText(bankDetailsModel.ifscCode);
+                        binding.etSelectType.setText(bankDetailsModel.accType);
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
 
 }

@@ -43,11 +43,11 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/mcvShare"
             android:layout_centerVertical="true"
-            app:cardElevation="0dp"
+            android:layout_toStartOf="@+id/mcvShare"
             app:cardBackgroundColor="@color/lineColor"
             app:cardCornerRadius="@dimen/_14sdp"
+            app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
             <TextView
@@ -92,9 +92,10 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/llBtn"
         android:layout_below="@id/llToolbar"
-        android:visibility="gone"
+        android:background="@color/lineColor"
         android:overScrollMode="ifContentScrolls"
-        android:scrollbarAlwaysDrawVerticalTrack="true">
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,10 +113,10 @@
                 android:id="@+id/llmicrosoft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_12sdp"
                 android:background="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingVertical="@dimen/_12sdp">
 
                 <TextView
                     android:id="@+id/tvFirst"
@@ -153,8 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_1sdp"
-                        android:fontFamily="@font/inter_bold"
-                        />
+                        android:fontFamily="@font/inter_bold" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -217,7 +217,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_7sdp"
-                    android:fontFamily="@font/inter_regular"/>
+                    android:fontFamily="@font/inter_regular" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -274,8 +274,8 @@
                         android:id="@+id/tlPackageDetailTabLayoutId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
                         android:overScrollMode="never"
+                        android:paddingHorizontal="@dimen/_12sdp"
                         app:tabIndicator="@color/theme"
                         app:tabIndicatorColor="@color/theme"
                         app:tabIndicatorHeight="3dp"
@@ -284,25 +284,32 @@
                         app:tabSelectedTextColor="@color/theme"
                         app:tabTextAppearance="@style/HomeHeadingTextStyle"
                         app:tabTextColor="@color/black" />
+
                     <View
+                        android:id="@+id/viewTab"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_1sdp"
-                        android:background="@color/HorizontallineColor"
                         android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:id="@+id/viewTab"/>
+                        android:background="@color/HorizontallineColor" />
 
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/ViewPagerPackageDetailId"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@color/white" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_10sdp"
+                        android:background="@color/white"/>
 
                     <TextView
                         android:id="@+id/tvOverView"
                         style="@style/TernaryTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:background="@color/lineColor"
                         android:fontFamily="@font/gothic_bold"
                         android:paddingHorizontal="@dimen/_12sdp"
@@ -315,6 +322,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_8sdp"
+                        android:background="@color/white"
                         android:paddingVertical="@dimen/_4sdp"
                         android:visibility="gone" />
 
@@ -323,11 +331,13 @@
                         style="@style/QuinarySubTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:fontFamily="@font/inter_regular"/>
+                        android:background="@color/white"
+                        android:fontFamily="@font/inter_regular"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingTop="@dimen/_7sdp" />
 
                     <LinearLayout
+                        android:id="@+id/llReview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/lineColor"
@@ -371,6 +381,7 @@
                         android:id="@+id/rvRatingId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:overScrollMode="never" />
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>

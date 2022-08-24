@@ -123,5 +123,11 @@ public class AllResponseModel {
     @SerializedName("studentOrders")
     @Expose
     public List<StudentOrder> studentOrders = null;
+    @SerializedName("bankDetails")
+    @Expose
+    public BankDetailsModel bankDetailsModel;
+    @SerializedName("affilliatDetail")
+    @Expose
+    public List<Object> affilliatDetail = null;
 
 }

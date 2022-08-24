@@ -3,6 +3,7 @@ package com.dollop.exam101.main.activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -266,13 +268,21 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     for (int i = 0; i < examModelArrayList.size(); i++) {
                         subjectModelArrayList.addAll(examModelArrayList.get(i).subjects);
                     }
-                    fragments.add(new CourseMaterialFragment(subjectModelArrayList));
-                    Tittle.clear();
-                    Tittle.add(Constants.Key.Course_Material);
+                    Utils.E("subjectModelArrayList::"+subjectModelArrayList);
+                    if(subjectModelArrayList.isEmpty() || subjectModelArrayList.equals(Constants.Key.blank) ||
+                            examModelArrayList.isEmpty() || examModelArrayList.equals(Constants.Key.blank)){
+                    }else {
+                        Tittle.clear();
+                        Tittle.add(Constants.Key.Course_Material);
+                        fragments.add(new CourseMaterialFragment(subjectModelArrayList));
+                        Utils.E("^@%Course_Material::");
+                    }
 
-                    if (!mockTestModels.isEmpty() || !mockTestModels.equals(Constants.Key.blank)){
+                    if (mockTestModels.isEmpty() || mockTestModels.equals(Constants.Key.blank)){
+                    }else {
                         Tittle.add(Constants.Key.Mock_Test);
                         fragments.add(new MockTestFragment(mockTestModels));
+                        Utils.E("^@%Mock_Test::");
                     }
                     mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
                     binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
@@ -312,8 +322,12 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         reviewRatingModels.clear();
                         assert response.body() != null;
                         reviewRatingModels.addAll(response.body().reviewRating);
-                        binding.rvRatingId.setLayoutManager(new LinearLayoutManager(activity));
-                        binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(activity, reviewRatingModels));
+                        if (reviewRatingModels.isEmpty() || reviewRatingModels.equals(Constants.Key.blank)){
+                        }else {
+                            binding.rvRatingId.setLayoutManager(new LinearLayoutManager(activity));
+                            binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(activity, reviewRatingModels));
+                            Utils.E("^@%reviewRatingELSE::");
+                        }
 
                     } else {
                         assert response.errorBody() != null;
