@@ -24,7 +24,8 @@
         android:background="@drawable/bottom_curve_background"
         android:orientation="vertical"
         android:id="@+id/llParent"
-        android:padding="@dimen/_12sdp">
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingHorizontal="@dimen/_12sdp">
 
         <SearchView
             android:id="@+id/searchViewId"

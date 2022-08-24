@@ -283,9 +283,6 @@ public class RaiseComplaintFormActivity extends BaseActivity implements View.OnC
         hashMap.put(Constants.Key.complaintSubject,RequestBody.create(binding.etSubject.getText().toString().trim(), MediaType.parse(Constants.Key.TEXT_PLAIN_TYPE)));
         hashMap.put(Constants.Key.complaintDescription,RequestBody.create(binding.etDescription.getText().toString().trim(), MediaType.parse(Constants.Key.TEXT_PLAIN_TYPE)));
         hashMap.put(Constants.Key.complaintPriority,RequestBody.create(Priority, MediaType.parse(Constants.Key.TEXT_PLAIN_TYPE)));
-       // hashMap.put(Constants.Key.complaintDescription,binding.etDescription.getText().toString().trim());
-        //hashMap.put(Constants.Key.complaintPriority,Priority);
-       // hm.put(Constants.Key.complaintRemark,"6654654");
         if (uri != null){
             if (getMimeType(activity, uri).equals(Constants.Key.pdf) || getMimeType(activity, uri).equals(Constants.Key.doc) || getMimeType(activity, uri).equals(Constants.Key.docx)) {
                 image = AppHelper.prepareFilePartPDF(activity,Constants.Key.attachment,uri);

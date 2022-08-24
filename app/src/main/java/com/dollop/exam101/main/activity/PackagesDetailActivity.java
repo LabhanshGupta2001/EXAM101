@@ -291,11 +291,14 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     }).attach();
 
                 } else {
-                    assert response.errorBody() != null;
-                    APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                     if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         Utils.T(activity, message.message);
                     } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        Utils.T(activity,message.message);
                         Utils.UnAuthorizationToken(activity);
                     }
                 }

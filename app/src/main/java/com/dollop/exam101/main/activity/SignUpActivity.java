@@ -110,6 +110,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             InternetDialog();
         }
         edittextValidation();
+        SavedData.saveCountryUuId(Constants.Key.DefaultCountryUuId);
         //binding.tvCountryCodeId.setText(Utils.getDefaultCountryCode(activity).CountryCode);
         binding.tvCountryCodeId.setText(Constants.Key.Default_Country_Code);
         binding.SignUPId.setOnClickListener(this);
@@ -486,7 +487,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         hm.put(Constants.Key.countryName, binding.tvSelectCountry.getText().toString().trim());
         hm.put(Constants.Key.stateName, binding.tvSelectState.getText().toString().trim());
         hm.put(Constants.Key.fcmId, fcmid);
-
         apiservice.userSignup(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {

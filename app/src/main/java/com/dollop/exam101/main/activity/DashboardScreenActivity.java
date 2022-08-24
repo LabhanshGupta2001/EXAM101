@@ -3,6 +3,8 @@ package com.dollop.exam101.main.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.View;
 
@@ -33,6 +35,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     Activity activity = DashboardScreenActivity.this;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
     ApiService apiService;
+    boolean doubleBackToExitPressedOnce = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,25 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         init();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+       Utils.T(activity, getString(R.string.please_click_BACK_again_to_exit));
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
     @Override
