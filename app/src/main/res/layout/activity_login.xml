@@ -8,6 +8,7 @@
     android:background="@drawable/login_gradient"
     android:orientation="vertical"
     tools:context=".main.activity.LoginActivity">
+
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -35,13 +36,16 @@
         android:background="@drawable/bottom_sheet_back"
         android:elevation="@dimen/_3sdp"
         android:orientation="vertical">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,47 +93,63 @@
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/youremail_gmail_com"
                     android:inputType="textEmailAddress"
-                    android:textColorHint="@color/sub_text"
-                    android:paddingVertical="@dimen/_11sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
-                    android:singleLine="true" />
+                    android:paddingVertical="@dimen/_11sdp"
+                    android:singleLine="true"
+                    android:textColorHint="@color/sub_text" />
+
                 <TextView
                     android:id="@+id/tvErrorEmail"
-                    android:visibility="gone"
                     style="@style/ErrorTextStyle"
-                    android:layout_marginTop="@dimen/_4sdp"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
                     android:elevation="@dimen/_minus2sdp"
-                    android:layout_height="wrap_content"
-                    />
+                    android:visibility="gone" />
 
-                <EditText
-                    android:id="@+id/etUserPassword"
-                    style="@style/TernaryBlackTextStyle"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:autofillHints="Enter Your Passwpord"
-                    android:background="@drawable/input_custom"
-                    android:fontFamily="@font/inter_regular"
-                    android:hint="@string/enter_password"
-                    android:inputType="textPassword"
-                    android:paddingVertical="@dimen/_11sdp"
-                    android:paddingHorizontal="@dimen/_16sdp"
-                    android:textColorHint="@color/sub_text"
-                    android:singleLine="true" />
+                    android:layout_marginTop="@dimen/_12sdp">
+
+                    <EditText
+                        android:id="@+id/etUserPassword"
+                        style="@style/TernaryBlackTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="Enter Your Passwpord"
+                        android:background="@drawable/input_custom"
+                        android:fontFamily="@font/inter_regular"
+                        android:hint="@string/enter_password"
+                        android:inputType="textPassword"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:paddingVertical="@dimen/_11sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/sub_text" />
+
+                    <ImageView
+                        android:id="@+id/iv_show_hide_password"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="false"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:src="@drawable/ic_visibility" />
+                </RelativeLayout>
+
                 <TextView
                     android:id="@+id/tvErrorPass"
-                    android:visibility="gone"
                     style="@style/ErrorTextStyle"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
                     android:layout_width="wrap_content"
-                    android:elevation="@dimen/_minus2sdp"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:elevation="@dimen/_minus2sdp"
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -178,22 +198,22 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:strokeWidth="@dimen/_1sdp"
-                        app:strokeColor="@color/DarkBlackBlue"
+                        app:cardCornerRadius="@dimen/_18sdp"
                         app:cardElevation="0dp"
-                        app:cardCornerRadius="@dimen/_18sdp">
+                        app:strokeColor="@color/DarkBlackBlue"
+                        app:strokeWidth="@dimen/_1sdp">
 
-                    <TextView
-                        style="@style/QuaternaryFullBlackTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawablePadding="@dimen/_7sdp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:gravity="center_vertical"
-                        android:text="@string/login_with_google"
-                        android:padding="@dimen/_12sdp"
-                        app:drawableStartCompat="@drawable/ic_googleicon" />
+                        <TextView
+                            style="@style/QuaternaryFullBlackTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawablePadding="@dimen/_7sdp"
+                            android:fontFamily="@font/inter_semibold"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/_12sdp"
+                            android:text="@string/login_with_google"
+                            app:drawableStartCompat="@drawable/ic_googleicon" />
 
                     </com.google.android.material.card.MaterialCardView>
 
