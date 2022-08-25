@@ -103,7 +103,7 @@ public class SavedData {
         editor.apply();
     }
 
-    public static String getBankStatus() {
+   /* public static String getBankStatus() {
         return getInstance().getString(Shared, Constants.Key.blank);
     }
 
@@ -112,7 +112,7 @@ public class SavedData {
         editor.putString(Shared, Id);
         editor.apply();
 
-    }
+    }*/
 
     @NonNull
     public static LatLng getCurrentLocation() {

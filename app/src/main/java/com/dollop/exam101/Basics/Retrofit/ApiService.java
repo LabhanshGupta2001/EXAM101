@@ -96,6 +96,23 @@ public interface ApiService {
     @GET(Const.Url.getBankDetailApi)
     Call<AllResponseModel> getBankDetails(@Header(Constants.Key.Authorization) String token);
 
+
+    @GET(Const.Url.getAffiliateStatusApi)
+    Call<AllResponseModel> getAffiliateStatus(@Header(Constants.Key.Authorization) String token);
+
+    @FormUrlEncoded
+    @POST(Const.Url.sendAffiliateRequestApi)
+    Call<AllResponseModel> sendAffiliateBankDetails(@Header(Constants.Key.Authorization) String token,
+                                                    @FieldMap HashMap<String, String> hm);
+
+    @GET(Const.Url.getAffiliatePurchaseListApi)
+    Call<AllResponseModel> getAffiliatePurchaseList(@Header(Constants.Key.Authorization) String token,
+                                                @FieldMap HashMap<String, String> hm);
+
+    @GET(Const.Url.getAffiliatePurchaseSummaryApi)
+    Call<AllResponseModel> getAffiliatePurchaseSummary(@Header(Constants.Key.Authorization) String token);
+
+
    /* @GET(Const.Url.getRaisedComplaintDetailApi)
     Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,
                                               @FieldMap HashMap<String, String> hm);*/
