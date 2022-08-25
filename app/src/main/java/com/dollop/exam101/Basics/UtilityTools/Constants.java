@@ -180,5 +180,11 @@ public class Constants {
         String ifscCode = "ifscCode";
         String acBranchName = "acBranchName";
         String accType = "accType";
+        String Success = "Success";
+        String Approved = "Approved";
+        String Pending = "Pending";
+        String BankDetails = "BankDetails";
+        String startDate = "startDate";
+        String endDate = "endDate";
     }
 }

@@ -100,5 +100,9 @@ public class Const {
         String getStudentOrderListApi = "getStudentOrderListApi";
         String getBankDetailApi = "getBankDetailApi";
         String getStudentMockTestListApi ="getStudentMockTestListApi";
+        String sendAffiliateRequestApi = "sendAffiliateRequestApi";
+        String getAffiliateStatusApi = "getAffiliateStatusApi";
+        String getAffiliatePurchaseListApi = "getAffiliatePurchaseListApi";
+        String getAffiliatePurchaseSummaryApi = "getAffiliatePurchaseSummaryApi";
     }
 }

@@ -39,6 +39,7 @@ import com.dollop.exam101.main.model.CartDatumModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -231,6 +232,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     public void getCartItem() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getCartList(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -240,10 +242,10 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                         binding.rlBottom.setVisibility(View.VISIBLE);
                         binding.scrollCartItem.setVisibility(View.VISIBLE);
                         binding.noResultFoundId.llParentEmpty.setVisibility(View.GONE);
-                        binding.tvSubTotalId.setText(String.valueOf(response.body().grandTotalAmt));
-                        binding.tvSgst.setText(response.body().gstPercentage);
-                        binding.tvGrandtotal.setText(String.valueOf(response.body().grandTotalAmt));
-                        binding.tvGrandTotalBottom.setText(String.valueOf(response.body().grandTotalAmt));
+                        binding.tvSubTotalId.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().subTotalAmt)));
+                        binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().gstPercentage))+"%");
+                        binding.tvGrandtotal.setText(String.valueOf(new DecimalFormat("##.##").format(response.body().grandTotalAmt)));
+                        binding.tvGrandTotalBottom.setText(String.valueOf(new DecimalFormat("##.##").format(response.body().grandTotalAmt)));
                         myCartModelArrayList.clear();
                         myCartModelArrayList.addAll(response.body().cartData);
                         binding.rvPackageListId.setLayoutManager(new LinearLayoutManager(activity));

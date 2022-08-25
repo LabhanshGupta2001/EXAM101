@@ -2,6 +2,7 @@ package com.dollop.exam101.main.activity;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
@@ -18,18 +19,22 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.SavedData;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityAffilationBankDetailsBinding;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.validation.ResultReturn;
 import com.dollop.exam101.main.validation.Validation;
 import com.dollop.exam101.main.validation.ValidationModel;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,12 +58,12 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
         super.onCreate(savedInstanceState);
         binding = ActivityAffilationBankDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
+        setData();
         edittextValidation();
         apiService = RetrofitClient.getClient();
         binding.llSubmit.setOnClickListener(this);
@@ -74,16 +79,52 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
         }
     }
 
-    private void GetUserBankProfile() {
-        apiService.getBankProfile("").enqueue(new Callback<AllResponseModel>() {
+    private void setData() {
+        binding.tvName.setText(Utils.GetSession().studentName);
+        binding.tvGmail.setText(Utils.GetSession().studentEmail);
+        binding.tvMobileNo.setText(Utils.GetSession().studentMobileNo);
+        if (Utils.GetSession().profilePic != null && (!Utils.GetSession().profilePic.equals(""))) {
+            Utils.Picasso(Utils.GetSession().profilePic, binding.ivProfile, R.drawable.dummy);
+        }
+    }
+
+    private void sendDetails() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.accPayeeName,binding.etHolderName.getText().toString().trim());
+        hm.put(Constants.Key.accNumber, binding.etAccountNumber.getText().toString().trim());
+        hm.put(Constants.Key.ifscCode, binding.etIfscCode.getText().toString().trim());
+        hm.put(Constants.Key.acBranchName, binding.etBranch.getText().toString().trim());
+        hm.put(Constants.Key.accType, binding.etSelectType.getText().toString().trim());
+        apiService.sendAffiliateBankDetails(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        Utils.T(activity,Constants.Key.Success);
+                        finish();
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }
@@ -209,8 +250,8 @@ public class AffilationBankDetailsActivity extends BaseActivity implements View.
         ResultReturn resultReturn = validation.CheckValidation(activity, validationModels);
         if (resultReturn.aBoolean) {
             if (AppController.getInstance().isOnline()) {
-                SavedData.SaveBankStatus(Constants.Key.pending);
-                finish();
+                sendDetails();
+                //SavedData.SaveBankStatus(Constants.Key.pending);
             } else {
 
             }
