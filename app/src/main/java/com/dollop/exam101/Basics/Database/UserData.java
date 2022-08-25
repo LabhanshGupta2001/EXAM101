@@ -23,6 +23,7 @@ public class UserData {
     public static final String Key_RoleType = "roleType";
     public static final String KEY_userPin = "userPin";
     public static final String KEY_profilePic = "profilePic";
+    public static final String KEY_CountryUuid = "countryUuid";
     public static final String KEY_Token = "token";
 
 
@@ -66,6 +67,9 @@ public class UserData {
     @SerializedName("profilePic")
     @Expose
     public String profilePic;
+    @SerializedName("countryUuid")
+    @Expose
+    public String countryUuid;
     @SerializedName("token")
     @Expose
     public String token;
@@ -92,6 +96,7 @@ public class UserData {
                 Key_EmailVerified + " text," +
                 Key_RoleType + " text," +
                 KEY_profilePic + " text," +
+                KEY_CountryUuid + " text," +
                 KEY_Token + " text"+
                 " )" ;
         Utils.E("CreateTableQuery::" + CreateTableQuery);

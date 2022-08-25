@@ -23,7 +23,6 @@ public class ThankYouPgActivity extends BaseActivity implements View.OnClickList
     }
 
     private void init() {
-
         binding.tvBtnBackToHome.setOnClickListener(this);
     }
 

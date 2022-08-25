@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -39,8 +40,8 @@ import retrofit2.Response;
 public class MockTestListFragment extends Fragment implements View.OnClickListener {
     FragmentMockTestListBinding binding;
     Activity activity;
-    ArrayList<String> list = new ArrayList<>();
     ApiService apiService;
+    MockTestListAdapter mockTestListAdapter;
     List<StudentMockTest> studentMockTestList =new ArrayList<>();
 
     @Override
@@ -56,15 +57,15 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
         apiService = RetrofitClient.getClient();
         getMockTestList();
         binding.ivBack.setOnClickListener(this);
-    }
-    void setData() {
+        mockTestListAdapter  = new MockTestListAdapter(activity, studentMockTestList);
         binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvMockTestList.setAdapter(new MockTestListAdapter(activity, studentMockTestList));
+        binding.rvMockTestList.setAdapter(mockTestListAdapter);
     }
 
     private void getMockTestList(){
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getStudentMockTestListApi(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -72,12 +73,12 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         studentMockTestList.clear();
-                        if(response.body().studentMockTestsList==null)
+                        if(response.body().studentMockTestsList!=null && !response.body().studentMockTestsList.isEmpty())
                         {
                             binding.dataNoFoundId.llParent.setVisibility(View.GONE);
                             binding.rvMockTestList.setVisibility(View.VISIBLE);
                             studentMockTestList=response.body().studentMockTestsList;
-                            setData();
+                            mockTestListAdapter.notifyDataSetChanged();
                         }else {
                                 binding.dataNoFoundId.llParent.setVisibility(View.VISIBLE);
                                 binding.rvMockTestList.setVisibility(View.GONE);
@@ -85,10 +86,12 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
 
                     } else {
                         assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            Utils.alert(activity, message.message);
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                            Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                            Utils.T(activity, message.message);
                             Utils.UnAuthorizationToken(activity);
                         }
                     }

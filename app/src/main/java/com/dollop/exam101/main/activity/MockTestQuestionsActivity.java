@@ -60,7 +60,8 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
             quitTestDialog.show();
 
         } else if (view == binding.tvButtonSubmit) {
-            Utils.I_clear(activity, TestResultActivity.class, null);
+            Utils.I(activity, TestResultActivity.class, null);
+            finish();
         } else if (view == binding.mcvMoveNext) {
             binding.vpQuestion.setCurrentItem((Integer) getItem(+1), true);
         } else if (view == binding.mcvMoveBack) {
@@ -68,7 +69,8 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
         } else if (view == bottomSheetQuitExamBinding.mcvBtnCancel) {
             quitTestDialog.cancel();
         } else if (view == bottomSheetQuitExamBinding.mcvBtnQuitTest) {
-            Utils.I_clear(activity, TestResultActivity.class, null);
+            Utils.I(activity, TestResultActivity.class, null);
+            finish();
         }
     }
 

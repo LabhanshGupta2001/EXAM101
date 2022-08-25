@@ -383,11 +383,13 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                         Utils.I(activity, ThankYouPgActivity.class, null);
                     } else {
                         assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(activity, message.message);
                             Utils.I(activity, PaymentFailedActivity.class, null);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                            Utils.T(activity, message.message);
                             Utils.UnAuthorizationToken(activity);
                         }
                     }

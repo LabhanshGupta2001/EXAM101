@@ -302,7 +302,7 @@
     <string name="get_your_personalised_calender">Get your Personalised Calendar</string>
     <string name="my_package">My Package</string>
     <string name="faq">FAQs</string>
-    <string name="contact_us">App Contact Us</string>
+    <string name="contact_us">Contact Us</string>
     <string name="about_us">About Us</string>
     <string name="term_and_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="raise_a_complaint">Raise a Complaint</string>
@@ -486,6 +486,7 @@
     <string name="please_click_BACK_again_to_exit">Please click BACK again to exit</string>
     <string name="bank_detail_update_successfully">\"Bank details updated successfully \"</string>
     <string name="invalid_token">Invalid Token</string>
+    <string name="eg_savings">eg. Savings</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

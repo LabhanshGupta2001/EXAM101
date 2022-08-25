@@ -277,7 +277,7 @@
                                 android:id="@+id/etSelectType"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/input_custom"
-                                android:hint="@string/enter_bank_account_type"
+                                android:hint="@string/eg_savings"
                                 android:padding="@dimen/_12sdp"
                                 android:singleLine="true" />
                             <TextView
