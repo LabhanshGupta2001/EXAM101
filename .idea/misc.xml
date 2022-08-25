@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/Exam101/app/src/main/res/layout/fragment_mock_test.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Projects/Exam101/app/src/main/res/layout/fragment_mock_test_list.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Projects/Exam101/app/src/main/res/layout/item_mock_test_list.xml" value="0.33" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable-hdpi/tabselector.xml" value="0.2115" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/gradient_blog.xml" value="0.1575" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/drawable/grey_stroke_background.xml" value="0.2075" />

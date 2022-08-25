@@ -58,7 +58,7 @@ public class MockTestListActivity extends BaseActivity implements View.OnClickLi
         list.add("1");
         list.add("1");
         binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvMockTestList.setAdapter(new MockTestListAdapter(activity, list));
+        //binding.rvMockTestList.setAdapter(new MockTestListAdapter(activity, list));
     }
 
     void getMocktestList() {

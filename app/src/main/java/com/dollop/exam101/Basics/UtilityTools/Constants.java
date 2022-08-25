@@ -35,7 +35,7 @@ public class Constants {
         String For = "For";
 
         //Parameters
-        String Authorization = "Authorization";
+            String Authorization = "Authorization";
 
         //Firebase
         String Notification = "Notification";

@@ -130,4 +130,8 @@ public class AllResponseModel {
     @Expose
     public List<Object> affilliatDetail = null;
 
+    @SerializedName("studentMockTests")
+    @Expose
+    public List<StudentMockTest> studentMockTestsList=null;
+
 }

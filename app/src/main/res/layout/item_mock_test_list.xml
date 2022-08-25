@@ -35,7 +35,7 @@
                 android:text="@string/purchased" />
 
             <TextView
-                android:id="@+id/tvDate"
+                android:id="@+id/tvPurchasDate"
                 style="@style/QuaternarySubTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,6 +106,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvName"
                         style="@style/QuaternaryTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -114,6 +115,7 @@
                         android:text="@string/creative_art_design" />
 
                     <TextView
+                        android:id="@+id/tvExpiryDate"
                         style="@style/SenarySubTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -198,7 +200,7 @@
                         style="@style/SenaryPrimaryTextStyle"/>
 
                     <TextView
-                        android:id="@+id/tvPackageDurationDay"
+                        android:id="@+id/tvRemainingDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_3sdp"

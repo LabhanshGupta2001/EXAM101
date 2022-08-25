@@ -96,6 +96,9 @@ public interface ApiService {
     @GET(Const.Url.getBankDetailApi)
     Call<AllResponseModel> getBankDetails(@Header(Constants.Key.Authorization) String token);
 
+    @GET(Const.Url.getStudentMockTestListApi)
+    Call<AllResponseModel> getStudentMockTestListApi(@Header(Constants.Key.Authorization) String token);
+
    /* @GET(Const.Url.getRaisedComplaintDetailApi)
     Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,
                                               @FieldMap HashMap<String, String> hm);*/
