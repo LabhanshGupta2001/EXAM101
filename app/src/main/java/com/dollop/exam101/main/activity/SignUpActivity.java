@@ -260,7 +260,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 //Uri personPhoto = acct.getPhotoUrl();
             }
             if (AppController.getInstance().isOnline()) {
-
+                mGoogleSignInClient.signOut();
                 SocialLogin();
             } else {
                 // Utils.InternetDialog(activity);

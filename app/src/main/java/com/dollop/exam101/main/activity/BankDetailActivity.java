@@ -12,9 +12,11 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityBankDetailBinding;
 import com.dollop.exam101.databinding.ActivityProfileBinding;
+import com.dollop.exam101.main.model.AffilliatDetailModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 
 import retrofit2.Call;
@@ -24,6 +26,8 @@ import retrofit2.Response;
 public class BankDetailActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = BankDetailActivity.this;
     ActivityBankDetailBinding binding;
+    AffilliatDetailModel affilliatDetailModel;
+
 
     ApiService apiService;
 
@@ -33,22 +37,35 @@ public class BankDetailActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         binding = ActivityBankDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
-
         apiService = RetrofitClient.getClient();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            //affilliatDetailModel = bundle.getParcelable(Constants.Key.BankDetails);
+            affilliatDetailModel = (AffilliatDetailModel) bundle.getSerializable(Constants.Key.BankDetails);
+        }
+        Utils.E("affilliatDetailModelBankDetail::"+affilliatDetailModel);
         if (AppController.getInstance().isOnline()) {
 
         } else {
             //Utils.InternetDialog(activity);
         }
-        binding.UpdateBankDetail.setOnClickListener(this);
+        setUserDetails();
+        binding.llUpdateBankDetail.setOnClickListener(this);
         binding.ivBack.setOnClickListener(this);
     }
+
+    private void setUserDetails() {
+        binding.tvAccountHolderName.setText(affilliatDetailModel.accPayeeName);
+        binding.tvAccountNumber.setText(affilliatDetailModel.accNumber);
+        binding.tvAccountType.setText(affilliatDetailModel.accType);
+        binding.tvIfscCode.setText(affilliatDetailModel.ifscCode);
+    }
+
 
     private void GetBankUserDetails() {
         apiService.GetBankUserDetails("").enqueue(new Callback<AllResponseModel>() {
@@ -66,7 +83,7 @@ public class BankDetailActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if (view == binding.UpdateBankDetail) {
+        if (view == binding.llUpdateBankDetail) {
             Utils.I(activity, UpdateBankDetailsActivity.class, null);
         } else if (view == binding.ivBack) {
             finish();

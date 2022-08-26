@@ -18,6 +18,7 @@ import com.dollop.exam101.main.activity.PackagesDetailActivity;
 import com.dollop.exam101.main.model.PackageModel;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackageViewHolder> {
@@ -41,10 +42,9 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         PackageModel packageModel = packageModelModelsList.get(position);
         holder.itemPackagesBinding.tvPackageHeading.setText(packageModel.packageName);
         holder.itemPackagesBinding.tvPackageDescription.setText(packageModel.shortDesc);
-        holder.itemPackagesBinding.tvRupees.setText(packageModel.discountedPrice);
-        holder.itemPackagesBinding.tvTotalRupees.setText(packageModel.actualPrice);
+        holder.itemPackagesBinding.tvRupees.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageModel.discountedPrice)));
+        holder.itemPackagesBinding.tvTotalRupees.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageModel.actualPrice)));
         holder.itemPackagesBinding.tvDay.setText(packageModel.validity+context.getString(R.string.Days));
-
 
         if (packageModel.rating.equals(Constants.Key.blank)){
             holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);

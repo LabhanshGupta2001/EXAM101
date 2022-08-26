@@ -35,7 +35,7 @@ public class Constants {
         String For = "For";
 
         //Parameters
-        String Authorization = "Authorization";
+            String Authorization = "Authorization";
 
         //Firebase
         String Notification = "Notification";
@@ -180,5 +180,11 @@ public class Constants {
         String ifscCode = "ifscCode";
         String acBranchName = "acBranchName";
         String accType = "accType";
+        String Success = "Success";
+        String Approved = "Approved";
+        String Pending = "Pending";
+        String BankDetails = "BankDetails";
+        String startDate = "startDate";
+        String endDate = "endDate";
     }
 }

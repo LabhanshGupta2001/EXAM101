@@ -1,35 +1,45 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
+import com.dollop.exam101.Basics.Retrofit.APIError;
+import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.SavedData;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityProfileBinding;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.dollop.exam101.main.model.AffilliatDetailModel;
+import com.dollop.exam101.main.model.AllResponseModel;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileActivity extends BaseActivity implements View.OnClickListener {
 
     Activity activity = ProfileActivity.this;
     ActivityProfileBinding binding;
-    GoogleSignInClient mGoogleSignInClient;
+    ApiService apiService;
+    AffilliatDetailModel affilliatDetailModel;
+
 
 
     @Override
     protected void onResume() {
         super.onResume();
         setData();
-        if (SavedData.getBankStatus().equals(Constants.Key.pending)) {
-            binding.llRequestAffilation.setVisibility(View.GONE);
-            binding.llRequestPendingCode.setVisibility(View.VISIBLE);
-        } else {
-            binding.llRequestAffilation.setVisibility(View.VISIBLE);
-            binding.llRequestPendingCode.setVisibility(View.GONE);
-        }
+        GetAffiliateStatus();
     }
 
     @Override
@@ -41,7 +51,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void init() {
-        setData();
+        apiService = RetrofitClient.getClient();
         binding.ivBack.setOnClickListener(this);
         binding.llOderHistory.setOnClickListener(this);
         binding.llEditProfile.setOnClickListener(this);
@@ -57,11 +67,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         binding.tvInviteFriends.setOnClickListener(this);
         // binding.llMockTest.setOnClickListener(this);
 
-
     }
 
     private void setData() {
-
         binding.tvUserName.setText(Utils.GetSession().studentName);
         binding.tvUserEmail.setText(Utils.GetSession().studentEmail);
         if (Utils.GetSession().profilePic != null && (!Utils.GetSession().profilePic.equals(""))) {
@@ -81,11 +89,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         } else if (view == binding.llNotifications) {
             Utils.I(activity, NotificationActivity.class, null);
         } else if (view == binding.llRequestAffilation) {
-          //  Utils.I(activity, AffilationBankDetailsActivity.class, null);
-           Utils.I(activity, UpdateBankDetailsActivity.class, null);
+            Utils.I(activity, AffilationBankDetailsActivity.class, null);
+            // Utils.I(activity, UpdateBankDetailsActivity.class, null);
         } else if (view == binding.tvInviteFriends) {
         } else if (view == binding.llBankDetails) {
-            Utils.I(activity, BankDetailActivity.class, null);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(Constants.Key.BankDetails,affilliatDetailModel);
+            Utils.I(activity, BankDetailActivity.class, bundle);
         } else if (view == binding.llAffiliatePurchaseList) {
             Utils.I(activity, AffiliatePurchaseListActivity.class, null);
         } else if (view == binding.llWishList) {
@@ -97,5 +107,50 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         }*/
     }
 
+    private void GetAffiliateStatus() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getAffiliateStatus(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+
+                        assert response.body() != null;
+                         affilliatDetailModel = response.body().affilliatDetailModel;
+                        if (affilliatDetailModel.reqStatus.equals(Constants.Key.Pending)) {
+                            binding.llRequestPendingCode.setVisibility(View.VISIBLE);
+                            binding.llRequestAffilation.setVisibility(View.GONE);
+                        } else if (affilliatDetailModel.reqStatus.equals(Constants.Key.Approved)) {
+                            binding.llRequestPendingCode.setVisibility(View.GONE);
+                            binding.llRequestAffilation.setVisibility(View.GONE);
+                            binding.llBankDetailsAndAffiliation.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.llRequestAffilation.setVisibility(View.VISIBLE);
+                        }
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
 
 }

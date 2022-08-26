@@ -51,6 +51,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -248,8 +249,8 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     imgPath = packageDetailModels.featureImg;
                     binding.tvHeadings.setText(packageName);
                     binding.tvLanguage.setText(languageModels.get(0).languageName);
-                    binding.tvPriceGreat.setText(packageDetailModels.discountedPrice);
-                    binding.tvPriceSmall.setText(packageDetailModels.actualPrice);
+                    binding.tvPriceGreat.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageDetailModels.discountedPrice)));
+                    binding.tvPriceSmall.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageDetailModels.actualPrice)));
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
                     if (packageDetail.isEmpty()){
@@ -269,6 +270,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         subjectModelArrayList.addAll(examModelArrayList.get(i).subjects);
                     }
                     Utils.E("subjectModelArrayList::"+subjectModelArrayList);
+
+                    if (!subjectModelArrayList.isEmpty() && !mockTestModels.isEmpty()){
+
                     if(subjectModelArrayList.isEmpty() || subjectModelArrayList.equals(Constants.Key.blank) ||
                             examModelArrayList.isEmpty() || examModelArrayList.equals(Constants.Key.blank)){
                     }else {
@@ -284,6 +288,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         fragments.add(new MockTestFragment(mockTestModels));
                         Utils.E("^@%Mock_Test::");
                     }
+                   } else {
+                        binding.viewtwo.setVisibility(View.GONE);
+                       binding.llTabView.setVisibility(View.GONE);
+                   }
                     mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
                     binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
                     new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {

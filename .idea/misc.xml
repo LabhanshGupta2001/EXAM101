@@ -435,6 +435,8 @@
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/ic_visibility.xml" value="0.1575" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/input_custom.xml" value="0.1575" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/drawable/red_gradient.xml" value="0.134" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.33" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.22" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_blogs_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_category_details.xml" value="0.20416666666666666" />
@@ -442,6 +444,8 @@
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_mock_test_list.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_mock_test_questions.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_my_cart.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.22" />
@@ -449,6 +453,7 @@
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_raise_complaint_form.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_setting.xml" value="0.1" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.2717171717171717" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_thank_you_pg.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_welcome.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/alertdialog.xml" value="0.33" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/bottom_sheet_country.xml" value="0.1675929884566054" />
@@ -460,6 +465,8 @@
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_category.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_category_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_mock_test.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_mock_test_list.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/fragment_package_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_blogs_horizontal.xml" value="0.1675929884566054" />
@@ -473,6 +480,7 @@
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.2810126582278481" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_state.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.33" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/nav_header_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2421875" />
       </map>

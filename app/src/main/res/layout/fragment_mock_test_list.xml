@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/lineColor"
     android:orientation="vertical"
     tools:context=".main.fragment.MockTestListFragment">
@@ -23,8 +23,6 @@
             android:contentDescription="@string/back_arrow"
             android:padding="@dimen/_8sdp"
             android:src="@drawable/ic_backarrow" />
-
-
         <TextView
             style="@style/TernaryTextStyle"
             android:layout_width="wrap_content"
@@ -34,16 +32,22 @@
             android:text="@string/mock_test" />
     </LinearLayout>
 
-
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/llToolbar"
         android:id="@+id/rvMockTestList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
         android:layout_marginTop="@dimen/_12sdp"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/_16sdp"
         android:background="@color/white"
-        tools:listitem="@layout/item_mock_test_list">
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_16sdp" />
 
-    </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+    <include
+        android:visibility="gone"
+        android:id="@+id/dataNoFoundId"
+        android:layout_centerInParent="true"
+        layout="@layout/no_result_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

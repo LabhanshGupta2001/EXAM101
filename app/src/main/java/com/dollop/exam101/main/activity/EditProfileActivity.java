@@ -580,7 +580,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         binding.etUserEmail.setText(Utils.GetSession().studentEmail);
         binding.etUserName.setText(Utils.GetSession().studentName);
         binding.tvSelectState.setText(Utils.GetSession().stateName);
-
+        SavedData.saveCountryUuId(Utils.GetSession().countryUuid);
         if (Utils.GetSession().profilePic != null && (!Utils.GetSession().profilePic.equals(""))) {
             Utils.Picasso(Utils.GetSession().profilePic, binding.ivProfile, R.drawable.dummy);
         }

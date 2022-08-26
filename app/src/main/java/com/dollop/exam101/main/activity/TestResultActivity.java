@@ -56,9 +56,7 @@ public class TestResultActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
-            // Utils.T(activity,"back prass");
-            Utils.I(activity, MockTestListActivity.class, null);
-            activity.finish();
+           onBackPressed();
         }
     }
 

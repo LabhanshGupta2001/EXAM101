@@ -26,10 +26,12 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
 
+import java.util.Objects;
+
 
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
-    public NavController navController;
+    public  NavController navController;
     public ActivityDashboardScreenBinding binding;
     AppBarConfiguration appBarConfiguration;
     Activity activity = DashboardScreenActivity.this;
@@ -50,6 +52,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onBackPressed() {
+
+        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.bottom_home){
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
             return;
@@ -65,6 +69,10 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
+        }else {
+            super.onBackPressed();
+        }
+
     }
 
     @Override
