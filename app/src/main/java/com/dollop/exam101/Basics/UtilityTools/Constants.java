@@ -186,5 +186,8 @@ public class Constants {
         String BankDetails = "BankDetails";
         String startDate = "startDate";
         String endDate = "endDate";
+        String Account = "Account";
+        String Copy = "Copy to Clipboard";
+
     }
 }

@@ -156,6 +156,44 @@
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/mcvCard"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:padding="@dimen/_12sdp"
+        android:weightSum="1"
+        android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tvAffiliateCodeId"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_test_question"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textIsSelectable = "true"
+        android:textColorHint="@color/sub_text"
+        android:fontFamily="@font/inter_semibold"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingHorizontal="@dimen/_6sdp"
+        android:hint="@string/enter_referral_code"
+        android:theme="@style/QuaternaryTextStyle" />
+
+        <TextView
+            android:id="@+id/tvCopy"
+            style="@style/SenaryTextStyle"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_test_question"
+            android:fontFamily="@font/inter_medium"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="Copy" />
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/llUpdateBankDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -172,5 +210,7 @@
             android:padding="@dimen/_12sdp"
             android:text="@string/update_bank_details" />
     </LinearLayout>
+
+
 
 </RelativeLayout>

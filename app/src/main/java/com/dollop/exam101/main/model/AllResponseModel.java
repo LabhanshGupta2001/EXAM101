@@ -136,4 +136,8 @@ public class AllResponseModel {
     @Expose
     public List<StudentMockTest> studentMockTestsList=null;
 
+    @SerializedName("appliedCoupon")
+    @Expose
+    public AppliedCouponModel appliedCouponModel;
+
 }

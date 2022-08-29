@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class BankDetailsModel {
 
+    @SerializedName("affiliateCode")
+    @Expose
+    public String affiliateCode;
     @SerializedName("accPayeeName")
     @Expose
     public String accPayeeName;

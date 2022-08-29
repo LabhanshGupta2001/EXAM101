@@ -47,7 +47,7 @@
             android:fontFamily="@font/inter_regular"
             android:lineSpacingExtra="@dimen/_2sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/lorem_ipsum_is_simply_dummy_text_of_the_printing_and_type_n_industry_lorem_ipsum_has_been_the_industry_s_standard_n_dummy_text_ever_since_the_1500s_when_an_unknown_printer_n_took_a_galley_of_type_and_scrambled_it_to_make_a_type_n_specimen_book_it_has_survived_not_only_five_centuries_but_n_the_leap_into_electronic_typesetting_remaining_essentially_n_unchanged" />
+            android:text="@string/dummy_msg" />
 
 
         <RelativeLayout

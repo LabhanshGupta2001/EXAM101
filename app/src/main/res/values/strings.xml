@@ -64,7 +64,7 @@
     <string name="top">Top</string>
     <string name="view_all">View all</string>
     <string name="details">Details</string>
-    <string name="graphic_design_text">Graphic Design, Adobe software, indesign, figma, industory, imeulator, photoshop,alkdjfkjsdkfjksdjkfljklsdjf</string>
+    <string name="graphic_design_text">Graphic Design, Adobe software, indesign, figma, industory, imeulator, photoshop</string>
     <string name="fourdotfour">4.4</string>
     <string name="onedottwokrating">(1.2k Ratings)</string>
     <string name="current_affairs">Current Affairs</string>
@@ -173,7 +173,7 @@
     <string name="normal_priority">Normal Priority</string>
     <string name="view_detail">View Detail</string>
     <string name="active">Active</string>
-    <string name="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_type_n_industry_lorem_ipsum_has_been_the_industry_s_standard_n_dummy_text_ever_since_the_1500s_when_an_unknown_printer_n_took_a_galley_of_type_and_scrambled_it_to_make_a_type_n_specimen_book_it_has_survived_not_only_five_centuries_but_n_the_leap_into_electronic_typesetting_remaining_essentially_n_unchanged">Lorem Ipsum is simply dummy text of the printing and type industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but the leap into electronic typesetting, remaining essentially unchanged.</string>
+    <string name="dummy_msg">Lorem Ipsum is simply dummy text of the printing and type industry.</string>
     <string name="raise_complaint">Raise Complaint</string>
     <string name="enter_complaint_subject">Enter Complaint Subject</string>
     <string name="subject">Subject</string>
@@ -229,12 +229,11 @@
     <string name="_4500">4500</string>
     <string name="microsoft_power_point">Microsoft power Point</string>
     <string name="best_way_learn_fundamentals_of_design_nthinking">Best way learn fundamentals of design\nthinking.</string>
-    <string name="learn_python_like_a_professional_start_from_the_basics_and_go_nall_the_way_to_creating_your_own_applications_and_games_learn_npython_like_a_professional_start_from_the_basics_and_go_all_the_nway_to_creating_your_own_applications_and_games">Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games</string>
     <string name="_4_0">4.0</string>
     <string name="_54_rating_and_reviews">(54) Rating and Reviews</string>
     <string name="overview">Overview</string>
     <string name="course_details">Course details</string>
-    <string name="new_to_web_design_start_here_first_instructor_james_nwilliamson_introduces_the_fundamental_concepts_tools_and_nlearning_paths_for_web_design_he_explains_what_it_means_to_be_na_web_designer_the_various_areas_of_specialization_and_nwhether_web_design_is_the_right_hobby_or_career_for_you_along_nthe_way_he_talks_to_five_prominent_designers_and_developers_nwho_have_each_found_success_in_a_different_corner_of_the_web">New to web design? Start here first. Instructor James\nWilliamson introduces the fundamental concepts, tools, and\nlearning paths for web design. He explains what it means to be\na web designer, the various areas of specialization, and\nwhether web design is the right hobby or career for you. Along\nthe way, he talks to five prominent designers and developers,\nwho have each found success in a different corner of the web.</string>
+    <string name="overview_msg">New to web design? Start here first. Instructor James\nWilliamson introduces the fundamental concepts, tools, and\nlearning paths for web design. He explains what it means to be\na web designer, the various areas of specialization, and\nwhether web design is the right hobby or career for you. Along\nthe way, he talks to five prominent designers and developers,\nwho have each found success in a different corner of the web.</string>
     <string name="requirements">Requirements</string>
     <string name="skills_covered_in_this_course">Skills covered in this course</string>
     <string name="rating_and_reviews">Rating &amp; Reviews</string>
