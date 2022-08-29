@@ -93,9 +93,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             // Utils.I(activity, UpdateBankDetailsActivity.class, null);
         } else if (view == binding.tvInviteFriends) {
         } else if (view == binding.llBankDetails) {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(Constants.Key.BankDetails,affilliatDetailModel);
-            Utils.I(activity, BankDetailActivity.class, bundle);
+           // Bundle bundle = new Bundle();
+            //bundle.putSerializable(Constants.Key.BankDetails,affilliatDetailModel);
+            Utils.I(activity, BankDetailActivity.class, null);
         } else if (view == binding.llAffiliatePurchaseList) {
             Utils.I(activity, AffiliatePurchaseListActivity.class, null);
         } else if (view == binding.llWishList) {

@@ -35,6 +35,7 @@ import com.dollop.exam101.main.activity.PaymentFailedActivity;
 import com.dollop.exam101.main.activity.ThankYouPgActivity;
 import com.dollop.exam101.main.adapter.MyCartAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.AppliedCouponModel;
 import com.dollop.exam101.main.model.CartDatumModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
@@ -52,11 +53,13 @@ import retrofit2.Response;
 public class CartFragment extends Fragment implements View.OnClickListener {
     FragmentCartBinding binding;
     Activity activity;
+    String couponAndReferralCode = "";
     BottomSheetDialog bottomSheetApplyCoupon, bottomSheetDialogReferralCode;
     List<CartDatumModel> myCartModelArrayList = new ArrayList<>();
     ApiService apiService;
     BottomsheetApplycouponBinding bottomsheetApplycouponBinding;
     BottomsheetReferralcodeBinding bottomsheetReferralcodeBinding;
+    AppliedCouponModel appliedCouponModel;
 
 
     @Override
@@ -125,7 +128,9 @@ public class CartFragment extends Fragment implements View.OnClickListener {
 
                 } else {
                     if (AppController.getInstance().isOnline()) {
+                        couponAndReferralCode = bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().trim();
                         applyCouponCode();
+                        bottomSheetApplyCoupon.dismiss();
                     } else {
                         InternetDialog();
                     }
@@ -189,7 +194,9 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     bottomsheetReferralcodeBinding.etReferralCodeId.requestFocus();
                 } else {
                     if (AppController.getInstance().isOnline()) {
+                        couponAndReferralCode = bottomsheetReferralcodeBinding.etReferralCodeId.getText().toString().trim();
                         applyCouponCode();
+                        bottomSheetDialogReferralCode.dismiss();
                     } else {
                         InternetDialog();
                     }
@@ -200,21 +207,33 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     }
 
     private void applyCouponCode() {
-        apiService.ApplyCouponCode(Utils.GetSession().token, bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().trim()).
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.ApplyCouponCode(Utils.GetSession().token, couponAndReferralCode).
                 enqueue(new Callback<AllResponseModel>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                        progressDialog.dismiss();
                         if (response.code() == StatusCodeConstant.OK) {
                             assert response.body() != null;
-                            Utils.T(activity, response.body().message);
-                            bottomSheetApplyCoupon.dismiss();
+                            appliedCouponModel = response.body().appliedCouponModel;
+                            if (response.body().message.equals(Constants.Key.Success)) {
+                                Utils.T(activity, response.body().message);
+                                binding.llCouponReferral.setVisibility(View.GONE);
+                                binding.tvCouponHeading.setVisibility(View.VISIBLE);
+                                binding.CardViewCoupon.setVisibility(View.VISIBLE);
+                                binding.tvCoupon.setText(couponAndReferralCode);
+                                binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().gstPercentage)) + "%");
+                                binding.tvSubTotalId.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.subTotalAmt)));
+                                binding.tvGrandtotal.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.grandTotalAmt)));
+                                binding.tvGrandTotalBottom.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.grandTotalAmt)));
+                            }
                         } else {
                             assert response.errorBody() != null;
                             APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                                 Utils.T(activity, message.message);
                             } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-
                                 Utils.UnAuthorizationToken(activity);
                             }
                         }
@@ -222,8 +241,9 @@ public class CartFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                        call.cancel();
                         t.printStackTrace();
-
+                        progressDialog.dismiss();
                     }
                 });
 
@@ -243,7 +263,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                         binding.scrollCartItem.setVisibility(View.VISIBLE);
                         binding.noResultFoundId.llParentEmpty.setVisibility(View.GONE);
                         binding.tvSubTotalId.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().subTotalAmt)));
-                        binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().gstPercentage))+"%");
+                        binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().gstPercentage)) + "%");
                         binding.tvGrandtotal.setText(String.valueOf(new DecimalFormat("##.##").format(response.body().grandTotalAmt)));
                         binding.tvGrandTotalBottom.setText(String.valueOf(new DecimalFormat("##.##").format(response.body().grandTotalAmt)));
                         myCartModelArrayList.clear();
@@ -265,7 +285,6 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             }
-
 
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
@@ -369,7 +388,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     private void purchasePackage() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.couponCode, "");
+        hm.put(Constants.Key.couponCode,couponAndReferralCode);
         hm.put(Constants.Key.transactionId, "xyz");
         hm.put(Constants.Key.paymentMode, Constants.Key.Online);
         apiService.purchasePackage(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {

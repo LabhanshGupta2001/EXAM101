@@ -76,19 +76,12 @@
                 android:background="@color/lineColor"
                 android:orientation="vertical" />
 
-            <TextView
-                style="@style/TernaryTextStyle"
+
+            <LinearLayout
+                android:id="@+id/llCouponReferral"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/lineColor"
-                android:fontFamily="@font/gothic_bold"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingTop="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:text="@string/coupon"
-                android:visibility="gone" />
-
-
+                android:orientation="vertical">
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvApplyCoupon"
                 android:layout_width="match_parent"
@@ -210,6 +203,21 @@
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCouponHeading"
+                style="@style/TernaryTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lineColor"
+                android:fontFamily="@font/gothic_bold"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/coupon"
+                android:visibility="gone" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/CardViewCoupon"
                 android:layout_width="match_parent"
@@ -245,7 +253,6 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_toEndOf="@id/ivClick"
                         android:fontFamily="@font/inter_medium"
-                        android:text="SAVEPACKAGE50"
                         android:theme="@style/QuaternaryTextStyle" />
 
                     <TextView
