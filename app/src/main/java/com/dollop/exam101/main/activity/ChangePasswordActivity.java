@@ -9,6 +9,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +22,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -55,6 +58,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     ApiService apiService;
     List<ValidationModel> allResponseModels = new ArrayList<>();
     String Token;
+    Boolean isClicked = false;
 
     @SuppressLint("NewApi")
     @Override
@@ -71,6 +75,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         apiService = RetrofitClient.getClient();
 
         binding.ivBack.setOnClickListener(this);
+        binding.ivShowHidePasswordConfirm.setOnClickListener(this);
+        binding.ivShowHidePasswordNew.setOnClickListener(this);
+        binding.ivShowHidePasswordCurrent.setOnClickListener(this);
         binding.llSavePassword.setOnClickListener(this);
         binding.etConfirmNewPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
             @Override
@@ -93,6 +100,55 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
             }
         });
+        binding.etCurrentPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorCurrentPass.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etNewPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorNewPass.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        binding.etConfirmNewPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                binding.tvErrorConfirmPass.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
     private void ChangePassword() {
@@ -100,7 +156,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         hm.put(Constants.Key.newPassword, binding.etNewPassword.getText().toString().trim());
         hm.put(Constants.Key.confirmPassword, binding.etConfirmNewPassword.getText().toString().trim());
         hm.put(Constants.Key.oldPassword, binding.etCurrentPassword.getText().toString().trim());
-        Dialog progressDialog=Utils.initProgressDialog(activity);
+        Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.ChangePassword(Token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -108,7 +164,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.I(activity,SettingActivity.class,null);
+                        Utils.I(activity, SettingActivity.class, null);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -138,21 +194,96 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         if (view == binding.ivBack) {
             onBackPressed();
-        }
-        if (view == binding.llSavePassword) {
+        } else if (view == binding.llSavePassword) {
             if (AppController.getInstance().isOnline()) {
                 CheckValidationTask();
             } else {
                 InternetDialog();
             }
+        } else if (view == binding.ivShowHidePasswordCurrent) {
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePasswordCurrent.setImageResource(R.drawable.ic_hide);
+
+                binding.etCurrentPassword.setTransformationMethod
+                        (HideReturnsTransformationMethod.getInstance());
+                binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
+                binding.etCurrentPassword.requestFocus();
+
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+            } else {
+                binding.ivShowHidePasswordCurrent.setImageResource(R.drawable.ic_visibility);
+
+                binding.etCurrentPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
+                binding.etCurrentPassword.requestFocus();
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+            }
+        } else if (view == binding.ivShowHidePasswordNew) {
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePasswordNew.setImageResource(R.drawable.ic_hide);
+
+                binding.etNewPassword.setTransformationMethod
+                        (HideReturnsTransformationMethod.getInstance());
+                binding.etNewPassword.setSelection(binding.etNewPassword.length());
+                binding.etNewPassword.requestFocus();
+
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+            } else {
+                binding.ivShowHidePasswordNew.setImageResource(R.drawable.ic_visibility);
+
+                binding.etNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etNewPassword.setSelection(binding.etNewPassword.length());
+                binding.etNewPassword.requestFocus();
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+            }
+        } else if (view == binding.ivShowHidePasswordConfirm) {
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePasswordConfirm.setImageResource(R.drawable.ic_hide);
+
+                binding.etConfirmNewPassword.setTransformationMethod
+                        (HideReturnsTransformationMethod.getInstance());
+                binding.etConfirmNewPassword.setSelection(binding.etConfirmNewPassword.length());
+                binding.etConfirmNewPassword.requestFocus();
+
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+            } else {
+                binding.ivShowHidePasswordConfirm.setImageResource(R.drawable.ic_visibility);
+
+                binding.etConfirmNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etConfirmNewPassword.setSelection(binding.etConfirmNewPassword.length());
+                binding.etConfirmNewPassword.requestFocus();
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+            }
         }
+
     }
 
     private void CheckValidationTask() {
         allResponseModels.clear();
-        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etCurrentPassword,binding.tvErrorCurrentPass));
-        allResponseModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etNewPassword,binding.tvErrorNewPass));
-        allResponseModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etNewPassword, binding.etConfirmNewPassword,binding.tvErrorConfirmPass));
+        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etCurrentPassword, binding.tvErrorCurrentPass));
+        allResponseModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etNewPassword, binding.tvErrorNewPass));
+        allResponseModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etNewPassword, binding.etConfirmNewPassword, binding.tvErrorConfirmPass));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
@@ -190,6 +321,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         }
         return super.dispatchTouchEvent(event);
     }
+
     @SuppressLint("NewApi")
     private void InternetDialog() {
         Dialog dialog = new Dialog(activity);

@@ -300,12 +300,17 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 binding.etPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etPassword.setSelection(binding.etPassword.length());
-                binding.etPassword.requestFocus();
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
             } else {
                 binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
                 binding.etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etPassword.setSelection(binding.etPassword.length());
-                binding.etPassword.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
 
             }
         } else if (view == binding.ivShowHidePassword2) {
@@ -315,12 +320,16 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 binding.etConfirmPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
-                binding.etConfirmPassword.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
             } else {
                 binding.ivShowHidePassword2.setImageResource(R.drawable.ic_visibility);
                 binding.etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
-                binding.etConfirmPassword.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
 
             }
         }

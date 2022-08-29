@@ -196,15 +196,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             isClicked = !isClicked;
             if (isClicked) {
                 binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
-                binding.etUserPassword.setTransformationMethod
-                        (HideReturnsTransformationMethod.getInstance());
+                binding.etUserPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 binding.etUserPassword.setSelection(binding.etUserPassword.length());
-                binding.etUserPassword.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
             } else {
                 binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
+
                 binding.etUserPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etUserPassword.setSelection(binding.etUserPassword.length());
-                binding.etUserPassword.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
 
             }
         }

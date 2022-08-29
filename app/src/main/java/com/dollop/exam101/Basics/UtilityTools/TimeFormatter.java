@@ -140,7 +140,7 @@ public class TimeFormatter {
 
     public static String getDateTime(String date, Context context, String Pattern, @NonNull String For) throws ParseException {
         SimpleDateFormat dateFormat1 = new SimpleDateFormat(Pattern, Locale.getDefault());
-        dateFormat1.setTimeZone(TimeZone.getTimeZone("UTC"));
+       // dateFormat1.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date1 = dateFormat1.parse(date);
 
         Calendar smsTime = Calendar.getInstance();

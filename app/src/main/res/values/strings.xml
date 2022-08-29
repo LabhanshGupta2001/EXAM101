@@ -185,7 +185,6 @@
     <string name="critical">Critical</string>
     <string name="upload_pdf_images">Upload PDF / Images</string>
 
-    <string name="browser_chrome">Browser - Chrome</string>
     <string name="_2_june_2022">2 June, 2022</string>
     <string name="duration">Duration</string>
     <string name="logout_from_this_device">Logout from this device</string>
@@ -485,6 +484,10 @@
     <string name="landing_page">Landing Page</string>
     <string name="bank_detail_update_successfully">\"Bank details updated successfully \"</string>
     <string name="invalid_token">Invalid Token</string>
+    <string name="chrome">- Chrome</string>
+    <string name="agent_string">Agent String</string>
+
+
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

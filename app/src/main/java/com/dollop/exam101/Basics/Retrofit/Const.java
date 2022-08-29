@@ -32,7 +32,7 @@ public class Const {
         String reset_password = "reset_password";
         String otp_verification = "otp_verification";
         String raise_complaint = "raise_complaint";
-        String login_history = "login_history";
+        String getLoginHistoryApi = "getLoginHistoryApi";
         String getCartDetailApi = "getCartDetailApi";
         String getPackageDetailApi = "getPackageDetailApi";
         String addToWishListApi = "addToWishListApi";
