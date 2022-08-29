@@ -237,24 +237,39 @@
                     android:elevation="@dimen/_minus2sdp"
                     android:visibility="gone" />
 
-
-                <EditText
-                    android:id="@+id/etPassword"
-                    style="@style/TernaryLightTextStyle"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:background="@drawable/input_custom"
+                    android:layout_marginTop="@dimen/_12sdp">
 
-                    android:fontFamily="@font/inter_regular"
-                    android:hint="@string/password"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
-                    android:paddingHorizontal="@dimen/_16sdp"
-                    android:paddingVertical="@dimen/_11sdp"
-                    android:singleLine="true"
-                    android:textColorHint="@color/sub_text"
-                    tools:ignore="Autofill" />
+                    <EditText
+                        android:id="@+id/etPassword"
+                        style="@style/TernaryBlackTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="Enter Your Passwpord"
+                        android:background="@drawable/input_custom"
+                        android:fontFamily="@font/inter_regular"
+                        android:hint="@string/enter_password"
+                        android:inputType="textPassword"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:paddingVertical="@dimen/_11sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/sub_text" />
+
+                    <ImageView
+                        android:id="@+id/iv_show_hide_password"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="false"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:src="@drawable/ic_visibility"
+                       />
+                </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/tvErrorPass"
@@ -265,22 +280,38 @@
                     android:elevation="@dimen/_minus2sdp"
                     android:visibility="gone" />
 
-                <EditText
-                    android:id="@+id/etConfirmPassword"
-                    style="@style/TernaryLightTextStyle"
-                    android:layout_width="match_parent"
-                    android:inputType="textPassword"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:background="@drawable/input_custom"
-                    android:fontFamily="@font/inter_regular"
-                    android:hint="@string/conform_password"
-                    android:importantForAutofill="no"
-                    android:paddingHorizontal="@dimen/_16sdp"
-                    android:paddingVertical="@dimen/_11sdp"
-                    android:singleLine="true"
-                    android:textColorHint="@color/sub_text"
-                    tools:ignore="Autofill" />
+                    android:layout_marginTop="@dimen/_12sdp">
+
+                    <EditText
+                        android:id="@+id/etConfirmPassword"
+                        style="@style/TernaryBlackTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="Enter Your Passwpord"
+                        android:background="@drawable/input_custom"
+                        android:fontFamily="@font/inter_regular"
+                        android:hint="@string/conform_password"
+                        android:inputType="textPassword"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:paddingVertical="@dimen/_11sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/sub_text" />
+
+                    <ImageView
+                        android:id="@+id/iv_show_hide_password2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="false"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:src="@drawable/ic_visibility" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/tvErrorConfirmPass"

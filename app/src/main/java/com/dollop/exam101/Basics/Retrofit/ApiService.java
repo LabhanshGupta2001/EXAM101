@@ -256,8 +256,8 @@ public interface ApiService {
     @GET(Const.Url.order_history)
     Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.Url.login_history)
-    Call<AllResponseModel> getloginHistory(@FieldMap HashMap<String, String> hm);
+    @GET(Const.Url.getLoginHistoryApi)
+    Call<AllResponseModel> getLoginHistory(@Header(Constants.Key.Authorization) String token);
 
     @GET(Const.Url.getCartDetailApi)
     Call<AllResponseModel> getCartList(@Header(Constants.Key.Authorization) String token);

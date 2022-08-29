@@ -123,6 +123,9 @@ public class AllResponseModel {
     @SerializedName("studentOrders")
     @Expose
     public List<StudentOrder> studentOrders = null;
+    @SerializedName("loginHistoryData")
+    @Expose
+    public List<LoginHistoryDatum> loginHistoryData = null;
 
     @SerializedName("bankDetails")
     @Expose
