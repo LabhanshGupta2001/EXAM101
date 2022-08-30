@@ -3,6 +3,7 @@ package com.dollop.exam101.Basics.Retrofit;
 
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.StudentExamList;
 
 import java.util.HashMap;
 
@@ -107,7 +108,7 @@ public interface ApiService {
 
     @GET(Const.Url.getAffiliatePurchaseListApi)
     Call<AllResponseModel> getAffiliatePurchaseList(@Header(Constants.Key.Authorization) String token,
-                                                @FieldMap HashMap<String, String> hm);
+                                                    @FieldMap HashMap<String, String> hm);
 
     @GET(Const.Url.getAffiliatePurchaseSummaryApi)
     Call<AllResponseModel> getAffiliatePurchaseSummary(@Header(Constants.Key.Authorization) String token);
@@ -256,8 +257,8 @@ public interface ApiService {
     @GET(Const.Url.order_history)
     Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.Url.login_history)
-    Call<AllResponseModel> getloginHistory(@FieldMap HashMap<String, String> hm);
+    @GET(Const.Url.getLoginHistoryApi)
+    Call<AllResponseModel> getLoginHistory(@Header(Constants.Key.Authorization) String token);
 
     @GET(Const.Url.getCartDetailApi)
     Call<AllResponseModel> getCartList(@Header(Constants.Key.Authorization) String token);
@@ -309,6 +310,9 @@ public interface ApiService {
     @GET(Const.Url.getExamListApi)
     Call<AllResponseModel> Examlist(@Header(Constants.Key.Authorization) String token);
 
+    @GET(Const.Url.getStudentExamListApi)
+    Call<StudentExamList> getStudentExamListApi(@Header(Constants.Key.Authorization) String token);
+
 
     @GET(Const.Url.removeFromCartApi)
     Call<AllResponseModel> removeFromCart(@Header(Constants.Key.Authorization) String token, @Query(Constants.Key.cartUuId) String cartUuId);
@@ -316,6 +320,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Const.Url.purchasePackageApi)
     Call<AllResponseModel> purchasePackage(@Header(Constants.Key.Authorization) String token,
+                                           @FieldMap HashMap<String, String> hashMap);
+
+
+    @GET(Const.Url.getStudentExamDetailApi)
+    Call<AllResponseModel> getStudentExamDetailApi(@Header(Constants.Key.Authorization) String token,
+                                                   @QueryMap HashMap<String, String> hashMap);
                                            @FieldMap HashMap<String, String> hashMap);
 
     @DELETE(Const.Url.removeFromWishListApi + "/{" + Constants.Key.wishListUuid + "}")

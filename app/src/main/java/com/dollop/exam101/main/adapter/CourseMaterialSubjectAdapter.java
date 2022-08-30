@@ -3,6 +3,7 @@ package com.dollop.exam101.main.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,19 +11,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemCourseMaterialSubjectNameBinding;
-import com.dollop.exam101.databinding.ItemPakagesDetailsPrimaryBinding;
+import com.dollop.exam101.main.model.Module;
+import com.dollop.exam101.main.model.Subject;
 
 import java.util.ArrayList;
 
 public class CourseMaterialSubjectAdapter extends RecyclerView.Adapter<CourseMaterialSubjectAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list;
+    ArrayList<Subject> subjectArrayList;
 
-    ArrayList<String> stringArrayList = new ArrayList<>();
+    ArrayList<Module> moduleArrayList = new ArrayList<>();
 
-    public CourseMaterialSubjectAdapter(Context context, ArrayList<String> list) {
+    public CourseMaterialSubjectAdapter(Context context, ArrayList<Subject> subjectArrayList) {
         this.context = context;
-        this.list = list;
+        this.subjectArrayList = subjectArrayList;
     }
 
     @NonNull
@@ -34,20 +36,20 @@ public class CourseMaterialSubjectAdapter extends RecyclerView.Adapter<CourseMat
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        stringArrayList.clear();
-        stringArrayList.add("1");
-        stringArrayList.add("2");
-        stringArrayList.add("3");
-        stringArrayList.add("4");
-
-        holder.binding.rvSubjectModule.setAdapter(new CourseMaterialSubjectModulAdapter(context, stringArrayList));
-        holder.binding.rvSubjectModule.setLayoutManager(new LinearLayoutManager(context));
-
+        Subject subject = subjectArrayList.get(position);
+        holder.binding.tvSubject1.setText(subject.subjectName);
+        moduleArrayList.addAll(subject.modules);
+        if (moduleArrayList.isEmpty()) {
+            holder.binding.rvSubjectModule.setVisibility(View.GONE);
+        } else {
+            holder.binding.rvSubjectModule.setLayoutManager(new LinearLayoutManager(context));
+            holder.binding.rvSubjectModule.setAdapter(new CourseMaterialSubjectModulAdapter(context, moduleArrayList));
+        }
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return subjectArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

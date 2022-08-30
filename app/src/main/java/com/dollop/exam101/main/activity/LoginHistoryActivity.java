@@ -1,20 +1,26 @@
 package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityLoginHistoryBinding;
 import com.dollop.exam101.main.adapter.LoginHistoryAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.LoginHistoryDatum;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +30,7 @@ public class LoginHistoryActivity extends BaseActivity implements View.OnClickLi
     ApiService apiService;
     Activity activity = LoginHistoryActivity.this;
     ActivityLoginHistoryBinding binding;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<LoginHistoryDatum> historyList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +43,9 @@ public class LoginHistoryActivity extends BaseActivity implements View.OnClickLi
     private void init() {
         binding.ivBack.setOnClickListener(this);
         apiService = RetrofitClient.getClient();
-        list.clear();
-        list.add("1");
-        list.add("1");
-        list.add("1");
 
-        binding.rvLoginHistory.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvLoginHistory.setAdapter(new LoginHistoryAdapter(activity, list));
+        getLoginHistory();
+
     }
 
     @Override
@@ -54,17 +56,39 @@ public class LoginHistoryActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
-    void getloginHistory() {
-        HashMap<String, String> hashMap = new HashMap<>();
-        apiService.getloginHistory(hashMap).enqueue(new Callback<AllResponseModel>() {
+    void getLoginHistory() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.getLoginHistory(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(Call<AllResponseModel> call, Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        historyList.clear();
+                        historyList.addAll(response.body().loginHistoryData);
+                        binding.rvLoginHistory.setLayoutManager(new LinearLayoutManager(activity));
+                        binding.rvLoginHistory.setAdapter(new LoginHistoryAdapter(activity, historyList));
 
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
-            public void onFailure(Call<AllResponseModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
             }
         });
     }

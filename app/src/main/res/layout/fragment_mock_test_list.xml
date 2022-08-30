@@ -23,6 +23,7 @@
             android:contentDescription="@string/back_arrow"
             android:padding="@dimen/_8sdp"
             android:src="@drawable/ic_backarrow" />
+
         <TextView
             style="@style/TernaryTextStyle"
             android:layout_width="wrap_content"

@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,7 +34,6 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
-import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -66,6 +67,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     ApiService apiservice;
     String personName, personEmail;
     List<ValidationModel> errorValidationModels = new ArrayList<>();
+    Boolean isClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         binding.tvForgetPasswordId.setOnClickListener(this);
         binding.SignInId.setOnClickListener(this);
         binding.tvSignUp.setOnClickListener(this);
+        binding.ivShowHidePassword.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -189,6 +192,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
         } else if (view == binding.tvSignUp) {
             Utils.I(activity, SignUpActivity.class, null);
+        } else if (view == binding.ivShowHidePassword) {
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
+                binding.etUserPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                binding.etUserPassword.setSelection(binding.etUserPassword.length());
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
+            } else {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
+
+                binding.etUserPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etUserPassword.setSelection(binding.etUserPassword.length());
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
+            }
         }
     }
 

@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:fontFamily="@font/gothic_bold"
-                        android:text="@string/digital_design_thinking" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/tvLast"
@@ -74,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvCourseName"
                         android:fontFamily="@font/inter_regular"
-                        android:text="Last activity on" />
+                        android:text="@string/last_activity_on" />
 
                     <TextView
                         android:id="@+id/tvLastActivityTime"
@@ -84,7 +84,7 @@
                         android:layout_below="@id/tvCourseName"
                         android:layout_toRightOf="@id/tvLast"
                         android:fontFamily="@font/inter_regular"
-                        android:text=" 6 Jan, 2022" />
+                        android:text="" />
 
                     <ProgressBar
                         android:id="@+id/progressBar"
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/progressBar"
                         android:fontFamily="@font/gothic_bold"
-                        android:text="50% Complete" />
+                        android:text="" />
 
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>

@@ -1,6 +1,5 @@
 package com.dollop.exam101.main.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -12,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -84,6 +85,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     BottomSheetCountryBinding bottomSheetCountryBinding;
     BottomSheetStateBinding bottomSheetStateBinding;
     List<ValidationModel> errorValidationModels = new ArrayList<>();
+    Boolean isClicked = false;
     private CountryAdapter countryAdapter;
     private StateAdapter stateAdapter;
     private ApiService apiservice;
@@ -121,6 +123,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         binding.tvSelectState.setOnClickListener(this);
         binding.llCountryCode.setOnClickListener(this);
         binding.tvRegisterId.setOnClickListener(this);
+        binding.ivShowHidePassword.setOnClickListener(this);
+        binding.ivShowHidePassword2.setOnClickListener(this);
         binding.tvSelectCountry.setText(Constants.Key.India);
 
         binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -275,7 +279,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
@@ -286,11 +289,43 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             bottomSheetStateTask();
         } else if (view == binding.tvRegisterId) {
             CheckValidationTask();
-        }else if (view == binding.llCountryCode) {
-          //  bottomSheetCountryTask(Constants.Key.CountryId_Show);
+        } else if (view == binding.llCountryCode) {
+            //  bottomSheetCountryTask(Constants.Key.CountryId_Show);
         } else if (view == binding.tvSelectCountry) {
             binding.tvErrorCountry.setVisibility(View.GONE);
             bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
+        } else if (view == binding.ivShowHidePassword) {
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
+                binding.etPassword.setTransformationMethod
+                        (HideReturnsTransformationMethod.getInstance());
+                binding.etPassword.setSelection(binding.etPassword.length());
+
+            } else {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
+                binding.etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etPassword.setSelection(binding.etPassword.length());
+
+
+
+            }
+        } else if (view == binding.ivShowHidePassword2) {
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePassword2.setImageResource(R.drawable.ic_hide);
+                binding.etConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
+
+
+            } else {
+                binding.ivShowHidePassword2.setImageResource(R.drawable.ic_visibility);
+                binding.etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
+
+
+
+            }
         }
     }
 
@@ -495,7 +530,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
                         assert response.body() != null;
-                        Utils.T(activity,response.body().message);
+                        Utils.T(activity, response.body().message);
                         Utils.I_clear(activity, LoginActivity.class, bundle);
                     } else {
                         assert response.errorBody() != null;

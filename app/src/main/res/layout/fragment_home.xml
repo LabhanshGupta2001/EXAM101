@@ -136,6 +136,7 @@
                 android:id="@+id/rvPackages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                tools:listitem="item"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:overScrollMode="never" />
         </LinearLayout>
@@ -171,6 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_10sdp"
+
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
@@ -359,7 +361,7 @@
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_weight="1"
                     app:cardCornerRadius="@dimen/_2sdp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="1dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -412,7 +414,7 @@
                     android:layout_marginVertical="@dimen/_6sdp"
                     android:layout_weight="1"
                     app:cardCornerRadius="@dimen/_4sdp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="1dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -465,7 +467,7 @@
                     android:layout_marginEnd="@dimen/_6sdp"
                     android:layout_weight="1"
                     app:cardCornerRadius="@dimen/_4sdp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="1dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"

@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:id="@+id/tvModuleName"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_medium"
@@ -54,7 +55,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChapter"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_12sdp"
@@ -62,7 +62,8 @@
         android:background="@drawable/stroke_curve_bottom"
         android:overScrollMode="never"
         android:paddingVertical="@dimen/_6sdp"
-        tools:listitem="@layout/item_course_material_chapter_name_list"/>
+        android:visibility="visible"
+        tools:listitem="@layout/item_course_material_chapter_name_list" />
 
 </LinearLayout>
 
