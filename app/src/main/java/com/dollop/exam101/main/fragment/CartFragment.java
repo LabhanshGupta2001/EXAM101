@@ -155,6 +155,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 InternetDialog();
             }
         } else if (view == binding.ivBack) {
+            binding.llToolbar.setVisibility(View.GONE);
             ((DashboardScreenActivity) activity).navController.popBackStack();
         } else if (view == binding.tvRemoveCoupon){
             binding.view.setVisibility(View.VISIBLE);

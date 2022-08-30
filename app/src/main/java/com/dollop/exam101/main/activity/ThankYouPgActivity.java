@@ -19,7 +19,6 @@ public class ThankYouPgActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         binding = ActivityThankYouPgBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
     }
 
