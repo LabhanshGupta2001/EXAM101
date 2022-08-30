@@ -15,7 +15,7 @@
         android:layout_marginVertical="@dimen/_6sdp"
         android:outlineAmbientShadowColor="@color/ShadowColor"
         android:outlineSpotShadowColor="@color/ambientColor"
-        app:cardElevation="6dp"
+        app:cardElevation="4dp"
         tools:ignore="UnusedAttribute">
 
 

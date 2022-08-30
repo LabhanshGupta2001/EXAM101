@@ -9,17 +9,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.TimeFormatter;
 import com.dollop.exam101.databinding.ItemLoginHistoryBinding;
+import com.dollop.exam101.main.model.LoginHistoryDatum;
 
-import java.util.List;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapter.MyViewHolder> {
     Context context;
-    List<String> list;
+    ArrayList<LoginHistoryDatum> list;
     private Boolean dropdown = true;
 
 
-    public LoginHistoryAdapter(Context context, List<String> list) {
+    public LoginHistoryAdapter(Context context, ArrayList<LoginHistoryDatum> list) {
         this.context = context;
         this.list = list;
     }
@@ -33,6 +36,18 @@ public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        LoginHistoryDatum loginHistoryDatum = list.get(position);
+        try {
+            holder.binding.tvDate.setText(TimeFormatter.getDateTime(loginHistoryDatum.loginHistoryDtm, context, "yyyy-MM-dd HH:mm:ss", "Date"));
+            holder.binding.tvTime.setText(TimeFormatter.getDateTime(loginHistoryDatum.loginHistoryDtm, context, "yyyy-MM-dd hh:mm:ss", "time"));
+            holder.binding.tvPlatform.setText(loginHistoryDatum.platform);
+            holder.binding.tvIp.setText(loginHistoryDatum.machineIp);
+            holder.binding.tvAgentString.setText(loginHistoryDatum.agentString);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         holder.binding.llMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

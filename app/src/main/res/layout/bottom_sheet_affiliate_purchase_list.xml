@@ -84,8 +84,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
-                            android:paddingVertical="@dimen/_11sdp"
-                            android:text="08/05/2022" />
+                            android:paddingVertical="@dimen/_10sdp" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/mcvFromDateCalender"
@@ -147,8 +146,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
-                            android:paddingVertical="@dimen/_11sdp"
-                            android:text="24/12/2022" />
+                            android:paddingVertical="@dimen/_10sdp" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/mcvToDateCalender"

@@ -232,6 +232,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     void getTopTen() {
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put(Constants.Key.limit,"10");
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {

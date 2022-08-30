@@ -12,30 +12,38 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
+import com.dollop.exam101.Basics.UtilityTools.TimeFormatter;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityCoursesMaterialBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.main.adapter.CourseMaterialSubjectAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.Subject;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CoursesMaterial extends BaseActivity implements View.OnClickListener {
+    private final Boolean dropdown = true;
     Activity activity = CoursesMaterial.this;
     ActivityCoursesMaterialBinding binding;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<Subject> subjectlist = new ArrayList<>();
     ApiService apiService;
-    private final Boolean dropdown = true;
-
+    Bundle bundle;
+    String orderExamUuid;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -43,48 +51,37 @@ public class CoursesMaterial extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         binding = ActivityCoursesMaterialBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        init();
         binding.ivBack.setOnClickListener(this);
+        bundle = getIntent().getExtras();
+        orderExamUuid = bundle.getString(Constants.Key.orderExamUuid);
+        Utils.E("orderExamUuid:::" + orderExamUuid);
+        apiService = RetrofitClient.getClient();
+        init();
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     void init() {
-
-        apiService = RetrofitClient.getClient();
         if (AppController.getInstance().isOnline()) {
+            CategoriesHomeAllExamList();
 
         } else {
-           // Utils.InternetDialog(activity);
+            // Utils.InternetDialog(activity);
             InternetDialog();
         }
         setProgress();
-        getCourseList();
+        // getCourseList();
     }
 
     void setProgress() {
-        binding.progressBar.setProgress(50);
-        binding.progressBar.setMax(100);
+
     }
 
-    void getCourseList() {
-        list.clear();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-
-        binding.rvCourseList.setHasFixedSize(true);
-        binding.rvCourseList.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvCourseList.setAdapter(new CourseMaterialSubjectAdapter(activity, list));
-    }
 
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
-            Utils.I(activity, CourseListActivity.class, null);
-            finish();
+            onBackPressed();
         }
     }
 
@@ -94,33 +91,7 @@ public class CoursesMaterial extends BaseActivity implements View.OnClickListene
         finish();
     }
 
-    private void getCourseMaterialProgressBar() {
-        apiService.getCourseMaterialProgressBar("").enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
 
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
-            }
-        });
-    }
-
-    private void getCourseMaterialList() {
-        apiService.getCourseMaterialList("").enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
-            }
-        });
-    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
         Dialog dialog = new Dialog(activity);
@@ -139,4 +110,57 @@ public class CoursesMaterial extends BaseActivity implements View.OnClickListene
         });
         dialog.show();
     }
+
+    private void CategoriesHomeAllExamList() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        HashMap<String, String> hashMap = new HashMap();
+        hashMap.put(Constants.Key.orderExamUuid, orderExamUuid);
+        Utils.E("done:::");
+
+        apiService.getStudentExamDetailApi(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        binding.tvCourseName.setText(response.body().orderexams.examName);
+                        binding.tvPercentComplete.setText(response.body().orderexams.completedPercentage + "% Complete");
+                        binding.tvLastActivityTime.setText(" "+(TimeFormatter.getDateTime(response.body().orderexams.lastActivityDate, activity, "yyyy-MM-dd HH:mm:ss", "Date")));
+                        binding.progressBar.setProgress(Integer.parseInt(response.body().orderexams.completedPercentage));
+                        binding.progressBar.setMax(100);
+                        subjectlist.addAll(response.body().orderexams.subjects);
+                        if (subjectlist.isEmpty()){
+                            binding.rvCourseList.setVisibility(View.GONE);
+                        }
+                        else {
+                        binding.rvCourseList.setHasFixedSize(true);
+                        binding.rvCourseList.setLayoutManager(new LinearLayoutManager(activity));
+                        binding.rvCourseList.setAdapter(new CourseMaterialSubjectAdapter(activity, subjectlist));}
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(activity, message.message);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
+
 }

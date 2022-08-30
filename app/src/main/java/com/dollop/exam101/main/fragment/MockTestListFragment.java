@@ -114,6 +114,7 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
+            binding.llToolbar.setVisibility(View.GONE);
             ((DashboardScreenActivity) activity).navController.popBackStack();
         }
     }

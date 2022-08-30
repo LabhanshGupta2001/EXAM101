@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityThankYouPgBinding;
 
@@ -18,7 +19,6 @@ public class ThankYouPgActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         binding = ActivityThankYouPgBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
     }
 
@@ -29,7 +29,7 @@ public class ThankYouPgActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == binding.tvBtnBackToHome) {
-            ((DashboardScreenActivity) activity).navController.navigate(R.id.bottom_home);
+            Utils.I_clear(activity,DashboardScreenActivity.class,null);
         }
     }
 }

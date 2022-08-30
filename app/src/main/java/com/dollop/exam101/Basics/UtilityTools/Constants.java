@@ -65,12 +65,14 @@ public class Constants {
         String Android = "Android";
         String studentMobileNo = "studentMobileNo";
         String countryCode = "countryCode";
+        String Home = "Home";
         String countryName = "countryName";
         String stateName = "stateName";
         String password = "password";
         String otp = "otp";
         String fcmId = "fcmId";
         String device_type = "device_type";
+        String limit  = "limit ";
         String studentEmail = "studentEmail";
         String loginType = "loginType";
         String studentName = "studentName";
@@ -189,5 +191,6 @@ public class Constants {
         String Account = "Account";
         String Copy = "Copy to Clipboard";
 
+        String examUuid = "examUuid";
     }
 }

@@ -13,5 +13,10 @@
         android:layout_width="match_parent"
         android:paddingBottom="@dimen/_12sdp"
         android:overScrollMode="never"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/noInternetConnection"
+        layout="@layout/no_internet_connection"
+        android:visibility="gone" />
 </LinearLayout>

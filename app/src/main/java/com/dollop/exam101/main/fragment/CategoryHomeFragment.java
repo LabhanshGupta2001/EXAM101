@@ -17,12 +17,14 @@ import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.FragmentCategoryHomeBinding;
+import com.dollop.exam101.main.activity.DashboardScreenActivity;
 import com.dollop.exam101.main.adapter.CategoryHomeAdapter;
-import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.CourseModel;
+import com.dollop.exam101.main.model.Exam;
+import com.dollop.exam101.main.model.StudentExamList;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
     Activity activity;
     FragmentCategoryHomeBinding binding;
     CategoryHomeAdapter categoryHomeAdapter;
-    ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
+    ArrayList<Exam> examList = new ArrayList<com.dollop.exam101.main.model.Exam>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -52,30 +54,35 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-        binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
-        categoryHomeAdapter = new CategoryHomeAdapter(getContext(), courseModelArrayList);
-        binding.rvCategories.setAdapter(categoryHomeAdapter);
         if (AppController.getInstance().isOnline()) {
             CategoriesHomeAllExamList();
         } else {
             InternetDialog();
         }
+        binding.ivBack.setOnClickListener(this);
+        binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
+        categoryHomeAdapter = new CategoryHomeAdapter(getContext(), examList);
+        binding.rvCategories.setAdapter(categoryHomeAdapter);
     }
 
 
     @Override
     public void onClick(View view) {
+        if (view == binding.ivBack) {
+            binding.llToolbar.setVisibility(View.GONE);
+            ((DashboardScreenActivity) activity).navController.popBackStack();
+        }
 
     }
 
     private void CategoriesHomeAllExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
-        apiService.Examlist(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
+        apiService.getStudentExamListApi(Utils.GetSession().token).enqueue(new Callback<StudentExamList>() {
             @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+            public void onResponse(@NonNull Call<StudentExamList> call, @NonNull Response<StudentExamList> response) {
                 progressDialog.dismiss();
                 try {
-                    if (response.body().examListModels.isEmpty()) {
+                    if (response.body().exams.equals(Constants.Key.blank) || response.body().exams.isEmpty()) {
                         binding.rvCategories.setVisibility(View.GONE);
                         binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
                     } else {
@@ -84,8 +91,8 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
                     }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        courseModelArrayList.clear();
-                        courseModelArrayList.addAll(response.body().examListModels);
+                        examList.clear();
+                        examList.addAll(response.body().exams);
                         categoryHomeAdapter.notifyDataSetChanged();
                     } else {
                         assert response.errorBody() != null;
@@ -102,7 +109,7 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
             }
 
             @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<StudentExamList> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
                 progressDialog.dismiss();

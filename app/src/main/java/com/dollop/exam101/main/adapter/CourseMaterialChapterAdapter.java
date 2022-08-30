@@ -12,16 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCourseMaterialChapterNameListBinding;
 import com.dollop.exam101.main.activity.CoursesDetailActivity;
+import com.dollop.exam101.main.model.Topic;
 
 import java.util.ArrayList;
 
 public class CourseMaterialChapterAdapter extends RecyclerView.Adapter<CourseMaterialChapterAdapter.MyViewHolder> {
     Context context;
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<Topic> topicArrayList = new ArrayList<>();
 
-    public CourseMaterialChapterAdapter(Context context, ArrayList<String> list) {
+    public CourseMaterialChapterAdapter(Context context, ArrayList<Topic> topicArrayList) {
         this.context = context;
-        this.list = list;
+        this.topicArrayList = topicArrayList;
     }
 
     @NonNull
@@ -35,6 +36,8 @@ public class CourseMaterialChapterAdapter extends RecyclerView.Adapter<CourseMat
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position)
     {
+        Topic topic=topicArrayList.get(position);
+        holder.binding.tvChapterName.setText(topic.topicName);
         holder.binding.mcvChapter.setOnClickListener( view ->
         {
             Utils.I(context, CoursesDetailActivity.class,null);
@@ -44,7 +47,7 @@ public class CourseMaterialChapterAdapter extends RecyclerView.Adapter<CourseMat
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return topicArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
