@@ -76,6 +76,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         if (AppController.getInstance().isOnline()) {
+            Utils.E("couponAndReferralCode:::" + couponAndReferralCode);
             getCartItem();
         } else {
             InternetDialog();
@@ -88,6 +89,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         binding.cvReferralCode.setOnClickListener(this);
         binding.cvProceedToCheckOut.setOnClickListener(this);
         binding.ivBack.setOnClickListener(this);
+        binding.tvRemoveCoupon.setOnClickListener(this);
     }
 
     private void couponCodeBottomSheet() {
@@ -154,6 +156,13 @@ public class CartFragment extends Fragment implements View.OnClickListener {
             }
         } else if (view == binding.ivBack) {
             ((DashboardScreenActivity) activity).navController.popBackStack();
+        } else if (view == binding.tvRemoveCoupon){
+            binding.view.setVisibility(View.VISIBLE);
+            binding.llCouponReferral.setVisibility(View.VISIBLE);
+            binding.tvCouponHeading.setVisibility(View.GONE);
+            binding.CardViewCoupon.setVisibility(View.GONE);
+            binding.tvCouponDiscount.setText("00");
+            getCartItem();
         }
     }
 
@@ -219,11 +228,14 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                             appliedCouponModel = response.body().appliedCouponModel;
                             if (response.body().message.equals(Constants.Key.Success)) {
                                 Utils.T(activity, response.body().message);
+                                binding.view.setVisibility(View.GONE);
                                 binding.llCouponReferral.setVisibility(View.GONE);
                                 binding.tvCouponHeading.setVisibility(View.VISIBLE);
                                 binding.CardViewCoupon.setVisibility(View.VISIBLE);
+                                binding.rlCouponDiscount.setVisibility(View.VISIBLE);
                                 binding.tvCoupon.setText(couponAndReferralCode);
-                                binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().gstPercentage)) + "%");
+                                binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(appliedCouponModel.gstPercentage)) + "%");
+                                binding.tvCouponDiscount.setText(new DecimalFormat("##.##").format(Double.parseDouble(appliedCouponModel.discountedAmt)));
                                 binding.tvSubTotalId.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.subTotalAmt)));
                                 binding.tvGrandtotal.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.grandTotalAmt)));
                                 binding.tvGrandTotalBottom.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.grandTotalAmt)));

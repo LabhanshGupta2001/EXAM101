@@ -95,6 +95,8 @@ public class TimeFormatter {
         return time;
     }
 
+
+
     public static String changeDateFormat(String time) {
         String inputPattern = "yyyy-MM-dd HH:mm:ss";
         String outputPattern = "dd MMM, yyyy";
@@ -112,6 +114,8 @@ public class TimeFormatter {
         }
         return str;
     }
+
+
 
     @NonNull
     public static String getFormattedDate(String date, Context context, String Pattern) throws ParseException {

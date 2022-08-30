@@ -13,6 +13,7 @@ import com.dollop.exam101.databinding.ItemMyCartBinding;
 import com.dollop.exam101.main.fragment.CartFragment;
 import com.dollop.exam101.main.model.CartDatumModel;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> {
@@ -37,7 +38,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         CartDatumModel myCartModel = myCartModelArrayList.get(position);
         holder.binding.tvFundamentalDesignId.setText(myCartModel.packageName);
-        holder.binding.tvRupees.setText(myCartModel.discountedPrice);
+        holder.binding.tvRupees.setText(new DecimalFormat("##.##").format(Double.parseDouble(myCartModel.discountedPrice)));
         if (myCartModel.isWishListed.equals("1")) {
             holder.binding.tvWishListId.setText(R.string.remove_from_wishlist);
             holder.binding.ivHeart.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_heart_red));

@@ -303,8 +303,6 @@ public interface ApiService {
     @GET(Const.Url.purchase)
     Call<AllResponseModel> getPurchaseList(@FieldMap HashMap<String, String> hm);
 
-    @GET(Const.Url.transaction)
-    Call<AllResponseModel> getTransactionHistory(@FieldMap HashMap<String, String> hm);
 
     //Dashboard
 
@@ -315,9 +313,10 @@ public interface ApiService {
     @GET(Const.Url.removeFromCartApi)
     Call<AllResponseModel> removeFromCart(@Header(Constants.Key.Authorization) String token, @Query(Constants.Key.cartUuId) String cartUuId);
 
-    @GET(Const.Url.purchasePackageApi)
+    @FormUrlEncoded
+    @POST(Const.Url.purchasePackageApi)
     Call<AllResponseModel> purchasePackage(@Header(Constants.Key.Authorization) String token,
-                                           @QueryMap HashMap<String, String> hashMap);
+                                           @FieldMap HashMap<String, String> hashMap);
 
     @DELETE(Const.Url.removeFromWishListApi + "/{" + Constants.Key.wishListUuid + "}")
     Call<AllResponseModel> removeFromWishList(@Header(Constants.Key.Authorization) String token,

@@ -17,5 +17,8 @@ public class AppliedCouponModel {
     @SerializedName("grandTotalAmt")
     @Expose
     public Float grandTotalAmt;
+    @SerializedName("discountedAmt")
+    @Expose
+    public String discountedAmt;
 
 }
