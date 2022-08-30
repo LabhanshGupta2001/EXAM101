@@ -21,7 +21,9 @@ import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.FragmentPurchaseListBinding;
+import com.dollop.exam101.main.activity.AffiliatePurchaseListActivity;
 import com.dollop.exam101.main.adapter.PurchaseListAdapter;
+import com.dollop.exam101.main.model.AffilliatDetailModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.gson.Gson;
 
@@ -38,6 +40,8 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
     ArrayList<String> list = new ArrayList<>();
     ApiService apiService;
     Activity activity;
+    AffiliatePurchaseListActivity affiliatePurchaseListActivity;
+    PurchaseListAdapter purchaseListAdapter;
 
     public PurchaseListFragment() {
     }
@@ -56,8 +60,7 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
         list.clear();
         apiService = RetrofitClient.getClient();
         if (AppController.getInstance().isOnline()) {
-            //getAffiliatePurchaseList();
-            //getAffiliatePurchaseSummary();
+            // getAffiliatePurchaseList();
         } else {
             InternetDialog();
         }
@@ -70,34 +73,34 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
         list.add("1");
         list.add("1");
 
+        purchaseListAdapter = new PurchaseListAdapter(activity, list);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         binding.rvPurchaseList.setHasFixedSize(true);
-        binding.rvPurchaseList.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvPurchaseList.setAdapter(new PurchaseListAdapter(getContext(), list));
+        binding.rvPurchaseList.setLayoutManager(linearLayoutManager);
+        binding.rvPurchaseList.setAdapter(purchaseListAdapter);
     }
 
     @Override
     public void onClick(View v) {
 
     }
-/*
+
 
     private void getAffiliatePurchaseList() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        HashMap<String,String> hm = new HashMap<>();
-        hm.put(Constants.Key.startDate,"");
-        hm.put(Constants.Key.endDate,"");
-        apiService.getAffiliatePurchaseList(Utils.GetSession().token,hm).enqueue(new Callback<AllResponseModel>() {
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.startDate, affiliatePurchaseListActivity.fromDate);
+        hm.put(Constants.Key.endDate, affiliatePurchaseListActivity.toDate);
+        apiService.getAffiliatePurchaseList(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
-                       */
-/* affilliatDetailModel.clear();
                         assert response.body() != null;
-                        AffilliatDetailModel affilliatDetailModel = response.body().affilliatDetailModel;
+                        //affilliatDetailModel = response.body().affilliatDetailModel;
                         //Utils.E("affilliatDetailModel::::"+affilliatDetailModel);
-                        if (affilliatDetailModel.reqStatus.equals(Constants.Key.Pending)) {
+                       /* if (affilliatDetailModel.reqStatus.equals(Constants.Key.Pending)) {
                             binding.llRequestPendingCode.setVisibility(View.VISIBLE);
                             binding.llRequestAffilation.setVisibility(View.GONE);
                         } else if (affilliatDetailModel.reqStatus.equals(Constants.Key.Success)) {
@@ -106,8 +109,7 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
                             binding.llBankDetailsAndAffiliation.setVisibility(View.VISIBLE);
                         } else {
                             binding.llRequestAffilation.setVisibility(View.VISIBLE);
-                        }*//*
-
+                        }*/
 
                     } else {
                         assert response.errorBody() != null;
@@ -132,56 +134,6 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
             }
         });
     }
-
-    private void getAffiliatePurchaseSummary() {
-        Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.getAffiliatePurchaseSummary(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                progressDialog.dismiss();
-                try {
-                    if (response.code() == StatusCodeConstant.OK) {
-                       */
-/* affilliatDetailModel.clear();
-                        assert response.body() != null;
-                        AffilliatDetailModel affilliatDetailModel = response.body().affilliatDetailModel;
-                        //Utils.E("affilliatDetailModel::::"+affilliatDetailModel);
-                        if (affilliatDetailModel.reqStatus.equals(Constants.Key.Pending)) {
-                            binding.llRequestPendingCode.setVisibility(View.VISIBLE);
-                            binding.llRequestAffilation.setVisibility(View.GONE);
-                        } else if (affilliatDetailModel.reqStatus.equals(Constants.Key.Success)) {
-                            binding.llRequestPendingCode.setVisibility(View.GONE);
-                            binding.llRequestAffilation.setVisibility(View.GONE);
-                            binding.llBankDetailsAndAffiliation.setVisibility(View.VISIBLE);
-                        } else {
-                            binding.llRequestAffilation.setVisibility(View.VISIBLE);
-                        }*//*
-
-
-                    } else {
-                        assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            Utils.T(activity, message.message);
-                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.UnAuthorizationToken(activity);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-                call.cancel();
-                t.printStackTrace();
-                progressDialog.dismiss();
-                Utils.E("getMessage::" + t.getMessage());
-            }
-        });
-    }
-*/
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
