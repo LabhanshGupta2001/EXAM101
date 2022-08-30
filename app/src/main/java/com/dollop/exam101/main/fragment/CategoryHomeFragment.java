@@ -53,13 +53,13 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
+        apiService = RetrofitClient.getClient();
         if (AppController.getInstance().isOnline()) {
             CategoriesHomeAllExamList();
         } else {
             InternetDialog();
         }
         binding.ivBack.setOnClickListener(this);
-        apiService = RetrofitClient.getClient();
         binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
         categoryHomeAdapter = new CategoryHomeAdapter(getContext(), examList);
         binding.rvCategories.setAdapter(categoryHomeAdapter);

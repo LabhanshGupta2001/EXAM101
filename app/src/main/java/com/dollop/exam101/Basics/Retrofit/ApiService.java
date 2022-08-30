@@ -326,7 +326,7 @@ public interface ApiService {
     @GET(Const.Url.getStudentExamDetailApi)
     Call<AllResponseModel> getStudentExamDetailApi(@Header(Constants.Key.Authorization) String token,
                                                    @QueryMap HashMap<String, String> hashMap);
-                                           @FieldMap HashMap<String, String> hashMap);
+
 
     @DELETE(Const.Url.removeFromWishListApi + "/{" + Constants.Key.wishListUuid + "}")
     Call<AllResponseModel> removeFromWishList(@Header(Constants.Key.Authorization) String token,
