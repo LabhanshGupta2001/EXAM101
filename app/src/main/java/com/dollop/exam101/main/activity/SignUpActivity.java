@@ -302,15 +302,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etPassword.setSelection(binding.etPassword.length());
 
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-
             } else {
                 binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
                 binding.etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etPassword.setSelection(binding.etPassword.length());
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
 
 
             }
@@ -318,18 +314,15 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             isClicked = !isClicked;
             if (isClicked) {
                 binding.ivShowHidePassword2.setImageResource(R.drawable.ic_hide);
-                binding.etConfirmPassword.setTransformationMethod
-                        (HideReturnsTransformationMethod.getInstance());
+                binding.etConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
 
             } else {
                 binding.ivShowHidePassword2.setImageResource(R.drawable.ic_visibility);
                 binding.etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
 
 
             }

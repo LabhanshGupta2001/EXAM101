@@ -189,5 +189,6 @@ public class Constants {
         String Account = "Account";
         String Copy = "Copy to Clipboard";
 
+        String examUuid = "examUuid";
     }
 }

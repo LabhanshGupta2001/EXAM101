@@ -36,7 +36,7 @@
                     app:cardCornerRadius="@dimen/_8sdp"
                     android:outlineAmbientShadowColor="@color/ShadowColor"
                     android:outlineSpotShadowColor="@color/ambientColor"
-                    app:cardElevation="8dp"
+                    app:cardElevation="4dp"
                     tools:ignore="UnusedAttribute">
 
                     <ImageView

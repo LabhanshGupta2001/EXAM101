@@ -3,9 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/lineColor"
     android:orientation="vertical"
     tools:context=".main.fragment.CategoryHomeFragment">
+
+    <LinearLayout
+        android:id="@+id/llToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:elevation="@dimen/_3sdp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_4sdp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:contentDescription="@string/back_arrow"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/ic_backarrow" />
+
+        <TextView
+            style="@style/TernaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/gothic_bold"
+            android:text="@string/my_exam" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,25 +39,16 @@
         android:id="@+id/llParent"
         android:orientation="vertical">
 
-    <TextView
-        style="@style/TernaryTextStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lineColor"
-        android:fontFamily="@font/gothic_bold"
-        android:paddingHorizontal="@dimen/_12sdp"
-        android:paddingTop="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_8sdp"
-        android:text="@string/all_exams" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategories"
         android:overScrollMode="never"
+        android:layout_marginTop="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_2sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:listitem="@layout/item_category_home"
+        tools:listitem="@layout/item_my_exam"
         />
 
     </LinearLayout>

@@ -11,10 +11,10 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_6sdp"
         app:cardCornerRadius="@dimen/_8sdp"
-        app:cardElevation="6dp"
-        android:outlineAmbientShadowColor="@color/ShadowColor"
-        android:outlineSpotShadowColor="@color/ambientColor"
-        app:strokeColor="@color/cardStroke"
+        app:cardElevation="3dp"
+        android:outlineAmbientShadowColor="@color/green"
+        android:outlineSpotShadowColor="@color/green"
+        app:strokeColor="@color/ambientColor"
         tools:ignore="UnusedAttribute">
 
         <LinearLayout
@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_13sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
@@ -140,8 +140,6 @@
                 </RelativeLayout>
 
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

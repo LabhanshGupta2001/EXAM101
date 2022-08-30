@@ -83,6 +83,7 @@ public class Const {
         String getReviewRatingListApi = "getReviewRatingListApi";
         String AllResults = "AllResults";
         String AuthorList = "AuthorList";
+        String getStudentExamListApi = "getStudentExamListApi";
         String getExamListApi = "getExamListApi";
         String CategoriesAllBlogsList = "CategoriesAllBlogsList";
         String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
@@ -104,5 +105,6 @@ public class Const {
         String getAffiliateStatusApi = "getAffiliateStatusApi";
         String getAffiliatePurchaseListApi = "getAffiliatePurchaseListApi";
         String getAffiliatePurchaseSummaryApi = "getAffiliatePurchaseSummaryApi";
+        String getStudentExamDetailApi = "getStudentExamDetailApi";
     }
 }

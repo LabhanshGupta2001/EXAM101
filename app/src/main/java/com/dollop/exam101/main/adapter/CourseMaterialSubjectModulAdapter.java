@@ -11,19 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.databinding.ItemCourseMaterialSubjectModuleListBinding;
+import com.dollop.exam101.main.model.Module;
+import com.dollop.exam101.main.model.Topic;
 
 import java.util.ArrayList;
 
 public class CourseMaterialSubjectModulAdapter extends RecyclerView.Adapter<CourseMaterialSubjectModulAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<String> list;
-    ArrayList<String> stringArrayList = new ArrayList<>();
+    ArrayList<Module> moduleArrayList;
+    ArrayList<Topic> topicArrayList = new ArrayList<>();
     private Boolean dropdown = true;
 
-    public CourseMaterialSubjectModulAdapter(Context context, ArrayList<String> list) {
+    public CourseMaterialSubjectModulAdapter(Context context, ArrayList<Module> moduleArrayList) {
         this.context = context;
-        this.list = list;
+        this.moduleArrayList = moduleArrayList;
     }
 
     @NonNull
@@ -35,14 +37,16 @@ public class CourseMaterialSubjectModulAdapter extends RecyclerView.Adapter<Cour
 
     @Override
     public void onBindViewHolder(@NonNull CourseMaterialSubjectModulAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        stringArrayList.clear();
-        stringArrayList.add("1");
-        stringArrayList.add("2");
-        stringArrayList.add("3");
-        stringArrayList.add("4");
-        holder.binding.rvChapter.setAdapter(new CourseMaterialChapterAdapter(context, stringArrayList));
-        holder.binding.rvChapter.setLayoutManager(new LinearLayoutManager(context));
-
+        Module module = moduleArrayList.get(position);
+        holder.binding.tvModuleName.setText(module.moduleName);
+        topicArrayList.clear();
+        topicArrayList.addAll(module.topics);
+        if (topicArrayList.isEmpty()) {
+            holder.binding.rvChapter.setVisibility(View.GONE);
+        } else {
+            holder.binding.rvChapter.setAdapter(new CourseMaterialChapterAdapter(context, topicArrayList));
+            holder.binding.rvChapter.setLayoutManager(new LinearLayoutManager(context));
+        }
 
       /*  if (!dropdown)
         {
@@ -67,7 +71,7 @@ public class CourseMaterialSubjectModulAdapter extends RecyclerView.Adapter<Cour
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return moduleArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

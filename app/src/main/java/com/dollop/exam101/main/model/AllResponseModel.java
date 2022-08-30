@@ -80,6 +80,10 @@ public class AllResponseModel {
     @Expose
     public List<LanguageModel> languageModels = null;
 
+    @SerializedName("Orderexams")
+    @Expose
+    public Orderexams orderexams;
+
     @SerializedName("packageDetail")
     @Expose
     public PackageDetailModel packageDetail;
@@ -137,7 +141,7 @@ public class AllResponseModel {
 
     @SerializedName("studentMockTests")
     @Expose
-    public List<StudentMockTest> studentMockTestsList=null;
+    public List<StudentMockTest> studentMockTestsList = null;
 
     @SerializedName("appliedCoupon")
     @Expose

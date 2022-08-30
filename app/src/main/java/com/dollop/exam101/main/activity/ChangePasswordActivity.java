@@ -211,9 +211,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 binding.etCurrentPassword.requestFocus();
 
 
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-
             } else {
                 binding.ivShowHidePasswordCurrent.setImageResource(R.drawable.ic_visibility);
 
@@ -221,8 +218,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
                 binding.etCurrentPassword.requestFocus();
 
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
             }
         } else if (view == binding.ivShowHidePasswordNew) {
@@ -236,18 +231,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 binding.etNewPassword.requestFocus();
 
 
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-
             } else {
                 binding.ivShowHidePasswordNew.setImageResource(R.drawable.ic_visibility);
 
                 binding.etNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etNewPassword.setSelection(binding.etNewPassword.length());
                 binding.etNewPassword.requestFocus();
-
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
             }
         } else if (view == binding.ivShowHidePasswordConfirm) {
@@ -261,18 +250,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 binding.etConfirmNewPassword.requestFocus();
 
 
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-
             } else {
                 binding.ivShowHidePasswordConfirm.setImageResource(R.drawable.ic_visibility);
 
                 binding.etConfirmNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etConfirmNewPassword.setSelection(binding.etConfirmNewPassword.length());
                 binding.etConfirmNewPassword.requestFocus();
-
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
             }
         }
