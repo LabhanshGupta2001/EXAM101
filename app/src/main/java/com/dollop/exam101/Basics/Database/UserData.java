@@ -10,7 +10,7 @@ public class UserData {
     public static final String TABLE_NAME = "examoneOone";
     //    All Key
     public static final String KEY_ID = "_id";
-    public static final String  KEY_StudentId = "studentId";
+    public static final String KEY_StudentId = "studentId";
     public static final String Key_StudentName = "studentName";
     public static final String Key_StudentEmail = "studentEmail";
     public static final String Key_StudentMobileNo = "studentMobileNo";
@@ -25,6 +25,7 @@ public class UserData {
     public static final String KEY_profilePic = "profilePic";
     public static final String KEY_CountryUuid = "countryUuid";
     public static final String KEY_Token = "token";
+    public static final String KEY_isPasswordGenerated = "isPasswordGenerated";
 
 
     @SerializedName("user_id")
@@ -73,6 +74,9 @@ public class UserData {
     @SerializedName("token")
     @Expose
     public String token;
+    @SerializedName("isPasswordGenerated")
+    @Expose
+    public String isPasswordGenerated;
 
 
 
@@ -97,7 +101,8 @@ public class UserData {
                 Key_RoleType + " text," +
                 KEY_profilePic + " text," +
                 KEY_CountryUuid + " text," +
-                KEY_Token + " text"+
+                KEY_Token + " text,"+
+                KEY_isPasswordGenerated + " text"+
                 " )" ;
         Utils.E("CreateTableQuery::" + CreateTableQuery);
         db.execSQL(CreateTableQuery);

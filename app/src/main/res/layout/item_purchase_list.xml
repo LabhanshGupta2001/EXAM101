@@ -110,10 +110,10 @@
                     android:id="@+id/tvPackageName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/tvSubTotal_Id"
                     android:layout_alignParentEnd="true"
-                    android:gravity="end"
+                    android:layout_toRightOf="@+id/tvSubTotal_Id"
                     android:fontFamily="@font/inter_semibold"
+                    android:gravity="end"
                     android:text="@string/pakage_name"
                     android:theme="@style/QuinaryLightTextStyle" />
 
@@ -137,6 +137,7 @@
                     android:theme="@style/QuinaryLightSubTextStyle" />
 
                 <TextView
+                    android:id="@+id/tvPkgPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -163,6 +164,7 @@
                     android:theme="@style/QuinaryLightSubTextStyle" />
 
                 <TextView
+                    android:id="@+id/tvPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -190,6 +192,7 @@
                     android:theme="@style/QuinaryLightSubTextStyle" />
 
                 <TextView
+                    android:id="@+id/tvTotalAmt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

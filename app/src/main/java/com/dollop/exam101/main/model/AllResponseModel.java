@@ -147,4 +147,12 @@ public class AllResponseModel {
     @Expose
     public AppliedCouponModel appliedCouponModel;
 
+    @SerializedName("affilliatPurchaseList")
+    @Expose
+    public AffilliatPurchaseListModel affilliatPurchaseListModel;
+
+    @SerializedName("affilliatPurchaseSummary")
+    @Expose
+    public AffilliatPurchaseSummaryModel affilliatPurchaseSummaryModel;
+
 }

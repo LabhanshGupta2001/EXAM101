@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
@@ -23,7 +24,8 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.FragmentPurchaseListBinding;
 import com.dollop.exam101.main.activity.AffiliatePurchaseListActivity;
 import com.dollop.exam101.main.adapter.PurchaseListAdapter;
-import com.dollop.exam101.main.model.AffilliatDetailModel;
+import com.dollop.exam101.main.model.AffiliatePurchaseModel;
+import com.dollop.exam101.main.model.AffilliatPurchaseListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.gson.Gson;
 
@@ -36,19 +38,24 @@ import retrofit2.Response;
 
 
 public class PurchaseListFragment extends Fragment implements View.OnClickListener {
+    String startDate = Constants.Key.blank;
+    String endDate = Constants.Key.blank;
     FragmentPurchaseListBinding binding;
-    ArrayList<String> list = new ArrayList<>();
     ApiService apiService;
     Activity activity;
-    AffiliatePurchaseListActivity affiliatePurchaseListActivity;
     PurchaseListAdapter purchaseListAdapter;
+    ArrayList<AffiliatePurchaseModel> affiliatePurchaseModelList = new ArrayList<>();
 
-    public PurchaseListFragment() {
+
+    public PurchaseListFragment(String startDate, String endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        Utils.E("startDate" + startDate + " :endDate::" + endDate);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPurchaseListBinding.inflate(inflater, container, false);
         activity = requireActivity();
         init();
@@ -57,27 +64,17 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
-        list.clear();
         apiService = RetrofitClient.getClient();
+        purchaseListAdapter = new PurchaseListAdapter(activity, affiliatePurchaseModelList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
+        binding.rvPurchaseList.setLayoutManager(linearLayoutManager);
+        binding.rvPurchaseList.setAdapter(purchaseListAdapter);
         if (AppController.getInstance().isOnline()) {
-            // getAffiliatePurchaseList();
+            getAffiliatePurchaseList(startDate, endDate, activity);
         } else {
             InternetDialog();
         }
 
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-
-        purchaseListAdapter = new PurchaseListAdapter(activity, list);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
-        binding.rvPurchaseList.setHasFixedSize(true);
-        binding.rvPurchaseList.setLayoutManager(linearLayoutManager);
-        binding.rvPurchaseList.setAdapter(purchaseListAdapter);
     }
 
     @Override
@@ -86,30 +83,34 @@ public class PurchaseListFragment extends Fragment implements View.OnClickListen
     }
 
 
-    private void getAffiliatePurchaseList() {
+    public void getAffiliatePurchaseList(String startDate, String endDate, Activity activity) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.startDate, affiliatePurchaseListActivity.fromDate);
-        hm.put(Constants.Key.endDate, affiliatePurchaseListActivity.toDate);
+        hm.put(Constants.Key.startDate, startDate);
+        hm.put(Constants.Key.endDate, endDate);
+        apiService = RetrofitClient.getClient();
         apiService.getAffiliatePurchaseList(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
+                    affiliatePurchaseModelList.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        //affilliatDetailModel = response.body().affilliatDetailModel;
-                        //Utils.E("affilliatDetailModel::::"+affilliatDetailModel);
-                       /* if (affilliatDetailModel.reqStatus.equals(Constants.Key.Pending)) {
-                            binding.llRequestPendingCode.setVisibility(View.VISIBLE);
-                            binding.llRequestAffilation.setVisibility(View.GONE);
-                        } else if (affilliatDetailModel.reqStatus.equals(Constants.Key.Success)) {
-                            binding.llRequestPendingCode.setVisibility(View.GONE);
-                            binding.llRequestAffilation.setVisibility(View.GONE);
-                            binding.llBankDetailsAndAffiliation.setVisibility(View.VISIBLE);
+                        if (response.body().affilliatPurchaseListModel.affiliatePurchaseModelList.isEmpty() ||
+                                response.body().affilliatPurchaseListModel.affiliatePurchaseModelList.equals(Constants.Key.blank) ||
+                                response.body().affilliatPurchaseListModel.equals(Constants.Key.blank)) {
+                            binding.rvPurchaseList.setVisibility(View.GONE);
+                            binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+
                         } else {
-                            binding.llRequestAffilation.setVisibility(View.VISIBLE);
-                        }*/
+                            affiliatePurchaseModelList.addAll(response.body().affilliatPurchaseListModel.affiliatePurchaseModelList);
+                            Utils.E("affilliatPurchaseListModel::::" + affiliatePurchaseModelList);
+                            purchaseListAdapter.notifyDataSetChanged();
+                            binding.rvPurchaseList.setVisibility(View.VISIBLE);
+                            binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                        }
 
                     } else {
                         assert response.errorBody() != null;

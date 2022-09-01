@@ -27,6 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dollop.exam101.Basics.Database.UserData;
+import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
@@ -57,7 +59,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     ActivityChangePasswordBinding binding;
     ApiService apiService;
     List<ValidationModel> allResponseModels = new ArrayList<>();
-    String Token;
     Boolean isClicked = false;
 
     @SuppressLint("NewApi")
@@ -71,8 +72,15 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void init() {
-        Token = Utils.GetSession().token;
         apiService = RetrofitClient.getClient();
+        if (Utils.GetSession().isPasswordGenerated.equals(Constants.Key.Yes)) {
+            binding.tvCurrentPassword.setVisibility(View.VISIBLE);
+            binding.rvCurrentPassword.setVisibility(View.VISIBLE);
+        } else {
+            binding.tvCurrentPassword.setVisibility(View.GONE);
+            binding.rvCurrentPassword.setVisibility(View.GONE);
+            binding.tvErrorCurrentPass.setVisibility(View.GONE);
+        }
 
         binding.ivBack.setOnClickListener(this);
         binding.ivShowHidePasswordConfirm.setOnClickListener(this);
@@ -157,7 +165,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         hm.put(Constants.Key.confirmPassword, binding.etConfirmNewPassword.getText().toString().trim());
         hm.put(Constants.Key.oldPassword, binding.etCurrentPassword.getText().toString().trim());
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.ChangePassword(Token, hm).enqueue(new Callback<AllResponseModel>() {
+        apiService.ChangePassword(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -189,6 +197,48 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         });
     }
 
+    private void resetPassword() {
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.password, binding.etNewPassword.getText().toString().trim());
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.resetPassword(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        Utils.T(activity, getString(R.string.password_change_successfully));
+                        Utils.I(activity, SettingActivity.class, null);
+
+                        UserData DatabaseData = Utils.GetSession();
+                        DatabaseData.isPasswordGenerated = Constants.Key.Yes;
+                        UserDataHelper.getInstance().insertData(DatabaseData);
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
@@ -196,7 +246,11 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             onBackPressed();
         } else if (view == binding.llSavePassword) {
             if (AppController.getInstance().isOnline()) {
-                CheckValidationTask();
+                if (Utils.GetSession().isPasswordGenerated.equals(Constants.Key.Yes)) {
+                    CheckValidationTask();
+                } else {
+                    CheckValidationTaskForResetPassword();
+                }
             } else {
                 InternetDialog();
             }
@@ -204,21 +258,16 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             isClicked = !isClicked;
             if (isClicked) {
                 binding.ivShowHidePasswordCurrent.setImageResource(R.drawable.ic_hide);
-
                 binding.etCurrentPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
                 binding.etCurrentPassword.requestFocus();
 
-
             } else {
                 binding.ivShowHidePasswordCurrent.setImageResource(R.drawable.ic_visibility);
-
                 binding.etCurrentPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
                 binding.etCurrentPassword.requestFocus();
-
-
             }
         } else if (view == binding.ivShowHidePasswordNew) {
             isClicked = !isClicked;
@@ -270,7 +319,33 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
-            ChangePassword();
+                ChangePassword();
+
+        } else {
+            resultReturn.errorTextView.setVisibility(View.VISIBLE);
+            if (resultReturn.type == Validation.Type.EmptyString) {
+                resultReturn.errorTextView.setText(resultReturn.errorMessage);
+            } else {
+                resultReturn.errorTextView.setText(validation.errorMessage);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.top_to_bottom);
+                resultReturn.errorTextView.startAnimation(animation);
+                validation.EditTextPointer.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(validation.EditTextPointer, InputMethodManager.SHOW_IMPLICIT);
+            }
+
+        }
+    }
+
+    private void CheckValidationTaskForResetPassword() {
+        allResponseModels.clear();
+        //allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etCurrentPassword, binding.tvErrorCurrentPass));
+        allResponseModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etNewPassword, binding.tvErrorNewPass));
+        allResponseModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etNewPassword, binding.etConfirmNewPassword, binding.tvErrorConfirmPass));
+        Validation validation = Validation.getInstance();
+        ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
+        if (resultReturn.aBoolean) {
+                resetPassword();
         } else {
             resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {

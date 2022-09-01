@@ -88,7 +88,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         setContentView(binding.getRoot());
 
         init();
-        Utils.E("MY Data -> "+Utils.GetSession().token+" Package UUID"+packageUuid);
 
     }
 
@@ -279,14 +278,12 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         Tittle.clear();
                         Tittle.add(Constants.Key.Course_Material);
                         fragments.add(new CourseMaterialFragment(subjectModelArrayList));
-                        Utils.E("^@%Course_Material::");
                     }
 
                     if (mockTestModels.isEmpty() || mockTestModels.equals(Constants.Key.blank)){
                     }else {
                         Tittle.add(Constants.Key.Mock_Test);
                         fragments.add(new MockTestFragment(mockTestModels));
-                        Utils.E("^@%Mock_Test::");
                     }
                    } else {
                         binding.viewtwo.setVisibility(View.GONE);

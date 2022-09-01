@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
@@ -17,6 +18,7 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemAllBlogsBinding;
 import com.dollop.exam101.main.activity.BlogDetailActivity;
 import com.dollop.exam101.main.model.AllBlogListModel;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -42,11 +44,14 @@ public class AllBlogListAdapter extends RecyclerView.Adapter<AllBlogListAdapter.
         AllBlogListModel allBlogListModel = allBlogListModelArrayList.get(position);
         holder.binding.tvDate.setText(allBlogListModel.blogDate);
         holder.binding.tvMainBlogHeading.setText(allBlogListModel.blogTitle);
-        holder.binding.tvNewsHeading.setText(allBlogListModel.blogTitle);
+        holder.binding.tvNewsHeading.setText(allBlogListModel.blogSortDesc);
         holder.binding.tvAuthorName.setText(allBlogListModel.authorName);
-        Utils.Picasso(allBlogListModel.mainImg,holder.binding.ivMainBlogsImg, R.drawable.dummy);
-        Utils.Picasso(allBlogListModel.featureImg,holder.binding.ivAuthorProfile, R.drawable.dummy);
-        holder.binding.tvReadMore.setOnClickListener(new View.OnClickListener() {
+        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.mainImg).error(R.drawable.user_profile).into(holder.binding.ivMainBlogsImg);
+        //Utils.Picasso(allBlogListModel.mainImg,holder.binding.ivMainBlogsImg, R.drawable.dummy);
+      //  Utils.Picasso(allBlogListModel.featureImg,holder.binding.ivAuthorProfile, R.drawable.dummy);
+        Picasso.get().load(Const.Url.HOST_URL+ allBlogListModel.featureImg).error(R.drawable.user_profile).into(holder.binding.ivAuthorProfile);
+
+        holder.binding.llReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle=new Bundle();

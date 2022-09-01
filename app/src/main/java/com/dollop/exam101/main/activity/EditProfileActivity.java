@@ -247,9 +247,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                 if (view == binding.tvSelectState) {
                     binding.tvErrorState.setVisibility(View.GONE);
                     bottomSheetStateTask();
-                }else if (view == binding.llCountryCode) {
-                  //  bottomSheetCountryTask(Constants.Key.CountryId_Show);
-                }  if (view == binding.tvSelectCountry) {
+                } else if (view == binding.llCountryCode) {
+                    //  bottomSheetCountryTask(Constants.Key.CountryId_Show);
+                }
+                if (view == binding.tvSelectCountry) {
                     binding.tvErrorCountry.setVisibility(View.GONE);
                     bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
                 }

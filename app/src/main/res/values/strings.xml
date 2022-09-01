@@ -416,8 +416,8 @@
     <string name="cheque">Cheque</string>
     <string name="pakage_name">Pakage Name</string>
     <string name="price">Price</string>
-    <string name="commision_in_persantage">Commision in Persantage</string>
-    <string name="amount">Amount</string>
+    <string name="commision_in_persantage">Commission in Percentage</string>
+    <string name="amount">Commission Amount</string>
 
 
     <string name="test_1">Test 1</string>
@@ -490,6 +490,8 @@
 
     <string name="eg_savings">eg. Savings</string>
     <string name="last_activity_on">Last activity on</string>
+    <string name="related_blogs">Related Blogs</string>
+    <string name="password_change_successfully">Password Changed Successfully</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

@@ -3,9 +3,7 @@ package com.dollop.exam101.main.activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -19,9 +17,11 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.text.HtmlCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
@@ -30,29 +30,27 @@ import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogDetailBinding;
-import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
+import com.dollop.exam101.main.adapter.AllBlogListAdapter;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class   BlogDetailActivity extends BaseActivity implements View.OnClickListener {
+public class BlogDetailActivity extends BaseActivity implements View.OnClickListener {
     Activity activity = BlogDetailActivity.this;
     ActivityBlogDetailBinding binding;
     ApiService apiService;
-    String uuid;
+    String uuid = Constants.Key.blank;
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
+    AllBlogListAdapter allBlogListAdapter;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -62,15 +60,14 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
         binding = ActivityBlogDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
         Bundle bundle = getIntent().getExtras();
-        if (bundle!=null) {
-            uuid = bundle.getString(Constants.Key.uuid, Constants.Key.blank);
+        if (bundle != null) {
+            uuid = bundle.getString(Constants.Key.uuid);
         }
         binding.ivBack.setOnClickListener(this);
         if (AppController.getInstance().isOnline()) {
@@ -79,8 +76,19 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
 
             InternetDialog();
         }
-        binding.flotingBtn.setOnClickListener(this);
+        // binding.flotingBtn.setOnClickListener(this);
+        binding.mcvFacebook.setOnClickListener(this);
+        binding.mcvLinkIn.setOnClickListener(this);
+        binding.mcvInstagram.setOnClickListener(this);
+        binding.mcvTwitter.setOnClickListener(this);
+        binding.mcvShare.setOnClickListener(this);
+
+
+        /*allBlogListAdapter = new AllBlogListAdapter(activity, Blogarraylist);
+        binding.rvBlogs.setAdapter(allBlogListAdapter);
+        binding.rvBlogs.setLayoutManager(new LinearLayoutManager(activity));*/
     }
+
     private void getBlogDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogDetails(uuid).enqueue(new Callback<AllResponseModel>() {
@@ -97,10 +105,18 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
                         binding.tvDate.setText(allBlogListModel.blogDate);
                         binding.tvAuthorName.setText(allBlogListModel.authorName);
                         binding.tvBlogHeading.setText(allBlogListModel.blogCatName);
+                        binding.tvAuthorName2.setText(allBlogListModel.blogAuthorName);
+                        binding.tvAuthorDescription.setText(allBlogListModel.authorbio);
+                        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.authorImage).error(R.drawable.dummy).
+                                into(binding.ivAuthorProfile2);
                         binding.tvTitle.setText(allBlogListModel.blogTitle);
-                        Utils.Picasso(allBlogListModel.mainImg, binding.imBlogDetail, R.drawable.dummy);
-                        Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
-                        binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail,0));
+                        //  Utils.Picasso(allBlogListModel.mainImg, binding.imBlogDetail, R.drawable.dummy);
+                        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.mainImg).error(R.drawable.dummy).
+                                into(binding.imBlogDetail);
+                        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.featureImg).error(R.drawable.dummy).
+                                into(binding.ivAuthorProfile);
+                        //  Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
+                        binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail, 0));
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -114,6 +130,7 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
@@ -128,20 +145,31 @@ public class   BlogDetailActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View view) {
         if (view == binding.ivBack) {
             onBackPressed();
-        } else if (view == binding.flotingBtn) {
-            bottomSheetTask();
+        } else if (view == binding.mcvInstagram){
+
+        }else if (view == binding.mcvFacebook){
+
+        }else if (view == binding.mcvTwitter){
+
+        }else if (view == binding.mcvLinkIn){
+
         }
+
+        /*else if (view == binding.flotingBtn) {
+            bottomSheetTask();
+        }*/
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
         binding.svMain.setVisibility(View.GONE);
-        binding.flotingBtn.setVisibility(View.GONE);
+        //binding.flotingBtn.setVisibility(View.GONE);
         binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
                 binding.svMain.setVisibility(View.VISIBLE);
-                binding.flotingBtn.setVisibility(View.VISIBLE);
+                // binding.flotingBtn.setVisibility(View.VISIBLE);
                 binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
             }
         });

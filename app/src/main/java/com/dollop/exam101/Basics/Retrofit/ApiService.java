@@ -108,7 +108,7 @@ public interface ApiService {
 
     @GET(Const.Url.getAffiliatePurchaseListApi)
     Call<AllResponseModel> getAffiliatePurchaseList(@Header(Constants.Key.Authorization) String token,
-                                                    @FieldMap HashMap<String, String> hm);
+                                                    @QueryMap HashMap<String, String> hm);
 
     @GET(Const.Url.getAffiliatePurchaseSummaryApi)
     Call<AllResponseModel> getAffiliatePurchaseSummary(@Header(Constants.Key.Authorization) String token);
@@ -116,6 +116,15 @@ public interface ApiService {
 
     @GET(Const.Url.getStudentMockTestListApi)
     Call<AllResponseModel> getStudentMockTestListApi(@Header(Constants.Key.Authorization) String token);
+
+    @FormUrlEncoded
+    @PUT(Const.Url.resetPasswordApi)
+    Call<AllResponseModel> resetPassword(@Header(Constants.Key.Authorization) String token,
+                                          @FieldMap HashMap<String, String> hm);
+
+    @GET(Const.Url.downloadInvoiceApi)
+    Call<AllResponseModel> downloadInvoice(@Header(Constants.Key.Authorization) String token);
+
 
    /* @GET(Const.Url.getRaisedComplaintDetailApi)
     Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,

@@ -59,6 +59,9 @@ public class Constants {
 
 
         String Normal = "Normal";
+        String Yes = "Yes";
+        String Exam101 = "Exam101";
+        String choose_one = "choose one";
         String High = "High";
         String Critical = "Critical";
         String socialLogin = "socialLogin";
@@ -107,6 +110,7 @@ public class Constants {
         String Need_Permissions = "Need Permissions";
         String GOTO_SETTINGS = "GOTO SETTINGS";
         String Package = "package";
+        String Packages = "+Packages";
         String Cancel = "Cancel";
         String Data = "data";
         String examId = "examId";

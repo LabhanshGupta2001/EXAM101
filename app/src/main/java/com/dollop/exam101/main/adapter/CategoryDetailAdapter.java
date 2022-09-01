@@ -37,6 +37,7 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
         return new MyViewHolder(binding);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         CourseModel courseModel = ExamList.get(position);
@@ -60,13 +61,11 @@ public class CategoryDetailAdapter extends RecyclerView.Adapter<CategoryDetailAd
         });
 
 
-
         holder.binding.tvBlogHeading.setOnClickListener(v -> {
             pos = position;
             ((CategoryDetailsActivity) context).getCategoryDetails(courseModel.examId);
             notifyDataSetChanged();
         });
-
 
     }
 
