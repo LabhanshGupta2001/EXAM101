@@ -88,7 +88,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     ActivityEditProfileBinding binding;
     ApiService apiService;
     BottomSheetDialog bottomSheetDialog, bottomSheetStateDialog;
-    BottomSheetCountryBinding bottomSheetCountryBinding;
+   public BottomSheetCountryBinding bottomSheetCountryBinding;
     BottomSheetStateBinding bottomSheetStateBinding;
     String Token;
     List<ValidationModel> allResponseModels = new ArrayList<>();

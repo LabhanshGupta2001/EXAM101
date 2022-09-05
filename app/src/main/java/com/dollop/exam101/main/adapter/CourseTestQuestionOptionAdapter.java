@@ -2,33 +2,33 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
-
 import com.dollop.exam101.databinding.ItemCourseTestQuestionOptionListBinding;
+import com.dollop.exam101.main.activity.CourseTestActivity;
 import com.dollop.exam101.main.model.OptionModel;
 import com.dollop.exam101.main.model.QuestionModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<CourseTestQuestionOptionAdapter.MyViewHolder> {
     Context context;
-    List<OptionModel> optionModelArrayList ;
+    List<OptionModel> optionModelArrayList;
     int row_index = -1;
+    QuestionModel questionListModel;
 
-    public  CourseTestQuestionOptionAdapter(Context context, List<OptionModel> list) {
+    public CourseTestQuestionOptionAdapter(Context context, List<OptionModel> list, QuestionModel questionListModel) {
         this.context = context;
         this.optionModelArrayList = list;
+        this.questionListModel = questionListModel;
     }
 
     @NonNull
@@ -41,32 +41,39 @@ public class CourseTestQuestionOptionAdapter extends RecyclerView.Adapter<Course
     @SuppressLint({"ResourceAsColor", "NotifyDataSetChanged"})
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Utils.E("optionModelArrayListOPPPPPPP:::++"+optionModelArrayList);
+        Utils.E("optionModelArrayListOPPPPPPP:::++" + optionModelArrayList);
         OptionModel optionModel = optionModelArrayList.get(position);
-
-        holder.binding.tvOption.setText(optionModel.options0);
-/*
-        holder.binding.cardOption.setStrokeColor(R.color.green);
-        holder.binding.tvOption.setBackgroundColor(R.color.white);
-*/
+        holder.binding.tvOption.setText((HtmlCompat.fromHtml(optionModel.options, HtmlCompat.FROM_HTML_MODE_LEGACY)));
         holder.binding.tvOption.setOnClickListener(view ->
         {
+            questionListModel.isClicked = true;
+            questionListModel.answer = position;
             row_index = position;
             notifyDataSetChanged();
         });
         if (row_index == position) {
-            holder.binding.cardOption.setStrokeColor(ContextCompat.getColor(context,R.color.green));
-            holder.binding.cardOption.setBackgroundColor(ContextCompat.getColor(context,R.color.status_bar));
+
+            selectItem(holder);
+
+        } else {
+            unselectItem(holder);
+        }
+    }
+
+    private void unselectItem(MyViewHolder holder) {
+        holder.binding.cardOption.setStrokeColor(ContextCompat.getColor(context, R.color.color_gray3));
+        holder.binding.cardOption.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+           /* Log.d("Position On Click", " " + position);
+            Toast.makeText(context, "Postion On Click " + position, Toast.LENGTH_SHORT).show();*/
+    }
+
+    private void selectItem(MyViewHolder holder) {
+        holder.binding.cardOption.setStrokeColor(ContextCompat.getColor(context, R.color.green));
+        holder.binding.cardOption.setBackgroundColor(ContextCompat.getColor(context, R.color.status_bar));
 
           /*  holder.binding.tvOption.setDrawingCacheBackgroundColor(R.drawable.select_option_background);
             Log.d("Position Not Click"," "+position);
             Toast.makeText(context, "Postion Not Click "+position, Toast.LENGTH_SHORT).show();*/
-        } else {
-            holder.binding.cardOption.setStrokeColor(ContextCompat.getColor(context,R.color.color_gray3));
-            holder.binding.cardOption.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
-           /* Log.d("Position On Click", " " + position);
-            Toast.makeText(context, "Postion On Click " + position, Toast.LENGTH_SHORT).show();*/
-        }
     }
 
     @Override

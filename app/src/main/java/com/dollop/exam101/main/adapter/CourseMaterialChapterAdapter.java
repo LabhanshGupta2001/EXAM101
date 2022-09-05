@@ -2,16 +2,18 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCourseMaterialChapterNameListBinding;
 import com.dollop.exam101.main.activity.CoursesDetailActivity;
+import com.dollop.exam101.main.activity.CoursesMaterial;
 import com.dollop.exam101.main.model.Topic;
 
 import java.util.ArrayList;
@@ -34,13 +36,16 @@ public class CourseMaterialChapterAdapter extends RecyclerView.Adapter<CourseMat
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position)
-    {
-        Topic topic=topicArrayList.get(position);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Topic topic = topicArrayList.get(position);
         holder.binding.tvChapterName.setText(topic.topicName);
-        holder.binding.mcvChapter.setOnClickListener( view ->
+        holder.binding.mcvChapter.setOnClickListener(view ->
         {
-            Utils.I(context, CoursesDetailActivity.class,null);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.Key.orderExamUuid, ((CoursesMaterial) context).orderExamUuid);
+            bundle.putString(Constants.Key.topicUuid, topic.topicUuid);
+            Utils.I(context, CoursesDetailActivity.class, bundle);
+
         });
 
     }

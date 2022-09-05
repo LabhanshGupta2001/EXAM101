@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,15 +24,11 @@ import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCourseTestBinding;
 import com.dollop.exam101.main.adapter.CourseTestQuestionAdapter;
-import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.QuestionListModel;
 import com.dollop.exam101.main.model.QuestionModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -42,8 +37,8 @@ import retrofit2.Response;
 
 public class CourseTestActivity extends BaseActivity implements View.OnClickListener {
 
+    public ActivityCourseTestBinding binding;
     Activity activity = CourseTestActivity.this;
-    ActivityCourseTestBinding binding;
     ApiService apiService;
     String orderExamUuids = "", topicUuids = "";
     ArrayList<QuestionModel> questionListModelArrayList = new ArrayList<>();
@@ -63,11 +58,11 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         apiService = RetrofitClient.getClient();
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
+        if (bundle != null) {
             orderExamUuids = bundle.getString(Constants.Key.orderExamUuid);
-            topicUuids =  bundle.getString(Constants.Key.topicUuid);
+            topicUuids = bundle.getString(Constants.Key.topicUuid);
         }
-        Utils.E("orderExamUuid::"+orderExamUuids+"topicUuids::"+topicUuids);
+        Utils.E("orderExamUuid::" + orderExamUuids + "topicUuids::" + topicUuids);
 
         if (AppController.getInstance().isOnline()) {
             getPracticeQuestion();
@@ -78,7 +73,7 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         binding.ivAbout.setOnClickListener(this);
         binding.btnSubmit.setOnClickListener(this);
 
-      //  getQuestin();
+        //  getQuestin();
 
     }
 
@@ -89,18 +84,41 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         } else if (view == binding.ivAbout) {
             Toast.makeText(activity, "About This App", Toast.LENGTH_SHORT).show();
         } else if (view == binding.btnSubmit) {
-            submitPracticeTest();
+           calculateAnswersFromList();
+
         }
     }
 
-    private void submitPracticeTest() {
+    private void calculateAnswersFromList() {
+        ArrayList<String> answerList = new ArrayList<>();
+        ArrayList<String> questionList = new ArrayList();
+        for (int i = 0; i <= questionListModelArrayList.size() - 1; i++) {
+            answerList.add("options_" + questionListModelArrayList.get(i).answer);
+            questionList.add(questionListModelArrayList.get(i).questionId);
+        }
+        String questionIds = "";
+        String answers = "";
+        for (int i = 0; i <= answerList.size() - 1; i++) {
+            if (i==0){
+                questionIds = questionIds  + questionList.get(i);
+                answers = answers +  answerList.get(i);
+            }
+            else {
+            questionIds = questionIds + "||" + questionList.get(i);
+            answers = answers + "||" + answerList.get(i);
+        }}
+        Utils.E("questionIds::::::::::  " + questionIds);
+        Utils.E("answers::::::::::  " + answers);
+        submitPracticeTest(questionIds, answers);
+    }
+
+    private void submitPracticeTest(String questionIds, String answers) {
         Dialog progressDialog = Utils.initProgressDialog(activity);
-        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTY3MjgwMX0.BBr3FZ9vob8SC5Q5cj20h-vRHFiX4dDeej2eZoF_grk";
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.orderExamUuid,orderExamUuids);
+        hm.put(Constants.Key.orderExamUuid, orderExamUuids);
         hm.put(Constants.Key.topicUuid, topicUuids);
-        hm.put(Constants.Key.questionIds, "87||97");
-        hm.put(Constants.Key.options, "options_1||options_2");
+        hm.put(Constants.Key.questionIds, questionIds);
+        hm.put(Constants.Key.options, answers);
         apiService.practiceTestSubmit(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -108,11 +126,11 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity,"Test Submitted Successfully");
+                        Utils.T(activity, "Test Submitted Successfully");
                         Bundle bundle = new Bundle();
-                        bundle.putInt(Constants.Key.testAttemptUuid,response.body().testAttemptId);
-                        Utils.E("testAttemptUuid::"+response.body().testAttemptId);
+                        bundle.putString(Constants.Key.testAttemptUuid,response.body().testAttemptUuid);
                         Utils.I(activity, TestResultActivity.class, bundle);
+                        Utils.E("testAttemptUuid::" + response.body().testAttemptUuid);
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -137,50 +155,58 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         });
     }
 
-    private void getPracticeQuestion() {
-            Dialog progressDialog = Utils.initProgressDialog(activity);
-            String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2VtYWlsIjoiZ2VldEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYWQ5YzhhNzQtMGNmMi0xMWVkLTk3NTQtMDAwYzI5MTE1MWViIiwicm9sZSI6IlN0dWRlbnQiLCJBUElfVElNRSI6MTY1OTY3MjgwMX0.BBr3FZ9vob8SC5Q5cj20h-vRHFiX4dDeej2eZoF_grk";
-            HashMap<String, String> hm = new HashMap<>();
-            hm.put(Constants.Key.orderExamUuid,orderExamUuids);
-            hm.put(Constants.Key.topicUuid, topicUuids);
-            apiService.getMyQuestionList(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
-                @Override
-                public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                    progressDialog.dismiss();
-                    try {
-                        if (response.code() == StatusCodeConstant.OK) {
-                            assert response.body() != null;
-                            questionListModelArrayList.clear();
-                            //questionListModelArrayList.addAll(Collections.singleton(response.body().questionListModel));
-                            questionListModelArrayList.addAll(response.body().questionListModel.questions);
 
+    private void getPracticeQuestion() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(Constants.Key.orderExamUuid, orderExamUuids);
+        hm.put(Constants.Key.topicUuid, topicUuids);
+        hm.put(Constants.Key.device_type, "android");
+        apiService.getMyQuestionList(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        questionListModelArrayList.clear();
+                        //questionListModelArrayList.addAll(Collections.singleton(response.body().questionListModel));
+                        questionListModelArrayList.addAll(response.body().questionListModel.questions);
+                        if (questionListModelArrayList.isEmpty()) {
+                            binding.llparent.setVisibility(View.GONE);
+                            binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                        } else {
+                            questionListModelArrayList.clear();
+                            binding.llparent.setVisibility(View.VISIBLE);
+                            binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                            questionListModelArrayList.addAll(response.body().questionListModel.questions);
                             courseTestQuestionAdapter = new CourseTestQuestionAdapter(activity, questionListModelArrayList);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                             binding.rvQuestion.setLayoutManager(linearLayoutManager);
                             binding.rvQuestion.setAdapter(courseTestQuestionAdapter);
-
-                        } else {
-                            assert response.errorBody() != null;
-                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                            if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                                Utils.T(activity, message.message);
-                            } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-
-                                Utils.UnAuthorizationToken(activity);
-                            }
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
 
-                @Override
-                public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-                    call.cancel();
-                    t.printStackTrace();
-                    progressDialog.dismiss();
-                    Utils.E("getMessage::" + t.getMessage());
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            });
-        }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
 }

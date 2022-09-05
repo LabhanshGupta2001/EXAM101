@@ -14,6 +14,10 @@ public class Constants {
         String IMAGE_JPEG = ".jpeg";
         String PDF = ".pdf";
         String pdf = "pdf";
+        String videoUrl = "videoUrl";
+        String urlType = "urlType";
+        String video = "Video";
+        String youtube = "youtube";
          String CONTENT_ALL_DOC = "application/pdf";
         int Unauthorized = 401;
         String currency = "₹";
@@ -202,5 +206,8 @@ public class Constants {
         String Copy = "Copy to Clipboard";
 
         String examUuid = "examUuid";
+        String page_name = "page_name";
+        String yTLink = "YT Link";
+        String vimeoLink = "Vimeo Link";
     }
 }

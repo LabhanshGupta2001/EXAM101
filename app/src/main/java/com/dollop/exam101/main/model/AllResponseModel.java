@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class AllResponseModel {
-
+    @SerializedName("studentexam")
+    @Expose
+    public List<Studentexam> studentexam = null;
     @SerializedName("message")
     @Expose
     public String message;
@@ -121,9 +123,9 @@ public class AllResponseModel {
     @Expose
     public QuestionListModel questionListModel;
 
-    @SerializedName("testAttemptId")
+    @SerializedName("testAttemptUuid")
     @Expose
-    public Integer testAttemptId;
+    public String testAttemptUuid;
 
     @SerializedName("complaintList")
     @Expose

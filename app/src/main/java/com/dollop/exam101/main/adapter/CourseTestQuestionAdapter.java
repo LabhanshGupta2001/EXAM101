@@ -3,7 +3,6 @@ package com.dollop.exam101.main.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,11 +10,9 @@ import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCourseTestQuestionListBinding;
 import com.dollop.exam101.main.model.OptionModel;
-import com.dollop.exam101.main.model.QuestionListModel;
 import com.dollop.exam101.main.model.QuestionModel;
 
 import java.util.ArrayList;
@@ -25,7 +22,7 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
 
     Context context;
     List<QuestionModel> questionModelArrayList;
-    List<OptionModel> optionModelArrayList = new ArrayList<>();
+    private MyViewHolder holder;
 
     public CourseTestQuestionAdapter(Context context, ArrayList<QuestionModel> list) {
         this.context = context;
@@ -40,17 +37,16 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseTestQuestionAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position)
-    {
-        Utils.E("questionModelArrayList::"+questionModelArrayList);
+    public void onBindViewHolder(@NonNull CourseTestQuestionAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Utils.E("questionModelArrayList::" + questionModelArrayList);
+        this.holder=holder;
         QuestionModel questionListModel = questionModelArrayList.get(position);
-        holder.binding.tvQuestion.setText(HtmlCompat.fromHtml(questionListModel.question,0));
+        holder.binding.tvQuestion.setText(HtmlCompat.fromHtml(questionListModel.question,HtmlCompat.FROM_HTML_MODE_LEGACY));
 
-        optionModelArrayList.addAll(questionListModel.options);
-        holder.binding.rvOption.setAdapter(new CourseTestQuestionOptionAdapter(context, optionModelArrayList));
+        holder.binding.rvOption.setAdapter(new CourseTestQuestionOptionAdapter(context, questionListModel.options,questionListModel));
         holder.binding.rvOption.setLayoutManager(new LinearLayoutManager(context));
 
-     //   holder.binding.rvOption.notifyAll();
+        //   holder.binding.rvOption.notifyAll();
     }
 
     @Override
@@ -66,5 +62,6 @@ public class CourseTestQuestionAdapter extends RecyclerView.Adapter<CourseTestQu
             this.binding = binding;
         }
     }
+
 
 }
