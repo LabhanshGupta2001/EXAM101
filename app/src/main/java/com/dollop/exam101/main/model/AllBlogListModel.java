@@ -6,7 +6,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class AllBlogListModel {
-
     @SerializedName("blogCatId")
     @Expose
     public String blogCatId;
@@ -49,5 +48,28 @@ public class AllBlogListModel {
     @SerializedName("blogDetail")
     @Expose
     public String blogDetail;
-
+    @SerializedName("blogAuthorName")
+    @Expose
+    public String blogAuthorName;
+    @SerializedName("authorbio")
+    @Expose
+    public String authorbio;
+    @SerializedName("authorImage")
+    @Expose
+    public String authorImage;
+    @SerializedName("authorFBLink")
+    @Expose
+    public String authorFBLink;
+    @SerializedName("authorInstaLink")
+    @Expose
+    public String authorInstaLink;
+    @SerializedName("authorLinkdedLink")
+    @Expose
+    public String authorLinkdedLink;
+    @SerializedName("authorYoutubeLink")
+    @Expose
+    public String authorYoutubeLink;
+    @SerializedName("authorTwitLink")
+    @Expose
+    public String authorTwitLink;
 }

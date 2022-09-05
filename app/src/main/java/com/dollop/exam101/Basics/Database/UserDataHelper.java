@@ -121,6 +121,7 @@ public class UserDataHelper {
         values.put(UserData.Key_RoleType, userData.roleType);
         values.put(UserData.KEY_profilePic, userData.profilePic);
         values.put(UserData.KEY_Token,userData.token);
+        values.put(UserData.KEY_isPasswordGenerated,userData.isPasswordGenerated);
 
 
 
@@ -164,6 +165,7 @@ public class UserDataHelper {
                 userData.roleType = cursor.getString(cursor.getColumnIndex(UserData.Key_RoleType));
                 userData.profilePic=cursor.getString(cursor.getColumnIndex(UserData.KEY_profilePic));
                 userData.token=cursor.getString(cursor.getColumnIndex(UserData.KEY_Token));
+                userData.isPasswordGenerated = cursor.getString(cursor.getColumnIndex(UserData.KEY_isPasswordGenerated));
 
                 userItem.add(userData);
 

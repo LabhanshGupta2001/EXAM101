@@ -125,6 +125,7 @@ public interface ApiService {
 
     @GET(Const.Url.getAffiliatePurchaseListApi)
     Call<AllResponseModel> getAffiliatePurchaseList(@Header(Constants.Key.Authorization) String token,
+                                                    @QueryMap HashMap<String, String> hm);
                                                 @FieldMap HashMap<String, String> hm);
 
     @GET(Const.Url.getAffiliatePurchaseSummaryApi)

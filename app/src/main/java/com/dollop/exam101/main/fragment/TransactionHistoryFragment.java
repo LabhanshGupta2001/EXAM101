@@ -35,8 +35,11 @@ public class TransactionHistoryFragment extends Fragment implements View.OnClick
     ArrayList<String> list = new ArrayList<>();
     ApiService apiService;
     Activity activity;
+    ArrayList<AllResponseModel> allResponseModels = new ArrayList<>();
 
-    public TransactionHistoryFragment() {
+    public TransactionHistoryFragment(ArrayList<AllResponseModel> list) {
+        this.allResponseModels.addAll(list);
+        Utils.E("allResponseModels::"+allResponseModels);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -51,11 +54,6 @@ public class TransactionHistoryFragment extends Fragment implements View.OnClick
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-        if (AppController.getInstance().isOnline()) {
-            //getAffiliatePurchaseSummary();
-        } else {
-            InternetDialog();
-        }
 
 
         list.clear();
@@ -77,55 +75,6 @@ public class TransactionHistoryFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {
 
-    }
-
-    private void getAffiliatePurchaseSummary() {
-        Dialog progressDialog = Utils.initProgressDialog(activity);
-        apiService.getAffiliatePurchaseSummary(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                progressDialog.dismiss();
-                try {
-                    if (response.code() == StatusCodeConstant.OK) {
-
-                  /*affilliatDetailModel.clear();
-                        assert response.body() != null;
-                        AffilliatDetailModel affilliatDetailModel = response.body().affilliatDetailModel;
-                        //Utils.E("affilliatDetailModel::::"+affilliatDetailModel);
-                        if (affilliatDetailModel.reqStatus.equals(Constants.Key.Pending)) {
-                            binding.llRequestPendingCode.setVisibility(View.VISIBLE);
-                            binding.llRequestAffilation.setVisibility(View.GONE);
-                        } else if (affilliatDetailModel.reqStatus.equals(Constants.Key.Success)) {
-                            binding.llRequestPendingCode.setVisibility(View.GONE);
-                            binding.llRequestAffilation.setVisibility(View.GONE);
-                            binding.llBankDetailsAndAffiliation.setVisibility(View.VISIBLE);
-                        } else {
-                            binding.llRequestAffilation.setVisibility(View.VISIBLE);
-                        }
-*/
-
-                    } else {
-                        assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            Utils.T(activity, message.message);
-                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            Utils.UnAuthorizationToken(activity);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-                call.cancel();
-                t.printStackTrace();
-                progressDialog.dismiss();
-                Utils.E("getMessage::" + t.getMessage());
-            }
-        });
     }
 
 

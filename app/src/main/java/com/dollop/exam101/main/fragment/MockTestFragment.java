@@ -40,7 +40,7 @@ public class MockTestFragment extends Fragment implements View.OnClickListener {
     Activity activity;
     FragmentMockTestBinding binding;
     ApiService apiService;
-    List<MockTestModel> mockTestModels = new ArrayList<>();
+    List<MockTestModel> mockTestModels;
 
 
     public MockTestFragment(List<MockTestModel> mockTestModels) {
@@ -59,7 +59,6 @@ public class MockTestFragment extends Fragment implements View.OnClickListener {
     private void init() {
         apiService = RetrofitClient.getClient();
         Utils.E("mockTestModels::::::::" + mockTestModels);
-
 
         binding.rvMockTestList.setHasFixedSize(true);
         binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
