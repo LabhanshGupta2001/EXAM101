@@ -2,15 +2,18 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.TimeFormatter;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemMockTestHistoryAllresultsBinding;
+import com.dollop.exam101.main.activity.TestResultActivity;
 import com.dollop.exam101.main.model.MockTestHistory;
 
 import java.util.ArrayList;
@@ -42,6 +45,12 @@ public class MockHistoryAllResultsAdapter extends RecyclerView.Adapter<MockHisto
         holder.binding.tvResult.setText(list.get(position).correctAnsCnt+"/"+list.get(position).questionCnt);
         holder.binding.tvAttempt.setText(list.get(position).testAttemptId+" Attempt");
         holder.binding.tvTestDate.setText("Test Date : "+TimeFormatter.changeDateFormat(list.get(position).createdDtm));
+        holder.binding.tvViewDetails.setOnClickListener(view -> {
+            Bundle bundle=new Bundle();
+            bundle.putString(Constants.Key.testAttemptUuid,list.get(position).testAttemptUuid);
+            Utils.I(context, TestResultActivity.class,bundle);
+
+        });
     }
 
     @Override

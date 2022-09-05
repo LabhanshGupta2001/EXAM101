@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -22,6 +23,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -295,39 +297,29 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             binding.tvErrorCountry.setVisibility(View.GONE);
             bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
         } else if (view == binding.ivShowHidePassword) {
-            isClicked = !isClicked;
-            if (isClicked) {
-                binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
-                binding.etPassword.setTransformationMethod
-                        (HideReturnsTransformationMethod.getInstance());
-                binding.etPassword.setSelection(binding.etPassword.length());
+            showHidePasswordSetUp(binding.etPassword,binding.ivShowHidePassword);
 
-            } else {
-                binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
-                binding.etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                binding.etPassword.setSelection(binding.etPassword.length());
-
-
-
-            }
         } else if (view == binding.ivShowHidePassword2) {
-            isClicked = !isClicked;
-            if (isClicked) {
-                binding.ivShowHidePassword2.setImageResource(R.drawable.ic_hide);
-                binding.etConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
-
-
-            } else {
-                binding.ivShowHidePassword2.setImageResource(R.drawable.ic_visibility);
-                binding.etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
-
-
-
-            }
+            showHidePasswordSetUp(binding.etConfirmPassword,binding.ivShowHidePassword2);
         }
     }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void showHidePasswordSetUp(EditText etPassword, ImageView ivShowHidePassword) {
+        if (ivShowHidePassword.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.ic_visibility).getConstantState())) {
+            ivShowHidePassword.setImageResource(R.drawable.ic_hide);
+            etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
+            etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+        etPassword.requestFocus();
+        etPassword.setSelection(etPassword.length());
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+    }
+
 
     private void getState() {
         Dialog progressDialog = Utils.initProgressDialog(activity);

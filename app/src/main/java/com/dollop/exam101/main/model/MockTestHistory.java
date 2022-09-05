@@ -20,5 +20,8 @@ public class MockTestHistory {
     @SerializedName("correctAnsCnt")
     @Expose
     public String correctAnsCnt;
+    @SerializedName("testAttemptUuid")
+    @Expose
+    public String testAttemptUuid;
 
 }

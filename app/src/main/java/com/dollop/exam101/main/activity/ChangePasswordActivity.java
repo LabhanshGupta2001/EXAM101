@@ -107,7 +107,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void onDestroyActionMode(ActionMode actionMode) {
 
             }
-        });/* binding.etNewPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
+        }); binding.etNewPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {return false;}
 
@@ -135,10 +135,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void onDestroyActionMode(ActionMode actionMode) {
 
             }
-        });*/
+        });
 
 
-       /* binding.etCurrentPassword.addTextChangedListener(new TextWatcher() {
+        binding.etCurrentPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -169,7 +169,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void afterTextChanged(Editable editable) {
 
             }
-        });*/
+        });
         binding.etConfirmNewPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

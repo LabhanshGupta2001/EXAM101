@@ -52,6 +52,8 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
     List<Question> questionList = new ArrayList<>();
     MockTestQuestionAdapter mockTestQuestionAdapter;
     AlertdialogBinding alertDialogBinding;
+    CountDownTimer cdDecreesTime;
+    CountDownTimer cdSubmitTimer;
     Dialog dialog;
     int visitedQuestion = 0;
     int nowPagePosition = 0;
@@ -140,7 +142,7 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
         int duration = Integer.parseInt(duration2);
         long durationSec = (duration * 60L);
         final long durationInMilliSec = TimeUnit.SECONDS.toMillis(durationSec);
-        new CountDownTimer(durationInMilliSec, 1000) {
+        cdDecreesTime = new CountDownTimer(durationInMilliSec, 1000) {
             public void onTick(long millisUntilFinished) {
                 @SuppressLint("DefaultLocale") String timeLeft = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
@@ -154,20 +156,6 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
             public void onFinish() {
                 //show Timer On finish
                 showFinishExamDialog();
-                new CountDownTimer(6000, 1000) {
-                    @SuppressLint("SetTextI18n")
-                    @RequiresApi(api = Build.VERSION_CODES.N)
-                    public void onTick(long millisUntilFinished) {
-                        int sec = Math.toIntExact(millisUntilFinished / 1000);
-                        //String testSubmit= R.string.test_submit_in);
-                        alertDialogBinding.tvDesc.setText(getString(R.string.test_will_be_automatically_submitted_within) + " " + sec + " sec");
-                    }
-
-                    public void onFinish() {
-                        dialog.dismiss();
-                        submitMockTest();
-                    }
-                }.start();
             }
         }.start();
     }
@@ -224,6 +212,8 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
         } else if (view == bottomSheetQuitExamBinding.mcvBtnCancel) {
             quitTestDialog.cancel();
         } else if (view == bottomSheetQuitExamBinding.mcvBtnQuitTest) {
+            if (cdDecreesTime != null) cdDecreesTime.cancel();
+            if (cdSubmitTimer != null) cdSubmitTimer.cancel();
             quitTestDialog.cancel();
             finish();
         }
@@ -236,8 +226,7 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
     }
 
     void submitMockTest() {
-        if (getSelectedOption())
-        {
+        if (getSelectedOption()) {
             Dialog progressDialog = Utils.initProgressDialog(activity);
             HashMap<String, String> hm = new HashMap<>();
             hm.put(Constants.Key.orderMockTestId, orderMockTestId);
@@ -252,8 +241,10 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
                     try {
                         if (response.code() == StatusCodeConstant.OK) {
                             assert response.body() != null;
-                            Bundle bundle=new Bundle();
-                            bundle.putString(Constants.Key.testAttemptUuid,response.body().testAttemptUuid);
+                            if (cdDecreesTime != null) cdDecreesTime.cancel(); // stop timer
+                            if (cdSubmitTimer != null) cdSubmitTimer.cancel();
+                            Bundle bundle = new Bundle();
+                            bundle.putString(Constants.Key.testAttemptUuid, response.body().testAttemptUuid);
                             Utils.I(activity, TestResultActivity.class, bundle);
                             finish();
                         } else {
@@ -355,6 +346,21 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
                 submitMockTest();
             }
         });
+        cdSubmitTimer = new CountDownTimer(6000, 1000) {
+            @SuppressLint("SetTextI18n")
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            public void onTick(long millisUntilFinished) {
+                int sec = Math.toIntExact(millisUntilFinished / 1000);
+                //String testSubmit= R.string.test_submit_in);
+                alertDialogBinding.tvDesc.setText(getString(R.string.test_will_be_automatically_submitted_within) + " " + sec + " sec");
+            }
+
+            public void onFinish() {
+                dialog.dismiss();
+                submitMockTest();
+            }
+        }.start();
         dialog.show();
+
     }
 }
