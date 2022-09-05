@@ -223,7 +223,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                                 binding.tvCouponHeading.setVisibility(View.VISIBLE);
                                 binding.CardViewCoupon.setVisibility(View.VISIBLE);
                                 binding.tvCoupon.setText(couponAndReferralCode);
-                                binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(response.body().gstPercentage)) + "%");
+                                binding.tvSgst.setText(new DecimalFormat("##.##").format(Double.parseDouble(appliedCouponModel.gstPercentage)) + "%");
                                 binding.tvSubTotalId.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.subTotalAmt)));
                                 binding.tvGrandtotal.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.grandTotalAmt)));
                                 binding.tvGrandTotalBottom.setText(String.valueOf(new DecimalFormat("##.##").format(appliedCouponModel.grandTotalAmt)));

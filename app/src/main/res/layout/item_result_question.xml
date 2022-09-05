@@ -36,6 +36,7 @@
             android:paddingVertical="@dimen/_10sdp">
 
             <TextView
+                android:id="@+id/tvQuestion"
                 style="@style/SenaryPrimaryTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +46,7 @@
                 tools:ignore="InefficientWeight" />
 
             <TextView
+                android:id="@+id/tvCurrentAns"
                 style="@style/QuinaryTheemTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

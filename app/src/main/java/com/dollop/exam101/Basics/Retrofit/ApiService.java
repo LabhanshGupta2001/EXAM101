@@ -64,6 +64,9 @@ public interface ApiService {
     Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hm);
 
+    @GET(Const.Url.getMockTestHistoryListApi)
+    Call<AllResponseModel> getMockTestHistoryListApi(@Header(Constants.Key.Authorization) String token);
+
     @GET(Const.Url.getLanguageApi)
     Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
 
@@ -104,6 +107,20 @@ public interface ApiService {
     @POST(Const.Url.sendAffiliateRequestApi)
     Call<AllResponseModel> sendAffiliateBankDetails(@Header(Constants.Key.Authorization) String token,
                                                     @FieldMap HashMap<String, String> hm);
+
+    @FormUrlEncoded
+    @POST(Const.Url.submitMockTestApi)
+    Call<AllResponseModel> submitMockTest(@Header(Constants.Key.Authorization) String token,
+                                                    @FieldMap HashMap<String, String> hm);
+
+
+    @GET(Const.Url.getMockTestQuestionListApi)
+    Call<AllResponseModel> getMockTestQuestionList(@Header(Constants.Key.Authorization) String token,
+                                                   @QueryMap HashMap<String, String> hm);
+
+    @GET(Const.Url.getTestResultApi)
+    Call<AllResponseModel> getTestResult(@Header(Constants.Key.Authorization) String token,
+                                                   @QueryMap HashMap<String, String> hm);
 
     @GET(Const.Url.getAffiliatePurchaseListApi)
     Call<AllResponseModel> getAffiliatePurchaseList(@Header(Constants.Key.Authorization) String token,
@@ -315,9 +332,10 @@ public interface ApiService {
     @GET(Const.Url.removeFromCartApi)
     Call<AllResponseModel> removeFromCart(@Header(Constants.Key.Authorization) String token, @Query(Constants.Key.cartUuId) String cartUuId);
 
-    @GET(Const.Url.purchasePackageApi)
+    @FormUrlEncoded
+    @POST(Const.Url.purchasePackageApi)
     Call<AllResponseModel> purchasePackage(@Header(Constants.Key.Authorization) String token,
-                                           @QueryMap HashMap<String, String> hashMap);
+                                           @FieldMap HashMap<String, String> hashMap);
 
     @DELETE(Const.Url.removeFromWishListApi + "/{" + Constants.Key.wishListUuid + "}")
     Call<AllResponseModel> removeFromWishList(@Header(Constants.Key.Authorization) String token,

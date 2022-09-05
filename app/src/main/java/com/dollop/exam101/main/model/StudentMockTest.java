@@ -2,7 +2,6 @@ package com.dollop.exam101.main.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 public class StudentMockTest {
 
     @SerializedName("orderMockTestId")
@@ -17,11 +16,20 @@ public class StudentMockTest {
     @SerializedName("packageExpiryDtm")
     @Expose
     public String packageExpiryDtm;
-    @SerializedName("attemptRemaining")
+    @SerializedName("orderMockTestUuid")
     @Expose
-    public String attemptRemaining;
+    public String orderMockTestUuid;
+    @SerializedName("remainingAttempt")
+    @Expose
+    public String remainingAttempt;
     @SerializedName("remainingDays")
     @Expose
     public String remainingDays;
+    @SerializedName("totalAttempts")
+    @Expose
+    public String totalAttempts;
+    @SerializedName("testAttemptUuid")
+    @Expose
+    public String testAttemptUuid;
 
 }

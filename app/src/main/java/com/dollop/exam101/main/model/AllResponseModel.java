@@ -12,6 +12,10 @@ public class AllResponseModel {
     @Expose
     public String message;
 
+    @SerializedName("testAttemptUuid")
+    @Expose
+    public String testAttemptUuid;
+
     @SerializedName("is_notification")
     @Expose
     public String isNotification;
@@ -19,6 +23,7 @@ public class AllResponseModel {
     @SerializedName("key")
     @Expose
     public String key;
+
     @SerializedName("OTP")
     @Expose
     public String otp;
@@ -134,10 +139,30 @@ public class AllResponseModel {
 
     @SerializedName("studentMockTests")
     @Expose
-    public List<StudentMockTest> studentMockTestsList=null;
+    public List<StudentMockTest> studentMockTestsList = null;
 
     @SerializedName("appliedCoupon")
     @Expose
     public AppliedCouponModel appliedCouponModel;
+
+    @SerializedName("mockTestHistory")
+    @Expose
+    public List<MockTestHistory> mockTestHistory = null;
+
+    @SerializedName("mockTestQuestion")
+    @Expose
+    public MockTestQuestion mockTestQuestion;
+
+    @SerializedName("totalQuestionCnt")
+    @Expose
+    public Integer totalQuestionCnt;
+
+    @SerializedName("correntQuestionCnt")
+    @Expose
+    public Integer correntQuestionCnt;
+
+    @SerializedName("questions")
+    @Expose
+    public List<TestResultQuestion> testResultQuestions = null;
 
 }
