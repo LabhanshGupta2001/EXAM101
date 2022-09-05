@@ -23,8 +23,8 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.FragmentCategoryHomeBinding;
 import com.dollop.exam101.main.activity.DashboardScreenActivity;
 import com.dollop.exam101.main.adapter.CategoryHomeAdapter;
-import com.dollop.exam101.main.model.Exam;
-import com.dollop.exam101.main.model.StudentExamList;
+import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.Studentexam;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -34,11 +34,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CategoryHomeFragment extends Fragment implements View.OnClickListener {
+     FragmentCategoryHomeBinding binding;
     ApiService apiService;
     Activity activity;
-    FragmentCategoryHomeBinding binding;
     CategoryHomeAdapter categoryHomeAdapter;
-    ArrayList<Exam> examList = new ArrayList<com.dollop.exam101.main.model.Exam>();
+    ArrayList<Studentexam> examList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -77,24 +77,27 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
 
     private void CategoriesHomeAllExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
-        apiService.getStudentExamListApi(Utils.GetSession().token).enqueue(new Callback<StudentExamList>() {
+        apiService.getStudentExamListApi(Utils.GetSession().token, "android").enqueue(new Callback<AllResponseModel>() {
             @Override
-            public void onResponse(@NonNull Call<StudentExamList> call, @NonNull Response<StudentExamList> response) {
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                    if (response.body().exams.equals(Constants.Key.blank) || response.body().exams.isEmpty()) {
+                    if (response.body().studentexam.equals(Constants.Key.blank) || response.body().studentexam.isEmpty()) {
+                        Utils.E("Empty:::::" + response.body().studentexam.size());
                         binding.rvCategories.setVisibility(View.GONE);
                         binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
                     } else {
+                        Utils.E("Empty:::::" + response.body().studentexam.size());
                         binding.rvCategories.setVisibility(View.VISIBLE);
                         binding.noResultFoundId.llParent.setVisibility(View.GONE);
                     }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         examList.clear();
-                        examList.addAll(response.body().exams);
+                        examList.addAll(response.body().studentexam);
                         categoryHomeAdapter.notifyDataSetChanged();
                     } else {
+
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
@@ -109,7 +112,7 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
             }
 
             @Override
-            public void onFailure(@NonNull Call<StudentExamList> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
                 progressDialog.dismiss();
@@ -120,12 +123,12 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
-        binding.llParent.setVisibility(View.GONE);
+        binding.rvCategories.setVisibility(View.GONE);
         binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                binding.llParent.setVisibility(View.VISIBLE);
+                binding.rvCategories.setVisibility(View.VISIBLE);
                 binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
             }
         });

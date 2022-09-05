@@ -21,4 +21,7 @@ public class QuestionModel {
     @Expose
     public List<OptionModel> options = null;
 
+    public boolean isClicked = false;
+    public int answer = 0;
+
 }

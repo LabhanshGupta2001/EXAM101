@@ -76,6 +76,7 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
             holder.binding.llStartTest.setOnClickListener(view ->
             {
                 setBottomSheet();
+                bottomSheetStartTestBinding.tvHeading.setText(list.get(position).mockTestName);
                 bottomSheetStartTestBinding.llBtnStartTest.setOnClickListener(view1 ->
                 {
                     bottomSheetDialog.cancel();

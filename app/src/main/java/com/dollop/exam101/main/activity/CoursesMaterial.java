@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
@@ -38,12 +39,12 @@ import retrofit2.Response;
 
 public class CoursesMaterial extends BaseActivity implements View.OnClickListener {
     private final Boolean dropdown = true;
+    public String orderExamUuid;
     Activity activity = CoursesMaterial.this;
     ActivityCoursesMaterialBinding binding;
     ArrayList<Subject> subjectlist = new ArrayList<>();
     ApiService apiService;
     Bundle bundle;
-    String orderExamUuid;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -118,6 +119,7 @@ public class CoursesMaterial extends BaseActivity implements View.OnClickListene
         Utils.E("done:::");
 
         apiService.getStudentExamDetailApi(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -126,18 +128,18 @@ public class CoursesMaterial extends BaseActivity implements View.OnClickListene
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         binding.tvCourseName.setText(response.body().orderexams.examName);
-                        binding.tvPercentComplete.setText(response.body().orderexams.completedPercentage + "% Complete");
-                        binding.tvLastActivityTime.setText(" "+(TimeFormatter.getDateTime(response.body().orderexams.lastActivityDate, activity, "yyyy-MM-dd HH:mm:ss", "Date")));
+                        binding.tvPercentComplete.setText(response.body().orderexams.completedPercentage + getString(R.string.complete));
+                        binding.tvLastActivityTime.setText(" " + (TimeFormatter.getDateTime(response.body().orderexams.lastActivityDate, activity, "yyyy-MM-dd HH:mm:ss", "Date")));
                         binding.progressBar.setProgress(Integer.parseInt(response.body().orderexams.completedPercentage));
                         binding.progressBar.setMax(100);
                         subjectlist.addAll(response.body().orderexams.subjects);
-                        if (subjectlist.isEmpty()){
+                        if (subjectlist.isEmpty()) {
                             binding.rvCourseList.setVisibility(View.GONE);
+                        } else {
+                            binding.rvCourseList.setHasFixedSize(true);
+                            binding.rvCourseList.setLayoutManager(new LinearLayoutManager(activity));
+                            binding.rvCourseList.setAdapter(new CourseMaterialSubjectAdapter(activity, subjectlist));
                         }
-                        else {
-                        binding.rvCourseList.setHasFixedSize(true);
-                        binding.rvCourseList.setLayoutManager(new LinearLayoutManager(activity));
-                        binding.rvCourseList.setAdapter(new CourseMaterialSubjectAdapter(activity, subjectlist));}
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);

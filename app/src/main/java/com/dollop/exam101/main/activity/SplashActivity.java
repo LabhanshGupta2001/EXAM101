@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.SavedData;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.Basics.firebase.FirebaseService;
 import com.dollop.exam101.R;
 
 @SuppressLint("CustomSplashScreen")
@@ -24,6 +25,7 @@ public class SplashActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        FirebaseService.GenerateToken(activity);
 
 
         Thread thread = new Thread() {

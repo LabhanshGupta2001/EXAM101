@@ -3,7 +3,6 @@ package com.dollop.exam101.Basics.Retrofit;
 
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.StudentExamList;
 
 import java.util.HashMap;
 
@@ -260,9 +259,9 @@ public interface ApiService {
     Call<AllResponseModel> getFlexBox(@FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.Url.resetPasswordApi)
+    @PUT(Const.Url.resetPasswordApi)
     Call<AllResponseModel> resetPassword(@Header(Constants.Key.Authorization) String token,
-    @FieldMap HashMap<String, String> hm);
+                                         @FieldMap HashMap<String, String> hm);
 
 
     @FormUrlEncoded
@@ -272,7 +271,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Const.Url.otp_verification)
     Call<AllResponseModel> otpVerification(@FieldMap HashMap<String, String> hm);
-
 
     @GET(Const.Url.order_history)
     Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);
@@ -331,7 +329,8 @@ public interface ApiService {
     Call<AllResponseModel> Examlist(@Header(Constants.Key.Authorization) String token);
 
     @GET(Const.Url.getStudentExamListApi)
-    Call<StudentExamList> getStudentExamListApi(@Header(Constants.Key.Authorization) String token);
+    Call<AllResponseModel> getStudentExamListApi(@Header(Constants.Key.Authorization) String token,
+                                                 @Query(Constants.Key.device_type) String device_type);
 
 
     @GET(Const.Url.removeFromCartApi)

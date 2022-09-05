@@ -51,10 +51,10 @@
             style="@style/SenaryThemeTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/_2sdp"
-            android:drawableLeft="@drawable/ic_back_history"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/ic_back_history"
+            android:drawablePadding="@dimen/_2sdp"
             android:text="@string/history" />
     </RelativeLayout>
 

@@ -22,6 +22,7 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.Basics.firebase.FirebaseService;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
@@ -88,6 +89,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
     @SuppressLint("ResourceAsColor")
     void init() {
+        FirebaseService.GenerateToken(activity);
         navHeaderDashboardBinding = NavHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
         navigationSetup();
         apiService = RetrofitClient.getClient();
