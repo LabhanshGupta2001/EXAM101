@@ -167,14 +167,6 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         if (view == binding.ivBack) {
             onBackPressed();
-        } else if (view == binding.mcvInstagram){
-
-        }else if (view == binding.mcvFacebook){
-
-        }else if (view == binding.mcvTwitter){
-
-        }else if (view == binding.mcvLinkIn){
-
         }else if (view == binding.mcvFacebook){
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);

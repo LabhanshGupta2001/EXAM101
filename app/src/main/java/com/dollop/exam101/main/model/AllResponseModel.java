@@ -123,9 +123,7 @@ public class AllResponseModel {
     @Expose
     public QuestionListModel questionListModel;
 
-    @SerializedName("testAttemptUuid")
-    @Expose
-    public String testAttemptUuid;
+
 
     @SerializedName("complaintList")
     @Expose

@@ -43,6 +43,7 @@ import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.SavedData;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.Basics.firebase.FirebaseService;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivitySignUpBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
@@ -107,6 +108,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
+        FirebaseService.GenerateToken(activity);
+
         if (AppController.getInstance().isOnline()) {
             getCountryList();
         } else {

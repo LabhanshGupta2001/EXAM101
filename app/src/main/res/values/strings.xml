@@ -234,6 +234,7 @@
     <string name="course_details">Course details</string>
     <string name="overview_msg">New to web design? Start here first. Instructor James\nWilliamson introduces the fundamental concepts, tools, and\nlearning paths for web design. He explains what it means to be\na web designer, the various areas of specialization, and\nwhether web design is the right hobby or career for you. Along\nthe way, he talks to five prominent designers and developers,\nwho have each found success in a different corner of the web.</string>
     <string name="requirements">Requirements</string>
+    <string name="default_notification_channel_id">10001</string>
     <string name="skills_covered_in_this_course">Skills covered in this course</string>
     <string name="rating_and_reviews">Rating &amp; Reviews</string>
     <string name="add_to_wishlist">Add to Wishlist</string>
