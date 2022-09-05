@@ -1,65 +1,84 @@
 package com.dollop.exam101.main.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
-
 
 import com.dollop.exam101.databinding.ItemMockTestQuestionBinding;
+import com.dollop.exam101.main.activity.MockTestQuestionsActivity;
+import com.dollop.exam101.main.model.Option;
+import com.dollop.exam101.main.model.Question;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MockTestQuestionAdapter extends RecyclerView.Adapter<MockTestQuestionAdapter.MyHolder> {
-    ArrayList<String> arrayList = new ArrayList<>();
     Context context;
-    private final List<String> list;
-    private final ViewPager2 viewPager;
+    public static List<Question> questionList;
 
-    public MockTestQuestionAdapter(List list, ViewPager2 viewPager, Context context) {
-        this.list = list;
-        this.viewPager = viewPager;
+    @SuppressLint("NotifyDataSetChanged")
+    public MockTestQuestionAdapter(List<Question> questionList, Context context) {
+        this.questionList = questionList;
         this.context = context;
     }
+
 
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemMockTestQuestionBinding binding = ItemMockTestQuestionBinding.inflate(LayoutInflater.from(context),parent,false);
+        ItemMockTestQuestionBinding binding = ItemMockTestQuestionBinding.inflate(LayoutInflater.from(context), parent, false);
         return new MyHolder(binding);
+
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        arrayList.clear();
-        arrayList.add("1");
-        arrayList.add("1");
-        arrayList.add("1");
-        arrayList.add("1");
-        holder.binding.rvRadioClickAns.setAdapter(new TestAnsAdapter(context, arrayList));
-        holder.binding.rvRadioClickAns.setLayoutManager(new LinearLayoutManager(context));
-
+        Question question = questionList.get(position);
+        holder.binding.tvQuestion.setText(HtmlCompat.fromHtml(question.question, 0));
+        if (!(question.options == null) && !question.options.isEmpty()) {
+            holder.binding.rvRadioClickAns.setLayoutManager(new LinearLayoutManager(context));
+            holder.binding.rvRadioClickAns.setAdapter(new TestAnsAdapter(context, question.options, this, position, holder.binding));
+        }
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return questionList.size();
+    }
+
+    public void SelectOption(int questionPosition, int position, ItemMockTestQuestionBinding binding) {
+        Question question = questionList.get(questionPosition);
+        int previousSelected = question.options.indexOf(new Option(true));
+        if (previousSelected != -1) {
+            Option option = question.options.get(previousSelected);
+            option.Selected = false;
+            question.options.set(previousSelected, option);
+            Objects.requireNonNull(binding.rvRadioClickAns.getAdapter()).notifyItemChanged(previousSelected);
+            MockTestQuestionsActivity.attemptedCount--; // minus attempted question count
+        }
+        Option option = question.options.get(position);
+        option.Selected = true;
+        question.SelectedAnswer = position;
+        question.options.set(position, option);
+        questionList.set(questionPosition, question);
+        Objects.requireNonNull(binding.rvRadioClickAns.getAdapter()).notifyItemChanged(position);
+        MockTestQuestionsActivity.attemptedCount++;//plus attempted question count
+        // selectedOption.add(position+"");
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {
         ItemMockTestQuestionBinding binding;
 
-
         public MyHolder(@NonNull ItemMockTestQuestionBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
-
         }
     }
 }

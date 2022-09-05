@@ -98,6 +98,12 @@ public class Constants {
         String languageUuId = "languageUuId";
         String review = "review";
         String rating = "rating";
+        String orderMockTestId = "orderMockTestId";
+        String orderMockTestUuid = "orderMockTestUuid";
+        String android = "android";
+        String options_ = "options_";
+        String not_attempted = "not_attempted";
+        //String device_type = "device_type";
 
         String Take_Photo = "Take Photo";
         String Choose_From_Gallery = "Choose from Gallery";

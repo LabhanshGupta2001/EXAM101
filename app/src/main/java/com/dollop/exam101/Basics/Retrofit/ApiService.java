@@ -65,6 +65,9 @@ public interface ApiService {
     Call<AllResponseModel> packageListItem(@Header(Constants.Key.Authorization) String token,
                                            @QueryMap HashMap<String, String> hm);
 
+    @GET(Const.Url.getMockTestHistoryListApi)
+    Call<AllResponseModel> getMockTestHistoryListApi(@Header(Constants.Key.Authorization) String token);
+
     @GET(Const.Url.getLanguageApi)
     Call<AllResponseModel> getLanguage(@Header(Constants.Key.Authorization) String token);
 
@@ -106,9 +109,23 @@ public interface ApiService {
     Call<AllResponseModel> sendAffiliateBankDetails(@Header(Constants.Key.Authorization) String token,
                                                     @FieldMap HashMap<String, String> hm);
 
+    @FormUrlEncoded
+    @POST(Const.Url.submitMockTestApi)
+    Call<AllResponseModel> submitMockTest(@Header(Constants.Key.Authorization) String token,
+                                                    @FieldMap HashMap<String, String> hm);
+
+
+    @GET(Const.Url.getMockTestQuestionListApi)
+    Call<AllResponseModel> getMockTestQuestionList(@Header(Constants.Key.Authorization) String token,
+                                                   @QueryMap HashMap<String, String> hm);
+
+    @GET(Const.Url.getTestResultApi)
+    Call<AllResponseModel> getTestResult(@Header(Constants.Key.Authorization) String token,
+                                                   @QueryMap HashMap<String, String> hm);
+
     @GET(Const.Url.getAffiliatePurchaseListApi)
     Call<AllResponseModel> getAffiliatePurchaseList(@Header(Constants.Key.Authorization) String token,
-                                                    @FieldMap HashMap<String, String> hm);
+                                                @FieldMap HashMap<String, String> hm);
 
     @GET(Const.Url.getAffiliatePurchaseSummaryApi)
     Call<AllResponseModel> getAffiliatePurchaseSummary(@Header(Constants.Key.Authorization) String token);

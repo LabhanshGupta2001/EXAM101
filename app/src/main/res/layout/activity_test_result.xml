@@ -55,7 +55,12 @@
                 android:layout_marginVertical="@dimen/_12sdp"
                 android:layout_weight="1"
                 android:gravity="center">
-
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tvYourNumber"
                     style="@style/SecondaryWhitHeadingTextStyle"
@@ -63,13 +68,13 @@
                     android:layout_height="wrap_content"
                     android:text="75" />
 
-                <TextView
-                    android:id="@+id/tvSlash"
-                    style="@style/SecondaryWhitHeadingTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/tvYourNumber"
-                    android:text="/" />
+                    <TextView
+                        android:id="@+id/tvSlash"
+                        style="@style/SecondaryWhitHeadingTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tvYourNumber"
+                        android:text="/" />
 
                 <TextView
                     android:id="@+id/tvTotalNumber"
@@ -78,13 +83,14 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tvSlash"
                     android:text="100" />
-
+                </LinearLayout>
                 <TextView
                     android:id="@+id/tvNumber"
                     style="@style/QuinaryWhiteTextStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvTotalNumber"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/ll2"
                     android:layout_marginHorizontal="@dimen/_6sdp"
                     android:fontFamily="@font/inter_medium"
                     android:text="@string/numbers" />
@@ -102,7 +108,12 @@
                 android:layout_marginVertical="@dimen/_12sdp"
                 android:layout_weight="1"
                 android:gravity="center">
-
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tvYourCorrectQ"
                     style="@style/SecondaryWhitHeadingTextStyle"
@@ -125,13 +136,14 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tvSlash2"
                     android:text="40" />
-
+            </LinearLayout>
                 <TextView
                     android:id="@+id/tvCorrect"
                     style="@style/QuinaryWhiteTextStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvTotalQ"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/ll1"
                     android:layout_marginHorizontal="@dimen/_6sdp"
                     android:fontFamily="@font/inter_medium"
                     android:text="@string/correct" />
@@ -149,7 +161,12 @@
                 android:layout_marginVertical="@dimen/_12sdp"
                 android:layout_weight="1"
                 android:gravity="center">
-
+                <LinearLayout
+                    android:id="@+id/ll3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tvYourWrongQ"
                     style="@style/SecondaryWhitHeadingTextStyle"
@@ -172,13 +189,14 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tvSlash3"
                     android:text="40" />
-
+                </LinearLayout>
                 <TextView
                     android:id="@+id/tvWrong"
                     style="@style/QuinaryWhiteTextStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvTotalQuestion"
+                    android:layout_below="@+id/ll3"
+                    android:gravity="center_horizontal"
                     android:layout_marginHorizontal="@dimen/_6sdp"
                     android:fontFamily="@font/inter_medium"
                     android:text="@string/wrong" />

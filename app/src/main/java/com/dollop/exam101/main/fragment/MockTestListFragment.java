@@ -3,6 +3,8 @@ package com.dollop.exam101.main.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
+import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
+import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentCartBinding;
 import com.dollop.exam101.databinding.FragmentMockTestBinding;
 import com.dollop.exam101.databinding.FragmentMockTestListBinding;
@@ -42,7 +46,7 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
     Activity activity;
     ApiService apiService;
     MockTestListAdapter mockTestListAdapter;
-    List<StudentMockTest> studentMockTestList =new ArrayList<>();
+    List<StudentMockTest> studentMockTestList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,14 +59,13 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
 
     private void init() {
         apiService = RetrofitClient.getClient();
-        getMockTestList();
         binding.ivBack.setOnClickListener(this);
-        mockTestListAdapter  = new MockTestListAdapter(activity, studentMockTestList);
+        mockTestListAdapter = new MockTestListAdapter(activity, studentMockTestList);
         binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvMockTestList.setAdapter(mockTestListAdapter);
     }
 
-    private void getMockTestList(){
+    private void getMockTestList() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getStudentMockTestListApi(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
             @SuppressLint("NotifyDataSetChanged")
@@ -73,15 +76,14 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         studentMockTestList.clear();
-                        if(response.body().studentMockTestsList!=null && !response.body().studentMockTestsList.isEmpty())
-                        {
+                        if (response.body().studentMockTestsList != null && !response.body().studentMockTestsList.isEmpty()) {
                             binding.dataNoFoundId.llParent.setVisibility(View.GONE);
                             binding.rvMockTestList.setVisibility(View.VISIBLE);
-                            studentMockTestList=response.body().studentMockTestsList;
+                            studentMockTestList.addAll(response.body().studentMockTestsList);
                             mockTestListAdapter.notifyDataSetChanged();
-                        }else {
-                                binding.dataNoFoundId.llParent.setVisibility(View.VISIBLE);
-                                binding.rvMockTestList.setVisibility(View.GONE);
+                        } else {
+                            binding.dataNoFoundId.llParent.setVisibility(View.VISIBLE);
+                            binding.rvMockTestList.setVisibility(View.GONE);
                         }
 
                     } else {
@@ -110,12 +112,37 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
         });
     }
 
-
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
             binding.llToolbar.setVisibility(View.GONE);
             ((DashboardScreenActivity) activity).navController.popBackStack();
         }
+    }
+
+    @Override
+    public void onResume() {
+        if (AppController.getInstance().isOnline()) {
+            getMockTestList();
+            Utils.E("onResume ::: Called");}
+        else{showInternetDialog();}
+        super.onResume();
+    }
+    private void showInternetDialog() {
+        Dialog dialog = new Dialog(activity);
+        AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());
+        dialog.setContentView(alertDialogBinding.getRoot());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        alertDialogBinding.tvPermittManually.setText(R.string.retry);
+        alertDialogBinding.tvDesc.setText(R.string.please_check_your_connection);
+        alertDialogBinding.tvPermittManually.setOnClickListener(view -> {
+            if (AppController.getInstance().isOnline()) {
+                getMockTestList();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

@@ -20,6 +20,7 @@
             android:id="@+id/rlTopCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/_2sdp"
             android:layout_centerInParent="true">
 
             <ImageView
@@ -58,7 +59,7 @@
                 android:layout_below="@id/tvTime"
                 android:layout_marginStart="@dimen/_3sdp"
                 android:layout_toRightOf="@+id/ivClock"
-                android:text=" 00:48:21" />
+                android:text="" />
         </RelativeLayout>
 
 
@@ -71,7 +72,8 @@
             android:layout_centerVertical="true"
             android:fontFamily="@font/inter_medium"
             android:paddingVertical="@dimen/_12sdp"
-            android:text="@string/quit_exam" />
+            android:text="@string/quit_exam"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -109,18 +111,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvTotalQuestion"
                     style="@style/SecondaryTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="40" />
+                    android:text="0" />
 
                 <TextView
                     style="@style/QuinaryLightSubTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
                     android:text="@string/total_questions" />
             </LinearLayout>
 
@@ -145,18 +148,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvAttempted"
                     style="@style/SecondaryTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="14" />
+                    android:text="0" />
 
                 <TextView
                     style="@style/QuinaryLightSubTextStyle"
                     android:layout_width="wrap_content"
-                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
                     android:text="@string/attempted" />
             </LinearLayout>
 
@@ -180,33 +184,39 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvNotYetVisited"
                     style="@style/SecondaryTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="26" />
+                    android:text="0" />
 
                 <TextView
                     style="@style/QuinaryLightSubTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
                     android:text="@string/not_yet_visited" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpQuestion"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/llPageCount"
         android:layout_below="@id/llHorizontal"
         android:layout_marginHorizontal="@dimen/_12sdp">
 
-    </androidx.viewpager2.widget.ViewPager2>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.viewpager2.widget.ViewPager2>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/llPageCount"
@@ -223,7 +233,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_medium"
-            android:text="39" />
+            android:text="1" />
 
         <TextView
             style="@style/QuinaryLightSubTextStyle"
