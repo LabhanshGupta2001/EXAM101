@@ -3,7 +3,6 @@ package com.dollop.exam101.Basics.Retrofit;
 
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.main.model.AllResponseModel;
-import com.dollop.exam101.main.model.StudentExamList;
 
 import java.util.HashMap;
 
@@ -311,7 +310,8 @@ public interface ApiService {
     Call<AllResponseModel> Examlist(@Header(Constants.Key.Authorization) String token);
 
     @GET(Const.Url.getStudentExamListApi)
-    Call<StudentExamList> getStudentExamListApi(@Header(Constants.Key.Authorization) String token);
+    Call<AllResponseModel> getStudentExamListApi(@Header(Constants.Key.Authorization) String token,
+                                                 @Query(Constants.Key.device_type) String device_type);
 
 
     @GET(Const.Url.removeFromCartApi)

@@ -490,6 +490,8 @@
 
     <string name="eg_savings">eg. Savings</string>
     <string name="last_activity_on">Last activity on</string>
+    <string name="course_pdf">Course PDF</string>
+    <string name="complete">% Complete</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

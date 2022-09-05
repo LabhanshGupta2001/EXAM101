@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,7 +34,7 @@
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_weight="1"
             android:fontFamily="@font/gothic_bold"
-            android:text="@string/my_package" />
+            android:text="My Exams" />
 
         <ImageView
             android:id="@+id/ivAbout"
@@ -45,59 +44,75 @@
             android:src="@drawable/ic_aboutus" />
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
+        android:id="@+id/llparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/llNextBtn"
-        android:layout_below="@id/llToolbar">
+       >
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_above="@+id/llNextBtn">
 
-            <View
-                android:id="@+id/view"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_12sdp"
-                android:background="@color/lineColor" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvQuestion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                android:paddingBottom="@dimen/_12sdp"
-                tools:listitem="@layout/item_course_test_question_list"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_12sdp"
+                    android:background="@color/lineColor" />
 
-   <!-- <View
-        android:id="@+id/bottomView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_12sdp"
-        android:layout_above="@id/llNextBtn"
-        android:background="@color/lineColor" />-->
-    <LinearLayout
-        android:id="@+id/llNextBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="@dimen/_8sdp"
-        android:background="@color/white"
-        android:elevation="@dimen/_4sdp"
-        android:gravity="center_vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:paddingBottom="@dimen/_12sdp"
+                    tools:listitem="@layout/item_course_test_question_list" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        <Button
-            android:id="@+id/btnSubmit"
+        <!-- <View
+             android:id="@+id/bottomView"
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/_12sdp"
+             android:layout_above="@id/llNextBtn"
+             android:background="@color/lineColor" />-->
+        <LinearLayout
+            android:id="@+id/llNextBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/theme_stroke_background"
-            android:fontFamily="@font/inter_semibold"
-            android:text="@string/submit"
-            android:textAllCaps="false">
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:elevation="@dimen/_4sdp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/_8sdp">
 
-        </Button>
-    </LinearLayout>
-</RelativeLayout>
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/theme_stroke_background"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/submit"
+                android:textAllCaps="false">
+
+            </Button>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/noResultFoundId"
+        android:visibility="gone"
+        layout="@layout/no_result_found" />
+
+    <include
+        android:id="@+id/noInternetConnection"
+        android:visibility="gone"
+        layout="@layout/no_internet_connection" />
+</LinearLayout>

@@ -128,6 +128,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.studentEmail, binding.etEmail.getText().toString().trim());
+        hm.put(Constants.Key.page_name, "forgot-password");
         apiService.ForgetPassword(hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {

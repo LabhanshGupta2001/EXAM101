@@ -33,33 +33,26 @@
             android:text="@string/my_exam" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/llParent"
-        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/white"
+            android:overScrollMode="never"
+            android:paddingHorizontal="@dimen/_2sdp"
+            tools:listitem="@layout/item_my_exam" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategories"
-        android:overScrollMode="never"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:paddingHorizontal="@dimen/_2sdp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:listitem="@layout/item_my_exam"
-        />
-
-    </LinearLayout>
-
-    <include layout="@layout/no_result_found"
+    <include
         android:id="@+id/noResultFoundId"
-        android:visibility="gone" />
+        android:visibility="gone"
+        layout="@layout/no_result_found" />
 
     <include
         android:id="@+id/noInternetConnection"
-        layout="@layout/no_internet_connection"
-        android:visibility="gone" />
+        android:visibility="gone"
+        layout="@layout/no_internet_connection" />
 
 </LinearLayout>

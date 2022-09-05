@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class OptionModel {
 
-    @SerializedName("options_0")
+    @SerializedName("options")
     @Expose
-    public String options0;
+    public String options;
     @SerializedName("options_1")
     @Expose
     public String options1;
