@@ -107,8 +107,38 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void onDestroyActionMode(ActionMode actionMode) {
 
             }
-        });
-        binding.etCurrentPassword.addTextChangedListener(new TextWatcher() {
+        });/* binding.etNewPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {return false;}
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {return false;}
+
+            @Override
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {return false;}
+
+            @Override
+            public void onDestroyActionMode(ActionMode actionMode) {
+
+            }
+        }); binding.etCurrentPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {return false;}
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {return false;}
+
+            @Override
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {return false;}
+
+            @Override
+            public void onDestroyActionMode(ActionMode actionMode) {
+
+            }
+        });*/
+
+
+       /* binding.etCurrentPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -139,7 +169,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void afterTextChanged(Editable editable) {
 
             }
-        });
+        });*/
         binding.etConfirmNewPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -156,7 +186,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
             }
         });
-
     }
 
     private void ChangePassword() {
@@ -172,11 +201,13 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.I(activity, SettingActivity.class, null);
+                        Utils.T(activity, response.body().message);
+                        finish();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            assert response.body() != null;
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
                             Utils.UnAuthorizationToken(activity);
@@ -208,12 +239,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Utils.T(activity, getString(R.string.password_change_successfully));
-                        Utils.I(activity, SettingActivity.class, null);
-
+                        Utils.T(activity, response.body().message);
                         UserData DatabaseData = Utils.GetSession();
                         DatabaseData.isPasswordGenerated = Constants.Key.Yes;
                         UserDataHelper.getInstance().insertData(DatabaseData);
+
+                        finish();
 
                     } else {
                         assert response.errorBody() != null;
@@ -319,7 +350,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
-                ChangePassword();
+            ChangePassword();
 
         } else {
             resultReturn.errorTextView.setVisibility(View.VISIBLE);
@@ -345,7 +376,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {
-                resetPassword();
+            resetPassword();
         } else {
             resultReturn.errorTextView.setVisibility(View.VISIBLE);
             if (resultReturn.type == Validation.Type.EmptyString) {
