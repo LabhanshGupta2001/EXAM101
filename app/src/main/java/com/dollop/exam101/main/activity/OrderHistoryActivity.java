@@ -105,4 +105,39 @@ public class OrderHistoryActivity extends BaseActivity implements View.OnClickLi
             }
         });
     }
+
+    public void downloadInvoice() {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        apiService.downloadInvoice(Utils.GetSession().token).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(activity, message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.UnAuthorizationToken(activity);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
 }

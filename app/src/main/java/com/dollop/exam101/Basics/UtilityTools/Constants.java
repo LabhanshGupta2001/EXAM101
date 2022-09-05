@@ -59,6 +59,9 @@ public class Constants {
 
 
         String Normal = "Normal";
+        String Yes = "Yes";
+        String Exam101 = "Exam101";
+        String choose_one = "choose one";
         String High = "High";
         String Critical = "Critical";
         String socialLogin = "socialLogin";
@@ -98,6 +101,12 @@ public class Constants {
         String languageUuId = "languageUuId";
         String review = "review";
         String rating = "rating";
+        String orderMockTestId = "orderMockTestId";
+        String orderMockTestUuid = "orderMockTestUuid";
+        String android = "android";
+        String options_ = "options_";
+        String not_attempted = "not_attempted";
+        //String device_type = "device_type";
 
         String Take_Photo = "Take Photo";
         String Choose_From_Gallery = "Choose from Gallery";
@@ -107,6 +116,7 @@ public class Constants {
         String Need_Permissions = "Need Permissions";
         String GOTO_SETTINGS = "GOTO SETTINGS";
         String Package = "package";
+        String Packages = "+Packages";
         String Cancel = "Cancel";
         String Data = "data";
         String examId = "examId";

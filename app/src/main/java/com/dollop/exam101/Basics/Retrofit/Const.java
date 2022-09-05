@@ -29,7 +29,7 @@ public class Const {
         String get_search_history = "get_search_history";
         String get_flex_box = "get_flex_box";
         String get_result = "get_result";
-        String reset_password = "reset_password";
+        String resetPasswordApi = "resetPasswordApi";
         String otp_verification = "otp_verification";
         String raise_complaint = "raise_complaint";
         String getLoginHistoryApi = "getLoginHistoryApi";
@@ -75,6 +75,7 @@ public class Const {
         String updateProfileApi = "updateProfileApi";
         String socialLoginApi = "socialLoginApi";
         String getStudentWishListApi = "getStudentWishListApi";
+        String getMockTestHistoryListApi = "getMockTestHistoryListApi";
 
         String forgotPasswordApi = "forgotPasswordApi";
         String getPackageDetails = "getPakageDetails";
@@ -83,7 +84,6 @@ public class Const {
         String getReviewRatingListApi = "getReviewRatingListApi";
         String AllResults = "AllResults";
         String AuthorList = "AuthorList";
-        String getStudentExamListApi = "getStudentExamListApi";
         String getExamListApi = "getExamListApi";
         String CategoriesAllBlogsList = "CategoriesAllBlogsList";
         String CategoriesHomePhotographyList = "CategoriesHomePhotographyList";
@@ -105,6 +105,11 @@ public class Const {
         String getAffiliateStatusApi = "getAffiliateStatusApi";
         String getAffiliatePurchaseListApi = "getAffiliatePurchaseListApi";
         String getAffiliatePurchaseSummaryApi = "getAffiliatePurchaseSummaryApi";
+        String getMockTestQuestionListApi = "getMockTestQuestionListApi";
+        String submitMockTestApi = "submitMockTestApi";
+        String getTestResultApi = "getTestResultApi";
         String getStudentExamDetailApi = "getStudentExamDetailApi";
+        String downloadInvoiceApi = "downloadInvoiceApi";
+        String getStudentExamListApi = "getStudentExamListApi";
     }
 }

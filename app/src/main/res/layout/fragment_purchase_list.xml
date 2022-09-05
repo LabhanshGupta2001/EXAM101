@@ -8,15 +8,19 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPurchaseList"
-        android:paddingTop="@dimen/_6sdp"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:paddingBottom="@dimen/_12sdp"
-        android:layout_height="match_parent" />
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_16sdp" />
 
     <include
         android:id="@+id/noInternetConnection"
         layout="@layout/no_internet_connection"
+        android:visibility="gone" />
+
+    <include layout="@layout/no_result_found"
+        android:id="@+id/noResultFoundId"
         android:visibility="gone" />
 
 

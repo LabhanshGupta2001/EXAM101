@@ -1,15 +1,20 @@
 package com.dollop.exam101.main.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemMyCartBinding;
+import com.dollop.exam101.main.activity.PackagesDetailActivity;
 import com.dollop.exam101.main.fragment.CartFragment;
 import com.dollop.exam101.main.model.CartDatumModel;
 
@@ -59,6 +64,14 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyHolder> 
         });
 
 
+        holder.binding.mcvMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.Key.packageUuId,myCartModel.packageUuid);
+                Utils.I(cartFragment.requireActivity(), PackagesDetailActivity.class,bundle);
+            }
+        });
 
     }
 

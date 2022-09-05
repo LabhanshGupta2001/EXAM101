@@ -2,6 +2,7 @@ package com.dollop.exam101.main.activity;
 
 import static com.dollop.exam101.Basics.UtilityTools.AppController.getContext;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
@@ -235,6 +236,7 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         hashMap.put(Constants.Key.discountedPriceStart, MinValue);
         hashMap.put(Constants.Key.discountedPriceEnd, MaxValue);
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -250,10 +252,12 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
                         arrayList.clear();
                         assert response.body() != null;
                         arrayList.addAll(response.body().packageModels);
-                        packageAdapter.notifyDataSetChanged();
-                     /*   binding.rvPackagesSecondary.setAdapter(new CategoryDetailSecondaryAdapter(activity, arrayList));
-                        binding.rvPackagesSecondary.setHasFixedSize(true);
-                        binding.rvPackagesSecondary.setLayoutManager(new LinearLayoutManager(activity));*/
+                        if (0 != arrayList.size()){
+                            binding.tvPackages.setText(arrayList.size()+Constants.Key.Packages);
+                        }else {
+                            binding.tvPackages.setText(Constants.Key.blank);
+                        }
+                          packageAdapter.notifyDataSetChanged();
 
                     } else {
                         assert response.errorBody() != null;
@@ -282,20 +286,6 @@ public class CategoryDetailsActivity extends BaseActivity implements View.OnClic
         });
     }
 
-
-    private void getCategoryFilter() {
-        apiService.getCategoryFilter("").enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
-            }
-        });
-    }
 
     @Override
     public void onClickedExamID(String s) {

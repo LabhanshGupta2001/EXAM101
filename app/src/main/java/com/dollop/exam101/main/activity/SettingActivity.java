@@ -29,7 +29,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view == binding.ivBack) {
-            onBackPressed();
+            finish();
         } else if (view == binding.llLoginHistory) {
             Utils.I(activity, LoginHistoryActivity.class, null);
         } else if (view == binding.llChangePassword) {

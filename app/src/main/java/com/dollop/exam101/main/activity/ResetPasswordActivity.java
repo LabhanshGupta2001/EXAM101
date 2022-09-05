@@ -65,20 +65,6 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    void resetPassword() {
-        HashMap<String, String> hm = new HashMap<>();
-        apiService.resetPassword(hm).enqueue(new Callback<AllResponseModel>() {
-            @Override
-            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
-
-            }
-        });
-    }
 
     private void CheckValidationTask() {
         validationModels.clear();

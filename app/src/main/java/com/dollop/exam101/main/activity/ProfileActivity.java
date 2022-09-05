@@ -2,6 +2,7 @@ package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +15,7 @@ import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.BuildConfig;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityProfileBinding;
 import com.dollop.exam101.main.model.AffilliatDetailModel;
@@ -92,6 +94,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             Utils.I(activity, AffilationBankDetailsActivity.class, null);
             // Utils.I(activity, UpdateBankDetailsActivity.class, null);
         } else if (view == binding.tvInviteFriends) {
+            shearIntent();
         } else if (view == binding.llBankDetails) {
            // Bundle bundle = new Bundle();
             //bundle.putSerializable(Constants.Key.BankDetails,affilliatDetailModel);
@@ -105,6 +108,20 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         }/*else if (view == binding.llMockTest) {
             Utils.I(activity, MockTestListActivity.class, null);
         }*/
+    }
+
+    private void shearIntent() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType(Constants.Key.TEXT_PLAIN_TYPE);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, Constants.Key.Exam101);
+            String shareMessage= "\nLet me recommend you this application\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, Constants.Key.choose_one));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 
     private void GetAffiliateStatus() {

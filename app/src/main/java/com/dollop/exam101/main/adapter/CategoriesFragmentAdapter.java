@@ -12,25 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ItemCategoriesFragmentBinding;
-import com.dollop.exam101.main.activity.CategoryDetailsActivity;
-import com.dollop.exam101.main.fragment.CategoriesFragment;
 import com.dollop.exam101.main.model.CourseModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.internal.Util;
-
 public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFragmentAdapter.MyViewHolder> {
     public int index = -1;
-    public String examId = "" ,examName = "";
+    public String examId = "", examName = "";
     public int newPos = -1;
     String From;
     Context context;
     List<CourseModel> examChecklist;
 
 
-    public CategoriesFragmentAdapter(ArrayList<CourseModel> list, FragmentActivity context, String from,int position) {
+    public CategoriesFragmentAdapter(ArrayList<CourseModel> list, FragmentActivity context, String from, int position) {
         this.context = context;
         this.examChecklist = list;
         From = from;
@@ -54,11 +50,11 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-               // index = position;
+                // index = position;
                 newPos = position;
                 examId = examChecklist.get(position).examId;
                 examName = courseModel.examName;
-                Utils.E("newPos:::"+newPos);
+                Utils.E("newPos:::" + newPos);
                 notifyDataSetChanged();
             }
         });
