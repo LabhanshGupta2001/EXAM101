@@ -29,7 +29,7 @@ public class Const {
         String get_search_history = "get_search_history";
         String get_flex_box = "get_flex_box";
         String get_result = "get_result";
-        String reset_password = "reset_password";
+        String resetPasswordApi = "resetPasswordApi";
         String otp_verification = "otp_verification";
         String raise_complaint = "raise_complaint";
         String getLoginHistoryApi = "getLoginHistoryApi";
@@ -64,7 +64,6 @@ public class Const {
         String getCategoryDetails = "getCategoryDetails";
         String getCategoryFilter = "getCategoryFilter";
         String changePasswordApi = "changePasswordApi";
-        String resetPasswordApi = "resetPasswordApi";
         String contactUsApi = "contactUsApi";
         String getCourseList = "getCourseList";
         String getTopicDetailApi = "getTopicDetailApi";
@@ -111,5 +110,6 @@ public class Const {
         String getTestResultApi = "getTestResultApi";
         String getStudentExamDetailApi = "getStudentExamDetailApi";
         String downloadInvoiceApi = "downloadInvoiceApi";
+        String getStudentExamListApi = "getStudentExamListApi";
     }
 }

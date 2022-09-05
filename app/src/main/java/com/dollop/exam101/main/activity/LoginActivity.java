@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -193,24 +194,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (view == binding.tvSignUp) {
             Utils.I(activity, SignUpActivity.class, null);
         } else if (view == binding.ivShowHidePassword) {
-            isClicked = !isClicked;
-            if (isClicked) {
-                binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
-                binding.etUserPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                binding.etUserPassword.setSelection(binding.etUserPassword.length());
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-
-            } else {
-                binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
-
-                binding.etUserPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                binding.etUserPassword.setSelection(binding.etUserPassword.length());
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-
-            }
+            showHidePasswordSetUp();
         }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void showHidePasswordSetUp() {
+        if (binding.ivShowHidePassword.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.ic_visibility).getConstantState())) {
+            binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
+            binding.etUserPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
+            binding.etUserPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+        binding.etUserPassword.requestFocus();
+        binding.etUserPassword.setSelection(binding.etUserPassword.length());
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
     }
 
     private void CheckValidationTask() {

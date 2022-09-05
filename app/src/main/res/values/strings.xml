@@ -493,6 +493,7 @@
     <string name="last_activity_on">Last activity on</string>
     <string name="related_blogs">Related Blogs</string>
     <string name="password_change_successfully">Password Changed Successfully</string>
+    <string name="test_will_be_automatically_submitted_within">Test will be Automaticaly submited within</string>
     <string-array name="Number">
         <item>+91</item>
         <item>+289</item>

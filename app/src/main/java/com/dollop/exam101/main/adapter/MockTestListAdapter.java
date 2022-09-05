@@ -50,7 +50,6 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemMockTestListBinding binding = ItemMockTestListBinding.inflate(LayoutInflater.from(context), parent, false);
         viewGroup = parent;
-        setBottomSheet();
         return new MyViewHolder(binding);
     }
 
@@ -76,7 +75,7 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
 
             holder.binding.llStartTest.setOnClickListener(view ->
             {
-                bottomSheetDialog.show();
+                setBottomSheet();
                 bottomSheetStartTestBinding.llBtnStartTest.setOnClickListener(view1 ->
                 {
                     bottomSheetDialog.cancel();
@@ -93,6 +92,8 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
         bottomSheetDialog = new BottomSheetDialog(context);
         bottomSheetStartTestBinding = BottomSheetStartTestBinding.inflate(LayoutInflater.from(context), viewGroup, false);
         bottomSheetDialog.setContentView(bottomSheetStartTestBinding.getRoot());
+        bottomSheetDialog.show();
+
     }
 
     @Override

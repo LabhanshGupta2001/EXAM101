@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -140,7 +142,7 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
         final long durationInMilliSec = TimeUnit.SECONDS.toMillis(durationSec);
         new CountDownTimer(durationInMilliSec, 1000) {
             public void onTick(long millisUntilFinished) {
-                String timeLeft = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                @SuppressLint("DefaultLocale") String timeLeft = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
@@ -153,10 +155,12 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
                 //show Timer On finish
                 showFinishExamDialog();
                 new CountDownTimer(6000, 1000) {
+                    @SuppressLint("SetTextI18n")
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     public void onTick(long millisUntilFinished) {
                         int sec = Math.toIntExact(millisUntilFinished / 1000);
                         //String testSubmit= R.string.test_submit_in);
-                        alertDialogBinding.tvDesc.setText("Test will be Automaticaly submited within" + " " + sec + " sec");
+                        alertDialogBinding.tvDesc.setText(getString(R.string.test_will_be_automatically_submitted_within) + " " + sec + " sec");
                     }
 
                     public void onFinish() {
@@ -232,7 +236,7 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
     }
 
     void submitMockTest() {
-        if (getSelectedOption()) ;
+        if (getSelectedOption())
         {
             Dialog progressDialog = Utils.initProgressDialog(activity);
             HashMap<String, String> hm = new HashMap<>();
