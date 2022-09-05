@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivitySettingBinding;
 
@@ -24,6 +25,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         binding.ivBack.setOnClickListener(this);
         binding.llLoginHistory.setOnClickListener(this);
         binding.llChangePassword.setOnClickListener(this);
+
+        if (!Utils.GetSession().isPasswordGenerated.equals(Constants.Key.Yes)) {
+            binding.tvChangePassword.setText(Constants.Key.SetPassword);
+        }
     }
 
     @Override

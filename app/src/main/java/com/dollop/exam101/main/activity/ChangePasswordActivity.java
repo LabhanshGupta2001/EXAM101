@@ -80,6 +80,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             binding.tvCurrentPassword.setVisibility(View.GONE);
             binding.rvCurrentPassword.setVisibility(View.GONE);
             binding.tvErrorCurrentPass.setVisibility(View.GONE);
+            binding.tvToolbarText.setText(Constants.Key.SetPassword);
         }
 
         binding.ivBack.setOnClickListener(this);
@@ -205,12 +206,14 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                         finish();
                     } else {
                         assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            assert response.body() != null;
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                           // assert response.body() != null;
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.UnAuthorizationToken(activity);
+                            Utils.T(activity, message.message);
                         }
                     }
                 } catch (Exception e) {
@@ -229,6 +232,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     }
 
     private void resetPassword() {
+        Utils.E("ResetPasswordApi");
         HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.password, binding.etNewPassword.getText().toString().trim());
         Dialog progressDialog = Utils.initProgressDialog(activity);
@@ -239,13 +243,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
+                        Utils.E("Tost Visible");
                         Utils.T(activity, response.body().message);
                         UserData DatabaseData = Utils.GetSession();
                         DatabaseData.isPasswordGenerated = Constants.Key.Yes;
                         UserDataHelper.getInstance().insertData(DatabaseData);
-
                         finish();
-
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -370,7 +373,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
     private void CheckValidationTaskForResetPassword() {
         allResponseModels.clear();
-        //allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etCurrentPassword, binding.tvErrorCurrentPass));
         allResponseModels.add(new ValidationModel(Validation.Type.PasswordStrong, binding.etNewPassword, binding.tvErrorNewPass));
         allResponseModels.add(new ValidationModel(Validation.Type.PasswordMatch, binding.etNewPassword, binding.etConfirmNewPassword, binding.tvErrorConfirmPass));
         Validation validation = Validation.getInstance();
