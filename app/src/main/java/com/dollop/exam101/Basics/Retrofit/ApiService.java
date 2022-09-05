@@ -260,9 +260,9 @@ public interface ApiService {
     Call<AllResponseModel> getFlexBox(@FieldMap HashMap<String, String> hm);
 
     @FormUrlEncoded
-    @POST(Const.Url.resetPasswordApi)
+    @PUT(Const.Url.resetPasswordApi)
     Call<AllResponseModel> resetPassword(@Header(Constants.Key.Authorization) String token,
-    @FieldMap HashMap<String, String> hm);
+                                         @FieldMap HashMap<String, String> hm);
 
 
     @FormUrlEncoded
@@ -272,7 +272,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Const.Url.otp_verification)
     Call<AllResponseModel> otpVerification(@FieldMap HashMap<String, String> hm);
-
 
     @GET(Const.Url.order_history)
     Call<AllResponseModel> getorderHistory(@FieldMap HashMap<String, String> hm);

@@ -58,6 +58,7 @@ public class Constants {
         String Pleas_Select_Country = "Pleas Select Country";
 
 
+        String SetPassword = "Set Password";
         String Normal = "Normal";
         String Yes = "Yes";
         String Exam101 = "Exam101";

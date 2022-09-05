@@ -271,6 +271,7 @@
 
 
             <TextView
+                android:id="@+id/tvSocialMedia"
                 style="@style/QuinaryLightSubTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -295,6 +296,7 @@
                     app:cardBackgroundColor="@color/HorizontallineColor"
                     app:cardCornerRadius="@dimen/_10sdp"
                     app:cardElevation="0dp"
+                    android:visibility="gone"
                     app:strokeColor="@color/primaryStrokeColor"
                     app:strokeWidth=".5dp">
 
@@ -310,6 +312,7 @@
                     android:id="@+id/mcvFacebook"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
+                    android:visibility="gone"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     app:cardBackgroundColor="@color/HorizontallineColor"
                     app:cardCornerRadius="@dimen/_10sdp"
@@ -332,6 +335,7 @@
                     app:cardBackgroundColor="@color/HorizontallineColor"
                     app:cardCornerRadius="@dimen/_10sdp"
                     app:cardElevation="0dp"
+                    android:visibility="gone"
                     app:strokeColor="@color/primaryStrokeColor"
                     app:strokeWidth=".5dp">
 
@@ -351,6 +355,7 @@
                     app:cardBackgroundColor="@color/HorizontallineColor"
                     app:cardCornerRadius="@dimen/_10sdp"
                     app:cardElevation="0dp"
+                    android:visibility="gone"
                     app:strokeColor="@color/primaryStrokeColor"
                     app:strokeWidth=".5dp">
 

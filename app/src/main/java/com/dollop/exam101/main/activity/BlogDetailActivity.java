@@ -2,8 +2,11 @@ package com.dollop.exam101.main.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -51,6 +54,7 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
     AllBlogListAdapter allBlogListAdapter;
+    AllBlogListModel allBlogListModel;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -99,7 +103,7 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
 
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        AllBlogListModel allBlogListModel = response.body().blog;
+                        allBlogListModel = response.body().blog;
                         binding.tvMainHeading.setText(allBlogListModel.blogSortDesc);
                         binding.tvBlogLine.setText(allBlogListModel.blogDetail);
                         binding.tvDate.setText(allBlogListModel.blogDate);
@@ -117,6 +121,24 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
                                 into(binding.ivAuthorProfile);
                         //  Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
                         binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail, 0));
+                       if (!allBlogListModel.authorFBLink.isEmpty() || !allBlogListModel.authorInstaLink.isEmpty() ||
+                               !allBlogListModel.authorLinkdedLink.isEmpty() || !allBlogListModel.authorTwitLink.isEmpty()) {
+
+                           if (!allBlogListModel.authorFBLink.isEmpty()) {
+                               binding.mcvFacebook.setVisibility(View.VISIBLE);
+                           }
+                           if (!allBlogListModel.authorInstaLink.isEmpty()) {
+                               binding.mcvInstagram.setVisibility(View.VISIBLE);
+                           }
+                           if (!allBlogListModel.authorLinkdedLink.isEmpty()) {
+                               binding.mcvLinkIn.setVisibility(View.VISIBLE);
+                           }
+                           if (!allBlogListModel.authorTwitLink.isEmpty()) {
+                               binding.mcvTwitter.setVisibility(View.VISIBLE);
+                           }
+                       }else {
+                            binding.tvSocialMedia.setVisibility(View.GONE);
+                       }
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -153,6 +175,48 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
 
         }else if (view == binding.mcvLinkIn){
 
+        }else if (view == binding.mcvFacebook){
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, allBlogListModel.authorFBLink);
+            sendIntent.setType(Constants.Key.TEXT_PLAIN_TYPE);
+            sendIntent.setPackage("com.facebook.orca");
+            startActivity(sendIntent);
+        }else if (view == binding.mcvInstagram){
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(allBlogListModel.authorInstaLink));
+                intent.setPackage("com.instagram.android");
+                startActivity(intent);
+            }
+            catch (ActivityNotFoundException anfe)
+            {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(allBlogListModel.authorInstaLink)));
+            }
+        }else if (view == binding.mcvTwitter){
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(allBlogListModel.authorTwitLink));
+                intent.setPackage("com.twitter.android");
+                startActivity(intent);
+            }
+            catch (ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(allBlogListModel.authorTwitLink)));
+            }
+        }else if (view == binding.mcvLinkIn){
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(allBlogListModel.authorLinkdedLink));
+                intent.setPackage("com.linkedin.android");
+                startActivity(intent);
+            }
+            catch (ActivityNotFoundException anfe)
+            {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(allBlogListModel.authorLinkdedLink)));
+            }
         }
 
         /*else if (view == binding.flotingBtn) {
