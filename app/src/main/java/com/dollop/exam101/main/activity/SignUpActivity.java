@@ -15,6 +15,9 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +82,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     private static final int RC_SIGN_IN = 100;
     private final ArrayList<CountryModel> contryItemArrayList = new ArrayList<>();
     private final ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
-    String selectedCountryId = "", selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
+    String selectedCountryId = "", selectedCountryCode="+91", selectedCountryName, selectedState, selectedCountryFlag;
     String personName, personEmail;
     Activity activity = SignUpActivity.this;
     ActivitySignUpBinding binding;
@@ -131,6 +134,25 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         binding.ivShowHidePassword.setOnClickListener(this);
         binding.ivShowHidePassword2.setOnClickListener(this);
         binding.tvSelectCountry.setText(Constants.Key.India);
+
+        binding.etConfirmPassword.setTextIsSelectable(false);
+        binding.etConfirmPassword.setLongClickable(false);
+        binding.etConfirmPassword.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {return false;}
+            @Override
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+            @Override
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                return false;
+            }
+            @Override
+            public void onDestroyActionMode(ActionMode actionMode) {
+
+            }
+        });
 
         binding.etEnterMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -300,10 +322,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             binding.tvErrorCountry.setVisibility(View.GONE);
             bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
         } else if (view == binding.ivShowHidePassword) {
-            showHidePasswordSetUp(binding.etPassword,binding.ivShowHidePassword);
+            showHidePasswordSetUp(binding.etPassword, binding.ivShowHidePassword);
 
         } else if (view == binding.ivShowHidePassword2) {
-            showHidePasswordSetUp(binding.etConfirmPassword,binding.ivShowHidePassword2);
+            showHidePasswordSetUp(binding.etConfirmPassword, binding.ivShowHidePassword2);
         }
     }
 
@@ -513,7 +535,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         hm.put(Constants.Key.studentEmail, binding.etUserEmail.getText().toString().trim());
         hm.put(Constants.Key.password, binding.etPassword.getText().toString().trim());
         hm.put(Constants.Key.studentMobileNo, binding.etEnterMobile.getText().toString().trim());
-        hm.put(Constants.Key.countryCode, binding.tvCountryCodeId.getText().toString().trim());
+        hm.put(Constants.Key.countryCode, selectedCountryCode/*binding.tvCountryCodeId.getText().toString().trim()*/);
         hm.put(Constants.Key.countryName, binding.tvSelectCountry.getText().toString().trim());
         hm.put(Constants.Key.stateName, binding.tvSelectState.getText().toString().trim());
         hm.put(Constants.Key.fcmId, fcmid);
@@ -554,9 +576,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         });
     }
 
-    public void onCountrySelected(String countryId, String CountryName /* String countryCode, String flag*/) {
+    public void onCountrySelected(String countryId, String CountryName , String countryCode/*, String flag*/) {
         this.selectedCountryId = countryId;
         this.selectedCountryName = CountryName;
+        selectedCountryCode = countryCode;
        /* this.selectedCountryCode = countryCode;
         this.selectedCountryFlag = flag;
         Picasso.get().load(Const.Url.HOST_URL + flag).error(R.drawable.ic_india).into(binding.ivFlagIndiaId);

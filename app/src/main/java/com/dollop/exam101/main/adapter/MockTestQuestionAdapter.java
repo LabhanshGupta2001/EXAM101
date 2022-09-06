@@ -23,7 +23,7 @@ public class MockTestQuestionAdapter extends RecyclerView.Adapter<MockTestQuesti
     public static List<Question> questionList;
 
     @SuppressLint("NotifyDataSetChanged")
-    public MockTestQuestionAdapter(List<Question> questionList, Context context) {
+    public  MockTestQuestionAdapter(List<Question> questionList, Context context) {
         this.questionList = questionList;
         this.context = context;
     }

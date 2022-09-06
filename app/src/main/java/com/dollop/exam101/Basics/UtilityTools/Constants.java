@@ -191,6 +191,7 @@ public class Constants {
         String complaintUuid   = "complaintUuid";
         String Active   = "Active";
         String attachment   = "attachment";
+        String RupeeSign ="₹";
 
         String accPayeeName = "accPayeeName";
         String accNumber = "accNumber";

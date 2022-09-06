@@ -43,7 +43,6 @@ public class LoginHistoryActivity extends BaseActivity implements View.OnClickLi
     private void init() {
         binding.ivBack.setOnClickListener(this);
         apiService = RetrofitClient.getClient();
-
         getLoginHistory();
 
     }

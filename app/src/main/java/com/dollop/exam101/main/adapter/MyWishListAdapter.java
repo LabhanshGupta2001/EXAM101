@@ -2,12 +2,14 @@ package com.dollop.exam101.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.databinding.ItemWishlistBinding;
 import com.dollop.exam101.main.activity.MyWishlistActivity;
 import com.dollop.exam101.main.model.WishListModel;
@@ -36,7 +38,8 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
         WishListModel wishListModel = Wishlist.get(position);
-        holder.binding.tvActualPrice.setText(wishListModel.actualPrice);
+        holder.binding.tvActualPrice.setText(Constants.Key.RupeeSign +wishListModel.actualPrice);
+        holder.binding.tvActualPrice.setPaintFlags(holder.binding.tvActualPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.binding.tvRupees.setText("₹" + wishListModel.discountedPrice);
         holder.binding.tvPowerPointId.setText(wishListModel.packageName);
         holder.binding.tvFundamentalDesignId.setText(wishListModel.shortDesc);

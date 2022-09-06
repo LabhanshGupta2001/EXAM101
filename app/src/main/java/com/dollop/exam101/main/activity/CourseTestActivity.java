@@ -84,8 +84,7 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         } else if (view == binding.ivAbout) {
             Toast.makeText(activity, "About This App", Toast.LENGTH_SHORT).show();
         } else if (view == binding.btnSubmit) {
-           calculateAnswersFromList();
-
+            calculateAnswersFromList();
         }
     }
 
@@ -99,14 +98,14 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         String questionIds = "";
         String answers = "";
         for (int i = 0; i <= answerList.size() - 1; i++) {
-            if (i==0){
-                questionIds = questionIds  + questionList.get(i);
-                answers = answers +  answerList.get(i);
+            if (i == 0) {
+                questionIds = questionIds + questionList.get(i);
+                answers = answers + answerList.get(i);
+            } else {
+                questionIds = questionIds + "||" + questionList.get(i);
+                answers = answers + "||" + answerList.get(i);
             }
-            else {
-            questionIds = questionIds + "||" + questionList.get(i);
-            answers = answers + "||" + answerList.get(i);
-        }}
+        }
         Utils.E("questionIds::::::::::  " + questionIds);
         Utils.E("answers::::::::::  " + answers);
         submitPracticeTest(questionIds, answers);
@@ -128,8 +127,9 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
                         assert response.body() != null;
                         Utils.T(activity, "Test Submitted Successfully");
                         Bundle bundle = new Bundle();
-                        bundle.putString(Constants.Key.testAttemptUuid,response.body().testAttemptUuid);
+                        bundle.putString(Constants.Key.testAttemptUuid, response.body().testAttemptUuid);
                         Utils.I(activity, TestResultActivity.class, bundle);
+                        finish();
                         Utils.E("testAttemptUuid::" + response.body().testAttemptUuid);
                     } else {
                         assert response.errorBody() != null;
@@ -162,6 +162,7 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         hm.put(Constants.Key.orderExamUuid, orderExamUuids);
         hm.put(Constants.Key.topicUuid, topicUuids);
         hm.put(Constants.Key.device_type, "android");
+        Utils.E("0 Run");
         apiService.getMyQuestionList(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -170,13 +171,10 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         questionListModelArrayList.clear();
-                        //questionListModelArrayList.addAll(Collections.singleton(response.body().questionListModel));
-                        questionListModelArrayList.addAll(response.body().questionListModel.questions);
-                        if (questionListModelArrayList.isEmpty()) {
+                        if (response.body().questionListModel == null || response.body().questionListModel.questions.isEmpty()) {
                             binding.llparent.setVisibility(View.GONE);
                             binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
                         } else {
-                            questionListModelArrayList.clear();
                             binding.llparent.setVisibility(View.VISIBLE);
                             binding.noResultFoundId.llParent.setVisibility(View.GONE);
                             questionListModelArrayList.addAll(response.body().questionListModel.questions);
@@ -191,7 +189,6 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-
                             Utils.UnAuthorizationToken(activity);
                         }
                     }

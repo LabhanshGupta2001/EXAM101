@@ -14,7 +14,6 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
-import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityAboutUsBinding;
 import com.dollop.exam101.databinding.AlertdialogBinding;
@@ -38,19 +37,21 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
+        binding.ivBack.setOnClickListener(this);
         if (AppController.getInstance().isOnline()) {
-          //api method name
+            //api method name
         } else {
-          //  Utils.InternetDialog(activity);
+            //  Utils.InternetDialog(activity);
         }
 
     }
 
-
     @Override
     public void onClick(View view) {
-
+        if (view == binding.ivBack)
+            finish();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
         Dialog dialog = new Dialog(activity);

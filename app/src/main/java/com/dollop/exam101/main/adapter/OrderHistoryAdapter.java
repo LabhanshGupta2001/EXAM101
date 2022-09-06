@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.TimeFormatter;
 import com.dollop.exam101.databinding.ItemOrderHistoryBinding;
 import com.dollop.exam101.main.activity.OrderHistoryActivity;
@@ -42,7 +43,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         holder.binding.tvTransactionId.setText(historyModel.transactionId);
         holder.binding.orderId.setText(historyModel.orderId);
         holder.binding.tvRupees.setText(historyModel.finalPackageAmt);
-        holder.binding.tvTotalRupees.setText(historyModel.finalPackageAmt);
+        holder.binding.tvTotalRupees.setText(Constants.Key.RupeeSign+historyModel.finalPackageAmt);
         holder.binding.tvTotalRupees.setPaintFlags(holder.binding.tvTotalRupees.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
        // holder.binding.tvDay.setText(historyModel.Day);
 

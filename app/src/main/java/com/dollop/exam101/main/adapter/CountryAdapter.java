@@ -62,7 +62,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
            // SavedData.saveCountryKey(itemCountry.sortName);
             notifyDataSetChanged();
             if (Constants.Key.Login.equals(Where)){
-                ((SignUpActivity) context).onCountrySelected(itemCountry.uuid , itemCountry.countryName /*itemCountry.phoneCode, itemCountry.flag*/);
+                ((SignUpActivity) context).onCountrySelected(itemCountry.uuid , itemCountry.countryName , itemCountry.phoneCode/*, itemCountry.flag*/);
             } else if (Constants.Key.EditProfile.equals(Where)){
                 ((EditProfileActivity) context).onCountrySelectedE(itemCountry.uuid , itemCountry.countryName /*itemCountry.phoneCode, itemCountry.flag*/);
             }

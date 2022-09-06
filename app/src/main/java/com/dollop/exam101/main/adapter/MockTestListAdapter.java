@@ -60,7 +60,8 @@ public class MockTestListAdapter extends RecyclerView.Adapter<MockTestListAdapte
         holder.binding.tvRemainingDay.setText(list.get(position).remainingDays + " DAYS");
         holder.binding.tvName.setText(list.get(position).mockTestName);
         holder.binding.tvPurchasDate.setText(TimeFormatter.changeDateFormat(list.get(position).createdDtm));
-        if (list.get(position).remainingDays.equalsIgnoreCase("0"))
+        int remainingAttempt = Integer.parseInt(list.get(position).remainingAttempt);
+        if (list.get(position).remainingDays.equalsIgnoreCase("0") || remainingAttempt<=0)
         {
             holder.binding.tvExpired.setVisibility(View.VISIBLE);
             holder.binding.llDaysLeft.setVisibility(View.GONE);

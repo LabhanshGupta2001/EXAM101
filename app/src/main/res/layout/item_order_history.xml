@@ -159,15 +159,6 @@
                         android:layout_centerHorizontal="true">
 
                         <TextView
-                            android:id="@+id/tvTotalRupeesSign"
-                            style="@style/QuinaryLightSubTextStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="@dimen/_2sdp"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="₹" />
-                        <TextView
-                            android:layout_toRightOf="@+id/tvTotalRupeesSign"
                             android:id="@+id/tvTotalRupees"
                             style="@style/QuinaryLightSubTextStyle"
                             android:layout_width="wrap_content"
@@ -175,7 +166,6 @@
                             android:layout_marginVertical="@dimen/_2sdp"
                             android:fontFamily="@font/inter_medium"
                             android:text="4500" />
-
 
                         <View
                             android:layout_width="wrap_content"

@@ -59,7 +59,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             super.onBackPressed();
             return;
         }
-
         this.doubleBackToExitPressedOnce = true;
        Utils.T(activity, getString(R.string.please_click_BACK_again_to_exit));
 
@@ -70,7 +69,11 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
-        }else {
+        } else if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.bottom_cart)
+        {
+
+            super.onBackPressed();
+        } else {
             super.onBackPressed();
         }
 

@@ -152,6 +152,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
                         Utils.T(activity, "" + response.body().message);
+                        finish();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
