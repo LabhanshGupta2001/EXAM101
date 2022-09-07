@@ -145,7 +145,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -160,7 +160,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -180,7 +180,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     @Override
     public void onClick(View view) {
         if (view == binding.tvForgetPasswordId) {
@@ -194,25 +194,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (view == binding.tvSignUp) {
             Utils.I(activity, SignUpActivity.class, null);
         } else if (view == binding.ivShowHidePassword) {
-            showHidePasswordSetUp();
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
+                binding.etUserPassword.setTransformationMethod
+                        (HideReturnsTransformationMethod.getInstance());
+                binding.etUserPassword.setSelection(binding.etUserPassword.length());
+            } else {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
+                binding.etUserPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etUserPassword.setSelection(binding.etUserPassword.length());
+            }
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private void showHidePasswordSetUp() {
-        if (binding.ivShowHidePassword.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.ic_visibility).getConstantState())) {
-            binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
-            binding.etUserPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        } else {
-            binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
-            binding.etUserPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        }
-        binding.etUserPassword.requestFocus();
-        binding.etUserPassword.setSelection(binding.etUserPassword.length());
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
-    }
 
     private void CheckValidationTask() {
         errorValidationModels.clear();
@@ -288,8 +284,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             View v = getCurrentFocus();
             if (v instanceof EditText) {
                 Rect outRect = new Rect();
-               /* final boolean globalVisibleRect;
-                globalVisibleRect = v.getGlobalVisibleRect(outRect);*/
+                final boolean globalVisibleRect;
+                globalVisibleRect = v.getGlobalVisibleRect(outRect);
                 if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -342,7 +338,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     private void InternetDialog() {
         Dialog dialog = new Dialog(activity);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());

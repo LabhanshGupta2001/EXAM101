@@ -332,7 +332,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
@@ -365,50 +364,38 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 binding.etCurrentPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
-                binding.etCurrentPassword.requestFocus();
-
             } else {
                 binding.ivShowHidePasswordCurrent.setImageResource(R.drawable.ic_visibility);
                 binding.etCurrentPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
-                binding.etCurrentPassword.requestFocus();
             }
         } else if (view == binding.ivShowHidePasswordNew) {
             isClicked = !isClicked;
             if (isClicked) {
                 binding.ivShowHidePasswordNew.setImageResource(R.drawable.ic_hide);
-
                 binding.etNewPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etNewPassword.setSelection(binding.etNewPassword.length());
-                binding.etNewPassword.requestFocus();
-
-
             } else {
                 binding.ivShowHidePasswordNew.setImageResource(R.drawable.ic_visibility);
-
                 binding.etNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etNewPassword.setSelection(binding.etNewPassword.length());
-                binding.etNewPassword.requestFocus();
-
             }
         } else if (view == binding.ivShowHidePasswordConfirm) {
             isClicked = !isClicked;
             if (isClicked) {
                 binding.ivShowHidePasswordConfirm.setImageResource(R.drawable.ic_hide);
-
                 binding.etConfirmNewPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etConfirmNewPassword.setSelection(binding.etConfirmNewPassword.length());
-                binding.etConfirmNewPassword.requestFocus();
+
 
 
             } else {
                 binding.ivShowHidePasswordConfirm.setImageResource(R.drawable.ic_visibility);
-
                 binding.etConfirmNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etConfirmNewPassword.setSelection(binding.etConfirmNewPassword.length());
-                binding.etConfirmNewPassword.requestFocus();
+
 
             }
         }
