@@ -86,7 +86,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         binding = ActivityPackagesDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         init();
 
     }

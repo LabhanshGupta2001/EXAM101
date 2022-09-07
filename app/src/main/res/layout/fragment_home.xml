@@ -160,6 +160,7 @@
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
+                    android:id="@+id/middleBannerOne"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
                     android:adjustViewBounds="true"
@@ -176,6 +177,7 @@
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
+                    android:id="@+id/middleBannerTwo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
                     android:adjustViewBounds="true"
@@ -530,6 +532,7 @@
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
+                    android:id="@+id/BottomBanner"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
                     android:adjustViewBounds="true"

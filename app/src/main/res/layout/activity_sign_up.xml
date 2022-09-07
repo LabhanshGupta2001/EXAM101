@@ -266,8 +266,7 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:src="@drawable/ic_visibility"
-                       />
+                        android:src="@drawable/ic_visibility" />
                 </RelativeLayout>
 
 

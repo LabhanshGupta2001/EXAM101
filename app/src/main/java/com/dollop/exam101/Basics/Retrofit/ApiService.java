@@ -359,4 +359,7 @@ public interface ApiService {
     @GET(Const.Url.getStudentOrderListApi)
     Call<AllResponseModel> getStudentOrderListApi(@Header(Constants.Key.Authorization) String token);
 
+    @GET(Const.Url.getBannerListApi)
+    Call<AllResponseModel> getBannerLit();
+
 }

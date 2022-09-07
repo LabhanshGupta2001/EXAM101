@@ -93,7 +93,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     private StateAdapter stateAdapter;
     private ApiService apiservice;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.status_bar_color));
@@ -102,12 +102,12 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        apiservice = RetrofitClient.getClient();
         init();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    @SuppressLint("NewApi")
     private void init() {
+        apiservice = RetrofitClient.getClient();
         FirebaseService.GenerateToken(activity);
 
         if (AppController.getInstance().isOnline()) {
@@ -205,6 +205,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             }
         });
         binding.etPassword.addTextChangedListener(new TextWatcher() {
+
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -219,6 +221,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void afterTextChanged(Editable editable) {
 
             }
+
+
         });
         binding.etConfirmPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -243,7 +247,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -258,7 +262,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
+    @SuppressLint("NewApi")
     private void handleSignInResult(@NonNull Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -284,7 +289,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    @SuppressLint("NewApi")
     @Override
     public void onClick(View view) {
         if (view == binding.SignUPId) {
@@ -300,28 +305,44 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             binding.tvErrorCountry.setVisibility(View.GONE);
             bottomSheetCountryTask(Constants.Key.Country_Code_Nan);
         } else if (view == binding.ivShowHidePassword) {
-            showHidePasswordSetUp(binding.etPassword,binding.ivShowHidePassword);
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_hide);
+                binding.etPassword.setTransformationMethod
+                        (HideReturnsTransformationMethod.getInstance());
+                binding.etPassword.setSelection(binding.etPassword.length());
+
+            } else {
+                binding.ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
+                binding.etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etPassword.setSelection(binding.etPassword.length());
+
+
+            }
 
         } else if (view == binding.ivShowHidePassword2) {
-            showHidePasswordSetUp(binding.etConfirmPassword,binding.ivShowHidePassword2);
+            isClicked = !isClicked;
+            if (isClicked) {
+                binding.ivShowHidePassword2.setImageResource(R.drawable.ic_hide);
+                binding.etConfirmPassword.setTransformationMethod
+                        (HideReturnsTransformationMethod.getInstance());
+                binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
+
+            } else {
+                binding.ivShowHidePassword2.setImageResource(R.drawable.ic_visibility);
+                binding.etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.etConfirmPassword.setSelection(binding.etConfirmPassword.length());
+
+
+            }
+
+
+
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private void showHidePasswordSetUp(EditText etPassword, ImageView ivShowHidePassword) {
-        if (ivShowHidePassword.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.ic_visibility).getConstantState())) {
-            ivShowHidePassword.setImageResource(R.drawable.ic_hide);
-            etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        } else {
-            ivShowHidePassword.setImageResource(R.drawable.ic_visibility);
-            etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        }
-        etPassword.requestFocus();
-        etPassword.setSelection(etPassword.length());
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
-    }
+
 
 
     private void getState() {
@@ -403,7 +424,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     private void CheckValidationTask() {
         errorValidationModels.clear();
         errorValidationModels.add(new ValidationModel(Validation.Type.Empty, binding.etUserName, binding.tvErrorName));
@@ -469,7 +490,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     private void bottomSheetStateTask() {
         bottomSheetStateDialog = new BottomSheetDialog(activity);
         bottomSheetStateBinding = BottomSheetStateBinding.inflate(getLayoutInflater());
@@ -578,8 +599,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             View v = getCurrentFocus();
             if (v instanceof EditText) {
                 Rect outRect = new Rect();
-            /*    final boolean globalVisibleRect;
-                globalVisibleRect = v.getGlobalVisibleRect(outRect);*/
+                final boolean globalVisibleRect;
+                globalVisibleRect = v.getGlobalVisibleRect(outRect);
                 if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -633,7 +654,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+
     private void InternetDialog() {
         Dialog dialog = new Dialog(activity);
         AlertdialogBinding alertDialogBinding = AlertdialogBinding.inflate(getLayoutInflater());

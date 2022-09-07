@@ -3,6 +3,8 @@ package com.dollop.exam101.main.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -22,6 +24,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
+import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
@@ -30,7 +33,8 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.activity.AllPackageActivity;
-import com.dollop.exam101.main.activity.DashboardScreenActivity;
+import com.dollop.exam101.main.activity.BlogDetailActivity;
+import com.dollop.exam101.main.activity.PackagesDetailActivity;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.BlogsHomeAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
@@ -39,15 +43,18 @@ import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.BannerModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
 import com.dollop.exam101.main.model.PackageModel;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,11 +64,12 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
-    String Token;
+    String Token,middleOneRedirection,middleTwoRedirection,bottomRedirection,bannerForMiddleOne,bannerForMiddleTwo,bannerForBottom;
     Activity activity;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
+    ArrayList<BannerModel> bannerModels = new ArrayList<>();
     ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
     CountDownTimer countDownTimer = null;
@@ -69,7 +77,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         @Override
         public void run() {
             binding.vpBanner.setCurrentItem(binding.vpBanner.getCurrentItem() + 1);
-            if (binding.vpBanner.getCurrentItem() == banners1.size() - 1) {
+            if (binding.vpBanner.getCurrentItem() == bannerModels.size() - 1) {
                 countDownTimer = new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long l) {
@@ -121,6 +129,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             getExamList();
             getTopTen();
             getBlogs();
+            getBanner();
             binding.tvViewAll.setOnClickListener(this);
         } else {
             //Utils.InternetDialog(activity);
@@ -138,12 +147,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding.rvPackages.setLayoutManager(linearLayoutManager2);
         binding.rvPackages.setAdapter(packageAdapter);
 
-
-        banners1.clear();
-        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
-        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
-        banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
-        bannerAdapter = new BannerAdapter(getActivity(), banners1);
+        bannerAdapter = new BannerAdapter(requireActivity(), bannerModels);
         binding.vpBanner.setAdapter(bannerAdapter);
         binding.dot2.setViewPager2(binding.vpBanner);
         binding.vpBanner.setClipToPadding(false);
@@ -173,6 +177,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+
         // News Recyclerview code....
 
      /*   newsModelArrayList.clear();
@@ -191,11 +196,67 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Calendar View Code...
         //binding.cvCalendar.setPointerIcon();
 
+        binding.middleBannerOne.setOnClickListener(this);
+        binding.middleBannerTwo.setOnClickListener(this);
+        binding.BottomBanner.setOnClickListener(this);
+
     }
+
+    private void getBanner() {
+        Dialog progressDialog = Utils.initProgressDialog(getContext());
+        apiService.getBannerLit().enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        bannerModels.clear();
+                        bannerModels.addAll(response.body().bannerList);
+                        bannerAdapter.notifyDataSetChanged();
+
+                        middleOneRedirection =  response.body().middleObj1.redirectUuid;
+                        middleTwoRedirection = response.body().middleObj2.redirectUuid;
+                        bottomRedirection = response.body().bottom.redirectUuid;
+                        bannerForMiddleOne = response.body().middleObj1.bannerFor;
+                        bannerForMiddleTwo = response.body().middleObj2.bannerFor;
+                        bannerForBottom = response.body().bottom.bannerFor;
+                        Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj1.bannerImage)
+                                .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
+                        Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj2.bannerImage)
+                                .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
+                        Picasso.get().load(Const.Url.HOST_URL + response.body().bottom.bannerImage)
+                                .error(R.drawable.vpbannerimage).into(binding.BottomBanner);
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(getContext(), message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(getContext(), message.message);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
 
     private void getExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
         apiService.Examlist(Token).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -232,7 +293,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     void getTopTen() {
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put(Constants.Key.limit,"10");
+        hashMap.put(Constants.Key.limit, "10");
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -349,11 +410,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    private void bannerRedirection(String bannerFor , String redirectUuid){
+
+        if(!redirectUuid.equals("")){
+            if (getContext().getString(R.string.custom).equals(bannerFor)) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(redirectUuid));
+                startActivity(i);
+            } else if (getContext().getString(R.string.blog).equals(bannerFor)) {
+                Bundle blogBundle = new Bundle();
+                blogBundle.putString(Constants.Key.uuid, redirectUuid);
+                Utils.I(activity, BlogDetailActivity.class, blogBundle);
+            } else if (getContext().getString(R.string.packageBanner).equals(bannerFor)) {
+                Bundle packageBundle = new Bundle();
+                packageBundle.putString(Constants.Key.packageUuId,  redirectUuid);
+                Utils.I(activity, PackagesDetailActivity.class, packageBundle);
+            }
+        }
+    }
+
     @Override
     public void onClick(View view) {
         if (view == binding.tvViewAll) {
-            Utils.I(activity, AllPackageActivity.class,null);
-           // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
+            Utils.I(activity, AllPackageActivity.class, null);
+            // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
+        }else if(view == binding.middleBannerOne){
+            bannerRedirection(bannerForMiddleOne,middleOneRedirection);
+        }else if(view == binding.middleBannerTwo){
+            bannerRedirection(bannerForMiddleTwo,middleTwoRedirection);
+        }else if(view == binding.BottomBanner){
+            bannerRedirection(bannerForBottom,bottomRedirection);
         }
     }
+
+
 }
