@@ -225,7 +225,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj1.bannerImage)
                                 .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
                         Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj2.bannerImage)
-                                .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
+                                .error(R.drawable.vpbannerimage).into(binding.middleBannerTwo);
                         Picasso.get().load(Const.Url.HOST_URL + response.body().bottom.bannerImage)
                                 .error(R.drawable.vpbannerimage).into(binding.BottomBanner);
                     } else {
@@ -299,13 +299,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                   /* if (response.body().packageModels.isEmpty()) {
-                        binding.rvPackages.setVisibility(View.GONE);
-                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
-                    } else {
-                        binding.rvPackagesone.setVisibility(View.VISIBLE);
-                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
-                    }*/
                     if (response.code() == StatusCodeConstant.OK) {
                         packageModelList.clear();
                         assert response.body() != null;
@@ -368,13 +361,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
                     } else {
-                        // assert response.errorBody() != null;
                         assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.UnAuthorizationToken(activity);
+                            Utils.T(activity, message.message);
                         }
                     }
                 } catch (Exception e) {
@@ -413,15 +407,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void bannerRedirection(String bannerFor , String redirectUuid){
 
         if(!redirectUuid.equals("")){
-            if (getContext().getString(R.string.custom).equals(bannerFor)) {
+            if (requireContext().getString(R.string.custom).equals(bannerFor)) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(redirectUuid));
                 startActivity(i);
-            } else if (getContext().getString(R.string.blog).equals(bannerFor)) {
+            } else if (requireContext().getString(R.string.blog).equals(bannerFor)) {
                 Bundle blogBundle = new Bundle();
                 blogBundle.putString(Constants.Key.uuid, redirectUuid);
                 Utils.I(activity, BlogDetailActivity.class, blogBundle);
-            } else if (getContext().getString(R.string.packageBanner).equals(bannerFor)) {
+            } else if (requireContext().getString(R.string.packageBanner).equals(bannerFor)) {
                 Bundle packageBundle = new Bundle();
                 packageBundle.putString(Constants.Key.packageUuId,  redirectUuid);
                 Utils.I(activity, PackagesDetailActivity.class, packageBundle);

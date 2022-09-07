@@ -138,7 +138,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     private void ContactUs() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hashMap = new HashMap<>();
-
         hashMap.put(Constants.Key.name, (binding.etHolderName.getText().toString().trim()));
         hashMap.put(Constants.Key.email, (binding.etAccountEmail.getText().toString().trim()));
         hashMap.put(Constants.Key.mobile, (binding.etAccountMobileNo.getText().toString().trim()));
@@ -155,6 +154,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                         finish();
                     } else {
                         assert response.errorBody() != null;
+
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);

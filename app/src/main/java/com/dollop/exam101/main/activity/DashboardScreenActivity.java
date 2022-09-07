@@ -121,6 +121,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.bottom_home, R.id.bottom_category, R.id.bottom_packages, R.id.bottom_cart)
                 .build();
+
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
         //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
@@ -154,12 +155,12 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                     case R.id.bottom_cart:
                         navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
                         navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
-                        binding.appBarLayout.setVisibility(View.GONE);
                         binding.bottomNavigationView.setVisibility(View.GONE);
+                        binding.appBarLayout.setVisibility(View.GONE);
                         break;
                     default:
-                        binding.appBarLayout.setVisibility(View.GONE);
                         binding.bottomNavigationView.setVisibility(View.GONE);
+                        binding.appBarLayout.setVisibility(View.GONE);
                         break;
                 }
 

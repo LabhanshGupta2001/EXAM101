@@ -49,14 +49,12 @@ public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapte
         }
 
         holder.binding.llMain.setOnClickListener(view -> {
-                if (!dropdown) {
+                if (holder.binding.llLogoutDevice.getVisibility() == View.GONE) {
                     holder.binding.llLogoutDevice.setVisibility(View.VISIBLE);
                     holder.binding.ivUpperarrow.animate().rotation(180).setDuration(100).start();
-                    dropdown = true;
                 } else {
                     holder.binding.llLogoutDevice.setVisibility(View.GONE);
                     holder.binding.ivUpperarrow.animate().rotation(0).setDuration(100).start();
-                    dropdown = false;
                 }
             });
     }
