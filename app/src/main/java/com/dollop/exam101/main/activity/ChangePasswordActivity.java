@@ -74,12 +74,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     private void init() {
         apiService = RetrofitClient.getClient();
         if (Utils.GetSession().isPasswordGenerated.equals(Constants.Key.Yes)) {
-            binding.tvCurrentPassword.setVisibility(View.VISIBLE);
-            binding.rvCurrentPassword.setVisibility(View.VISIBLE);
+            binding.llCurrentPassword.setVisibility(View.VISIBLE);
         } else {
-            binding.tvCurrentPassword.setVisibility(View.GONE);
-            binding.rvCurrentPassword.setVisibility(View.GONE);
-            binding.tvErrorCurrentPass.setVisibility(View.GONE);
+            binding.llCurrentPassword.setVisibility(View.GONE);
             binding.tvToolbarText.setText(Constants.Key.SetPassword);
         }
 

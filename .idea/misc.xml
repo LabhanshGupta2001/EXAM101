@@ -19,6 +19,11 @@
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.12685185185185185" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_login_history.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_mock_test_list.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_mock_test_question.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.75" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_test_ans.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.5" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
@@ -26,11 +31,6 @@
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.17916666666666667" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/item_vp_banner.xml" value="0.16" />
         <entry key="..\:/AshwaniDollopProject/exam101-android/app/src/main/res/layout/welcome_layout.xml" value="0.20416666666666666" />
-        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_mock_test_question.xml" value="0.22447916666666667" />
-        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.75" />
-        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.22447916666666667" />
-        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_test_ans.xml" value="0.22447916666666667" />
-        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.5" />
         <entry key="..\:/Users/HP/.gradle/caches/transforms-3/e6ce5eb82797b6319212f42e5ff38cee/transformed/jetified-exoplayer-ui-r2.4.0/res/drawable-anydpi-v21/exo_controls_play.xml" value="0.1945" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1315" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/drawable/ic_pdf_file_icon.xml" value="0.1945" />
@@ -89,6 +89,7 @@
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.536" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nilesh Patidar/OneDrive/Desktop/NileshDollopProject/exam101-android/app/src/main/res/layout/activity_setting.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
         <entry key="..\:/Users/dollop/AndroidStudioProjects/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.20506498052010544" />
       </map>
