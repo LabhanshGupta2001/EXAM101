@@ -93,33 +93,22 @@
                             >
 
                             <TextView
-                                android:id="@+id/tvRupeesSign"
-                                style="@style/QuinarySubTextStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/inter_medium"
-                                android:text="₹" />
-
-
-                            <TextView
                                 android:id="@+id/tvActualPrice"
                                 style="@style/QuinarySubTextStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_toRightOf="@+id/tvRupeesSign"
                                 android:fontFamily="@font/inter_medium"
                                 android:singleLine="true"
                                 android:text="1200000" />
-
+<!--
                             <View
                                 android:layout_width="wrap_content"
                                 android:layout_height="2dp"
                                 android:layout_alignStart="@id/tvActualPrice"
                                 android:layout_alignEnd="@id/tvActualPrice"
                                 android:layout_centerVertical="true"
-                                android:background="@android:color/darker_gray" />
+                                android:background="@android:color/darker_gray" />-->
 
                         </RelativeLayout>
                         <TextView

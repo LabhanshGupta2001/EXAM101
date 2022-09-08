@@ -179,5 +179,19 @@ public class AllResponseModel {
     @SerializedName("questions")
     @Expose
     public List<TestResultQuestion> testResultQuestions = null;
+    @SerializedName("bannerList")
+    @Expose
+    public List<BannerModel> bannerList = null;
+    @SerializedName("bottom")
+    @Expose
+    public Bottom bottom;
+    @SerializedName("middleObj1")
+    @Expose
+    public MiddleObj1 middleObj1;
+    @SerializedName("middleObj2")
+    @Expose
+    public MiddleObj2 middleObj2;
+
+
 
 }

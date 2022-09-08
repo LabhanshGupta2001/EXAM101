@@ -169,8 +169,8 @@
                                 android:layout_marginVertical="@dimen/_5sdp"
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
-                                app:cardCornerRadius="@dimen/_10sdp"
                                 android:visibility="gone"
+                                app:cardCornerRadius="@dimen/_10sdp"
                                 app:cardElevation="0dp">
 
                                 <ImageView
@@ -187,9 +187,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_10sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
                                 android:text="@string/_91"
-                                android:layout_marginStart="@dimen/_10sdp"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
                                 tools:ignore="SpUsage" />
@@ -197,7 +197,8 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_downspinner" />
+                                android:src="@drawable/ic_downspinner"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -247,11 +248,12 @@
                         style="@style/TernaryBlackTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autofillHints="Enter Your Passwpord"
                         android:background="@drawable/input_custom"
                         android:fontFamily="@font/inter_regular"
                         android:hint="@string/enter_password"
+                        android:importantForAutofill="no"
                         android:inputType="textPassword"
+                        android:maxLength="15"
                         android:paddingHorizontal="@dimen/_16sdp"
                         android:paddingVertical="@dimen/_11sdp"
                         android:singleLine="true"
@@ -267,7 +269,7 @@
                         android:layout_gravity="center"
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:src="@drawable/ic_visibility"
-                       />
+                        tools:ignore="ContentDescription,RtlHardcoded" />
                 </RelativeLayout>
 
 
@@ -290,15 +292,18 @@
                         style="@style/TernaryBlackTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autofillHints="Enter Your Passwpord"
                         android:background="@drawable/input_custom"
                         android:fontFamily="@font/inter_regular"
                         android:hint="@string/conform_password"
+                        android:importantForAutofill="no"
                         android:inputType="textPassword"
+                        android:longClickable="false"
+                        android:maxLength="15"
                         android:paddingHorizontal="@dimen/_16sdp"
                         android:paddingVertical="@dimen/_11sdp"
                         android:singleLine="true"
-                        android:textColorHint="@color/sub_text" />
+                        android:textColorHint="@color/sub_text"
+                        android:textIsSelectable="false" />
 
                     <ImageView
                         android:id="@+id/iv_show_hide_password2"
@@ -309,7 +314,8 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:src="@drawable/ic_visibility" />
+                        android:src="@drawable/ic_visibility"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
                 </RelativeLayout>
 
 

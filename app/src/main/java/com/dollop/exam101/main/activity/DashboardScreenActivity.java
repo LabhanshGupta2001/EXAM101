@@ -59,7 +59,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             super.onBackPressed();
             return;
         }
-
         this.doubleBackToExitPressedOnce = true;
        Utils.T(activity, getString(R.string.please_click_BACK_again_to_exit));
 
@@ -70,7 +69,11 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
-        }else {
+        } else if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.bottom_cart)
+        {
+
+            super.onBackPressed();
+        } else {
             super.onBackPressed();
         }
 
@@ -118,6 +121,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.bottom_home, R.id.bottom_category, R.id.bottom_packages, R.id.bottom_cart)
                 .build();
+
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
         //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
@@ -151,12 +155,12 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                     case R.id.bottom_cart:
                         navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
                         navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
-                        binding.appBarLayout.setVisibility(View.GONE);
                         binding.bottomNavigationView.setVisibility(View.GONE);
+                        binding.appBarLayout.setVisibility(View.GONE);
                         break;
                     default:
-                        binding.appBarLayout.setVisibility(View.GONE);
                         binding.bottomNavigationView.setVisibility(View.GONE);
+                        binding.appBarLayout.setVisibility(View.GONE);
                         break;
                 }
 

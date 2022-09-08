@@ -198,6 +198,14 @@ public class RaiseComplaintActivity extends BaseActivity implements View.OnClick
         bottomSheetBehavior.setSkipCollapsed(true);
         bottomsheetRaiseComplaintsBinding.tvDetails.setText(model.complaintDescription);
         bottomsheetRaiseComplaintsBinding.tvComplainId.setText(Constants.Key.ComplaintID + model.complaintId);
+        bottomsheetRaiseComplaintsBinding.pvImagePdf.setOnClickListener(view ->
+        {
+            bottomSheetDialog.cancel();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.Key.pdf, model.attachment);
+            bundle.putString(Constants.Key.urlType, Constants.Key.pdf);
+            Utils.I(this, PdfViewActivity.class, bundle);
+        });
         if (!model.attachment.equals(Constants.Key.blank)) {
             //  bottomsheetRaiseComplaintsBinding.imageView.setVisibility(View.VISIBLE);
            /* uri = Uri.parse(model.attachment);

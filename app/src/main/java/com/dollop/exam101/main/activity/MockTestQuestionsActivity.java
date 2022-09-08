@@ -101,6 +101,8 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
                         assert response.body() != null;
                         MockTestQuestion mockTestQuestion = response.body().mockTestQuestion;
                         if (response.body().mockTestQuestion != null && !response.body().mockTestQuestion.questions.isEmpty()) {
+                            binding.rlSubMain.setVisibility(View.VISIBLE);
+                            binding.noResultFoundId.llParent.setVisibility(View.GONE);
                             questionList.clear();
                             questionList.addAll(response.body().mockTestQuestion.questions);
                             mockTestQuestionAdapter.notifyDataSetChanged();
@@ -111,6 +113,11 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
                             totalPages = Integer.parseInt(mockTestQuestion.questionCnt + "");
                             if (!mockTestQuestion.duration.equalsIgnoreCase("0"))
                                 setTimer(mockTestQuestion.duration);
+                        }
+                        else
+                        {
+                            binding.rlSubMain.setVisibility(View.GONE);
+                            binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
                         }
                     } else {
                         assert response.errorBody() != null;
@@ -351,7 +358,6 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
             @RequiresApi(api = Build.VERSION_CODES.N)
             public void onTick(long millisUntilFinished) {
                 int sec = Math.toIntExact(millisUntilFinished / 1000);
-                //String testSubmit= R.string.test_submit_in);
                 alertDialogBinding.tvDesc.setText(getString(R.string.test_will_be_automatically_submitted_within) + " " + sec + " sec");
             }
 
@@ -361,6 +367,5 @@ public class MockTestQuestionsActivity extends BaseActivity implements View.OnCl
             }
         }.start();
         dialog.show();
-
     }
 }

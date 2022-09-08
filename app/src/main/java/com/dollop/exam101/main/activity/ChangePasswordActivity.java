@@ -74,12 +74,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     private void init() {
         apiService = RetrofitClient.getClient();
         if (Utils.GetSession().isPasswordGenerated.equals(Constants.Key.Yes)) {
-            binding.tvCurrentPassword.setVisibility(View.VISIBLE);
-            binding.rvCurrentPassword.setVisibility(View.VISIBLE);
+            binding.llCurrentPassword.setVisibility(View.VISIBLE);
         } else {
-            binding.tvCurrentPassword.setVisibility(View.GONE);
-            binding.rvCurrentPassword.setVisibility(View.GONE);
-            binding.tvErrorCurrentPass.setVisibility(View.GONE);
+            binding.llCurrentPassword.setVisibility(View.GONE);
             binding.tvToolbarText.setText(Constants.Key.SetPassword);
         }
 
@@ -108,29 +105,43 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             public void onDestroyActionMode(ActionMode actionMode) {
 
             }
-        }); binding.etNewPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
+        });
+        binding.etNewPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
             @Override
-            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {return false;}
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
 
             @Override
-            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {return false;}
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
 
             @Override
-            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {return false;}
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                return false;
+            }
 
             @Override
             public void onDestroyActionMode(ActionMode actionMode) {
 
             }
-        }); binding.etCurrentPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
+        });
+        binding.etCurrentPassword.setCustomInsertionActionModeCallback(new ActionMode.Callback() {
             @Override
-            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {return false;}
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
 
             @Override
-            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {return false;}
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
 
             @Override
-            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {return false;}
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                return false;
+            }
 
             @Override
             public void onDestroyActionMode(ActionMode actionMode) {
@@ -138,6 +149,62 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             }
         });
 
+        binding.etCurrentPassword.setLongClickable(false);
+        binding.etCurrentPassword.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode mode) {
+            }
+
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                return false;
+            }
+        });
+
+        binding.etNewPassword.setLongClickable(false);
+        binding.etNewPassword.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode mode) {
+            }
+
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                return false;
+            }
+        });
+
+        binding.etConfirmNewPassword.setLongClickable(false);
+        binding.etConfirmNewPassword.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode mode) {
+            }
+
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                return false;
+            }
+        });
 
         binding.etCurrentPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -208,7 +275,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                         assert response.errorBody() != null;
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                           // assert response.body() != null;
+                            // assert response.body() != null;
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
                             APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -262,7 +329,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
@@ -295,50 +361,38 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 binding.etCurrentPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
-                binding.etCurrentPassword.requestFocus();
-
             } else {
                 binding.ivShowHidePasswordCurrent.setImageResource(R.drawable.ic_visibility);
                 binding.etCurrentPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etCurrentPassword.setSelection(binding.etCurrentPassword.length());
-                binding.etCurrentPassword.requestFocus();
             }
         } else if (view == binding.ivShowHidePasswordNew) {
             isClicked = !isClicked;
             if (isClicked) {
                 binding.ivShowHidePasswordNew.setImageResource(R.drawable.ic_hide);
-
                 binding.etNewPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etNewPassword.setSelection(binding.etNewPassword.length());
-                binding.etNewPassword.requestFocus();
-
-
             } else {
                 binding.ivShowHidePasswordNew.setImageResource(R.drawable.ic_visibility);
-
                 binding.etNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etNewPassword.setSelection(binding.etNewPassword.length());
-                binding.etNewPassword.requestFocus();
-
             }
         } else if (view == binding.ivShowHidePasswordConfirm) {
             isClicked = !isClicked;
             if (isClicked) {
                 binding.ivShowHidePasswordConfirm.setImageResource(R.drawable.ic_hide);
-
                 binding.etConfirmNewPassword.setTransformationMethod
                         (HideReturnsTransformationMethod.getInstance());
                 binding.etConfirmNewPassword.setSelection(binding.etConfirmNewPassword.length());
-                binding.etConfirmNewPassword.requestFocus();
+
 
 
             } else {
                 binding.ivShowHidePasswordConfirm.setImageResource(R.drawable.ic_visibility);
-
                 binding.etConfirmNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.etConfirmNewPassword.setSelection(binding.etConfirmNewPassword.length());
-                binding.etConfirmNewPassword.requestFocus();
+
 
             }
         }
