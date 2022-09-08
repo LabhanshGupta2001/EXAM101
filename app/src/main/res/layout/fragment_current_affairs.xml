@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".main.fragment.CurrentAffairsFragment">
 
    <androidx.recyclerview.widget.RecyclerView
@@ -12,11 +12,5 @@
        tools:listitem="@layout/item_current_affairs_news"
        android:paddingVertical="@dimen/_6sdp"/>
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/rvBlogs"
-       android:visibility="gone"
-       android:paddingVertical="@dimen/_6sdp"/>
 
 </RelativeLayout>

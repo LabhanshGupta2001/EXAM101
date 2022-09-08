@@ -137,14 +137,14 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
                     if (response.code() == StatusCodeConstant.OK) {
                         Bundle bundle = new Bundle();
                         assert response.body() != null;
-                        Utils.I_clear(activity, CheckEmailActivity.class, bundle);
+                        Utils.I(activity, CheckEmailActivity.class, bundle);
+                        finish();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
                             Utils.T(activity, message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-
                             Utils.UnAuthorizationToken(activity);
                         }
                     }

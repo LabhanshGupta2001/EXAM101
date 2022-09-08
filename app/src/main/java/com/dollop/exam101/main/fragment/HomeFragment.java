@@ -66,12 +66,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ApiService apiService;
     String Token,middleOneRedirection,middleTwoRedirection,bottomRedirection,bannerForMiddleOne,bannerForMiddleTwo,bannerForBottom;
     Activity activity;
+    ViewPagerFragmentAdapter viewPagerFragmentAdapter;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
     ArrayList<BannerModel> bannerModels = new ArrayList<>();
     ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
+    CurrentAffairsFragment currentAffairsFragment = new CurrentAffairsFragment();
+    BlogsFragment blogsFragment = new BlogsFragment();
     CountDownTimer countDownTimer = null;
     private final Runnable sliderRunnable = new Runnable() {
         @Override
@@ -107,15 +110,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         init();
+
         return binding.getRoot();
 
     }
@@ -125,6 +127,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         activity = requireActivity();
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
+        Utils.E("hy");
+        setViewPager();
         if (AppController.getInstance().isOnline()) {
             getExamList();
             getTopTen();
@@ -132,7 +136,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             getBanner();
             binding.tvViewAll.setOnClickListener(this);
         } else {
-            //Utils.InternetDialog(activity);
             InternetDialog();
         }
         courseModelArrayList.clear();
@@ -295,6 +298,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.limit, "10");
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -309,7 +313,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-
                                 Utils.UnAuthorizationToken(requireActivity());
                             }
                         } else {
@@ -334,6 +337,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void getBlogs() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogsData(Constants.Key.blank).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -341,24 +345,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Blogarraylist.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Blogarraylist.addAll(response.body().blogs);
-                        title.clear();
-                        title.add(Constants.Key.CurrentAffairs);
-                        fragments.add(new CurrentAffairsFragment());
-
-                        if (Blogarraylist.isEmpty() || Blogarraylist.equals(Constants.Key.blank)) {
-                        } else {
-
-                            title.add(Constants.Key.Blogs);
-                            fragments.add(new BlogsFragment(Blogarraylist));
+                        viewPagerFragmentAdapter.notifyDataSetChanged();
+                        if (response.body().blogs != null && !response.body().blogs.isEmpty()) {
+                            Blogarraylist.addAll(response.body().blogs);
+                            blogsFragment.Blogarraylist.clear();
+                            blogsFragment.Blogarraylist.addAll(Blogarraylist);
+                            viewPagerFragmentAdapter.notifyDataSetChanged();
                         }
-
-                        binding.viewPagerHome.setAdapter(new ViewPagerFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments));
-
-                        new TabLayoutMediator(binding.tabLayout, binding.viewPagerHome, (tab, position) -> {
-                            tab.setText(title.get(position));
-                        }).attach();
-
 
                     } else {
                         assert response.errorBody() != null;
@@ -384,6 +377,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
+    }
+
+    private void setViewPager() {
+        title.clear();
+        fragments.clear();
+        fragments.add(currentAffairsFragment);
+        fragments.add(blogsFragment);
+        title.add(Constants.Key.CurrentAffairs);
+        title.add(Constants.Key.Blogs);
+        viewPagerFragmentAdapter = new ViewPagerFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments);
+        binding.viewPagerHome.setAdapter(viewPagerFragmentAdapter);
+        new TabLayoutMediator(binding.tabLayout, binding.viewPagerHome, (tab, position) -> tab.setText(title.get(position))).attach();
+        Utils.E("setViewPager");
     }
 
     @SuppressLint("ResourceType")
@@ -434,6 +440,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             bannerRedirection(bannerForMiddleTwo,middleTwoRedirection);
         }else if(view == binding.BottomBanner){
             bannerRedirection(bannerForBottom,bottomRedirection);
+            Utils.I(activity, AllPackageActivity.class, null);
+            // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
     }
 

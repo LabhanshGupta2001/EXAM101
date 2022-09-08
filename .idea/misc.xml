@@ -6,21 +6,29 @@
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_affilation_bank_details.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_bank_detail.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_check_email.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_course_test.xml" value="0.22037037037037038" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_courses_detail.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.25" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.24010416666666667" />
-        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_mock_test_questions.xml" value="0.22" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_mock_test_questions.xml" value="0.25" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_raise_complaint.xml" value="0.22447916666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_reset_password.xml" value="0.1287037037037037" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/activity_test_result.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/bottom_sheet_quit_exam.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/bottom_sheet_start_test.xml" value="0.22037037037037038" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/bottomsheet_raise_complaints.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/fragment_blogs.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/fragment_cart.xml" value="0.12685185185185185" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/fragment_current_affairs.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_current_affairs_news.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_login_history.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_mock_test_list.xml" value="0.24010416666666667" />
-        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_mock_test_question.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_mock_test_question.xml" value="0.1" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.75" />
+        <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.22" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.22447916666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_test_ans.xml" value="0.22447916666666667" />
         <entry key="..\:/Android Projects/exam101-android/app/src/main/res/layout/item_wishlist.xml" value="0.5" />

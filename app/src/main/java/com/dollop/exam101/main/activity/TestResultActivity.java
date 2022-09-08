@@ -91,6 +91,10 @@ public class TestResultActivity extends BaseActivity implements View.OnClickList
                             binding.tvTotalQuestion.setText(allResponseModel.totalQuestionCnt.toString());
                             binding.tvTotalQ.setText(allResponseModel.totalQuestionCnt.toString());
                             binding.tvYourCorrectQ.setText(allResponseModel.correntQuestionCnt.toString());
+                            int correctAns = Integer.parseInt(allResponseModel.correntQuestionCnt.toString());
+                            int totalQuestoin = Integer.parseInt(allResponseModel.totalQuestionCnt.toString());
+                            int wrongAns = totalQuestoin-correctAns;
+                            binding.tvYourWrongQ.setText(String.valueOf(totalQuestoin-correctAns));
 
                             binding.rvListOfQuestion.setLayoutManager(new LinearLayoutManager(activity));
                             binding.rvListOfQuestion.setHasFixedSize(true);
