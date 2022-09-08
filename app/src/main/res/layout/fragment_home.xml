@@ -268,11 +268,11 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingHorizontal="@dimen/_12sdp"
                 android:textAlignment="center"
                 app:tabIndicatorHeight="2dp"
-                app:tabMode="scrollable"
+                app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/theme"
                 app:tabTextAppearance="@style/HomeHeadingTextStyle"
                 app:tabTextColor="@color/black" />
@@ -290,7 +290,7 @@
                 android:paddingHorizontal="@dimen/_12sdp"
                 style="@style/HomeHeadingTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/white"
                 android:layout_below="@+id/tabLayout"
                 android:nestedScrollingEnabled="true" />

@@ -207,21 +207,23 @@
 
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-
+<!--
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/llPageCount"
-            android:layout_below="@id/llHorizontal"
-            android:layout_marginHorizontal="@dimen/_12sdp">
+            android:layout_height="wrap_content"
+
+           >-->
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vpQuestion"
+                android:layout_above="@+id/llPageCount"
+                android:layout_below="@id/llHorizontal"
                 android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_height="match_parent">
 
             </androidx.viewpager2.widget.ViewPager2>
-        </androidx.core.widget.NestedScrollView>
+        <!--</androidx.core.widget.NestedScrollView>-->
 
         <LinearLayout
             android:id="@+id/llPageCount"

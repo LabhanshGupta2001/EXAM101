@@ -30,7 +30,6 @@ import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.activity.AllPackageActivity;
-import com.dollop.exam101.main.activity.DashboardScreenActivity;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.BlogsHomeAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
@@ -59,11 +58,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ApiService apiService;
     String Token;
     Activity activity;
+    ViewPagerFragmentAdapter viewPagerFragmentAdapter;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
     ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
+    CurrentAffairsFragment currentAffairsFragment = new CurrentAffairsFragment();
+    BlogsFragment blogsFragment = new BlogsFragment();
     CountDownTimer countDownTimer = null;
     private final Runnable sliderRunnable = new Runnable() {
         @Override
@@ -99,15 +101,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         init();
+
         return binding.getRoot();
 
     }
@@ -117,13 +118,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         activity = requireActivity();
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
+        Utils.E("hy");
+        setViewPager();
         if (AppController.getInstance().isOnline()) {
             getExamList();
             getTopTen();
             getBlogs();
             binding.tvViewAll.setOnClickListener(this);
         } else {
-            //Utils.InternetDialog(activity);
             InternetDialog();
         }
         courseModelArrayList.clear();
@@ -173,29 +175,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        // News Recyclerview code....
-
-     /*   newsModelArrayList.clear();
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-
-        newsAdapter = new NewsAdapter(getActivity(), newsModelArrayList);
-        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.rvNews.setLayoutManager(linearLayoutManager3);
-        binding.rvNews.setAdapter(newsAdapter);
-*/
-        // Calendar View Code...
-        //binding.cvCalendar.setPointerIcon();
-
     }
 
     private void getExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
         apiService.Examlist(Token).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -232,19 +217,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     void getTopTen() {
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put(Constants.Key.limit,"10");
+        hashMap.put(Constants.Key.limit, "10");
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                   /* if (response.body().packageModels.isEmpty()) {
-                        binding.rvPackages.setVisibility(View.GONE);
-                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
-                    } else {
-                        binding.rvPackagesone.setVisibility(View.VISIBLE);
-                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
-                    }*/
                     if (response.code() == StatusCodeConstant.OK) {
                         packageModelList.clear();
                         assert response.body() != null;
@@ -255,7 +234,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-
                                 Utils.UnAuthorizationToken(requireActivity());
                             }
                         } else {
@@ -280,6 +258,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void getBlogs() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogsData(Constants.Key.blank).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -287,24 +266,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Blogarraylist.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Blogarraylist.addAll(response.body().blogs);
-                        title.clear();
-                        title.add(Constants.Key.CurrentAffairs);
-                        fragments.add(new CurrentAffairsFragment());
-
-                        if (Blogarraylist.isEmpty() || Blogarraylist.equals(Constants.Key.blank)) {
-                        } else {
-
-                            title.add(Constants.Key.Blogs);
-                            fragments.add(new BlogsFragment(Blogarraylist));
+                        viewPagerFragmentAdapter.notifyDataSetChanged();
+                        if (response.body().blogs != null && !response.body().blogs.isEmpty()) {
+                            Blogarraylist.addAll(response.body().blogs);
+                            blogsFragment.Blogarraylist.clear();
+                            blogsFragment.Blogarraylist.addAll(Blogarraylist);
+                            viewPagerFragmentAdapter.notifyDataSetChanged();
                         }
-
-                        binding.viewPagerHome.setAdapter(new ViewPagerFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments));
-
-                        new TabLayoutMediator(binding.tabLayout, binding.viewPagerHome, (tab, position) -> {
-                            tab.setText(title.get(position));
-                        }).attach();
-
 
                     } else {
                         // assert response.errorBody() != null;
@@ -331,6 +299,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    private void setViewPager() {
+        title.clear();
+        fragments.clear();
+        fragments.add(currentAffairsFragment);
+        fragments.add(blogsFragment);
+        title.add(Constants.Key.CurrentAffairs);
+        title.add(Constants.Key.Blogs);
+        viewPagerFragmentAdapter = new ViewPagerFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments);
+        binding.viewPagerHome.setAdapter(viewPagerFragmentAdapter);
+        new TabLayoutMediator(binding.tabLayout, binding.viewPagerHome, (tab, position) -> tab.setText(title.get(position))).attach();
+        Utils.E("setViewPager");
+    }
+
     @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
@@ -352,8 +333,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == binding.tvViewAll) {
-            Utils.I(activity, AllPackageActivity.class,null);
-           // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
+            Utils.I(activity, AllPackageActivity.class, null);
+            // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
     }
+
+
 }

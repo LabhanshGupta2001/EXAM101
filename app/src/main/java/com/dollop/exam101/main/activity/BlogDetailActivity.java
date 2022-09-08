@@ -168,12 +168,17 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
         if (view == binding.ivBack) {
             onBackPressed();
         }else if (view == binding.mcvFacebook){
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, allBlogListModel.authorFBLink);
-            sendIntent.setType(Constants.Key.TEXT_PLAIN_TYPE);
-            sendIntent.setPackage("com.facebook.orca");
-            startActivity(sendIntent);
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(allBlogListModel.authorFBLink));
+                intent.setPackage("com.facebook.orca");
+                startActivity(intent);
+            }
+            catch (ActivityNotFoundException anfe)
+            {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(allBlogListModel.authorInstaLink)));
+            }
         }else if (view == binding.mcvInstagram){
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW);

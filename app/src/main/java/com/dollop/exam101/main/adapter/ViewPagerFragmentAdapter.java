@@ -1,5 +1,7 @@
 package com.dollop.exam101.main.adapter;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
   ArrayList<Fragment>fragment;
 
+    @SuppressLint("NotifyDataSetChanged")
     public ViewPagerFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, ArrayList<Fragment>fragments) {
 
         super(fragmentManager, lifecycle);
@@ -29,4 +32,5 @@ public class ViewPagerFragmentAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return fragment.size();
     }
+
 }

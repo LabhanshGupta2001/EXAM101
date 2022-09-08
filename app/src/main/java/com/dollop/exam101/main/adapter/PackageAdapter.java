@@ -33,7 +33,8 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
     @NonNull
     @Override
     public PackageAdapter.MyPackageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new PackageAdapter.MyPackageViewHolder(ItemPackagesBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        ItemPackagesBinding binding=ItemPackagesBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new PackageAdapter.MyPackageViewHolder(binding);
     }
 
     @SuppressLint("SetTextI18n")
@@ -44,7 +45,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.tvPackageDescription.setText(packageModel.shortDesc);
         holder.itemPackagesBinding.tvRupees.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageModel.discountedPrice)));
         holder.itemPackagesBinding.tvTotalRupees.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageModel.actualPrice)));
-        holder.itemPackagesBinding.tvDay.setText(packageModel.validity+context.getString(R.string.Days));
+        holder.itemPackagesBinding.tvDay.setText(packageModel.validity+" "+context.getString(R.string.Days));
 
         if (packageModel.rating.equals(Constants.Key.blank)){
             holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);
