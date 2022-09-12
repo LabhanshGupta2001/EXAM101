@@ -175,6 +175,8 @@ public class Constants {
         String Online = "Online";
         String orderExamUuid = "orderExamUuid";
         String topicUuid = "topicUuid";
+        String topicName = "topicName";
+        String topicDetail = "topicDetail";
         String wishListUuid = "wishListUuid";
         String questionIds = "questionIds";
         String options = "options";
@@ -210,5 +212,7 @@ public class Constants {
         String page_name = "page_name";
         String yTLink = "YT Link";
         String vimeoLink = "Vimeo Link";
+        String courseVideo = "Course Videos";
+        String coursePDF = "Course PDF";
     }
 }

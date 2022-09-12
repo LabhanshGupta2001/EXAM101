@@ -3,17 +3,20 @@ package com.dollop.exam101.main.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -21,24 +24,25 @@ import androidx.navigation.ui.NavigationUI;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
+import com.dollop.exam101.Basics.UtilityTools.IOnBackPressed;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.Basics.firebase.FirebaseService;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityDashboardScreenBinding;
 import com.dollop.exam101.databinding.NavHeaderDashboardBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
 
 
 public class DashboardScreenActivity extends BaseActivity implements View.OnClickListener {
 
-    public  NavController navController;
+    public NavController navController;
     public ActivityDashboardScreenBinding binding;
     AppBarConfiguration appBarConfiguration;
     Activity activity = DashboardScreenActivity.this;
     NavHeaderDashboardBinding navHeaderDashboardBinding;
     ApiService apiService;
-    boolean doubleBackToExitPressedOnce = false;
 
 
     @Override
@@ -53,26 +57,12 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onBackPressed() {
-
-        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.bottom_home){
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-       Utils.T(activity, getString(R.string.please_click_BACK_again_to_exit));
-
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
-        }else {
+        Fragment fragment = Objects.requireNonNull(getSupportFragmentManager().getPrimaryNavigationFragment())
+                .getChildFragmentManager().getFragments().get(0);
+        if (!(fragment instanceof IOnBackPressed) || !((IOnBackPressed) fragment).onBackPressed()) {
             super.onBackPressed();
         }
+
 
     }
 
@@ -96,12 +86,13 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         binding.ivNavBar.setOnClickListener(this);
         //binding.ivProfile.setOnClickListener(this);
         binding.rvNotification.setOnClickListener(this);
-         binding.ivSearch.setOnClickListener(this);
+        binding.ivSearch.setOnClickListener(this);
         navHeaderDashboardBinding.llHeader.setOnClickListener(this);
         navHeaderDashboardBinding.llLogout.setOnClickListener(this);
         navHeaderDashboardBinding.llAbout.setOnClickListener(this);
         navHeaderDashboardBinding.llSettings.setOnClickListener(this);
         navHeaderDashboardBinding.llBlogs.setOnClickListener(this);
+        navHeaderDashboardBinding.llDownloadHistory.setOnClickListener(this);
         navHeaderDashboardBinding.llPrivacyPolicy.setOnClickListener(this);
         navHeaderDashboardBinding.llHome.setOnClickListener(this);
         navHeaderDashboardBinding.llMyPackage.setOnClickListener(this);
@@ -115,9 +106,9 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
     }
 
     private void navigationSetup() {
+
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.bottom_home, R.id.bottom_category, R.id.bottom_packages, R.id.bottom_cart)
-                .build();
+                R.id.bottom_home, R.id.bottom_category, R.id.bottom_packages, R.id.bottom_cart).build();
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
         //  navHeaderDashboardBinding = navHeaderDashboardBinding.bind(binding.navigationView.getHeaderView(0));
@@ -135,28 +126,86 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                 Utils.changeStatusBarColor(activity, R.color.status_bar);
             }
         });
+
+
+        NavOptions options = new NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setEnterAnim(R.anim.in_from_left)
+                .setExitAnim(R.anim.lefttoright)
+                .setPopEnterAnim(R.anim.in_from_left)
+                .setPopExitAnim(R.anim.lefttoright)
+                .build();
+
+        binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottom_home:
+                        navController.navigate(R.id.bottom_home, null, options);
+                        break;
+                    case R.id.bottom_category:
+                        navController.navigate(R.id.bottom_category, null, options);
+                        break;
+                    case R.id.bottom_packages:
+                        navController.navigate(R.id.bottom_packages, null, options);
+                        break;
+                    case R.id.bottom_cart:
+                        navController.navigate(R.id.bottom_cart, null, options);
+                        break;
+                    default:
+                        binding.bottomNavigationView.setVisibility(View.GONE);
+                        break;
+                }
+                return false;
+            }
+        });
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController,
                                              @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.in_from_left);
                 switch (navDestination.getId()) {
                     case R.id.bottom_home:
                         navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.theme));
                         navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.theme));
-                        binding.bottomNavigationView.setVisibility(View.VISIBLE);
-                        binding.appBarLayout.setVisibility(View.VISIBLE);
+//                        binding.bottomNavigationView.setVisibility(View.VISIBLE);
+                        // binding.appBarLayout.setVisibility(View.VISIBLE);
+                        binding.llNotification.setVisibility(View.VISIBLE);
+                        binding.ivLogo.setVisibility(View.VISIBLE);
+                        binding.tvHeading.setVisibility(View.GONE);
+                        binding.appBarLayout.setAnimation(animation);
+
                         break;
                     case R.id.bottom_category:
+                        binding.llNotification.setVisibility(View.GONE);
+                        binding.ivLogo.setVisibility(View.GONE);
+                        binding.tvHeading.setVisibility(View.VISIBLE);
+                        binding.tvHeading.setText(R.string.my_exam);
+                        break;
                     case R.id.bottom_packages:
+                        binding.llNotification.setVisibility(View.GONE);
+                        binding.ivLogo.setVisibility(View.GONE);
+                        binding.tvHeading.setVisibility(View.VISIBLE);
+                        binding.tvHeading.setText(R.string.mock_test);
+
+                        break;
                     case R.id.bottom_cart:
                         navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.black));
                         navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
-                        binding.appBarLayout.setVisibility(View.GONE);
-                        binding.bottomNavigationView.setVisibility(View.GONE);
+                        binding.llNotification.setVisibility(View.GONE);
+                        binding.ivLogo.setVisibility(View.GONE);
+                        binding.tvHeading.setVisibility(View.VISIBLE);
+                        binding.tvHeading.setText(R.string.cart);
+
+
+                        // binding.appBarLayout.setVisibility(View.GONE);
+//                        binding.bottomNavigationView.setVisibility(View.GONE);
+
                         break;
                     default:
-                        binding.appBarLayout.setVisibility(View.GONE);
-                        binding.bottomNavigationView.setVisibility(View.GONE);
+                        // binding.appBarLayout.setVisibility(View.GONE);
+//                        binding.bottomNavigationView.setVisibility(View.GONE);
+
                         break;
                 }
 
@@ -206,6 +255,10 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             binding.drawerLayout.close();
             Utils.I(activity, BlogsListActivity.class, null);
         }
+        if (view == navHeaderDashboardBinding.llDownloadHistory) {
+            binding.drawerLayout.close();
+            Utils.I(activity, DownloadHistory.class, null);
+        }
         if (view == navHeaderDashboardBinding.llSettings) {
             binding.drawerLayout.close();
             Utils.I(activity, SettingActivity.class, null);
@@ -240,6 +293,5 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
         }
 
     }
-
 
 }

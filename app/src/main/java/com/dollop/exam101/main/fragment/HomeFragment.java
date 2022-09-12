@@ -7,9 +7,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -25,12 +28,13 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.IOnBackPressed;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.activity.AllPackageActivity;
-import com.dollop.exam101.main.activity.DashboardScreenActivity;
+import com.dollop.exam101.main.activity.DownloadHistory;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.BlogsHomeAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
@@ -54,7 +58,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, IOnBackPressed {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
     String Token;
@@ -115,6 +119,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         activity = requireActivity();
+        Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+        binding.llMain.setAnimation(animation);
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
         if (AppController.getInstance().isOnline()) {
@@ -173,23 +179,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        // News Recyclerview code....
-
-     /*   newsModelArrayList.clear();
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-
-        newsAdapter = new NewsAdapter(getActivity(), newsModelArrayList);
-        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.rvNews.setLayoutManager(linearLayoutManager3);
-        binding.rvNews.setAdapter(newsAdapter);
-*/
-        // Calendar View Code...
-        //binding.cvCalendar.setPointerIcon();
 
     }
 
@@ -232,7 +221,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     void getTopTen() {
         Dialog progressDialog = Utils.initProgressDialog(requireActivity());
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put(Constants.Key.limit,"10");
+        hashMap.put(Constants.Key.limit, "10");
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -338,13 +327,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding.llMain.setBackgroundColor(getResources().getColor(R.color.white));
         binding.scrollView.setVisibility(View.GONE);
         binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvMyDownloads.setVisibility(View.VISIBLE);
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                binding.scrollView.setVisibility(View.VISIBLE);
+                //    binding.scrollView.setVisibility(View.VISIBLE);
                 binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
 
             }
+        });
+        binding.noInternetConnection.tvMyDownloads.setOnClickListener(view -> {
+                Utils.I(activity, DownloadHistory.class, null);
         });
 
     }
@@ -352,8 +345,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == binding.tvViewAll) {
-            Utils.I(activity, AllPackageActivity.class,null);
-           // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
+            Utils.I(activity, AllPackageActivity.class, null);
+            // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
+
+    }
+    boolean doubleBackToExitPressedOnce = false;
+    @Override
+    public boolean onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            return true;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Utils.T(activity, getString(R.string.please_click_BACK_again_to_exit));
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+        return true;
     }
 }

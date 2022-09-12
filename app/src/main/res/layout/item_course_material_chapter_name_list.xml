@@ -48,9 +48,10 @@
                 android:id="@+id/tvChapterName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:layout_toEndOf="@+id/mcvTick"
                 android:fontFamily="@font/inter_medium"
+                android:layout_centerInParent="true"
                 android:text="@string/chapter_1"
                 android:theme="@style/QuinaryBlackTextStyle" />
 
@@ -60,6 +61,7 @@
                 android:layout_below="@+id/tvChapterName"
                 android:layout_gravity="center_horizontal"
                 android:layout_toEndOf="@+id/mcvTick"
+                android:visibility="gone"
                 android:fontFamily="@font/inter_medium"
                 android:text="@string/test_1"
                 android:theme="@style/QuinaryLightSubTextStyle" />

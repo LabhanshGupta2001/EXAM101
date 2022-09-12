@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -20,8 +23,8 @@ import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentCategoryHomeBinding;
-import com.dollop.exam101.main.activity.DashboardScreenActivity;
 import com.dollop.exam101.main.adapter.CategoryHomeAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.Studentexam;
@@ -34,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CategoryHomeFragment extends Fragment implements View.OnClickListener {
-     FragmentCategoryHomeBinding binding;
+    FragmentCategoryHomeBinding binding;
     ApiService apiService;
     Activity activity;
     CategoryHomeAdapter categoryHomeAdapter;
@@ -47,7 +50,6 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
         binding = FragmentCategoryHomeBinding.inflate(inflater, container, false);
         activity = requireActivity();
         init();
-
         return binding.getRoot();
     }
 
@@ -59,7 +61,6 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
         } else {
             InternetDialog();
         }
-        binding.ivBack.setOnClickListener(this);
         binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
         categoryHomeAdapter = new CategoryHomeAdapter(getContext(), examList);
         binding.rvCategories.setAdapter(categoryHomeAdapter);
@@ -68,21 +69,21 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack) {
-            binding.llToolbar.setVisibility(View.GONE);
-            ((DashboardScreenActivity) activity).navController.popBackStack();
-        }
-
     }
 
     private void CategoriesHomeAllExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
-        apiService.getStudentExamListApi(Utils.GetSession().token, "android").enqueue(new Callback<AllResponseModel>() {
+        apiService.getStudentExamListApi(Utils.GetSession().token, Constants.Key.android).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                    if (response.body().studentexam.equals(Constants.Key.blank) || response.body().studentexam.isEmpty()) {
+                    assert response.body() != null;
+                    Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+                    binding.rlMain.startAnimation(animation);
+                    binding.rlMain.setVisibility(View.VISIBLE);
+                    if (response.body().studentexam.isEmpty()) {
                         Utils.E("Empty:::::" + response.body().studentexam.size());
                         binding.rvCategories.setVisibility(View.GONE);
                         binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);

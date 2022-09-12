@@ -8,6 +8,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -38,7 +40,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CoursesMaterial extends BaseActivity implements View.OnClickListener {
-    private final Boolean dropdown = true;
     public String orderExamUuid;
     Activity activity = CoursesMaterial.this;
     ActivityCoursesMaterialBinding binding;
@@ -116,17 +117,26 @@ public class CoursesMaterial extends BaseActivity implements View.OnClickListene
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hashMap = new HashMap();
         hashMap.put(Constants.Key.orderExamUuid, orderExamUuid);
-        Utils.E("done:::");
+        Utils.E("done1:::");
 
         apiService.getStudentExamDetailApi(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
+
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
-                try {
+                Utils.E("done1:::");
 
+                try {
+                    Utils.E("done2:::");
                     if (response.code() == StatusCodeConstant.OK) {
+                        Utils.E("done3:::");
                         assert response.body() != null;
+                        assert binding.llparent != null;
+                        binding.llparent.setVisibility(View.VISIBLE);
+                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadein);
+                        binding.llparent.setAnimation(animation);
+                        Utils.E("namee::::::" + response.body().orderexams.examName);
                         binding.tvCourseName.setText(response.body().orderexams.examName);
                         binding.tvPercentComplete.setText(response.body().orderexams.completedPercentage + getString(R.string.complete));
                         binding.tvLastActivityTime.setText(" " + (TimeFormatter.getDateTime(response.body().orderexams.lastActivityDate, activity, "yyyy-MM-dd HH:mm:ss", "Date")));
@@ -164,5 +174,6 @@ public class CoursesMaterial extends BaseActivity implements View.OnClickListene
         });
     }
 
+ 
 
 }

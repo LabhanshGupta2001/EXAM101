@@ -13,7 +13,8 @@ public class Const {
         //Live
         //  String HOST_URL = "http://examoneOoneweb.dollopinfotech.com/";
         // String HOST_URL = "http://exam101.dollopinfotech.com/";
-        String HOST_URL = "http://exam101stg.dollopinfotech.com/";
+       // String HOST_URL = "http://exam101stg.dollopinfotech.com/";
+        String HOST_URL = " https://exam101.in/development/exam101/";
 
 
         //Versioning URL

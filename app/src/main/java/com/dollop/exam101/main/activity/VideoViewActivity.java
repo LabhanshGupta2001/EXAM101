@@ -7,6 +7,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +50,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         binding = ActivityVideoViewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         activity = VideoViewActivity.this;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             //  binding.llToolbar.setVisibility(View.GONE);
@@ -65,9 +68,11 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         if (bundle.getString(Constants.Key.urlType).equals(Constants.Key.video)) {
             if (bundle.getString(Constants.Key.For).equals(Constants.Key.vimeoLink)) {
                 VIMDEO_ID = bundle.getString(Constants.Key.videoUrl);
-                VIMDEO_ID = VIMDEO_ID.replace("https://player.vimeo.com/video/", "");
+                VIMDEO_ID = VIMDEO_ID.substring(VIMDEO_ID.lastIndexOf("/") + 1, VIMDEO_ID.length());
+                //  VIMDEO_ID = VIMDEO_ID.replace("https://vimeo.com/", "");
+                //   VIMDEO_ID = VIMDEO_ID.replace("https://player.vimeo.com/video/", "");
                 binding.pdfView.setVisibility(View.GONE);
-                binding.videoView.setVisibility(View.VISIBLE);
+                binding.videoview.setVisibility(View.VISIBLE);
 
 
             } else if (bundle.getString(Constants.Key.For).equals(Constants.Key.yTLink)) {
@@ -79,7 +84,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
                         String videoId = bundle.getString(Constants.Key.videoUrl);
                         videoId = videoId.replace("https://www.youtube.com/embed/", "");
                         youTubePlayer.loadVideo(videoId, 0);
-                      //  youTubePlayer.pause();
+                        //  youTubePlayer.pause();
                     }
                 });
             }
@@ -106,11 +111,8 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         //To play streaming media, you need an ExoPlayer object.
         //SimpleExoPlayer is a convenient, all-purpose implementation of the ExoPlayer interface.
         player = new SimpleExoPlayer.Builder(this).build();
-        binding.videoView.setPlayer(player);
-
-
+        binding.videoview.setPlayer(player);
         callVimeoAPIRequest();
-
         //Supply the state information you saved in releasePlayer to your player during initialization.
         player.setPlayWhenReady(playWhenReady);
         player.seekTo(currentWindow, playbackPosition);
@@ -145,7 +147,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
 
     @SuppressLint("InlinedApi")
     private void hideSystemUi() {
-        binding.videoView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+        binding.videoview.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -156,12 +158,6 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onStart() {
         super.onStart();
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //  binding.llToolbar.setVisibility(View.GONE);
-        } else {
-            //  binding.llToolbar.setVisibility(View.VISIBLE);
-
-        }
         if (Util.SDK_INT >= 24) {
             //Init exoplayer builder
             if (bundle.getString(Constants.Key.urlType).equals(Constants.Key.video)) {
@@ -172,23 +168,13 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    /**
-     * Android API level 24 and higher supports multiple windows.
-     * As your app can be visible, but not active in split window mode, you need to initialize the player in onStart.
-     * Android API level 24 and lower requires you to wait as long as possible until you grab resources,
-     * so you wait until onResume before initializing the player.
-     */
+
     @Override
     public void onResume() {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //    binding.llToolbar.setVisibility(View.GONE);
-        } else {
-            // binding.llToolbar.setVisibility(View.VISIBLE);
-
-        }
         super.onResume();
         //Helper method which allows you to have a full-screen experience.
         hideSystemUi();
+
         if ((Util.SDK_INT < 24 || player == null)) {
             //Init exoplayer builder
             if (bundle.getString(Constants.Key.urlType).equals(Constants.Key.video)) {
@@ -224,6 +210,21 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
             currentWindow = player.getCurrentWindowIndex();
             player.release();
             player = null;
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(@NotNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+            Utils.E("getCurrentPosition::" + binding.videoview.getPlayer().getCurrentPosition());
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+            Utils.E("getCurrentPosition::ORIENTATION_PORTRAIT:" + binding.videoview.getPlayer().getCurrentPosition());
+
         }
     }
 

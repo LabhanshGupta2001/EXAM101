@@ -7,7 +7,6 @@ import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -23,9 +22,12 @@ import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityCourseTestBinding;
+import com.dollop.exam101.databinding.BottomSheetPracticeTestBinding;
 import com.dollop.exam101.main.adapter.CourseTestQuestionAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.QuestionModel;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -43,6 +45,8 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
     String orderExamUuids = "", topicUuids = "";
     ArrayList<QuestionModel> questionListModelArrayList = new ArrayList<>();
     CourseTestQuestionAdapter courseTestQuestionAdapter;
+    BottomSheetDialog bottomSheetDialog;
+    BottomSheetPracticeTestBinding bottomSheetPracticeTestBinding;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -82,9 +86,9 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         if (view == binding.ivBack) {
             finish();
         } else if (view == binding.ivAbout) {
-            Toast.makeText(activity, "About This App", Toast.LENGTH_SHORT).show();
+            showBottomSheetDialog();
         } else if (view == binding.btnSubmit) {
-           calculateAnswersFromList();
+            calculateAnswersFromList();
 
         }
     }
@@ -99,14 +103,14 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         String questionIds = "";
         String answers = "";
         for (int i = 0; i <= answerList.size() - 1; i++) {
-            if (i==0){
-                questionIds = questionIds  + questionList.get(i);
-                answers = answers +  answerList.get(i);
+            if (i == 0) {
+                questionIds = questionIds + questionList.get(i);
+                answers = answers + answerList.get(i);
+            } else {
+                questionIds = questionIds + "||" + questionList.get(i);
+                answers = answers + "||" + answerList.get(i);
             }
-            else {
-            questionIds = questionIds + "||" + questionList.get(i);
-            answers = answers + "||" + answerList.get(i);
-        }}
+        }
         Utils.E("questionIds::::::::::  " + questionIds);
         Utils.E("answers::::::::::  " + answers);
         submitPracticeTest(questionIds, answers);
@@ -128,7 +132,7 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
                         assert response.body() != null;
                         Utils.T(activity, "Test Submitted Successfully");
                         Bundle bundle = new Bundle();
-                        bundle.putString(Constants.Key.testAttemptUuid,response.body().testAttemptUuid);
+                        bundle.putString(Constants.Key.testAttemptUuid, response.body().testAttemptUuid);
                         Utils.I(activity, TestResultActivity.class, bundle);
                         Utils.E("testAttemptUuid::" + response.body().testAttemptUuid);
                     } else {
@@ -155,13 +159,12 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
         });
     }
 
-
     private void getPracticeQuestion() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
         hm.put(Constants.Key.orderExamUuid, orderExamUuids);
         hm.put(Constants.Key.topicUuid, topicUuids);
-        hm.put(Constants.Key.device_type, "android");
+        hm.put(Constants.Key.device_type, Constants.Key.android);
         apiService.getMyQuestionList(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -209,4 +212,23 @@ public class CourseTestActivity extends BaseActivity implements View.OnClickList
             }
         });
     }
+
+    private void showBottomSheetDialog() {
+
+        bottomSheetDialog = new BottomSheetDialog(activity);
+        bottomSheetPracticeTestBinding = BottomSheetPracticeTestBinding.inflate(getLayoutInflater());
+        bottomSheetDialog.setContentView(bottomSheetPracticeTestBinding.getRoot());
+        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from((View) (bottomSheetPracticeTestBinding.getRoot().getParent()));
+        behavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetDialog.show();
+        bottomSheetPracticeTestBinding.tvBtnPracticeTest.setText("OK");
+        bottomSheetPracticeTestBinding.tvBtnPracticeTest.setOnClickListener(view ->
+        {
+            bottomSheetDialog.dismiss();
+
+        });
+
+    }
+
 }

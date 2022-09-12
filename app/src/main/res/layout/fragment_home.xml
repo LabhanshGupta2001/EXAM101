@@ -2,599 +2,600 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/llMain"
     tools:context=".main.fragment.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        android:background="@color/lineColor">
+        android:background="@color/lineColor"
+        android:visibility="visible">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            style="@style/QuaternaryHeadingFullBlackTextStyle"
-            android:fontFamily="@font/gothic_bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:text="@string/find_best_course" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                style="@style/QuaternaryHeadingFullBlackTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:fontFamily="@font/gothic_bold"
+                android:text="@string/find_best_course" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/white"
+                android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewCourse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:overScrollMode="never"
-                    android:clipToPadding="false"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_6sdp"
-                    android:scrollbars="none" />
-            </LinearLayout>
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/scrollView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollIndicators="none"
-                android:scrollbars="none"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llSearch"
-                tools:ignore="UnusedAttribute">
 
                 <LinearLayout
-                    android:id="@+id/constraintLayout4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/vpBanner"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewCourse"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp"
-                        android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        android:paddingVertical="@dimen/_6sdp" />
-
-                    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-                        android:id="@+id/dot2"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_8sdp"
-                        app:dotsSize="@dimen/_8sdp"
-                        app:dotsSpacing="@dimen/_2sdp"
-                        app:dotsStrokeColor="#E8EEF6"
-                        app:progressMode="true"
-                        app:selectedDotColor="@color/theme"
-                        app:stiffness="300" />
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_6sdp"
+                        android:scrollbars="none" />
                 </LinearLayout>
 
-            </androidx.core.widget.NestedScrollView>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_12sdp">
-
-            <TextView
-                android:id="@+id/tvTop"
-                style="@style/HomeHeadingTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/top_10_packages" />
-
-
-            <TextView
-                android:id="@+id/tvViewAll"
-                style="@style/QuaternaryThemeHeadingTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:drawableRight="@drawable/ic_arrowicon"
-                android:drawablePadding="@dimen/_6sdp"
-                android:paddingVertical="@dimen/_4sdp"
-                android:text="@string/view_all" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingBottom="@dimen/_6sdp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPackages"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="item"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:overScrollMode="never" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_16sdp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="@dimen/_12sdp"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                app:cardCornerRadius="@dimen/_6sdp">
-
-                <ImageView
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/scrollView2"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/vpbannerimage" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-
-                app:cardCornerRadius="@dimen/_6sdp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/vpbannerimage" />
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_12sdp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_syllabusbackground"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/ivBharat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_bharatkaitihas" />
-
-            <TextView
-                style="@style/HomeHeadingTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ivBharat"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:text="@string/get_syllabus_in_hindi"
-                android:textAlignment="center" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp">
-
-           <!-- <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv1"
-                    style="@style/HomeHeadingTextStyle"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/current_affairs" />
+                    android:scrollIndicators="none"
+                    android:scrollbars="none"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llSearch"
+                    tools:ignore="UnusedAttribute">
 
-                <View
-                    android:id="@+id/view1"
-                    android:layout_width="@dimen/_1sdp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:background="@color/sub_text"
-                    android:paddingHorizontal="@dimen/_6sdp" />
+                    <LinearLayout
+                        android:id="@+id/constraintLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                <TextView
-                    style="@style/HomeHeadingTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:text="@string/news" />
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/vpBanner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_120sdp"
+                            android:background="@color/white"
+                            android:paddingHorizontal="@dimen/_12sdp"
+                            android:paddingVertical="@dimen/_6sdp" />
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="@dimen/_1sdp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:background="@color/sub_text"
-                    android:paddingHorizontal="@dimen/_6sdp" />
+                        <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                            android:id="@+id/dot2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_8sdp"
+                            app:dotsSize="@dimen/_8sdp"
+                            app:dotsSpacing="@dimen/_2sdp"
+                            app:dotsStrokeColor="#E8EEF6"
+                            app:progressMode="true"
+                            app:selectedDotColor="@color/theme"
+                            app:stiffness="300" />
+                    </LinearLayout>
 
-                <TextView
-                    style="@style/HomeHeadingTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@string/results" />
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
 
-
-            </LinearLayout>-->
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:textAlignment="center"
-                app:tabIndicatorHeight="2dp"
-                app:tabMode="scrollable"
-                app:tabSelectedTextColor="@color/theme"
-                app:tabTextAppearance="@style/HomeHeadingTextStyle"
-                app:tabTextColor="@color/black" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"
-                android:background="@color/HorizontallineColor"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_below="@id/tabLayout"
-                android:id="@+id/viewTab"/>
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_8sdp">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPagerHome"
-                android:layout_marginTop="@dimen/_1sdp"
-                android:paddingHorizontal="@dimen/_12sdp"
-                style="@style/HomeHeadingTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_below="@+id/tabLayout"
-                android:nestedScrollingEnabled="true" />
+                <TextView
+                    android:id="@+id/tvTop"
+                    style="@style/HomeHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/top_10_packages" />
 
 
-            <!--   <TextView
-                   style="@style/QuaternaryThemeHeadingTextStyle"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_alignRight="@id/ivArrow2"
-                   android:layout_marginRight="@dimen/_12sdp"
-                   android:text="@string/view_all" />
+                <TextView
+                    android:id="@+id/tvViewAll"
+                    style="@style/QuaternaryThemeHeadingTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:drawableRight="@drawable/ic_arrowicon"
+                    android:drawablePadding="@dimen/_6sdp"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="@string/view_all" />
 
-               <ImageView
-                   android:id="@+id/ivArrow2"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_alignParentRight="true"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_arrowicon" />-->
-
-        </RelativeLayout>
-
-      <!--  <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingBottom="@dimen/_6sdp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvNews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:background="@color/white"
-                android:overScrollMode="never" />
-        </LinearLayout>-->
-
-        <TextView
-            style="@style/HomeHeadingTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:text="@string/reffer_a_friend" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical">
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="@dimen/_6sdp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPackages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:overScrollMode="never"
+                    tools:listitem="item" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_16sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/_12sdp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:cardCornerRadius="@dimen/_6sdp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/vpbannerimage" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_10sdp"
+
+                    app:cardCornerRadius="@dimen/_6sdp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/vpbannerimage" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_12sdp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_syllabusbackground"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivBharat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_bharatkaitihas" />
+
+                <TextView
+                    style="@style/HomeHeadingTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivBharat"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:text="@string/get_syllabus_in_hindi"
+                    android:textAlignment="center" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp">
+
+                <!-- <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+
+                     <TextView
+                         android:id="@+id/tv1"
+                         style="@style/HomeHeadingTextStyle"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="@string/current_affairs" />
+
+                     <View
+                         android:id="@+id/view1"
+                         android:layout_width="@dimen/_1sdp"
+                         android:layout_height="match_parent"
+                         android:layout_gravity="center_vertical"
+                         android:layout_marginStart="@dimen/_2sdp"
+                         android:background="@color/sub_text"
+                         android:paddingHorizontal="@dimen/_6sdp" />
+
+                     <TextView
+                         style="@style/HomeHeadingTextStyle"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginStart="@dimen/_2sdp"
+                         android:text="@string/news" />
+
+                     <View
+                         android:id="@+id/view2"
+                         android:layout_width="@dimen/_1sdp"
+                         android:layout_height="match_parent"
+                         android:layout_gravity="center_vertical"
+                         android:layout_marginStart="@dimen/_2sdp"
+                         android:background="@color/sub_text"
+                         android:paddingHorizontal="@dimen/_6sdp" />
+
+                     <TextView
+                         style="@style/HomeHeadingTextStyle"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginStart="@dimen/_2sdp"
+                         android:ellipsize="end"
+                         android:maxLines="1"
+                         android:text="@string/results" />
+
+
+                 </LinearLayout>-->
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:textAlignment="center"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabMode="scrollable"
+                    app:tabSelectedTextColor="@color/theme"
+                    app:tabTextAppearance="@style/HomeHeadingTextStyle"
+                    app:tabTextColor="@color/black" />
+
+                <View
+                    android:id="@+id/viewTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@id/tabLayout"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:background="@color/HorizontallineColor" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerHome"
+                    style="@style/HomeHeadingTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tabLayout"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:background="@color/white"
+                    android:nestedScrollingEnabled="true"
+                    android:paddingHorizontal="@dimen/_12sdp" />
+
+
+                <!--   <TextView
+                       style="@style/QuaternaryThemeHeadingTextStyle"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignRight="@id/ivArrow2"
+                       android:layout_marginRight="@dimen/_12sdp"
+                       android:text="@string/view_all" />
+
+                   <ImageView
+                       android:id="@+id/ivArrow2"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentRight="true"
+                       android:layout_centerVertical="true"
+                       android:src="@drawable/ic_arrowicon" />-->
+
+            </RelativeLayout>
+
+            <!--  <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@color/white"
+                  android:paddingBottom="@dimen/_6sdp">
+
+                  <androidx.recyclerview.widget.RecyclerView
+                      android:id="@+id/rvNews"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/_6sdp"
+                      android:background="@color/white"
+                      android:overScrollMode="never" />
+              </LinearLayout>-->
+
+            <TextView
+                style="@style/HomeHeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginVertical="@dimen/_6sdp"
-                android:weightSum="3">
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:text="@string/reffer_a_friend" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="@dimen/_90sdp"
-                    android:layout_height="@dimen/_100sdp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
                     android:layout_marginVertical="@dimen/_6sdp"
-                    android:layout_marginStart="@dimen/_6sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_2sdp"
-                    app:cardElevation="1dp">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:padding="@dimen/_4sdp">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginVertical="@dimen/_6sdp"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:cardElevation="1dp">
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardVoucher"
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/_4sdp"
-                            android:elevation="0dp"
-                            app:cardBackgroundColor="@color/status_bar"
-                            app:cardCornerRadius="@dimen/_2sdp">
-
-                            <ImageView
-                                android:id="@+id/ivVoucher"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_voucher" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            style="@style/SenaryTextStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cardVoucher"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:fontFamily="@font/inter_regular"
-                            android:gravity="center_horizontal"
-                            android:padding="@dimen/_2sdp"
-                            android:text="@string/send_affiliate_code_to_your_friend" />
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_minus6sdp"
-                    android:src="@drawable/ic_longarrow" />
-
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="@dimen/_90sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_marginHorizontal="@dimen/_2sdp"
-                    android:layout_marginVertical="@dimen/_6sdp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_4sdp"
-                    app:cardElevation="1dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/_4sdp">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardOffer"
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/_4sdp"
-                            android:elevation="0dp"
-                            app:cardBackgroundColor="@color/status_bar"
-                            app:cardCornerRadius="@dimen/_2sdp">
-
-                            <ImageView
-                                android:id="@+id/ivOffer"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_offer" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            style="@style/SenaryTextStyle"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cardOffer"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:fontFamily="@font/inter_regular"
+                            android:layout_height="match_parent"
                             android:gravity="center_horizontal"
-                            android:text="@string/friend_purchase"
-                            android:textAlignment="center" />
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
+                            android:padding="@dimen/_4sdp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_minus6sdp"
-                    android:src="@drawable/ic_longarrow" />
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardVoucher"
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="@color/status_bar"
+                                app:cardCornerRadius="@dimen/_2sdp">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="@dimen/_90sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_marginVertical="@dimen/_6sdp"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_6sdp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_4sdp"
-                    app:cardElevation="1dp">
+                                <ImageView
+                                    android:id="@+id/ivVoucher"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_voucher" />
+                            </androidx.cardview.widget.CardView>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:padding="@dimen/_4sdp">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardWallet"
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/_4sdp"
-                            android:elevation="0dp"
-                            app:cardBackgroundColor="@color/status_bar"
-                            app:cardCornerRadius="@dimen/_2sdp">
-
-                            <ImageView
-                                android:id="@+id/ivWallet"
+                            <TextView
+                                style="@style/SenaryTextStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_wallet" />
-                        </androidx.cardview.widget.CardView>
+                                android:layout_below="@id/cardVoucher"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:fontFamily="@font/inter_regular"
+                                android:gravity="center_horizontal"
+                                android:padding="@dimen/_2sdp"
+                                android:text="@string/send_affiliate_code_to_your_friend" />
+                        </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-                        <TextView
-                            style="@style/SenaryTextStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cardWallet"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:fontFamily="@font/inter_regular"
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_minus6sdp"
+                        android:src="@drawable/ic_longarrow" />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:layout_marginVertical="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/_4sdp"
+                        app:cardElevation="1dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="@dimen/_4sdp">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardOffer"
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="@color/status_bar"
+                                app:cardCornerRadius="@dimen/_2sdp">
+
+                                <ImageView
+                                    android:id="@+id/ivOffer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_offer" />
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                style="@style/SenaryTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/cardOffer"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:fontFamily="@font/inter_regular"
+                                android:gravity="center_horizontal"
+                                android:text="@string/friend_purchase"
+                                android:textAlignment="center" />
+                        </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_minus6sdp"
+                        android:src="@drawable/ic_longarrow" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginVertical="@dimen/_6sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/_4sdp"
+                        app:cardElevation="1dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:gravity="center_horizontal"
-                            android:text="@string/get_amount" />
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
+                            android:padding="@dimen/_4sdp">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardWallet"
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="@color/status_bar"
+                                app:cardCornerRadius="@dimen/_2sdp">
+
+                                <ImageView
+                                    android:id="@+id/ivWallet"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_wallet" />
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                style="@style/SenaryTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/cardWallet"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:fontFamily="@font/inter_regular"
+                                android:gravity="center_horizontal"
+                                android:text="@string/get_amount" />
+                        </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_12sdp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_12sdp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginBottom="@dimen/_6sdp"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
-
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_12sdp"
-                app:cardCornerRadius="@dimen/_6sdp">
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:background="@color/white"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/vpbannerimage" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginVertical="@dimen/_12sdp"
+                    app:cardCornerRadius="@dimen/_6sdp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/vpbannerimage" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!--
+                    <TextView
+                        style="@style/HomeHeadingTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:text="@string/get_your_personalised_calender" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        &lt;!&ndash;  <CalendarView
+                              android:id="@+id/cvCalendar"
+                              android:layout_width="match_parent"
+                              android:layout_height="match_parent" /> &ndash;&gt;
+                        <CalendarView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30sp"
+                            android:dateTextAppearance="@style/CalendarDataTextStyle"
+                            android:weekDayTextAppearance="@style/CalendarWeeksTextStyle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginVertical="@dimen/_12sdp"
+                            app:cardCornerRadius="@dimen/_6sdp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_100sdp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/vpbannerimage" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>-->
         </LinearLayout>
-
-<!--
-        <TextView
-            style="@style/HomeHeadingTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:text="@string/get_your_personalised_calender" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white">
-
-            &lt;!&ndash;  <CalendarView
-                  android:id="@+id/cvCalendar"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent" /> &ndash;&gt;
-            <CalendarView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
-                android:dateTextAppearance="@style/CalendarDataTextStyle"
-                android:weekDayTextAppearance="@style/CalendarWeeksTextStyle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_12sdp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_12sdp"
-                app:cardCornerRadius="@dimen/_6sdp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/vpbannerimage" />
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>-->
-    </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
@@ -602,8 +603,6 @@
         android:id="@+id/noInternetConnection"
         layout="@layout/no_internet_connection"
         android:visibility="gone" />
-
-
 
 
 </LinearLayout>

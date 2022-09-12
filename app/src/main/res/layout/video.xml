@@ -9,7 +9,7 @@
         android:layout_height="@dimen/_130sdp"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginVertical="@dimen/_4sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
         app:cardCornerRadius="@dimen/_10ssp"
         app:cardElevation="0dp">
 

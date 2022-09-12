@@ -330,6 +330,38 @@
                         android:theme="@style/QuaternaryTextStyle" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/llDownloadHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:orientation="horizontal"
+
+                    android:paddingVertical="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_downloadicon"
+                            app:tint="@color/black" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/download_history"
+                        android:theme="@style/QuaternaryTextStyle" />
+                </LinearLayout>
+
 
                 <!--
 
