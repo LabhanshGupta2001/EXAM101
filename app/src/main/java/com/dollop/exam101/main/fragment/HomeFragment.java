@@ -196,7 +196,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, IOnB
 
     private void getBanner() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
-        apiService.getBannerLit().enqueue(new Callback<AllResponseModel>() {
+        apiService.getBannerList().enqueue(new Callback<AllResponseModel>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -372,17 +372,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener, IOnB
                     Blogarraylist.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Blogarraylist.addAll(response.body().blogs);
-                        title.clear();
-                        title.add(Constants.Key.CurrentAffairs);
-                        fragments.add(new CurrentAffairsFragment());
-
-                        if (Blogarraylist.isEmpty() || Blogarraylist.equals(Constants.Key.blank)) {
+                        if (response.body().blogs != null && !response.body().blogs.isEmpty()) {
+                            Blogarraylist.addAll(response.body().blogs);
+                            blogsFragment.Blogarraylist.clear();
+                            blogsFragment.Blogarraylist.addAll(Blogarraylist);
                         } else {
                             fragments.remove(blogsFragment);
                             binding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                         }
                         viewPagerFragmentAdapter.notifyDataSetChanged();
+
 
                     } else {
                         assert response.errorBody() != null;

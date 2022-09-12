@@ -52,8 +52,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:queryHint="@string/search_here"
-                    android:background="@null"
                     android:inputType="text"
+                    app:queryBackground="@color/white"
                     android:singleLine="true" />
 
         </com.google.android.material.card.MaterialCardView>

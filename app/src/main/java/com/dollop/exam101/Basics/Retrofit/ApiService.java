@@ -134,7 +134,7 @@ public interface ApiService {
     Call<AllResponseModel> getStudentMockTestListApi(@Header(Constants.Key.Authorization) String token);
 
     @GET(Const.Url.getBannerListApi)
-    Call<AllResponseModel> getBannerLit();
+    Call<AllResponseModel> getBannerList();
 
    /* @GET(Const.Url.getRaisedComplaintDetailApi)
     Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,
@@ -362,7 +362,6 @@ public interface ApiService {
     @GET(Const.Url.getStudentOrderListApi)
     Call<AllResponseModel> getStudentOrderListApi(@Header(Constants.Key.Authorization) String token);
 
-    @GET(Const.Url.getBannerListApi)
-    Call<AllResponseModel> getBannerLit();
+
 
 }

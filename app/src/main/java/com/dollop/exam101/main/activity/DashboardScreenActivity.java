@@ -163,7 +163,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
             @Override
             public void onDestinationChanged(@NonNull NavController navController,
                                              @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
-                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.in_from_left);
                 switch (navDestination.getId()) {
                     case R.id.bottom_home:
                         navHeaderDashboardBinding.ivHome.setColorFilter(ContextCompat.getColor(activity, R.color.theme));
@@ -173,7 +172,6 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                         binding.llNotification.setVisibility(View.VISIBLE);
                         binding.ivLogo.setVisibility(View.VISIBLE);
                         binding.tvHeading.setVisibility(View.GONE);
-                        binding.appBarLayout.setAnimation(animation);
 
                         break;
                     case R.id.bottom_category:

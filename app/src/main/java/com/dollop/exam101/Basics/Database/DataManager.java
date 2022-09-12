@@ -31,6 +31,7 @@ public class DataManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         UserData.CreateTable(db);
         PdfVideoTable.CreateTable(db);
+        SearchHistoryTable.CreateTable(db);
 
     }
 
@@ -43,6 +44,7 @@ public class DataManager extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int paramInt1, int paramInt2) {
         UserData.dropTable(db);
         PdfVideoTable.dropTable(db);
+        SearchHistoryTable.dropTable(db);
         onCreate(db);
     }
 }

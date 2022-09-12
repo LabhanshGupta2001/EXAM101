@@ -2,6 +2,7 @@ package com.dollop.exam101.main.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -211,12 +212,14 @@ public class SearchHistoryActivity extends BaseActivity implements View.OnClickL
     }
 
     private void packageList() {
+        Dialog progressdialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, Constants.Key.blank);
         hashMap.put(Constants.Key.languageId, Constants.Key.blank);
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressdialog.dismiss();
                 try {
                     assert response.body() != null;
                     if (response.body().packageModels.isEmpty()) {
@@ -256,6 +259,7 @@ public class SearchHistoryActivity extends BaseActivity implements View.OnClickL
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
+                progressdialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

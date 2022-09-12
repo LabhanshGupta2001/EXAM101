@@ -192,10 +192,4 @@ public class AllResponseModel {
     @SerializedName("middleObj2")
     @Expose
     public MiddleObj2 middleObj2;
-
-
-
-    @SerializedName("bannerList")
-    @Expose
-    public List<BannerModel> bannerModelList = null;
 }
