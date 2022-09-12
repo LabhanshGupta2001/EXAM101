@@ -32,6 +32,7 @@ public class DataManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         UserData.CreateTable(db);
+        SearchHistoryTable.CreateTable(db);
     }
 
     /**
@@ -43,6 +44,7 @@ public class DataManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int paramInt1, int paramInt2) {
         UserData.dropTable(db);
+        SearchHistoryTable.dropTable(db);
         onCreate(db);
     }
 }

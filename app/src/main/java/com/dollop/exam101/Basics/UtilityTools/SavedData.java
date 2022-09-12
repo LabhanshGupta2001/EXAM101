@@ -9,6 +9,10 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * Created by Anil on 9/4/2021.
@@ -18,7 +22,6 @@ public class SavedData {
     private static final String Language = "Language";
     private static final String ReferralCode = "ReferralCode";
     private static final String popUp = "popUp";
-    private static SharedPreferences prefs;
     private static final String latitude = "latitude";
     private static final String longitude = "longitude";
     private static final String CountryKey = "CountryKey";
@@ -26,12 +29,36 @@ public class SavedData {
     private static final String CountryUuId = "CountryUuId";
     private static final String Shared = "Shared";
     private static final String GetStartClick = "GetStartClick";
+    private static final String SearchHistoryItem = "SearchHistoryItem";
+    private static final Set<String> set = new HashSet<String>();
+    private static SharedPreferences prefs;
 
     public static SharedPreferences getInstance() {
         if (prefs == null) {
             prefs = PreferenceManager.getDefaultSharedPreferences(AppController.getInstance());
         }
         return prefs;
+    }
+
+    public static Set getSearchHistory() {
+        Set<String> stringSet;
+        stringSet = getInstance().getStringSet(SearchHistoryItem, new HashSet<>());
+        return stringSet;
+    }
+
+    public static void saveSearchHistory(ArrayList list) {
+        SharedPreferences.Editor editor = prefs.edit();
+        set.addAll(list);
+        editor.putStringSet(SearchHistoryItem, set);
+        Utils.E("set::" + set);
+        editor.apply();
+    }
+
+    public static void removeSearchHistory() {
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.remove(SearchHistoryItem);
+        editor.apply();
     }
 
     public static String getLanguage() {
@@ -57,6 +84,7 @@ public class SavedData {
     public static boolean getStartClick() {
         return getInstance().getBoolean(GetStartClick, false);
     }
+
     public static void saveGetStartClick(boolean role) {
         SharedPreferences.Editor editor = getInstance().edit();
         editor.putBoolean(GetStartClick, role);

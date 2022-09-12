@@ -194,4 +194,7 @@ public class AllResponseModel {
 
 
 
+    @SerializedName("bannerList")
+    @Expose
+    public List<BannerModel> bannerModelList = null;
 }
