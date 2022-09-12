@@ -1,53 +1,61 @@
 package com.dollop.exam101.main.adapter;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.Database.PdfVideoTable;
+import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
-import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemTopicPdfBinding;
 import com.dollop.exam101.main.activity.PdfViewActivity;
-import com.dollop.exam101.main.activity.VideoViewActivity;
 import com.dollop.exam101.main.model.TopicDetailModel;
-import com.github.barteksc.pdfviewer.PDFView;
-import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
-import com.github.barteksc.pdfviewer.util.FitPolicy;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class TopicPdfadapter extends RecyclerView.Adapter<TopicPdfadapter.MyViewHolder> {
     TopicDetailModel topicDetailModel;
     Context context;
+    File fileDownLoad = null;
     private String fileName;
-    private String For;
+    private Bundle bundle2;
+    private ProgressDialog pDialog;
 
-    public TopicPdfadapter(TopicDetailModel topicDetailModel, Context context, String For) {
+    public TopicPdfadapter(TopicDetailModel topicDetailModel, Context context, String pdf, Bundle bundle) {
         this.topicDetailModel = topicDetailModel;
         this.context = context;
-        this.For = For;
+        this.bundle2 = bundle;
     }
 
     @NonNull
+
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemTopicPdfBinding binding = ItemTopicPdfBinding.inflate(LayoutInflater.from(context));
@@ -56,82 +64,79 @@ public class TopicPdfadapter extends RecyclerView.Adapter<TopicPdfadapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        if (For == "pdf") {
-            String pdf = topicDetailModel.pdfFile.get(position);
-            holder.binding.tvUpload.setText(pdf);
-            holder.binding.cvPdf.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //  showPDFDialog(pdf);
-                    Bundle bundle = new Bundle();
-                    bundle.putString(Constants.Key.pdf, pdf);
-                    bundle.putString(Constants.Key.urlType, Constants.Key.pdf);
-                    Utils.I(context, PdfViewActivity.class, bundle);
-                }
-            });
+        String pdf = topicDetailModel.pdfFile.get(position);
+        holder.binding.tvUpload.setText(pdf);
+        holder.binding.cvPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fileName = pdf.substring(pdf.lastIndexOf('/') + 1);
+                //  fileDownLoad = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
+                fileDownLoad = new File(context.getFilesDir().getAbsolutePath(), fileName);
+                Date c = Calendar.getInstance().getTime();
+                System.out.println("Current time => " + c);
+                SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+                String formattedDate = df.format(c);
+                Bundle bundle = new Bundle();
 
-        }
+                if (fileDownLoad.exists()) {
+                    bundle.putString(Constants.Key.pdf, fileDownLoad.toString());
+                    bundle.putString(Constants.Key.From, Constants.Key.Document);
+                    Utils.E("fileDownLoad::::::" + fileDownLoad);
+                    //  OpenPDFFile();
+                    Utils.I(context, PdfViewActivity.class, bundle);
+
+                } else {
+                    bundle.putString(Constants.Key.pdf, Const.Url.HOST_URL + pdf);
+                    bundle.putString(Constants.Key.From, Constants.Key.urlType);
+                    try {
+                        //Adding data in DataBase
+                        storeInDB(fileDownLoad.toString(), formattedDate);
+                        fileDownLoad.createNewFile();
+                        new DownloadFileFromURL().execute(Const.Url.HOST_URL + pdf);
+                        Utils.E("Downloading::::" + Const.Url.HOST_URL + pdf);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Utils.E("Errorsss:::::" + e.getMessage());
+                    }
+                    Utils.I(context, PdfViewActivity.class, bundle);
+
+                }
+            }
+        });
 
     }
+
 
     @Override
     public int getItemCount() {
-        if (For == "video") {
-            return topicDetailModel.video.size();
-        }
-        if (For == "pdf") {
-            return topicDetailModel.pdfFile.size();
-        }
-        return 0;
+
+        return topicDetailModel.pdfFile.size();
+
     }
 
-    private void getFileName(String uri) {
-        Cursor returnCursor =
-                context.getContentResolver().query(Uri.parse(uri), null, null, null, null);
-        try {
-            int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-            returnCursor.moveToFirst();
-            fileName = returnCursor.getString(nameIndex);
-
-            Utils.E("file name : " + fileName);
-        } catch (Exception e) {
-            Utils.E("error: " + e);
-            //handle the failure cases here
-        } finally {
-            returnCursor.close();
-        }
+    protected Dialog onCreateDialog() {
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage("Downloading file. Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setMax(100);
+        pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        pDialog.setCancelable(true);
+        pDialog.show();
+        return pDialog;
     }
 
-    public void showPDFDialog(String pdf) {
-        Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        assert dialog.getWindow() != null;
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.pdf_dialog);
-        PDFView pdfView = dialog.findViewById(R.id.pdfView);
-        Button cancelButton = dialog.findViewById(R.id.cancel_action);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        AsyncTask.execute(() -> {
-            try {
-                final InputStream input = new URL(Const.Url.HOST_URL + pdf).openStream();
-                ((Activity) context).runOnUiThread(() -> pdfView.fromStream(input)
-                        .enableSwipe(true)
-                        .fitEachPage(true)
-                        .pageFitPolicy(FitPolicy.BOTH)
-                        .enableAnnotationRendering(true)
-                        .scrollHandle(new DefaultScrollHandle(context))
-                        .load());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        dialog.show();
+    void storeInDB(String fileName, String date) {
+        PdfVideoTable pdfData = new PdfVideoTable();
+        pdfData.orderExamUUID = bundle2.getString(Constants.Key.orderExamUuid);
+        pdfData.topicUUID = bundle2.getString(Constants.Key.topicUuid);
+        pdfData.topicName = bundle2.getString(Constants.Key.topicName);
+        pdfData.topicDescription = bundle2.getString(Constants.Key.topicDetail);
+        pdfData.pdfPath = fileName;
+        pdfData.date = date;
+        UserDataHelper.getInstance().insertPdfData(pdfData);
+
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -143,24 +148,98 @@ public class TopicPdfadapter extends RecyclerView.Adapter<TopicPdfadapter.MyView
         }
     }
 
-/*
-    private void displayFromUri(ComplaintModel model) {
-        AsyncTask.execute(() -> {
+    class DownloadFileFromURL extends AsyncTask<String, String, String> {
+
+        /**
+         * Before starting background thread Show Progress Bar Dialog
+         */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+          //  onCreateDialog();
+        }
+
+        /**
+         * Downloading file in background thread
+         */
+        @Override
+        protected String doInBackground(String... f_url) {
+            int count;
             try {
 
+                URL url = new URL(f_url[0]);
+                URLConnection connection = url.openConnection();
+                connection.connect();
 
-                final InputStream input = new URL(Const.Url.HOST_URL + model.attachment).openStream();
-                ((Activity)context).runOnUiThread(() -> bottomsheetRaiseComplaintsBinding.pvImagePdf.fromStream(input)
-                        .enableSwipe(true)
-                        .fitEachPage(true)
-                        .pageFitPolicy(FitPolicy.BOTH)
-                        .enableAnnotationRendering(true)
-                        .scrollHandle(new DefaultScrollHandle(context))
-                        .load());
+                // this will be useful so that you can show a tipical 0-100%
+                // progress bar
+                int lenghtOfFile = connection.getContentLength();
+
+                // download the file
+                InputStream input = new BufferedInputStream(url.openStream(),
+                        8192);
+
+                // Output stream
+                //Date date=new Date();
+                String fileName = f_url[0].substring(f_url[0].lastIndexOf('/') + 1);
+
+
+                OutputStream output = new FileOutputStream(fileDownLoad);
+
+                byte data[] = new byte[1024];
+
+                long total = 0;
+
+                while ((count = input.read(data)) != -1) {
+                    total += count;
+                    // publishing the progress....
+                    // After this onProgressUpdate will be called
+                    publishProgress("" + (int) ((total * 100) / lenghtOfFile));
+
+                    // writing data to file
+                    output.write(data, 0, count);
+                }
+
+                // flushing output
+                output.flush();
+
+                // closing streams
+                output.close();
+                input.close();
+                JSONObject jsonObject = new JSONObject("");
+
+            } catch (JSONException e) {
+                Log.e("Error: ", e.getMessage());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+
+            return null;
+        }
+
+        /**
+         * Updating progress bar
+         */
+        protected void onProgressUpdate(String... progress) {
+            // setting progress percentage
+           // pDialog.setProgress(Integer.parseInt(progress[0]));
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         **/
+        @Override
+        protected void onPostExecute(String file_url) {
+            // dismiss the dialog after the file was downloaded
+             Utils.E("Post Executed ::: " + file_url);
+         //   pDialog.dismiss();
+
+        }
+
     }
-*/
+
 }

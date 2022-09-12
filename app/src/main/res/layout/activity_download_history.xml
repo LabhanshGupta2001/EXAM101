@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/llMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lineColor"
     android:orientation="vertical"
-    tools:context=".main.fragment.MockTestListFragment">
+    android:background="@color/theme_light"
+    tools:context=".main.activity.DownloadHistory">
 
-<!--
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
+        android:elevation="1dp"
         android:layout_height="?actionBarSize"
         android:background="@color/white"
-        android:elevation="@dimen/_3sdp"
+
         android:gravity="center_vertical"
         android:padding="@dimen/_4sdp">
 
@@ -22,9 +22,10 @@
             android:id="@+id/ivBack"
             android:layout_width="@dimen/_34sdp"
             android:layout_height="@dimen/_28sdp"
-            android:contentDescription="@string/back_arrow"
+            android:contentDescription="@string/image"
             android:padding="@dimen/_8sdp"
             android:src="@drawable/ic_backarrow" />
+
 
         <TextView
             style="@style/TernaryTextStyle"
@@ -32,26 +33,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/gothic_bold"
-            android:text="@string/mock_test" />
+            android:text="Download History" />
     </LinearLayout>
--->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMockTestList"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/llToolbar"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textAlignment="center"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@color/theme"
+        app:tabTextAppearance="@style/TabTextStyle1"
+        app:tabTextColor="@color/black" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerHome"
+        style="@style/HomeHeadingTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayout"
+        android:layout_marginTop="@dimen/_1sdp"
         android:background="@color/white"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:visibility="visible" />
-
-    <include
-        android:id="@+id/dataNoFoundId"
-        layout="@layout/no_result_found"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
-</RelativeLayout>
+        android:nestedScrollingEnabled="true"
+        android:paddingHorizontal="@dimen/_12sdp" />
+</LinearLayout>

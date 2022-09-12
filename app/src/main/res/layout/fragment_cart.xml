@@ -2,16 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".main.fragment.CartFragment">
 
+<!--
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/white"
+        android:visibility="gone"
         android:elevation="@dimen/_3sdp"
         android:gravity="center_vertical"
         android:padding="@dimen/_4sdp">
@@ -33,499 +36,508 @@
             android:fontFamily="@font/gothic_bold"
             android:text="@string/cart" />
     </LinearLayout>
+-->
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollCartItem"
+    <RelativeLayout
+        android:id="@+id/rlMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/rlBottom"
-        android:layout_below="@+id/llToolbar"
-        android:overScrollMode="never"
-        android:visibility="visible">
+        android:layout_below="@id/llToolbar"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
 
-        <LinearLayout
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollCartItem"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TextView
-                style="@style/TernaryTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/lineColor"
-                android:fontFamily="@font/gothic_bold"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingTop="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:text="@string/package_list" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPackageList_Id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
-                android:paddingBottom="@dimen/_12sdp" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_12sdp"
-                android:background="@color/lineColor"
-                android:orientation="vertical" />
-
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rlBottom"
+            android:overScrollMode="never">
 
             <LinearLayout
-                android:id="@+id/llCouponReferral"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvApplyCoupon"
+
+                <TextView
+                    style="@style/TernaryTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginVertical="@dimen/_12sdp"
-                    app:cardCornerRadius="@dimen/_5sdp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/HorizontallineColor"
-                    app:strokeWidth="1dp">
+                    android:background="@color/lineColor"
+                    android:fontFamily="@font/gothic_bold"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@string/package_list" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardProfile"
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_marginVertical="@dimen/_8sdp"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:backgroundTint="@color/lineColor"
-                            app:cardCornerRadius="@dimen/_4sdp"
-                            app:cardElevation="0dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:contentDescription="@string/image"
-                                android:src="@drawable/ic_refalcodeicon" />
-
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <TextView
-                            android:id="@+id/tvApplyCoupon_Id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginHorizontal="@dimen/_8sdp"
-                            android:layout_toEndOf="@id/cardProfile"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/apply_coupon"
-                            android:theme="@style/QuaternaryTextStyle" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerInParent="true"
-                            android:layout_marginEnd="@dimen/_8sdp"
-                            android:contentDescription="@string/image"
-                            android:src="@drawable/ic_backarrowtwo" />
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvReferralCode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginBottom="@dimen/_12sdp"
-                    app:cardCornerRadius="@dimen/_5sdp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/HorizontallineColor"
-                    app:strokeWidth="1dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardProfiletwo"
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_marginVertical="@dimen/_8sdp"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:backgroundTint="@color/lineColor"
-                            app:cardCornerRadius="@dimen/_4sdp"
-
-
-                            app:cardElevation="0dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:contentDescription="@string/image"
-                                android:src="@drawable/ic_refalcodeicon" />
-
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <TextView
-                            android:id="@+id/tvReferralCode_Id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginHorizontal="@dimen/_8sdp"
-                            android:layout_toEndOf="@id/cardProfiletwo"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/referral_code"
-                            android:theme="@style/QuaternaryTextStyle" />
-
-                        <ImageView
-                            android:id="@+id/ivOpenBottomsheetReferral_Id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerInParent="true"
-                            android:layout_marginEnd="@dimen/_8sdp"
-                            android:contentDescription="@string/image"
-                            android:src="@drawable/ic_backarrowtwo" />
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvCouponHeading"
-                style="@style/TernaryTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/lineColor"
-                android:fontFamily="@font/gothic_bold"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingTop="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:text="@string/coupon"
-                android:visibility="gone" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/CardViewCoupon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_12sdp"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/LightGreenBgColor"
-                app:cardCornerRadius="@dimen/_5sdp"
-                app:strokeColor="@color/theme"
-                app:strokeWidth="@dimen/_1sdp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical">
-
-
-                    <ImageView
-                        android:id="@+id/ivClick"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_12sdp"
-                        android:src="@drawable/ic_right_click_up" />
-
-                    <TextView
-                        android:id="@+id/tvCoupon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_toEndOf="@id/ivClick"
-                        android:fontFamily="@font/inter_medium"
-                        android:theme="@style/QuaternaryTextStyle" />
-
-                    <TextView
-                        android:id="@+id/tvRemoveCoupon"
-                        style="@style/QuinaryRedTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:paddingVertical="@dimen/_16sdp"
-                        android:layout_marginEnd="@dimen/_8sdp"
-                        android:contentDescription="@string/image"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="Remove" />
-                </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                style="@style/TernaryTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/lineColor"
-                android:fontFamily="@font/gothic_bold"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingTop="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:text="@string/oder_summary" />
-
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/_12sdp"
-                app:cardCornerRadius="@dimen/_5sdp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/HorizontallineColor"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPackageList_Id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingBottom="@dimen/_12sdp" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_12sdp"
+                    android:background="@color/lineColor"
+                    android:orientation="vertical" />
+
+
+                <LinearLayout
+                    android:id="@+id/llCouponReferral"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:layout_marginTop="@dimen/_12sdp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/sub_total"
-                            android:theme="@style/QuaternaryLightSubTextStyle" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toStartOf="@+id/tvSubTotal_Id"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/rupee_symbol"
-                            android:theme="@style/QuaternaryLightTextStyle" />
-
-
-                        <TextView
-                            android:id="@+id/tvSubTotal_Id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:fontFamily="@font/inter_medium"
-                            android:theme="@style/QuaternaryLightTextStyle" />
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvApplyCoupon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:layout_marginTop="@dimen/_12sdp">
+                        android:layout_marginVertical="@dimen/_12sdp"
+                        app:cardCornerRadius="@dimen/_5sdp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/HorizontallineColor"
+                        app:strokeWidth="1dp">
 
-                        <TextView
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/sgst_and_cgst_or_igst"
-                            android:theme="@style/QuaternaryLightSubTextStyle" />
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical">
 
-                        <TextView
-                            android:id="@+id/tvSgst"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:fontFamily="@font/inter_medium"
-                            android:theme="@style/QuaternaryLightTextStyle"
-                            tools:ignore="RelativeOverlap" />
-                    </RelativeLayout>
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/cardProfile"
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginVertical="@dimen/_8sdp"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:backgroundTint="@color/lineColor"
+                                app:cardCornerRadius="@dimen/_4sdp"
+                                app:cardElevation="0dp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@string/image"
+                                    android:src="@drawable/ic_refalcodeicon" />
 
 
-                    <RelativeLayout
-                        android:id="@+id/rlCouponDiscount"
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/tvApplyCoupon_Id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="@dimen/_8sdp"
+                                android:layout_toEndOf="@id/cardProfile"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/apply_coupon"
+                                android:theme="@style/QuaternaryTextStyle" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginEnd="@dimen/_8sdp"
+                                android:contentDescription="@string/image"
+                                android:src="@drawable/ic_backarrowtwo" />
+                        </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvReferralCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:visibility="gone"
-                        android:layout_marginTop="@dimen/_12sdp">
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        app:cardCornerRadius="@dimen/_5sdp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/HorizontallineColor"
+                        app:strokeWidth="1dp">
 
-                        <TextView
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/coupon_discount"
-                            android:theme="@style/QuaternaryLightSubTextStyle" />
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/cardProfiletwo"
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginVertical="@dimen/_8sdp"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:backgroundTint="@color/lineColor"
+                                app:cardCornerRadius="@dimen/_4sdp"
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/tvCouponDiscount"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/rupee_symbol"
-                            android:theme="@style/QuaternaryLightTextStyle" />
+                                app:cardElevation="0dp">
 
-                        <TextView
-                            android:id="@+id/tvCouponDiscount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:fontFamily="@font/inter_medium"
-                            android:theme="@style/QuaternaryLightTextStyle" />
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:background="@color/lineColor" />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@string/image"
+                                    android:src="@drawable/ic_refalcodeicon" />
 
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_12sdp">
+                            </com.google.android.material.card.MaterialCardView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/grand_total"
-                            android:theme="@style/QuaternaryLightTextStyle" />
+                            <TextView
+                                android:id="@+id/tvReferralCode_Id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="@dimen/_8sdp"
+                                android:layout_toEndOf="@id/cardProfiletwo"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/referral_code"
+                                android:theme="@style/QuaternaryTextStyle" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toStartOf="@+id/tvGrandtotal"
-                            android:fontFamily="@font/inter_medium"
-                            android:text="@string/rupee_symbol"
-                            android:theme="@style/QuaternaryLightTextStyle" />
-
-                        <TextView
-                            android:id="@+id/tvGrandtotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:fontFamily="@font/inter_semibold"
-                            android:theme="@style/QuaternaryLightTextStyle" />
-                    </RelativeLayout>
+                            <ImageView
+                                android:id="@+id/ivOpenBottomsheetReferral_Id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginEnd="@dimen/_8sdp"
+                                android:contentDescription="@string/image"
+                                android:src="@drawable/ic_backarrowtwo" />
+                        </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/tvCouponHeading"
+                    style="@style/TernaryTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lineColor"
+                    android:fontFamily="@font/gothic_bold"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@string/coupon"
+                    android:visibility="gone" />
 
-    <RelativeLayout
-        android:id="@+id/rlBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:visibility="gone">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/CardViewCoupon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/LightGreenBgColor"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:strokeColor="@color/theme"
+                    app:strokeWidth="@dimen/_1sdp">
 
-        <LinearLayout
-            android:id="@+id/llGrandTotal"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+
+                        <ImageView
+                            android:id="@+id/ivClick"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:src="@drawable/ic_right_click_up" />
+
+                        <TextView
+                            android:id="@+id/tvCoupon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="@dimen/_8sdp"
+                            android:layout_toEndOf="@id/ivClick"
+                            android:fontFamily="@font/inter_medium"
+                            android:theme="@style/QuaternaryTextStyle" />
+
+                        <TextView
+                            android:id="@+id/tvRemoveCoupon"
+                            style="@style/QuinaryRedTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:contentDescription="@string/image"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingVertical="@dimen/_16sdp"
+                            android:text="Remove" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    style="@style/TernaryTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lineColor"
+                    android:fontFamily="@font/gothic_bold"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@string/oder_summary" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/_12sdp"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/HorizontallineColor"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_12sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/sub_total"
+                                android:theme="@style/QuaternaryLightSubTextStyle" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toStartOf="@+id/tvSubTotal_Id"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/rupee_symbol"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+
+
+                            <TextView
+                                android:id="@+id/tvSubTotal_Id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:fontFamily="@font/inter_medium"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_12sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/sgst_and_cgst_or_igst"
+                                android:theme="@style/QuaternaryLightSubTextStyle" />
+
+                            <TextView
+                                android:id="@+id/tvSgst"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:fontFamily="@font/inter_medium"
+                                android:theme="@style/QuaternaryLightTextStyle"
+                                tools:ignore="RelativeOverlap" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/rlCouponDiscount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/coupon_discount"
+                                android:theme="@style/QuaternaryLightSubTextStyle" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toLeftOf="@+id/tvCouponDiscount"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/rupee_symbol"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+
+                            <TextView
+                                android:id="@+id/tvCouponDiscount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:fontFamily="@font/inter_medium"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:background="@color/lineColor" />
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginBottom="@dimen/_12sdp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/grand_total"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toStartOf="@+id/tvGrandtotal"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="@string/rupee_symbol"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+
+                            <TextView
+                                android:id="@+id/tvGrandtotal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:fontFamily="@font/inter_semibold"
+                                android:theme="@style/QuaternaryLightTextStyle" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/rlBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_toLeftOf="@+id/cvProceedToCheckOut"
-            android:gravity="center"
-            android:orientation="vertical">
-
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
+                android:id="@+id/llGrandTotal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_toLeftOf="@+id/cvProceedToCheckOut"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <TextView
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="@string/rupee_symbol"
-                    android:theme="@style/SecondaryTextStyle" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="@string/rupee_symbol"
+                        android:theme="@style/SecondaryTextStyle" />
+
+                    <TextView
+                        android:id="@+id/tvGrandTotalBottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center_horizontal"
+                        android:theme="@style/SecondaryTextStyle" />
+
+                </LinearLayout>
+
 
                 <TextView
-                    android:id="@+id/tvGrandTotalBottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/inter_semibold"
+                    android:fontFamily="@font/inter_medium"
                     android:gravity="center_horizontal"
-                    android:theme="@style/SecondaryTextStyle" />
+                    android:singleLine="true"
+                    android:text="@string/grand_total"
+                    android:theme="@style/QuaternaryLightSubTextStyle" />
 
             </LinearLayout>
 
 
-            <TextView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvProceedToCheckOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/inter_medium"
-                android:gravity="center_horizontal"
-                android:singleLine="true"
-                android:text="@string/grand_total"
-                android:theme="@style/QuaternaryLightSubTextStyle" />
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                app:cardBackgroundColor="@color/theme"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/theme"
+                app:strokeWidth="@dimen/_1sdp">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvButtonCheckout_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:text="@string/proceed_to_checkout"
+                    android:theme="@style/QuaternarySecondaryTextStyle" />
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
+        <include
+            android:id="@+id/noResultFoundId"
+            layout="@layout/empty_card"
+            android:visibility="gone" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cvProceedToCheckOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_12sdp"
-            app:cardBackgroundColor="@color/theme"
-            app:cardCornerRadius="@dimen/_8sdp"
-            app:strokeColor="@color/theme"
-            app:strokeWidth="@dimen/_1sdp">
+        <include
+            android:id="@+id/noInternetConnection"
+            layout="@layout/no_internet_connection"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tvButtonCheckout_Id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center_horizontal"
-                android:paddingHorizontal="@dimen/_16sdp"
-                android:paddingVertical="@dimen/_10sdp"
-                android:text="@string/proceed_to_checkout"
-                android:theme="@style/QuaternarySecondaryTextStyle" />
-        </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
-
-    <include
-        android:id="@+id/noResultFoundId"
-        layout="@layout/empty_card"
-        android:visibility="gone" />
-
-    <include
-        android:id="@+id/noInternetConnection"
-        layout="@layout/no_internet_connection"
-        android:visibility="gone" />
-
 
 </RelativeLayout>

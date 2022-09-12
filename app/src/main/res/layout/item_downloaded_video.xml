@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_65sdp"
+            android:layout_weight=".4"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_play_recordingId"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_65sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/videodummy" />
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_play_recordingId"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_6sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="17:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    tools:ignore="SpUsage" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_weight=".6"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tvTopicName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:fontFamily="@font/gothic_bold"
+                android:singleLine="true"
+                android:text="Digital Design Thinking."
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+            <TextView
+                android:id="@+id/tvTopicDescriptioin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:singleLine="true"
+                android:text="12/1/2021"
+                android:textColor="#6E6E6E"
+                android:textSize="@dimen/_10sdp"
+                tools:ignore="SpUsage" />
+
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="bottom"
+                android:text="12/1/2021"
+                android:textColor="#6E6E6E"
+                android:textSize="@dimen/_9sdp"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

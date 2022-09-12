@@ -89,6 +89,13 @@ public class UserDataHelper {
         close();
     }
 
+    public void deletePdfVideo(PdfVideoTable pdfVideo) {
+        open();
+        db.delete(PdfVideoTable.TABLE_NAME, PdfVideoTable.ORDER_EXAM_UUID + " = '"
+                + pdfVideo.orderExamUUID + "'", null);
+        close();
+    }
+
     /**
      * delete All Data From the Table
      */
@@ -117,10 +124,14 @@ public class UserDataHelper {
         read();
         @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + UserData.TABLE_NAME + " where " + UserData.KEY_StudentId + "='"
                 + userData.studentId + "'", null);
-        if (cur.moveToFirst()) {
-            return true;
-        }
-        return false;
+        return cur.moveToFirst();
+    }
+
+    private boolean isExistPDF(PdfVideoTable pdfVideo) {
+        read();
+        @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + PdfVideoTable.TABLE_NAME + " where " + PdfVideoTable.ORDER_EXAM_UUID + "='"
+                + pdfVideo.orderExamUUID + "'", null);
+        return cur.moveToFirst();
     }
 
     /**
@@ -171,6 +182,7 @@ public class UserDataHelper {
         values.put(UserData.KEY_isPasswordGenerated, userData.isPasswordGenerated);
 
 
+
         if (!isExist(userData)) {
             Utils.E("insert successfully");
             Utils.E("Values::" + values);
@@ -179,6 +191,33 @@ public class UserDataHelper {
             Utils.E("update successfully");
             db.update(UserData.TABLE_NAME, values, UserData.KEY_StudentId + "=" + userData.studentId, null);
         }
+        close();
+    }
+
+    public void insertPdfData(PdfVideoTable pdfVideoTable) {
+        open();
+        ContentValues values = new ContentValues();
+        // values.put(UserData.KEY_ID, userData.userId);
+        values.put(PdfVideoTable.ORDER_EXAM_UUID, pdfVideoTable.orderExamUUID);
+        values.put(PdfVideoTable.Topic_UUID, pdfVideoTable.topicUUID);
+        values.put(PdfVideoTable.PDF_PATH, pdfVideoTable.pdfPath);
+        values.put(PdfVideoTable.Date, pdfVideoTable.date);
+        values.put(PdfVideoTable.TOPIC_NAME, pdfVideoTable.topicName);
+        values.put(PdfVideoTable.TOPIC_DESC, pdfVideoTable.topicDescription);
+        values.put(PdfVideoTable.VIDEO_PATH, pdfVideoTable.videoPath);
+        values.put(PdfVideoTable.VIDEO_NAME, pdfVideoTable.videoName);
+        values.put(PdfVideoTable.Video_DESC, pdfVideoTable.videoDescription);
+
+        db.insert(PdfVideoTable.TABLE_NAME, null, values);
+
+     /*   if (!isExistPDF(pdfVideoTable)) {
+            Utils.E("insert successfully");
+            Utils.E("Values::" + values);
+            db.insert(PdfVideoTable.TABLE_NAME, null, values);
+        } else {
+            Utils.E("update successfully");
+            db.update(PdfVideoTable.TABLE_NAME, values, PdfVideoTable.KEY_ID + "=" + pdfVideoTable.id, null);
+        }*/
         close();
     }
 
@@ -222,7 +261,7 @@ public class UserDataHelper {
             cursor.moveToLast();
             do {
                 UserData userData = new UserData();
-                // userData.userId = cursor.getString(cursor.getColumnIndex(UserData.KEY_ID));
+               // userData.userId = cursor.getString(cursor.getColumnIndex(UserData.KEY_ID));
                 userData.studentId = cursor.getString(cursor.getColumnIndex(UserData.KEY_StudentId));
                 userData.studentName = cursor.getString(cursor.getColumnIndex(UserData.Key_StudentName));
                 userData.studentEmail = cursor.getString(cursor.getColumnIndex(UserData.Key_StudentEmail));
@@ -234,11 +273,40 @@ public class UserDataHelper {
                 userData.mobileVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_MobileVerified));
                 userData.emailVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_EmailVerified));
                 userData.roleType = cursor.getString(cursor.getColumnIndex(UserData.Key_RoleType));
-                userData.profilePic = cursor.getString(cursor.getColumnIndex(UserData.KEY_profilePic));
-                userData.token = cursor.getString(cursor.getColumnIndex(UserData.KEY_Token));
+                userData.profilePic=cursor.getString(cursor.getColumnIndex(UserData.KEY_profilePic));
+                userData.token=cursor.getString(cursor.getColumnIndex(UserData.KEY_Token));
                 userData.isPasswordGenerated = cursor.getString(cursor.getColumnIndex(UserData.KEY_isPasswordGenerated));
 
                 userItem.add(userData);
+
+            } while ((cursor.moveToPrevious()));
+            cursor.close();
+        }
+        close();
+        return userItem;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<PdfVideoTable> getPdfList() {
+        ArrayList<PdfVideoTable> userItem = new ArrayList<>();
+        read();
+        Cursor cursor = db.rawQuery("select * from " + PdfVideoTable.TABLE_NAME, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToLast();
+            do {
+                PdfVideoTable pdfVideoTable = new PdfVideoTable();
+                // pdfVideoTable.userId = cursor.getString(cursor.getColumnIndex(PdfVideoTable.KEY_ID));
+                pdfVideoTable.orderExamUUID = cursor.getString(cursor.getColumnIndex(PdfVideoTable.ORDER_EXAM_UUID));
+                pdfVideoTable.topicUUID = cursor.getString(cursor.getColumnIndex(PdfVideoTable.Topic_UUID));
+                pdfVideoTable.topicName = cursor.getString(cursor.getColumnIndex(PdfVideoTable.TOPIC_NAME));
+                pdfVideoTable.pdfPath = cursor.getString(cursor.getColumnIndex(PdfVideoTable.PDF_PATH));
+                pdfVideoTable.date = cursor.getString(cursor.getColumnIndex(PdfVideoTable.Date));
+                pdfVideoTable.topicDescription = cursor.getString(cursor.getColumnIndex(PdfVideoTable.TOPIC_DESC));
+                pdfVideoTable.videoPath = cursor.getString(cursor.getColumnIndex(PdfVideoTable.VIDEO_PATH));
+                pdfVideoTable.videoName = cursor.getString(cursor.getColumnIndex(PdfVideoTable.VIDEO_NAME));
+                pdfVideoTable.videoDescription = cursor.getString(cursor.getColumnIndex(PdfVideoTable.Video_DESC));
+
+                userItem.add(pdfVideoTable);
 
             } while ((cursor.moveToPrevious()));
             cursor.close();

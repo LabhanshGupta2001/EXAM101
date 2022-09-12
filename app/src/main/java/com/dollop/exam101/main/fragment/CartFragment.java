@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.dollop.exam101.Basics.Retrofit.ApiService;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.IOnBackPressed;
 import com.dollop.exam101.Basics.UtilityTools.KeyboardUtils;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
@@ -51,8 +53,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CartFragment extends Fragment implements View.OnClickListener {
-    FragmentCartBinding binding;
+public class CartFragment extends Fragment implements View.OnClickListener, IOnBackPressed {
+    public FragmentCartBinding binding;
     Activity activity;
     String couponAndReferralCode = "";
     BottomSheetDialog bottomSheetApplyCoupon, bottomSheetDialogReferralCode;
@@ -84,64 +86,6 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void init() {
-        apiService = RetrofitClient.getClient();
-        binding.cvApplyCoupon.setOnClickListener(this);
-        binding.cvReferralCode.setOnClickListener(this);
-        binding.cvProceedToCheckOut.setOnClickListener(this);
-        binding.ivBack.setOnClickListener(this);
-        binding.tvRemoveCoupon.setOnClickListener(this);
-    }
-
-    private void couponCodeBottomSheet() {
-        bottomSheetApplyCoupon = new BottomSheetDialog(activity);
-        bottomsheetApplycouponBinding = BottomsheetApplycouponBinding.inflate(getLayoutInflater());
-        bottomSheetApplyCoupon.setContentView(bottomsheetApplycouponBinding.getRoot());
-        bottomSheetApplyCoupon.show();
-        bottomsheetApplycouponBinding.llParent.setOnClickListener(KeyboardUtils::hideKeyboard);
-        bottomsheetApplycouponBinding.etApplyCouponId.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                bottomsheetApplycouponBinding.tvErrorCoupon.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        bottomsheetApplycouponBinding.tvApply.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
-            @Override
-            public void onClick(View v) {
-
-                if (bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().isEmpty()) {
-                    bottomsheetApplycouponBinding.tvErrorCoupon.setVisibility(View.VISIBLE);
-                    bottomsheetApplycouponBinding.tvErrorCoupon.setText(R.string.empty_error);
-                    Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.top_to_bottom);
-                    bottomsheetApplycouponBinding.tvErrorCoupon.startAnimation(animation);
-                    KeyboardUtils.showKeyboard(activity);
-                    bottomsheetApplycouponBinding.etApplyCouponId.requestFocus();
-
-                } else {
-                    if (AppController.getInstance().isOnline()) {
-                        couponAndReferralCode = bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().trim();
-                        applyCouponCode();
-                        bottomSheetApplyCoupon.dismiss();
-                    } else {
-                        InternetDialog();
-                    }
-                }
-            }
-        });
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
@@ -155,10 +99,22 @@ public class CartFragment extends Fragment implements View.OnClickListener {
             } else {
                 InternetDialog();
             }
-        } else if (view == binding.ivBack) {
+        }/* else if (view == binding.ivBack) {
             binding.llToolbar.setVisibility(View.GONE);
-            ((DashboardScreenActivity) activity).navController.popBackStack();
-        } else if (view == binding.tvRemoveCoupon){
+            Animation animation = AnimationUtils.loadAnimation(activity, R.anim.lefttoright);
+            binding.llMain.startAnimation(animation);
+            new CountDownTimer(100, 100) {
+                public void onTick(long millisUntilFinished) {
+                }
+
+                public void onFinish() {
+                    binding.llToolbar.setVisibility(View.GONE);
+                    binding.rlMain.setVisibility(View.GONE);
+                    ((DashboardScreenActivity) activity).navController.popBackStack();
+                }
+            }.start();*/
+
+         else if (view == binding.tvRemoveCoupon) {
             binding.view.setVisibility(View.VISIBLE);
             binding.llCouponReferral.setVisibility(View.VISIBLE);
             binding.tvCouponHeading.setVisibility(View.GONE);
@@ -217,6 +173,65 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void init() {
+        apiService = RetrofitClient.getClient();
+        binding.cvApplyCoupon.setOnClickListener(this);
+        binding.cvReferralCode.setOnClickListener(this);
+        binding.cvProceedToCheckOut.setOnClickListener(this);
+        //binding.ivBack.setOnClickListener(this);
+        binding.tvRemoveCoupon.setOnClickListener(this);
+    }
+
+    private void couponCodeBottomSheet() {
+        bottomSheetApplyCoupon = new BottomSheetDialog(activity);
+        bottomsheetApplycouponBinding = BottomsheetApplycouponBinding.inflate(getLayoutInflater());
+        bottomSheetApplyCoupon.setContentView(bottomsheetApplycouponBinding.getRoot());
+        bottomSheetApplyCoupon.show();
+        bottomsheetApplycouponBinding.llParent.setOnClickListener(KeyboardUtils::hideKeyboard);
+        bottomsheetApplycouponBinding.etApplyCouponId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                bottomsheetApplycouponBinding.tvErrorCoupon.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        bottomsheetApplycouponBinding.tvApply.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+            @Override
+            public void onClick(View v) {
+
+                if (bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().isEmpty()) {
+                    bottomsheetApplycouponBinding.tvErrorCoupon.setVisibility(View.VISIBLE);
+                    bottomsheetApplycouponBinding.tvErrorCoupon.setText(R.string.empty_error);
+                    Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.top_to_bottom);
+                    bottomsheetApplycouponBinding.tvErrorCoupon.startAnimation(animation);
+                    KeyboardUtils.showKeyboard(activity);
+                    bottomsheetApplycouponBinding.etApplyCouponId.requestFocus();
+
+                } else {
+                    if (AppController.getInstance().isOnline()) {
+                        couponAndReferralCode = bottomsheetApplycouponBinding.etApplyCouponId.getText().toString().trim();
+                        applyCouponCode();
+                        bottomSheetApplyCoupon.dismiss();
+                    } else {
+                        InternetDialog();
+                    }
+                }
+            }
+        });
+    }
+
     private void applyCouponCode() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.ApplyCouponCode(Utils.GetSession().token, couponAndReferralCode).
@@ -272,6 +287,9 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 progressDialog.dismiss();
                 if (response.code() == StatusCodeConstant.OK) {
                     assert response.body() != null;
+                    Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+                    binding.rlMain.startAnimation(animation);
+                    binding.rlMain.setVisibility(View.VISIBLE);
                     if (!response.body().cartData.isEmpty()) {
                         binding.rlBottom.setVisibility(View.VISIBLE);
                         binding.scrollCartItem.setVisibility(View.VISIBLE);
@@ -402,7 +420,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     private void purchasePackage() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
-        hm.put(Constants.Key.couponCode,couponAndReferralCode);
+        hm.put(Constants.Key.couponCode, couponAndReferralCode);
         hm.put(Constants.Key.transactionId, "xyz");
         hm.put(Constants.Key.paymentMode, Constants.Key.Online);
         apiService.purchasePackage(Utils.GetSession().token, hm).enqueue(new Callback<AllResponseModel>() {
@@ -473,5 +491,25 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 Utils.E("getMessage::" + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        Utils.E("fragment::home");
+     //   binding.llToolbar.setVisibility(View.GONE);
+        Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadeout);
+        binding.llMain.startAnimation(animation);
+        new CountDownTimer(100, 100) {
+            public void onTick(long millisUntilFinished) {
+            }
+
+            public void onFinish() {
+           //     binding.llToolbar.setVisibility(View.GONE);
+                binding.rlMain.setVisibility(View.GONE);
+                ((DashboardScreenActivity) activity).navController.popBackStack();
+            }
+
+        }.start();
+        return true;
     }
 }

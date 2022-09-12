@@ -9,9 +9,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -28,6 +31,7 @@ import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.IOnBackPressed;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -35,6 +39,7 @@ import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.activity.AllPackageActivity;
 import com.dollop.exam101.main.activity.BlogDetailActivity;
 import com.dollop.exam101.main.activity.PackagesDetailActivity;
+import com.dollop.exam101.main.activity.DownloadHistory;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.BlogsHomeAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
@@ -61,7 +66,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, IOnBackPressed {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
     String Token, middleOneRedirection, middleTwoRedirection, bottomRedirection, bannerForMiddleOne, bannerForMiddleTwo, bannerForBottom;
@@ -125,6 +130,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         activity = requireActivity();
+        Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+        binding.llMain.setAnimation(animation);
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
         Utils.E("hy");
@@ -180,24 +187,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
-        // News Recyclerview code....
-
-     /*   newsModelArrayList.clear();
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-
-        newsAdapter = new NewsAdapter(getActivity(), newsModelArrayList);
-        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.rvNews.setLayoutManager(linearLayoutManager3);
-        binding.rvNews.setAdapter(newsAdapter);
-*/
-        // Calendar View Code...
-        //binding.cvCalendar.setPointerIcon();
 
         binding.middleBannerOne.setOnClickListener(this);
         binding.middleBannerTwo.setOnClickListener(this);
@@ -383,10 +372,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Blogarraylist.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        if (response.body().blogs != null && !response.body().blogs.isEmpty()) {
-                            Blogarraylist.addAll(response.body().blogs);
-                            blogsFragment.Blogarraylist.clear();
-                            blogsFragment.Blogarraylist.addAll(Blogarraylist);
+                        Blogarraylist.addAll(response.body().blogs);
+                        title.clear();
+                        title.add(Constants.Key.CurrentAffairs);
+                        fragments.add(new CurrentAffairsFragment());
+
+                        if (Blogarraylist.isEmpty() || Blogarraylist.equals(Constants.Key.blank)) {
                         } else {
                             fragments.remove(blogsFragment);
                             binding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -439,13 +430,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding.llMain.setBackgroundColor(getResources().getColor(R.color.white));
         binding.scrollView.setVisibility(View.GONE);
         binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvMyDownloads.setVisibility(View.VISIBLE);
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                binding.scrollView.setVisibility(View.VISIBLE);
+                //    binding.scrollView.setVisibility(View.VISIBLE);
                 binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
 
             }
+        });
+        binding.noInternetConnection.tvMyDownloads.setOnClickListener(view -> {
+                Utils.I(activity, DownloadHistory.class, null);
         });
 
     }
@@ -473,6 +468,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if (view == binding.tvViewAll) {
             Utils.I(activity, AllPackageActivity.class, null);
+            // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
+            Utils.I(activity, AllPackageActivity.class, null);
         } else if (view == binding.middleBannerOne) {
             bannerRedirection(bannerForMiddleOne, middleOneRedirection);
         } else if (view == binding.middleBannerTwo) {
@@ -481,6 +478,24 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             bannerRedirection(bannerForBottom, bottomRedirection);
             // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
+
+    }
+    boolean doubleBackToExitPressedOnce = false;
+    @Override
+    public boolean onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            return true;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Utils.T(activity, getString(R.string.please_click_BACK_again_to_exit));
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+        return true;
     }
 
 

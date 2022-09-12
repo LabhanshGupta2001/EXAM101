@@ -13,10 +13,13 @@ import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.databinding.ActivityPdfViewBinding;
+import com.github.barteksc.pdfviewer.listener.OnErrorListener;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
+import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -33,13 +36,36 @@ public class PdfViewActivity extends AppCompatActivity implements View.OnClickLi
         binding = ActivityPdfViewBinding.inflate(getLayoutInflater());
         binding.ivBack.setOnClickListener(this);
         binding.ivBack2.setOnClickListener(this);
-
         setContentView(binding.getRoot());
         activity = PdfViewActivity.this;
         bundle = getIntent().getExtras();
-        showPDF(bundle.getString(Constants.Key.pdf));
+
+      //  displayFromAsset(bundle.getString(Constants.Key.pdf));
+        if(bundle.getString(Constants.Key.From).equals(Constants.Key.urlType)){
+
+            showPDF(bundle.getString(Constants.Key.pdf));
+        }else {
+            showDownloadPDF(bundle.getString(Constants.Key.pdf));
+        }
 
     }
+
+    private void showDownloadPDF(String path) {
+        Dialog progressDialog = Utils.initProgressDialog(activity);
+        binding.pdfView.fromFile(new File(path))
+                .enableSwipe(true)
+                .swipeHorizontal(false)
+                .enableAnnotationRendering(true)
+                .onLoad(new OnLoadCompleteListener() {
+                    @Override
+                    public void loadComplete(int nbPages) {
+                        progressDialog.dismiss();
+                    }
+                }).scrollHandle(new DefaultScrollHandle(this))
+                .load();
+    }
+
+
 
     @Override
     public void onStart() {
@@ -63,7 +89,6 @@ public class PdfViewActivity extends AppCompatActivity implements View.OnClickLi
             binding.pdfView.zoomTo(30);
         } else {
             binding.llToolbar.setVisibility(View.VISIBLE);
-
         }
 
     }
@@ -73,7 +98,9 @@ public class PdfViewActivity extends AppCompatActivity implements View.OnClickLi
 
         AsyncTask.execute(() -> {
             try {
-                final InputStream input = new URL(Const.Url.HOST_URL + pdf).openStream();
+             //   binding.pdfView.fromAsset("agl.pdf").load();
+
+                final InputStream input = new URL( pdf).openStream();
                 activity.runOnUiThread(() -> binding.pdfView.fromStream(input)
                         .onLoad(new OnLoadCompleteListener() {
                             @Override
@@ -82,6 +109,20 @@ public class PdfViewActivity extends AppCompatActivity implements View.OnClickLi
                             }
                         }).disableLongpress()
                         .spacing(10)
+                        .onError(new OnErrorListener() {
+                            @Override
+                            public void onError(Throwable t) {
+                                Utils.T(activity, "PDF Does't Exist");
+                                progressDialog.dismiss();
+
+                            }
+                        }).onPageError(new OnPageErrorListener() {
+                            @Override
+                            public void onPageError(int page, Throwable t) {
+                                Utils.T(activity, "PDF Does't Exist");
+                                progressDialog.dismiss();
+                            }
+                        })
                         .fitEachPage(true)
                         .pageFitPolicy(FitPolicy.BOTH)
                         .enableSwipe(true)
@@ -97,11 +138,13 @@ public class PdfViewActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == binding.ivBack){
+        if (v == binding.ivBack) {
             onBackPressed();
 
-    }  if (v == binding.ivBack2){
+        }
+        if (v == binding.ivBack2) {
             onBackPressed();
 
+        }
     }
-}}
+}

@@ -8,114 +8,121 @@
     android:orientation="vertical"
     tools:context=".main.activity.CoursesMaterial">
 
-    <LinearLayout
-        android:id="@+id/llToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/white"
-        android:elevation="@dimen/_3sdp"
-        android:gravity="center_vertical"
-        android:padding="@dimen/_4sdp">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:id="@+id/llparent"
+      android:visibility="gone"
+      android:layout_height="wrap_content">
+      <LinearLayout
+          android:id="@+id/llToolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?actionBarSize"
+          android:background="@color/white"
+          android:elevation="@dimen/_3sdp"
+          android:gravity="center_vertical"
+          android:padding="@dimen/_4sdp">
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="@dimen/_34sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:contentDescription="@string/back_arrow"
-            android:padding="@dimen/_8sdp"
-            android:src="@drawable/ic_backarrow" />
+          <ImageView
+              android:id="@+id/ivBack"
+              android:layout_width="@dimen/_34sdp"
+              android:layout_height="@dimen/_28sdp"
+              android:contentDescription="@string/back_arrow"
+              android:padding="@dimen/_8sdp"
+              android:src="@drawable/ic_backarrow" />
 
 
-        <TextView
-            style="@style/TernaryTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:fontFamily="@font/gothic_bold"
-            android:text="@string/course_material" />
-    </LinearLayout>
+          <TextView
+              style="@style/TernaryTextStyle"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/_4sdp"
+              android:fontFamily="@font/gothic_bold"
+              android:text="@string/course_material" />
+      </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:layout_gravity="center">
+      <androidx.core.widget.NestedScrollView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_gravity="center"
+          android:overScrollMode="never">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_margin="@dimen/_12sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/theme"
-                app:cardCornerRadius="@dimen/_10sdp">
+              <com.google.android.material.card.MaterialCardView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="@dimen/_12sdp"
+                  android:backgroundTint="@color/theme"
+                  app:cardCornerRadius="@dimen/_10sdp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp">
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="@dimen/_10sdp">
 
-                    <TextView
-                        android:id="@+id/tvCourseName"
-                        style="@style/PrimaryWhiteHeadingTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:fontFamily="@font/gothic_bold"
-                        android:text="" />
+                      <TextView
+                          android:id="@+id/tvCourseName"
+                          style="@style/PrimaryWhiteHeadingTextStyle"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginBottom="@dimen/_10sdp"
+                          android:fontFamily="@font/gothic_bold"
+                          android:text="" />
 
-                    <TextView
-                        android:id="@+id/tvLast"
-                        style="@style/QuaternaryWhiteTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvCourseName"
-                        android:fontFamily="@font/inter_regular"
-                        android:text="@string/last_activity_on" />
+                      <TextView
+                          android:id="@+id/tvLast"
+                          style="@style/QuaternaryWhiteTextStyle"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@id/tvCourseName"
+                          android:fontFamily="@font/inter_regular"
+                          android:text="@string/last_activity_on" />
 
-                    <TextView
-                        android:id="@+id/tvLastActivityTime"
-                        style="@style/QuaternaryWhiteTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvCourseName"
-                        android:layout_toRightOf="@id/tvLast"
-                        android:fontFamily="@font/inter_regular"
-                        android:text="" />
+                      <TextView
+                          android:id="@+id/tvLastActivityTime"
+                          style="@style/QuaternaryWhiteTextStyle"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@id/tvCourseName"
+                          android:layout_toRightOf="@id/tvLast"
+                          android:fontFamily="@font/inter_regular"
+                          android:text="" />
 
-                    <ProgressBar
-                        android:id="@+id/progressBar"
-                        style="?android:progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_4sdp"
-                        android:layout_below="@id/tvLastActivityTime"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:layout_marginBottom="@dimen/_6sdp"
-                        android:progressDrawable="@drawable/custom_course_progress_bar" />
+                      <ProgressBar
+                          android:id="@+id/progressBar"
+                          style="?android:progressBarStyleHorizontal"
+                          android:layout_width="match_parent"
+                          android:layout_height="@dimen/_4sdp"
+                          android:layout_below="@id/tvLastActivityTime"
+                          android:layout_marginTop="@dimen/_8sdp"
+                          android:layout_marginBottom="@dimen/_6sdp"
+                          android:progressDrawable="@drawable/custom_course_progress_bar" />
 
-                    <TextView
-                        android:id="@+id/tvPercentComplete"
-                        style="@style/TernaryWhiteTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/progressBar"
-                        android:fontFamily="@font/gothic_bold"
-                        android:text="" />
+                      <TextView
+                          android:id="@+id/tvPercentComplete"
+                          style="@style/TernaryWhiteTextStyle"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@id/progressBar"
+                          android:fontFamily="@font/gothic_bold"
+                          android:text="" />
 
-                </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
+                  </RelativeLayout>
+              </com.google.android.material.card.MaterialCardView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:overScrollMode="never"
-                android:id="@+id/rvCourseList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:paddingBottom="@dimen/_12sdp"
-                tools:listitem="@layout/item_course_material_subject_name"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+              <androidx.recyclerview.widget.RecyclerView
+                  android:id="@+id/rvCourseList"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@color/white"
+                  android:overScrollMode="never"
+                  android:paddingBottom="@dimen/_12sdp"
+                  tools:listitem="@layout/item_course_material_subject_name" />
+          </LinearLayout>
+      </androidx.core.widget.NestedScrollView>
+  </LinearLayout>
 </LinearLayout>

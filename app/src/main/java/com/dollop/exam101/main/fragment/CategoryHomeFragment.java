@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -21,8 +23,8 @@ import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.FragmentCategoryHomeBinding;
-import com.dollop.exam101.main.activity.DashboardScreenActivity;
 import com.dollop.exam101.main.adapter.CategoryHomeAdapter;
 import com.dollop.exam101.main.model.AllResponseModel;
 import com.dollop.exam101.main.model.Studentexam;
@@ -35,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CategoryHomeFragment extends Fragment implements View.OnClickListener {
-     FragmentCategoryHomeBinding binding;
+    FragmentCategoryHomeBinding binding;
     ApiService apiService;
     Activity activity;
     CategoryHomeAdapter categoryHomeAdapter;
@@ -48,7 +50,6 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
         binding = FragmentCategoryHomeBinding.inflate(inflater, container, false);
         activity = requireActivity();
         init();
-
         return binding.getRoot();
     }
 
@@ -60,7 +61,6 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
         } else {
             InternetDialog();
         }
-        binding.ivBack.setOnClickListener(this);
         binding.rvCategories.setLayoutManager(new LinearLayoutManager(getContext()));
         categoryHomeAdapter = new CategoryHomeAdapter(getContext(), examList);
         binding.rvCategories.setAdapter(categoryHomeAdapter);
@@ -69,11 +69,6 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        if (view == binding.ivBack) {
-            binding.llToolbar.setVisibility(View.GONE);
-            ((DashboardScreenActivity) activity).navController.popBackStack();
-        }
-
     }
 
     private void CategoriesHomeAllExamList() {
@@ -84,16 +79,18 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                    if (response.body() != null) {
-                        if (response.body().studentexam.isEmpty()) {
-                            Utils.E("Empty:::::" + response.body().studentexam.size());
-                            binding.rvCategories.setVisibility(View.GONE);
-                            binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
-                        } else {
-                            Utils.E("Empty:::::" + response.body().studentexam.size());
-                            binding.rvCategories.setVisibility(View.VISIBLE);
-                            binding.noResultFoundId.llParent.setVisibility(View.GONE);
-                        }
+                    assert response.body() != null;
+                    Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+                    binding.rlMain.startAnimation(animation);
+                    binding.rlMain.setVisibility(View.VISIBLE);
+                    if (response.body().studentexam.isEmpty()) {
+                        Utils.E("Empty:::::" + response.body().studentexam.size());
+                        binding.rvCategories.setVisibility(View.GONE);
+                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                    } else {
+                        Utils.E("Empty:::::" + response.body().studentexam.size());
+                        binding.rvCategories.setVisibility(View.VISIBLE);
+                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
                     }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -101,14 +98,13 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
                         examList.addAll(response.body().studentexam);
                         categoryHomeAdapter.notifyDataSetChanged();
                     } else {
+
                         assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
-                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(getContext(), message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(getContext(), message.message);
-                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {

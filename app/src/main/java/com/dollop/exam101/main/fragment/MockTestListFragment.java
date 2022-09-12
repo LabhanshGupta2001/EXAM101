@@ -6,9 +6,12 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -58,8 +61,10 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
     }
 
     private void init() {
+        Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+        binding.llMain.startAnimation(animation);
         apiService = RetrofitClient.getClient();
-        binding.ivBack.setOnClickListener(this);
+      //  binding.ivBack.setOnClickListener(this);
         mockTestListAdapter = new MockTestListAdapter(activity, studentMockTestList);
         binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
         binding.rvMockTestList.setAdapter(mockTestListAdapter);
@@ -114,10 +119,28 @@ public class MockTestListFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
+/*
         if (view == binding.ivBack) {
+            Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadeout);
+            binding.llMain.startAnimation(animation);
             binding.llToolbar.setVisibility(View.GONE);
-            ((DashboardScreenActivity) activity).navController.popBackStack();
+            new CountDownTimer(800, 800) {
+                public void onTick(long millisUntilFinished) {
+                }
+
+                public void onFinish() {
+                    binding.llToolbar.setVisibility(View.GONE);
+                    binding.rvMockTestList.setVisibility(View.GONE);
+                    ((DashboardScreenActivity) activity).navController.popBackStack();
+                }
+
+            }.start();
+          */
+/*  binding.llToolbar.setVisibility(View.GONE);
+            ((DashboardScreenActivity) activity).navController.popBackStack();*//*
+
         }
+*/
     }
 
     @Override

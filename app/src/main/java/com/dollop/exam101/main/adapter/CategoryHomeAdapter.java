@@ -28,7 +28,6 @@ import java.util.ArrayList;
 public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapter.MyViewHolder> {
     private final ArrayList<Studentexam> courseModelList;
     Context context;
-    int row_index = -1;
 
     public CategoryHomeAdapter(Context context, ArrayList<Studentexam> list) {
         this.context = context;
@@ -42,22 +41,23 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
         return new MyViewHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Studentexam courseModel = courseModelList.get(position);
-            holder.binding.tvPackageHeading.setText(courseModel.examName);
-            holder.binding.tvRemainingDay.setText(courseModel.remainingDays);
-            try {
-                holder.binding.tvPurchasedOn.setText("Purchased on: " + TimeFormatter.getDateTime(courseModel.purchaseDtm, context, "yyyy-MM-dd HH:mm:ss", "Date"));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            try {
-                holder.binding.tvExpireOn.setText("Expire on: " + TimeFormatter.getDateTime(courseModel.packageExpiryDtm, context, "yyyy-MM-dd HH:mm:ss", "Date"));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        holder.binding.tvPackageHeading.setText(courseModel.examName);
+        holder.binding.tvRemainingDay.setText(courseModel.remainingDays);
+        try {
+            holder.binding.tvPurchasedOn.setText("Purchased on: " + TimeFormatter.getDateTime(courseModel.purchaseDtm, context, "yyyy-MM-dd HH:mm:ss", "Date"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            holder.binding.tvExpireOn.setText("Expire on: " + TimeFormatter.getDateTime(courseModel.packageExpiryDtm, context, "yyyy-MM-dd HH:mm:ss", "Date"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         if (!courseModel.remainingDays.equals("0")) {
 
             holder.binding.llViewCourse.setOnClickListener(view -> {

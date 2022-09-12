@@ -28,55 +28,55 @@ public class UserData {
     public static final String KEY_isPasswordGenerated = "isPasswordGenerated";
 
 
-    @SerializedName("user_id")
-    @Expose
-    public String userId;
+        @SerializedName("user_id")
+        @Expose
+        public String userId;
 
-    @SerializedName("studentId")
-    @Expose
-    public String studentId;
-    @SerializedName("studentName")
-    @Expose
-    public String studentName;
-    @SerializedName("studentEmail")
-    @Expose
-    public String studentEmail;
-    @SerializedName("studentMobileNo")
-    @Expose
-    public String studentMobileNo;
-    @SerializedName("countryCode")
-    @Expose
-    public String countryCode;
-    @SerializedName("countryName")
-    @Expose
-    public String countryName;
-    @SerializedName("stateName")
-    @Expose
-    public String stateName;
-    @SerializedName("fcmId")
-    @Expose
-    public String fcmId;
-    @SerializedName("mobileVerified")
-    @Expose
-    public String mobileVerified;
-    @SerializedName("emailVerified")
-    @Expose
-    public String emailVerified;
-    @SerializedName("roleType")
-    @Expose
-    public String roleType;
-    @SerializedName("profilePic")
-    @Expose
-    public String profilePic;
-    @SerializedName("countryUuid")
-    @Expose
-    public String countryUuid;
-    @SerializedName("token")
-    @Expose
-    public String token;
-    @SerializedName("isPasswordGenerated")
-    @Expose
-    public String isPasswordGenerated;
+        @SerializedName("studentId")
+        @Expose
+        public String studentId;
+        @SerializedName("studentName")
+        @Expose
+        public String studentName;
+        @SerializedName("studentEmail")
+        @Expose
+        public String studentEmail;
+        @SerializedName("studentMobileNo")
+        @Expose
+        public String studentMobileNo;
+        @SerializedName("countryCode")
+        @Expose
+        public String countryCode;
+        @SerializedName("countryName")
+        @Expose
+        public String countryName;
+        @SerializedName("stateName")
+        @Expose
+        public String stateName;
+        @SerializedName("fcmId")
+        @Expose
+        public String fcmId;
+        @SerializedName("mobileVerified")
+        @Expose
+        public String mobileVerified;
+        @SerializedName("emailVerified")
+        @Expose
+        public String emailVerified;
+        @SerializedName("roleType")
+        @Expose
+        public String roleType;
+        @SerializedName("profilePic")
+        @Expose
+        public String profilePic;
+        @SerializedName("countryUuid")
+        @Expose
+        public String countryUuid;
+        @SerializedName("token")
+        @Expose
+        public String token;
+        @SerializedName("isPasswordGenerated")
+        @Expose
+        public String isPasswordGenerated;
 
 
     public static void CreateTable(SQLiteDatabase db) {
