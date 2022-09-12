@@ -28,6 +28,7 @@
             android:id="@+id/mcvTopSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             app:cardBackgroundColor="@color/white"
@@ -35,32 +36,26 @@
             app:strokeColor="@color/HorizontallineColor"
             app:strokeWidth=".7dp">
 
-            <LinearLayout
-                android:id="@+id/llInSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:orientation="horizontal">
 
-                <ImageView
+              <!--  <ImageView
+                    android:id="@+id/ivSearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingVertical="@dimen/_6sdp"
-                    android:src="@drawable/ic_search" />
+                    android:src="@drawable/ic_search"
+                    android:visibility="gone"/>-->
 
-                <EditText
-                    style="@style/QuinaryLightTextStyle"
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/SearchView"
+                    style="@style/QuinaryLightSearchTextStyle"
+                    app:iconifiedByDefault="false"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:background="@null"
-                    android:fontFamily="@font/inter_regular"
-                    android:hint="@string/search_here"
+                    app:queryHint="@string/search_here"
                     android:inputType="text"
+                    app:queryBackground="@color/white"
                     android:singleLine="true" />
 
-            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
@@ -70,6 +65,7 @@
         android:layout_height="wrap_content"
         android:background="@color/lineColor"
         android:gravity="center_vertical"
+        android:visibility="gone"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -89,13 +85,13 @@
             style="@style/QuinaryTheemTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:drawableRight="@drawable/ic_crose"
             android:drawablePadding="@dimen/_3sdp"
             android:fontFamily="@font/inter_semibold"
             android:paddingHorizontal="@dimen/_12sdp"
-            android:paddingVertical="@dimen/_4sdp"
+            android:paddingVertical="@dimen/_8sdp"
             android:text="@string/clear" />
     </LinearLayout>
 
@@ -103,8 +99,17 @@
         android:id="@+id/rvSearchHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:paddingBottom="@dimen/_12sdp"
         tools:listitem="@layout/item_search_history"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPackages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingBottom="@dimen/_12sdp"
+        tools:listitem="@layout/item_packages"/>
 
    <!-- <TextView
         android:id="@+id/tvBrowseCategory"

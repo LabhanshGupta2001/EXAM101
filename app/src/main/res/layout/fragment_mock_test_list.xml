@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lineColor"
     android:orientation="vertical"
     tools:context=".main.fragment.MockTestListFragment">
 
+<!--
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
@@ -32,24 +34,24 @@
             android:fontFamily="@font/gothic_bold"
             android:text="@string/mock_test" />
     </LinearLayout>
+-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/llToolbar"
         android:id="@+id/rvMockTestList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:overScrollMode="never"
+        android:layout_below="@+id/llToolbar"
         android:layout_marginTop="@dimen/_12sdp"
         android:background="@color/white"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/_16sdp" />
+        android:overScrollMode="never"
+        android:visibility="visible" />
 
     <include
-        android:visibility="gone"
         android:id="@+id/dataNoFoundId"
-        android:layout_centerInParent="true"
         layout="@layout/no_result_found"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 </RelativeLayout>

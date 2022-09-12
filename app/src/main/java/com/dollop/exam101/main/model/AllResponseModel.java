@@ -87,6 +87,7 @@ public class AllResponseModel {
     @Expose
     public List<LanguageModel> languageModels = null;
 
+
     @SerializedName("Orderexams")
     @Expose
     public Orderexams orderexams;
@@ -191,7 +192,4 @@ public class AllResponseModel {
     @SerializedName("middleObj2")
     @Expose
     public MiddleObj2 middleObj2;
-
-
-
 }

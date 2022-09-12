@@ -109,8 +109,8 @@
                         style="@style/QuaternaryLightTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
                         android:fontFamily="@font/gothic_bold"
+                        android:singleLine="true"
                         android:text="@string/yogendra_tiwari" />
 
                     <TextView
@@ -119,8 +119,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_1sdp"
-                        android:singleLine="true"
                         android:fontFamily="@font/inter_regular"
+                        android:singleLine="true"
                         android:text="@string/yogendratiwari54_gmail_com" />
 
                 </LinearLayout>
@@ -231,52 +231,52 @@
                         android:paddingVertical="@dimen/_2sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
-<!--
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:background="@color/HorizontallineColor" />
+                <!--
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_1sdp"
+                                    android:layout_marginVertical="@dimen/_10sdp"
+                                    android:background="@color/HorizontallineColor" />
 
-                <LinearLayout
-                    android:id="@+id/llMockTest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                                <LinearLayout
+                                    android:id="@+id/llMockTest"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:weightSum="1">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        app:cardBackgroundColor="@color/light_gray"
-                        app:cardCornerRadius="@dimen/_4sdp"
-                        app:cardElevation="0dp">
+                                    <com.google.android.material.card.MaterialCardView
+                                        android:layout_width="@dimen/_20sdp"
+                                        android:layout_height="@dimen/_20sdp"
+                                        app:cardBackgroundColor="@color/light_gray"
+                                        app:cardCornerRadius="@dimen/_4sdp"
+                                        app:cardElevation="0dp">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_mock_test" />
-                    </com.google.android.material.card.MaterialCardView>
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/ic_mock_test" />
+                                    </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        style="@style/QuaternaryLightTextStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/mock_test" />
+                                    <TextView
+                                        style="@style/QuaternaryLightTextStyle"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_8sdp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/inter_medium"
+                                        android:text="@string/mock_test" />
 
-                    <ImageView
-                        android:id="@+id/ivMockTest"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/_3sdp"
-                        android:paddingVertical="@dimen/_2sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>-->
+                                    <ImageView
+                                        android:id="@+id/ivMockTest"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="@dimen/_3sdp"
+                                        android:paddingVertical="@dimen/_2sdp"
+                                        android:src="@drawable/ic_arrow_right" />
+                                </LinearLayout>-->
 
                 <View
                     android:layout_width="match_parent"

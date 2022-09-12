@@ -4,14 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.activity.PdfViewActivity">
-    <ImageView
-        android:id="@+id/ivBack2"
-        android:layout_width="@dimen/_34sdp"
-        android:layout_height="@dimen/_28sdp"
-        android:contentDescription="@string/image"
-        android:layout_margin="@dimen/_4sdp"
-        android:padding="@dimen/_8sdp"
-        android:src="@drawable/ic_backarrow" />
+
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
@@ -42,9 +35,17 @@
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
-        android:layout_below="@id/llToolbar"
         android:layout_height="match_parent"
+        android:layout_below="@id/llToolbar"
         android:layout_centerVertical="true"
         android:background="@color/theme_light" />
 
+    <ImageView
+        android:id="@+id/ivBack2"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_margin="@dimen/_4sdp"
+        android:contentDescription="@string/image"
+        android:padding="@dimen/_8sdp"
+        android:src="@drawable/ic_backarrow" />
 </RelativeLayout>

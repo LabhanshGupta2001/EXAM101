@@ -83,12 +83,12 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
     private final ArrayList<CountryModel> contryItemArrayList = new ArrayList<>();
     private final ArrayList<StateModel> stateItemArrayList = new ArrayList<>();
+    public BottomSheetCountryBinding bottomSheetCountryBinding;
     String selectedCountryUuId = "", selectedCountryCode, selectedCountryName, selectedState, selectedCountryFlag;
     Activity activity = EditProfileActivity.this;
     ActivityEditProfileBinding binding;
     ApiService apiService;
     BottomSheetDialog bottomSheetDialog, bottomSheetStateDialog;
-   public BottomSheetCountryBinding bottomSheetCountryBinding;
     BottomSheetStateBinding bottomSheetStateBinding;
     String Token;
     List<ValidationModel> allResponseModels = new ArrayList<>();

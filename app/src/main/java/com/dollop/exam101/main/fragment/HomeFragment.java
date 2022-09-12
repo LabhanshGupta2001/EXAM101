@@ -9,9 +9,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -28,6 +31,7 @@ import com.dollop.exam101.Basics.Retrofit.Const;
 import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.AppController;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
+import com.dollop.exam101.Basics.UtilityTools.IOnBackPressed;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
@@ -35,6 +39,7 @@ import com.dollop.exam101.databinding.FragmentHomeBinding;
 import com.dollop.exam101.main.activity.AllPackageActivity;
 import com.dollop.exam101.main.activity.BlogDetailActivity;
 import com.dollop.exam101.main.activity.PackagesDetailActivity;
+import com.dollop.exam101.main.activity.DownloadHistory;
 import com.dollop.exam101.main.adapter.BannerAdapter;
 import com.dollop.exam101.main.adapter.BlogsHomeAdapter;
 import com.dollop.exam101.main.adapter.CourseAdapter;
@@ -48,30 +53,33 @@ import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
 import com.dollop.exam101.main.model.PackageModel;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, IOnBackPressed {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
-    String Token,middleOneRedirection,middleTwoRedirection,bottomRedirection,bannerForMiddleOne,bannerForMiddleTwo,bannerForBottom;
+    String Token, middleOneRedirection, middleTwoRedirection, bottomRedirection, bannerForMiddleOne, bannerForMiddleTwo, bannerForBottom;
     Activity activity;
+    ViewPagerFragmentAdapter viewPagerFragmentAdapter;
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
     ArrayList<BannerModel> bannerModels = new ArrayList<>();
     ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
+    CurrentAffairsFragment currentAffairsFragment = new CurrentAffairsFragment();
+    BlogsFragment blogsFragment = new BlogsFragment();
     CountDownTimer countDownTimer = null;
     private final Runnable sliderRunnable = new Runnable() {
         @Override
@@ -107,15 +115,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         init();
+
         return binding.getRoot();
 
     }
@@ -123,8 +130,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         activity = requireActivity();
+        Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fadein);
+        binding.llMain.setAnimation(animation);
         apiService = RetrofitClient.getClient();
         Token = Utils.GetSession().token;
+        Utils.E("hy");
+        setViewPager();
         if (AppController.getInstance().isOnline()) {
             getExamList();
             getTopTen();
@@ -132,7 +143,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             getBanner();
             binding.tvViewAll.setOnClickListener(this);
         } else {
-            //Utils.InternetDialog(activity);
             InternetDialog();
         }
         courseModelArrayList.clear();
@@ -178,24 +188,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
 
 
-        // News Recyclerview code....
-
-     /*   newsModelArrayList.clear();
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-        newsModelArrayList.add(new NewsModel(String.valueOf(getResources().getString(R.string.covid19)), String.valueOf(getResources().getString(R.string.tens_of_thousands_of_people_have_been_marching_in_the_belgain)),
-                String.valueOf(getResources().getString(R.string._12th_april)), String.valueOf(getResources().getString(R.string._09_20_pm)), R.drawable.maskimg));
-
-        newsAdapter = new NewsAdapter(getActivity(), newsModelArrayList);
-        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.rvNews.setLayoutManager(linearLayoutManager3);
-        binding.rvNews.setAdapter(newsAdapter);
-*/
-        // Calendar View Code...
-        //binding.cvCalendar.setPointerIcon();
-
         binding.middleBannerOne.setOnClickListener(this);
         binding.middleBannerTwo.setOnClickListener(this);
         binding.BottomBanner.setOnClickListener(this);
@@ -204,7 +196,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void getBanner() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
-        apiService.getBannerLit().enqueue(new Callback<AllResponseModel>() {
+        apiService.getBannerList().enqueue(new Callback<AllResponseModel>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -212,22 +204,60 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        bannerModels.clear();
-                        bannerModels.addAll(response.body().bannerList);
-                        bannerAdapter.notifyDataSetChanged();
+                        if (response.body().bannerList != null) {
+                            binding.constraintLayout4.setVisibility(View.VISIBLE);
+                            bannerModels.clear();
+                            bannerModels.addAll(response.body().bannerList);
+                            bannerAdapter.notifyDataSetChanged();
+                        } else {
+                            binding.constraintLayout4.setVisibility(View.GONE);
+                        }
 
-                        middleOneRedirection =  response.body().middleObj1.redirectUuid;
-                        middleTwoRedirection = response.body().middleObj2.redirectUuid;
-                        bottomRedirection = response.body().bottom.redirectUuid;
-                        bannerForMiddleOne = response.body().middleObj1.bannerFor;
-                        bannerForMiddleTwo = response.body().middleObj2.bannerFor;
-                        bannerForBottom = response.body().bottom.bannerFor;
-                        Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj1.bannerImage)
-                                .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
-                        Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj2.bannerImage)
-                                .error(R.drawable.vpbannerimage).into(binding.middleBannerTwo);
-                        Picasso.get().load(Const.Url.HOST_URL + response.body().bottom.bannerImage)
-                                .error(R.drawable.vpbannerimage).into(binding.BottomBanner);
+                        if (response.body().middleObj1 != null) {
+                            binding.cvMiddleBannerOne.setVisibility(View.VISIBLE);
+                            if (response.body().middleObj1.bannerFor.equals(getString(R.string.custom))) {
+                                middleOneRedirection = response.body().middleObj1.bannerRedirectToId;
+                            } else {
+                                middleOneRedirection = response.body().middleObj1.redirectUuid;
+                            }
+                            bannerForMiddleOne = response.body().middleObj1.bannerFor;
+                            Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj1.bannerImage)
+                                    .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
+                        } else {
+                            binding.cvMiddleBannerOne.setVisibility(View.GONE);
+                        }
+
+                        if (response.body().middleObj2 != null) {
+                            binding.cvMiddleBannerTwo.setVisibility(View.VISIBLE);
+                            if (response.body().middleObj2.bannerFor.equals(getString(R.string.custom))) {
+                                middleTwoRedirection = response.body().middleObj2.bannerRedirectToId;
+                            } else {
+                                middleTwoRedirection = response.body().middleObj2.redirectUuid;
+
+                            }
+
+                            bannerForMiddleTwo = response.body().middleObj2.bannerFor;
+                            Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj2.bannerImage)
+                                    .error(R.drawable.vpbannerimage).into(binding.middleBannerTwo);
+                        } else {
+                            binding.cvMiddleBannerTwo.setVisibility(View.GONE);
+                        }
+
+                        if (response.body().bottom != null) {
+                            binding.llBottomBanner.setVisibility(View.VISIBLE);
+                            if (response.body().bottom.bannerFor.equals(getString(R.string.custom))) {
+                                bottomRedirection = response.body().bottom.bannerRedirectToId;
+                            } else {
+                                bottomRedirection = response.body().bottom.redirectUuid;
+                            }
+                            bannerForBottom = response.body().bottom.bannerFor;
+                            Picasso.get().load(Const.Url.HOST_URL + response.body().bottom.bannerImage)
+                                    .error(R.drawable.vpbannerimage).into(binding.BottomBanner);
+                        } else {
+                            binding.llBottomBanner.setVisibility(View.GONE);
+                        }
+
+
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -295,6 +325,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.limit, "10");
         apiService.packageListItem(Utils.GetSession().token, hashMap).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -309,7 +340,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
                             if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
-
                                 Utils.UnAuthorizationToken(requireActivity());
                             }
                         } else {
@@ -334,6 +364,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void getBlogs() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getBlogsData(Constants.Key.blank).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -341,23 +372,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Blogarraylist.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        Blogarraylist.addAll(response.body().blogs);
-                        title.clear();
-                        title.add(Constants.Key.CurrentAffairs);
-                        fragments.add(new CurrentAffairsFragment());
-
-                        if (Blogarraylist.isEmpty() || Blogarraylist.equals(Constants.Key.blank)) {
+                        if (response.body().blogs != null && !response.body().blogs.isEmpty()) {
+                            Blogarraylist.addAll(response.body().blogs);
+                            blogsFragment.Blogarraylist.clear();
+                            blogsFragment.Blogarraylist.addAll(Blogarraylist);
                         } else {
-
-                            title.add(Constants.Key.Blogs);
-                            fragments.add(new BlogsFragment(Blogarraylist));
+                            fragments.remove(blogsFragment);
+                            binding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                         }
-
-                        binding.viewPagerHome.setAdapter(new ViewPagerFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments));
-
-                        new TabLayoutMediator(binding.tabLayout, binding.viewPagerHome, (tab, position) -> {
-                            tab.setText(title.get(position));
-                        }).attach();
+                        viewPagerFragmentAdapter.notifyDataSetChanged();
 
 
                     } else {
@@ -386,6 +409,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    private void setViewPager() {
+        title.clear();
+        fragments.clear();
+        fragments.add(currentAffairsFragment);
+        fragments.add(blogsFragment);
+        title.add(Constants.Key.CurrentAffairs);
+        title.add(Constants.Key.Blogs);
+        viewPagerFragmentAdapter = new ViewPagerFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments);
+        binding.viewPagerHome.setAdapter(viewPagerFragmentAdapter);
+        new TabLayoutMediator(binding.tabLayout, binding.viewPagerHome, (tab, position) -> tab.setText(title.get(position))).attach();
+        Utils.E("setViewPager");
+    }
+
     @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void InternetDialog() {
@@ -393,20 +429,24 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding.llMain.setBackgroundColor(getResources().getColor(R.color.white));
         binding.scrollView.setVisibility(View.GONE);
         binding.noInternetConnection.llParentNoInternet.setVisibility(View.VISIBLE);
+        binding.noInternetConnection.tvMyDownloads.setVisibility(View.VISIBLE);
         binding.noInternetConnection.tvRetry.setOnClickListener(view -> {
             if (AppController.getInstance().isOnline()) {
                 init();
-                binding.scrollView.setVisibility(View.VISIBLE);
+                //    binding.scrollView.setVisibility(View.VISIBLE);
                 binding.noInternetConnection.llParentNoInternet.setVisibility(View.GONE);
 
             }
         });
+        binding.noInternetConnection.tvMyDownloads.setOnClickListener(view -> {
+                Utils.I(activity, DownloadHistory.class, null);
+        });
 
     }
 
-    private void bannerRedirection(String bannerFor , String redirectUuid){
+    private void bannerRedirection(String bannerFor, String redirectUuid) {
 
-        if(!redirectUuid.equals("")){
+        if (redirectUuid != null && !redirectUuid.equals("")) {
             if (requireContext().getString(R.string.custom).equals(bannerFor)) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(redirectUuid));
@@ -417,7 +457,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Utils.I(activity, BlogDetailActivity.class, blogBundle);
             } else if (requireContext().getString(R.string.packageBanner).equals(bannerFor)) {
                 Bundle packageBundle = new Bundle();
-                packageBundle.putString(Constants.Key.packageUuId,  redirectUuid);
+                packageBundle.putString(Constants.Key.packageUuId, redirectUuid);
                 Utils.I(activity, PackagesDetailActivity.class, packageBundle);
             }
         }
@@ -428,13 +468,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (view == binding.tvViewAll) {
             Utils.I(activity, AllPackageActivity.class, null);
             // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
-        }else if(view == binding.middleBannerOne){
-            bannerRedirection(bannerForMiddleOne,middleOneRedirection);
-        }else if(view == binding.middleBannerTwo){
-            bannerRedirection(bannerForMiddleTwo,middleTwoRedirection);
-        }else if(view == binding.BottomBanner){
-            bannerRedirection(bannerForBottom,bottomRedirection);
+            Utils.I(activity, AllPackageActivity.class, null);
+        } else if (view == binding.middleBannerOne) {
+            bannerRedirection(bannerForMiddleOne, middleOneRedirection);
+        } else if (view == binding.middleBannerTwo) {
+            bannerRedirection(bannerForMiddleTwo, middleTwoRedirection);
+        } else if (view == binding.BottomBanner) {
+            bannerRedirection(bannerForBottom, bottomRedirection);
+            // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
+
+    }
+    boolean doubleBackToExitPressedOnce = false;
+    @Override
+    public boolean onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            return true;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Utils.T(activity, getString(R.string.please_click_BACK_again_to_exit));
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+        return true;
     }
 
 

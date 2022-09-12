@@ -36,7 +36,6 @@
                     android:id="@+id/tvItem"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
                     android:paddingVertical="@dimen/_12sdp"
@@ -48,6 +47,7 @@
                        android:layout_width="@dimen/_20sdp"
                        android:layout_height="@dimen/_20sdp"
                        android:clickable="false"
+                       android:visibility="gone"
                         />
 
             </LinearLayout>

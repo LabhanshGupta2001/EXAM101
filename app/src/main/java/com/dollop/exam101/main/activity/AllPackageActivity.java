@@ -101,6 +101,7 @@ public class AllPackageActivity extends AppCompatActivity implements View.OnClic
         hashMap.put(Constants.Key.languageId, LanguageId);
         hashMap.put(Constants.Key.discountedPriceStart, MinValue);
         hashMap.put(Constants.Key.discountedPriceEnd, MaxValue);
+
         apiService.packageListItem(token, hashMap).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {

@@ -14,9 +14,8 @@ public class DataManager extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "examoneOone";
 
     /**
-     *
      * @param context //
-     * @param name //
+     * @param name    //
      * @param factory //
      * @param version //
      */
@@ -26,23 +25,26 @@ public class DataManager extends SQLiteOpenHelper {
     }
 
     /**
-     *
      * @param db //
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
         UserData.CreateTable(db);
+        PdfVideoTable.CreateTable(db);
+        SearchHistoryTable.CreateTable(db);
+
     }
 
     /**
-     *
-     * @param db //
+     * @param db        //
      * @param paramInt1 //
      * @param paramInt2 //
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int paramInt1, int paramInt2) {
         UserData.dropTable(db);
+        PdfVideoTable.dropTable(db);
+        SearchHistoryTable.dropTable(db);
         onCreate(db);
     }
 }

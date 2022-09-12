@@ -9,6 +9,7 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".Basics.UtilityTools.AppController"
@@ -20,10 +21,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.examoneOone"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".main.activity.DownloadHistory"
+            android:exported="false" />
         <activity
             android:name=".main.activity.AllPackageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".main.activity.CheckEmailActivity"
             android:exported="false"
@@ -204,8 +209,7 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".main.activity.PdfViewActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".main.activity.WelcomeActivity"
             android:exported="true"
@@ -257,12 +261,15 @@
             android:name="firebase_analytics_collection_enabled"
             android:value="false" />
 
-        <service android:name="com.google.android.gms.measurement.AppMeasurementService"
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
 
-        <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-            android:enabled="true">
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.measurement.UPLOAD" />
             </intent-filter>

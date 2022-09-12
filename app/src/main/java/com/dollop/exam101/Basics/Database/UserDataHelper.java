@@ -1,5 +1,7 @@
 package com.dollop.exam101.Basics.Database;
 
+import static com.dollop.exam101.Basics.Database.SearchHistoryTable.KEY_ID;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 public class UserDataHelper {
     @SuppressLint("StaticFieldLeak")
     private static UserDataHelper instance;
+    private final DataManager dm;
     Context cx;
     private SQLiteDatabase db;
-    private final DataManager dm;
 
     /**
      * UserDataHelper constructor
@@ -74,12 +76,41 @@ public class UserDataHelper {
         close();
     }
 
+
+    public void deleteFirstRow() {
+        open();
+        Cursor cursor = db.rawQuery("select * from " + SearchHistoryTable.TABLE_NAME, null);
+
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") String rowId = cursor.getString(cursor.getColumnIndex(KEY_ID));
+
+            db.delete(SearchHistoryTable.TABLE_NAME, KEY_ID + "=?", new String[]{rowId});
+        }
+        close();
+    }
+
+    public void deletePdfVideo(PdfVideoTable pdfVideo) {
+        open();
+        db.delete(PdfVideoTable.TABLE_NAME, PdfVideoTable.ORDER_EXAM_UUID + " = '"
+                + pdfVideo.orderExamUUID + "'", null);
+        close();
+    }
+
     /**
      * delete All Data From the Table
      */
     public void deleteAll() {
         open();
         db.delete(UserData.TABLE_NAME, null, null);
+        close();
+    }
+
+    /**
+     * delete All Data From the Table
+     */
+    public void deleteSearchAll() {
+        open();
+        db.delete(SearchHistoryTable.TABLE_NAME, null, null);
         close();
     }
 
@@ -93,11 +124,38 @@ public class UserDataHelper {
         read();
         @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + UserData.TABLE_NAME + " where " + UserData.KEY_StudentId + "='"
                 + userData.studentId + "'", null);
-        if (cur.moveToFirst()) {
-            return true;
-        }
-        return false;
+        return cur.moveToFirst();
     }
+
+    private boolean isExistPDF(PdfVideoTable pdfVideo) {
+        read();
+        @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + PdfVideoTable.TABLE_NAME + " where " + PdfVideoTable.ORDER_EXAM_UUID + "='"
+                + pdfVideo.orderExamUUID + "'", null);
+        return cur.moveToFirst();
+    }
+
+    /**
+     * is Exist in table
+     *
+     * @param searchHistoryTable //
+     * @param values
+     * @return //
+     */
+    private void isExistSearch(SearchHistoryTable searchHistoryTable, ContentValues values) {
+        read();
+        @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + SearchHistoryTable.TABLE_NAME + " where " +
+                SearchHistoryTable.KEY_SEARCH_ITEM + " = ?", new String[]{searchHistoryTable.searchItem});
+        if (cur.moveToFirst()) {
+            @SuppressLint("Range") String Item = cur.getString(cur.getColumnIndex(KEY_ID));
+            Utils.E("Item::"+Item);
+            db.delete(SearchHistoryTable.TABLE_NAME, SearchHistoryTable.KEY_ID + "=" + Item, null);
+            db.insert(SearchHistoryTable.TABLE_NAME, null, values);
+            return;
+        }
+        db.insert(SearchHistoryTable.TABLE_NAME, null, values);
+    }
+
+
 
     /**
      * insert Data in table
@@ -107,7 +165,7 @@ public class UserDataHelper {
     public void insertData(UserData userData) {
         open();
         ContentValues values = new ContentValues();
-       // values.put(UserData.KEY_ID, userData.userId);
+        // values.put(UserData.KEY_ID, userData.userId);
         values.put(UserData.KEY_StudentId, userData.studentId);
         values.put(UserData.Key_StudentName, userData.studentName);
         values.put(UserData.Key_StudentEmail, userData.studentEmail);
@@ -120,8 +178,8 @@ public class UserDataHelper {
         values.put(UserData.Key_EmailVerified, userData.emailVerified);
         values.put(UserData.Key_RoleType, userData.roleType);
         values.put(UserData.KEY_profilePic, userData.profilePic);
-        values.put(UserData.KEY_Token,userData.token);
-        values.put(UserData.KEY_isPasswordGenerated,userData.isPasswordGenerated);
+        values.put(UserData.KEY_Token, userData.token);
+        values.put(UserData.KEY_isPasswordGenerated, userData.isPasswordGenerated);
 
 
 
@@ -133,6 +191,58 @@ public class UserDataHelper {
             Utils.E("update successfully");
             db.update(UserData.TABLE_NAME, values, UserData.KEY_StudentId + "=" + userData.studentId, null);
         }
+        close();
+    }
+
+    public void insertPdfData(PdfVideoTable pdfVideoTable) {
+        open();
+        ContentValues values = new ContentValues();
+        // values.put(UserData.KEY_ID, userData.userId);
+        values.put(PdfVideoTable.ORDER_EXAM_UUID, pdfVideoTable.orderExamUUID);
+        values.put(PdfVideoTable.Topic_UUID, pdfVideoTable.topicUUID);
+        values.put(PdfVideoTable.PDF_PATH, pdfVideoTable.pdfPath);
+        values.put(PdfVideoTable.Date, pdfVideoTable.date);
+        values.put(PdfVideoTable.TOPIC_NAME, pdfVideoTable.topicName);
+        values.put(PdfVideoTable.TOPIC_DESC, pdfVideoTable.topicDescription);
+        values.put(PdfVideoTable.VIDEO_PATH, pdfVideoTable.videoPath);
+        values.put(PdfVideoTable.VIDEO_NAME, pdfVideoTable.videoName);
+        values.put(PdfVideoTable.Video_DESC, pdfVideoTable.videoDescription);
+
+        db.insert(PdfVideoTable.TABLE_NAME, null, values);
+
+     /*   if (!isExistPDF(pdfVideoTable)) {
+            Utils.E("insert successfully");
+            Utils.E("Values::" + values);
+            db.insert(PdfVideoTable.TABLE_NAME, null, values);
+        } else {
+            Utils.E("update successfully");
+            db.update(PdfVideoTable.TABLE_NAME, values, PdfVideoTable.KEY_ID + "=" + pdfVideoTable.id, null);
+        }*/
+        close();
+    }
+
+    /**
+     * insert Data in table
+     *
+     * @param searchHistoryTable //
+     */
+    public void insertSearchHistoryData(SearchHistoryTable searchHistoryTable) {
+        open();
+        ContentValues values = new ContentValues();
+        values.put(SearchHistoryTable.KEY_SEARCH_ITEM, searchHistoryTable.searchItem);
+        // values.put(SearchHistoryTable.KEY_ID, searchHistoryTable.KeyId);
+        isExistSearch(searchHistoryTable,values);
+    /*
+        if (!) {
+            Utils.E("insert successfully");
+            Utils.E("Values::" + values);
+
+        } else {
+            Utils.E("update successfully");
+            // db.update(SearchHistoryTable.TABLE_NAME, values, KEY_ID + "=" + searchHistoryTable.KeyId, null);
+           // db.execSQL("DROP TABLE IF EXISTS " + SearchHistoryTable.TABLE_NAME);
+
+        }*/
         close();
     }
 
@@ -174,6 +284,61 @@ public class UserDataHelper {
         }
         close();
         return userItem;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<PdfVideoTable> getPdfList() {
+        ArrayList<PdfVideoTable> userItem = new ArrayList<>();
+        read();
+        Cursor cursor = db.rawQuery("select * from " + PdfVideoTable.TABLE_NAME, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToLast();
+            do {
+                PdfVideoTable pdfVideoTable = new PdfVideoTable();
+                // pdfVideoTable.userId = cursor.getString(cursor.getColumnIndex(PdfVideoTable.KEY_ID));
+                pdfVideoTable.orderExamUUID = cursor.getString(cursor.getColumnIndex(PdfVideoTable.ORDER_EXAM_UUID));
+                pdfVideoTable.topicUUID = cursor.getString(cursor.getColumnIndex(PdfVideoTable.Topic_UUID));
+                pdfVideoTable.topicName = cursor.getString(cursor.getColumnIndex(PdfVideoTable.TOPIC_NAME));
+                pdfVideoTable.pdfPath = cursor.getString(cursor.getColumnIndex(PdfVideoTable.PDF_PATH));
+                pdfVideoTable.date = cursor.getString(cursor.getColumnIndex(PdfVideoTable.Date));
+                pdfVideoTable.topicDescription = cursor.getString(cursor.getColumnIndex(PdfVideoTable.TOPIC_DESC));
+                pdfVideoTable.videoPath = cursor.getString(cursor.getColumnIndex(PdfVideoTable.VIDEO_PATH));
+                pdfVideoTable.videoName = cursor.getString(cursor.getColumnIndex(PdfVideoTable.VIDEO_NAME));
+                pdfVideoTable.videoDescription = cursor.getString(cursor.getColumnIndex(PdfVideoTable.Video_DESC));
+
+                userItem.add(pdfVideoTable);
+
+            } while ((cursor.moveToPrevious()));
+            cursor.close();
+        }
+        close();
+        return userItem;
+    }
+
+
+    /**
+     * Return Search Array List
+     *
+     * @return //
+     */
+    @SuppressLint("Range")
+    public ArrayList<SearchHistoryTable> getSearchList() {
+        ArrayList<SearchHistoryTable> searchItem = new ArrayList<SearchHistoryTable>();
+        read();
+        Cursor cursor = db.rawQuery("select * from " + SearchHistoryTable.TABLE_NAME, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToLast();
+            do {
+                SearchHistoryTable historyTable = new SearchHistoryTable();
+                // historyTable.KeyId = cursor.getString(cursor.getColumnIndex(historyTable.KYE_ID));
+                historyTable.searchItem = cursor.getString(cursor.getColumnIndex(SearchHistoryTable.KEY_SEARCH_ITEM));
+                searchItem.add(historyTable);
+
+            } while ((cursor.moveToPrevious()));
+            cursor.close();
+        }
+        close();
+        return searchItem;
     }
 
 
