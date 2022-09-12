@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemCategoriesFragmentBinding;
 import com.dollop.exam101.main.model.CourseModel;
 
@@ -58,6 +60,13 @@ public class CategoriesFragmentAdapter extends RecyclerView.Adapter<CategoriesFr
                 notifyDataSetChanged();
             }
         });
+        if (newPos == position) {
+            holder.binding.materialCardView.setStrokeColor(ContextCompat.getColor(context,R.color.theme));
+            holder.binding.materialCardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.light_theme));
+        } else {
+            holder.binding.materialCardView.setStrokeColor(ContextCompat.getColor(context,R.color.HorizontallineColor));
+            holder.binding.materialCardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.white));
+        }
     }
 
     @Override

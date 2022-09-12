@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,28 +25,23 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.AlertdialogBinding;
 import com.dollop.exam101.databinding.FragmentCourseMaterialBinding;
 import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
-
-import com.dollop.exam101.main.model.ExamModel;
-import com.dollop.exam101.main.model.ModuleModel;
 import com.dollop.exam101.main.model.SubjectModel;
-import com.dollop.exam101.main.model.TopicDetailModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class CourseMaterialFragment extends Fragment implements View.OnClickListener {
+    //ArrayList<ExamModel> examModelArrayList;
+    public List<SubjectModel> subjectModelArrayList = new ArrayList<>();
     Activity activity;
     FragmentCourseMaterialBinding binding;
-    //ArrayList<ExamModel> examModelArrayList;
-    List<SubjectModel> subjectModelArrayList = new ArrayList<>() ;
-    List<ExamModel> examModelList = new ArrayList<>();
     ApiService apiService;
-    List<ModuleModel> stringArrayList = new ArrayList<>();
-    List<TopicDetailModel> topicDetailModelArrayList = new ArrayList<>();
+    PakageDetailPrimaryAdapter pakageDetailPrimaryAdapter;
+    private int PageHeight = 0;
 
-    public CourseMaterialFragment(List<SubjectModel> ArrayList) {
-        this.subjectModelArrayList = ArrayList;
+    public CourseMaterialFragment() {
+        //    this.subjectModelArrayList = ArrayList;
         Utils.E("subjectModelArrayList::" + subjectModelArrayList);
     }
 
@@ -62,23 +58,41 @@ public class CourseMaterialFragment extends Fragment implements View.OnClickList
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
-       /* subjectModelArrayList.clear();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");*/
-        // subjectModelArrayList.clear();
-       /* for (int i = 0; i < examModelList.size(); i++) {
-            subjectModelArrayList.addAll(examModelList.get(i).subjects);
-            //stringArrayList.addAll(subjectModelArrayList.get(i).modules);
-           // topicDetailModelArrayList.addAll(stringArrayList.get(i).topics);
-        }*/
         Utils.E("subjectModelArrayList222::" + subjectModelArrayList);
         binding.rvFirst.setNestedScrollingEnabled(false);
         binding.rvFirst.setHasFixedSize(true);
         binding.rvFirst.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvFirst.setAdapter(new PakageDetailPrimaryAdapter(getContext(), subjectModelArrayList));
+        pakageDetailPrimaryAdapter = new PakageDetailPrimaryAdapter(getContext(), subjectModelArrayList);
+        binding.rvFirst.setAdapter(pakageDetailPrimaryAdapter);
+    }
 
+    public void UpdateData() {
+        if (pakageDetailPrimaryAdapter!=null) {
+            pakageDetailPrimaryAdapter.notifyDataSetChanged();
+            new CountDownTimer(1000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    if (PageHeight == 0)
+                        PageHeight = binding.rvFirst.getHeight();
+                    binding.rvFirst.setMinimumHeight(PageHeight);
+                    Utils.E("CountDownTimer:rvFirst:" + PageHeight);
+
+                }
+            }.start();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        PageHeight = 0;
+        binding.rvFirst.setMinimumHeight(PageHeight);
+        Utils.E("PageHeight :" + this + " " + PageHeight);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)

@@ -9,7 +9,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/theme"
         app:cardCornerRadius="@dimen/_6sdp"
         app:cardElevation="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,8 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/vpbannerimage" />
+            android:scaleType="fitXY" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

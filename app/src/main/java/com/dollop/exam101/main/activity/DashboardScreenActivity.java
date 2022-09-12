@@ -159,8 +159,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                         binding.appBarLayout.setVisibility(View.GONE);
                         break;
                     default:
-                        binding.bottomNavigationView.setVisibility(View.GONE);
-                        binding.appBarLayout.setVisibility(View.GONE);
+                       // binding.bottomNavigationView.setVisibility(View.GONE);
+                      //  binding.appBarLayout.setVisibility(View.GONE);
                         break;
                 }
 

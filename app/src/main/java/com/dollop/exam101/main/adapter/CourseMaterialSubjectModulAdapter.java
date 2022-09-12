@@ -21,7 +21,6 @@ public class CourseMaterialSubjectModulAdapter extends RecyclerView.Adapter<Cour
     Context context;
     ArrayList<Module> moduleArrayList;
     ArrayList<Topic> topicArrayList = new ArrayList<>();
-    private Boolean dropdown = true;
 
     public CourseMaterialSubjectModulAdapter(Context context, ArrayList<Module> moduleArrayList) {
         this.context = context;
@@ -48,22 +47,16 @@ public class CourseMaterialSubjectModulAdapter extends RecyclerView.Adapter<Cour
             holder.binding.rvChapter.setLayoutManager(new LinearLayoutManager(context));
         }
 
-      /*  if (!dropdown)
-        {
-            holder.binding.rvChapter.setVisibility(View.GONE);
-            holder.binding.ivRotedArrow.animate().rotation(0).setDuration(100).start();
-        }*/
+
         holder.binding.mcvZtoA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!dropdown) {
+                if (holder.binding.rvChapter.getVisibility() == View.VISIBLE) {
                     holder.binding.rvChapter.setVisibility(View.GONE);
                     holder.binding.ivRotedArrow.animate().rotation(180).setDuration(100).start();
-                    dropdown = true;
                 } else {
                     holder.binding.rvChapter.setVisibility(View.VISIBLE);
                     holder.binding.ivRotedArrow.animate().rotation(0).setDuration(100).start();
-                    dropdown = false;
                 }
             }
         });

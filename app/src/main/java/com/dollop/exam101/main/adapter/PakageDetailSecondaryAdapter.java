@@ -50,18 +50,15 @@ public class PakageDetailSecondaryAdapter extends RecyclerView.Adapter<PakageDet
         holder.binding.rvThird.setAdapter(new PakageDetailTernaryAdapter(context,topicDetailModelArrayList));
         holder.binding.rvThird.setLayoutManager(new LinearLayoutManager(context));
 
-        holder.binding.mcvZtoA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!dropdown) {
-                    holder.binding.rvThird.setVisibility(View.VISIBLE);
-                    holder.binding.ivRotedArrow.animate().rotation(0).setDuration(100).start();
-                    dropdown = true;
-                } else {
-                    holder.binding.rvThird.setVisibility(View.GONE);
-                    holder.binding.ivRotedArrow.animate().rotation(180).setDuration(100).start();
-                    dropdown = false;
-                }
+        holder.binding.mcvZtoA.setOnClickListener(view -> {
+            if (holder.binding.rvThird.getVisibility() == View.GONE) {
+                holder.binding.rvThird.setVisibility(View.VISIBLE);
+                holder.binding.ivRotedArrow.animate().rotation(0).setDuration(100).start();
+                dropdown = true;
+            } else {
+                holder.binding.rvThird.setVisibility(View.GONE);
+                holder.binding.ivRotedArrow.animate().rotation(180).setDuration(100).start();
+                dropdown = false;
             }
         });
     }

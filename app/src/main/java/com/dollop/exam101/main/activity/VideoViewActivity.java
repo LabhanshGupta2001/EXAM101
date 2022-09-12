@@ -65,7 +65,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         if (bundle.getString(Constants.Key.urlType).equals(Constants.Key.video)) {
             if (bundle.getString(Constants.Key.For).equals(Constants.Key.vimeoLink)) {
                 VIMDEO_ID = bundle.getString(Constants.Key.videoUrl);
-                VIMDEO_ID = VIMDEO_ID.replace("https://player.vimeo.com/video/", "");
+                VIMDEO_ID = VIMDEO_ID.substring(VIMDEO_ID.lastIndexOf("/") + 1, VIMDEO_ID.length());
                 binding.pdfView.setVisibility(View.GONE);
                 binding.videoView.setVisibility(View.VISIBLE);
 
@@ -77,7 +77,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                         String videoId = bundle.getString(Constants.Key.videoUrl);
-                        videoId = videoId.replace("https://www.youtube.com/embed/", "");
+                        videoId = videoId.substring(videoId.lastIndexOf("/") + 1, VIMDEO_ID.length());
                         youTubePlayer.loadVideo(videoId, 0);
                       //  youTubePlayer.pause();
                     }

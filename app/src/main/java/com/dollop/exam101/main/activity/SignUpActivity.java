@@ -406,11 +406,9 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void getCountryList() {
-        Dialog progressDialog = Utils.initProgressDialog(activity);
         apiservice.getCountryList().enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
-                progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -434,7 +432,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
                 call.cancel();
                 t.printStackTrace();
-                progressDialog.dismiss();
                 Utils.E("getMessage::" + t.getMessage());
             }
         });

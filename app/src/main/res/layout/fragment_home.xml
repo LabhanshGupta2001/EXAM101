@@ -71,6 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:visibility="visible"
                     android:orientation="vertical">
 
                     <androidx.viewpager2.widget.ViewPager2
@@ -154,9 +155,12 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvMiddleBannerOne"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:visibility="visible"
+                android:layout_marginBottom="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
@@ -169,11 +173,10 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvMiddleBannerTwo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-
                 app:cardCornerRadius="@dimen/_6sdp">
 
                 <ImageView
@@ -271,10 +274,9 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="@dimen/_12sdp"
                 android:textAlignment="center"
                 app:tabIndicatorHeight="2dp"
-                app:tabMode="fixed"
+                app:tabMode="scrollable"
                 app:tabSelectedTextColor="@color/theme"
                 app:tabTextAppearance="@style/HomeHeadingTextStyle"
                 app:tabTextColor="@color/black" />
@@ -516,10 +518,12 @@
             android:layout_height="@dimen/_12sdp" />
 
         <LinearLayout
+            android:id="@+id/llBottomBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:layout_marginBottom="@dimen/_6sdp"
+            android:visibility="visible"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 

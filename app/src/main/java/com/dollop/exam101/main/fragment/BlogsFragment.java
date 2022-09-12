@@ -73,6 +73,7 @@ public class BlogsFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFinish() {
+                if (PageHeight==0)
                 PageHeight = binding.getRoot().getHeight();
             }
         }.start();

@@ -48,13 +48,13 @@ import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
 import com.dollop.exam101.main.model.PackageModel;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,7 +64,7 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private final Handler sliderHandler = new Handler();
     ApiService apiService;
-    String Token,middleOneRedirection,middleTwoRedirection,bottomRedirection,bannerForMiddleOne,bannerForMiddleTwo,bannerForBottom;
+    String Token, middleOneRedirection, middleTwoRedirection, bottomRedirection, bannerForMiddleOne, bannerForMiddleTwo, bannerForBottom;
     Activity activity;
     ViewPagerFragmentAdapter viewPagerFragmentAdapter;
     FragmentHomeBinding binding;
@@ -215,22 +215,60 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        bannerModels.clear();
-                        bannerModels.addAll(response.body().bannerList);
-                        bannerAdapter.notifyDataSetChanged();
+                        if (response.body().bannerList != null) {
+                            binding.constraintLayout4.setVisibility(View.VISIBLE);
+                            bannerModels.clear();
+                            bannerModels.addAll(response.body().bannerList);
+                            bannerAdapter.notifyDataSetChanged();
+                        } else {
+                            binding.constraintLayout4.setVisibility(View.GONE);
+                        }
 
-                        middleOneRedirection =  response.body().middleObj1.redirectUuid;
-                        middleTwoRedirection = response.body().middleObj2.redirectUuid;
-                        bottomRedirection = response.body().bottom.redirectUuid;
-                        bannerForMiddleOne = response.body().middleObj1.bannerFor;
-                        bannerForMiddleTwo = response.body().middleObj2.bannerFor;
-                        bannerForBottom = response.body().bottom.bannerFor;
-                        Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj1.bannerImage)
-                                .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
-                        Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj2.bannerImage)
-                                .error(R.drawable.vpbannerimage).into(binding.middleBannerTwo);
-                        Picasso.get().load(Const.Url.HOST_URL + response.body().bottom.bannerImage)
-                                .error(R.drawable.vpbannerimage).into(binding.BottomBanner);
+                        if (response.body().middleObj1 != null) {
+                            binding.cvMiddleBannerOne.setVisibility(View.VISIBLE);
+                            if (response.body().middleObj1.bannerFor.equals(getString(R.string.custom))) {
+                                middleOneRedirection = response.body().middleObj1.bannerRedirectToId;
+                            } else {
+                                middleOneRedirection = response.body().middleObj1.redirectUuid;
+                            }
+                            bannerForMiddleOne = response.body().middleObj1.bannerFor;
+                            Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj1.bannerImage)
+                                    .error(R.drawable.vpbannerimage).into(binding.middleBannerOne);
+                        } else {
+                            binding.cvMiddleBannerOne.setVisibility(View.GONE);
+                        }
+
+                        if (response.body().middleObj2 != null) {
+                            binding.cvMiddleBannerTwo.setVisibility(View.VISIBLE);
+                            if (response.body().middleObj2.bannerFor.equals(getString(R.string.custom))) {
+                                middleTwoRedirection = response.body().middleObj2.bannerRedirectToId;
+                            } else {
+                                middleTwoRedirection = response.body().middleObj2.redirectUuid;
+
+                            }
+
+                            bannerForMiddleTwo = response.body().middleObj2.bannerFor;
+                            Picasso.get().load(Const.Url.HOST_URL + response.body().middleObj2.bannerImage)
+                                    .error(R.drawable.vpbannerimage).into(binding.middleBannerTwo);
+                        } else {
+                            binding.cvMiddleBannerTwo.setVisibility(View.GONE);
+                        }
+
+                        if (response.body().bottom != null) {
+                            binding.llBottomBanner.setVisibility(View.VISIBLE);
+                            if (response.body().bottom.bannerFor.equals(getString(R.string.custom))) {
+                                bottomRedirection = response.body().bottom.bannerRedirectToId;
+                            } else {
+                                bottomRedirection = response.body().bottom.redirectUuid;
+                            }
+                            bannerForBottom = response.body().bottom.bannerFor;
+                            Picasso.get().load(Const.Url.HOST_URL + response.body().bottom.bannerImage)
+                                    .error(R.drawable.vpbannerimage).into(binding.BottomBanner);
+                        } else {
+                            binding.llBottomBanner.setVisibility(View.GONE);
+                        }
+
+
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -345,13 +383,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Blogarraylist.clear();
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-                        viewPagerFragmentAdapter.notifyDataSetChanged();
                         if (response.body().blogs != null && !response.body().blogs.isEmpty()) {
                             Blogarraylist.addAll(response.body().blogs);
                             blogsFragment.Blogarraylist.clear();
                             blogsFragment.Blogarraylist.addAll(Blogarraylist);
-                            viewPagerFragmentAdapter.notifyDataSetChanged();
+                        } else {
+                            fragments.remove(blogsFragment);
+                            binding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                         }
+                        viewPagerFragmentAdapter.notifyDataSetChanged();
 
                     } else {
                         assert response.errorBody() != null;
@@ -410,9 +450,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void bannerRedirection(String bannerFor , String redirectUuid){
+    private void bannerRedirection(String bannerFor, String redirectUuid) {
 
-        if(!redirectUuid.equals("")){
+        if (redirectUuid != null && !redirectUuid.equals("")) {
             if (requireContext().getString(R.string.custom).equals(bannerFor)) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(redirectUuid));
@@ -423,7 +463,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Utils.I(activity, BlogDetailActivity.class, blogBundle);
             } else if (requireContext().getString(R.string.packageBanner).equals(bannerFor)) {
                 Bundle packageBundle = new Bundle();
-                packageBundle.putString(Constants.Key.packageUuId,  redirectUuid);
+                packageBundle.putString(Constants.Key.packageUuId, redirectUuid);
                 Utils.I(activity, PackagesDetailActivity.class, packageBundle);
             }
         }
@@ -433,14 +473,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if (view == binding.tvViewAll) {
             Utils.I(activity, AllPackageActivity.class, null);
-            // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
-        }else if(view == binding.middleBannerOne){
-            bannerRedirection(bannerForMiddleOne,middleOneRedirection);
-        }else if(view == binding.middleBannerTwo){
-            bannerRedirection(bannerForMiddleTwo,middleTwoRedirection);
-        }else if(view == binding.BottomBanner){
-            bannerRedirection(bannerForBottom,bottomRedirection);
-            Utils.I(activity, AllPackageActivity.class, null);
+        } else if (view == binding.middleBannerOne) {
+            bannerRedirection(bannerForMiddleOne, middleOneRedirection);
+        } else if (view == binding.middleBannerTwo) {
+            bannerRedirection(bannerForMiddleTwo, middleTwoRedirection);
+        } else if (view == binding.BottomBanner) {
+            bannerRedirection(bannerForBottom, bottomRedirection);
             // ((DashboardScreenActivity) activity).binding.bottomNavigationView.setSelectedItemId(R.id.bottom_packages);
         }
     }

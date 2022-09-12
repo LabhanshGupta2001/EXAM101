@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
@@ -77,19 +78,22 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
 
     private void CategoriesHomeAllExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());
-        apiService.getStudentExamListApi(Utils.GetSession().token, "android").enqueue(new Callback<AllResponseModel>() {
+        apiService.getStudentExamListApi(Utils.GetSession().token, Constants.Key.android).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 try {
-                    if (response.body().studentexam.equals(Constants.Key.blank) || response.body().studentexam.isEmpty()) {
-                        Utils.E("Empty:::::" + response.body().studentexam.size());
-                        binding.rvCategories.setVisibility(View.GONE);
-                        binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
-                    } else {
-                        Utils.E("Empty:::::" + response.body().studentexam.size());
-                        binding.rvCategories.setVisibility(View.VISIBLE);
-                        binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                    if (response.body() != null) {
+                        if (response.body().studentexam.isEmpty()) {
+                            Utils.E("Empty:::::" + response.body().studentexam.size());
+                            binding.rvCategories.setVisibility(View.GONE);
+                            binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                        } else {
+                            Utils.E("Empty:::::" + response.body().studentexam.size());
+                            binding.rvCategories.setVisibility(View.VISIBLE);
+                            binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                        }
                     }
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
@@ -97,13 +101,14 @@ public class CategoryHomeFragment extends Fragment implements View.OnClickListen
                         examList.addAll(response.body().studentexam);
                         categoryHomeAdapter.notifyDataSetChanged();
                     } else {
-
                         assert response.errorBody() != null;
-                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(getContext(), message.message);
                         } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                             Utils.T(getContext(), message.message);
+                            Utils.UnAuthorizationToken(activity);
                         }
                     }
                 } catch (Exception e) {

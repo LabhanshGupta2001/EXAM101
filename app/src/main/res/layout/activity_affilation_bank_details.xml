@@ -283,7 +283,7 @@
                             <TextView
                                 android:id="@+id/tvErrorType"
                                 android:visibility="gone"
-                                android:text="ncnc"
+                                style="@style/ErrorTextStyle"
                                 android:layout_marginTop="@dimen/_4sdp"
                                 android:layout_width="wrap_content"
                                 android:elevation="@dimen/_minus2sdp"

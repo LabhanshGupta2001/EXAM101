@@ -49,18 +49,22 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.MyViewHold
                 .error(R.drawable.vpbannerimage).into(holder.binding.banner);
         holder.binding.banner.setOnClickListener(view -> {
 
-            if(!bannerModel.redirectUuid.equals("")){
+            if(!bannerModel.bannerRedirectToId.equals("") && bannerModel.bannerRedirectToId!=null){
                 if (context.getString(R.string.custom).equals(bannerModel.bannerFor)) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(bannerModel.redirectUuid));
+                    i.setData(Uri.parse(bannerModel.bannerRedirectToId));
                     context.startActivity(i);
-                } else if (context.getString(R.string.blog).equals(bannerModel.bannerFor)) {
+                }
+            }
+            if (bannerModel.redirectUuid != null && !bannerModel.redirectUuid.equals("")) {
+               if (context.getString(R.string.blog).equals(bannerModel.bannerFor)) {
+                    Utils.E("BannerFor:::Custom" + bannerModel.bannerFor);
                     Bundle blogBundle = new Bundle();
                     blogBundle.putString(Constants.Key.uuid, bannerModel.redirectUuid);
                     Utils.I(context, BlogDetailActivity.class, blogBundle);
                 } else if (context.getString(R.string.packageBanner).equals(bannerModel.bannerFor)) {
                     Bundle packageBundle = new Bundle();
-                    packageBundle.putString(Constants.Key.packageUuId,  bannerModel.redirectUuid);
+                    packageBundle.putString(Constants.Key.packageUuId, bannerModel.redirectUuid);
                     Utils.I(context, PackagesDetailActivity.class, packageBundle);
                 }
             }

@@ -3,7 +3,6 @@ package com.dollop.exam101.main.activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,6 +45,7 @@ import com.dollop.exam101.main.model.ReviewRating;
 import com.dollop.exam101.main.model.SubjectModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -78,7 +77,9 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     List<SubjectModel> subjectModelArrayList = new ArrayList<>();
     BottomSheetDialog bottomSheetDialog;
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
-    String packageName, packageDetail, imgPath,shortDesc;
+    CourseMaterialFragment courseMaterialFragment = new CourseMaterialFragment();
+    MockTestFragment mockTestFragment = new MockTestFragment();
+    String packageName, packageDetail, imgPath, shortDesc;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -94,28 +95,28 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     @Override
     protected void onResume() {
         super.onResume();
-        if (AppController.getInstance().isOnline()) {
-            getPackageDetails();
-        } else {
-            InternetDialog();
-        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
+        setViewPager();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             packageUuid = bundle.getString(Constants.Key.packageUuId);
             Utils.E("packageUuid;;;;;;" + packageUuid);
             Utils.E("Bundle;;;;;;" + bundle);
         }
-
+        if (AppController.getInstance().isOnline()) {
+            getPackageDetails();
+        } else {
+            InternetDialog();
+        }
         binding.ivBack.setOnClickListener(this);
         binding.mcvAddtoWishlist.setOnClickListener(this);
         binding.tvRateId.setOnClickListener(this);
         binding.AddtoCart.setOnClickListener(this);
-
         if (AppController.getInstance().isOnline()) {
             GetPackageDetailsMockTestListRatingNow();
         } else {
@@ -243,7 +244,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     binding.llBtn.setVisibility(View.VISIBLE);
                     packageName = packageDetailModels.packageName;
                     packageDetail = String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
-                    shortDesc=String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
+                    shortDesc = String.valueOf(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     imgPath = packageDetailModels.featureImg;
                     binding.tvHeadings.setText(packageName);
                     binding.tvLanguage.setText(languageModels.get(0).languageName);
@@ -251,48 +252,52 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     binding.tvPriceSmall.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageDetailModels.actualPrice)));
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
                     languageUuId = packageDetailModels.languageModels.get(0).languageUuid;
-                    if (packageDetail.isEmpty()){
+                    if (packageDetail.isEmpty()) {
                         binding.tvDetail.setVisibility(View.GONE);
                         binding.tvOverView.setVisibility(View.GONE);
-                    }else {
+                    } else {
                         binding.tvDetail.setVisibility(View.VISIBLE);
                         binding.tvDetail.setText(HtmlCompat.fromHtml(response.body().packageDetail.packageDetail, 0));
                     }
 
                     Utils.E("languageUuId::" + languageUuId);
                     mockTestModels = packageDetailModels.mockTests;
-                    Utils.E("mockTestModels::"+mockTestModels);
+                    Utils.E("mockTestModels::" + mockTestModels);
                     examModelArrayList.addAll(packageDetailModels.examModels);
-                    Utils.E("examModelArrayList::"+examModelArrayList);
+                    Utils.E("examModelArrayList::" + examModelArrayList);
+                    subjectModelArrayList.clear();
                     for (int i = 0; i < examModelArrayList.size(); i++) {
                         subjectModelArrayList.addAll(examModelArrayList.get(i).subjects);
                     }
-                    Utils.E("subjectModelArrayList::"+subjectModelArrayList);
 
-                    if (!subjectModelArrayList.isEmpty() && !mockTestModels.isEmpty()){
-
-                    if(subjectModelArrayList.isEmpty() || subjectModelArrayList.equals(Constants.Key.blank) ||
-                            examModelArrayList.isEmpty() || examModelArrayList.equals(Constants.Key.blank)){
-                    }else {
-                        Tittle.clear();
-                        Tittle.add(Constants.Key.Course_Material);
-                        fragments.add(new CourseMaterialFragment(subjectModelArrayList));
-                    }
-
-                    if (mockTestModels.isEmpty() || mockTestModels.equals(Constants.Key.blank)){
-                    }else {
-                        Tittle.add(Constants.Key.Mock_Test);
-                        fragments.add(new MockTestFragment(mockTestModels));
-                    }
-                   } else {
+                    if (subjectModelArrayList.isEmpty() && mockTestModels.isEmpty()) {
                         binding.viewtwo.setVisibility(View.GONE);
-                       binding.llTabView.setVisibility(View.GONE);
-                   }
-                    mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
-                    binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
-                    new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
-                        tab.setText(Tittle.get(position));
-                    }).attach();
+                        binding.llTabView.setVisibility(View.GONE);
+                    } else {
+                        binding.viewtwo.setVisibility(View.VISIBLE);
+                        binding.llTabView.setVisibility(View.VISIBLE);
+                    }
+                    Utils.E("subjectModelArrayList::" + subjectModelArrayList);
+                    if (!subjectModelArrayList.isEmpty()) {
+                        Utils.E("hello");
+                        courseMaterialFragment.subjectModelArrayList.clear();
+                        courseMaterialFragment.subjectModelArrayList.addAll(subjectModelArrayList);
+                        courseMaterialFragment.UpdateData();
+
+                    } else {
+                        fragments.remove(courseMaterialFragment);
+                        binding.tlPackageDetailTabLayoutId.setTabMode(TabLayout.MODE_SCROLLABLE);
+                    }
+
+                    if (!mockTestModels.isEmpty()) {
+                        mockTestFragment.mockTestModels.clear();
+                        mockTestFragment.mockTestModels.addAll(mockTestModels);
+                        mockTestFragment.UpdateData();
+                    } else {
+                        fragments.remove(mockTestFragment);
+                        binding.tlPackageDetailTabLayoutId.setTabMode(TabLayout.MODE_SCROLLABLE);
+                    }
+                    mockTestViewPagerAdapter.notifyDataSetChanged();
 
                 } else {
                     if (response.code() == StatusCodeConstant.BAD_REQUEST) {
@@ -302,7 +307,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
-                        Utils.T(activity,message.message);
+                        Utils.T(activity, message.message);
                         Utils.UnAuthorizationToken(activity);
                     }
                 }
@@ -318,6 +323,20 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         });
     }
 
+    private void setViewPager() {
+        Tittle.clear();
+        fragments.clear();
+        fragments.add(courseMaterialFragment);
+        fragments.add(mockTestFragment);
+        Tittle.add(Constants.Key.Course_Material);
+        Tittle.add(Constants.Key.Mock_Test);
+        mockTestViewPagerAdapter = new MockTestViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
+        binding.ViewPagerPackageDetailId.setAdapter(mockTestViewPagerAdapter);
+        new TabLayoutMediator(binding.tlPackageDetailTabLayoutId, binding.ViewPagerPackageDetailId, (tab, position) -> {
+            tab.setText(Tittle.get(position));
+        }).attach();
+    }
+
     private void GetPackageDetailsMockTestListRatingNow() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiService.getPackageDetailsMockTestListRatingNow(Utils.GetSession().token, packageUuid).enqueue(new Callback<AllResponseModel>() {
@@ -329,8 +348,8 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         reviewRatingModels.clear();
                         assert response.body() != null;
                         reviewRatingModels.addAll(response.body().reviewRating);
-                        if (reviewRatingModels.isEmpty() || reviewRatingModels.equals(Constants.Key.blank)){
-                        }else {
+                        if (reviewRatingModels.isEmpty() || reviewRatingModels.equals(Constants.Key.blank)) {
+                        } else {
                             binding.rvRatingId.setLayoutManager(new LinearLayoutManager(activity));
                             binding.rvRatingId.setAdapter(new PakageDetailRatingAdapter(activity, reviewRatingModels));
                             Utils.E("^@%reviewRatingELSE::");
@@ -435,7 +454,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-         bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.GONE);
+                bottomSheetRatenowBinding.tvErrorReview.setVisibility(View.GONE);
             }
 
             @Override
