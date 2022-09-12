@@ -210,5 +210,6 @@ public class Constants {
         String page_name = "page_name";
         String yTLink = "YT Link";
         String vimeoLink = "Vimeo Link";
+        String SearchHistoryItem = "SearchHistoryItem";
     }
 }

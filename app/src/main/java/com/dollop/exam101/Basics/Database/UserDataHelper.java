@@ -1,5 +1,7 @@
 package com.dollop.exam101.Basics.Database;
 
+import static com.dollop.exam101.Basics.Database.SearchHistoryTable.KEY_ID;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 public class UserDataHelper {
     @SuppressLint("StaticFieldLeak")
     private static UserDataHelper instance;
+    private final DataManager dm;
     Context cx;
     private SQLiteDatabase db;
-    private final DataManager dm;
 
     /**
      * UserDataHelper constructor
@@ -74,12 +76,34 @@ public class UserDataHelper {
         close();
     }
 
+
+    public void deleteFirstRow() {
+        open();
+        Cursor cursor = db.rawQuery("select * from " + SearchHistoryTable.TABLE_NAME, null);
+
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") String rowId = cursor.getString(cursor.getColumnIndex(KEY_ID));
+
+            db.delete(SearchHistoryTable.TABLE_NAME, KEY_ID + "=?", new String[]{rowId});
+        }
+        close();
+    }
+
     /**
      * delete All Data From the Table
      */
     public void deleteAll() {
         open();
         db.delete(UserData.TABLE_NAME, null, null);
+        close();
+    }
+
+    /**
+     * delete All Data From the Table
+     */
+    public void deleteSearchAll() {
+        open();
+        db.delete(SearchHistoryTable.TABLE_NAME, null, null);
         close();
     }
 
@@ -100,6 +124,29 @@ public class UserDataHelper {
     }
 
     /**
+     * is Exist in table
+     *
+     * @param searchHistoryTable //
+     * @param values
+     * @return //
+     */
+    private void isExistSearch(SearchHistoryTable searchHistoryTable, ContentValues values) {
+        read();
+        @SuppressLint("Recycle") Cursor cur = db.rawQuery("select * from " + SearchHistoryTable.TABLE_NAME + " where " +
+                SearchHistoryTable.KEY_SEARCH_ITEM + " = ?", new String[]{searchHistoryTable.searchItem});
+        if (cur.moveToFirst()) {
+            @SuppressLint("Range") String Item = cur.getString(cur.getColumnIndex(KEY_ID));
+            Utils.E("Item::"+Item);
+            db.delete(SearchHistoryTable.TABLE_NAME, SearchHistoryTable.KEY_ID + "=" + Item, null);
+            db.insert(SearchHistoryTable.TABLE_NAME, null, values);
+            return;
+        }
+        db.insert(SearchHistoryTable.TABLE_NAME, null, values);
+    }
+
+
+
+    /**
      * insert Data in table
      *
      * @param userData //
@@ -107,7 +154,7 @@ public class UserDataHelper {
     public void insertData(UserData userData) {
         open();
         ContentValues values = new ContentValues();
-       // values.put(UserData.KEY_ID, userData.userId);
+        // values.put(UserData.KEY_ID, userData.userId);
         values.put(UserData.KEY_StudentId, userData.studentId);
         values.put(UserData.Key_StudentName, userData.studentName);
         values.put(UserData.Key_StudentEmail, userData.studentEmail);
@@ -120,9 +167,8 @@ public class UserDataHelper {
         values.put(UserData.Key_EmailVerified, userData.emailVerified);
         values.put(UserData.Key_RoleType, userData.roleType);
         values.put(UserData.KEY_profilePic, userData.profilePic);
-        values.put(UserData.KEY_Token,userData.token);
-        values.put(UserData.KEY_isPasswordGenerated,userData.isPasswordGenerated);
-
+        values.put(UserData.KEY_Token, userData.token);
+        values.put(UserData.KEY_isPasswordGenerated, userData.isPasswordGenerated);
 
 
         if (!isExist(userData)) {
@@ -133,6 +179,31 @@ public class UserDataHelper {
             Utils.E("update successfully");
             db.update(UserData.TABLE_NAME, values, UserData.KEY_StudentId + "=" + userData.studentId, null);
         }
+        close();
+    }
+
+    /**
+     * insert Data in table
+     *
+     * @param searchHistoryTable //
+     */
+    public void insertSearchHistoryData(SearchHistoryTable searchHistoryTable) {
+        open();
+        ContentValues values = new ContentValues();
+        values.put(SearchHistoryTable.KEY_SEARCH_ITEM, searchHistoryTable.searchItem);
+        // values.put(SearchHistoryTable.KEY_ID, searchHistoryTable.KeyId);
+        isExistSearch(searchHistoryTable,values);
+    /*
+        if (!) {
+            Utils.E("insert successfully");
+            Utils.E("Values::" + values);
+
+        } else {
+            Utils.E("update successfully");
+            // db.update(SearchHistoryTable.TABLE_NAME, values, KEY_ID + "=" + searchHistoryTable.KeyId, null);
+           // db.execSQL("DROP TABLE IF EXISTS " + SearchHistoryTable.TABLE_NAME);
+
+        }*/
         close();
     }
 
@@ -151,7 +222,7 @@ public class UserDataHelper {
             cursor.moveToLast();
             do {
                 UserData userData = new UserData();
-               // userData.userId = cursor.getString(cursor.getColumnIndex(UserData.KEY_ID));
+                // userData.userId = cursor.getString(cursor.getColumnIndex(UserData.KEY_ID));
                 userData.studentId = cursor.getString(cursor.getColumnIndex(UserData.KEY_StudentId));
                 userData.studentName = cursor.getString(cursor.getColumnIndex(UserData.Key_StudentName));
                 userData.studentEmail = cursor.getString(cursor.getColumnIndex(UserData.Key_StudentEmail));
@@ -163,8 +234,8 @@ public class UserDataHelper {
                 userData.mobileVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_MobileVerified));
                 userData.emailVerified = cursor.getString(cursor.getColumnIndex(UserData.Key_EmailVerified));
                 userData.roleType = cursor.getString(cursor.getColumnIndex(UserData.Key_RoleType));
-                userData.profilePic=cursor.getString(cursor.getColumnIndex(UserData.KEY_profilePic));
-                userData.token=cursor.getString(cursor.getColumnIndex(UserData.KEY_Token));
+                userData.profilePic = cursor.getString(cursor.getColumnIndex(UserData.KEY_profilePic));
+                userData.token = cursor.getString(cursor.getColumnIndex(UserData.KEY_Token));
                 userData.isPasswordGenerated = cursor.getString(cursor.getColumnIndex(UserData.KEY_isPasswordGenerated));
 
                 userItem.add(userData);
@@ -174,6 +245,32 @@ public class UserDataHelper {
         }
         close();
         return userItem;
+    }
+
+
+    /**
+     * Return Search Array List
+     *
+     * @return //
+     */
+    @SuppressLint("Range")
+    public ArrayList<SearchHistoryTable> getSearchList() {
+        ArrayList<SearchHistoryTable> searchItem = new ArrayList<SearchHistoryTable>();
+        read();
+        Cursor cursor = db.rawQuery("select * from " + SearchHistoryTable.TABLE_NAME, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToLast();
+            do {
+                SearchHistoryTable historyTable = new SearchHistoryTable();
+                // historyTable.KeyId = cursor.getString(cursor.getColumnIndex(historyTable.KYE_ID));
+                historyTable.searchItem = cursor.getString(cursor.getColumnIndex(SearchHistoryTable.KEY_SEARCH_ITEM));
+                searchItem.add(historyTable);
+
+            } while ((cursor.moveToPrevious()));
+            cursor.close();
+        }
+        close();
+        return searchItem;
     }
 
 

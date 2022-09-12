@@ -33,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
+import com.dollop.exam101.Basics.Database.SearchHistoryTable;
 import com.dollop.exam101.Basics.Database.UserData;
 import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.Const;
@@ -63,6 +64,10 @@ public class Utils {
         return UserDataHelper.getInstance().getList().get(0);
     }
 
+    public static SearchHistoryTable GetSessionSearch() {
+        return UserDataHelper.getInstance().getSearchList().get(0);
+    }
+
     public static boolean IS_LOGIN() {
         return UserDataHelper.getInstance().getList().size() > 0;
     }
@@ -77,6 +82,7 @@ public class Utils {
 
     public static void UnAuthorizationToken(Context cx) {
         UserDataHelper.getInstance().deleteAll();
+        UserDataHelper.getInstance().deleteSearchAll();
       //  Utils.T(cx,cx.getString(R.string.invalid_token));
         I_clear(cx, LoginActivity.class, null);
     }

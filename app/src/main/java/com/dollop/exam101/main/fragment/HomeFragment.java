@@ -39,6 +39,7 @@ import com.dollop.exam101.main.adapter.PackageAdapter;
 import com.dollop.exam101.main.adapter.ViewPagerFragmentAdapter;
 import com.dollop.exam101.main.model.AllBlogListModel;
 import com.dollop.exam101.main.model.AllResponseModel;
+import com.dollop.exam101.main.model.BannerModel;
 import com.dollop.exam101.main.model.CourseModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
 import com.dollop.exam101.main.model.NewsModel;
@@ -62,14 +63,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     FragmentHomeBinding binding;
     ArrayList<CourseModel> courseModelArrayList = new ArrayList<>();
     ArrayList<HomeBannerOfferModel> banners1 = new ArrayList<>();
+    ArrayList<BannerModel> bannerModels = new ArrayList<>();
     ArrayList<PackageModel> packageModelList = new ArrayList<>();
     ArrayList<NewsModel> newsModelArrayList = new ArrayList<>();
     CountDownTimer countDownTimer = null;
+    ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
+    BlogsHomeAdapter blogsHomeAdapter;
+    ArrayList<String> title = new ArrayList<>();
+    ArrayList<Fragment> fragments = new ArrayList<>();
+    BannerAdapter bannerAdapter;
+    PackageAdapter packageAdapter;
+    NewsAdapter newsAdapter;
+    CourseAdapter courseAdapter;
+
+
     private final Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
             binding.vpBanner.setCurrentItem(binding.vpBanner.getCurrentItem() + 1);
-            if (binding.vpBanner.getCurrentItem() == banners1.size() - 1) {
+            if (binding.vpBanner.getCurrentItem() == bannerModels.size() - 1) {
                 countDownTimer = new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long l) {
@@ -84,14 +96,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         }
     };
-    ArrayList<AllBlogListModel> Blogarraylist = new ArrayList<>();
-    BlogsHomeAdapter blogsHomeAdapter;
-    ArrayList<String> title = new ArrayList<>();
-    ArrayList<Fragment> fragments = new ArrayList<>();
-    BannerAdapter bannerAdapter;
-    PackageAdapter packageAdapter;
-    NewsAdapter newsAdapter;
-    CourseAdapter courseAdapter;
 
     public HomeFragment() {
     }
@@ -121,6 +125,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             getExamList();
             getTopTen();
             getBlogs();
+            getBanner();
             binding.tvViewAll.setOnClickListener(this);
         } else {
             //Utils.InternetDialog(activity);
@@ -139,11 +144,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         binding.rvPackages.setAdapter(packageAdapter);
 
 
-        banners1.clear();
+       /* banners1.clear();
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
         banners1.add(new HomeBannerOfferModel(R.drawable.vpbannerimage));
-        bannerAdapter = new BannerAdapter(getActivity(), banners1);
+        */
+        bannerAdapter = new BannerAdapter(requireActivity(), bannerModels);
         binding.vpBanner.setAdapter(bannerAdapter);
         binding.dot2.setViewPager2(binding.vpBanner);
         binding.vpBanner.setClipToPadding(false);
@@ -173,6 +179,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+
         // News Recyclerview code....
 
      /*   newsModelArrayList.clear();
@@ -192,6 +199,44 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         //binding.cvCalendar.setPointerIcon();
 
     }
+
+    private void getBanner(){
+        Dialog progressDialog = Utils.initProgressDialog(getContext());
+        apiService.getBannerLit().enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
+                progressDialog.dismiss();
+                try {
+                    if (response.code() == StatusCodeConstant.OK) {
+                        assert response.body() != null;
+                        bannerModels.clear();
+                        bannerModels.addAll(response.body().bannerModelList);
+                        bannerAdapter.notifyDataSetChanged();
+                    } else {
+                        assert response.errorBody() != null;
+                        APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
+                        if (response.code() == StatusCodeConstant.BAD_REQUEST) {
+                            Utils.T(getContext(), message.message);
+                        } else if (response.code() == StatusCodeConstant.UNAUTHORIZED) {
+                            Utils.T(getContext(), message.message);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AllResponseModel> call, @NonNull Throwable t) {
+                call.cancel();
+                t.printStackTrace();
+                progressDialog.dismiss();
+                Utils.E("getMessage::" + t.getMessage());
+            }
+        });
+    }
+
 
     private void getExamList() {
         Dialog progressDialog = Utils.initProgressDialog(getContext());

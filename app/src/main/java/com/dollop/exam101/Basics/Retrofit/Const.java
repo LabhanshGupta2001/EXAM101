@@ -111,5 +111,6 @@ public class Const {
         String getStudentExamDetailApi = "getStudentExamDetailApi";
         String downloadInvoiceApi = "downloadInvoiceApi";
         String getStudentExamListApi = "getStudentExamListApi";
+        String getBannerListApi = "getBannerListApi";
     }
 }

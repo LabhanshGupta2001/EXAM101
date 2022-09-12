@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:text="@string/designing"
         android:layout_weight="1"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:singleLine="true"
         android:fontFamily="@font/inter_regular"
         style="@style/QuaternaryTextStyle"/>
 

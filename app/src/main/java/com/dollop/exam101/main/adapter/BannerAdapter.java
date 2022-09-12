@@ -7,16 +7,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.Retrofit.Const;
+import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemVpBannerBinding;
+import com.dollop.exam101.main.model.BannerModel;
 import com.dollop.exam101.main.model.HomeBannerOfferModel;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.MyViewHolder> {
     Context context;
     ArrayList<HomeBannerOfferModel> banners;
+    ArrayList<BannerModel> bannerModelArrayList ;
 
-    public BannerAdapter(Context context, ArrayList<HomeBannerOfferModel> banners) {
-        this.banners = banners;
+    public BannerAdapter(Context context,   ArrayList<BannerModel>  banners) {
+        this.bannerModelArrayList = banners;
         this.context = context;
 
     }
@@ -31,17 +37,17 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        HomeBannerOfferModel offer = banners.get(position);
-        holder.binding.banner.setImageResource(offer.bannerImage);
-      /*  Picasso.get().load(Const.Url.HOST_URL + offer.bannerImage)
-                .placeholder(R.drawable.image_default_one).error(R.drawable.image_default_one).into(holder.binding.banner);*/
+        BannerModel bannerModel = bannerModelArrayList.get(position);
+
+        Picasso.get().load(Const.Url.HOST_URL + bannerModel.bannerImage)
+                .placeholder(R.drawable.vpbannerimage).error(R.drawable.vpbannerimage).into(holder.binding.banner);
 
     }
 
 
     @Override
     public int getItemCount() {
-        return banners.size();
+        return bannerModelArrayList.size();
     }
 
 

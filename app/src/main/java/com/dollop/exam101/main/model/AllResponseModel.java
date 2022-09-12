@@ -180,4 +180,7 @@ public class AllResponseModel {
     @Expose
     public List<TestResultQuestion> testResultQuestions = null;
 
+    @SerializedName("bannerList")
+    @Expose
+    public List<BannerModel> bannerModelList = null;
 }

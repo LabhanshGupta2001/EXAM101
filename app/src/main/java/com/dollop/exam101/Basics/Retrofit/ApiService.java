@@ -133,6 +133,9 @@ public interface ApiService {
     @GET(Const.Url.getStudentMockTestListApi)
     Call<AllResponseModel> getStudentMockTestListApi(@Header(Constants.Key.Authorization) String token);
 
+    @GET(Const.Url.getBannerListApi)
+    Call<AllResponseModel> getBannerLit();
+
    /* @GET(Const.Url.getRaisedComplaintDetailApi)
     Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,
                                               @FieldMap HashMap<String, String> hm);*/

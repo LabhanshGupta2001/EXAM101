@@ -79,12 +79,6 @@ public class UserData {
     public String isPasswordGenerated;
 
 
-
-    /**
-     * Create Table Query
-     *
-     * @param db SQLiteDatabase
-     */
     public static void CreateTable(SQLiteDatabase db) {
         String CreateTableQuery = "create table " + TABLE_NAME + " ("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
