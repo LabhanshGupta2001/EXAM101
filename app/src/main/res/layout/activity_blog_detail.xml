@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_147sdp"
                     android:foreground="@drawable/gradient_blog"
-                    android:scaleType="centerInside" />
+                    android:scaleType="centerCrop" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvDArticle"
@@ -70,16 +70,16 @@
                     android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
                     app:cardBackgroundColor="@color/theme"
-                    app:cardCornerRadius="@dimen/_20sdp">
+                    app:cardCornerRadius="@dimen/_12sdp">
 
                     <TextView
                         android:id="@+id/tvBlogHeading"
                         style="@style/SenaryWhiteTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_6sdp"
                         android:fontFamily="@font/inter_semibold"
-                        android:paddingHorizontal="@dimen/_7sdp"
-                        android:paddingVertical="@dimen/_3sdp" />
+                       />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -230,7 +230,7 @@
                         app:cardCornerRadius="@dimen/_15sdp"
                         app:cardElevation="0dp">
 
-                        <ImageView
+                         <ImageView
                             android:id="@+id/ivAuthorProfile2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

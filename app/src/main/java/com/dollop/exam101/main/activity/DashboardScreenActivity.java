@@ -230,7 +230,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
         if (view == binding.navigationView.getHeaderView(0)) {
             Utils.I(activity, ProfileActivity.class, null);
-            binding.drawerLayout.close();
+//            binding.drawerLayout.close();
         }/*if (view == binding.ivProfile) {
             Utils.I(activity, ProfileActivity.class, null);
         }*/
@@ -239,7 +239,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
         if (view == navHeaderDashboardBinding.llHome) {
             navController.navigate(R.id.bottom_home);
-            binding.drawerLayout.close();
+//            binding.drawerLayout.close();
         }
         if (view == navHeaderDashboardBinding.llMyPackage) {
             Utils.I(activity, CourseListActivity.class, null);
@@ -247,25 +247,25 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
        /* if (view == navHeaderDashboardBinding.llMyWishlist) {
             Utils.I(activity, MyWishlistActivity.class, null);
-            binding.drawerLayout.close();
+//            binding.drawerLayout.close();
         }*/
         if (view == navHeaderDashboardBinding.llBlogs) {
-            binding.drawerLayout.close();
+//            binding.drawerLayout.close();
             Utils.I(activity, BlogsListActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llDownloadHistory) {
-            binding.drawerLayout.close();
+//            binding.drawerLayout.close();
             Utils.I(activity, DownloadHistory.class, null);
         }
         if (view == navHeaderDashboardBinding.llSettings) {
-            binding.drawerLayout.close();
+//            binding.drawerLayout.close();
             Utils.I(activity, SettingActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llFaq) {
 
         }
         if (view == navHeaderDashboardBinding.llContactUs) {
-            binding.drawerLayout.closeDrawers();
+          //  binding.drawerLayout.closeDrawers();
             Utils.I(activity, ContactUsActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llAbout) {

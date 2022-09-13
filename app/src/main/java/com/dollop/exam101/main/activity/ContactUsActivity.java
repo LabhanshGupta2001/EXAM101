@@ -216,7 +216,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etHolderName, binding.tvErrorName));
         allResponseModels.add(new ValidationModel(Validation.Type.Email, binding.etAccountEmail, binding.tvErrorEmail));
         allResponseModels.add(new ValidationModel(Validation.Type.Phone, binding.etAccountMobileNo, binding.tvErrorMobile));
-        allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etMessage, binding.tvErrorMessage));
+     //   allResponseModels.add(new ValidationModel(Validation.Type.Empty, binding.etMessage, binding.tvErrorMessage));
         Validation validation = Validation.getInstance();
         ResultReturn resultReturn = validation.CheckValidation(activity, allResponseModels);
         if (resultReturn.aBoolean) {

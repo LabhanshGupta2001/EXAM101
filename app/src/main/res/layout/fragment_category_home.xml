@@ -41,7 +41,7 @@
          android:layout_width="match_parent"
          android:orientation="vertical"
          android:id="@id/rlMain"
-         android:layout_height="wrap_content">
+         android:layout_height="match_parent">
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/rvCategories"
              android:layout_width="match_parent"

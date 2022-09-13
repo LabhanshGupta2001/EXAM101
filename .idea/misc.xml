@@ -39,30 +39,40 @@
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/drawable/select_option_background.xml" value="0.1945" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/drawable/theme_stroke_dash.xml" value="0.1315" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_about_us.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_blog_detail.xml" value="0.33" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_change_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_contact_us.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_course_list.xml" value="0.20092592592592592" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_course_test.xml" value="0.1" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_courses_detail.xml" value="0.25" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_courses_material.xml" value="0.25" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_dashboard_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_faqs.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_order_confirmed.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_packages_detail.xml" value="0.33" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_payment_failed.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_pdf_view.xml" value="0.22" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_privacy_policy.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_raise_complaint.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_raise_complaint_form.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_setting.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_sign_up.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_term_and_condition.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/activity_video_view.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/bottom_sheet_practice_test.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/bottomsheet_raise_complaints.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/data_not_found.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/fragment_blogs.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/fragment_category_home.xml" value="0.25" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/fragment_course_material.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/fragment_exam_filter.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/fragment_home.xml" value="0.20092592592592592" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/fragment_mock_test.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/fragment_mock_test_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_all_blogs.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_category.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_category_details_secondary.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_category_home.xml" value="0.20416666666666666" />
@@ -73,8 +83,10 @@
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_course_test_question_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_course_test_question_option_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_exam_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_mock_test_package.xml" value="0.67" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_my_exam.xml" value="0.25" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_order_history.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_package_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_packages.xml" value="0.43286573146292584" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_raise_complaint.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/HP/Desktop/labhanshdollopprojects/exam101-android/app/src/main/res/layout/item_topic_Pdf.xml" value="0.20416666666666666" />

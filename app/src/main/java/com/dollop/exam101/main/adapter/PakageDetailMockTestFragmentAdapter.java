@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dollop.exam101.databinding.ItemMockTestPackageBinding;
 import com.dollop.exam101.main.model.MockTestModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PakageDetailMockTestFragmentAdapter extends RecyclerView.Adapter<PakageDetailMockTestFragmentAdapter.MyViewHolder> {
@@ -34,11 +33,11 @@ public class PakageDetailMockTestFragmentAdapter extends RecyclerView.Adapter<Pa
 
     @Override
     public void onBindViewHolder(@NonNull PakageDetailMockTestFragmentAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        MockTestModel mockTestModel=mockTestModels.get(position);
+        MockTestModel mockTestModel = mockTestModels.get(position);
         holder.binding.tvTitle.setText(mockTestModel.mockTestName);
         holder.binding.tvAttemptsNumber.setText(mockTestModel.attempts);
-        holder.binding.tvDesc.setText(mockTestModel.duration);
-        holder.binding.tvAttempts.setText(mockTestModel.questionCnt);
+        holder.binding.tvDesc.setText("Total Days: " + mockTestModel.duration);
+        //holder.binding.tvAttempts.setText(mockTestModel.questionCnt);
     }
 
     @Override

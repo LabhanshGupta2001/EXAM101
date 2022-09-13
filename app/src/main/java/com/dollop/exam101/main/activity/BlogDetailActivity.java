@@ -117,7 +117,7 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
                         //  Utils.Picasso(allBlogListModel.mainImg, binding.imBlogDetail, R.drawable.dummy);
                         Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.mainImg).error(R.drawable.dummy).
                                 into(binding.imBlogDetail);
-                        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.featureImg).error(R.drawable.dummy).
+                        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.authorImage).error(R.drawable.dummy).
                                 into(binding.ivAuthorProfile);
                         //  Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
                         binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail, 0));

@@ -86,378 +86,458 @@
         </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+    <RelativeLayout
+        android:id="@+id/rvmain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/llBtn"
-        android:layout_below="@id/llToolbar"
-        android:background="@color/lineColor"
-        android:overScrollMode="ifContentScrolls"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:visibility="visible">
+        android:layout_below="@id/llToolbar">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_12sdp"
-                android:background="@color/lineColor"
-                android:orientation="vertical" />
+            android:layout_above="@+id/llBtn"
+            android:background="@color/lineColor"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:visibility="visible">
 
             <LinearLayout
-                android:id="@+id/llmicrosoft"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingVertical="@dimen/_12sdp">
-
-                <TextView
-                    android:id="@+id/tvFirst"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="@string/microsoft_power_point"
-                    android:theme="@style/QuinaryThemeTextStyle"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tvHeadings"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:theme="@style/TernaryBlackTextStyle" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/TertialThemeHeadingTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
-                        android:text="₹" />
-
-                    <TextView
-                        android:id="@+id/tvPriceGreat"
-                        style="@style/TertialThemeHeadingTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_1sdp"
-                        android:fontFamily="@font/inter_bold" />
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/_6sdp">
-
-                        <TextView
-                            android:id="@+id/tvRpSym2"
-                            style="@style/QuinaryLightSubTextStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginVertical="@dimen/_2sdp"
-                            android:text="₹" />
-
-
-                        <TextView
-                            android:id="@+id/tvPriceSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_toRightOf="@id/tvRpSym2"
-                            android:fontFamily="@font/inter_medium"
-                            android:theme="@style/QuaternaryLightSubTextStyle" />
-
-                        <View
-                            android:layout_width="wrap_content"
-                            android:layout_height="2dp"
-                            android:layout_alignStart="@id/tvRpSym2"
-                            android:layout_alignEnd="@id/tvPriceSmall"
-                            android:layout_centerVertical="true"
-                            android:background="@android:color/darker_gray" />
-
-
-                    </RelativeLayout>
-                </LinearLayout>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <View
+                    android:id="@+id/view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@color/HorizontallineColor" />
-
-                <TextView
-                    android:id="@+id/tvDates"
-                    style="@style/QuinarySubTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/_4sdp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="Published on 1 jan 2022"
-                    android:visibility="gone"
-                    app:drawableStartCompat="@drawable/ic_calender" />
-
-                <TextView
-                    android:id="@+id/tvDescription"
-                    style="@style/QuinarySubTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:fontFamily="@font/inter_regular" />
+                    android:layout_height="@dimen/_12sdp"
+                    android:background="@color/lineColor"
+                    android:orientation="vertical" />
 
                 <LinearLayout
+                    android:id="@+id/llmicrosoft"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:contentDescription="@string/image"
-                        android:src="@drawable/ic_staricon" />
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_12sdp">
 
                     <TextView
-                        android:id="@+id/tvRatingCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_2sdp"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="@string/_4_0"
-                        android:theme="@style/QuaternaryThemeHeadingTextStyle" />
-
-                    <TextView
-                        android:id="@+id/tvratingDescprition"
+                        android:id="@+id/tvFirst"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_2sdp"
-                        android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="@string/_54_rating_and_reviews"
-                        android:theme="@style/QuinaryLightSubTextStyle" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:id="@+id/viewtwo"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_12sdp"
-                android:background="@color/lineColor"
-                android:orientation="vertical" />
-
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/llTabView"
-                        android:orientation="vertical">
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tlPackageDetailTabLayoutId"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:overScrollMode="never"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        app:tabIndicator="@color/theme"
-                        app:tabIndicatorColor="@color/theme"
-                        app:tabIndicatorHeight="3dp"
-                        app:tabMode="scrollable"
-                        app:tabRippleColor="@color/transparent"
-                        app:tabSelectedTextColor="@color/theme"
-                        app:tabTextAppearance="@style/HomeHeadingTextStyle"
-                        app:tabTextColor="@color/black" />
-
-                    <View
-                        android:id="@+id/viewTab"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:background="@color/HorizontallineColor" />
-
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/ViewPagerPackageDetailId"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white" />
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_10sdp"
-                        android:background="@color/white"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvOverView"
-                        style="@style/TernaryTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/lineColor"
-                        android:fontFamily="@font/gothic_bold"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        android:paddingTop="@dimen/_12sdp"
-                        android:paddingBottom="@dimen/_8sdp"
-                        android:text="@string/overview" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvOverView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:background="@color/white"
-                        android:paddingVertical="@dimen/_4sdp"
+                        android:text="@string/microsoft_power_point"
+                        android:theme="@style/QuinaryThemeTextStyle"
                         android:visibility="gone" />
 
                     <TextView
-                        android:id="@+id/tvDetail"
-                        style="@style/QuinarySubTextStyle"
+                        android:id="@+id/tvHeadings"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/inter_regular"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        android:paddingTop="@dimen/_7sdp" />
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:theme="@style/TernaryBlackTextStyle" />
 
                     <LinearLayout
-                        android:id="@+id/llReview"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/lineColor"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        android:paddingTop="@dimen/_12sdp"
-                        android:paddingBottom="@dimen/_8sdp"
-                        android:weightSum="1">
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            style="@style/TertialThemeHeadingTextStyle"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/gothic_bold"
-                            android:text="@string/rating_and_reviews"
-                            android:theme="@style/TernaryBlackTextStyle"
-                            tools:ignore="InefficientWeight" />
-
+                            android:fontFamily="@font/inter_bold"
+                            android:text="₹" />
 
                         <TextView
-                            android:id="@+id/tvRateId"
+                            android:id="@+id/tvPriceGreat"
+                            style="@style/TertialThemeHeadingTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:fontFamily="@font/inter_bold" />
+
+                        <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/inter_semibold"
-                            android:text="@string/rate_now"
-                            android:theme="@style/QuinaryThemeTextStyle" />
+                            android:layout_marginStart="@dimen/_6sdp">
+
+                            <TextView
+                                android:id="@+id/tvRpSym2"
+                                style="@style/QuinaryLightSubTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginVertical="@dimen/_2sdp"
+                                android:text="₹" />
+
+
+                            <TextView
+                                android:id="@+id/tvPriceSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_toRightOf="@id/tvRpSym2"
+                                android:fontFamily="@font/inter_medium"
+                                android:theme="@style/QuaternaryLightSubTextStyle" />
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="2dp"
+                                android:layout_alignStart="@id/tvRpSym2"
+                                android:layout_alignEnd="@id/tvPriceSmall"
+                                android:layout_centerVertical="true"
+                                android:background="@android:color/darker_gray" />
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/HorizontallineColor" />
+
+                    <TextView
+                        android:id="@+id/tvDates"
+                        style="@style/QuinarySubTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_4sdp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Published on 1 jan 2022"
+                        android:visibility="visible"
+                        app:drawableStartCompat="@drawable/ic_calender" />
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        style="@style/QuinarySubTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:fontFamily="@font/inter_regular" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
                             android:contentDescription="@string/image"
-                            android:src="@drawable/ic_theemrightarrow" />
+                            android:src="@drawable/ic_staricon" />
 
+                        <TextView
+                            android:id="@+id/tvRatingCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_2sdp"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="@string/_4_0"
+                            android:theme="@style/QuaternaryThemeHeadingTextStyle" />
 
+                        <TextView
+                            android:id="@+id/tvratingDescprition"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_2sdp"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/_54_rating_and_reviews"
+                            android:theme="@style/QuinaryLightSubTextStyle" />
                     </LinearLayout>
+                </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvRatingId"
+                <View
+                    android:id="@+id/viewtwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_12sdp"
+                    android:background="@color/lineColor"
+                    android:orientation="vertical" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:overScrollMode="never" />
-                </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/llTabView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/llTab"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/llcoursematerial"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="@dimen/_2sdp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvCourseMaterial"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/_6sdp"
+                                        android:fontFamily="@font/gothic_bold"
+                                        android:text="@string/course_material"
+                                        android:textColor="@color/theme"
+                                        android:textSize="@dimen/_13sdp" />
+
+                                    <View
+                                        android:id="@+id/viewCourseMaterial"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_2sdp"
+                                        android:background="@color/theme" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/llMockTest"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/_2sdp"
+                                    android:orientation="vertical">
+
+
+                                    <TextView
+                                        android:id="@+id/tvMockTest"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/_6sdp"
+                                        android:fontFamily="@font/gothic_bold"
+                                        android:text="@string/mock_test"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_13sdp" />
+
+                                    <View
+                                        android:id="@+id/viewMockTest"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_2sdp"
+                                        android:background="@color/theme"
+                                        android:visibility="gone" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:id="@+id/viewTab"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_1sdp"
+                                android:background="@color/HorizontallineColor" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvCourseList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvMockTestList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.tabs.TabLayout
+                                android:id="@+id/tlPackageDetailTabLayoutId"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:overScrollMode="never"
+
+                                android:visibility="gone"
+                                app:tabIndicator="@color/theme"
+                                app:tabIndicatorColor="@color/theme"
+                                app:tabIndicatorHeight="3dp"
+                                app:tabMode="scrollable"
+                                app:tabRippleColor="@color/transparent"
+                                app:tabSelectedTextColor="@color/theme"
+                                app:tabTextAppearance="@style/HomeHeadingTextStyle"
+                                app:tabTextColor="@color/black" />
+
+
+                            <androidx.viewpager2.widget.ViewPager2
+                                android:id="@+id/ViewPagerPackageDetailId"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:visibility="gone" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_10sdp"
+                                android:background="@color/white" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvOverView"
+                            style="@style/TernaryTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/lineColor"
+                            android:fontFamily="@font/gothic_bold"
+                            android:paddingHorizontal="@dimen/_12sdp"
+                            android:paddingTop="@dimen/_12sdp"
+                            android:paddingBottom="@dimen/_8sdp"
+                            android:text="@string/overview" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvOverView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:background="@color/white"
+                            android:paddingVertical="@dimen/_4sdp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvDetail"
+                            style="@style/QuinarySubTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:fontFamily="@font/inter_regular"
+                            android:paddingHorizontal="@dimen/_12sdp"
+                            android:paddingTop="@dimen/_7sdp" />
+
+                        <LinearLayout
+                            android:id="@+id/llReview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/lineColor"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/_12sdp"
+                            android:paddingTop="@dimen/_12sdp"
+                            android:paddingBottom="@dimen/_8sdp"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/gothic_bold"
+                                android:text="@string/rating_and_reviews"
+                                android:theme="@style/TernaryBlackTextStyle"
+                                tools:ignore="InefficientWeight" />
+
+
+                            <TextView
+                                android:id="@+id/tvRateId"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="@string/rate_now"
+                                android:theme="@style/QuinaryThemeTextStyle" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_2sdp"
+                                android:contentDescription="@string/image"
+                                android:src="@drawable/ic_theemrightarrow" />
+
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvRatingId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:overScrollMode="never" />
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/llBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="1">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvAddtoWishlist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="0.5"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/theme"
+                app:strokeWidth="@dimen/_1sdp"
+                tools:ignore="NestedWeights">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:text="@string/add_to_wishlist"
+                    android:theme="@style/QuaternaryThemeHeadingTextStyle" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/AddtoCart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_weight="0.5"
+                app:cardBackgroundColor="@color/theme"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:id="@+id/tvButtonCheckout_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:text="@string/add_to_cart"
+                    android:theme="@style/QuaternarySecondaryTextStyle" />
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
-
-    <LinearLayout
-        android:id="@+id/llBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="1">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcvAddtoWishlist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_12sdp"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_weight="0.5"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/theme"
-            app:strokeWidth="@dimen/_1sdp"
-            tools:ignore="NestedWeights">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:gravity="center_horizontal"
-                android:paddingVertical="@dimen/_10sdp"
-                android:text="@string/add_to_wishlist"
-                android:theme="@style/QuaternaryThemeHeadingTextStyle" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/AddtoCart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_12sdp"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:layout_weight="0.5"
-            app:cardBackgroundColor="@color/theme"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="0dp">
-
-            <TextView
-                android:id="@+id/tvButtonCheckout_Id"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center_horizontal"
-                android:paddingHorizontal="@dimen/_20sdp"
-                android:paddingVertical="@dimen/_10sdp"
-                android:text="@string/add_to_cart"
-                android:theme="@style/QuaternarySecondaryTextStyle" />
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-
-    <include
-        android:id="@+id/noInternetConnection"
-        layout="@layout/no_internet_connection"
-        android:visibility="gone" />
+        <include
+            android:id="@+id/noInternetConnection"
+            layout="@layout/no_internet_connection"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 </RelativeLayout>

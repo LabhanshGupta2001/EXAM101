@@ -84,18 +84,21 @@
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
+                            android:gravity="center"
                             android:layout_height="wrap_content">
 
                             <TextView
                                 android:id="@+id/tvRpSym"
                                 style="@style/PrimaryGreenHeadingTextStyle"
                                 android:layout_width="wrap_content"
+                                android:layout_centerInParent="true"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:text="₹" />
 
                             <TextView
                                 android:id="@+id/tvRupees"
+                                android:layout_centerInParent="true"
                                 style="@style/PrimaryGreenHeadingTextStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -106,10 +109,13 @@
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity=""
                             android:layout_height="wrap_content">
 
                             <TextView
                                 android:id="@+id/tvRpSym2"
+                                android:layout_centerInParent="true"
                                 style="@style/QuinaryLightSubTextStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -122,6 +128,7 @@
                                 style="@style/QuinaryLightSubTextStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
                                 android:layout_marginVertical="@dimen/_2sdp"
                                 android:layout_toRightOf="@id/tvRpSym2"
                                 android:fontFamily="@font/inter_medium"

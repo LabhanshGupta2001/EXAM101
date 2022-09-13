@@ -1,5 +1,6 @@
 package com.dollop.exam101.main.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -47,15 +48,15 @@ public class MockTestFragment extends Fragment implements View.OnClickListener {
         PageHeight = 0;
         apiService = RetrofitClient.getClient();
         Utils.E("mockTestModels::::::::" + mockTestModels);
+        pakageDetailMockTestFragmentAdapter = new PakageDetailMockTestFragmentAdapter(activity, mockTestModels);
 
         binding.rvMockTestList.setHasFixedSize(true);
         binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
-        binding.rvMockTestList.setAdapter(new PakageDetailMockTestFragmentAdapter(activity, mockTestModels));
+        binding.rvMockTestList.setAdapter(pakageDetailMockTestFragmentAdapter);
 
         new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
-
             }
 
             @Override
@@ -69,6 +70,7 @@ public class MockTestFragment extends Fragment implements View.OnClickListener {
         }.start();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void UpdateData() {
         if (pakageDetailMockTestFragmentAdapter != null) {
             pakageDetailMockTestFragmentAdapter.notifyDataSetChanged();

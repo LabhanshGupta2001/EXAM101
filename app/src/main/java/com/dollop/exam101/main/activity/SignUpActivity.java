@@ -33,6 +33,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dollop.exam101.Basics.Database.UserData;
 import com.dollop.exam101.Basics.Database.UserDataHelper;
 import com.dollop.exam101.Basics.Retrofit.APIError;
 import com.dollop.exam101.Basics.Retrofit.ApiService;
@@ -316,7 +317,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             Utils.I_clear(SignUpActivity.this, LoginActivity.class, null);
         } else if (view == binding.tvSelectState) {
             binding.tvErrorState.setVisibility(View.GONE);
-            bottomSheetStateTask();
+            if (AppController.getInstance().isOnline()) {
+                getState();
+            } else {
+                InternetDialog();
+            }
         } else if (view == binding.tvRegisterId) {
             CheckValidationTask();
         } else if (view == binding.llCountryCode) {
@@ -367,6 +372,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     private void getState() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         apiservice.getStateList(SavedData.getCountryUuId()).enqueue(new Callback<AllResponseModel>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
@@ -375,6 +381,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     if (response.code() == StatusCodeConstant.OK) {
                         stateItemArrayList.clear();
                         assert response.body() != null;
+                        bottomSheetStateTask();
                         stateItemArrayList.addAll(response.body().state);
                         stateAdapter = new StateAdapter(activity, stateItemArrayList, Constants.Key.ClickSign);
                         bottomSheetStateBinding.rvStateListId.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.VERTICAL, false));
@@ -516,12 +523,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         bottomSheetBehavior.setMaxHeight(binding.llChild.getHeight());
         bottomSheetBehavior.setHalfExpandedRatio(0.9f);
         bottomSheetBehavior.setSkipCollapsed(true);
-        if (AppController.getInstance().isOnline()) {
-            getState();
-        } else {
-            // Utils.InternetDialog(activity);
-            InternetDialog();
-        }
+
         bottomSheetStateBinding.searchViewId.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -558,11 +560,12 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 progressDialog.dismiss();
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
-                        Bundle bundle = new Bundle();
                         assert response.body() != null;
                         Utils.T(activity, response.body().message);
-                        Utils.I_clear(activity, LoginActivity.class, bundle);
+                        UserDataHelper.getInstance().insertData(response.body().User);
+                        Utils.I_clear(activity, DashboardScreenActivity.class, null);
                     } else {
+
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
                         if (response.code() != StatusCodeConstant.BAD_REQUEST) {
