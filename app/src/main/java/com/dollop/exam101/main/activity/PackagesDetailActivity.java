@@ -4,10 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -95,8 +98,13 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         binding = ActivityPackagesDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        init();
 
+        if (Utils.IS_LOGIN()){
+            init();
+        }else {
+            Utils.I_clear(activity,LoginActivity.class,null);
+            finish();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -116,6 +124,16 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
             Utils.E("packageUuid;;;;;;" + packageUuid);
             Utils.E("Bundle;;;;;;" + bundle);
         }
+
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
+        Utils.E("22appLinkAction::"+appLinkData);
+        if (appLinkData != null) {
+            packageUuid = new String(Base64.decode(appLinkData.getLastPathSegment(), Base64.NO_CLOSE));
+            Utils.E("packageUuiduuid::"+packageUuid);
+        }
+
         if (AppController.getInstance().isOnline()) {
             getPackageDetails();
         } else {
@@ -127,6 +145,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         binding.llMockTest.setOnClickListener(this);
         binding.llcoursematerial.setOnClickListener(this);
         binding.AddtoCart.setOnClickListener(this);
+        binding.mcvShare.setOnClickListener(this);
         if (AppController.getInstance().isOnline()) {
             GetPackageDetailsMockTestListRatingNow();
         } else {
@@ -186,9 +205,24 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 InternetDialog();
             }
 
+        }else if (view == binding.mcvShare){
+            shearIntent();
         }
     }
 
+    private void shearIntent() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType(Constants.Key.TEXT_PLAIN_TYPE);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, Constants.Key.Exam101);
+            String shareMessage= "\nLet me recommend you this package\n\n";
+            shareMessage = shareMessage + Const.Url.HOST_URL+Constants.Key.exam+ Base64.encodeToString(packageUuid.getBytes(), Base64.NO_CLOSE);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, Constants.Key.choose_one));
+        } catch(Exception e) {
+            //e.toString();
+        }
+    }
     private void addToWishList() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();

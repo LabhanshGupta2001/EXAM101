@@ -47,7 +47,7 @@ public class NotificationPrimaryAdapter extends RecyclerView.Adapter<Notificatio
                 notificationBinding=BottomsheetNotificationBinding.inflate(LayoutInflater.from(context));
                 bottomSheetDialog.setContentView(notificationBinding.getRoot());
                 bottomSheetDialog.show();
-        notificationBinding.llSave.setOnClickListener(new View.OnClickListener() {
+         notificationBinding.llSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bottomSheetDialog.dismiss();
