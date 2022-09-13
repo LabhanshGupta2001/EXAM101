@@ -115,5 +115,6 @@ public class Const {
         String getBannerListApi = "getBannerListApi";
         String getNotification = "getNotification";
         String countNotification = "countNotification";
+        String updateTokenApi = "updateTokenApi";
     }
 }

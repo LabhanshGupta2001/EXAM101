@@ -68,7 +68,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <include
-        layout="@layout/no_result_found"
+        layout="@layout/data_not_found"
         android:id="@+id/no_Result_found_Id"
         android:visibility="gone"/>
 

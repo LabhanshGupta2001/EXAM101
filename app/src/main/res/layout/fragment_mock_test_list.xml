@@ -49,7 +49,7 @@
 
     <include
         android:id="@+id/dataNoFoundId"
-        layout="@layout/no_result_found"
+        layout="@layout/data_not_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

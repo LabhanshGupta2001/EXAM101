@@ -477,7 +477,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-
+                        GetPackageDetailsMockTestListRatingNow();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -565,7 +565,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 Utils.E("SimpleDateFormat::::" + currentDate + currentTime);
                 addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
-                GetPackageDetailsMockTestListRatingNow();
                 bottomSheetDialog.cancel();
             }
         });

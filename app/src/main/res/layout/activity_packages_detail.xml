@@ -292,7 +292,7 @@
                                     android:id="@+id/llcoursematerial"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginVertical="@dimen/_2sdp"
+                                    android:layout_marginTop="@dimen/_2sdp"
                                     android:orientation="vertical">
 
                                     <TextView
@@ -316,7 +316,8 @@
                                     android:id="@+id/llMockTest"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="@dimen/_2sdp"
+                                    android:layout_marginHorizontal="@dimen/_2sdp"
+                                    android:layout_marginTop="@dimen/_2sdp"
                                     android:orientation="vertical">
 
 

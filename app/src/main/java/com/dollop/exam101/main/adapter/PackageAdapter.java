@@ -50,7 +50,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.MyPackag
         holder.itemPackagesBinding.tvPackageDescription.setText(packageModel.shortDesc);
         holder.itemPackagesBinding.tvRupees.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageModel.discountedPrice)));
         holder.itemPackagesBinding.tvTotalRupees.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageModel.actualPrice)));
-        holder.itemPackagesBinding.tvDay.setText(packageModel.validity + context.getString(R.string.Days));
+        holder.itemPackagesBinding.tvDay.setText(packageModel.validity +" "+context.getString(R.string.Days));
 
         if (packageModel.rating.equals(Constants.Key.blank)) {
             holder.itemPackagesBinding.tvRatingCount.setVisibility(View.GONE);

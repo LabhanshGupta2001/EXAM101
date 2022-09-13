@@ -98,7 +98,7 @@ public class AllPackageActivity extends AppCompatActivity implements View.OnClic
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put(Constants.Key.examId, ExamId);
-        hashMap.put(Constants.Key.languageId, LanguageId);
+        hashMap.put(Constants.Key.languageIds, LanguageId);
         hashMap.put(Constants.Key.discountedPriceStart, MinValue);
         hashMap.put(Constants.Key.discountedPriceEnd, MaxValue);
 

@@ -16,7 +16,7 @@
 
         <include
             android:id="@+id/noResultFoundId"
-            layout="@layout/no_result_found"
+            layout="@layout/data_not_found"
             android:visibility="gone"
             />
 </LinearLayout>

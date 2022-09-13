@@ -16,7 +16,7 @@
         android:visibility="visible" />
 
     <include
-        layout="@layout/no_result_found"
+        layout="@layout/data_not_found"
         android:id="@+id/dataNoFoundId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -258,6 +258,11 @@ public interface ApiService {
     @POST(Const.Url.loginApi)
     Call<AllResponseModel> userLogin(@FieldMap HashMap<String, String> hm);
 
+    @FormUrlEncoded
+    @POST(Const.Url.updateTokenApi)
+    Call<AllResponseModel> UpdateFirebaseToken(@Header(Constants.Key.Authorization) String token,
+                                               @Field(Constants.Key.fcmId) String fcmId);
+
     @GET(Const.Url.get_result)
     Call<AllResponseModel> getResult(@FieldMap HashMap<String, String> hm);
 
