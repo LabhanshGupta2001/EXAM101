@@ -35,11 +35,13 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:id="@+id/nsScrollView"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/llMain"
             android:orientation="vertical">
 
 
@@ -64,5 +66,10 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/no_result_found"
+        android:id="@+id/no_Result_found_Id"
+        android:visibility="gone"/>
 
 </LinearLayout>

@@ -136,6 +136,12 @@ public interface ApiService {
     @GET(Const.Url.getBannerListApi)
     Call<AllResponseModel> getBannerList();
 
+    @GET(Const.Url.getNotification)
+    Call<AllResponseModel> getNotifications(@Header(Constants.Key.Authorization)String token);
+
+    @GET(Const.Url.countNotification)
+    Call<AllResponseModel> getCountNotification(@Header(Constants.Key.Authorization) String token);
+
    /* @GET(Const.Url.getRaisedComplaintDetailApi)
     Call<AllResponseModel> getComplaintDetail(@Header(Constants.Key.Authorization) String token,
                                               @FieldMap HashMap<String, String> hm);*/
@@ -303,8 +309,6 @@ public interface ApiService {
     Call<AllResponseModel> addRatingReview(@Header(Constants.Key.Authorization) String token,
                                            @FieldMap HashMap<String, String> hm);
 
-    @GET(Const.Url.notification)
-    Call<AllResponseModel> getNotification(@FieldMap HashMap<String, String> hm);
 
     @GET(Const.Url.filter)
     Call<AllResponseModel> getFilter(@FieldMap HashMap<String, String> hm);

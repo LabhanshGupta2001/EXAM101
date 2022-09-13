@@ -27,6 +27,8 @@ public class Constants {
         String png = "png";
         String jpeg = "jpeg";
         String Document = "Document";
+        String Blog = "blog-details/";
+        String exam = "exam-details/";
 
 
         //Environment

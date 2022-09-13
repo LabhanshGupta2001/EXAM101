@@ -192,4 +192,8 @@ public class AllResponseModel {
     @SerializedName("middleObj2")
     @Expose
     public MiddleObj2 middleObj2;
+
+    @SerializedName("count")
+    @Expose
+    public String count;
 }
