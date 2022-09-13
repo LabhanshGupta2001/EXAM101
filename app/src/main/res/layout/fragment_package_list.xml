@@ -74,7 +74,7 @@
 
         <include
             android:id="@+id/dataNoFoundId"
-            layout="@layout/no_result_found"
+            layout="@layout/data_not_found"
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView

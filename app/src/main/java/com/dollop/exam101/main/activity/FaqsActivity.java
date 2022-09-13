@@ -32,10 +32,14 @@ public class FaqsActivity extends BaseActivity implements View.OnClickListener {
 
     private void init() {
         apiService = RetrofitClient.getClient();
+        binding.ivBack.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
+        if (view == binding.ivBack) {
+            finish();
+        }
 
     }
 

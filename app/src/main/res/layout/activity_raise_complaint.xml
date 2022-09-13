@@ -83,7 +83,7 @@
         android:paddingBottom="@dimen/_16sdp"/>
 
     <include
-        layout="@layout/no_result_found"
+        layout="@layout/data_not_found"
         android:id="@+id/layoutDataNotFound"
         android:visibility="gone"/>
 

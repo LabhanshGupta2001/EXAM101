@@ -6,8 +6,8 @@
     <!--Key Hash=9oIB47V+DcpzPQYiZG4uUrLY/Mc=-->
 
     <!--Basic-->
-    <string name="empty_error">This field can\'t be empty.!</string>
-    <string name="invalid_email">Invalid Email Id</string>
+    <string name="empty_error">This field is required.!</string>
+    <string name="invalid_email">Please Enter Valid Email Id</string>
     <string name="enter_ten_digits_number">Enter 10 digits Mobile Number</string>
     <string name="valid_number">Enter Valid Mobile Number.</string>
     <string name="today">Today</string>
@@ -102,7 +102,7 @@
     <string name="attempt_40">Attempt : 40</string>
     <string name="youremail_gmail_com">Enter address...</string>
     <string name="forget_password">Forgot Password?</string>
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in">Back to login </string>
     <string name="don_t_have_an_account">Don’t have an account?</string>
     <string name="title_activity_forget_password">forget_password_activity</string>
     <!-- Strings used for fragments for navigation -->
@@ -164,14 +164,14 @@
     <string name="full_name">Full Name</string>
     <string name="email_id">Email id</string>
     <string name="mobile_number">Mobile Number</string>
-    <string name="message">Message</string>
+    <string name="message">Message (Optional)</string>
     <string name="enter_your_message">Enter your message</string>
     <string name="raise_complaint_list">Raise Complaint List</string>
     <string name="add">Add</string>
     <string name="complaint_subject">Complaint Subject</string>
     <string name="complaint_id">Complaint ID:</string>
     <string name="normal_priority">Normal Priority</string>
-    <string name="view_detail">View Detail</string>
+    <string name="view_detail">View Details</string>
     <string name="active">Active</string>
     <string name="dummy_msg">Lorem Ipsum is simply dummy text of the printing and type industry.</string>
     <string name="raise_complaint">Raise Complaint</string>
@@ -183,7 +183,7 @@
     <string name="normal">Normal</string>
     <string name="high">High</string>
     <string name="critical">Critical</string>
-    <string name="upload_pdf_images">Upload PDF / Images</string>
+    <string name="upload_pdf_images">Upload PDF / Images (Optional)</string>
 
     <string name="_2_june_2022">2 June, 2022</string>
     <string name="duration">Duration</string>

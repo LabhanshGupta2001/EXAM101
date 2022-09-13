@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import com.dollop.exam101.Basics.UtilityTools.BaseActivity;
 import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.StatusCodeConstant;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
+import com.dollop.exam101.BuildConfig;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityBlogDetailBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
@@ -41,6 +43,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,16 +67,33 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         binding = ActivityBlogDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        init();
+
+        if (Utils.IS_LOGIN()){
+            init();
+        }else {
+            Utils.I_clear(activity,LoginActivity.class,null);
+            finish();
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     private void init() {
         apiService = RetrofitClient.getClient();
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
+        if (bundle != null){
             uuid = bundle.getString(Constants.Key.uuid);
         }
+
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
+        Utils.E("22appLinkAction::"+appLinkData);
+        if (appLinkData != null) {
+            uuid = new String(Base64.decode(appLinkData.getLastPathSegment(), Base64.NO_CLOSE));
+            Utils.E("uuid::"+uuid);
+        }
+
         binding.ivBack.setOnClickListener(this);
         if (AppController.getInstance().isOnline()) {
             getBlogDetails();
@@ -95,6 +116,7 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
 
     private void getBlogDetails() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
+        Utils.E("APIuuid::"+uuid);
         apiService.getBlogDetails(uuid).enqueue(new Callback<AllResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
@@ -117,7 +139,7 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
                         //  Utils.Picasso(allBlogListModel.mainImg, binding.imBlogDetail, R.drawable.dummy);
                         Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.mainImg).error(R.drawable.dummy).
                                 into(binding.imBlogDetail);
-                        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.featureImg).error(R.drawable.dummy).
+                        Picasso.get().load(Const.Url.HOST_URL + allBlogListModel.authorImage).error(R.drawable.dummy).
                                 into(binding.ivAuthorProfile);
                         //  Utils.Picasso(allBlogListModel.featureImg, binding.ivAuthorProfile, R.drawable.dummy);
                         binding.tvBlogLine.setText(HtmlCompat.fromHtml(response.body().blog.blogDetail, 0));
@@ -214,11 +236,27 @@ public class BlogDetailActivity extends BaseActivity implements View.OnClickList
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse(allBlogListModel.authorLinkdedLink)));
             }
+        } else if (view == binding.mcvShare){
+            shearIntent();
         }
 
         /*else if (view == binding.flotingBtn) {
             bottomSheetTask();
         }*/
+    }
+
+    private void shearIntent() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType(Constants.Key.TEXT_PLAIN_TYPE);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, Constants.Key.Exam101);
+            String shareMessage= "\nLet me recommend you this blog\n\n";
+            shareMessage = shareMessage + Const.Url.HOST_URL+Constants.Key.Blog+Base64.encodeToString(uuid.getBytes(), Base64.NO_CLOSE);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, Constants.Key.choose_one));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)

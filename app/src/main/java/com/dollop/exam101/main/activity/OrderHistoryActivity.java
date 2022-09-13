@@ -81,7 +81,18 @@ public class OrderHistoryActivity extends BaseActivity implements View.OnClickLi
                         assert response.body() != null;
                         orderHistoryModelArrayList.clear();
                         orderHistoryModelArrayList.addAll(response.body().studentOrders);
-                        orderHistoryAdapter.notifyDataSetChanged();
+                        if (orderHistoryModelArrayList == null || orderHistoryModelArrayList.isEmpty()){
+                            Utils.E("IF Is True::");
+                            binding.noResultFoundId.llParent.setVisibility(View.VISIBLE);
+                            binding.rvOderHistory.setVisibility(View.GONE);
+                            binding.nsScrollView.setVisibility(View.GONE);
+                        }else {
+                            Utils.E("Else:::");
+                            orderHistoryAdapter.notifyDataSetChanged();
+                            binding.noResultFoundId.llParent.setVisibility(View.GONE);
+                            binding.rvOderHistory.setVisibility(View.VISIBLE);
+                            binding.nsScrollView.setVisibility(View.VISIBLE);
+                        }
 
                     } else {
                         assert response.errorBody() != null;

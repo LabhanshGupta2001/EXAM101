@@ -19,7 +19,7 @@
         layout="@layout/no_internet_connection"
         android:visibility="gone" />
 
-    <include layout="@layout/no_result_found"
+    <include layout="@layout/data_not_found"
         android:id="@+id/noResultFoundId"
         android:visibility="gone" />
 

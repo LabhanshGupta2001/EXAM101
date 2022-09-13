@@ -3,7 +3,6 @@ package com.dollop.exam101.main.adapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import com.dollop.exam101.Basics.UtilityTools.Constants;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ItemAllBlogsBinding;
-import com.dollop.exam101.databinding.ItemCurrentAffairsNewsBinding;
 import com.dollop.exam101.main.activity.BlogDetailActivity;
 import com.dollop.exam101.main.model.AllBlogListModel;
 
@@ -42,12 +40,15 @@ public class BlogsHomeAdapter extends RecyclerView.Adapter<BlogsHomeAdapter.MyVi
         holder.binding.tvMainBlogHeading.setText(allBlogListModel.blogTitle);
         holder.binding.tvNewsHeading.setText(allBlogListModel.blogTitle);
         holder.binding.tvAuthorName.setText(allBlogListModel.authorName);
-        Utils.Picasso(allBlogListModel.mainImg,holder.binding.ivMainBlogsImg, R.drawable.dummy);
-        Utils.Picasso(allBlogListModel.featureImg,holder.binding.ivAuthorProfile, R.drawable.dummy);
+        Utils.Picasso(allBlogListModel.featureImg, holder.binding.ivMainBlogsImg, R.drawable.dummy);
+        Utils.Picasso(allBlogListModel.authorImage, holder.binding.ivAuthorProfile, R.drawable.dummy);
         holder.binding.tvReadMore.setOnClickListener(v -> {
-            Bundle bundle=new Bundle();
-            bundle.putString(Constants.Key.uuid,allBlogListModel.blogUuid);
-            Utils.I(context, BlogDetailActivity.class,bundle);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.Key.uuid, allBlogListModel.blogUuid);
+            Utils.I(context, BlogDetailActivity.class, bundle);
+        });
+        holder.binding.ivMainBlogsImg.setOnClickListener(v -> {
+            holder.binding.tvReadMore.performClick();
         });
     }
 

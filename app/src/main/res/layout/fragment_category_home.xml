@@ -37,16 +37,17 @@
 -->
 
 
-     <LinearLayout
+     <RelativeLayout
          android:layout_width="match_parent"
          android:orientation="vertical"
          android:id="@id/rlMain"
-         android:layout_height="wrap_content">
+         android:layout_height="match_parent">
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/rvCategories"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:layout_marginTop="@dimen/_10sdp"
+             android:visibility="visible"
              android:background="@color/white"
              android:overScrollMode="never"
              android:paddingHorizontal="@dimen/_2sdp"
@@ -56,12 +57,12 @@
          <include
              android:id="@+id/noResultFoundId"
              android:visibility="gone"
-             layout="@layout/no_result_found" />
+             layout="@layout/data_not_found" />
 
          <include
              android:id="@+id/noInternetConnection"
              android:visibility="gone"
              layout="@layout/no_internet_connection" />
-     </LinearLayout>
+     </RelativeLayout>
 
 </LinearLayout>

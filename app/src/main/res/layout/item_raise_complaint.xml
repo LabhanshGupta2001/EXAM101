@@ -184,11 +184,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:paddingVertical="@dimen/_6sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:drawablePadding="@dimen/_3sdp"
                     android:fontFamily="@font/inter_medium"
                     android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/_6sdp"
                     android:text="@string/view_detail"
                     app:drawableEndCompat="@drawable/ic_rightarrow" />
             </RelativeLayout>

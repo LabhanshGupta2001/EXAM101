@@ -93,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/input_custom"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:fontFamily="@font/inter_regular"
                     android:hint="@string/full_name"
                     android:inputType="textPersonName"
@@ -193,7 +194,6 @@
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
                                 tools:ignore="SpUsage" />
-
 
 
                         </LinearLayout>

@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
-    <include layout="@layout/no_result_found"
+    <include layout="@layout/data_not_found"
         android:id="@+id/noResultFoundId"
         android:visibility="gone"/>
 </FrameLayout>

@@ -71,11 +71,11 @@
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="@dimen/_80sdp"
                         android:layout_centerHorizontal="true"
-                        app:cardElevation="6dp"
+                        android:layout_marginVertical="@dimen/_14sdp"
                         android:outlineAmbientShadowColor="@color/ShadowColor"
                         android:outlineSpotShadowColor="@color/ambientColor"
-                        android:layout_marginVertical="@dimen/_14sdp"
-                        app:cardCornerRadius="@dimen/_40sdp">
+                        app:cardCornerRadius="@dimen/_40sdp"
+                        app:cardElevation="6dp">
 
                         <ImageView
                             android:id="@+id/ivProfile"
@@ -90,12 +90,12 @@
                         android:id="@+id/mcvProfileSelector"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        app:cardCornerRadius="@dimen/_10sdp"
                         android:layout_alignRight="@+id/mcvProfile"
                         android:layout_alignBottom="@+id/mcvProfile"
-                        app:cardElevation="6dp"
                         android:outlineAmbientShadowColor="@color/ShadowColor"
                         android:outlineSpotShadowColor="@color/ambientColor"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="6dp"
                         app:strokeColor="@color/cardStroke"
                         app:strokeWidth="1dp"
                         tools:ignore="UnusedAttribute">
@@ -142,10 +142,11 @@
                     android:layout_marginHorizontal="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:background="@drawable/input_custom"
-                    android:fontFamily="@font/inter_medium"
-                    android:hint="@string/email_address"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:enabled="true"
                     android:focusable="false"
+                    android:fontFamily="@font/inter_medium"
+                    android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="@dimen/_16sdp"
                     android:paddingVertical="@dimen/_12sdp"
@@ -266,8 +267,8 @@
                     android:background="@drawable/grey_stroke_background"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/country"
-                    android:paddingVertical="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_12sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill,TextViewEdits" />
 
@@ -292,8 +293,8 @@
                     android:background="@drawable/input_custom"
                     android:fontFamily="@font/inter_medium"
                     android:hint="@string/state"
-                    android:paddingVertical="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_12sdp"
                     android:textColorHint="@color/sub_text"
                     tools:ignore="Autofill" />
 

@@ -53,7 +53,7 @@ public class TopicVideosAdapter extends RecyclerView.Adapter<TopicVideosAdapter.
             @Override
             public void onClick(View v) {
                 //  showPDFDialog(videoList);
-                downloadVideo(video.url);
+                //downloadVideo(video.url);
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.Key.videoUrl, video.url);
                 bundle.putString(Constants.Key.urlType, Constants.Key.video);

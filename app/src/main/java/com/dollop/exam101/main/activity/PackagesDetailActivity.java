@@ -1,12 +1,16 @@
 package com.dollop.exam101.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -15,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +38,8 @@ import com.dollop.exam101.R;
 import com.dollop.exam101.databinding.ActivityPackagesDetailBinding;
 import com.dollop.exam101.databinding.BottomSheetRatenowBinding;
 import com.dollop.exam101.main.adapter.MockTestViewPagerAdapter;
+import com.dollop.exam101.main.adapter.PakageDetailMockTestFragmentAdapter;
+import com.dollop.exam101.main.adapter.PakageDetailPrimaryAdapter;
 import com.dollop.exam101.main.adapter.PakageDetailRatingAdapter;
 import com.dollop.exam101.main.fragment.CourseMaterialFragment;
 import com.dollop.exam101.main.fragment.MockTestFragment;
@@ -71,6 +78,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     MockTestViewPagerAdapter mockTestViewPagerAdapter;
     ArrayList<String> Tittle = new ArrayList<>();
     List<Fragment> fragments = new ArrayList<>();
+    PakageDetailPrimaryAdapter pakageDetailPrimaryAdapter;
     List<MockTestModel> mockTestModels = new ArrayList<>();
     ArrayList<ReviewRating> reviewRatingModels = new ArrayList<>();
     List<ExamModel> examModelArrayList = new ArrayList<>();
@@ -79,7 +87,10 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     BottomSheetRatenowBinding bottomSheetRatenowBinding;
     CourseMaterialFragment courseMaterialFragment = new CourseMaterialFragment();
     MockTestFragment mockTestFragment = new MockTestFragment();
+    PakageDetailMockTestFragmentAdapter pakageDetailMockTestFragmentAdapter;
+
     String packageName, packageDetail, imgPath, shortDesc;
+    private boolean isDone = false;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
@@ -87,8 +98,13 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         binding = ActivityPackagesDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        init();
 
+        if (Utils.IS_LOGIN()){
+            init();
+        }else {
+            Utils.I_clear(activity,LoginActivity.class,null);
+            finish();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -108,6 +124,16 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
             Utils.E("packageUuid;;;;;;" + packageUuid);
             Utils.E("Bundle;;;;;;" + bundle);
         }
+
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
+        Utils.E("22appLinkAction::"+appLinkData);
+        if (appLinkData != null) {
+            packageUuid = new String(Base64.decode(appLinkData.getLastPathSegment(), Base64.NO_CLOSE));
+            Utils.E("packageUuiduuid::"+packageUuid);
+        }
+
         if (AppController.getInstance().isOnline()) {
             getPackageDetails();
         } else {
@@ -116,18 +142,48 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
         binding.ivBack.setOnClickListener(this);
         binding.mcvAddtoWishlist.setOnClickListener(this);
         binding.tvRateId.setOnClickListener(this);
+        binding.llMockTest.setOnClickListener(this);
+        binding.llcoursematerial.setOnClickListener(this);
         binding.AddtoCart.setOnClickListener(this);
+        binding.mcvShare.setOnClickListener(this);
         if (AppController.getInstance().isOnline()) {
             GetPackageDetailsMockTestListRatingNow();
         } else {
             InternetDialog();
         }
 
+
+        pakageDetailMockTestFragmentAdapter = new PakageDetailMockTestFragmentAdapter(activity, mockTestModels);
+        binding.rvMockTestList.setLayoutManager(new LinearLayoutManager(activity));
+        binding.rvMockTestList.setAdapter(pakageDetailMockTestFragmentAdapter);
+
+
+        pakageDetailPrimaryAdapter = new PakageDetailPrimaryAdapter(activity, subjectModelArrayList);
+        binding.rvCourseList.setLayoutManager(new LinearLayoutManager(activity));
+        binding.rvCourseList.setAdapter(pakageDetailPrimaryAdapter);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     @Override
     public void onClick(View view) {
+        if (view == binding.llcoursematerial) {
+            binding.tvCourseMaterial.setTextColor(ContextCompat.getColor(activity, R.color.theme));
+            binding.viewCourseMaterial.setVisibility(View.VISIBLE);
+            binding.tvMockTest.setTextColor(ContextCompat.getColor(activity, R.color.black));
+            binding.viewMockTest.setVisibility(View.GONE);
+            binding.rvCourseList.setVisibility(View.VISIBLE);
+            binding.rvMockTestList.setVisibility(View.GONE);
+        }
+        if (view == binding.llMockTest) {
+            binding.tvCourseMaterial.setTextColor(ContextCompat.getColor(activity, R.color.black));
+            binding.viewCourseMaterial.setVisibility(View.GONE);
+            binding.tvMockTest.setTextColor(ContextCompat.getColor(activity, R.color.theme));
+            binding.viewMockTest.setVisibility(View.VISIBLE);
+
+            binding.rvCourseList.setVisibility(View.GONE);
+            binding.rvMockTestList.setVisibility(View.VISIBLE);
+        }
         if (view == binding.tvRateId) {
             if (AppController.getInstance().isOnline()) {
                 rateNowBottomSheet();
@@ -149,9 +205,24 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 InternetDialog();
             }
 
+        }else if (view == binding.mcvShare){
+            shearIntent();
         }
     }
 
+    private void shearIntent() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType(Constants.Key.TEXT_PLAIN_TYPE);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, Constants.Key.Exam101);
+            String shareMessage= "\nLet me recommend you this package\n\n";
+            shareMessage = shareMessage + Const.Url.HOST_URL+Constants.Key.exam+ Base64.encodeToString(packageUuid.getBytes(), Base64.NO_CLOSE);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, Constants.Key.choose_one));
+        } catch(Exception e) {
+            //e.toString();
+        }
+    }
     private void addToWishList() {
         Dialog progressDialog = Utils.initProgressDialog(activity);
         HashMap<String, String> hm = new HashMap<>();
@@ -230,14 +301,21 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
     }
 
     private void getPackageDetails() {
+        binding.rvmain.setVisibility(View.GONE);
+
         Dialog progressDialog = Utils.initProgressDialog(activity);
         Utils.E("packageUid:::::" + packageUuid);
         apiService.getPackageDetailApi(Utils.GetSession().token, packageUuid).enqueue(new Callback<AllResponseModel>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<AllResponseModel> call, @NonNull Response<AllResponseModel> response) {
                 progressDialog.dismiss();
                 if (response.code() == StatusCodeConstant.OK) {
                     assert response.body() != null;
+                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadein);
+                    binding.rvmain.setAnimation(animation);
+                    binding.rvmain.setVisibility(View.VISIBLE);
+
                     PackageDetailModel packageDetailModels = response.body().packageDetail;
                     List<LanguageModel> languageModels = response.body().packageDetail.languageModels;
                     binding.scrollView.setVisibility(View.VISIBLE);
@@ -248,6 +326,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     imgPath = packageDetailModels.featureImg;
                     binding.tvHeadings.setText(packageName);
                     binding.tvLanguage.setText(languageModels.get(0).languageName);
+//                    binding.tvDates.setText("Purchased on: " + TimeFormatter.getDateTime(packageDetailModels.d, activity, "yyyy-MM-dd HH:mm:ss", "Date"));
                     binding.tvPriceGreat.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageDetailModels.discountedPrice)));
                     binding.tvPriceSmall.setText(new DecimalFormat("##.##").format(Double.parseDouble(packageDetailModels.actualPrice)));
                     binding.tvDescription.setText(HtmlCompat.fromHtml(response.body().packageDetail.shortDesc, 0));
@@ -261,7 +340,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     }
 
                     Utils.E("languageUuId::" + languageUuId);
-                    mockTestModels = packageDetailModels.mockTests;
+                    mockTestModels.addAll(packageDetailModels.mockTests);
                     Utils.E("mockTestModels::" + mockTestModels);
                     examModelArrayList.addAll(packageDetailModels.examModels);
                     Utils.E("examModelArrayList::" + examModelArrayList);
@@ -273,18 +352,22 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                     if (subjectModelArrayList.isEmpty() && mockTestModels.isEmpty()) {
                         binding.viewtwo.setVisibility(View.GONE);
                         binding.llTabView.setVisibility(View.GONE);
+                        binding.llTab.setVisibility(View.GONE);
                     } else {
                         binding.viewtwo.setVisibility(View.VISIBLE);
+                        binding.llTab.setVisibility(View.VISIBLE);
                         binding.llTabView.setVisibility(View.VISIBLE);
                     }
                     Utils.E("subjectModelArrayList::" + subjectModelArrayList);
                     if (!subjectModelArrayList.isEmpty()) {
-                        Utils.E("hello");
                         courseMaterialFragment.subjectModelArrayList.clear();
                         courseMaterialFragment.subjectModelArrayList.addAll(subjectModelArrayList);
                         courseMaterialFragment.UpdateData();
+                        pakageDetailPrimaryAdapter.notifyDataSetChanged();
 
                     } else {
+                        binding.llcoursematerial.setVisibility(View.GONE);
+                        binding.llMockTest.performClick();
                         fragments.remove(courseMaterialFragment);
                         binding.tlPackageDetailTabLayoutId.setTabMode(TabLayout.MODE_SCROLLABLE);
                     }
@@ -294,6 +377,8 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                         mockTestFragment.mockTestModels.addAll(mockTestModels);
                         mockTestFragment.UpdateData();
                     } else {
+                        binding.llMockTest.setVisibility(View.GONE);
+                        binding.llcoursematerial.performClick();
                         fragments.remove(mockTestFragment);
                         binding.tlPackageDetailTabLayoutId.setTabMode(TabLayout.MODE_SCROLLABLE);
                     }
@@ -392,7 +477,7 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 try {
                     if (response.code() == StatusCodeConstant.OK) {
                         assert response.body() != null;
-
+                        GetPackageDetailsMockTestListRatingNow();
                     } else {
                         assert response.errorBody() != null;
                         APIError message = new Gson().fromJson(response.errorBody().charStream(), APIError.class);
@@ -480,7 +565,6 @@ public class PackagesDetailActivity extends BaseActivity implements View.OnClick
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 Utils.E("SimpleDateFormat::::" + currentDate + currentTime);
                 addRatingReview(bottomSheetRatenowBinding.rating.getRating(), bottomSheetRatenowBinding.etShareThoughts.getText().toString().trim());
-                GetPackageDetailsMockTestListRatingNow();
                 bottomSheetDialog.cancel();
             }
         });

@@ -368,7 +368,7 @@
     <include
         android:visibility="gone"
         android:id="@+id/noResultFoundId"
-        layout="@layout/no_result_found"
+        layout="@layout/data_not_found"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

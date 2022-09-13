@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".main.activity.PrivacyPolicyActivity">
-
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
@@ -34,15 +33,25 @@
             android:text="@string/privacy_policy" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/bottomView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_12sdp"
-        android:background="@color/lineColor" />
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/_12sdp"
-        android:id="@+id/tvViewPolicy"/>
+           <View
+               android:id="@+id/bottomView"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_12sdp"
+               android:background="@color/lineColor" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:padding="@dimen/_12sdp"
+               android:id="@+id/tvViewPolicy"/>
+       </LinearLayout>
+   </ScrollView>
 </LinearLayout>

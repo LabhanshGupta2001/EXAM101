@@ -25,6 +25,7 @@ import com.dollop.exam101.Basics.Retrofit.RetrofitClient;
 import com.dollop.exam101.Basics.UtilityTools.Utils;
 import com.dollop.exam101.Basics.UtilityTools.SavedData;
 import com.dollop.exam101.main.activity.DashboardScreenActivity;
+import com.dollop.exam101.main.model.AllResponseModel;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -74,8 +75,7 @@ public class FirebaseService extends FirebaseMessagingService {
     }
 
     public static void sendRegistrationToServer(final String token, final Context activity) {
-      /*  RetrofitClient.getClient().create(ApiService.class)
-                .UpdateFirebaseToken(Utils.GetSession().token, token, Constants.Key.Android)
+        RetrofitClient.getClient().UpdateFirebaseToken(Utils.GetSession().token, token)
                 .enqueue(new Callback<AllResponseModel>() {
                     @Override
                     public void onResponse(@NotNull Call<AllResponseModel> call, @NotNull Response<AllResponseModel> response) {
@@ -99,7 +99,7 @@ public class FirebaseService extends FirebaseMessagingService {
                     public void onFailure(@NotNull Call<AllResponseModel> call, @NotNull Throwable t) {
 
                     }
-                });*/
+                });
     }
 
     private void handleDataMessage(JSONObject json) {
