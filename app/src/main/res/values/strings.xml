@@ -183,7 +183,7 @@
     <string name="normal">Normal</string>
     <string name="high">High</string>
     <string name="critical">Critical</string>
-    <string name="upload_pdf_images">Upload PDF / Images (optional)</string>
+    <string name="upload_pdf_images">Upload PDF / Images (Optional)</string>
 
     <string name="_2_june_2022">2 June, 2022</string>
     <string name="duration">Duration</string>
