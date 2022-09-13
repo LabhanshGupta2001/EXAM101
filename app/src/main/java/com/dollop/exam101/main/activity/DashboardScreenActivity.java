@@ -243,6 +243,8 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
                         navHeaderDashboardBinding.tvHome.setTextColor(ContextCompat.getColor(activity, R.color.black));
                         binding.llNotification.setVisibility(View.GONE);
                         binding.ivLogo.setVisibility(View.GONE);
+
+
                         binding.tvHeading.setVisibility(View.VISIBLE);
                         binding.tvHeading.setText(R.string.cart);
 
@@ -316,7 +318,7 @@ public class DashboardScreenActivity extends BaseActivity implements View.OnClic
 
         }
         if (view == navHeaderDashboardBinding.llContactUs) {
-          //  binding.drawerLayout.closeDrawers();
+            //  binding.drawerLayout.closeDrawers();
             Utils.I(activity, ContactUsActivity.class, null);
         }
         if (view == navHeaderDashboardBinding.llAbout) {
